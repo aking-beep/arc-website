@@ -5,6 +5,7 @@ import { ArrowLeft, BookOpen, Check, Github, Play } from "lucide-react";
 import { Container, Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/ui/badge";
+import { ProductVisualPanel } from "@/components/product-visual";
 import { CTA } from "@/components/cta";
 import { labs } from "@/lib/content";
 
@@ -45,59 +46,53 @@ export default function ProductPage({
             <ArrowLeft className="h-4 w-4" />
             ARC Labs
           </Link>
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-3">
-              <StatusBadge status={product.status} />
-              {product.badge ? (
-                <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                  {product.badge}
-                </span>
-              ) : null}
+          <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div className="max-w-3xl">
+              <div className="flex items-center gap-3">
+                <StatusBadge status={product.status} />
+                {product.badge ? (
+                  <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    {product.badge}
+                  </span>
+                ) : null}
+              </div>
+              <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
+                {product.name}
+              </h1>
+              <p className="mt-4 text-xl text-muted-foreground">{product.tagline}</p>
+              <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+                {product.description}
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                {product.links.demo ? (
+                  <Button href={product.links.demo}>
+                    <Play className="h-4 w-4" />
+                    Live demo
+                  </Button>
+                ) : null}
+                {product.links.github ? (
+                  <Button href={product.links.github} variant="outline">
+                    <Github className="h-4 w-4" />
+                    GitHub
+                  </Button>
+                ) : null}
+                {product.links.docs ? (
+                  <Button href={product.links.docs} variant="ghost">
+                    <BookOpen className="h-4 w-4" />
+                    Docs
+                  </Button>
+                ) : null}
+              </div>
             </div>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
-              {product.name}
-            </h1>
-            <p className="mt-4 text-xl text-muted-foreground">{product.tagline}</p>
-            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
-              {product.description}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {product.links.demo ? (
-                <Button href={product.links.demo}>
-                  <Play className="h-4 w-4" />
-                  Live demo
-                </Button>
-              ) : null}
-              {product.links.github ? (
-                <Button href={product.links.github} variant="outline">
-                  <Github className="h-4 w-4" />
-                  GitHub
-                </Button>
-              ) : null}
-              {product.links.docs ? (
-                <Button href={product.links.docs} variant="ghost">
-                  <BookOpen className="h-4 w-4" />
-                  Docs
-                </Button>
-              ) : null}
-            </div>
+            <ProductVisualPanel visual={product.visual} />
           </div>
         </Container>
       </section>
 
-      {/* Screenshot placeholder */}
-      <Container className="py-12">
-        <div className="flex aspect-[16/9] w-full items-center justify-center rounded-xl border border-dashed border-border bg-muted/40 text-sm text-muted-foreground">
-          Product screenshot / architecture diagram goes here
-        </div>
-      </Container>
-
       <Section className="!border-t-0 !pt-0">
         <div className="grid gap-12 lg:grid-cols-2">
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight">
-              What it does
-            </h2>
+            <h2 className="text-2xl font-semibold tracking-tight">What it does</h2>
             <ul className="mt-6 space-y-3">
               {product.features.map((f) => (
                 <li key={f} className="flex items-start gap-3">
@@ -110,6 +105,31 @@ export default function ProductPage({
                 </li>
               ))}
             </ul>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-semibold tracking-tight">How it works</h2>
+            <ol className="mt-6 space-y-3">
+              {product.howItWorks.map((step, i) => (
+                <li key={step} className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full border border-border font-mono text-[10px] text-muted-foreground">
+                    {i + 1}
+                  </span>
+                  <span className="text-sm leading-relaxed text-muted-foreground">
+                    {step}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+
+        <div className="mt-12 grid gap-12 lg:grid-cols-2">
+          <div className="rounded-xl border border-border bg-muted/30 p-6">
+            <h2 className="text-lg font-semibold tracking-tight">Who it&rsquo;s for</h2>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              {product.audience}
+            </p>
           </div>
 
           {product.roadmap ? (
@@ -140,7 +160,15 @@ export default function ProductPage({
                 ))}
               </ul>
             </div>
-          ) : null}
+          ) : (
+            <div className="rounded-xl border border-border bg-muted/30 p-6">
+              <h2 className="text-lg font-semibold tracking-tight">Status</h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                This tool is still taking shape. Follow the GitHub org for releases,
+                or book a call if you want it prioritized against your stack.
+              </p>
+            </div>
+          )}
         </div>
       </Section>
 

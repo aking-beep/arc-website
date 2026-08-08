@@ -32,13 +32,13 @@ export default function CaseStudyPage({
   return (
     <>
       <Container className="py-16 sm:py-20">
-        <Link
-          href="/studio"
-          className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          ARC Studio
-        </Link>
+          <Link
+            href="/work"
+            className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Work
+          </Link>
         <div className="max-w-3xl">
           <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
             <StatusBadge status={study.status} />

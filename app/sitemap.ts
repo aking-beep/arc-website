@@ -3,7 +3,12 @@ import { site, nav, labs, research, caseStudies } from "@/lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.domain.replace(/\/$/, "");
-  const staticRoutes = ["", ...nav.map((n) => n.href)].map((href) => ({
+  const staticRoutes = [
+    "",
+    ...nav.map((n) => n.href),
+    "/work",
+    "/privacy",
+  ].map((href) => ({
     url: `${base}${href}`,
     lastModified: new Date(),
   }));

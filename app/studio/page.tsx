@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { Check, Info } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Check, Info } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
+import { StatusBadge } from "@/components/ui/badge";
 import { CTA } from "@/components/cta";
-import { services, stages, principles, bestFit } from "@/lib/content";
+import { services, stages, principles, bestFit, caseStudies } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Studio — Advisory & delivery",
@@ -21,7 +23,6 @@ export default function StudioPage() {
         lead="An advisory and delivery partner for small and mid-sized companies. We start with strategy that lines up with what you're actually trying to do, deliver the work in honest stages, and measure the outcomes that matter."
       />
 
-      {/* Stages */}
       <Section>
         <SectionHeading
           kicker="How we work"
@@ -43,7 +44,6 @@ export default function StudioPage() {
         </ol>
       </Section>
 
-      {/* Services */}
       <Section className="bg-muted/30">
         <SectionHeading
           kicker="What we do"
@@ -106,8 +106,52 @@ export default function StudioPage() {
         </div>
       </Section>
 
-      {/* Principles */}
       <Section>
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <SectionHeading
+            kicker="Work"
+            title="Selected outcomes."
+            lead="Honest write-ups when clients allow publication. Structure first; fiction never."
+          />
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
+          >
+            See all case studies
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
+          {caseStudies.map((study) => (
+            <Link key={study.slug} href={`/work/${study.slug}`} className="group block">
+              <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
+                <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+                  <StatusBadge status={study.status} />
+                  <span>{study.industry}</span>
+                </div>
+                <h3 className="mt-4 text-lg font-semibold tracking-tight group-hover:underline group-hover:underline-offset-4">
+                  {study.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {study.summary}
+                </p>
+                <div className="mt-6 grid grid-cols-3 gap-3 border-t border-border/60 pt-4">
+                  {study.outcomes.map((o) => (
+                    <div key={o.label}>
+                      <div className="text-lg font-semibold tracking-tight">
+                        {o.metric}
+                      </div>
+                      <p className="text-xs text-muted-foreground">{o.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section className="bg-muted/30">
         <SectionHeading
           kicker="How we think about the work"
           title="The rules we hold ourselves to."
@@ -115,7 +159,7 @@ export default function StudioPage() {
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {principles.map((p) => (
-            <div key={p.number} className="rounded-lg border border-border p-5">
+            <div key={p.number} className="rounded-lg border border-border bg-card p-5">
               <span className="font-mono text-xs text-muted-foreground">
                 {p.number}
               </span>
@@ -136,8 +180,7 @@ export default function StudioPage() {
         </figure>
       </Section>
 
-      {/* Best fit */}
-      <Section className="bg-muted/30">
+      <Section>
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-start">
           <SectionHeading kicker="Fit" title="Who we work best with" />
           <ul className="grid gap-4">

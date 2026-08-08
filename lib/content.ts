@@ -99,6 +99,12 @@ export const pillars: Pillar[] = [
 // ---------------------------------------------------------------------------
 // ARC Labs — free tools.
 // ---------------------------------------------------------------------------
+export type ProductVisual =
+  | "conformance"
+  | "prompt"
+  | "skills"
+  | "connectivity";
+
 export type Product = {
   slug: string;
   name: string;
@@ -106,6 +112,9 @@ export type Product = {
   description: string;
   status: Status;
   badge?: string;
+  visual: ProductVisual;
+  audience: string;
+  howItWorks: string[];
   features: string[];
   links: { demo?: string; github?: string; docs?: string };
   roadmap?: { label: string; done: boolean }[];
@@ -120,6 +129,15 @@ export const labs: Product[] = [
       "Point it at a Model Context Protocol server and get a clear-eyed conformance report: what passes, what breaks, and what to fix first. Built on the same Next.js + Vercel stack every ARC product shares.",
     status: "live",
     badge: "Flagship",
+    visual: "conformance",
+    audience:
+      "Teams shipping or consuming MCP servers who need a gate before production — not a vague “looks fine in one client” vibe check.",
+    howItWorks: [
+      "Paste a server URL or point the CLI at your local process.",
+      "We run handshake, capability negotiation, and schema checks.",
+      "You get a graded report with prioritized fixes an operator can act on.",
+      "Share the link with a teammate or drop it into CI when the Action ships.",
+    ],
     features: [
       "Full MCP handshake and capability negotiation checks",
       "Tool, resource, and prompt schema validation",
@@ -145,6 +163,14 @@ export const labs: Product[] = [
     description:
       "Paste a prompt and get structured feedback on clarity, injection surface, ambiguity, and failure modes — the review a senior engineer would give, minus the wait.",
     status: "building",
+    visual: "prompt",
+    audience:
+      "Builders writing system prompts for agents and copilots who want failure modes named before users find them.",
+    howItWorks: [
+      "Paste the system prompt (and optional tool list).",
+      "We score clarity, ambiguity, and injection surface.",
+      "You get concrete rewrites and a failure-mode list to put in the PR.",
+    ],
     features: [
       "Clarity and ambiguity scoring",
       "Prompt-injection surface analysis",
@@ -160,6 +186,14 @@ export const labs: Product[] = [
     description:
       "A growing open library of packaged agent skills you can drop into your own workflows — the same building blocks ARC uses internally.",
     status: "building",
+    visual: "skills",
+    audience:
+      "Operators and engineers who want copy-pasteable agent skills with documented inputs and guardrails — not a private prompt graveyard.",
+    howItWorks: [
+      "Browse the skill library by job (research, review, ops).",
+      "Drop a package into your agent runtime or skill folder.",
+      "Keep the guardrails; customize the inputs for your stack.",
+    ],
     features: [
       "Portable skill packages",
       "Documented inputs and guardrails",
@@ -174,6 +208,14 @@ export const labs: Product[] = [
     description:
       "Discover and pressure-test the connectors, endpoints, and permissions an AI system depends on — before they surprise you in production.",
     status: "planned",
+    visual: "connectivity",
+    audience:
+      "Security and platform teams who need a clear map of agent reachability before a connector goes sideways in prod.",
+    howItWorks: [
+      "Point the scanner at your agent’s configured connectors.",
+      "We probe reachability, auth, and permission boundaries.",
+      "You get a risk-ranked exposure report with owners attached.",
+    ],
     features: [
       "Connector and endpoint discovery",
       "Permission and reachability checks",
@@ -406,6 +448,28 @@ export const platformCapabilities = [
   },
 ];
 
+export const platformPrinciples = [
+  {
+    title: "Continuous, not episodic",
+    text: "A diagnostic that ages out in a quarter is a liability. Platform keeps the same axes live so the roadmap stays honest.",
+  },
+  {
+    title: "Operator-readable",
+    text: "Every score and alert has a named owner, a plain-language reason, and a next action — not a wall of telemetry.",
+  },
+  {
+    title: "Shared infrastructure",
+    text: "Auth, scoring, and reporting match the Labs tools and Studio deliverables, so the ecosystem reads as one system.",
+  },
+];
+
+export const platformRoadmap = [
+  { label: "Design-partner dashboards", done: false },
+  { label: "Governance workflows + audit trail", done: false },
+  { label: "Board-ready report export", done: false },
+  { label: "Self-serve onboarding", done: false },
+];
+
 // ---------------------------------------------------------------------------
 // ARC Intelligence — research & benchmarks.
 // ---------------------------------------------------------------------------
@@ -500,18 +564,30 @@ export const academy = [
   {
     name: "Courses",
     text: "Self-paced tracks that turn ARC's operating principles into repeatable practice for your team.",
+    detail:
+      "First tracks cover naming the stage, scoring on four axes, and shipping a boring MVP that moves a real KPI.",
     status: "planned" as Status,
   },
   {
     name: "Certifications",
     text: "Prove your team can run the ARC method — name the stage, land on four axes, ship the boring thing.",
+    detail:
+      "Practical exams against sample diagnostics — not multiple-choice theater. Built for operators who have to defend the plan.",
     status: "planned" as Status,
   },
   {
     name: "Workshops",
     text: "Live, hands-on sessions run against your real systems and your real backlog.",
+    detail:
+      "Half-day and two-day intensives. Bring the messy backlog; leave with sequenced work and named owners.",
     status: "planned" as Status,
   },
+];
+
+export const academyOutcomes = [
+  "A shared vocabulary so strategy and delivery stop talking past each other.",
+  "Repeatable scoring on business value, risk, feasibility, and adoption.",
+  "A team that can keep compounding after the engagement ends.",
 ];
 
 // ---------------------------------------------------------------------------

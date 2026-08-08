@@ -3,8 +3,9 @@ import { ArrowRight, Check } from "lucide-react";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { PillarCard } from "@/components/pillar-card";
+import { ProductCard } from "@/components/product-card";
 import { CTA } from "@/components/cta";
-import { pillars, stages, principles, site } from "@/lib/content";
+import { pillars, stages, principles, labs, site } from "@/lib/content";
 
 const doings = [
   "We build free open-source tools.",
@@ -16,13 +17,17 @@ const doings = [
 ];
 
 export default function HomePage() {
+  const featuredLabs = labs.filter((p) => p.status === "live" || p.badge);
+
   return (
     <>
-      {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 grid-bg opacity-70" />
         <Container className="relative py-24 sm:py-32">
           <div className="mx-auto max-w-3xl text-center animate-fade-up">
+            <p className="mb-4 text-sm font-semibold tracking-[0.2em] text-muted-foreground">
+              ARC TRANSFORMATION GROUP
+            </p>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/60 px-3 py-1 text-xs font-medium text-muted-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
               AI &amp; transformation for small and mid-sized companies
@@ -48,7 +53,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* What ARC is */}
           <div className="mx-auto mt-16 grid max-w-4xl gap-x-8 gap-y-3 sm:grid-cols-2">
             {doings.map((d) => (
               <div key={d} className="flex items-center gap-3">
@@ -62,7 +66,6 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Ecosystem */}
       <Section>
         <SectionHeading
           kicker="The ecosystem"
@@ -76,8 +79,29 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* The system */}
       <Section className="bg-muted/30">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <SectionHeading
+            kicker="ARC Labs"
+            title="Start with something free."
+            lead="Open-source tools you can run today. No signup wall, no sales call."
+          />
+          <Link
+            href="/labs"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
+          >
+            Browse all Labs tools
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
+          {featuredLabs.map((p) => (
+            <ProductCard key={p.slug} product={p} basePath="/labs" />
+          ))}
+        </div>
+      </Section>
+
+      <Section>
         <SectionHeading
           kicker="How ARC works"
           title="Five stages. One honest system."
@@ -98,8 +122,7 @@ export default function HomePage() {
         </ol>
       </Section>
 
-      {/* Principles teaser */}
-      <Section>
+      <Section className="bg-muted/30">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-start">
           <SectionHeading
             kicker="How we think"
@@ -108,7 +131,7 @@ export default function HomePage() {
           />
           <div className="grid gap-5 sm:grid-cols-2">
             {principles.slice(0, 4).map((p) => (
-              <div key={p.number} className="rounded-lg border border-border p-5">
+              <div key={p.number} className="rounded-lg border border-border bg-card p-5">
                 <span className="font-mono text-xs text-muted-foreground">
                   {p.number}
                 </span>
@@ -123,7 +146,7 @@ export default function HomePage() {
         <div className="mt-10">
           <Link
             href="/studio"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:gap-2.5 transition-all"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
           >
             See all eight principles and how we work
             <ArrowRight className="h-4 w-4" />

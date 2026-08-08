@@ -82,10 +82,16 @@ export function ContactForm() {
       />
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Your name" name="name" required />
-        <Field label="Work email" name="email" type="email" required />
+        <Field label="Your name" name="name" required maxLength={120} />
+        <Field
+          label="Work email"
+          name="email"
+          type="email"
+          required
+          maxLength={254}
+        />
       </div>
-      <Field label="Company" name="company" />
+      <Field label="Company" name="company" maxLength={160} />
 
       <div>
         <label className="mb-1.5 block text-sm font-medium">
@@ -114,6 +120,7 @@ export function ContactForm() {
         <textarea
           name="message"
           rows={4}
+          maxLength={5000}
           className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
         />
       </div>
@@ -139,11 +146,13 @@ function Field({
   name,
   type = "text",
   required,
+  maxLength,
 }: {
   label: string;
   name: string;
   type?: string;
   required?: boolean;
+  maxLength?: number;
 }) {
   return (
     <div>
@@ -155,6 +164,7 @@ function Field({
         type={type}
         name={name}
         required={required}
+        maxLength={maxLength}
         className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
       />
     </div>

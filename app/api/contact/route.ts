@@ -16,7 +16,26 @@ function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+// Length caps. The client can be bypassed, so we clamp again here to block
+// oversized payloads and abuse. email cap is RFC 5321's 254 chars.
+const LIMITS = {
+  name: 120,
+  email: 254,
+  company: 160,
+  stage: 200,
+  message: 5000,
+} as const;
+
+function clean(value: string | undefined, max: number) {
+  return (value ?? "").trim().slice(0, max);
+}
+
 export async function POST(request: Request) {
+  // Only accept JSON. Anything else is almost certainly not our form.
+  if (!(request.headers.get("content-type") || "").includes("application/json")) {
+    return NextResponse.json({ error: "Invalid request." }, { status: 415 });
+  }
+
   let body: ContactPayload;
   try {
     body = (await request.json()) as ContactPayload;
@@ -25,15 +44,16 @@ export async function POST(request: Request) {
   }
 
   // Honeypot — bots fill hidden fields; humans never see this one.
+  // Accept-and-drop so bots get no signal that they were caught.
   if (body.company_website) {
     return NextResponse.json({ ok: true });
   }
 
-  const name = (body.name ?? "").trim();
-  const email = (body.email ?? "").trim();
-  const company = (body.company ?? "").trim();
-  const stage = (body.stage ?? "").trim();
-  const message = (body.message ?? "").trim();
+  const name = clean(body.name, LIMITS.name);
+  const email = clean(body.email, LIMITS.email);
+  const company = clean(body.company, LIMITS.company);
+  const stage = clean(body.stage, LIMITS.stage);
+  const message = clean(body.message, LIMITS.message);
 
   if (!name || !email) {
     return NextResponse.json(
@@ -105,4 +125,28 @@ export async function POST(request: Request) {
     warning:
       "Message logged. Set RESEND_API_KEY to deliver email in production.",
   });
+}
+
+// Any method other than POST gets a clean 405 — no stack traces, no surface.
+function methodNotAllowed() {
+  return NextResponse.json(
+    { error: "Method not allowed." },
+    { status: 405, headers: { Allow: "POST" } },
+  );
+}
+
+export function GET() {
+  return methodNotAllowed();
+}
+
+export function PUT() {
+  return methodNotAllowed();
+}
+
+export function PATCH() {
+  return methodNotAllowed();
+}
+
+export function DELETE() {
+  return methodNotAllowed();
 }
