@@ -15,9 +15,9 @@ import {
 } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Platform — Productized operating intelligence",
+  title: "Platform · Productized operating intelligence",
   description:
-    "ARC Platform turns the recurring work — diagnostics, governance, reporting — into operating intelligence your team runs continuously across digital systems.",
+    "ARC Platform turns recurring diagnostics, governance, and reporting into operating intelligence your team runs continuously across digital systems.",
 };
 
 export default function PlatformPage() {
@@ -26,12 +26,12 @@ export default function PlatformPage() {
       <PageHero
         kicker="ARC Platform"
         title="The diagnostic, running continuously."
-        lead="The best consulting findings go stale the day after they're delivered. ARC Platform productizes the recurring work — so the read on your architecture, data, security, and delivery is live instead of a snapshot."
+        lead="The best consulting findings go stale the day after they are delivered. ARC Platform productizes the recurring work so the read on your architecture, data, security, and delivery stays live instead of becoming a snapshot."
       >
         <div className="flex flex-wrap items-center gap-3">
           <StatusBadge status="building" />
           <span className="text-sm text-muted-foreground">
-            In active development — design partners welcome.
+            In active development. Design partners welcome.
           </span>
         </div>
       </PageHero>
@@ -41,7 +41,7 @@ export default function PlatformPage() {
           <SectionHeading
             kicker="What it does"
             title="Operating intelligence for digital change."
-            lead="Built on the same shared design system, auth, scoring, and reporting as every ARC product — so it reads like one system, not a bolt-on."
+            lead="Built on the same shared design system, auth, scoring, and reporting as every ARC product, so it reads like one system, not a bolt-on."
           />
           <ProductVisualPanel visual="conformance" />
         </div>
@@ -61,7 +61,7 @@ export default function PlatformPage() {
         <SectionHeading
           kicker="Design principles"
           title="How Platform stays honest."
-          lead="Same rules as Studio — just running every week instead of every engagement."
+          lead="Same rules as Studio, just running every week instead of every engagement."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {platformPrinciples.map((p) => (

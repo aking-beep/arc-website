@@ -8,7 +8,7 @@ import { CTA } from "@/components/cta";
 import { labs, site } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Labs — Free & open-source tools",
+  title: "Labs · Free & open-source tools",
   description:
     "ARC Labs builds free, open-source scanners and utilities that make the invisible visible. Run them yourself, no strings attached.",
 };
@@ -19,7 +19,7 @@ export default function LabsPage() {
       <PageHero
         kicker="ARC Labs"
         title="Free tools that make the invisible visible."
-        lead="Open-source scanners and free utilities anyone can run. Most need no account. Tools that store secrets (like TokenLoop) use a free signup so keys stay encrypted to your org — still no paid tiers."
+        lead="Open-source scanners and free utilities anyone can run. Most need no account. Tools that store secrets (like TokenLoop) use a free signup so keys stay encrypted to your org. Still no paid tiers."
       >
         <Button href={site.github} variant="outline">
           <Github className="h-4 w-4" />
@@ -42,7 +42,7 @@ export default function LabsPage() {
 
       <CTA
         title="Found a tool useful?"
-        lead="The tools are the front door. If you want a human read on what they surfaced — or help fixing it — that's what ARC Studio is for. Start with a 30-minute call."
+        lead="The tools are the front door. If you want a human read on what they surfaced, or help fixing it, that is what ARC Studio is for. Start with a 30-minute call."
       />
     </>
   );

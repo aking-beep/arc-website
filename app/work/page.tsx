@@ -9,7 +9,7 @@ import { CTA } from "@/components/cta";
 import { caseStudies } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Work — Case studies",
+  title: "Work · Case studies",
   description:
     "Selected ARC Studio engagements: honest challenges, sequenced approaches, and outcomes you can measure.",
 };
@@ -20,7 +20,7 @@ export default function WorkPage() {
       <PageHero
         kicker="Work"
         title="Outcomes over narratives."
-        lead="Case studies from ARC Studio engagements. We publish what shipped, what we would do differently, and the numbers that mattered — not polished fiction."
+        lead="Case studies from ARC Studio engagements. We publish what shipped, what we would do differently, and the numbers that mattered, not polished fiction."
       />
 
       <Section>

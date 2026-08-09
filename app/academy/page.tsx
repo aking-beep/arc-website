@@ -9,9 +9,9 @@ import { CTA } from "@/components/cta";
 import { academy, academyOutcomes } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Academy — Workshops",
+  title: "Academy · Workshops",
   description:
-    "ARC Academy runs hands-on workshops against your real systems and backlog — so the team keeps the method after we leave.",
+    "ARC Academy runs hands-on workshops against your real systems and backlog, so the team keeps the method after we leave.",
 };
 
 export default function AcademyPage() {
@@ -20,7 +20,7 @@ export default function AcademyPage() {
       <PageHero
         kicker="ARC Academy"
         title="Workshops that make it stick."
-        lead="No course catalog. No certification theater. Three live workshop formats: digital readiness and vocabulary, a technical Operator session on ARC's method, or a custom day built around your problem."
+        lead="No course catalog. No certification theater. Three live formats: digital readiness and vocabulary, a technical Operator session on ARC's method, or a custom day built around your problem."
       />
 
       <Section>

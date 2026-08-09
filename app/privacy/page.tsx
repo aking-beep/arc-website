@@ -46,7 +46,7 @@ export default function PrivacyPage() {
             Standard web logs (IP, user agent, path, timestamp) may be processed
             by our host (Vercel) for security and reliability. If we enable
             analytics later, it will be privacy-respecting (e.g. Vercel Analytics
-            or Plausible) — no ad-tech trackers.
+            or Plausible), no ad-tech trackers.
           </p>
         </section>
 

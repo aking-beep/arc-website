@@ -18,7 +18,7 @@ export function generateMetadata({
 }): Metadata {
   const study = caseStudies.find((c) => c.slug === params.slug);
   if (!study) return {};
-  return { title: `${study.title} — Case study`, description: study.summary };
+  return { title: `${study.title} · Case study`, description: study.summary };
 }
 
 export default function CaseStudyPage({

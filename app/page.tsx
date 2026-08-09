@@ -40,7 +40,7 @@ export default function HomePage() {
             </p>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/60 px-3 py-1 text-xs font-medium text-muted-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              For companies, nonprofits, people, and communities
+              For companies, nonprofits, people, communities
             </div>
             <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
               Digital transformation that ships.
@@ -48,10 +48,9 @@ export default function HomePage() {
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
               The digital world keeps moving. Too many good organizations get left
               behind. ARC helps individuals, companies big or small, nonprofits,
-              communities — whoever needs to keep pace — through digital
-              transformation, cybersecurity, data platforms, or AI when it actually
-              helps. No buzzwords. No eighteen-month journeys. Just clear work that
-              ships.
+              and communities keep pace through digital transformation,
+              cybersecurity, data platforms, or AI when it actually helps. No
+              buzzwords. No eighteen-month journeys. Just clear work that ships.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button href={site.calendly} size="lg">
@@ -81,7 +80,7 @@ export default function HomePage() {
         <SectionHeading
           kicker="The ecosystem"
           title="Five pillars. One flywheel."
-          lead="Free tools build trust. Trust creates advisory work. Advisory reveals repeatable patterns. Patterns become software. Every part reinforces the others — which is a lot harder to copy than another consulting website."
+          lead="Free tools build trust. Trust creates advisory work. Advisory reveals repeatable patterns. Patterns become software. Every part reinforces the others, which is a lot harder to copy than another consulting website."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {pillars.map((p) => (
@@ -138,7 +137,7 @@ export default function HomePage() {
           <SectionHeading
             kicker="ARC Research"
             title="We publish what we learn."
-            lead="Benchmarks and field reports in plain language — assumptions labeled, numbers included."
+            lead="Benchmarks and field reports in plain language, with assumptions labeled and numbers included."
           />
           <Link
             href="/research"

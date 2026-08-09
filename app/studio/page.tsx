@@ -17,9 +17,9 @@ import {
 } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Studio — Advisory & delivery",
+  title: "Studio · Advisory & delivery",
   description:
-    "ARC Studio is an advisory and delivery partner for small and mid-sized companies. Nine focused services, five honest stages, and outcomes you can measure.",
+    "ARC Studio helps companies, nonprofits, individuals, and communities with practical digital transformation. Strategy that aligns. Work that delivers.",
 };
 
 export default function StudioPage() {
@@ -28,7 +28,7 @@ export default function StudioPage() {
       <PageHero
         kicker="ARC Studio"
         title="Strategy that aligns. Work that delivers."
-        lead="An advisory and delivery partner for companies, nonprofits, individuals, and communities that need practical digital transformation help. Data, cloud, cybersecurity, process change, and AI when it fits. We start with strategy that lines up with what you're actually trying to do, deliver the work in honest stages, and measure the outcomes that matter. Fixed rates or hourly, scoped to what you need."
+        lead="Practical digital transformation help for companies, nonprofits, individuals, and communities. We cover data, cloud, cybersecurity, process change, and AI when it fits. Strategy first, then delivery in honest stages, with outcomes you can measure. Fixed rates or hourly, scoped to what you need."
       />
 
       <Section>
@@ -149,7 +149,7 @@ export default function StudioPage() {
         <SectionHeading
           kicker="How we think about the work"
           title="The rules we hold ourselves to."
-          lead="Every recommendation has to pass these. If a piece of work doesn't, we don't ship it — and we'll usually call it out before you do."
+          lead="Every recommendation has to pass these. If a piece of work does not, we do not ship it. We will usually call that out before you do."
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {principles.map((p) => (
@@ -194,7 +194,7 @@ export default function StudioPage() {
         <SectionHeading
           kicker="FAQ"
           title="Before the discovery call."
-          lead="If the answer isn't here, ask it on the call — that's what the thirty minutes are for."
+          lead="If the answer isn't here, ask it on the call. That's what the thirty minutes are for."
         />
         <div className="mt-10 max-w-3xl">
           <FaqList items={faqs} />

@@ -18,7 +18,7 @@ export function generateMetadata({
 }): Metadata {
   const workshop = academy.find((w) => w.slug === params.slug);
   if (!workshop) return {};
-  return { title: `${workshop.name} — Academy`, description: workshop.text };
+  return { title: `${workshop.name} · Academy`, description: workshop.text };
 }
 
 export default function WorkshopPage({

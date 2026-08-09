@@ -1,5 +1,5 @@
 // ============================================================================
-// ARC ecosystem — single source of truth.
+// ARC ecosystem - single source of truth.
 // Add a product/service/article here and it shows up across the site.
 // ============================================================================
 
@@ -8,7 +8,7 @@ export const site = {
   short: "ARC",
   tagline: "Digital transformation that ships.",
   description:
-    "ARC helps individuals, companies, nonprofits, and communities keep pace with digital change. Digital transformation, cybersecurity, data and platforms, and AI when it helps, delivered as work that ships.",
+    "ARC helps individuals, companies, nonprofits, and communities keep pace with digital change. We deliver digital transformation, cybersecurity, data platforms, and AI when it helps, as clear work that ships.",
   email: "aking@arctransformationgroup.com",
   calendly: "https://calendly.com/aking-arctransformationgroup/30min",
   github: "https://github.com/aking-beep",
@@ -19,14 +19,14 @@ export const site = {
   founder: {
     name: "Andrew King",
     role: "Founder",
-    bio: "Andrew King has spent about twenty years working with technology across Fortune 100 and Fortune 500 companies. That includes large-scale entertainment, cybersecurity, brands like LEGO and the NFL, major artists and entertainment platforms, and some of the earliest customer data platforms built at real scale, including Ticketmaster-sized CDP work for tens of millions of users. He started ARC to help companies big and small, nonprofits, individuals, and communities expand with their digital ecosystem without getting left behind. Fixed rates or hourly work, scoped to what you need, whether the work is digital transformation, cybersecurity, data and platforms, or AI.",
+    bio: "Andrew King has spent about twenty years working with technology across Fortune 100 and Fortune 500 companies. That includes large-scale entertainment, cybersecurity, brands like LEGO and the NFL, major artists and entertainment platforms, plus some of the earliest customer data platforms built at real scale, including Ticketmaster-sized CDP work for tens of millions of users. He started ARC so companies big or small, nonprofits, individuals, and communities can keep pace with digital change without getting left behind. Fixed rates or hourly work, scoped to what you need, whether that means digital transformation, cybersecurity, data platforms, or AI.",
     highlights: [
       "About 20 years in technology across Fortune 100 and Fortune 500 companies",
-      "Entertainment at scale: platforms, artists, and live events",
+      "Entertainment at scale: platforms, artists, live events",
       "Cybersecurity and compliance work with global security brands",
       "Brand and consumer work with companies like LEGO and the NFL",
       "Early CDP and data-platform builds, including Ticketmaster-scale delivery",
-      "Digital transformation across process, data, cloud, security, and AI when it fits",
+      "Digital transformation across process, data, cloud, security, plus AI when it fits",
       "Works with companies, nonprofits, people, and communities at rates that stay realistic",
     ],
   },
@@ -69,7 +69,7 @@ export const statusLabel: Record<Status, string> = {
 };
 
 // ---------------------------------------------------------------------------
-// The five pillars — the ecosystem map.
+// The five pillars - the ecosystem map.
 // ---------------------------------------------------------------------------
 export type Pillar = {
   id: string;
@@ -91,7 +91,7 @@ export const pillars: Pillar[] = [
     kicker: "Free & open source",
     summary: "Free tools that build trust before we ever send an invoice.",
     detail:
-      "Open-source scanners and utilities anyone can run. They make the invisible visible — and they're how most people meet ARC.",
+      "Open-source scanners and utilities anyone can run. They make the invisible visible, and they're how most people meet ARC.",
     status: "live",
   },
   {
@@ -124,7 +124,7 @@ export const pillars: Pillar[] = [
     kicker: "Benchmarks & reports",
     summary: "Public benchmarks and honest industry reports.",
     detail:
-      "We publish what we learn — benchmarks, teardowns, and reports written in plain language with real numbers, not vendor gloss.",
+      "We publish what we learn: benchmarks, teardowns, and reports written in plain language with real numbers, not vendor gloss.",
     status: "live",
   },
   {
@@ -135,13 +135,13 @@ export const pillars: Pillar[] = [
     kicker: "Workshops",
     summary: "Hands-on workshops that make the method stick.",
     detail:
-      "Live workshops run against your real systems and backlog — so the team keeps the skills after we leave.",
+      "Live workshops run against your real systems and backlog, so the team keeps the skills after we leave.",
     status: "live",
   },
 ];
 
 // ---------------------------------------------------------------------------
-// ARC Labs — free tools.
+// ARC Labs - free tools.
 // ---------------------------------------------------------------------------
 export type ProductVisual =
   | "conformance"
@@ -176,7 +176,7 @@ export const labs: Product[] = [
     badge: "Flagship",
     visual: "conformance",
     audience:
-      "Teams shipping or consuming MCP servers who need a gate before production — not a vague “looks fine in one client” vibe check.",
+      "Teams shipping or consuming MCP servers who need a gate before production, not a vague “looks fine in one client” vibe check.",
     howItWorks: [
       "Paste a server URL or point the CLI at your local process.",
       "We run handshake, capability negotiation, and schema checks.",
@@ -204,15 +204,15 @@ export const labs: Product[] = [
     name: "TokenLoop",
     tagline: "Stop AI coding-agent spend before the invoice.",
     description:
-      "Free spend control for Claude Code and Cursor: per-developer burn, minutes-scale kill switch, and client chargeback — without rebuilding traffic through a gateway. Sign up free, connect read-only admin keys (encrypted at rest), use every feature.",
+      "Free spend control for Claude Code and Cursor: per-developer burn, minutes-scale kill switch, and client chargeback, without rebuilding traffic through a gateway. Sign up free, connect read-only admin keys (encrypted at rest), use every feature.",
     status: "live",
     badge: "Free product",
     visual: "spend",
     audience:
-      "Engineering and agency leads running Claude Code and Cursor who find out about runaway spend on the invoice — and need detect-and-cut plus client bill-back without a proxy.",
+      "Engineering and agency leads running Claude Code and Cursor who find out about runaway spend on the invoice. They need detect-and-cut plus client bill-back without a proxy.",
     howItWorks: [
       "Create a free account (email + password).",
-      "Paste Anthropic and/or Cursor admin keys — we AES-256-GCM encrypt them before storage.",
+      "Paste Anthropic and/or Cursor admin keys. We AES-256-GCM encrypt them before storage.",
       "Sync spend, set a daily cap / spike multiplier, and optionally tag clients for chargeback.",
       "Kill switch detects spikes ~every 10 minutes and can throttle or revoke via admin APIs.",
     ],
@@ -220,7 +220,7 @@ export const labs: Product[] = [
       "Per-developer Claude Code + Cursor spend in one pane",
       "Kill switch: detect, alert, throttle, or revoke (admin APIs)",
       "Agency chargeback with markup and CSV export",
-      "Keys encrypted at rest — never returned to the browser",
+      "Keys encrypted at rest. Never returned to the browser",
       "Honest scope: minutes-scale cut, not true per-request blocking",
     ],
     links: {
@@ -240,7 +240,7 @@ export const labs: Product[] = [
     name: "Prompt Reviewer",
     tagline: "A second set of eyes on your system prompts.",
     description:
-      "Paste a prompt and get structured feedback on clarity, injection surface, ambiguity, and failure modes — the review a senior engineer would give, minus the wait. Static, reproducible, no model call.",
+      "Paste a prompt and get structured feedback on clarity, injection surface, ambiguity, and failure modes. The review a senior engineer would give, minus the wait. Static, reproducible, no model call.",
     status: "live",
     visual: "prompt",
     audience:
@@ -258,6 +258,7 @@ export const labs: Product[] = [
       "Concrete rewrite suggestions + Markdown / JSON export",
     ],
     links: {
+      demo: "https://promptreviewer.arctransformationgrouplab.dev",
       github: "https://github.com/aking-beep/prompt-reviewer",
       docs: "https://github.com/aking-beep/prompt-reviewer#readme",
     },
@@ -273,11 +274,11 @@ export const labs: Product[] = [
     name: "ARC Skills",
     tagline: "Reusable, open agent skills.",
     description:
-      "A growing open library of packaged agent skills you can drop into your own workflows — the same building blocks ARC uses internally.",
+      "A growing open library of packaged agent skills you can drop into your own workflows, the same building blocks ARC uses internally.",
     status: "building",
     visual: "skills",
     audience:
-      "Operators and engineers who want copy-pasteable agent skills with documented inputs and guardrails — not a private prompt graveyard.",
+      "Operators and engineers who want copy-pasteable agent skills with documented inputs and guardrails, not a private prompt graveyard.",
     howItWorks: [
       "Browse the skill library by job (research, review, ops).",
       "Drop a package into your agent runtime or skill folder.",
@@ -295,7 +296,7 @@ export const labs: Product[] = [
     name: "Connectivity Scanner",
     tagline: "Map what your agent can actually reach.",
     description:
-      "Discover and pressure-test the connectors, endpoints, and permissions an AI system depends on — before they surprise you in production.",
+      "Discover and pressure-test the connectors, endpoints, and permissions an AI system depends on before they surprise you in production.",
     status: "planned",
     visual: "connectivity",
     audience:
@@ -315,7 +316,7 @@ export const labs: Product[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// ARC Studio — the nine services (migrated from the current site).
+// ARC Studio - the nine services (migrated from the current site).
 // ---------------------------------------------------------------------------
 export type Service = {
   number: string;
@@ -390,7 +391,7 @@ export const services: Service[] = [
     number: "06",
     name: "Delivery & Program Structuring",
     blurb:
-      "Turning intent into a release plan that actually ships. Charters, milestones, dependencies, governance — the unglamorous work that decides whether anything launches.",
+      "Turning intent into a release plan that actually ships. Charters, milestones, dependencies, governance: the unglamorous work that decides whether anything launches.",
     points: [
       "Project intake and charter design",
       "Milestone and dependency planning",
@@ -427,7 +428,7 @@ export const services: Service[] = [
     name: "Integrated Transformation Diagnostic",
     flagship: true,
     blurb:
-      "The whole picture, in five to seven weeks. Architecture, data, infrastructure, security, operations, and AI together, then a phased 6–12 month roadmap with real owners, sized risks, and sequenced spend.",
+      "The whole picture, in five to seven weeks. Architecture, data, infrastructure, security, operations, and AI together, then a phased 6-12 month roadmap with real owners, sized risks, and sequenced spend.",
     points: [
       "Current-state across architecture, data, infra, security, operations, and AI",
       "Executive summary written for the board, not the team",
@@ -517,7 +518,7 @@ export const bestFit = [
 ];
 
 // ---------------------------------------------------------------------------
-// ARC Platform — productized capabilities.
+// ARC Platform - productized capabilities.
 // ---------------------------------------------------------------------------
 export const platformCapabilities = [
   {
@@ -534,7 +535,7 @@ export const platformCapabilities = [
   },
   {
     name: "Reporting",
-    text: "Executive-ready reports generated from real signals — written for the board, not the team.",
+    text: "Executive-ready reports generated from real signals, written for the board, not the team.",
   },
 ];
 
@@ -545,7 +546,7 @@ export const platformPrinciples = [
   },
   {
     title: "Operator-readable",
-    text: "Every score and alert has a named owner, a plain-language reason, and a next action — not a wall of telemetry.",
+    text: "Every score and alert has a named owner, a plain-language reason, and a next action, not a wall of telemetry.",
   },
   {
     title: "Shared infrastructure",
@@ -561,7 +562,7 @@ export const platformRoadmap = [
 ];
 
 // ---------------------------------------------------------------------------
-// ARC Research — benchmarks & reports.
+// ARC Research - benchmarks & reports.
 // ---------------------------------------------------------------------------
 export type ArticleSection = {
   heading: string;
@@ -593,8 +594,8 @@ export const research: Article[] = [
       {
         heading: "Method",
         paragraphs: [
-          "We pointed the MCP Conformance Scanner at a curated set of public Model Context Protocol servers — open-source implementations, vendor demos, and community projects. Each run covered handshake, capability negotiation, and schema validation for tools, resources, and prompts.",
-          "Assumptions we are labeling up front: the sample skews toward early adopters and English-language documentation; private enterprise servers are under-represented; and a failing check is not the same as a malicious server — it usually means an incomplete or drifting implementation.",
+          "We pointed the MCP Conformance Scanner at a curated set of public Model Context Protocol servers (open-source implementations, vendor demos, and community projects). Each run covered handshake, capability negotiation, and schema validation for tools, resources, and prompts.",
+          "Assumptions we are labeling up front: the sample skews toward early adopters and English-language documentation; private enterprise servers are under-represented; and a failing check is not the same as a malicious server. It usually means an incomplete or drifting implementation.",
         ],
       },
       {
@@ -607,7 +608,7 @@ export const research: Article[] = [
       {
         heading: "What it means",
         paragraphs: [
-          "If you are shipping an MCP server, run conformance in CI before you call it production. If you are consuming servers, treat the handshake report as a gate — not a nice-to-have — and prefer servers that publish a shareable conformance link.",
+          "If you are shipping an MCP server, run conformance in CI before you call it production. If you are consuming servers, treat the handshake report as a gate, not a nice-to-have, and prefer servers that publish a shareable conformance link.",
           "As the sample grows and historical diffing lands, we will publish grade distributions and a short list of the highest-impact fixes for implementers. This first cut is already actionable.",
         ],
       },
@@ -620,14 +621,14 @@ export const research: Article[] = [
     date: "2026-04-15",
     status: "live",
     summary:
-      "A field report on what actually separates the 10–500 person companies getting real value from AI from the ones stuck in pilot purgatory.",
+      "A field report on what actually separates the 10-500 person companies getting real value from AI from the ones stuck in pilot purgatory.",
     readingTime: "14 min",
     sections: [
       {
         heading: "Method",
         paragraphs: [
-          "This report synthesizes ARC Studio engagements and anonymized diagnostic scores across architecture, data, infrastructure, security, operations, and AI opportunity. We score every recommendation on business value, risk, feasibility, and adoption — the four axes — or we do not publish it.",
-          "Constraints: mid-market only (roughly 10–500 people), US and English-language operators first, and no vendor-sponsored placements. Unknowns we call out: selection bias toward companies already talking to ARC, and uneven willingness to share quantitative outcomes.",
+          "This report synthesizes ARC Studio engagements and anonymized diagnostic scores across architecture, data, infrastructure, security, operations, and AI opportunity. We score every recommendation on business value, risk, feasibility, and adoption, the four axes, or we do not publish it.",
+          "Constraints: mid-market only (roughly 10-500 people), US and English-language operators first, and no vendor-sponsored placements. Unknowns we call out: selection bias toward companies already talking to ARC, and uneven willingness to share quantitative outcomes.",
         ],
       },
       {
@@ -640,7 +641,7 @@ export const research: Article[] = [
       {
         heading: "What it means",
         paragraphs: [
-          "If you are in pilot purgatory, start with an Integrated Transformation Diagnostic or a narrower AI readiness assessment. The goal is a sequenced plan with named owners — not another slide that says “AI-powered.”",
+          "If you are in pilot purgatory, start with an Integrated Transformation Diagnostic or a narrower AI readiness assessment. The goal is a sequenced plan with named owners, not another slide that says “AI-powered.”",
         ],
       },
     ],
@@ -648,7 +649,7 @@ export const research: Article[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// ARC Academy — workshops.
+// ARC Academy - workshops.
 // Each workshop has a slug and a light curriculum so the card opens a
 // preview page (/academy/[slug]) with objectives, curriculum, and outcomes.
 // ---------------------------------------------------------------------------
@@ -755,7 +756,7 @@ export const academyOutcomes = [
 ];
 
 // ---------------------------------------------------------------------------
-// Case studies — reusable template content.
+// Case studies - reusable template content.
 // ---------------------------------------------------------------------------
 export type CaseStudy = {
   slug: string;
@@ -777,13 +778,13 @@ export const caseStudies: CaseStudy[] = [
     status: "building",
     industry: "B2B SaaS · ~120 employees",
     summary:
-      "Three competing AI bets, no shared debt map, and a board asking which one to fund. Five weeks later: one sequenced roadmap with named owners.",
+      "Three competing digital bets, no shared debt map, and a board asking which one to fund. Five weeks later: one sequenced roadmap with named owners.",
     challenge:
-      "Leadership had three competing AI initiatives, no shared view of technical debt, and no way to say which bet to fund first. Vendors were filling the vacuum with demos.",
+      "Leadership had three competing initiatives, no shared view of technical debt, and no way to say which bet to fund first. Vendors were filling the vacuum with demos.",
     approach: [
-      "Ran the Integrated Transformation Diagnostic across architecture, data, infra, security, ops, and AI.",
+      "Ran the Integrated Transformation Diagnostic across architecture, data, infra, security, ops, and opportunity areas.",
       "Scored every opportunity on business value, risk, feasibility, and adoption.",
-      "Delivered a phased roadmap with named owners and sequenced spend — written for the board, not the team Slack.",
+      "Delivered a phased roadmap with named owners and sequenced spend, written for the board, not the team Slack.",
     ],
     outcomes: [
       { metric: "5 wks", label: "From kickoff to board-ready roadmap" },
@@ -803,7 +804,7 @@ export const caseStudies: CaseStudy[] = [
       "Agent workflows depended on community MCP servers with no conformance gate. Failures showed up as “the agent is weird,” not as schema or handshake bugs.",
     approach: [
       "Ran the MCP Conformance Scanner against every production-bound server.",
-      "Prioritized findings for operators — capability negotiation and schema breaks first.",
+      "Prioritized findings for operators: capability negotiation and schema breaks first.",
       "Wired a pass/fail gate into the release checklist and a Studio review for the highest-risk connectors.",
     ],
     outcomes: [
@@ -815,12 +816,12 @@ export const caseStudies: CaseStudy[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// FAQ — shared across About and Studio.
+// FAQ - shared across About and Studio.
 // ---------------------------------------------------------------------------
 export const faqs = [
   {
     q: "Do you only work on AI projects?",
-    a: "No. ARC is a digital transformation practice. AI is one part of an ever-changing digital ecosystem that also includes data, cloud, cybersecurity, process change, and delivery. If AI isn't the highest-ROI move, we'll say so.",
+    a: "No. ARC is a digital transformation practice. AI is one part of the mix, alongside data, cloud, cybersecurity, process change, and delivery. If AI is not the highest-ROI move, we will say so.",
   },
   {
     q: "How do most engagements start?",
@@ -828,7 +829,7 @@ export const faqs = [
   },
   {
     q: "Are the Labs tools really free?",
-    a: "Yes. Open source, no signup wall, no sales gate. They're how most people meet ARC. Studio is optional if you want a human read on what the tools surface.",
+    a: "Yes. Open source, no signup wall, no sales gate. They are how most people meet ARC. Studio is optional if you want a human read on what the tools surface.",
   },
   {
     q: "What's the difference between Studio and Platform?",
@@ -836,15 +837,15 @@ export const faqs = [
   },
   {
     q: "What is ARC Academy?",
-    a: "Workshops only — live sessions against your real systems and backlog. Digital readiness and vocabulary, technical operator sessions, or a custom day built around your problem. No course catalog and no certification product right now.",
+    a: "Workshops only. Live sessions against your real systems and backlog: digital readiness and vocabulary, technical operator sessions, or a custom day built around your problem. No course catalog and no certification product right now.",
   },
   {
     q: "Will you just build whatever we ask for?",
-    a: "Not if it would be malpractice. Selling a build before the problem is named is how projects burn money. We'll push back, and we'll usually be grateful later that we did.",
+    a: "Not if it would be malpractice. Selling a build before the problem is named is how projects burn money. We will push back, and we are usually grateful later that we did.",
   },
   {
     q: "Where are you based?",
-    a: "Remote-first, US-friendly hours. Discovery calls and delivery work happen over video; workshops can be remote or on-site by arrangement.",
+    a: "Remote-first, US-friendly hours. Discovery calls and delivery work happen over video. Workshops can be remote or on-site by arrangement.",
   },
 ];
 

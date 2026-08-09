@@ -22,7 +22,7 @@ export default function TermsPage() {
           <p className="text-sm leading-relaxed text-muted-foreground">
             This site is informational. Free Labs tools are provided as-is under
             their own licenses. Paid Studio, Platform, and Academy work is governed
-            by a separate engagement agreement — not these website terms.
+            by a separate engagement agreement, not these website terms.
           </p>
         </section>
 

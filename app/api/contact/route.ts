@@ -17,7 +17,7 @@ function isValidEmail(email: string) {
 }
 
 // Length caps. The client can be bypassed, so we clamp again here to block
-// oversized payloads and abuse. email cap is RFC 5321's 254 chars.
+// oversized payloads and abuse. Email cap is RFC 5321's 254 chars.
 const LIMITS = {
   name: 120,
   email: 254,
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
   }
 
-  // Honeypot — bots fill hidden fields; humans never see this one.
+  // Honeypot - bots fill hidden fields; humans never see this one.
   // Accept-and-drop so bots get no signal that they were caught.
   if (body.company_website) {
     return NextResponse.json({ ok: true });
@@ -65,7 +65,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "That email looks invalid." }, { status: 400 });
   }
 
-  const subject = `ARC contact — ${name}${company ? ` (${company})` : ""}`;
+  const subject = `ARC contact · ${name}${company ? ` (${company})` : ""}`;
   const text = [
     `Name: ${name}`,
     `Email: ${email}`,
@@ -110,7 +110,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  // No Resend key — still succeed so the UI works in local/preview,
+  // No Resend key - still succeed so the UI works in local/preview,
   // and log so you can wire delivery later.
   console.info("[contact] message received (no RESEND_API_KEY configured)", {
     name,
@@ -127,7 +127,7 @@ export async function POST(request: Request) {
   });
 }
 
-// Any method other than POST gets a clean 405 — no stack traces, no surface.
+// Any method other than POST gets a clean 405 - no stack traces, no surface.
 function methodNotAllowed() {
   return NextResponse.json(
     { error: "Method not allowed." },

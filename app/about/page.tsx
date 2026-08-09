@@ -19,14 +19,14 @@ export default function AboutPage() {
       <PageHero
         kicker="About"
         title="One honest partner across strategy, build, and scale."
-        lead="ARC started as an advisory practice and grew into an ecosystem. The through-line never changed: name the stage, show the work, and help people keep pace with digital change. Companies big and small, nonprofits, individuals, and communities. So the impact of an ever-changing digital ecosystem does not leave them behind."
+        lead="ARC started as an advisory practice and grew into an ecosystem. The through-line never changed: name the stage, show the work, and help people keep pace with digital change so companies, nonprofits, individuals, and communities are not left behind."
       />
 
       <Section>
         <SectionHeading
           kicker="What we mean"
           title="Digital transformation, in plain terms."
-          lead="Digital transformation is not a single product or an AI project. It is how organizations and communities change technology, process, and people together so they can keep delivering value as the digital world moves. That is what ARC focuses on."
+          lead="Digital transformation is not one product or one AI project. It is how organizations and communities change technology, process, and people together so they keep delivering value as the digital world moves. That is what ARC focuses on."
         />
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {digitalTransformation.map((item) => (

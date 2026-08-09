@@ -4,11 +4,11 @@ import * as React from "react";
 import { Button } from "@/components/ui/button";
 
 const stageOptions = [
-  "Discover — we have a hunch, not a plan yet.",
-  "Align — we know the problem, need a strategy.",
-  "Deliver — ready to build and ship something real.",
-  "Measure — already shipped, need to prove outcomes.",
-  "Sustain — it works, now we need it to keep working.",
+  "Discover: we have a hunch, not a plan yet.",
+  "Align: we know the problem, need a strategy.",
+  "Deliver: ready to build and ship something real.",
+  "Measure: already shipped, need to prove outcomes.",
+  "Sustain: it works, now we need it to keep working.",
   "Honestly not sure. That's why we're reaching out.",
 ];
 
@@ -60,7 +60,7 @@ export function ContactForm() {
   if (sent) {
     return (
       <div className="rounded-lg border border-border bg-muted/40 p-8 text-center">
-        <h3 className="text-lg font-semibold">Thanks — message received.</h3>
+        <h3 className="text-lg font-semibold">Thanks. Message received.</h3>
         <p className="mt-2 text-sm text-muted-foreground">
           A real human writes back within one business day. No marketing list, no
           drip campaign.
@@ -103,7 +103,7 @@ export function ContactForm() {
           className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
         >
           <option value="" disabled>
-            Optional — helps us prep for the call.
+            Optional: helps us prep for the call.
           </option>
           {stageOptions.map((s) => (
             <option key={s} value={s}>

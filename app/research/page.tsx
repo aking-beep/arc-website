@@ -9,9 +9,9 @@ import { CTA } from "@/components/cta";
 import { research } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Research — Benchmarks & industry reports",
+  title: "Research · Benchmarks & industry reports",
   description:
-    "ARC Research publishes benchmarks, teardowns, and reports in plain language with real numbers — not vendor gloss.",
+    "ARC Research publishes benchmarks, teardowns, and reports in plain language with real numbers, not vendor gloss.",
 };
 
 function formatDate(iso: string) {

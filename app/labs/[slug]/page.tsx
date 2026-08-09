@@ -21,7 +21,7 @@ export function generateMetadata({
   const product = labs.find((p) => p.slug === params.slug);
   if (!product) return {};
   return {
-    title: `${product.name} — ARC Labs`,
+    title: `${product.name} · ARC Labs`,
     description: product.description,
   };
 }
