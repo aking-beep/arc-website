@@ -88,9 +88,9 @@ export default function AboutPage() {
         <SectionHeading
           kicker="Why an ecosystem"
           title="Every part feeds the next."
-          lead="Free tools build trust. Trust creates advisory work. Advisory reveals repeatable patterns. Patterns become software and research. Workshops make all of it stick. That flywheel is much harder to copy than any single service."
+          lead="Free tools build trust. Trust creates advisory work. Advisory reveals patterns worth publishing and teaching. Workshops make the method stick. That flywheel is much harder to copy than any single service."
         />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((p) => (
             <div key={p.id} className="rounded-lg border border-border bg-card p-5">
               <h3 className="text-sm font-semibold">{p.name}</h3>

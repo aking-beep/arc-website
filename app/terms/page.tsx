@@ -21,7 +21,7 @@ export default function TermsPage() {
           <h2 className="text-xl font-semibold tracking-tight">The short version</h2>
           <p className="text-sm leading-relaxed text-muted-foreground">
             This site is informational. Free Labs tools are provided as-is under
-            their own licenses. Paid Studio, Platform, and Academy work is governed
+            their own licenses. Paid Studio and Academy work is governed
             by a separate engagement agreement, not these website terms.
           </p>
         </section>

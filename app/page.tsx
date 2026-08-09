@@ -21,7 +21,6 @@ const doings = [
   "We build free open-source tools.",
   "We publish research and benchmarks.",
   "We consult on hard implementation problems.",
-  "We productize the recurring work.",
   "We run workshops that make the method stick.",
   "We help people keep pace with digital change.",
 ];
@@ -79,10 +78,10 @@ export default function HomePage() {
       <Section>
         <SectionHeading
           kicker="The ecosystem"
-          title="Five pillars. One flywheel."
-          lead="Free tools build trust. Trust creates advisory work. Advisory reveals repeatable patterns. Patterns become software. Every part reinforces the others, which is a lot harder to copy than another consulting website."
+          title="Four pillars. One flywheel."
+          lead="Free tools build trust. Trust creates advisory work. Advisory reveals patterns worth publishing and teaching. Every part reinforces the others, which is a lot harder to copy than another consulting website."
         />
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {pillars.map((p) => (
             <PillarCard key={p.id} pillar={p} />
           ))}

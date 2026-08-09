@@ -69,7 +69,7 @@ export const statusLabel: Record<Status, string> = {
 };
 
 // ---------------------------------------------------------------------------
-// The five pillars - the ecosystem map.
+// The four pillars - the ecosystem map.
 // ---------------------------------------------------------------------------
 export type Pillar = {
   id: string;
@@ -104,17 +104,6 @@ export const pillars: Pillar[] = [
     detail:
       "Technical due diligence, architecture reviews, cybersecurity and data readiness, digital transformation roadmaps, and fractional leadership. Strategy that aligns, work delivered in honest stages.",
     status: "live",
-  },
-  {
-    id: "platform",
-    name: "ARC Platform",
-    href: "/platform",
-    icon: "LayoutDashboard",
-    kicker: "Productized intelligence",
-    summary: "The recurring work, turned into software you run yourself.",
-    detail:
-      "Operating dashboards, governance, and reporting that turn one-off diagnostics into a system your team lives in across digital, security, and delivery work.",
-    status: "building",
   },
   {
     id: "research",
@@ -518,50 +507,6 @@ export const bestFit = [
 ];
 
 // ---------------------------------------------------------------------------
-// ARC Platform - productized capabilities.
-// ---------------------------------------------------------------------------
-export const platformCapabilities = [
-  {
-    name: "Operating intelligence",
-    text: "A live read on how your digital systems are actually performing: the diagnostic, running continuously instead of once.",
-  },
-  {
-    name: "Dashboards",
-    text: "The metrics that matter, in one place, in plain language. No reverse-engineering someone else's spreadsheet.",
-  },
-  {
-    name: "Governance",
-    text: "Guardrails, approvals, and audit trails so digital change scales without becoming a liability.",
-  },
-  {
-    name: "Reporting",
-    text: "Executive-ready reports generated from real signals, written for the board, not the team.",
-  },
-];
-
-export const platformPrinciples = [
-  {
-    title: "Continuous, not episodic",
-    text: "A diagnostic that ages out in a quarter is a liability. Platform keeps the same axes live so the roadmap stays honest.",
-  },
-  {
-    title: "Operator-readable",
-    text: "Every score and alert has a named owner, a plain-language reason, and a next action, not a wall of telemetry.",
-  },
-  {
-    title: "Shared infrastructure",
-    text: "Auth, scoring, and reporting match the Labs tools and Studio deliverables, so the ecosystem reads as one system.",
-  },
-];
-
-export const platformRoadmap = [
-  { label: "Design-partner dashboards", done: false },
-  { label: "Governance workflows + audit trail", done: false },
-  { label: "Board-ready report export", done: false },
-  { label: "Self-serve onboarding", done: false },
-];
-
-// ---------------------------------------------------------------------------
 // ARC Research - benchmarks & reports.
 // ---------------------------------------------------------------------------
 export type ArticleSection = {
@@ -832,10 +777,6 @@ export const faqs = [
     a: "Yes. Open source, no signup wall, no sales gate. They are how most people meet ARC. Studio is optional if you want a human read on what the tools surface.",
   },
   {
-    q: "What's the difference between Studio and Platform?",
-    a: "Studio is hands-on advisory and delivery. Platform productizes the recurring diagnostic work so your team can run it continuously after (or instead of) an engagement.",
-  },
-  {
     q: "What is ARC Academy?",
     a: "Workshops only. Live sessions against your real systems and backlog: digital readiness and vocabulary, technical operator sessions, or a custom day built around your problem. No course catalog and no certification product right now.",
   },
@@ -855,7 +796,6 @@ export const faqs = [
 export const nav = [
   { label: "Labs", href: "/labs" },
   { label: "Studio", href: "/studio" },
-  { label: "Platform", href: "/platform" },
   { label: "Research", href: "/research" },
   { label: "Academy", href: "/academy" },
   { label: "About", href: "/about" },

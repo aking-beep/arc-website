@@ -1,6 +1,6 @@
 # ARC Transformation Group — Website
 
-The front door to the ARC ecosystem: **Labs · Studio · Platform · Research · Academy.**
+The front door to the ARC ecosystem: **Labs · Studio · Research · Academy.**
 
 This is not a consulting brochure — it's the operating system for the ARC ecosystem, built so every new product becomes *content* on shared infrastructure instead of a brand-new website.
 
@@ -48,7 +48,6 @@ app/
   labs/page.tsx         ARC Labs (free tools)
   labs/[slug]/page.tsx  Reusable PRODUCT template (demo/GitHub/docs/roadmap)
   studio/page.tsx       ARC Studio (consulting: 9 services, 5 stages, principles)
-  platform/page.tsx     ARC Platform (productized operating intelligence)
   research/page.tsx     ARC Research (benchmarks + reports)
   research/[slug]/page.tsx  Reusable ARTICLE/RESEARCH template
   academy/page.tsx      ARC Academy (workshops)

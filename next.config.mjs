@@ -8,6 +8,11 @@ const nextConfig = {
         destination: "/academy/digital-readiness-workshop",
         permanent: true,
       },
+      {
+        source: "/platform",
+        destination: "/",
+        permanent: false,
+      },
     ];
   },
 };

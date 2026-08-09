@@ -47,7 +47,7 @@ export default function OpenGraphImage() {
             Digital transformation that ships.
           </div>
           <div style={{ fontSize: 28, color: "#94a3b8", maxWidth: 820 }}>
-            Labs · Studio · Platform · Research · Academy
+            Labs · Studio · Research · Academy
           </div>
         </div>
       </div>
