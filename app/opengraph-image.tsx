@@ -47,7 +47,7 @@ export default function OpenGraphImage() {
             We build operational intelligence.
           </div>
           <div style={{ fontSize: 28, color: "#94a3b8", maxWidth: 820 }}>
-            Labs · Studio · Platform · Intelligence · Academy
+            Labs · Studio · Platform · Research · Academy
           </div>
         </div>
       </div>

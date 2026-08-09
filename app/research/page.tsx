@@ -11,7 +11,7 @@ import { research } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Research — Benchmarks & industry reports",
   description:
-    "ARC Intelligence publishes benchmarks, teardowns, and reports in plain language with real numbers — not vendor gloss.",
+    "ARC Research publishes benchmarks, teardowns, and reports in plain language with real numbers — not vendor gloss.",
 };
 
 function formatDate(iso: string) {
@@ -26,13 +26,13 @@ export default function ResearchPage() {
   return (
     <>
       <PageHero
-        kicker="ARC Intelligence"
+        kicker="ARC Research"
         title="We publish what we learn."
         lead="Benchmarks, teardowns, and industry reports written the way we write everything: plain language, real numbers, assumptions labeled. If we can't source it, we say so."
       />
 
       <Section>
-        <SectionHeading kicker="Latest" title="Research & benchmarks" />
+        <SectionHeading kicker="Latest" title="Reports & benchmarks" />
         <div className="mt-12 grid gap-5">
           {research.map((a) => (
             <Link key={a.slug} href={`/research/${a.slug}`} className="group block">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Calendar, Mail } from "lucide-react";
+import { Calendar, Linkedin, Mail } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
@@ -10,7 +10,7 @@ import { faqs, pillars, site } from "@/lib/content";
 export const metadata: Metadata = {
   title: "About & contact",
   description:
-    "ARC Transformation Group is a five-pillar ecosystem: free tools, advisory, software, research, and education. Get in touch for a 30-minute discovery call.",
+    "Meet Andrew Alexander King and ARC Transformation Group — free tools, advisory, software, research, and workshops for teams that need AI that ships.",
 };
 
 export default function AboutPage() {
@@ -23,24 +23,42 @@ export default function AboutPage() {
       />
 
       <Section>
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-start">
-          <SectionHeading
-            kicker="Founder"
-            title={site.founder.name}
-            lead={site.founder.role}
-          />
-          <div className="rounded-xl border border-border bg-card p-6 sm:p-8">
-            <p className="text-base leading-relaxed text-muted-foreground">
-              {site.founder.bio}
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button href={site.calendly} size="sm">
-                Book a call
-              </Button>
-              <Button href={`mailto:${site.email}`} variant="outline" size="sm">
-                Email Andrew
-              </Button>
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.35fr] lg:items-start">
+          <div>
+            <SectionHeading
+              kicker="Founder"
+              title={site.founder.name}
+              lead={site.founder.role}
+            />
+          </div>
+          <div className="space-y-6">
+            <div className="rounded-xl border border-border bg-card p-6 sm:p-8">
+              <p className="text-base leading-relaxed text-muted-foreground">
+                {site.founder.bio}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Button href={site.calendly} size="sm">
+                  Book a call
+                </Button>
+                <Button href={`mailto:${site.email}`} variant="outline" size="sm">
+                  Email Andrew
+                </Button>
+                <Button href={site.linkedin} variant="outline" size="sm">
+                  <Linkedin className="h-4 w-4" />
+                  LinkedIn
+                </Button>
+              </div>
             </div>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {site.founder.highlights.map((h) => (
+                <li
+                  key={h}
+                  className="rounded-lg border border-border bg-muted/30 px-4 py-3 text-sm leading-relaxed text-muted-foreground"
+                >
+                  {h}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </Section>
@@ -49,7 +67,7 @@ export default function AboutPage() {
         <SectionHeading
           kicker="Why an ecosystem"
           title="Every part feeds the next."
-          lead="Free tools build trust. Trust creates advisory work. Advisory reveals repeatable patterns. Patterns become software and research. Education makes all of it stick. That flywheel is much harder to copy than any single service."
+          lead="Free tools build trust. Trust creates advisory work. Advisory reveals repeatable patterns. Patterns become software and research. Workshops make all of it stick. That flywheel is much harder to copy than any single service."
         />
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {pillars.map((p) => (

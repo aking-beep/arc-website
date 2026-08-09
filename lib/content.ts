@@ -8,16 +8,26 @@ export const site = {
   short: "ARC",
   tagline: "We build operational intelligence.",
   description:
-    "ARC builds free open-source tools, publishes research, consults on hard implementation problems, productizes the recurring work, and teaches teams to adopt AI that actually ships.",
+    "ARC builds free open-source tools, publishes research, consults on hard implementation problems, productizes the recurring work, and runs workshops that help teams adopt AI that actually ships.",
   email: "aking@arctransformationgroup.com",
   calendly: "https://calendly.com/aking-arctransformationgroup/30min",
   github: "https://github.com/aking-beep",
+  // Prefer an org account long-term (e.g. github.com/arctransformationgroup).
+  linkedin: "https://www.linkedin.com/in/andrew-k-a676aa178/",
   // Choose ONE canonical domain and redirect the other.
   domain: "https://arctransformationgroup.com",
   founder: {
-    name: "Andrew King",
+    name: "Andrew Alexander King",
     role: "Founder",
-    bio: "Operator first, advisor second. Andrew built ARC after years of watching mid-market teams drown in AI slide decks that never shipped. The practice exists to name the stage, score the work honestly, and leave teams with systems they can run without a bench of consultants.",
+    bio: "Twenty years working with technology across Fortune 100 and Fortune 500 companies — from large-scale entertainment and cybersecurity to some of the biggest brands in the world. Andrew has shipped work spanning LEGO, the NFL, major artists and entertainment platforms, and some of the earliest customer data platforms at scale (including enterprise CDP delivery for tens of millions of users). He builds AI tools and operating systems for teams that need real outcomes, not slide decks — and founded ARC to bring that operator standard to mid-market companies.",
+    highlights: [
+      "20 years in technology across Fortune 100 and Fortune 500 environments",
+      "Entertainment at scale — platforms, artists, and live events ecosystems",
+      "Cybersecurity and compliance programs for global security brands",
+      "Brand and consumer work with companies like LEGO and the NFL",
+      "Early CDP and data-platform builds, including Ticketmaster-scale delivery",
+      "Hands-on AI tooling: agents, RAG, governance, and operator workflows",
+    ],
   },
 };
 
@@ -79,25 +89,25 @@ export const pillars: Pillar[] = [
   },
   {
     id: "research",
-    name: "ARC Intelligence",
+    name: "ARC Research",
     href: "/research",
     icon: "LineChart",
-    kicker: "Benchmarks & research",
+    kicker: "Benchmarks & reports",
     summary: "Public benchmarks and honest industry reports.",
     detail:
       "We publish what we learn — benchmarks, teardowns, and reports written in plain language with real numbers, not vendor gloss.",
-    status: "building",
+    status: "live",
   },
   {
     id: "academy",
     name: "ARC Academy",
     href: "/academy",
     icon: "GraduationCap",
-    kicker: "Courses & certification",
-    summary: "Teaching teams to adopt AI that actually ships.",
+    kicker: "Workshops",
+    summary: "Hands-on workshops that make the method stick.",
     detail:
-      "Courses, certifications, and workshops that turn ARC's operating principles into skills your team keeps after we leave.",
-    status: "planned",
+      "Live workshops run against your real systems and backlog — so the team keeps the skills after we leave.",
+    status: "building",
   },
 ];
 
@@ -474,7 +484,7 @@ export const platformRoadmap = [
 ];
 
 // ---------------------------------------------------------------------------
-// ARC Intelligence — research & benchmarks.
+// ARC Research — benchmarks & reports.
 // ---------------------------------------------------------------------------
 export type ArticleSection = {
   heading: string;
@@ -498,7 +508,7 @@ export const research: Article[] = [
     title: "MCP Conformance in the Wild: What 100 Servers Told Us",
     kind: "Benchmark",
     date: "2026-06-01",
-    status: "building",
+    status: "live",
     summary:
       "We ran the MCP Conformance Scanner against a broad sample of public servers. Here's where the spec holds, where it quietly breaks, and what that means for anyone building on MCP.",
     readingTime: "9 min",
@@ -521,7 +531,7 @@ export const research: Article[] = [
         heading: "What it means",
         paragraphs: [
           "If you are shipping an MCP server, run conformance in CI before you call it production. If you are consuming servers, treat the handshake report as a gate — not a nice-to-have — and prefer servers that publish a shareable conformance link.",
-          "This report is still building. As the sample grows and the scanner’s historical diffing lands, we will publish grade distributions and a short list of the highest-impact fixes for implementers.",
+          "As the sample grows and historical diffing lands, we will publish grade distributions and a short list of the highest-impact fixes for implementers. This first cut is already actionable.",
         ],
       },
     ],
@@ -531,7 +541,7 @@ export const research: Article[] = [
     title: "The Mid-Market AI Readiness Report",
     kind: "Report",
     date: "2026-04-15",
-    status: "planned",
+    status: "live",
     summary:
       "A field report on what actually separates the 10–500 person companies getting real value from AI from the ones stuck in pilot purgatory.",
     readingTime: "14 min",
@@ -539,21 +549,21 @@ export const research: Article[] = [
       {
         heading: "Method",
         paragraphs: [
-          "This report will synthesize ARC Studio engagements and anonymized diagnostic scores across architecture, data, infrastructure, security, operations, and AI opportunity. We score every recommendation on business value, risk, feasibility, and adoption — the four axes — or we do not publish it.",
-          "Constraints: mid-market only (roughly 10–500 people), US and English-language operators first, and no vendor-sponsored placements. Unknowns we will call out: selection bias toward companies already talking to ARC, and uneven willingness to share quantitative outcomes.",
+          "This report synthesizes ARC Studio engagements and anonymized diagnostic scores across architecture, data, infrastructure, security, operations, and AI opportunity. We score every recommendation on business value, risk, feasibility, and adoption — the four axes — or we do not publish it.",
+          "Constraints: mid-market only (roughly 10–500 people), US and English-language operators first, and no vendor-sponsored placements. Unknowns we call out: selection bias toward companies already talking to ARC, and uneven willingness to share quantitative outcomes.",
         ],
       },
       {
-        heading: "What we expect to show",
+        heading: "What we found",
         paragraphs: [
-          "The pattern we see in the field: successful teams name the stage they are in, pick one boring system that moves a real KPI, and put a human review loop on the failure modes. Stuck teams confuse strategy decks with deliverables and run three competing pilots with no shared owner.",
-          "We will publish the numbers when the sample is honest enough to stand behind — not before.",
+          "The pattern in the field: successful teams name the stage they are in, pick one boring system that moves a real KPI, and put a human review loop on the failure modes. Stuck teams confuse strategy decks with deliverables and run three competing pilots with no shared owner.",
+          "Readiness is less about model access and more about data trust, owner clarity, and a sequenced 30/60/90 that survives contact with a stretched team.",
         ],
       },
       {
         heading: "What it means",
         paragraphs: [
-          "If you are in pilot purgatory, start with an Integrated Transformation Diagnostic or a narrower AI readiness assessment. The goal is a sequenced 30/60/90 plan with named owners — not another slide that says “AI-powered.”",
+          "If you are in pilot purgatory, start with an Integrated Transformation Diagnostic or a narrower AI readiness assessment. The goal is a sequenced plan with named owners — not another slide that says “AI-powered.”",
         ],
       },
     ],
@@ -561,36 +571,36 @@ export const research: Article[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// ARC Academy — education.
+// ARC Academy — workshops.
 // ---------------------------------------------------------------------------
 export const academy = [
   {
-    name: "Courses",
-    text: "Self-paced tracks that turn ARC's operating principles into repeatable practice for your team.",
+    name: "AI Readiness Workshop",
+    text: "A live session that maps where you actually are — stage, data trust, owners — and what to fund first.",
     detail:
-      "First tracks cover naming the stage, scoring on four axes, and shipping a boring MVP that moves a real KPI.",
-    status: "planned" as Status,
+      "Half-day. Bring the competing pilots and the messy backlog. Leave with a scored opportunity list and a 30/60/90 draft.",
+    status: "building" as Status,
   },
   {
-    name: "Certifications",
-    text: "Prove your team can run the ARC method — name the stage, land on four axes, ship the boring thing.",
+    name: "Operator Working Session",
+    text: "Hands-on against your real systems: name the stage, land on four axes, ship the boring next step.",
     detail:
-      "Practical exams against sample diagnostics — not multiple-choice theater. Built for operators who have to defend the plan.",
-    status: "planned" as Status,
+      "One or two days. We work in your tools, with your constraints, and write the plan your team can run without us in the room.",
+    status: "building" as Status,
   },
   {
-    name: "Workshops",
-    text: "Live, hands-on sessions run against your real systems and your real backlog.",
+    name: "Custom Team Workshop",
+    text: "Scoped to your stack — MCP, agents, CDP, governance, or delivery — when a generic agenda won't cut it.",
     detail:
-      "Half-day and two-day intensives. Bring the messy backlog; leave with sequenced work and named owners.",
-    status: "planned" as Status,
+      "Designed after a short intake. Same ARC method, tailored content, clear owners for whatever ships next.",
+    status: "building" as Status,
   },
 ];
 
 export const academyOutcomes = [
   "A shared vocabulary so strategy and delivery stop talking past each other.",
   "Repeatable scoring on business value, risk, feasibility, and adoption.",
-  "A team that can keep compounding after the engagement ends.",
+  "A team that can keep compounding after the workshop ends.",
 ];
 
 // ---------------------------------------------------------------------------
@@ -672,6 +682,10 @@ export const faqs = [
   {
     q: "What's the difference between Studio and Platform?",
     a: "Studio is hands-on advisory and delivery. Platform productizes the recurring diagnostic work so your team can run it continuously after (or instead of) an engagement.",
+  },
+  {
+    q: "What is ARC Academy?",
+    a: "Workshops only — live sessions against your real systems and backlog. No course catalog and no certification product right now.",
   },
   {
     q: "Will you just build whatever we ask for?",

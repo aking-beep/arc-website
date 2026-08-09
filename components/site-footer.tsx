@@ -11,6 +11,7 @@ const resources = [
   { label: "Book a call", href: site.calendly },
   { label: "Email us", href: `mailto:${site.email}` },
   { label: "GitHub", href: site.github },
+  { label: "LinkedIn", href: site.linkedin },
 ];
 
 export function SiteFooter() {

@@ -59,12 +59,13 @@ const jsonLd = {
   url: site.domain,
   email: site.email,
   description: site.description,
-  sameAs: [site.github, site.calendly],
+  sameAs: [site.github, site.linkedin, site.calendly],
   founder: {
     "@type": "Person",
     name: site.founder.name,
     jobTitle: site.founder.role,
     email: site.email,
+    sameAs: [site.linkedin, site.github],
   },
 };
 

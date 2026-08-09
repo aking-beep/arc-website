@@ -45,7 +45,7 @@ export default function ArticlePage({
           className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          ARC Intelligence
+          ARC Research
         </Link>
 
         <article className="mx-auto max-w-2xl">

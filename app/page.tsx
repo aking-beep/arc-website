@@ -48,8 +48,8 @@ export default function HomePage() {
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
               ARC is one honest system across five pillars: free tools that build
               trust, advisory that solves hard problems, software that productizes
-              the recurring work, research that tells the truth, and education that
-              makes it stick. No buzzwords. No 18-month &ldquo;transformation
+              the recurring work, research that tells the truth, and workshops that
+              make it stick. No buzzwords. No 18-month &ldquo;transformation
               journeys.&rdquo; Just work that ships.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -135,7 +135,7 @@ export default function HomePage() {
       <Section className="bg-muted/30">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
-            kicker="ARC Intelligence"
+            kicker="ARC Research"
             title="We publish what we learn."
             lead="Benchmarks and field reports in plain language — assumptions labeled, numbers included."
           />
