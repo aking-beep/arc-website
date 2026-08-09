@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Check, Info } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
@@ -97,21 +97,6 @@ export default function StudioPage() {
               </ul>
             </Card>
           ))}
-        </div>
-
-        <div className="mt-8 flex items-start gap-3 rounded-lg border border-border bg-card p-6">
-          <Info className="mt-0.5 h-5 w-5 flex-none text-muted-foreground" />
-          <p className="text-sm leading-relaxed text-muted-foreground">
-            <span className="font-semibold text-foreground">
-              How most engagements start.
-            </span>{" "}
-            Almost every ARC relationship opens with a fixed-rate diagnostic.
-            Three to seven weeks, an executive summary you can act on, and a phased
-            roadmap. The ones that go well usually turn into a retainer (Fractional
-            Head of AI / Transformation, Fractional TPM, or Post-Diagnostic
-            Execution) or a scoped delivery engagement. After that we work on fixed
-            rates or hourly, depending on what you need.
-          </p>
         </div>
       </Section>
 
