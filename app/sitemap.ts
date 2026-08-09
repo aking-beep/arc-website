@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...nav.map((n) => n.href),
     "/work",
     "/privacy",
+    "/terms",
   ].map((href) => ({
     url: `${base}${href}`,
     lastModified: new Date(),

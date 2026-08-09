@@ -7,6 +7,7 @@ const resources = [
   { label: "About", href: "/about" },
   { label: "Work", href: "/work" },
   { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
   { label: "Book a call", href: site.calendly },
   { label: "Email us", href: `mailto:${site.email}` },
   { label: "GitHub", href: site.github },

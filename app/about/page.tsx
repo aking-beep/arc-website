@@ -4,7 +4,8 @@ import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/contact-form";
-import { pillars, site } from "@/lib/content";
+import { FaqList } from "@/components/faq-list";
+import { faqs, pillars, site } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About & contact",
@@ -22,6 +23,29 @@ export default function AboutPage() {
       />
 
       <Section>
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-start">
+          <SectionHeading
+            kicker="Founder"
+            title={site.founder.name}
+            lead={site.founder.role}
+          />
+          <div className="rounded-xl border border-border bg-card p-6 sm:p-8">
+            <p className="text-base leading-relaxed text-muted-foreground">
+              {site.founder.bio}
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button href={site.calendly} size="sm">
+                Book a call
+              </Button>
+              <Button href={`mailto:${site.email}`} variant="outline" size="sm">
+                Email Andrew
+              </Button>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="bg-muted/30">
         <SectionHeading
           kicker="Why an ecosystem"
           title="Every part feeds the next."
@@ -29,13 +53,24 @@ export default function AboutPage() {
         />
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {pillars.map((p) => (
-            <div key={p.id} className="rounded-lg border border-border p-5">
+            <div key={p.id} className="rounded-lg border border-border bg-card p-5">
               <h3 className="text-sm font-semibold">{p.name}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 {p.summary}
               </p>
             </div>
           ))}
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHeading
+          kicker="FAQ"
+          title="Straight answers."
+          lead="The questions we get on almost every discovery call."
+        />
+        <div className="mt-10 max-w-3xl">
+          <FaqList items={faqs} />
         </div>
       </Section>
 

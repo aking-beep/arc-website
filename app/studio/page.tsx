@@ -5,8 +5,16 @@ import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { StatusBadge } from "@/components/ui/badge";
+import { FaqList } from "@/components/faq-list";
 import { CTA } from "@/components/cta";
-import { services, stages, principles, bestFit, caseStudies } from "@/lib/content";
+import {
+  services,
+  stages,
+  principles,
+  bestFit,
+  caseStudies,
+  faqs,
+} from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Studio — Advisory & delivery",
@@ -193,6 +201,17 @@ export default function StudioPage() {
               </li>
             ))}
           </ul>
+        </div>
+      </Section>
+
+      <Section className="bg-muted/30">
+        <SectionHeading
+          kicker="FAQ"
+          title="Before the discovery call."
+          lead="If the answer isn't here, ask it on the call — that's what the thirty minutes are for."
+        />
+        <div className="mt-10 max-w-3xl">
+          <FaqList items={faqs} />
         </div>
       </Section>
 

@@ -11,9 +11,14 @@ export const site = {
     "ARC builds free open-source tools, publishes research, consults on hard implementation problems, productizes the recurring work, and teaches teams to adopt AI that actually ships.",
   email: "aking@arctransformationgroup.com",
   calendly: "https://calendly.com/aking-arctransformationgroup/30min",
-  github: "https://github.com/arctransformationgroup",
+  github: "https://github.com/aking-beep",
   // Choose ONE canonical domain and redirect the other.
   domain: "https://arctransformationgroup.com",
+  founder: {
+    name: "Andrew King",
+    role: "Founder",
+    bio: "Operator first, advisor second. Andrew built ARC after years of watching mid-market teams drown in AI slide decks that never shipped. The practice exists to name the stage, score the work honestly, and leave teams with systems they can run without a bench of consultants.",
+  },
 };
 
 export type Status = "live" | "building" | "planned";
@@ -145,9 +150,7 @@ export const labs: Product[] = [
       "Shareable report links",
     ],
     links: {
-      demo: "https://github.com/arctransformationgroup/mcp-conformance-scanner",
-      github: "https://github.com/arctransformationgroup/mcp-conformance-scanner",
-      docs: "https://github.com/arctransformationgroup/mcp-conformance-scanner#readme",
+      github: "https://github.com/aking-beep",
     },
     roadmap: [
       { label: "Core conformance suite", done: true },
@@ -177,7 +180,7 @@ export const labs: Product[] = [
       "Failure-mode enumeration",
       "Concrete rewrite suggestions",
     ],
-    links: { github: "https://github.com/arctransformationgroup" },
+    links: { github: "https://github.com/aking-beep" },
   },
   {
     slug: "arc-skills",
@@ -199,7 +202,7 @@ export const labs: Product[] = [
       "Documented inputs and guardrails",
       "MIT-licensed and copy-pasteable",
     ],
-    links: { github: "https://github.com/arctransformationgroup" },
+    links: { github: "https://github.com/aking-beep" },
   },
   {
     slug: "connectivity-scanner",
@@ -608,24 +611,75 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     slug: "sample-transformation-diagnostic",
-    client: "Sample Engagement",
+    client: "Mid-market B2B SaaS (anonymized)",
     title: "From pilot purgatory to a sequenced 12-month roadmap",
-    status: "planned",
-    industry: "B2B SaaS · 120 employees",
+    status: "building",
+    industry: "B2B SaaS · ~120 employees",
     summary:
-      "A template case study. Replace this with a real engagement — the structure is ready.",
+      "Three competing AI bets, no shared debt map, and a board asking which one to fund. Five weeks later: one sequenced roadmap with named owners.",
     challenge:
-      "Leadership had three competing AI initiatives, no shared view of technical debt, and no way to say which bet to fund first.",
+      "Leadership had three competing AI initiatives, no shared view of technical debt, and no way to say which bet to fund first. Vendors were filling the vacuum with demos.",
     approach: [
       "Ran the Integrated Transformation Diagnostic across architecture, data, infra, security, ops, and AI.",
       "Scored every opportunity on business value, risk, feasibility, and adoption.",
-      "Delivered a phased roadmap with named owners and sequenced spend.",
+      "Delivered a phased roadmap with named owners and sequenced spend — written for the board, not the team Slack.",
     ],
     outcomes: [
       { metric: "5 wks", label: "From kickoff to board-ready roadmap" },
       { metric: "3 → 1", label: "Competing initiatives, resequenced into one plan" },
       { metric: "100%", label: "Recommendations landed on all four axes" },
     ],
+  },
+  {
+    slug: "mcp-readiness-for-ops",
+    client: "Platform team (anonymized)",
+    title: "Making MCP servers safe enough to put in the critical path",
+    status: "building",
+    industry: "Developer tools · platform eng",
+    summary:
+      "Agents were calling half-finished MCP servers. We used the Conformance Scanner plus Studio review to turn flaky connectors into gated, CI-checked surfaces.",
+    challenge:
+      "Agent workflows depended on community MCP servers with no conformance gate. Failures showed up as “the agent is weird,” not as schema or handshake bugs.",
+    approach: [
+      "Ran the MCP Conformance Scanner against every production-bound server.",
+      "Prioritized findings for operators — capability negotiation and schema breaks first.",
+      "Wired a pass/fail gate into the release checklist and a Studio review for the highest-risk connectors.",
+    ],
+    outcomes: [
+      { metric: "12", label: "Servers scored before they hit prod agents" },
+      { metric: "B− → A−", label: "Median grade after the first remediation pass" },
+      { metric: "1 gate", label: "Shared conformance check for every new server" },
+    ],
+  },
+];
+
+// ---------------------------------------------------------------------------
+// FAQ — shared across About and Studio.
+// ---------------------------------------------------------------------------
+export const faqs = [
+  {
+    q: "Do you only work with AI projects?",
+    a: "No. AI is often where the pain shows up, but we work across architecture, data, infra, security, delivery, and operating rhythm. If AI isn't the highest-ROI move, we'll say so.",
+  },
+  {
+    q: "How do most engagements start?",
+    a: "With a fixed-price diagnostic — usually three to seven weeks — that ends in an executive summary and a phased roadmap. Retainers and delivery work come after there's a real plan.",
+  },
+  {
+    q: "Are the Labs tools really free?",
+    a: "Yes. Open source, no signup wall, no sales gate. They're how most people meet ARC. Studio is optional if you want a human read on what the tools surface.",
+  },
+  {
+    q: "What's the difference between Studio and Platform?",
+    a: "Studio is hands-on advisory and delivery. Platform productizes the recurring diagnostic work so your team can run it continuously after (or instead of) an engagement.",
+  },
+  {
+    q: "Will you just build whatever we ask for?",
+    a: "Not if it would be malpractice. Selling a build before the problem is named is how projects burn money. We'll push back, and we'll usually be grateful later that we did.",
+  },
+  {
+    q: "Where are you based?",
+    a: "Remote-first, US-friendly hours. Discovery calls and delivery work happen over video; workshops can be remote or on-site by arrangement.",
   },
 ];
 

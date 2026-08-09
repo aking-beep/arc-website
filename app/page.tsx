@@ -1,11 +1,21 @@
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { StatusBadge } from "@/components/ui/badge";
 import { PillarCard } from "@/components/pillar-card";
 import { ProductCard } from "@/components/product-card";
 import { CTA } from "@/components/cta";
-import { pillars, stages, principles, labs, site } from "@/lib/content";
+import { pillars, stages, principles, labs, research, site } from "@/lib/content";
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
 
 const doings = [
   "We build free open-source tools.",
@@ -123,6 +133,47 @@ export default function HomePage() {
       </Section>
 
       <Section className="bg-muted/30">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <SectionHeading
+            kicker="ARC Intelligence"
+            title="We publish what we learn."
+            lead="Benchmarks and field reports in plain language — assumptions labeled, numbers included."
+          />
+          <Link
+            href="/research"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
+          >
+            All research
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="mt-12 grid gap-5">
+          {research.slice(0, 2).map((a) => (
+            <Link key={a.slug} href={`/research/${a.slug}`} className="group block">
+              <Card className="flex flex-col gap-3 p-6 transition-all hover:border-foreground/20 hover:shadow-sm sm:flex-row sm:items-center sm:justify-between">
+                <div className="max-w-2xl">
+                  <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+                    <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
+                      {a.kind}
+                    </span>
+                    <StatusBadge status={a.status} />
+                    <span>{formatDate(a.date)}</span>
+                  </div>
+                  <h3 className="mt-3 flex items-center gap-1.5 text-lg font-semibold tracking-tight">
+                    {a.title}
+                    <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {a.summary}
+                  </p>
+                </div>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section>
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-start">
           <SectionHeading
             kicker="How we think"

@@ -5,6 +5,7 @@ import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { StatusBadge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ProductVisualPanel } from "@/components/product-visual";
 import { CTA } from "@/components/cta";
 import {
   platformCapabilities,
@@ -36,11 +37,14 @@ export default function PlatformPage() {
       </PageHero>
 
       <Section>
-        <SectionHeading
-          kicker="What it does"
-          title="AI operating intelligence."
-          lead="Built on the same shared design system, auth, scoring, and reporting as every ARC product — so it reads like one system, not a bolt-on."
-        />
+        <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <SectionHeading
+            kicker="What it does"
+            title="AI operating intelligence."
+            lead="Built on the same shared design system, auth, scoring, and reporting as every ARC product — so it reads like one system, not a bolt-on."
+          />
+          <ProductVisualPanel visual="conformance" />
+        </div>
         <div className="mt-12 grid gap-5 md:grid-cols-2">
           {platformCapabilities.map((c) => (
             <Card key={c.name} className="p-6 transition-all hover:border-foreground/20">
@@ -76,7 +80,7 @@ export default function PlatformPage() {
           <SectionHeading
             kicker="Roadmap"
             title="What's shipping next."
-            lead="We’re building with a small design-partner group. Priorities shift with real usage, not a slide deck."
+            lead="We're building with a small design-partner group. Priorities shift with real usage, not a slide deck."
           />
           <ul className="space-y-3">
             {platformRoadmap.map((r) => (
