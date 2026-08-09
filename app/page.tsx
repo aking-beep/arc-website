@@ -46,11 +46,11 @@ export default function HomePage() {
               Digital transformation that ships.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-              The digital world keeps moving, and too many good organizations get
-              left behind. ARC works with individuals, companies big and small,
-              nonprofits, and communities to keep pace: digital transformation,
-              cybersecurity, data and platforms, and AI when it actually helps.
-              No buzzwords. No eighteen-month journeys. Just clear work that
+              The digital world keeps moving. Too many good organizations get left
+              behind. ARC helps individuals, companies big or small, nonprofits,
+              communities — whoever needs to keep pace — through digital
+              transformation, cybersecurity, data platforms, or AI when it actually
+              helps. No buzzwords. No eighteen-month journeys. Just clear work that
               ships.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
