@@ -108,7 +108,7 @@ export const pillars: Pillar[] = [
     summary: "Hands-on workshops that make the method stick.",
     detail:
       "Live workshops run against your real systems and backlog — so the team keeps the skills after we leave.",
-    status: "building",
+    status: "live",
   },
 ];
 
@@ -593,89 +593,90 @@ export const academy: Workshop[] = [
   {
     slug: "ai-readiness-workshop",
     name: "AI Readiness Workshop",
-    text: "A live session that maps where you actually are: stage, data trust, owners, and what to fund first.",
+    text: "Build a shared AI vocabulary, score where you actually stand, and scope what is worth funding first.",
     detail:
-      "Half-day. Bring the competing pilots and the messy backlog. Leave with a scored opportunity list and a 30/60/90 draft.",
-    status: "building",
+      "Half-day. Leadership and operators in one room. Leave with clear language, a readiness snapshot, and a scoped shortlist, not another idea pile.",
+    status: "live",
     whoFor:
-      "Leadership teams sitting on two or three competing AI bets with no shared way to say which one to fund first.",
+      "Companies, nonprofits, and teams that are past \"we should do something with AI\" but do not yet share the same words, definitions, or way to scope work. Especially useful when executives, operators, and technical people are talking past each other.",
     objectives: [
-      "Get everyone looking at the same map: what's real, what's a demo, and what's still a slide.",
-      "Score the backlog on the four axes so the loudest idea stops winning by default.",
-      "Leave with one funded first move and a 30/60/90 anyone in the room can defend.",
+      "Give the room a plain-language vocabulary for what AI is (and is not) in your context: copilots, agents, automation, generative vs. predictive, data dependence, and human review.",
+      "Run an honest readiness check across awareness, use cases, data and tools, governance, ownership, and how you will measure success.",
+      "Scope a short list of opportunities people can explain the same way, then leave with a 30-day action plan and named owners.",
     ],
     curriculum: [
-      "Name the stage. Walk the current pilots and label each one honestly: discovery, delivery, or wishful thinking.",
-      "Data-trust check. A quick, unsentimental read on whether your reporting is solid enough to build on.",
-      "The four-axes scoring pass. Rank each opportunity on business value, risk, feasibility, and adoption, as a group, out loud.",
-      "Pick the boring first win. Choose one opportunity that moves a real KPI and won't fall over when someone's out.",
-      "Draft the 30/60/90. Owners, not volunteers. Dates, not \"soon.\"",
+      "Open and align. Why this session exists, what \"ready\" means here, and what you will leave with. No trends lecture.",
+      "Shared vocabulary. Walk the terms teams mix up: model vs. product, pilot vs. production, RAG vs. \"chat with docs,\" agent vs. chatbot, automation vs. judgment. Agree on language you will use after the room empties.",
+      "Readiness snapshot. Score the current state together: awareness, use-case clarity, workflow integration, data and approved tools, basic guardrails, leadership alignment, and measurement. Surface the gaps out loud.",
+      "Opportunity scoping. Map real workflows (not abstract ideas). For each candidate, name the problem, who uses it, how often it happens, what data it needs, and what risk or review it requires.",
+      "Prioritize and scope. Sort into quick wins, strategic bets, and \"not yet.\" Pick three to five scoped bets with owners, success measures, and a 30-day review date. Sketch light guardrails so people can move without guessing.",
     ],
     outcomes: [
-      "A scored opportunity list the whole team actually agrees on.",
-      "One funded first move with a named owner.",
-      "A 30/60/90 draft you can take to the board without translating it.",
+      "A shared AI vocabulary the team can reuse in planning and vendor conversations.",
+      "A scored readiness snapshot with the main gaps named.",
+      "A scoped shortlist (usually three to five bets) with owners and a 30-day action plan.",
     ],
   },
   {
     slug: "operator-working-session",
     name: "Operator Working Session",
-    text: "Hands-on against your real systems: name the stage, land on four axes, ship the boring next step.",
+    text: "A technical working session against your real systems, using ARC's stages, four axes, and delivery principles.",
     detail:
-      "One or two days. We work in your tools, with your constraints, and write the plan your team can run without us in the room.",
-    status: "building",
+      "One or two days. We work in your tools and constraints. Leave with a run plan your team can execute without us in the room.",
+    status: "live",
     whoFor:
-      "Teams past the \"should we?\" stage who need to build the actual plan, in their own tools, against their own constraints.",
+      "Technical and operating leads who already know AI matters and need the plan built: architecture, data, infra, security, delivery, and the human loops that keep it stable. Best when you have a real stack and a real backlog to put on the table.",
     objectives: [
-      "Work the real backlog in your real systems, not a whiteboard version of them.",
-      "Turn the highest-value opportunity into a plan a stretched team can actually run.",
-      "Design the human-in-the-loop checks before the failure modes find your users.",
+      "Apply ARC's operating method in your environment: name the stage (Discover, Align, Deliver, Measure, Sustain), keep strategy separate from what ships next, and score work on the four axes.",
+      "Pressure-test the technical path in your actual systems: data trust, connectors, permissions, failure modes, and what breaks when someone is out.",
+      "Leave with an operator-ready run plan: owners, sequence, KPIs, and human review where it matters.",
     ],
     curriculum: [
-      "Systems walk-through. We get into your actual stack: data, connectors, and the workflow you're trying to change.",
-      "Stage and axes, applied. Name where each candidate sits and score it on the four axes with your constraints in the room.",
-      "Design the boring next step. Pick one workflow and map it end to end, including where a human stays in the loop.",
-      "Write the KPIs. Define what \"working\" means in numbers before anyone builds.",
-      "Build the run plan. Owners, sequence, dependencies, and the checks that keep it stable after we leave.",
+      "Systems walk-through. Get into the real stack: data sources, pipelines, apps, connectors, access, and the workflow you want to change. No whiteboard fantasy version.",
+      "Name the stage. Place each candidate in Discover, Align, Deliver, Measure, or Sustain. Call out where strategy is being sold as a deliverable.",
+      "Four-axes scoring, applied. Score each opportunity on business value, risk, feasibility, and adoption with your constraints in the room. Drop anything that fails the axes.",
+      "Technical design of the boring next step. Map one workflow end to end: inputs, systems, integrations, evals or checks, and where a human stays in the loop. Call assumptions, dependencies, and unknowns.",
+      "Operator run plan. Owners, sequence, dependencies, KPIs, review cadence, and the checks that keep version two cheaper than version one. Written so the team can run it after we leave.",
     ],
     outcomes: [
-      "A designed workflow with human review on the failure modes.",
-      "A KPI framework so you'll know whether it's actually working.",
-      "A run plan your team can execute without us in the room.",
+      "Candidates staged and scored on ARC's four axes with constraints visible.",
+      "One designed next step with technical path, human review, and named assumptions.",
+      "A run plan with owners, sequence, KPIs, and a review cadence your team can execute.",
     ],
   },
   {
     slug: "custom-team-workshop",
     name: "Custom Team Workshop",
-    text: "Scoped to your stack (MCP, agents, CDP, governance, or delivery) when a generic agenda won't cut it.",
+    text: "You set the problem. We design the day around it, with the same ARC standard for clarity, owners, and next steps.",
     detail:
-      "Designed after a short intake. Same ARC method, tailored content, clear owners for whatever ships next.",
-    status: "building",
+      "Scoped after a short intake. Half-day or multi-day. Topic is yours: MCP, agents, CDP, governance, delivery, nonprofit programs, or something else entirely.",
+    status: "live",
     whoFor:
-      "Teams with a specific, non-generic problem (an MCP rollout, an agent architecture, a CDP migration, a governance gap) where an off-the-shelf agenda would waste the day.",
+      "Teams with a specific problem where a fixed agenda would waste the day. Bring the topic. We build the session around your stack, constraints, and the decision you need to make.",
     objectives: [
-      "Use the intake to understand the actual problem, so the day is built around your stack, not a template.",
-      "Apply the same ARC method to whatever you're actually shipping.",
-      "Leave with owners and a next step specific enough to start Monday.",
+      "Use a short intake to define the real question, audience, and success criteria before anyone books the room.",
+      "Run a tailored working session that still holds ARC's bar: plain language, named stage, scored options, and no strategy sold as a shippable deliverable.",
+      "Leave with owners and a next step specific enough to start, whether the topic was technical, operational, or mission-driven.",
     ],
     curriculum: [
-      "Short intake first. A scoping conversation before the session so the agenda is yours, not a reused one.",
-      "Tailored deep-dive. The bulk of the day on your topic: MCP, agents, CDP, governance, or delivery.",
-      "Method, applied to your problem. Name the stage, score on four axes, and keep strategy separate from what ships next.",
-      "Owner and sequence. Decide who holds what, and what the honest first step looks like.",
+      "Intake (before the day). Scoping call: problem statement, who must be in the room, constraints, materials to bring, and what \"done\" looks like. We send a draft agenda for your sign-off.",
+      "Open on your terms. Confirm the decision or artifact the day must produce. Align on vocabulary for this topic so the room is not arguing past each other.",
+      "Deep work on your agenda. Facilitated time on the problem you brought. Examples of past custom days include MCP rollouts, agent architecture, CDP migration, governance and risk, delivery structuring, and nonprofit program enablement. Yours may be different.",
+      "Decision and owners. Capture what is in, what is out, who holds what, and the honest first step. Same quality bar as our other workshops: assumptions labeled, next step specific enough for Monday.",
+      "Follow-through pack. Agenda notes, decisions, owners, and open questions in a form your team can reuse. Optional follow-up hour if you want a check-in after the first week of work.",
     ],
     outcomes: [
-      "An agenda and materials built around your stack, not a generic template.",
-      "A worked plan for the specific problem you brought.",
-      "Clear owners for whatever ships next.",
+      "A signed agenda and materials built for your problem, not a reused template.",
+      "A worked plan or decision log for the topic you brought.",
+      "Clear owners and a next step ready to start after the session.",
     ],
   },
 ];
 
 export const academyOutcomes = [
-  "A shared vocabulary so strategy and delivery stop talking past each other.",
-  "Repeatable scoring on business value, risk, feasibility, and adoption.",
-  "A team that can keep compounding after the workshop ends.",
+  "A shared vocabulary so strategy, operators, and delivery stop talking past each other.",
+  "Scoped work with owners: readiness shortlists, technical run plans, or custom decisions.",
+  "A team that can keep moving after the workshop ends, at a pace and price that stays realistic.",
 ];
 
 // ---------------------------------------------------------------------------

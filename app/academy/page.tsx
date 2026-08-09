@@ -20,14 +20,14 @@ export default function AcademyPage() {
       <PageHero
         kicker="ARC Academy"
         title="Workshops that make it stick."
-        lead="No course catalog. No certification theater. Live workshops run against your real systems — name the stage, land on four axes, ship the boring next step."
+        lead="No course catalog. No certification theater. Three live workshop formats: AI vocabulary and scoping, a technical Operator session on ARC's method, or a custom day built around your problem."
       />
 
       <Section>
         <SectionHeading
           kicker="Formats"
           title="How we run them."
-          lead="Every workshop is hands-on. Bring the messy backlog; leave with sequenced work and named owners."
+          lead="Every workshop is hands-on and leaves with owners. Pick the format that matches where you are."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {academy.map((a) => (
