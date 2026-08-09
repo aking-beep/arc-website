@@ -19,7 +19,7 @@ export default function LabsPage() {
       <PageHero
         kicker="ARC Labs"
         title="Free tools that make the invisible visible."
-        lead="Open-source scanners and utilities anyone can run. No signup wall, no sales call. They're the most honest way to meet ARC — you get value before we ever talk about an invoice."
+        lead="Open-source scanners and free utilities anyone can run. Most need no account. Tools that store secrets (like TokenLoop) use a free signup so keys stay encrypted to your org — still no paid tiers."
       >
         <Button href={site.github} variant="outline">
           <Github className="h-4 w-4" />

@@ -119,7 +119,8 @@ export type ProductVisual =
   | "conformance"
   | "prompt"
   | "skills"
-  | "connectivity";
+  | "connectivity"
+  | "spend";
 
 export type Product = {
   slug: string;
@@ -168,6 +169,42 @@ export const labs: Product[] = [
       { label: "Shareable report links", done: true },
       { label: "CI GitHub Action", done: false },
       { label: "Historical diffing", done: false },
+    ],
+  },
+  {
+    slug: "tokenloop",
+    name: "TokenLoop",
+    tagline: "Stop AI coding-agent spend before the invoice.",
+    description:
+      "Free spend control for Claude Code and Cursor: per-developer burn, minutes-scale kill switch, and client chargeback — without rebuilding traffic through a gateway. Sign up free, connect read-only admin keys (encrypted at rest), use every feature.",
+    status: "live",
+    badge: "Free product",
+    visual: "spend",
+    audience:
+      "Engineering and agency leads running Claude Code and Cursor who find out about runaway spend on the invoice — and need detect-and-cut plus client bill-back without a proxy.",
+    howItWorks: [
+      "Create a free account (email + password).",
+      "Paste Anthropic and/or Cursor admin keys — we AES-256-GCM encrypt them before storage.",
+      "Sync spend, set a daily cap / spike multiplier, and optionally tag clients for chargeback.",
+      "Kill switch detects spikes ~every 10 minutes and can throttle or revoke via admin APIs.",
+    ],
+    features: [
+      "Per-developer Claude Code + Cursor spend in one pane",
+      "Kill switch: detect, alert, throttle, or revoke (admin APIs)",
+      "Agency chargeback with markup and CSV export",
+      "Keys encrypted at rest — never returned to the browser",
+      "Honest scope: minutes-scale cut, not true per-request blocking",
+    ],
+    links: {
+      demo: "https://tokenloop.vercel.app",
+      github: "https://github.com/aking-beep/TokenLoop",
+      docs: "https://tokenloop.vercel.app/privacy",
+    },
+    roadmap: [
+      { label: "Spend dashboard + sync", done: true },
+      { label: "Kill switch + chargeback", done: true },
+      { label: "Free signup · all features", done: true },
+      { label: "Codex / OpenAI ingestion", done: false },
     ],
   },
   {

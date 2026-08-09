@@ -45,6 +45,16 @@ const frames: Record<
       { label: "Exposure rank", value: "High", tone: "bad" },
     ],
   },
+  spend: {
+    title: "TokenLoop · spend today",
+    rows: [
+      { label: "Org burn", value: "$514.10", tone: "bad" },
+      { label: "Daily cap", value: "$250", tone: "warn" },
+      { label: "jordan@ (spike)", value: "$410.60 · 7.8×", tone: "bad" },
+      { label: "Kill switch", value: "Revoke requested", tone: "ok" },
+      { label: "Chargeback MTD", value: "$1,180 bill-back", tone: "ok" },
+    ],
+  },
 };
 
 const toneClass = {
