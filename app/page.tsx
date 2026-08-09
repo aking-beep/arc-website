@@ -79,7 +79,7 @@ export default function HomePage() {
         <SectionHeading
           kicker="The ecosystem"
           title="Four pillars. One flywheel."
-          lead="Free tools build trust. Trust creates advisory work. Advisory reveals patterns worth publishing and teaching. Every part reinforces the others, which is a lot harder to copy than another consulting website."
+          lead="Free tools build trust. Trust opens the door to advisory work. What we learn becomes research and workshops. Each part feeds the next."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {pillars.map((p) => (

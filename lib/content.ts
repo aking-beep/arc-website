@@ -91,7 +91,7 @@ export const pillars: Pillar[] = [
     kicker: "Free & open source",
     summary: "Free tools that build trust before we ever send an invoice.",
     detail:
-      "Open-source scanners and utilities anyone can run. They make the invisible visible, and they're how most people meet ARC.",
+      "Open-source scanners and utilities anyone can run. Most people meet ARC here, before an invoice ever shows up.",
     status: "live",
   },
   {
@@ -102,7 +102,7 @@ export const pillars: Pillar[] = [
     kicker: "Advisory & delivery",
     summary: "Hands-on help with the hard implementation problems.",
     detail:
-      "Technical due diligence, architecture reviews, cybersecurity and data readiness, digital transformation roadmaps, and fractional leadership. Strategy that aligns, work delivered in honest stages.",
+      "Hands-on advisory and delivery for digital transformation: due diligence, architecture, cybersecurity, data readiness, and roadmaps that can actually ship.",
     status: "live",
   },
   {
@@ -113,7 +113,7 @@ export const pillars: Pillar[] = [
     kicker: "Benchmarks & reports",
     summary: "Public benchmarks and honest industry reports.",
     detail:
-      "We publish what we learn: benchmarks, teardowns, and reports written in plain language with real numbers, not vendor gloss.",
+      "Benchmarks, teardowns, and field reports in plain language, with real numbers and assumptions labeled.",
     status: "live",
   },
   {
@@ -124,7 +124,7 @@ export const pillars: Pillar[] = [
     kicker: "Workshops",
     summary: "Hands-on workshops that make the method stick.",
     detail:
-      "Live workshops run against your real systems and backlog, so the team keeps the skills after we leave.",
+      "Live workshops against your real systems and backlog, so the team keeps the method after we leave.",
     status: "live",
   },
 ];

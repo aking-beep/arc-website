@@ -88,7 +88,7 @@ export default function AboutPage() {
         <SectionHeading
           kicker="Why an ecosystem"
           title="Every part feeds the next."
-          lead="Free tools build trust. Trust creates advisory work. Advisory reveals patterns worth publishing and teaching. Workshops make the method stick. That flywheel is much harder to copy than any single service."
+          lead="Free tools build trust. Trust opens the door to advisory work. What we learn becomes research and workshops. Each part feeds the next."
         />
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((p) => (
