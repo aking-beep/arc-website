@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Check } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, Check } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
@@ -30,21 +31,25 @@ export default function AcademyPage() {
         />
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {academy.map((a) => (
-            <Card
-              key={a.name}
-              className="flex flex-col p-6 transition-all hover:border-foreground/20"
+            <Link
+              key={a.slug}
+              href={`/academy/${a.slug}`}
+              className="group block h-full"
             >
-              <StatusBadge status={a.status} />
-              <h3 className="mt-4 text-lg font-semibold tracking-tight">
-                {a.name}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {a.text}
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                {a.detail}
-              </p>
-            </Card>
+              <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
+                <StatusBadge status={a.status} />
+                <h3 className="mt-4 flex items-center gap-1.5 text-lg font-semibold tracking-tight">
+                  {a.name}
+                  <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {a.text}
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  {a.detail}
+                </p>
+              </Card>
+            </Link>
           ))}
         </div>
       </Section>

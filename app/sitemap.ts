@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { site, nav, labs, research, caseStudies } from "@/lib/content";
+import { site, nav, labs, research, caseStudies, academy } from "@/lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.domain.replace(/\/$/, "");
@@ -21,9 +21,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${base}/research/${a.slug}`,
     lastModified: new Date(),
   }));
+  const academyRoutes = academy.map((w) => ({
+    url: `${base}/academy/${w.slug}`,
+    lastModified: new Date(),
+  }));
   const workRoutes = caseStudies.map((c) => ({
     url: `${base}/work/${c.slug}`,
     lastModified: new Date(),
   }));
-  return [...staticRoutes, ...labsRoutes, ...researchRoutes, ...workRoutes];
+  return [
+    ...staticRoutes,
+    ...labsRoutes,
+    ...researchRoutes,
+    ...academyRoutes,
+    ...workRoutes,
+  ];
 }

@@ -574,28 +574,101 @@ export const research: Article[] = [
 
 // ---------------------------------------------------------------------------
 // ARC Academy — workshops.
+// Each workshop has a slug and a light curriculum so the card opens a
+// preview page (/academy/[slug]) with objectives, curriculum, and outcomes.
 // ---------------------------------------------------------------------------
-export const academy = [
+export type Workshop = {
+  slug: string;
+  name: string;
+  text: string; // short line used on the card
+  detail: string; // format line used on the card
+  status: Status;
+  whoFor: string;
+  objectives: string[];
+  curriculum: string[];
+  outcomes: string[];
+};
+
+export const academy: Workshop[] = [
   {
+    slug: "ai-readiness-workshop",
     name: "AI Readiness Workshop",
-    text: "A live session that maps where you actually are — stage, data trust, owners — and what to fund first.",
+    text: "A live session that maps where you actually are: stage, data trust, owners, and what to fund first.",
     detail:
       "Half-day. Bring the competing pilots and the messy backlog. Leave with a scored opportunity list and a 30/60/90 draft.",
-    status: "building" as Status,
+    status: "building",
+    whoFor:
+      "Leadership teams sitting on two or three competing AI bets with no shared way to say which one to fund first.",
+    objectives: [
+      "Get everyone looking at the same map: what's real, what's a demo, and what's still a slide.",
+      "Score the backlog on the four axes so the loudest idea stops winning by default.",
+      "Leave with one funded first move and a 30/60/90 anyone in the room can defend.",
+    ],
+    curriculum: [
+      "Name the stage. Walk the current pilots and label each one honestly: discovery, delivery, or wishful thinking.",
+      "Data-trust check. A quick, unsentimental read on whether your reporting is solid enough to build on.",
+      "The four-axes scoring pass. Rank each opportunity on business value, risk, feasibility, and adoption, as a group, out loud.",
+      "Pick the boring first win. Choose one opportunity that moves a real KPI and won't fall over when someone's out.",
+      "Draft the 30/60/90. Owners, not volunteers. Dates, not \"soon.\"",
+    ],
+    outcomes: [
+      "A scored opportunity list the whole team actually agrees on.",
+      "One funded first move with a named owner.",
+      "A 30/60/90 draft you can take to the board without translating it.",
+    ],
   },
   {
+    slug: "operator-working-session",
     name: "Operator Working Session",
     text: "Hands-on against your real systems: name the stage, land on four axes, ship the boring next step.",
     detail:
       "One or two days. We work in your tools, with your constraints, and write the plan your team can run without us in the room.",
-    status: "building" as Status,
+    status: "building",
+    whoFor:
+      "Teams past the \"should we?\" stage who need to build the actual plan, in their own tools, against their own constraints.",
+    objectives: [
+      "Work the real backlog in your real systems, not a whiteboard version of them.",
+      "Turn the highest-value opportunity into a plan a stretched team can actually run.",
+      "Design the human-in-the-loop checks before the failure modes find your users.",
+    ],
+    curriculum: [
+      "Systems walk-through. We get into your actual stack: data, connectors, and the workflow you're trying to change.",
+      "Stage and axes, applied. Name where each candidate sits and score it on the four axes with your constraints in the room.",
+      "Design the boring next step. Pick one workflow and map it end to end, including where a human stays in the loop.",
+      "Write the KPIs. Define what \"working\" means in numbers before anyone builds.",
+      "Build the run plan. Owners, sequence, dependencies, and the checks that keep it stable after we leave.",
+    ],
+    outcomes: [
+      "A designed workflow with human review on the failure modes.",
+      "A KPI framework so you'll know whether it's actually working.",
+      "A run plan your team can execute without us in the room.",
+    ],
   },
   {
+    slug: "custom-team-workshop",
     name: "Custom Team Workshop",
-    text: "Scoped to your stack — MCP, agents, CDP, governance, or delivery — when a generic agenda won't cut it.",
+    text: "Scoped to your stack (MCP, agents, CDP, governance, or delivery) when a generic agenda won't cut it.",
     detail:
       "Designed after a short intake. Same ARC method, tailored content, clear owners for whatever ships next.",
-    status: "building" as Status,
+    status: "building",
+    whoFor:
+      "Teams with a specific, non-generic problem (an MCP rollout, an agent architecture, a CDP migration, a governance gap) where an off-the-shelf agenda would waste the day.",
+    objectives: [
+      "Use the intake to understand the actual problem, so the day is built around your stack, not a template.",
+      "Apply the same ARC method to whatever you're actually shipping.",
+      "Leave with owners and a next step specific enough to start Monday.",
+    ],
+    curriculum: [
+      "Short intake first. A scoping conversation before the session so the agenda is yours, not a reused one.",
+      "Tailored deep-dive. The bulk of the day on your topic: MCP, agents, CDP, governance, or delivery.",
+      "Method, applied to your problem. Name the stage, score on four axes, and keep strategy separate from what ships next.",
+      "Owner and sequence. Decide who holds what, and what the honest first step looks like.",
+    ],
+    outcomes: [
+      "An agenda and materials built around your stack, not a generic template.",
+      "A worked plan for the specific problem you brought.",
+      "Clear owners for whatever ships next.",
+    ],
   },
 ];
 
