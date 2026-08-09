@@ -5,12 +5,12 @@ import { Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/contact-form";
 import { FaqList } from "@/components/faq-list";
-import { faqs, pillars, site } from "@/lib/content";
+import { digitalTransformation, faqs, pillars, site } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About & contact",
   description:
-    "Meet Andrew King and ARC Transformation Group: free tools, advisory, software, research, and workshops for companies, nonprofits, and people who want AI help at a realistic price.",
+    "Meet Andrew King and ARC Transformation Group: digital transformation for companies, nonprofits, individuals, and communities who want to keep pace without getting left behind.",
 };
 
 export default function AboutPage() {
@@ -19,10 +19,31 @@ export default function AboutPage() {
       <PageHero
         kicker="About"
         title="One honest partner across strategy, build, and scale."
-        lead="ARC started as an advisory practice and grew into an ecosystem. The through-line never changed: name the stage, show the work, and build for the world you're actually in. Tight budgets, stretched teams, and results that have to show up soon enough to matter. That includes companies, nonprofits, and people who want to move forward with AI without overpaying for theater."
+        lead="ARC started as an advisory practice and grew into an ecosystem. The through-line never changed: name the stage, show the work, and help people keep pace with digital change. Companies big and small, nonprofits, individuals, and communities. So the impact of an ever-changing digital ecosystem does not leave them behind."
       />
 
       <Section>
+        <SectionHeading
+          kicker="What we mean"
+          title="Digital transformation, in plain terms."
+          lead="Digital transformation is not a single product or an AI project. It is how organizations and communities change technology, process, and people together so they can keep delivering value as the digital world moves. That is what ARC focuses on."
+        />
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {digitalTransformation.map((item) => (
+            <div
+              key={item.name}
+              className="rounded-lg border border-border bg-card p-5"
+            >
+              <h3 className="text-sm font-semibold">{item.name}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section className="bg-muted/30">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.35fr] lg:items-start">
           <div>
             <SectionHeading
@@ -53,7 +74,7 @@ export default function AboutPage() {
               {site.founder.highlights.map((h) => (
                 <li
                   key={h}
-                  className="rounded-lg border border-border bg-muted/30 px-4 py-3 text-sm leading-relaxed text-muted-foreground"
+                  className="rounded-lg border border-border bg-background/60 px-4 py-3 text-sm leading-relaxed text-muted-foreground"
                 >
                   {h}
                 </li>
@@ -63,7 +84,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section className="bg-muted/30">
+      <Section>
         <SectionHeading
           kicker="Why an ecosystem"
           title="Every part feeds the next."
@@ -81,7 +102,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section>
+      <Section className="bg-muted/30">
         <SectionHeading
           kicker="FAQ"
           title="Straight answers."
@@ -92,7 +113,7 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section id="contact" className="bg-muted/30">
+      <Section id="contact">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
           <div>
             <SectionHeading

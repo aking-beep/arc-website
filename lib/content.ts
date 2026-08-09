@@ -6,9 +6,9 @@
 export const site = {
   name: "ARC Transformation Group",
   short: "ARC",
-  tagline: "We build operational intelligence.",
+  tagline: "Ready for the digital change.",
   description:
-    "ARC builds free open-source tools, publishes research, consults on hard implementation problems, productizes the recurring work, and runs workshops that help teams adopt AI that actually ships.",
+    "ARC helps individuals, companies, nonprofits, and communities keep pace with an ever-changing digital ecosystem: digital transformation, cybersecurity, data, cloud, and AI when it actually helps. Free tools, advisory, research, and workshops at a realistic price.",
   email: "aking@arctransformationgroup.com",
   calendly: "https://calendly.com/aking-arctransformationgroup/30min",
   github: "https://github.com/aking-beep",
@@ -19,18 +19,46 @@ export const site = {
   founder: {
     name: "Andrew King",
     role: "Founder",
-    bio: "Andrew King has spent about twenty years working with technology across Fortune 100 and Fortune 500 companies. That includes large-scale entertainment, cybersecurity, brands like LEGO and the NFL, major artists and entertainment platforms, and some of the earliest customer data platforms built at real scale, including Ticketmaster-sized CDP work for tens of millions of users. He builds practical AI tools and systems for people who need results they can use. He started ARC so companies, nonprofits, and individuals can get that kind of help at a realistic price: fixed rates or hourly work, scoped to what you actually need, and aimed at technology that serves a real purpose.",
+    bio: "Andrew King has spent about twenty years working with technology across Fortune 100 and Fortune 500 companies. That includes large-scale entertainment, cybersecurity, brands like LEGO and the NFL, major artists and entertainment platforms, and some of the earliest customer data platforms built at real scale, including Ticketmaster-sized CDP work for tens of millions of users. He started ARC to help companies big and small, nonprofits, individuals, and communities expand with their digital ecosystem without getting left behind. Fixed rates or hourly work, scoped to what you need, whether the work is digital transformation, cybersecurity, data and platforms, or AI.",
     highlights: [
       "About 20 years in technology across Fortune 100 and Fortune 500 companies",
       "Entertainment at scale: platforms, artists, and live events",
       "Cybersecurity and compliance work with global security brands",
       "Brand and consumer work with companies like LEGO and the NFL",
       "Early CDP and data-platform builds, including Ticketmaster-scale delivery",
-      "Hands-on AI tooling for teams that need outcomes, not theater",
-      "Works with companies, nonprofits, and people at fixed or hourly rates that stay realistic",
+      "Digital transformation across process, data, cloud, security, and AI when it fits",
+      "Works with companies, nonprofits, people, and communities at rates that stay realistic",
     ],
   },
 };
+
+/** What digital transformation means in practice for ARC. */
+export const digitalTransformation = [
+  {
+    name: "Technology and infrastructure",
+    text: "Cloud, applications, platforms, and the systems that keep daily work running as the stack changes.",
+  },
+  {
+    name: "Data and insight",
+    text: "Treating data as something you can trust: quality, access, reporting, and decisions that hold up.",
+  },
+  {
+    name: "Process and operations",
+    text: "Redesigning workflows so digital tools change how work actually gets done, not just which logo is on the login screen.",
+  },
+  {
+    name: "Cybersecurity and risk",
+    text: "Security, privacy, and compliance built into the change, so growth does not open the door to avoidable risk.",
+  },
+  {
+    name: "People and readiness",
+    text: "Skills, ownership, and a shared vocabulary so teams, nonprofits, and communities are not left behind by the shift.",
+  },
+  {
+    name: "AI and automation when it helps",
+    text: "One part of the mix, not the whole story. Used where it moves a real outcome, with human review where it matters.",
+  },
+];
 
 export type Status = "live" | "building" | "planned";
 
@@ -74,7 +102,7 @@ export const pillars: Pillar[] = [
     kicker: "Advisory & delivery",
     summary: "Hands-on help with the hard implementation problems.",
     detail:
-      "Technical due diligence, AI assessments, architecture reviews, and fractional AI leadership. Strategy that aligns, work delivered in honest stages.",
+      "Technical due diligence, architecture reviews, cybersecurity and data readiness, digital transformation roadmaps, and fractional leadership. Strategy that aligns, work delivered in honest stages.",
     status: "live",
   },
   {
@@ -85,7 +113,7 @@ export const pillars: Pillar[] = [
     kicker: "Productized intelligence",
     summary: "The recurring work, turned into software you run yourself.",
     detail:
-      "AI operating intelligence: dashboards, governance, and reporting that turn one-off diagnostics into a system your team lives in.",
+      "Operating dashboards, governance, and reporting that turn one-off diagnostics into a system your team lives in across digital, security, and delivery work.",
     status: "building",
   },
   {
@@ -212,23 +240,33 @@ export const labs: Product[] = [
     name: "Prompt Reviewer",
     tagline: "A second set of eyes on your system prompts.",
     description:
-      "Paste a prompt and get structured feedback on clarity, injection surface, ambiguity, and failure modes — the review a senior engineer would give, minus the wait.",
-    status: "building",
+      "Paste a prompt and get structured feedback on clarity, injection surface, ambiguity, and failure modes — the review a senior engineer would give, minus the wait. Static, reproducible, no model call.",
+    status: "live",
     visual: "prompt",
     audience:
       "Builders writing system prompts for agents and copilots who want failure modes named before users find them.",
     howItWorks: [
       "Paste the system prompt (and optional tool list).",
-      "We score clarity, ambiguity, and injection surface.",
+      "We score clarity, structure, ambiguity, and injection surface against a fixed rubric.",
       "You get concrete rewrites and a failure-mode list to put in the PR.",
+      "Gate in CI with the CLI --min-grade flag when you’re ready.",
     ],
     features: [
-      "Clarity and ambiguity scoring",
-      "Prompt-injection surface analysis",
-      "Failure-mode enumeration",
-      "Concrete rewrite suggestions",
+      "Clarity, structure, and ambiguity scoring",
+      "Prompt-injection surface analysis (OWASP LLM01-aligned)",
+      "Failure-mode enumeration with covered / gap status",
+      "Concrete rewrite suggestions + Markdown / JSON export",
     ],
-    links: { github: "https://github.com/aking-beep" },
+    links: {
+      github: "https://github.com/aking-beep/prompt-reviewer",
+      docs: "https://github.com/aking-beep/prompt-reviewer#readme",
+    },
+    roadmap: [
+      { label: "Static review engine + UI + CLI", done: true },
+      { label: "Rewrite suggestions + Markdown export", done: true },
+      { label: "Shareable report links", done: false },
+      { label: "Live attack-battery mode", done: false },
+    ],
   },
   {
     slug: "arc-skills",
@@ -456,12 +494,12 @@ export const principles = [
   {
     number: "06",
     title: "Plain language. Real numbers.",
-    text: "\"AI-powered\" means nothing. \"Cuts claim-triage time by 38% with an LLM classifier and human review on the bottom quartile\" means something. We write the second kind.",
+    text: "\"Digital transformation\" and \"AI-powered\" mean nothing on their own. \"Cut claim-triage time by 38% with a clearer workflow, better data, and human review on the hard cases\" means something. We write the second kind.",
   },
   {
     number: "07",
     title: "Build for the world you're actually in.",
-    text: "Tight budgets. Stretched teams. Uneven technical depth. Results that have to show up soon enough for people to trust them. That is the world we design for, including nonprofits.",
+    text: "Tight budgets. Stretched teams. Uneven technical depth. Results that have to show up soon enough for people to trust them. That is the world we design for, including nonprofits and communities.",
   },
   {
     number: "08",
@@ -471,8 +509,8 @@ export const principles = [
 ];
 
 export const bestFit = [
-  "Companies and nonprofits feeling the gap between AI hype and real execution.",
-  "People and teams who want practical help at fixed or hourly rates they can live with.",
+  "Companies, nonprofits, and communities that feel the gap between digital change and real readiness.",
+  "Individuals and teams who want practical help at fixed or hourly rates they can live with.",
   "Operators who want a working system, not a slide deck.",
   "Groups ready to put real data, real users, and real effort behind the work.",
   "Leaders who want one honest partner across strategy, build, and scale, not a pile of vendors to manage.",
@@ -483,8 +521,8 @@ export const bestFit = [
 // ---------------------------------------------------------------------------
 export const platformCapabilities = [
   {
-    name: "AI Operating Intelligence",
-    text: "A live read on how your AI and systems are actually performing — the diagnostic, running continuously instead of once.",
+    name: "Operating intelligence",
+    text: "A live read on how your digital systems are actually performing: the diagnostic, running continuously instead of once.",
   },
   {
     name: "Dashboards",
@@ -492,7 +530,7 @@ export const platformCapabilities = [
   },
   {
     name: "Governance",
-    text: "Guardrails, approvals, and audit trails so AI adoption scales without becoming a liability.",
+    text: "Guardrails, approvals, and audit trails so digital change scales without becoming a liability.",
   },
   {
     name: "Reporting",
@@ -628,28 +666,28 @@ export type Workshop = {
 
 export const academy: Workshop[] = [
   {
-    slug: "ai-readiness-workshop",
-    name: "AI Readiness Workshop",
-    text: "Build a shared AI vocabulary, score where you actually stand, and scope what is worth funding first.",
+    slug: "digital-readiness-workshop",
+    name: "Digital Readiness Workshop",
+    text: "Build a shared vocabulary for digital change, score where you actually stand, and scope what is worth doing first.",
     detail:
       "Half-day. Leadership and operators in one room. Leave with clear language, a readiness snapshot, and a scoped shortlist, not another idea pile.",
     status: "live",
     whoFor:
-      "Companies, nonprofits, and teams that are past \"we should do something with AI\" but do not yet share the same words, definitions, or way to scope work. Especially useful when executives, operators, and technical people are talking past each other.",
+      "Companies, nonprofits, communities, and teams that feel digital change moving faster than they are. Especially useful when executives, operators, and technical people are talking past each other about cloud, data, security, process, or AI.",
     objectives: [
-      "Give the room a plain-language vocabulary for what AI is (and is not) in your context: copilots, agents, automation, generative vs. predictive, data dependence, and human review.",
-      "Run an honest readiness check across awareness, use cases, data and tools, governance, ownership, and how you will measure success.",
+      "Give the room a plain-language vocabulary for the digital ecosystem: platforms and cloud, data trust, cybersecurity basics, process change, automation, and AI when it is relevant.",
+      "Run an honest readiness check across awareness, use cases, data and tools, security and guardrails, ownership, and how you will measure success.",
       "Scope a short list of opportunities people can explain the same way, then leave with a 30-day action plan and named owners.",
     ],
     curriculum: [
       "Open and align. Why this session exists, what \"ready\" means here, and what you will leave with. No trends lecture.",
-      "Shared vocabulary. Walk the terms teams mix up: model vs. product, pilot vs. production, RAG vs. \"chat with docs,\" agent vs. chatbot, automation vs. judgment. Agree on language you will use after the room empties.",
-      "Readiness snapshot. Score the current state together: awareness, use-case clarity, workflow integration, data and approved tools, basic guardrails, leadership alignment, and measurement. Surface the gaps out loud.",
-      "Opportunity scoping. Map real workflows (not abstract ideas). For each candidate, name the problem, who uses it, how often it happens, what data it needs, and what risk or review it requires.",
+      "Shared vocabulary. Walk the terms teams mix up: digitization vs. digital transformation, pilot vs. production, cloud vs. \"someone else's computer,\" data trust vs. a pretty dashboard, automation vs. judgment, AI when it helps vs. AI theater. Agree on language you will use after the room empties.",
+      "Readiness snapshot. Score the current state together: awareness, use-case clarity, workflow integration, data and approved tools, security and basic guardrails, leadership alignment, and measurement. Surface the gaps out loud.",
+      "Opportunity scoping. Map real workflows (not abstract ideas). For each candidate, name the problem, who uses it, how often it happens, what systems and data it needs, and what risk or review it requires.",
       "Prioritize and scope. Sort into quick wins, strategic bets, and \"not yet.\" Pick three to five scoped bets with owners, success measures, and a 30-day review date. Sketch light guardrails so people can move without guessing.",
     ],
     outcomes: [
-      "A shared AI vocabulary the team can reuse in planning and vendor conversations.",
+      "A shared digital vocabulary the team can reuse in planning and vendor conversations.",
       "A scored readiness snapshot with the main gaps named.",
       "A scoped shortlist (usually three to five bets) with owners and a 30-day action plan.",
     ],
@@ -662,7 +700,7 @@ export const academy: Workshop[] = [
       "One or two days. We work in your tools and constraints. Leave with a run plan your team can execute without us in the room.",
     status: "live",
     whoFor:
-      "Technical and operating leads who already know AI matters and need the plan built: architecture, data, infra, security, delivery, and the human loops that keep it stable. Best when you have a real stack and a real backlog to put on the table.",
+      "Technical and operating leads who need the plan built across architecture, data, infra, security, delivery, and the human loops that keep it stable. Best when you have a real stack and a real backlog to put on the table.",
     objectives: [
       "Apply ARC's operating method in your environment: name the stage (Discover, Align, Deliver, Measure, Sustain), keep strategy separate from what ships next, and score work on the four axes.",
       "Pressure-test the technical path in your actual systems: data trust, connectors, permissions, failure modes, and what breaks when someone is out.",
@@ -672,7 +710,7 @@ export const academy: Workshop[] = [
       "Systems walk-through. Get into the real stack: data sources, pipelines, apps, connectors, access, and the workflow you want to change. No whiteboard fantasy version.",
       "Name the stage. Place each candidate in Discover, Align, Deliver, Measure, or Sustain. Call out where strategy is being sold as a deliverable.",
       "Four-axes scoring, applied. Score each opportunity on business value, risk, feasibility, and adoption with your constraints in the room. Drop anything that fails the axes.",
-      "Technical design of the boring next step. Map one workflow end to end: inputs, systems, integrations, evals or checks, and where a human stays in the loop. Call assumptions, dependencies, and unknowns.",
+      "Technical design of the boring next step. Map one workflow end to end: inputs, systems, integrations, checks, and where a human stays in the loop. Call assumptions, dependencies, and unknowns.",
       "Operator run plan. Owners, sequence, dependencies, KPIs, review cadence, and the checks that keep version two cheaper than version one. Written so the team can run it after we leave.",
     ],
     outcomes: [
@@ -686,7 +724,7 @@ export const academy: Workshop[] = [
     name: "Custom Team Workshop",
     text: "You set the problem. We design the day around it, with the same ARC standard for clarity, owners, and next steps.",
     detail:
-      "Scoped after a short intake. Half-day or multi-day. Topic is yours: MCP, agents, CDP, governance, delivery, nonprofit programs, or something else entirely.",
+      "Scoped after a short intake. Half-day or multi-day. Topic is yours: cloud, data, cybersecurity, CDP, governance, delivery, nonprofit programs, AI, or something else entirely.",
     status: "live",
     whoFor:
       "Teams with a specific problem where a fixed agenda would waste the day. Bring the topic. We build the session around your stack, constraints, and the decision you need to make.",
@@ -698,7 +736,7 @@ export const academy: Workshop[] = [
     curriculum: [
       "Intake (before the day). Scoping call: problem statement, who must be in the room, constraints, materials to bring, and what \"done\" looks like. We send a draft agenda for your sign-off.",
       "Open on your terms. Confirm the decision or artifact the day must produce. Align on vocabulary for this topic so the room is not arguing past each other.",
-      "Deep work on your agenda. Facilitated time on the problem you brought. Examples of past custom days include MCP rollouts, agent architecture, CDP migration, governance and risk, delivery structuring, and nonprofit program enablement. Yours may be different.",
+      "Deep work on your agenda. Facilitated time on the problem you brought. Examples of past custom days include cloud and data modernization, cybersecurity posture, MCP or agent work, CDP migration, governance and risk, delivery structuring, and nonprofit program enablement. Yours may be different.",
       "Decision and owners. Capture what is in, what is out, who holds what, and the honest first step. Same quality bar as our other workshops: assumptions labeled, next step specific enough for Monday.",
       "Follow-through pack. Agenda notes, decisions, owners, and open questions in a form your team can reuse. Optional follow-up hour if you want a check-in after the first week of work.",
     ],
@@ -781,8 +819,8 @@ export const caseStudies: CaseStudy[] = [
 // ---------------------------------------------------------------------------
 export const faqs = [
   {
-    q: "Do you only work with AI projects?",
-    a: "No. AI is often where the pain shows up, but we work across architecture, data, infra, security, delivery, and operating rhythm. If AI isn't the highest-ROI move, we'll say so.",
+    q: "Do you only work on AI projects?",
+    a: "No. ARC is a digital transformation practice. AI is one part of an ever-changing digital ecosystem that also includes data, cloud, cybersecurity, process change, and delivery. If AI isn't the highest-ROI move, we'll say so.",
   },
   {
     q: "How do most engagements start?",
@@ -798,7 +836,7 @@ export const faqs = [
   },
   {
     q: "What is ARC Academy?",
-    a: "Workshops only — live sessions against your real systems and backlog. No course catalog and no certification product right now.",
+    a: "Workshops only — live sessions against your real systems and backlog. Digital readiness and vocabulary, technical operator sessions, or a custom day built around your problem. No course catalog and no certification product right now.",
   },
   {
     q: "Will you just build whatever we ask for?",

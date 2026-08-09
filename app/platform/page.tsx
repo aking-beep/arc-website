@@ -17,7 +17,7 @@ import {
 export const metadata: Metadata = {
   title: "Platform — Productized operating intelligence",
   description:
-    "ARC Platform turns the recurring work — diagnostics, governance, reporting — into AI operating intelligence your team runs continuously.",
+    "ARC Platform turns the recurring work — diagnostics, governance, reporting — into operating intelligence your team runs continuously across digital systems.",
 };
 
 export default function PlatformPage() {
@@ -26,7 +26,7 @@ export default function PlatformPage() {
       <PageHero
         kicker="ARC Platform"
         title="The diagnostic, running continuously."
-        lead="The best consulting findings go stale the day after they're delivered. ARC Platform productizes the recurring work — so the read on your architecture, data, and AI is live instead of a snapshot."
+        lead="The best consulting findings go stale the day after they're delivered. ARC Platform productizes the recurring work — so the read on your architecture, data, security, and delivery is live instead of a snapshot."
       >
         <div className="flex flex-wrap items-center gap-3">
           <StatusBadge status="building" />
@@ -40,7 +40,7 @@ export default function PlatformPage() {
         <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <SectionHeading
             kicker="What it does"
-            title="AI operating intelligence."
+            title="Operating intelligence for digital change."
             lead="Built on the same shared design system, auth, scoring, and reporting as every ARC product — so it reads like one system, not a bolt-on."
           />
           <ProductVisualPanel visual="conformance" />

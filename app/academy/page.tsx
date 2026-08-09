@@ -20,7 +20,7 @@ export default function AcademyPage() {
       <PageHero
         kicker="ARC Academy"
         title="Workshops that make it stick."
-        lead="No course catalog. No certification theater. Three live workshop formats: AI vocabulary and scoping, a technical Operator session on ARC's method, or a custom day built around your problem."
+        lead="No course catalog. No certification theater. Three live workshop formats: digital readiness and vocabulary, a technical Operator session on ARC's method, or a custom day built around your problem."
       />
 
       <Section>

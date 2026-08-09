@@ -22,8 +22,8 @@ const doings = [
   "We publish research and benchmarks.",
   "We consult on hard implementation problems.",
   "We productize the recurring work.",
-  "We teach teams to adopt AI that ships.",
-  "We contribute to the AI ecosystem.",
+  "We run workshops that make the method stick.",
+  "We help people keep pace with digital change.",
 ];
 
 export default function HomePage() {
@@ -40,17 +40,17 @@ export default function HomePage() {
             </p>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/60 px-3 py-1 text-xs font-medium text-muted-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              AI &amp; transformation for small and mid-sized companies
+              Digital transformation for companies, nonprofits, and communities
             </div>
             <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
-              We build operational intelligence.
+              Ready for the digital change.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-              ARC is one honest system across five pillars: free tools that build
-              trust, advisory that solves hard problems, software that productizes
-              the recurring work, research that tells the truth, and workshops that
-              make it stick. No buzzwords. No 18-month &ldquo;transformation
-              journeys.&rdquo; Just work that ships.
+              ARC helps individuals, companies big and small, nonprofits, and
+              communities expand with their ever-changing digital ecosystem.
+              Digital transformation, cybersecurity, data and platforms, and AI
+              when it actually helps. So you are not left behind. No buzzwords. No
+              18-month &ldquo;journeys.&rdquo; Just work that ships.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button href={site.calendly} size="lg">

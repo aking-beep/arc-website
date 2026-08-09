@@ -28,7 +28,7 @@ export default function StudioPage() {
       <PageHero
         kicker="ARC Studio"
         title="Strategy that aligns. Work that delivers."
-        lead="An advisory and delivery partner for companies, nonprofits, and teams that want practical AI and systems help. We start with strategy that lines up with what you're actually trying to do, deliver the work in honest stages, and measure the outcomes that matter. Fixed rates or hourly, scoped to what you need."
+        lead="An advisory and delivery partner for companies, nonprofits, individuals, and communities that need practical digital transformation help. Data, cloud, cybersecurity, process change, and AI when it fits. We start with strategy that lines up with what you're actually trying to do, deliver the work in honest stages, and measure the outcomes that matter. Fixed rates or hourly, scoped to what you need."
       />
 
       <Section>
