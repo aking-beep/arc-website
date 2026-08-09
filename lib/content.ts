@@ -6,9 +6,9 @@
 export const site = {
   name: "ARC Transformation Group",
   short: "ARC",
-  tagline: "Ready for the digital change.",
+  tagline: "Digital transformation that ships.",
   description:
-    "ARC helps individuals, companies, nonprofits, and communities keep pace with an ever-changing digital ecosystem: digital transformation, cybersecurity, data, cloud, and AI when it actually helps. Free tools, advisory, research, and workshops at a realistic price.",
+    "ARC helps individuals, companies, nonprofits, and communities keep pace with digital change. Digital transformation, cybersecurity, data and platforms, and AI when it helps, delivered as work that ships.",
   email: "aking@arctransformationgroup.com",
   calendly: "https://calendly.com/aking-arctransformationgroup/30min",
   github: "https://github.com/aking-beep",
