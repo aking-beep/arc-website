@@ -28,7 +28,7 @@ export default function StudioPage() {
       <PageHero
         kicker="ARC Studio"
         title="Strategy that aligns. Work that delivers."
-        lead="An advisory and delivery partner for small and mid-sized companies. We start with strategy that lines up with what you're actually trying to do, deliver the work in honest stages, and measure the outcomes that matter."
+        lead="An advisory and delivery partner for companies, nonprofits, and teams that want practical AI and systems help. We start with strategy that lines up with what you're actually trying to do, deliver the work in honest stages, and measure the outcomes that matter. Fixed rates or hourly, scoped to what you need."
       />
 
       <Section>
@@ -105,11 +105,12 @@ export default function StudioPage() {
             <span className="font-semibold text-foreground">
               How most engagements start.
             </span>{" "}
-            Almost every ARC relationship opens with a fixed-price diagnostic.
+            Almost every ARC relationship opens with a fixed-rate diagnostic.
             Three to seven weeks, an executive summary you can act on, and a phased
             roadmap. The ones that go well usually turn into a retainer (Fractional
             Head of AI / Transformation, Fractional TPM, or Post-Diagnostic
-            Execution) or a scoped delivery engagement. Pricing on request.
+            Execution) or a scoped delivery engagement. After that we work on fixed
+            rates or hourly, depending on what you need.
           </p>
         </div>
       </Section>

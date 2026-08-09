@@ -17,16 +17,17 @@ export const site = {
   // Choose ONE canonical domain and redirect the other.
   domain: "https://arctransformationgroup.com",
   founder: {
-    name: "Andrew Alexander King",
+    name: "Andrew King",
     role: "Founder",
-    bio: "Twenty years working with technology across Fortune 100 and Fortune 500 companies — from large-scale entertainment and cybersecurity to some of the biggest brands in the world. Andrew has shipped work spanning LEGO, the NFL, major artists and entertainment platforms, and some of the earliest customer data platforms at scale (including enterprise CDP delivery for tens of millions of users). He builds AI tools and operating systems for teams that need real outcomes, not slide decks — and founded ARC to bring that operator standard to mid-market companies.",
+    bio: "Andrew King has spent about twenty years working with technology across Fortune 100 and Fortune 500 companies. That includes large-scale entertainment, cybersecurity, brands like LEGO and the NFL, major artists and entertainment platforms, and some of the earliest customer data platforms built at real scale, including Ticketmaster-sized CDP work for tens of millions of users. He builds practical AI tools and systems for people who need results they can use. He started ARC so companies, nonprofits, and individuals can get that kind of help at a realistic price: fixed rates or hourly work, scoped to what you actually need, and aimed at technology that serves a real purpose.",
     highlights: [
-      "20 years in technology across Fortune 100 and Fortune 500 environments",
-      "Entertainment at scale — platforms, artists, and live events ecosystems",
-      "Cybersecurity and compliance programs for global security brands",
+      "About 20 years in technology across Fortune 100 and Fortune 500 companies",
+      "Entertainment at scale: platforms, artists, and live events",
+      "Cybersecurity and compliance work with global security brands",
       "Brand and consumer work with companies like LEGO and the NFL",
       "Early CDP and data-platform builds, including Ticketmaster-scale delivery",
-      "Hands-on AI tooling: agents, RAG, governance, and operator workflows",
+      "Hands-on AI tooling for teams that need outcomes, not theater",
+      "Works with companies, nonprofits, and people at fixed or hourly rates that stay realistic",
     ],
   },
 };
@@ -370,7 +371,7 @@ export const stages = [
   {
     number: "02",
     name: "Align",
-    text: "What does winning look like, and how does the strategy fit your team and budget?",
+    text: "What does winning look like, and how do we scope fixed or hourly work to match what you need?",
   },
   {
     number: "03",
@@ -423,7 +424,7 @@ export const principles = [
   {
     number: "07",
     title: "Build for the world you're actually in.",
-    text: "Small budgets. Stretched teams. Uneven technical depth. ROI that has to show up fast enough for people to believe it. That's the world we design for.",
+    text: "Tight budgets. Stretched teams. Uneven technical depth. Results that have to show up soon enough for people to trust them. That is the world we design for, including nonprofits.",
   },
   {
     number: "08",
@@ -433,10 +434,11 @@ export const principles = [
 ];
 
 export const bestFit = [
-  "Small and mid-sized companies (10 to 500 people) feeling the gap between hype and execution.",
+  "Companies and nonprofits feeling the gap between AI hype and real execution.",
+  "People and teams who want practical help at fixed or hourly rates they can live with.",
   "Operators who want a working system, not a slide deck.",
-  "Teams ready to put real data, real users, and real budgets behind the work.",
-  "Leaders who want one honest partner across strategy, build, and scale — not a stack of vendors to manage.",
+  "Groups ready to put real data, real users, and real effort behind the work.",
+  "Leaders who want one honest partner across strategy, build, and scale, not a pile of vendors to manage.",
 ];
 
 // ---------------------------------------------------------------------------
@@ -673,7 +675,7 @@ export const faqs = [
   },
   {
     q: "How do most engagements start?",
-    a: "With a fixed-price diagnostic — usually three to seven weeks — that ends in an executive summary and a phased roadmap. Retainers and delivery work come after there's a real plan.",
+    a: "Usually with a fixed-rate diagnostic, about three to seven weeks, that ends in a clear summary and a phased roadmap. After that we can keep going on fixed rates or hourly, depending on what you need.",
   },
   {
     q: "Are the Labs tools really free?",

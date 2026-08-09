@@ -10,7 +10,7 @@ import { faqs, pillars, site } from "@/lib/content";
 export const metadata: Metadata = {
   title: "About & contact",
   description:
-    "Meet Andrew Alexander King and ARC Transformation Group — free tools, advisory, software, research, and workshops for teams that need AI that ships.",
+    "Meet Andrew King and ARC Transformation Group: free tools, advisory, software, research, and workshops for companies, nonprofits, and people who want AI help at a realistic price.",
 };
 
 export default function AboutPage() {
@@ -19,7 +19,7 @@ export default function AboutPage() {
       <PageHero
         kicker="About"
         title="One honest partner across strategy, build, and scale."
-        lead="ARC started as an advisory practice and grew into an ecosystem. The through-line never changed: name the stage, show the work, and build for the world you're actually in — small budgets, stretched teams, ROI that has to show up fast."
+        lead="ARC started as an advisory practice and grew into an ecosystem. The through-line never changed: name the stage, show the work, and build for the world you're actually in. Tight budgets, stretched teams, and results that have to show up soon enough to matter. That includes companies, nonprofits, and people who want to move forward with AI without overpaying for theater."
       />
 
       <Section>
@@ -98,7 +98,7 @@ export default function AboutPage() {
             <SectionHeading
               kicker="Get in touch"
               title="Let's see if there's a fit."
-              lead="A 30-minute discovery call. No pitch deck, no commitment. We'll listen, ask the hard questions, and tell you straight up whether ARC is the right partner — even if the answer is no."
+              lead="A 30-minute discovery call. No pitch deck, no commitment. We'll listen, ask the hard questions, and tell you straight up whether ARC is the right partner, even if the answer is no."
             />
             <div className="mt-8 flex flex-col gap-3">
               <Button href={site.calendly} size="lg">

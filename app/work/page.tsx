@@ -71,7 +71,7 @@ export default function WorkPage() {
 
       <CTA
         title="Want a similar outcome?"
-        lead="Most engagements start with a fixed-price diagnostic. Book a 30-minute call and we'll tell you straight whether there's a fit."
+        lead="Most engagements start with a fixed-rate diagnostic. Book a 30-minute call and we'll tell you straight whether there's a fit."
       />
     </>
   );
