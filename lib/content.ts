@@ -317,7 +317,7 @@ export const labs: Product[] = [
       "Spec validator in CI so contributions stay loadable",
     ],
     links: {
-      demo: "https://arcskills.arctransformationgrouplab.dev",
+      demo: "https://arc-skills-phi.vercel.app",
       github: "https://github.com/aking-beep/arc-skills",
       docs: "https://github.com/aking-beep/arc-skills#readme",
     },
