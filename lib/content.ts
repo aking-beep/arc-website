@@ -138,7 +138,8 @@ export type ProductVisual =
   | "skills"
   | "connectivity"
   | "spend"
-  | "workflows";
+  | "workflows"
+  | "architecture";
 
 export type Product = {
   slug: string;
@@ -297,24 +298,35 @@ export const labs: Product[] = [
   {
     slug: "arc-skills",
     name: "ARC Skills",
-    tagline: "Reusable, open agent skills.",
+    tagline: "Open, copy-pasteable agent skills for real operator work.",
     description:
-      "A growing open library of packaged agent skills you can drop into your own workflows, the same building blocks ARC uses internally.",
-    status: "building",
+      "A free, open library of production-ready Agent Skills — each a SKILL.md package with triggers, steps, and guardrails. Copy them into Claude, Cursor, or any Agent Skills runtime. No account, no lock-in.",
+    status: "live",
     visual: "skills",
     audience:
       "Operators and engineers who want copy-pasteable agent skills with documented inputs and guardrails, not a private prompt graveyard.",
     howItWorks: [
-      "Browse the skill library by job (research, review, ops).",
-      "Drop a package into your agent runtime or skill folder.",
-      "Keep the guardrails; customize the inputs for your stack.",
+      "Browse 20 skills by job: engineering, ops, growth, security, AI, and more.",
+      "Copy or download the SKILL.md and drop it into ~/.cursor/skills or .claude/skills.",
+      "Keep the guardrails; adapt the trigger phrases to how your users actually ask.",
     ],
     features: [
-      "Portable skill packages",
-      "Documented inputs and guardrails",
-      "MIT-licensed and copy-pasteable",
+      "Agent Skills spec (SKILL.md) packages, MIT-licensed",
+      "Searchable catalog plus JSON and raw-markdown API",
+      "Copy / download with Cursor and Claude install paths",
+      "Spec validator in CI so contributions stay loadable",
     ],
-    links: { github: "https://github.com/aking-beep" },
+    links: {
+      demo: "https://arcskills.arctransformationgrouplab.dev",
+      github: "https://github.com/aking-beep/arc-skills",
+      docs: "https://github.com/aking-beep/arc-skills#readme",
+    },
+    roadmap: [
+      { label: "20 operator skills + catalog UI", done: true },
+      { label: "Copy / download SKILL.md", done: true },
+      { label: "JSON + raw markdown API", done: true },
+      { label: "Open in Cursor / Claude deep links", done: false },
+    ],
   },
   {
     slug: "connectivity-scanner",
@@ -342,7 +354,7 @@ export const labs: Product[] = [
       "Markdown / JSON export, CLI, and GitHub Action",
     ],
     links: {
-      demo: "https://connectivityscanner.arctransformationgrouplab.dev",
+      demo: "https://connectivity-scanner.vercel.app",
       github: "https://github.com/aking-beep/connectivity-scanner",
       docs: "https://github.com/aking-beep/connectivity-scanner#readme",
     },
@@ -351,6 +363,41 @@ export const labs: Product[] = [
       { label: "GitHub Action + SSRF-guarded redirects", done: true },
       { label: "Shareable report permalinks", done: false },
       { label: "SVG status badge", done: false },
+    ],
+  },
+  {
+    slug: "reference-architectures",
+    name: "Reference Architectures",
+    tagline: "Battle-tested system blueprints you can adapt instead of starting from a blank diagram.",
+    description:
+      "A free, open library of 20 reference architectures harvested from ARC's Google Drive work: AWS streaming labs, Operator AI, Labs products, CITH, Experience Intelligence, and FoodMesh. Each entry has the problem, the component shape, key decisions, failure modes, when not to use it, and a scaling path.",
+    status: "live",
+    badge: "Free",
+    visual: "architecture",
+    audience:
+      "Engineers and operators who need a proven shape with trade-offs named — not a blank diagram or a vendor reference architecture they cannot defend.",
+    howItWorks: [
+      "Browse by category: Data, AI, Web, Backend, SaaS, Integration, Cloud.",
+      "Read When not to use, then Shape, then Failure modes.",
+      "Copy the ASCII (or SVG) diagram into your design doc and adapt the decisions.",
+      "Search from the CLI or pull the JSON API — no account required.",
+    ],
+    features: [
+      "20 architectures with origin citations back to Drive",
+      "When-not-to-use notes on every entry",
+      "Kinesis, Bedrock, HITL, spend control, maturity scoring, and more",
+      "JSON API, CLI, and open Markdown under content/",
+    ],
+    links: {
+      demo: "https://referencearchitectures.arctransformationgrouplab.dev",
+      github: "https://github.com/aking-beep/reference-architectures",
+      docs: "https://github.com/aking-beep/reference-architectures#readme",
+    },
+    roadmap: [
+      { label: "Drive-harvested catalog + origin notes", done: true },
+      { label: "Search UI, JSON API, CLI", done: true },
+      { label: "Mermaid diagrams + IaC snippets", done: false },
+      { label: "Well-Architected overlay", done: false },
     ],
   },
 ];

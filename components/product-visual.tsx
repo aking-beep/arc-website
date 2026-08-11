@@ -26,13 +26,13 @@ const frames: Record<
     ],
   },
   skills: {
-    title: "Skill package · ops-triage",
+    title: "Skill package · pr-review-summary",
     rows: [
-      { label: "Inputs", value: "ticket, severity, SLA", tone: "ok" },
-      { label: "Guardrails", value: "Human review on P0", tone: "ok" },
-      { label: "License", value: "MIT", tone: "ok" },
-      { label: "Runtime", value: "Cursor / Claude / custom", tone: "ok" },
-      { label: "Last updated", value: "2026-07-12", tone: "ok" },
+      { label: "Format", value: "SKILL.md (Agent Skills spec)", tone: "ok" },
+      { label: "Guardrails", value: "No invented tests", tone: "ok" },
+      { label: "Install", value: "~/.cursor/skills/…", tone: "ok" },
+      { label: "Runtime", value: "Cursor / Claude / any", tone: "ok" },
+      { label: "License", value: "MIT · 20 skills", tone: "ok" },
     ],
   },
   connectivity: {
@@ -53,6 +53,16 @@ const frames: Record<
       { label: "Required fields", value: "Valid", tone: "ok" },
       { label: "Dry-run", value: "Pass · no model call", tone: "ok" },
       { label: "Copy-ready", value: "Markdown + prompt", tone: "ok" },
+    ],
+  },
+  architecture: {
+    title: "Blueprint · kinesis-data-streams",
+    rows: [
+      { label: "Category", value: "Data · intermediate", tone: "ok" },
+      { label: "Shape", value: "Shards + EFO consumers", tone: "ok" },
+      { label: "When not to use", value: "Single-consumer queue → SQS", tone: "warn" },
+      { label: "Failure mode", value: "Hot shard / IteratorAge", tone: "bad" },
+      { label: "Origin", value: "DEA-C01 Kinesis lab", tone: "ok" },
     ],
   },
   spend: {
