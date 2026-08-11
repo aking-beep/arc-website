@@ -389,7 +389,7 @@ export const labs: Product[] = [
       "JSON API, CLI, and open Markdown under content/",
     ],
     links: {
-      demo: "https://referencearchitectures.arctransformationgrouplab.dev",
+      demo: "https://reference-architectures.vercel.app",
       github: "https://github.com/aking-beep/reference-architectures",
       docs: "https://github.com/aking-beep/reference-architectures#readme",
     },
