@@ -137,7 +137,8 @@ export type ProductVisual =
   | "prompt"
   | "skills"
   | "connectivity"
-  | "spend";
+  | "spend"
+  | "workflows";
 
 export type Product = {
   slug: string;
@@ -259,6 +260,41 @@ export const labs: Product[] = [
     ],
   },
   {
+    slug: "ai-workflow-templates",
+    name: "AI Workflow Templates",
+    tagline: "Ready-to-run AI workflows you can copy, wire up, and ship today.",
+    description:
+      "A free, open library of end-to-end AI workflow templates. Each one is a documented pipeline with the prompt, the tools it calls, the data it needs, and the guardrails to keep it safe. Daily briefs, SOWs, RAG, and human-in-the-loop automation, the same shapes ARC uses internally.",
+    status: "live",
+    badge: "Free catalog",
+    visual: "workflows",
+    audience:
+      "Operators and engineers who need a copy-pasteable pipeline with a human gate, not a prompt graveyard or an auto-send agent.",
+    howItWorks: [
+      "Browse by job: operations, consulting, retrieval, automation, quality.",
+      "Open a template and copy the prompt, tools, and required input schema.",
+      "Run a structural dry-run (no model call) to check the payload.",
+      "Keep the human-in-the-loop step. Most templates never auto-send or auto-write.",
+    ],
+    features: [
+      "16 templates from ARC operator packages and the Labs blueprint",
+      "Prompt skeletons, tool lists, and example input/output",
+      "HITL by default on anything that sends, writes, or pays",
+      "JSON API, CLI, and Markdown export. MIT licensed",
+    ],
+    links: {
+      demo: "https://aiworkflowtemplates.arctransformationgrouplab.dev",
+      github: "https://github.com/aking-beep/ai-workflow-templates",
+      docs: "https://github.com/aking-beep/ai-workflow-templates#readme",
+    },
+    roadmap: [
+      { label: "Catalog + dry-run + CLI", done: true },
+      { label: "Operator, consulting, RAG, and quality templates", done: true },
+      { label: "Runnable reference implementations", done: false },
+      { label: "Eval harness per template", done: false },
+    ],
+  },
+  {
     slug: "arc-skills",
     name: "ARC Skills",
     tagline: "Reusable, open agent skills.",
@@ -283,24 +319,39 @@ export const labs: Product[] = [
   {
     slug: "connectivity-scanner",
     name: "Connectivity Scanner",
-    tagline: "Map what your agent can actually reach.",
+    tagline: "Is your endpoint actually reachable, secure, and fast?",
     description:
-      "Discover and pressure-test the connectors, endpoints, and permissions an AI system depends on before they surprise you in production.",
-    status: "planned",
+      "Paste a URL or hostname and get a graded report on DNS, TCP, TLS, redirects, latency, and security headers — with prioritized fixes you can paste into a PR. Free, open source, no account required to start.",
+    status: "live",
+    badge: "Free",
     visual: "connectivity",
     audience:
-      "Security and platform teams who need a clear map of agent reachability before a connector goes sideways in prod.",
+      "Engineers and operators who need a clear-eyed read on whether a public endpoint is up, using modern TLS, and sending the headers a production service should send — before a customer or crawler finds out the hard way.",
     howItWorks: [
-      "Point the scanner at your agent’s configured connectors.",
-      "We probe reachability, auth, and permission boundaries.",
-      "You get a risk-ranked exposure report with owners attached.",
+      "Paste a URL or hostname (example.com, https://api.example.com, example.com:8443).",
+      "We resolve DNS, open TCP, complete a TLS handshake, follow redirects, and time the response.",
+      "You get a letter grade plus per-category checks and copy-pasteable fixes.",
+      "Gate deploys with the CLI or GitHub Action using --min-grade.",
     ],
     features: [
-      "Connector and endpoint discovery",
-      "Permission and reachability checks",
-      "Risk-ranked exposure report",
+      "DNS, TCP, HTTP reachability and redirect-chain resolution",
+      "TLS handshake, protocol version, hostname match, and expiry window",
+      "Connect latency and time-to-first-byte",
+      "HSTS, CSP, nosniff, frame, referrer, and Permissions-Policy checks",
+      "HTTP→HTTPS upgrade, version-banner leak, and unsafe CORS detection",
+      "Markdown / JSON export, CLI, and GitHub Action",
     ],
-    links: {},
+    links: {
+      demo: "https://connectivityscanner.arctransformationgrouplab.dev",
+      github: "https://github.com/aking-beep/connectivity-scanner",
+      docs: "https://github.com/aking-beep/connectivity-scanner#readme",
+    },
+    roadmap: [
+      { label: "Scan engine + UI + CLI", done: true },
+      { label: "GitHub Action + SSRF-guarded redirects", done: true },
+      { label: "Shareable report permalinks", done: false },
+      { label: "SVG status badge", done: false },
+    ],
   },
 ];
 

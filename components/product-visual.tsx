@@ -36,13 +36,23 @@ const frames: Record<
     ],
   },
   connectivity: {
-    title: "Reachability map · agent-prod",
+    title: "Connectivity report · api.example.com",
     rows: [
-      { label: "CRM connector", value: "Reachable · write", tone: "warn" },
-      { label: "Billing API", value: "Reachable · read", tone: "ok" },
-      { label: "Internal wiki", value: "Blocked", tone: "ok" },
-      { label: "Secrets vault", value: "Over-permissioned", tone: "bad" },
-      { label: "Exposure rank", value: "High", tone: "bad" },
+      { label: "DNS + TCP", value: "Reachable", tone: "ok" },
+      { label: "TLS", value: "TLSv1.3 · 64d", tone: "ok" },
+      { label: "HSTS / CSP", value: "CSP missing", tone: "warn" },
+      { label: "TTFB", value: "182 ms", tone: "ok" },
+      { label: "Overall grade", value: "B+", tone: "warn" },
+    ],
+  },
+  workflows: {
+    title: "Template · daily-operating-brief",
+    rows: [
+      { label: "Pipeline steps", value: "5", tone: "ok" },
+      { label: "HITL gate", value: "Required", tone: "warn" },
+      { label: "Required fields", value: "Valid", tone: "ok" },
+      { label: "Dry-run", value: "Pass · no model call", tone: "ok" },
+      { label: "Copy-ready", value: "Markdown + prompt", tone: "ok" },
     ],
   },
   spend: {
