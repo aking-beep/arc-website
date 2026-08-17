@@ -31,6 +31,12 @@ export function ProductCard({
         <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
           {product.tagline}
         </p>
+        {product.ctaLabel ? (
+          <p className="mt-4 text-sm font-medium text-foreground">
+            {product.ctaLabel}
+            <span className="text-muted-foreground"> →</span>
+          </p>
+        ) : null}
       </Card>
     </Link>
   );

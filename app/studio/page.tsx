@@ -7,18 +7,22 @@ import { Card } from "@/components/ui/card";
 import { FaqList } from "@/components/faq-list";
 import { CTA } from "@/components/cta";
 import {
+  offers,
   services,
   stages,
   principles,
   bestFit,
+  notAFit,
+  howWeEngage,
   caseStudies,
   faqs,
+  site,
 } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Studio · Advisory & delivery",
   description:
-    "ARC Studio helps companies, nonprofits, teams, and communities with practical digital transformation. Strategy that aligns. Work that delivers.",
+    "Named Studio engagements for 10–500 person organizations: readiness reviews, architecture diligence, security baselines, data roadmaps, AI sprints, and a full transformation diagnostic.",
 };
 
 export default function StudioPage() {
@@ -27,8 +31,58 @@ export default function StudioPage() {
       <PageHero
         kicker="ARC Studio"
         title="Strategy that aligns. Work that delivers."
-        lead="Practical digital transformation for companies, nonprofits, teams, and communities. Data, cloud, cybersecurity, process change, and AI when it fits. Strategy first, then delivery in honest stages — sized to the problem."
+        lead={`${site.audience.line} Pick a named offer with a duration and a deliverable — then we size the rest of the work to the problem.`}
       />
+
+      <Section id="offers" className="scroll-mt-24 bg-muted/30">
+        <SectionHeading
+          kicker="Offers"
+          title="What you can actually buy."
+          lead="Each offer has a visitor-friendly promise, a typical duration, and what you leave with. The discovery call is to pick one — or tell you none of them fit."
+        />
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
+          {offers.map((o) => (
+            <Card
+              key={o.number}
+              className={
+                o.flagship
+                  ? "flex flex-col p-6 ring-1 ring-foreground/15 md:col-span-2"
+                  : "flex flex-col p-6"
+              }
+            >
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="font-mono text-sm text-muted-foreground">{o.number}</span>
+                <span className="text-xs text-muted-foreground">{o.duration}</span>
+                {o.flagship ? (
+                  <span className="rounded-full border border-border bg-background px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    Flagship
+                  </span>
+                ) : null}
+              </div>
+              <h3 className="mt-3 text-lg font-semibold tracking-tight">{o.name}</h3>
+              <p className="mt-2 text-base leading-relaxed text-foreground">{o.promise}</p>
+              <dl className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
+                <div>
+                  <dt className="font-medium text-foreground">Starts with</dt>
+                  <dd className="mt-1">{o.startsWith}</dd>
+                </div>
+                <div>
+                  <dt className="font-medium text-foreground">You leave with</dt>
+                  <dd className="mt-1">{o.youLeaveWith}</dd>
+                </div>
+              </dl>
+            </Card>
+          ))}
+        </div>
+        <div className="mt-10 grid gap-4 sm:grid-cols-3">
+          {howWeEngage.map((item) => (
+            <div key={item.name} className="rounded-lg border border-border bg-card p-5">
+              <h3 className="text-sm font-semibold">{item.name}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
 
       <Section>
         <SectionHeading
@@ -53,9 +107,9 @@ export default function StudioPage() {
 
       <Section className="bg-muted/30">
         <SectionHeading
-          kicker="What we do"
-          title="Where we typically start."
-          lead="Nine documented services — from due diligence and security to AI readiness and a full transformation diagnostic. You do not have to teach us how the work works."
+          kicker="Capability catalog"
+          title="The work behind the offers."
+          lead="The named offers above are how you buy. These nine services are the documented capabilities we pull from — due diligence, security, data, AI, and a full transformation diagnostic."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -176,18 +230,30 @@ export default function StudioPage() {
       </Section>
 
       <Section>
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-start">
-          <SectionHeading kicker="Fit" title="Who we work best with" />
-          <ul className="grid gap-4">
-            {bestFit.map((b) => (
-              <li key={b} className="flex items-start gap-3">
-                <Check className="mt-1 h-4 w-4 flex-none text-emerald-500" />
-                <span className="text-base leading-relaxed text-muted-foreground">
+        <div className="grid gap-12 lg:grid-cols-2">
+          <div>
+            <SectionHeading kicker="Fit" title="Who we work best with" />
+            <ul className="mt-8 grid gap-4">
+              {bestFit.map((b) => (
+                <li key={b} className="flex items-start gap-3">
+                  <Check className="mt-1 h-4 w-4 flex-none text-emerald-500" />
+                  <span className="text-base leading-relaxed text-muted-foreground">
+                    {b}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <SectionHeading kicker="Not a fit" title="When to look elsewhere" />
+            <ul className="mt-8 grid gap-4">
+              {notAFit.map((b) => (
+                <li key={b} className="text-base leading-relaxed text-muted-foreground">
                   {b}
-                </span>
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </Section>
 
@@ -204,7 +270,7 @@ export default function StudioPage() {
 
       <CTA
         title="Let's see if Studio is the right next step."
-        lead="A 30-minute discovery call. No pitch deck. We'll listen, ask the hard questions, and tell you whether a diagnostic, a narrower review, or something else entirely is the honest first move."
+        lead="A 30-minute discovery call. No pitch deck. We'll name the problem, pick the offer that fits — or tell you none of them do."
       />
     </>
   );

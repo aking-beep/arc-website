@@ -11,7 +11,7 @@ import { digitalTransformation, faqs, pillars, site } from "@/lib/content";
 export const metadata: Metadata = {
   title: "About & contact",
   description:
-    "Meet Andrew King and ARC Transformation Group: digital transformation for companies, nonprofits, teams, and communities.",
+    "Meet Andrew King and ARC Transformation Group: digital transformation for 10–500 person organizations — companies, nonprofits, and teams.",
 };
 
 export default function AboutPage() {
@@ -20,7 +20,7 @@ export default function AboutPage() {
       <PageHero
         kicker="About"
         title="One honest partner across strategy, build, and scale."
-        lead="ARC started as an advisory practice and grew into an ecosystem. The through-line never changed: name the stage, show the work, and help companies, nonprofits, teams, and communities keep pace with digital change."
+        lead="ARC started as an advisory practice and grew into an ecosystem. The through-line never changed: name the stage, show the work, and help 10–500 person organizations ship working systems — not another strategy deck."
       />
 
       <Section>
@@ -123,8 +123,8 @@ export default function AboutPage() {
       <Section className="bg-muted/30">
         <SectionHeading
           kicker="Who it's for"
-          title="Companies, nonprofits, teams, and communities."
-          lead="That is the commercial work. ARC also exists so smaller organizations and communities are not left behind by the same digital shift Fortune 100 teams already staff for. The method does not change with the size of the room."
+          title="Primary buyer: 10–500 person organizations."
+          lead="Companies, nonprofits, and teams in that range are the commercial focus. Communities and smaller groups are welcome when the same method fits — they are a deeper mission, not the homepage buyer."
         />
       </Section>
 

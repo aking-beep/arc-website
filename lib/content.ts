@@ -8,7 +8,11 @@ export const site = {
   short: "ARC",
   tagline: "Digital transformation that ships.",
   description:
-    "ARC helps companies, nonprofits, teams, and communities keep pace with digital change. Digital transformation, cybersecurity, data platforms, and AI when it helps — as clear work that ships.",
+    "ARC helps 10–500 person organizations — companies, nonprofits, and teams — turn messy digital, data, cybersecurity, and AI problems into working systems.",
+  audience: {
+    badge: "10–500 person organizations · companies · nonprofits · teams",
+    line: "ARC helps organizations with 10–500 people turn messy digital, data, cybersecurity, and AI problems into working systems — then delivers the working system, not just the strategy.",
+  },
   email: "aking@arctransformationgroup.com",
   calendly: "https://calendly.com/aking-arctransformationgroup/30min",
   github: "https://github.com/aking-beep",
@@ -104,12 +108,12 @@ export const pillars: Pillar[] = [
   {
     id: "studio",
     name: "ARC Studio",
-    href: "/studio",
+    href: "/studio#offers",
     icon: "Compass",
     kicker: "Advisory & delivery",
     summary: "Hands-on advisory and delivery for digital transformation.",
     detail:
-      "Due diligence, architecture, cybersecurity, data readiness, and roadmaps that can actually ship — for companies, nonprofits, and teams that need a partner, not a slide deck.",
+      "Named engagements for 10–500 person organizations: readiness reviews, security baselines, data roadmaps, AI sprints, and a full diagnostic when you need the whole picture.",
     status: "live",
   },
   {
@@ -181,7 +185,7 @@ export const labs: Product[] = [
     badge: "Flagship",
     featured: true,
     visual: "conformance",
-    ctaLabel: "Open scanner",
+    ctaLabel: "Scan a server",
     audience:
       "Teams shipping or consuming MCP servers who need a production gate, not a one-client smoke test.",
     howItWorks: [
@@ -470,7 +474,7 @@ export const labs: Product[] = [
     badge: "Free",
     featured: true,
     visual: "security",
-    ctaLabel: "Open scanner",
+    ctaLabel: "Review an AI app",
     audience:
       "Engineering, security, platform, and AI teams building RAG systems, agents, or MCP-based apps who need an explainable configuration review — not a green checkmark and not an exploit kit.",
     howItWorks: [
@@ -543,7 +547,7 @@ export const labs: Product[] = [
     status: "live",
     badge: "Free",
     visual: "governance",
-    ctaLabel: "Open scanner",
+    ctaLabel: "Review agent access",
     audience:
       "CIOs, CISOs, AI platform teams, and engineering leads moving from experiments into agent deployment who need to answer what an agent can reach — without a penetration test or a fake certification.",
     howItWorks: [
@@ -579,7 +583,7 @@ export const labs: Product[] = [
     status: "live",
     badge: "Free",
     visual: "process",
-    ctaLabel: "Open scanner",
+    ctaLabel: "Scan a workflow",
     audience:
       "Operations, transformation, and product leaders who know a process is inefficient but do not yet know what to change — and do not want fabricated ROI.",
     howItWorks: [
@@ -612,9 +616,121 @@ export const labsProof = {
   note: "Adoption metrics (scans, reports, organizations) will be published here as they accumulate. We will not invent them.",
 };
 
+export const labGroups = [
+  {
+    id: "ai",
+    name: "AI engineering",
+    lead: "Conformance, prompts, skills, workflows, and agent governance — for teams shipping AI into real systems.",
+    slugs: [
+      "mcp-conformance-scanner",
+      "prompt-reviewer",
+      "arc-skills",
+      "ai-workflow-templates",
+      "arc-agent-governance",
+    ],
+  },
+  {
+    id: "security",
+    name: "Security and infrastructure",
+    lead: "Reachability, TLS, headers, and AI-application defensive review.",
+    slugs: ["connectivity-scanner", "arc-ai-security-scanner"],
+  },
+  {
+    id: "architecture",
+    name: "Architecture and planning",
+    lead: "Reference shapes and a defensible AI-stack decision, not a vendor list.",
+    slugs: ["reference-architectures", "arc-stack-advisor"],
+  },
+  {
+    id: "cost",
+    name: "Cost control",
+    lead: "See coding-agent spend before the invoice, without a proxy.",
+    slugs: ["tokenloop"],
+  },
+  {
+    id: "operations",
+    name: "Operations and journeys",
+    lead: "Where the purchase path stalls, and where the operating workflow actually breaks.",
+    slugs: ["arc-journey-scanner", "arc-workflow-scanner"],
+  },
+];
+
 // ---------------------------------------------------------------------------
 // ARC Studio - the nine services (migrated from the current site).
 // ---------------------------------------------------------------------------
+export type Offer = {
+  number: string;
+  name: string;
+  promise: string;
+  duration: string;
+  startsWith: string;
+  youLeaveWith: string;
+  flagship?: boolean;
+};
+
+export const offers: Offer[] = [
+  {
+    number: "01",
+    name: "Digital Readiness Review",
+    promise: "Identify the three changes that matter most in the next 90 days.",
+    duration: "2–3 weeks",
+    startsWith: "A working session against your real stack, not a trends lecture.",
+    youLeaveWith:
+      "A scored readiness snapshot, a shortlist of three bets with owners, and a 30-day action plan.",
+  },
+  {
+    number: "02",
+    name: "Architecture Due Diligence",
+    promise:
+      "Understand whether a proposed — or already-built — system can scale, and what it will cost to operate.",
+    duration: "2–4 weeks",
+    startsWith: "Code, architecture, and the operating constraints you actually have.",
+    youLeaveWith:
+      "A prioritized findings list, a modernization sequence, and the risks an operator can act on.",
+  },
+  {
+    number: "03",
+    name: "Cybersecurity Baseline",
+    promise:
+      "Find and prioritise the weaknesses most likely to hurt the organisation — readiness work, not audit theater.",
+    duration: "2–4 weeks",
+    startsWith: "Access, secrets, logging, and the systems that actually hold the crown jewels.",
+    youLeaveWith:
+      "A ranked exposure list, a 30/60/90 hardening plan, and named owners for the first fixes.",
+  },
+  {
+    number: "04",
+    name: "Data Platform Roadmap",
+    promise:
+      "A practical path from fragmented data and untrusted reporting to a workflow a 50-person team can run.",
+    duration: "3–5 weeks",
+    startsWith: "The reports leadership already uses — and the spreadsheets they actually trust.",
+    youLeaveWith:
+      "A data-trust diagnosis, a sequenced platform path, and the first governed workflow worth shipping.",
+  },
+  {
+    number: "05",
+    name: "AI Readiness Sprint",
+    promise:
+      "Decide where AI is useful, risky, or premature — then rank the one workflow worth building first.",
+    duration: "2–3 weeks",
+    startsWith: "Real processes, real data, and the team who would have to live with the result.",
+    youLeaveWith:
+      "A go / no-go / not-yet map, one scored opportunity, and human-review gates where they matter.",
+  },
+  {
+    number: "06",
+    name: "Integrated Transformation Diagnostic",
+    flagship: true,
+    promise:
+      "The whole picture: architecture, data, infrastructure, security, operations, and AI together — then one sequenced plan.",
+    duration: "5–7 weeks",
+    startsWith: "Competing initiatives, no shared debt map, and a board asking which bet to fund.",
+    youLeaveWith:
+      "A board-ready summary, named owners, sized risks, and a 6–12 month investment sequence.",
+  },
+];
+
 export type Service = {
   number: string;
   name: string;
@@ -807,10 +923,46 @@ export const principles = [
 ];
 
 export const bestFit = [
-  "Companies, nonprofits, teams, and communities that feel the gap between digital change and real readiness.",
-  "Operators who want a working system, not a slide deck.",
-  "Groups ready to put real data, real users, and real effort behind the work.",
+  "Operators in 10–500 person companies, nonprofits, and teams who need a working system, not a slide deck.",
   "Leaders who want one honest partner across strategy, build, and scale — not a pile of vendors to manage.",
+  "Groups ready to put real data, real users, and real effort behind the work.",
+];
+
+export const whyArc = [
+  {
+    title: "Who does the work",
+    text: "Andrew King, founder. Twenty years of Fortune 100/500 delivery — cybersecurity product lines, Ticketmaster-scale customer data, and brand programs with LEGO and the NFL. You are not handed off to a bench of juniors after the pitch.",
+  },
+  {
+    title: "What that experience is for",
+    text: "Sensitive systems, stretched teams, and problems that have already survived two strategy decks. ARC is built to name the stage, score the work, and ship the boring thing that moves a KPI.",
+  },
+  {
+    title: "Better than an agency or a lone freelancer",
+    text: "Agencies sell campaigns. Integrators sell platforms. Freelancers sell hours. ARC sells a sequenced plan with owners — and the delivery to make it run — using the same method behind the free Labs tools.",
+  },
+];
+
+export const notAFit = [
+  "You want a large team staffed next week to take over IT.",
+  "You need a logo-driven RFP response more than an honest diagnosis.",
+  "The problem is still “we should do AI” with no workflow, owner, or constraint.",
+  "You want us to build whatever was already decided, without scoring it.",
+];
+
+export const howWeEngage = [
+  {
+    name: "Named offers",
+    text: "Start with a packaged engagement: readiness review, diligence, security baseline, data roadmap, AI sprint, or the full diagnostic.",
+  },
+  {
+    name: "Delivery after the plan",
+    text: "If the problem still needs us, we stay on to implement — sized to what the organization actually needs, not to a menu of packages.",
+  },
+  {
+    name: "Workshops",
+    text: "When the team needs the method in the room: digital readiness, operator working sessions, or a custom day.",
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -1077,6 +1229,10 @@ export const caseStudies: CaseStudy[] = [
 // ---------------------------------------------------------------------------
 export const faqs = [
   {
+    q: "Who is ARC for?",
+    a: "Primary commercial work is with 10–500 person organizations — companies, nonprofits, and teams — that have messy digital, data, cybersecurity, or AI problems and need a working system. Communities and smaller groups are welcome when the same method fits; they are not the homepage buyer.",
+  },
+  {
     q: "Do you only work on AI projects?",
     a: "No. ARC is a digital transformation practice. AI is one part of the mix, alongside data, cloud, cybersecurity, process change, and delivery. If AI is not the highest-ROI move, we will say so.",
   },
@@ -1099,6 +1255,10 @@ export const faqs = [
   {
     q: "Will you just build whatever we ask for?",
     a: "Not if it would be malpractice. Selling a build before the problem is named is how projects burn money. We will push back, and we are usually grateful later that we did.",
+  },
+  {
+    q: "When is ARC not the right partner?",
+    a: "If you need a large staffed IT takeover, a logo-driven RFP response, or someone to build a decision that has not been scored. We will say no. That is cheaper than a bad yes.",
   },
   {
     q: "Where are you based?",
