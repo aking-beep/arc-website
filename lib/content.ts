@@ -110,10 +110,10 @@ export const pillars: Pillar[] = [
     name: "ARC Research",
     href: "/research",
     icon: "LineChart",
-    kicker: "Benchmarks & reports",
-    summary: "Public benchmarks and honest industry reports.",
+    kicker: "Cited research",
+    summary: "Grounded briefs with academic and industry sources.",
     detail:
-      "Benchmarks, teardowns, and field reports in plain language, with real numbers and assumptions labeled.",
+      "Research you can verify — AI, security, operations, cloud, transformation, and product — with citations, limitations labeled, and outcomes operators can use.",
     status: "live",
   },
   {
@@ -605,91 +605,14 @@ export const bestFit = [
 ];
 
 // ---------------------------------------------------------------------------
-// ARC Research - benchmarks & reports.
+// ARC Research - grounded, cited briefs.
 // ---------------------------------------------------------------------------
-export type ArticleSection = {
-  heading: string;
-  paragraphs: string[];
-};
-
-export type Article = {
-  slug: string;
-  title: string;
-  kind: "Benchmark" | "Research" | "Report";
-  date: string;
-  status: Status;
-  summary: string;
-  readingTime: string;
-  sections: ArticleSection[];
-};
-
-export const research: Article[] = [
-  {
-    slug: "mcp-conformance-in-the-wild",
-    title: "MCP Conformance in the Wild: What 100 Servers Told Us",
-    kind: "Benchmark",
-    date: "2026-06-01",
-    status: "live",
-    summary:
-      "We ran the MCP Conformance Scanner against a broad sample of public servers. Here's where the spec holds, where it quietly breaks, and what that means for anyone building on MCP.",
-    readingTime: "9 min",
-    sections: [
-      {
-        heading: "Method",
-        paragraphs: [
-          "We pointed the MCP Conformance Scanner at a curated set of public Model Context Protocol servers (open-source implementations, vendor demos, and community projects). Each run covered handshake, capability negotiation, and schema validation for tools, resources, and prompts.",
-          "Assumptions we are labeling up front: the sample skews toward early adopters and English-language documentation; private enterprise servers are under-represented; and a failing check is not the same as a malicious server. It usually means an incomplete or drifting implementation.",
-        ],
-      },
-      {
-        heading: "What we found",
-        paragraphs: [
-          "Capability negotiation is where most implementations stumble. Servers advertise tools they cannot fully describe, or accept initialize sequences that the spec treats as optional and then break when a client exercises them.",
-          "Schema validation failures cluster around optional fields treated as required, and around tool argument shapes that work in one client SDK and quietly fail in another. Operators see this as flaky agents; the root cause is often a half-finished MCP surface.",
-        ],
-      },
-      {
-        heading: "What it means",
-        paragraphs: [
-          "If you are shipping an MCP server, run conformance in CI before you call it production. If you are consuming servers, treat the handshake report as a gate, not a nice-to-have, and prefer servers that publish a shareable conformance link.",
-          "As the sample grows and historical diffing lands, we will publish grade distributions and a short list of the highest-impact fixes for implementers. This first cut is already actionable.",
-        ],
-      },
-    ],
-  },
-  {
-    slug: "ai-readiness-mid-market",
-    title: "The Mid-Market AI Readiness Report",
-    kind: "Report",
-    date: "2026-04-15",
-    status: "live",
-    summary:
-      "A field report on what actually separates the 10-500 person companies getting real value from AI from the ones stuck in pilot purgatory.",
-    readingTime: "14 min",
-    sections: [
-      {
-        heading: "Method",
-        paragraphs: [
-          "This report synthesizes ARC Studio engagements and anonymized diagnostic scores across architecture, data, infrastructure, security, operations, and AI opportunity. We score every recommendation on business value, risk, feasibility, and adoption, the four axes, or we do not publish it.",
-          "Constraints: mid-market only (roughly 10-500 people), US and English-language operators first, and no vendor-sponsored placements. Unknowns we call out: selection bias toward companies already talking to ARC, and uneven willingness to share quantitative outcomes.",
-        ],
-      },
-      {
-        heading: "What we found",
-        paragraphs: [
-          "The pattern in the field: successful teams name the stage they are in, pick one boring system that moves a real KPI, and put a human review loop on the failure modes. Stuck teams confuse strategy decks with deliverables and run three competing pilots with no shared owner.",
-          "Readiness is less about model access and more about data trust, owner clarity, and a sequenced 30/60/90 that survives contact with a stretched team.",
-        ],
-      },
-      {
-        heading: "What it means",
-        paragraphs: [
-          "If you are in pilot purgatory, start with an Integrated Transformation Diagnostic or a narrower AI readiness assessment. The goal is a sequenced plan with named owners, not another slide that says “AI-powered.”",
-        ],
-      },
-    ],
-  },
-];
+export type {
+  Article,
+  ArticleSection,
+  Citation,
+} from "./research";
+export { research, getResearchBySlug } from "./research";
 
 // ---------------------------------------------------------------------------
 // ARC Academy - workshops.
