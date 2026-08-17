@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Check } from "lucide-react";
 import { Container, SectionHeading } from "@/components/ui/section";
-import { StatusBadge } from "@/components/ui/badge";
 import { CTA } from "@/components/cta";
 import { academy } from "@/lib/content";
 
@@ -45,7 +44,6 @@ export default function WorkshopPage({
             <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
               Workshop
             </span>
-            <StatusBadge status={workshop.status} />
           </div>
           <h1 className="mt-5 text-4xl font-semibold tracking-tight text-balance">
             {workshop.name}
@@ -114,7 +112,7 @@ export default function WorkshopPage({
 
       <CTA
         title="Want this workshop for your team?"
-        lead="Tell us what you're stuck on. We'll scope the session against your real systems."
+        lead="Tell us the decision you need to make. We'll scope the session against your real systems and who has to be in the room."
       />
     </>
   );

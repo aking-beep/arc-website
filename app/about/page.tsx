@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Calendar, Linkedin, Mail } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
@@ -19,7 +20,7 @@ export default function AboutPage() {
       <PageHero
         kicker="About"
         title="One honest partner across strategy, build, and scale."
-        lead="ARC started as an advisory practice and grew into an ecosystem. The through-line never changed: name the stage, show the work, and help people keep pace with digital change so companies, nonprofits, individuals, and communities are not left behind."
+        lead="ARC started as an advisory practice and grew into an ecosystem. The through-line never changed: name the stage, show the work, and help companies, nonprofits, teams, and communities keep pace with digital change."
       />
 
       <Section>
@@ -92,12 +93,16 @@ export default function AboutPage() {
         />
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((p) => (
-            <div key={p.id} className="rounded-lg border border-border bg-card p-5">
+            <Link
+              key={p.id}
+              href={p.href}
+              className="rounded-lg border border-border bg-card p-5 transition-all hover:border-foreground/20 hover:shadow-sm"
+            >
               <h3 className="text-sm font-semibold">{p.name}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 {p.summary}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
       </Section>

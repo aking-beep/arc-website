@@ -4,7 +4,6 @@ import { ArrowRight, Check } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
-import { StatusBadge } from "@/components/ui/badge";
 import { FaqList } from "@/components/faq-list";
 import { CTA } from "@/components/cta";
 import {
@@ -28,7 +27,7 @@ export default function StudioPage() {
       <PageHero
         kicker="ARC Studio"
         title="Strategy that aligns. Work that delivers."
-        lead="Practical digital transformation help for companies, nonprofits, individuals, and communities. We cover data, cloud, cybersecurity, process change, and AI when it fits. Strategy first, then delivery in honest stages, with outcomes you can measure. Fixed rates or hourly, scoped to what you need."
+        lead="Practical digital transformation for companies, nonprofits, teams, and communities. Data, cloud, cybersecurity, process change, and AI when it fits. Strategy first, then delivery in honest stages. Fixed rates or hourly, scoped to what you need."
       />
 
       <Section>
@@ -55,8 +54,8 @@ export default function StudioPage() {
       <Section className="bg-muted/30">
         <SectionHeading
           kicker="What we do"
-          title="Nine things we actually do."
-          lead="Every service has a documented process and a template library, so we move quickly and you don't have to teach us how the work works."
+          title="Where we typically start."
+          lead="Nine documented services — from due diligence and security to AI readiness and a full transformation diagnostic. You do not have to teach us how the work works."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
@@ -103,15 +102,15 @@ export default function StudioPage() {
       <Section>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
-            kicker="Work"
-            title="Selected outcomes."
-            lead="Honest write-ups when clients allow publication. Structure first; fiction never."
+            kicker="How the work looks"
+            title="Engagement shapes, not fiction."
+            lead="Until clients approve named case studies, we publish composite examples of how ARC engagements typically run — the method, not invented client results."
           />
           <Link
             href="/work"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
           >
-            See all case studies
+            See engagement examples
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -120,7 +119,9 @@ export default function StudioPage() {
             <Link key={study.slug} href={`/work/${study.slug}`} className="group block">
               <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
                 <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-                  <StatusBadge status={study.status} />
+                  <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
+                    {study.kind === "composite" ? "Composite example" : "Case study"}
+                  </span>
                   <span>{study.industry}</span>
                 </div>
                 <h3 className="mt-4 text-lg font-semibold tracking-tight group-hover:underline group-hover:underline-offset-4">
@@ -194,14 +195,17 @@ export default function StudioPage() {
         <SectionHeading
           kicker="FAQ"
           title="Before the discovery call."
-          lead="If the answer isn't here, ask it on the call. That's what the thirty minutes are for."
+          lead="If the answer is not here, ask it on the call. That is what the thirty minutes are for."
         />
         <div className="mt-10 max-w-3xl">
           <FaqList items={faqs} />
         </div>
       </Section>
 
-      <CTA />
+      <CTA
+        title="Let's see if Studio is the right next step."
+        lead="A 30-minute discovery call. No pitch deck. We'll listen, ask the hard questions, and tell you whether a diagnostic, a narrower review, or something else entirely is the honest first move."
+      />
     </>
   );
 }

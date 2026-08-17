@@ -100,9 +100,9 @@ export const pillars: Pillar[] = [
     href: "/studio",
     icon: "Compass",
     kicker: "Advisory & delivery",
-    summary: "Hands-on help with the hard implementation problems.",
+    summary: "Hands-on advisory and delivery for digital transformation.",
     detail:
-      "Hands-on advisory and delivery for digital transformation: due diligence, architecture, cybersecurity, data readiness, and roadmaps that can actually ship.",
+      "Due diligence, architecture, cybersecurity, data readiness, and roadmaps that can actually ship — for companies, nonprofits, and teams that need a partner, not a slide deck.",
     status: "live",
   },
   {
@@ -122,9 +122,9 @@ export const pillars: Pillar[] = [
     href: "/academy",
     icon: "GraduationCap",
     kicker: "Workshops",
-    summary: "Hands-on workshops that make the method stick.",
+    summary: "Workshops that leave owners and a next step.",
     detail:
-      "Live workshops against your real systems and backlog, so the team keeps the method after we leave.",
+      "Live sessions against your real systems and backlog: digital readiness, operator working sessions, or a custom day built around the decision you need to make.",
     status: "live",
   },
 ];
@@ -148,11 +148,14 @@ export type Product = {
   description: string;
   status: Status;
   badge?: string;
+  featured?: boolean;
   visual: ProductVisual;
   audience: string;
   howItWorks: string[];
   features: string[];
-  links: { demo?: string; github?: string; docs?: string };
+  /** Primary product action — label must match what the destination actually is. */
+  ctaLabel?: string;
+  links: { app?: string; github?: string; docs?: string };
   roadmap?: { label: string; done: boolean }[];
 };
 
@@ -162,12 +165,14 @@ export const labs: Product[] = [
     name: "MCP Conformance Scanner",
     tagline: "Check any MCP server against the spec in seconds.",
     description:
-      "Point it at a Model Context Protocol server and get a clear-eyed conformance report: what passes, what breaks, and what to fix first. Built on the same Next.js + Vercel stack every ARC product shares.",
+      "Point it at a Model Context Protocol server and get a conformance report: what passes, what breaks, and what to fix first — written for an operator, not a linter.",
     status: "live",
     badge: "Flagship",
+    featured: true,
     visual: "conformance",
+    ctaLabel: "Open scanner",
     audience:
-      "Teams shipping or consuming MCP servers who need a gate before production, not a vague “looks fine in one client” vibe check.",
+      "Teams shipping or consuming MCP servers who need a production gate, not a one-client smoke test.",
     howItWorks: [
       "Paste a server URL or point the CLI at your local process.",
       "We run handshake, capability negotiation, and schema checks.",
@@ -181,7 +186,9 @@ export const labs: Product[] = [
       "Shareable report links",
     ],
     links: {
-      github: "https://github.com/aking-beep",
+      app: "https://www.arctransformationgrouplab.dev",
+      github: "https://github.com/aking-beep/mcp-conformance-scanner",
+      docs: "https://github.com/aking-beep/mcp-conformance-scanner#readme",
     },
     roadmap: [
       { label: "Core conformance suite", done: true },
@@ -195,10 +202,12 @@ export const labs: Product[] = [
     name: "TokenLoop",
     tagline: "Stop AI coding-agent spend before the invoice.",
     description:
-      "Free spend control for Claude Code and Cursor: per-developer burn, minutes-scale kill switch, and client chargeback, without rebuilding traffic through a gateway. Sign up free, connect read-only admin keys (encrypted at rest), use every feature.",
+      "Spend control for Claude Code and Cursor: per-developer burn, a minutes-scale kill switch, and client chargeback — without proxying traffic through a gateway. Free signup; keys encrypted at rest.",
     status: "live",
     badge: "Free product",
+    featured: true,
     visual: "spend",
+    ctaLabel: "Open TokenLoop",
     audience:
       "Engineering and agency leads running Claude Code and Cursor who find out about runaway spend on the invoice. They need detect-and-cut plus client bill-back without a proxy.",
     howItWorks: [
@@ -215,9 +224,7 @@ export const labs: Product[] = [
       "Honest scope: minutes-scale cut, not true per-request blocking",
     ],
     links: {
-      demo: "https://tokenloop.vercel.app",
-      github: "https://github.com/aking-beep/TokenLoop",
-      docs: "https://tokenloop.vercel.app/privacy",
+      app: "https://tokenloop.vercel.app",
     },
     roadmap: [
       { label: "Spend dashboard + sync", done: true },
@@ -233,7 +240,9 @@ export const labs: Product[] = [
     description:
       "Paste a prompt and get structured feedback on clarity, injection surface, ambiguity, and failure modes. The review a senior engineer would give, minus the wait. Static, reproducible, no model call.",
     status: "live",
+    featured: true,
     visual: "prompt",
+    ctaLabel: "Review a prompt",
     audience:
       "Builders writing system prompts for agents and copilots who want failure modes named before users find them.",
     howItWorks: [
@@ -249,7 +258,7 @@ export const labs: Product[] = [
       "Concrete rewrite suggestions + Markdown / JSON export",
     ],
     links: {
-      demo: "https://promptreviewer.arctransformationgrouplab.dev",
+      app: "https://promptreviewer.arctransformationgrouplab.dev",
       github: "https://github.com/aking-beep/prompt-reviewer",
       docs: "https://github.com/aking-beep/prompt-reviewer#readme",
     },
@@ -269,6 +278,7 @@ export const labs: Product[] = [
     status: "live",
     badge: "Free catalog",
     visual: "workflows",
+    ctaLabel: "Browse templates",
     audience:
       "Operators and engineers who need a copy-pasteable pipeline with a human gate, not a prompt graveyard or an auto-send agent.",
     howItWorks: [
@@ -284,7 +294,7 @@ export const labs: Product[] = [
       "JSON API, CLI, and Markdown export. MIT licensed",
     ],
     links: {
-      demo: "https://aiworkflowtemplates.arctransformationgrouplab.dev",
+      app: "https://aiworkflowtemplates.arctransformationgrouplab.dev",
       github: "https://github.com/aking-beep/ai-workflow-templates",
       docs: "https://github.com/aking-beep/ai-workflow-templates#readme",
     },
@@ -303,6 +313,7 @@ export const labs: Product[] = [
       "A free, open library of production-ready Agent Skills — each a SKILL.md package with triggers, steps, and guardrails. Copy them into Claude, Cursor, or any Agent Skills runtime. No account, no lock-in.",
     status: "live",
     visual: "skills",
+    ctaLabel: "Browse skills",
     audience:
       "Operators and engineers who want copy-pasteable agent skills with documented inputs and guardrails, not a private prompt graveyard.",
     howItWorks: [
@@ -317,7 +328,7 @@ export const labs: Product[] = [
       "Spec validator in CI so contributions stay loadable",
     ],
     links: {
-      demo: "https://arc-skills-phi.vercel.app",
+      app: "https://arc-skills-phi.vercel.app",
       github: "https://github.com/aking-beep/arc-skills",
       docs: "https://github.com/aking-beep/arc-skills#readme",
     },
@@ -337,6 +348,7 @@ export const labs: Product[] = [
     status: "live",
     badge: "Free",
     visual: "connectivity",
+    ctaLabel: "Scan an endpoint",
     audience:
       "Engineers and operators who need a clear-eyed read on whether a public endpoint is up, using modern TLS, and sending the headers a production service should send — before a customer or crawler finds out the hard way.",
     howItWorks: [
@@ -354,7 +366,7 @@ export const labs: Product[] = [
       "Markdown / JSON export, CLI, and GitHub Action",
     ],
     links: {
-      demo: "https://connectivity-scanner.vercel.app",
+      app: "https://connectivity-scanner.vercel.app",
       github: "https://github.com/aking-beep/connectivity-scanner",
       docs: "https://github.com/aking-beep/connectivity-scanner#readme",
     },
@@ -370,10 +382,11 @@ export const labs: Product[] = [
     name: "Reference Architectures",
     tagline: "Battle-tested system blueprints you can adapt instead of starting from a blank diagram.",
     description:
-      "A free, open library of 20 reference architectures harvested from ARC's Google Drive work: AWS streaming labs, Operator AI, Labs products, CITH, Experience Intelligence, and FoodMesh. Each entry has the problem, the component shape, key decisions, failure modes, when not to use it, and a scaling path.",
+      "A free, open library of 20 reference architectures from ARC delivery work: streaming data, operator AI, Labs products, maturity scoring, and more. Each entry names the problem, the component shape, key decisions, failure modes, when not to use it, and a scaling path.",
     status: "live",
     badge: "Free",
     visual: "architecture",
+    ctaLabel: "Browse architectures",
     audience:
       "Engineers and operators who need a proven shape with trade-offs named — not a blank diagram or a vendor reference architecture they cannot defend.",
     howItWorks: [
@@ -389,7 +402,7 @@ export const labs: Product[] = [
       "JSON API, CLI, and open Markdown under content/",
     ],
     links: {
-      demo: "https://reference-architectures.vercel.app",
+      app: "https://reference-architectures.vercel.app",
       github: "https://github.com/aking-beep/reference-architectures",
       docs: "https://github.com/aking-beep/reference-architectures#readme",
     },
@@ -729,6 +742,7 @@ export type CaseStudy = {
   client: string;
   title: string;
   status: Status;
+  kind: "composite" | "published";
   industry: string;
   summary: string;
   challenge: string;
@@ -739,44 +753,46 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     slug: "sample-transformation-diagnostic",
-    client: "Mid-market B2B SaaS (anonymized)",
-    title: "From pilot purgatory to a sequenced 12-month roadmap",
-    status: "building",
-    industry: "B2B SaaS · ~120 employees",
+    client: "Composite example · mid-market B2B",
+    title: "From competing bets to one sequenced roadmap",
+    status: "live",
+    kind: "composite",
+    industry: "B2B SaaS · ~100–200 people",
     summary:
-      "Three competing digital bets, no shared debt map, and a board asking which one to fund. Five weeks later: one sequenced roadmap with named owners.",
+      "A typical Integrated Transformation Diagnostic: three overlapping digital bets, no shared view of debt, and a board asking which one to fund. The shape of the work is five weeks to one sequenced plan with named owners.",
     challenge:
-      "Leadership had three competing initiatives, no shared view of technical debt, and no way to say which bet to fund first. Vendors were filling the vacuum with demos.",
+      "Leadership is running parallel initiatives with no shared map of technical debt, data trust, or security posture. Vendors fill the vacuum with product demos. Nobody can defend a funding sequence.",
     approach: [
-      "Ran the Integrated Transformation Diagnostic across architecture, data, infra, security, ops, and opportunity areas.",
-      "Scored every opportunity on business value, risk, feasibility, and adoption.",
-      "Delivered a phased roadmap with named owners and sequenced spend, written for the board, not the team Slack.",
+      "Run the Integrated Transformation Diagnostic across architecture, data, infrastructure, security, operations, and opportunity areas.",
+      "Score every opportunity on business value, risk, feasibility, and adoption.",
+      "Deliver a phased roadmap with named owners and sequenced spend, written for the board as well as the operators who have to execute it.",
     ],
     outcomes: [
-      { metric: "5 wks", label: "From kickoff to board-ready roadmap" },
-      { metric: "3 → 1", label: "Competing initiatives, resequenced into one plan" },
-      { metric: "100%", label: "Recommendations landed on all four axes" },
+      { metric: "5–7 wks", label: "Typical diagnostic window" },
+      { metric: "1 plan", label: "Competing bets resequenced" },
+      { metric: "4 axes", label: "Every recommendation scored" },
     ],
   },
   {
     slug: "mcp-readiness-for-ops",
-    client: "Platform team (anonymized)",
-    title: "Making MCP servers safe enough to put in the critical path",
-    status: "building",
-    industry: "Developer tools · platform eng",
+    client: "Composite example · platform engineering",
+    title: "Putting a conformance gate in front of production agents",
+    status: "live",
+    kind: "composite",
+    industry: "Developer tools · platform engineering",
     summary:
-      "Agents were calling half-finished MCP servers. We used the Conformance Scanner plus Studio review to turn flaky connectors into gated, CI-checked surfaces.",
+      "A typical Labs-plus-Studio pattern: agents calling unfinished MCP servers, failures showing up as “the agent is weird,” and a scanner-plus-review loop that turns flaky connectors into gated surfaces.",
     challenge:
-      "Agent workflows depended on community MCP servers with no conformance gate. Failures showed up as “the agent is weird,” not as schema or handshake bugs.",
+      "Agent workflows depend on community or internal MCP servers with no conformance gate. Failures look like model quality problems instead of handshake, schema, or capability bugs.",
     approach: [
-      "Ran the MCP Conformance Scanner against every production-bound server.",
-      "Prioritized findings for operators: capability negotiation and schema breaks first.",
-      "Wired a pass/fail gate into the release checklist and a Studio review for the highest-risk connectors.",
+      "Run the MCP Conformance Scanner against every production-bound server.",
+      "Prioritize findings operators can act on: capability negotiation and schema breaks first.",
+      "Add a pass/fail gate to the release checklist, with Studio review for the highest-risk connectors.",
     ],
     outcomes: [
-      { metric: "12", label: "Servers scored before they hit prod agents" },
-      { metric: "B− → A−", label: "Median grade after the first remediation pass" },
-      { metric: "1 gate", label: "Shared conformance check for every new server" },
+      { metric: "CI gate", label: "Conformance before agents go live" },
+      { metric: "Shared report", label: "One language for implementers" },
+      { metric: "Human review", label: "On high-stakes action tools" },
     ],
   },
 ];
@@ -795,7 +811,7 @@ export const faqs = [
   },
   {
     q: "Are the Labs tools really free?",
-    a: "Yes. Open source, no signup wall, no sales gate. They are how most people meet ARC. Studio is optional if you want a human read on what the tools surface.",
+    a: "Most Labs tools are free to run with no account. A few, like TokenLoop, use a free signup so secrets stay encrypted to your organization. There is no paid tier. Studio is optional if you want a human read on what the tools surface.",
   },
   {
     q: "What is ARC Academy?",

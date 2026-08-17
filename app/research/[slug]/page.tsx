@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, BookOpenCheck } from "lucide-react";
 import { Container } from "@/components/ui/section";
-import { StatusBadge } from "@/components/ui/badge";
 import { CTA } from "@/components/cta";
 import { research } from "@/lib/content";
 
@@ -68,7 +67,7 @@ export default function ArticlePage({
           className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          ARC Intelligence
+          ARC Research
         </Link>
 
         <article className="mx-auto max-w-2xl">
@@ -79,7 +78,6 @@ export default function ArticlePage({
             <span className="rounded-full border border-border px-2.5 py-0.5 font-medium text-foreground/80">
               {article.topic}
             </span>
-            <StatusBadge status={article.status} />
             <span>{formatDate(article.date)}</span>
             <span>· {article.readingTime} read</span>
           </div>
@@ -159,8 +157,8 @@ export default function ArticlePage({
       </Container>
 
       <CTA
-        title="Want this analysis for your systems?"
-        lead="ARC Studio can apply the same research-backed method against your stack and hand you an operator-ready plan. Book a 30-minute call."
+        title="Want this applied to your operating model?"
+        lead="Studio can score these findings against your stack and hand you a sequenced plan with named owners. Book a 30-minute call."
       />
     </>
   );

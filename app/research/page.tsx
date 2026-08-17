@@ -4,14 +4,13 @@ import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
-import { StatusBadge } from "@/components/ui/badge";
 import { CTA } from "@/components/cta";
 import { research } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Research — Grounded briefs with cited sources",
+  title: "Research · Cited briefs",
   description:
-    "ARC Intelligence publishes research briefs grounded in academic literature, NIST and industry standards, and primary studies — with cited sources and operator outcomes, not vendor gloss.",
+    "ARC Research publishes grounded briefs on AI, security, operations, cloud, digital transformation, and product — with academic and industry citations you can verify.",
 };
 
 function formatDate(iso: string) {
@@ -26,16 +25,16 @@ export default function ResearchPage() {
   return (
     <>
       <PageHero
-        kicker="ARC Intelligence"
+        kicker="ARC Research"
         title="Research you can verify."
-        lead="Six grounded briefs across AI development, security, operations, cloud, digital transformation, and product — written in plain language, backed by cited academic, standards, and industry sources. If we can't source a claim, we say so."
+        lead="Six grounded briefs across AI development, security, operations, cloud, digital transformation, and product. Plain language, cited sources, operator outcomes. If we cannot source a claim, we say so."
       />
 
       <Section>
         <SectionHeading
           kicker="Library"
           title="Research briefs"
-          lead="Each paper includes academic background, evidence, operator outcomes, limitations, and a full citation list with links to primary sources."
+          lead="Each paper includes academic background, evidence, operator outcomes, limitations, and a citation list with links to primary sources."
         />
         <div className="mt-12 grid gap-5">
           {research.map((a) => (
@@ -49,7 +48,6 @@ export default function ResearchPage() {
                     <span className="rounded-full border border-border px-2.5 py-0.5 font-medium text-foreground/80">
                       {a.topic}
                     </span>
-                    <StatusBadge status={a.status} />
                     <span>{formatDate(a.date)}</span>
                     <span>· {a.readingTime} read</span>
                     <span>· {a.sources.length} sources</span>
@@ -69,8 +67,8 @@ export default function ResearchPage() {
       </Section>
 
       <CTA
-        title="Need a custom research cut?"
-        lead="We can apply the same cited-method approach to your industry, stack, or operating model. Reach out for methodology notes or a scoped brief."
+        title="Want these findings applied to your stack?"
+        lead="Studio can turn a research brief into a scored plan for your environment — what to do first, what to ignore, and who owns it. Book a 30-minute call."
       />
     </>
   );

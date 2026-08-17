@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { StatusBadge } from "@/components/ui/badge";
 import { Icon } from "@/components/icon";
 import { type Pillar } from "@/lib/content";
 
@@ -13,7 +12,6 @@ export function PillarCard({ pillar }: { pillar: Pillar }) {
           <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-foreground">
             <Icon name={pillar.icon} className="h-5 w-5" />
           </span>
-          <StatusBadge status={pillar.status} />
         </div>
         <h3 className="mt-5 flex items-center gap-1.5 text-lg font-semibold tracking-tight">
           {pillar.name}

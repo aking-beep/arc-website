@@ -4,7 +4,7 @@ import { site } from "@/lib/content";
 
 export function CTA({
   title = "Let's see if there's a fit.",
-  lead = "A 30-minute discovery call. No pitch deck, no commitment. We'll listen, ask the hard questions, and tell you straight up whether ARC is the right partner. Even if the answer is no, you'll leave with a clearer read on what to do next.",
+  lead = "A 30-minute discovery call. No pitch deck, no commitment. We'll listen, ask the hard questions, and tell you honestly whether ARC is the right next step — even if the answer is no.",
 }: {
   title?: string;
   lead?: string;

@@ -4,14 +4,13 @@ import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
-import { StatusBadge } from "@/components/ui/badge";
 import { CTA } from "@/components/cta";
 import { caseStudies } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Work · Case studies",
+  title: "Work · How engagements look",
   description:
-    "Selected ARC Studio engagements: honest challenges, sequenced approaches, and outcomes you can measure.",
+    "Composite examples of how ARC Studio engagements typically run. Named client case studies appear here when clients approve publication.",
 };
 
 export default function WorkPage() {
@@ -19,15 +18,15 @@ export default function WorkPage() {
     <>
       <PageHero
         kicker="Work"
-        title="Outcomes over narratives."
-        lead="Case studies from ARC Studio engagements. We publish what shipped, what we would do differently, and the numbers that mattered, not polished fiction."
+        title="How the work typically looks."
+        lead="These are composite engagement shapes — the method, timeline, and artifacts — not named-client results. We will publish attributed case studies when clients allow it."
       />
 
       <Section>
         <SectionHeading
-          kicker="Engagements"
-          title="Selected work"
-          lead="More real engagements will land here as clients approve publication. The structure is ready; the honesty is non-negotiable."
+          kicker="Examples"
+          title="Engagement patterns"
+          lead="Use these to see how a diagnostic or Labs-plus-Studio loop is structured before you book a call."
         />
         <div className="mt-12 grid gap-5">
           {caseStudies.map((study) => (
@@ -39,7 +38,9 @@ export default function WorkPage() {
               <Card className="flex flex-col gap-4 p-6 transition-all hover:border-foreground/20 hover:shadow-sm sm:flex-row sm:items-center sm:justify-between">
                 <div className="max-w-2xl">
                   <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-                    <StatusBadge status={study.status} />
+                    <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
+                      {study.kind === "composite" ? "Composite example" : "Case study"}
+                    </span>
                     <span>{study.industry}</span>
                   </div>
                   <p className="mt-3 text-xs font-medium uppercase tracking-widest text-muted-foreground">
@@ -70,8 +71,8 @@ export default function WorkPage() {
       </Section>
 
       <CTA
-        title="Want a similar outcome?"
-        lead="Most engagements start with a fixed-rate diagnostic. Book a 30-minute call and we'll tell you straight whether there's a fit."
+        title="Want a diagnostic for your organization?"
+        lead="Most Studio work starts with a fixed-rate diagnostic. A 30-minute call is enough to tell you whether that is the right first step."
       />
     </>
   );

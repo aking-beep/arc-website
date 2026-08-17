@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Check } from "lucide-react";
 import { Container, Section } from "@/components/ui/section";
-import { StatusBadge } from "@/components/ui/badge";
 import { CTA } from "@/components/cta";
 import { caseStudies } from "@/lib/content";
 
@@ -41,7 +40,9 @@ export default function CaseStudyPage({
           </Link>
         <div className="max-w-3xl">
           <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-            <StatusBadge status={study.status} />
+            <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
+              {study.kind === "composite" ? "Composite example" : "Case study"}
+            </span>
             <span>{study.industry}</span>
           </div>
           <p className="mt-4 text-sm font-medium uppercase tracking-widest text-muted-foreground">
@@ -94,7 +95,10 @@ export default function CaseStudyPage({
         </div>
       </Section>
 
-      <CTA />
+      <CTA
+        title="Want this shape of engagement?"
+        lead="We'll tell you on a 30-minute call whether a diagnostic, a narrower review, or a workshop is the right first step — including if the answer is none of those."
+      />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, BookOpen, Check, Github, Play } from "lucide-react";
+import { ArrowLeft, BookOpen, Check, ExternalLink, Github } from "lucide-react";
 import { Container, Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/ui/badge";
@@ -34,6 +34,9 @@ export default function ProductPage({
   const product = labs.find((p) => p.slug === params.slug);
   if (!product) notFound();
 
+  const ctaLabel = product.ctaLabel ?? "Open tool";
+  const isCatalog = /browse|templates|skills|architectures/i.test(ctaLabel);
+
   return (
     <>
       <section className="relative overflow-hidden border-b border-border/60">
@@ -49,12 +52,18 @@ export default function ProductPage({
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div className="max-w-3xl">
               <div className="flex items-center gap-3">
-                <StatusBadge status={product.status} />
+                {product.status !== "live" ? (
+                  <StatusBadge status={product.status} />
+                ) : null}
                 {product.badge ? (
                   <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                     {product.badge}
                   </span>
-                ) : null}
+                ) : (
+                  <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    Free tool
+                  </span>
+                )}
               </div>
               <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
                 {product.name}
@@ -64,22 +73,22 @@ export default function ProductPage({
                 {product.description}
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                {product.links.demo ? (
-                  <Button href={product.links.demo}>
-                    <Play className="h-4 w-4" />
-                    Live demo
+                {product.links.app ? (
+                  <Button href={product.links.app}>
+                    <ExternalLink className="h-4 w-4" />
+                    {ctaLabel}
                   </Button>
                 ) : null}
                 {product.links.github ? (
                   <Button href={product.links.github} variant="outline">
                     <Github className="h-4 w-4" />
-                    GitHub
+                    Source on GitHub
                   </Button>
                 ) : null}
                 {product.links.docs ? (
                   <Button href={product.links.docs} variant="ghost">
                     <BookOpen className="h-4 w-4" />
-                    Docs
+                    Documentation
                   </Button>
                 ) : null}
               </div>
@@ -134,7 +143,7 @@ export default function ProductPage({
 
           {product.roadmap ? (
             <div>
-              <h2 className="text-2xl font-semibold tracking-tight">Roadmap</h2>
+              <h2 className="text-2xl font-semibold tracking-tight">What&rsquo;s next</h2>
               <ul className="mt-6 space-y-3">
                 {product.roadmap.map((r) => (
                   <li key={r.label} className="flex items-center gap-3">
@@ -150,11 +159,11 @@ export default function ProductPage({
                     <span
                       className={
                         r.done
-                          ? "text-sm text-muted-foreground line-through"
+                          ? "text-sm text-muted-foreground"
                           : "text-sm text-foreground"
                       }
                     >
-                      {r.label}
+                      {r.done ? `${r.label} — shipped` : r.label}
                     </span>
                   </li>
                 ))}
@@ -173,8 +182,16 @@ export default function ProductPage({
       </Section>
 
       <CTA
-        title="Want this run against your systems?"
-        lead="ARC Studio takes what the tools surface and turns it into a prioritized, operator-ready plan. Book a 30-minute call."
+        title={
+          isCatalog
+            ? "Want these adapted to your workflows?"
+            : "Want a human read on what this finds?"
+        }
+        lead={
+          isCatalog
+            ? "ARC Studio can help you pick, wire, and govern the pieces that match how your team actually works. Start with a 30-minute call."
+            : "ARC Studio turns scanner output into a prioritized plan with owners — not a longer findings list. Book a 30-minute call."
+        }
       />
     </>
   );

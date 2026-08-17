@@ -4,14 +4,13 @@ import { ArrowUpRight, Check } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
-import { StatusBadge } from "@/components/ui/badge";
 import { CTA } from "@/components/cta";
 import { academy, academyOutcomes } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Academy · Workshops",
   description:
-    "ARC Academy runs hands-on workshops against your real systems and backlog, so the team keeps the method after we leave.",
+    "ARC Academy runs hands-on workshops against your real systems and backlog, so the team leaves with owners and a next step.",
 };
 
 export default function AcademyPage() {
@@ -19,8 +18,8 @@ export default function AcademyPage() {
     <>
       <PageHero
         kicker="ARC Academy"
-        title="Workshops that make it stick."
-        lead="No course catalog. No certification theater. Three live formats: digital readiness and vocabulary, a technical Operator session on ARC's method, or a custom day built around your problem."
+        title="Workshops that leave a next step."
+        lead="Three live formats: digital readiness, a technical operator session, or a custom day built around the decision you need to make. No course catalog. No certification product."
       />
 
       <Section>
@@ -37,7 +36,9 @@ export default function AcademyPage() {
               className="group block h-full"
             >
               <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
-                <StatusBadge status={a.status} />
+                <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                  Workshop
+                </span>
                 <h3 className="mt-4 flex items-center gap-1.5 text-lg font-semibold tracking-tight">
                   {a.name}
                   <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -75,7 +76,7 @@ export default function AcademyPage() {
 
       <CTA
         title="Want a workshop for your team?"
-        lead="Tell us what you're stuck on. We'll scope a half-day or two-day session against your real systems."
+        lead="Tell us the decision the room has to make. We'll scope a half-day or two-day session against your real systems — not a generic training deck."
       />
     </>
   );

@@ -10,7 +10,7 @@ import { labs, site } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Labs · Free & open-source tools",
   description:
-    "ARC Labs builds free, open-source scanners and utilities that make the invisible visible. Run them yourself, no strings attached.",
+    "Free ARC Labs tools: scanners, catalogs, and utilities you can run yourself. Most need no account. No paid tiers.",
 };
 
 export default function LabsPage() {
@@ -18,8 +18,8 @@ export default function LabsPage() {
     <>
       <PageHero
         kicker="ARC Labs"
-        title="Free tools that make the invisible visible."
-        lead="Open-source scanners and free utilities anyone can run. Most need no account. Tools that store secrets (like TokenLoop) use a free signup so keys stay encrypted to your org. Still no paid tiers."
+        title="Free tools you can run today."
+        lead="Scanners, catalogs, and utilities — most with no account required. TokenLoop uses a free signup so keys stay encrypted to your organization. There is no paid tier."
       >
         <Button href={site.github} variant="outline">
           <Github className="h-4 w-4" />
@@ -30,8 +30,8 @@ export default function LabsPage() {
       <Section>
         <SectionHeading
           kicker="The toolbox"
-          title="What we've shipped and what's next."
-          lead="Everything here shares the same stack, so new tools land fast and behave consistently."
+          title="Open the tool that matches the job."
+          lead="Each card opens a product page with how it works, who it is for, and a link to the live tool — not a generic demo."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2">
           {labs.map((p) => (
@@ -41,8 +41,8 @@ export default function LabsPage() {
       </Section>
 
       <CTA
-        title="Found a tool useful?"
-        lead="The tools are the front door. If you want a human read on what they surfaced, or help fixing it, that is what ARC Studio is for. Start with a 30-minute call."
+        title="Need help acting on what a tool found?"
+        lead="Labs is the front door. Studio is the human read: prioritized fixes, named owners, and a plan that survives contact with your stack. Start with a 30-minute call."
       />
     </>
   );

@@ -3,11 +3,18 @@ import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { StatusBadge } from "@/components/ui/badge";
 import { PillarCard } from "@/components/pillar-card";
 import { ProductCard } from "@/components/product-card";
 import { CTA } from "@/components/cta";
-import { pillars, stages, principles, labs, research, site } from "@/lib/content";
+import {
+  pillars,
+  stages,
+  principles,
+  labs,
+  research,
+  services,
+  site,
+} from "@/lib/content";
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", {
@@ -18,15 +25,19 @@ function formatDate(iso: string) {
 }
 
 const doings = [
-  "We build free open-source tools.",
-  "We publish research and benchmarks.",
-  "We consult on hard implementation problems.",
-  "We run workshops that make the method stick.",
-  "We help people keep pace with digital change.",
+  "Free open-source tools you can run today",
+  "Cited research with sources you can verify",
+  "Advisory and delivery that ships",
+  "Workshops that leave owners and a next step",
+  "Digital transformation, security, data, and AI when it helps",
 ];
 
 export default function HomePage() {
-  const featuredLabs = labs.filter((p) => p.status === "live" || p.badge);
+  const featuredLabs = labs.filter((p) => p.featured);
+  const featuredServices = services.filter(
+    (s) => s.flagship || ["02", "05"].includes(s.number),
+  );
+  const featuredResearch = research.slice(0, 3);
 
   return (
     <>
@@ -39,17 +50,15 @@ export default function HomePage() {
             </p>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/60 px-3 py-1 text-xs font-medium text-muted-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              For companies, nonprofits, people, communities
+              Companies · nonprofits · teams · communities
             </div>
             <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
               Digital transformation that ships.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-              The digital world keeps moving. Too many good organizations get left
-              behind. ARC helps individuals, companies big or small, nonprofits,
-              and communities keep pace through digital transformation,
-              cybersecurity, data platforms, or AI when it actually helps. No
-              buzzwords. No eighteen-month journeys. Just clear work that ships.
+              ARC helps organizations keep pace with digital change — cloud, data,
+              cybersecurity, operations, and AI when it actually moves an outcome.
+              Clear stages. Named owners. Work you can measure.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button href={site.calendly} size="lg">
@@ -78,8 +87,8 @@ export default function HomePage() {
       <Section>
         <SectionHeading
           kicker="The ecosystem"
-          title="Four pillars. One flywheel."
-          lead="Free tools build trust. Trust opens the door to advisory work. What we learn becomes research and workshops. Each part feeds the next."
+          title="Four ways in. One standard of work."
+          lead="Start with a free tool, a diagnostic, a research brief, or a workshop. Each path uses the same method: name the stage, score the work, ship something real."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {pillars.map((p) => (
@@ -92,18 +101,18 @@ export default function HomePage() {
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             kicker="ARC Labs"
-            title="Start with something free."
-            lead="Open-source tools you can run today. No signup wall, no sales call."
+            title="Start with something you can run."
+            lead="Open-source scanners, catalogs, and utilities. Most need no account."
           />
           <Link
             href="/labs"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
           >
-            Browse all Labs tools
+            All Labs tools
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
           {featuredLabs.map((p) => (
             <ProductCard key={p.slug} product={p} basePath="/labs" />
           ))}
@@ -111,6 +120,58 @@ export default function HomePage() {
       </Section>
 
       <Section>
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <SectionHeading
+            kicker="ARC Studio"
+            title="When a tool is not enough."
+            lead="Advisory and delivery for the hard parts: due diligence, security, data, cloud, and a full transformation diagnostic when you need the whole picture."
+          />
+          <Link
+            href="/studio"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
+          >
+            All nine services
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
+          {featuredServices.map((s) => (
+            <Link
+              key={s.number}
+              href="/studio"
+              className={s.flagship ? "group block h-full md:col-span-2" : "group block h-full"}
+            >
+              <Card
+                className={
+                  s.flagship
+                    ? "flex h-full flex-col p-6 ring-1 ring-foreground/15 md:col-span-2"
+                    : "flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm"
+                }
+              >
+                <div className="flex items-center gap-3">
+                  <span className="font-mono text-sm text-muted-foreground">
+                    {s.number}
+                  </span>
+                  {s.flagship ? (
+                    <span className="rounded-full border border-border bg-background px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                      Flagship
+                    </span>
+                  ) : null}
+                </div>
+                <h3 className="mt-3 flex items-center gap-1.5 text-lg font-semibold tracking-tight">
+                  {s.name}
+                  <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {s.blurb}
+                </p>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section className="bg-muted/30">
         <SectionHeading
           kicker="How ARC works"
           title="Five stages. One honest system."
@@ -131,12 +192,12 @@ export default function HomePage() {
         </ol>
       </Section>
 
-      <Section className="bg-muted/30">
+      <Section>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             kicker="ARC Research"
-            title="We publish what we learn."
-            lead="Benchmarks and field reports in plain language, with assumptions labeled and numbers included."
+            title="Research you can verify."
+            lead="Cited briefs across AI, security, operations, cloud, transformation, and product. If we cannot source a claim, we say so."
           />
           <Link
             href="/research"
@@ -147,7 +208,7 @@ export default function HomePage() {
           </Link>
         </div>
         <div className="mt-12 grid gap-5">
-          {research.slice(0, 2).map((a) => (
+          {featuredResearch.map((a) => (
             <Link key={a.slug} href={`/research/${a.slug}`} className="group block">
               <Card className="flex flex-col gap-3 p-6 transition-all hover:border-foreground/20 hover:shadow-sm sm:flex-row sm:items-center sm:justify-between">
                 <div className="max-w-2xl">
@@ -155,8 +216,11 @@ export default function HomePage() {
                     <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
                       {a.kind}
                     </span>
-                    <StatusBadge status={a.status} />
+                    <span className="rounded-full border border-border px-2.5 py-0.5 font-medium text-foreground/80">
+                      {a.topic}
+                    </span>
                     <span>{formatDate(a.date)}</span>
+                    <span>· {a.readingTime} read</span>
                   </div>
                   <h3 className="mt-3 flex items-center gap-1.5 text-lg font-semibold tracking-tight">
                     {a.title}
@@ -172,12 +236,12 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section>
+      <Section className="bg-muted/30">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-start">
           <SectionHeading
             kicker="How we think"
             title="The rules we hold ourselves to."
-            lead="These are the principles every recommendation has to pass. If a piece of work doesn't pass them, we don't ship it. We'll usually call it out before you do."
+            lead="Every recommendation has to pass these. If a piece of work does not, we do not ship it."
           />
           <div className="grid gap-5 sm:grid-cols-2">
             {principles.slice(0, 4).map((p) => (
