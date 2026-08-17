@@ -75,6 +75,46 @@ const frames: Record<
       { label: "Chargeback MTD", value: "$1,180 bill-back", tone: "ok" },
     ],
   },
+  security: {
+    title: "Security review · RAG assistant",
+    rows: [
+      { label: "Instruction boundary", value: "Critical", tone: "bad" },
+      { label: "Tool permissions", value: "send_email · run_sql", tone: "bad" },
+      { label: "Retrieval ACL", value: "No per-user filter", tone: "bad" },
+      { label: "Secrets", value: "NEXT_PUBLIC_ key", tone: "warn" },
+      { label: "Score", value: "Config review · not a pentest", tone: "warn" },
+    ],
+  },
+  journey: {
+    title: "Purchase path · shop.example.com",
+    rows: [
+      { label: "Path type", value: "Account-gated", tone: "warn" },
+      { label: "Guest checkout", value: "Not offered", tone: "bad" },
+      { label: "Price on page", value: "$49/mo quoted", tone: "ok" },
+      { label: "Cart / checkout", value: "Checkout reached", tone: "ok" },
+      { label: "Overall grade", value: "C+", tone: "warn" },
+    ],
+  },
+  governance: {
+    title: "Governance report · support-triage",
+    rows: [
+      { label: "Identity", value: "Shared service account", tone: "bad" },
+      { label: "Least privilege", value: "zendesk.* wildcard", tone: "bad" },
+      { label: "Human approval", value: "None", tone: "warn" },
+      { label: "Logging", value: "stdout only", tone: "warn" },
+      { label: "Posture score", value: "At-risk", tone: "warn" },
+    ],
+  },
+  process: {
+    title: "Workflow scan · order-to-cash",
+    rows: [
+      { label: "Handoffs", value: "3 unnamed", tone: "warn" },
+      { label: "Rework", value: "Re-key into WMS", tone: "bad" },
+      { label: "Wait states", value: "Email as queue", tone: "warn" },
+      { label: "Keep human", value: "Credit exception", tone: "ok" },
+      { label: "Health score", value: "At-risk", tone: "warn" },
+    ],
+  },
 };
 
 const toneClass = {

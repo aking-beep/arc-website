@@ -139,7 +139,11 @@ export type ProductVisual =
   | "connectivity"
   | "spend"
   | "workflows"
-  | "architecture";
+  | "architecture"
+  | "security"
+  | "governance"
+  | "process"
+  | "journey";
 
 export type Product = {
   slug: string;
@@ -421,7 +425,9 @@ export const labs: Product[] = [
       "Describe the use case, the data, the budget, and the constraints. Get a decision matrix: the recommended shape, what was ruled out and why, named cost drivers (never invented prices), and a board brief you can copy. Free, no account, nothing stored. Built for the decision teams are actually making now — when not to use an agent, when MCP needs an allowlist, and when the answer is a lookup.",
     status: "live",
     badge: "Free",
+    featured: true,
     visual: "architecture",
+    ctaLabel: "Open advisor",
     audience:
       "CTOs, tech leads, finance partners, and teams with no ML practice who need an architecture they can defend — not a list of trendy tools.",
     howItWorks: [
@@ -439,7 +445,7 @@ export const labs: Product[] = [
       "Markdown / JSON export and a CLI",
     ],
     links: {
-      demo: "https://arc-stack-advisor.vercel.app",
+      app: "https://arc-stack-advisor.vercel.app",
       docs: "https://arc-stack-advisor.vercel.app/docs",
     },
     roadmap: [
@@ -447,6 +453,152 @@ export const labs: Product[] = [
       { label: "Situation gallery + board brief", done: true },
       { label: "Human review of the golden suite", done: false },
       { label: "Optional model narrative (phrasing only)", done: false },
+    ],
+  },
+  {
+    slug: "arc-ai-security-scanner",
+    name: "ARC AI Security Scanner",
+    tagline: "Defensive security review for AI applications.",
+    description:
+      "Describe an AI application — agents, MCP, RAG, prompts, data flows — and get a graded defensive review covering prompt injection surface, tool authority, data exposure, tenancy, and logging. Every finding quotes your own words. Not a penetration test and not a certification.",
+    status: "live",
+    badge: "Free",
+    featured: true,
+    visual: "security",
+    ctaLabel: "Open scanner",
+    audience:
+      "Engineering, security, platform, and AI teams building RAG systems, agents, or MCP-based apps who need an explainable configuration review — not a green checkmark and not an exploit kit.",
+    howItWorks: [
+      "Paste a sanitized architecture description, prompt pattern, tool list, or RAG data-flow.",
+      "Deterministic rules match that text. No model produces a finding or a score.",
+      "You get a surface inventory, evidence-backed findings, remediation, and a sequenced defensive blueprint.",
+      "Where the description is silent, the report says so. Nothing you paste is stored.",
+    ],
+    features: [
+      "Free on the site — no account, no email gate",
+      "19 published SEC-* rules across boundary, tools, RAG, secrets, observability, egress",
+      "Every finding cites a verbatim quote from your input",
+      "Score from a published rubric, never from a model",
+      "Markdown / JSON export and a CLI",
+    ],
+    links: {
+      app: "https://arc-ai-security-scanner.vercel.app",
+      docs: "https://arc-ai-security-scanner.vercel.app/docs",
+    },
+    roadmap: [
+      { label: "Rule pack + evidence-backed findings", done: true },
+      { label: "Surface inventory + golden suite", done: true },
+      { label: "Production deploy", done: true },
+      { label: "Optional model narrative (phrasing only)", done: false },
+    ],
+  },
+  {
+    slug: "arc-journey-scanner",
+    name: "ARC Journey Scanner",
+    tagline: "Paste a URL. See where the purchase path stalls.",
+    description:
+      "Scan a public marketing, product, or checkout page and get an evidence-backed audit of the buying path: missing prices, account walls, sales-only CTAs, thin SPA checkouts, and competing asks. Every finding quotes what was on the page. Free, no account, nothing stored.",
+    status: "live",
+    badge: "Free",
+    featured: true,
+    visual: "journey",
+    ctaLabel: "Scan a purchase path",
+    audience:
+      "CMOs, product, marketing, and engineering leads who need a specific, citable read on where buyers stall — not a generic conversion checklist.",
+    howItWorks: [
+      "Paste a public site URL (home, pricing, product, or checkout). Optional notes about what you already know.",
+      "We fetch that page and a few same-origin funnel pages (pricing, cart, checkout). No login, no form submit, no payment.",
+      "Deterministic rules quote the CTAs, prices, and fields they found. A model never invents a score.",
+      "You get a graded report with owner lanes (Marketing, Product, Engineering, Sales) you can hand to the team.",
+    ],
+    features: [
+      "Free on the site — no account, no email gate",
+      "URL crawl of the public buy path, plus a describe-a-journey option",
+      "Findings cite the actual copy, CTAs, prices, and form fields on the pages",
+      "Purchase-path classification: self-serve, account-gated, sales-only, or unclear",
+      "Priority actions with owner lanes for CMO, product, engineering, and sales",
+      "Markdown / JSON export. Nothing is stored",
+    ],
+    links: {
+      app: "https://arc-journey-scanner.vercel.app",
+      docs: "https://arc-journey-scanner.vercel.app/docs",
+    },
+    roadmap: [
+      { label: "Journey rule pack + current/future map", done: true },
+      { label: "URL purchase-path crawl + org actions", done: true },
+      { label: "Human review of the golden suite", done: false },
+      { label: "Optional model narrative (phrasing only)", done: false },
+    ],
+  },
+  {
+    slug: "arc-agent-governance",
+    name: "ARC Agent Governance",
+    tagline: "Know what your agents can reach, what they can do, and where the controls are missing.",
+    description:
+      "Describe your agents, tools, permissions, and data sources. Get an inventory plus a graded governance review across identity, least privilege, data access, human approval, MCP, and auditability — every finding quotes your own words. Free, no account, nothing stored.",
+    status: "live",
+    badge: "Free",
+    featured: true,
+    visual: "governance",
+    ctaLabel: "Open scanner",
+    audience:
+      "CIOs, CISOs, AI platform teams, and engineering leads moving from experiments into agent deployment who need to answer what an agent can reach — without a penetration test or a fake certification.",
+    howItWorks: [
+      "Paste a sanitized description or JSON manifest of agents, tools, and data sources.",
+      "Deterministic rules match that text to a published governance rubric. No model produces a score.",
+      "You get an inventory, evidence-backed findings, sequenced remediation, and a limitations block.",
+      "Download Markdown or JSON. Same input always yields the same report.",
+    ],
+    features: [
+      "Agent / tool / data inventory from prose or sanitized JSON",
+      "19 published rules across identity, privilege, data, autonomy, audit, change, and MCP",
+      "Governance posture score from a fixed rubric — never a model-generated number",
+      "Every finding cites a verbatim quote from your input",
+      "Markdown / JSON export and a CLI usable as a CI gate",
+    ],
+    links: {
+      app: "https://arc-agent-governance.vercel.app",
+      docs: "https://arc-agent-governance.vercel.app/docs",
+    },
+    roadmap: [
+      { label: "Inventory + 19 deterministic rules", done: true },
+      { label: "Markdown export + golden evaluation suite", done: true },
+      { label: "Optional model narrative (phrasing only)", done: false },
+      { label: "Read-only config integrations", done: false },
+    ],
+  },
+  {
+    slug: "arc-workflow-scanner",
+    name: "ARC Workflow Scanner",
+    tagline: "Describe a workflow. Get back where it actually breaks.",
+    description:
+      "Paste a process in plain language and get a graded diagnosis across handoffs, rework loops, wait states, and automation readiness — with what to fix, what to automate, and what to leave alone. Free, no account, nothing stored.",
+    status: "live",
+    badge: "Free",
+    visual: "process",
+    ctaLabel: "Open scanner",
+    audience:
+      "Operations, transformation, and product leaders who know a process is inefficient but do not yet know what to change — and do not want fabricated ROI.",
+    howItWorks: [
+      "Describe the workflow, or list numbered steps if you already know the sequence.",
+      "Deterministic rules map friction, rework, and missing ownership from the text you wrote.",
+      "You get a current-state map, findings with quotes, and a sequenced blueprint.",
+      "Optional volume and cycle-time numbers you supply are recorded as yours — never invented into savings.",
+    ],
+    features: [
+      "Current-state process map from your description",
+      "Published rules for handoffs, rework, waits, and human-critical steps",
+      "Recommendations that distinguish simplify / automate / keep-human",
+      "Markdown / JSON export. Nothing stored",
+    ],
+    links: {
+      app: "https://arc-workflow-scanner.vercel.app",
+      docs: "https://arc-workflow-scanner.vercel.app/docs",
+    },
+    roadmap: [
+      { label: "Process map + deterministic rule pack", done: true },
+      { label: "Markdown export + golden cases", done: true },
+      { label: "Document upload (sandboxed)", done: false },
     ],
   },
 ];
