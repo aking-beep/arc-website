@@ -8,10 +8,10 @@ export const site = {
   short: "ARC",
   tagline: "Digital transformation that ships.",
   description:
-    "ARC helps 10–500 person organizations — companies, nonprofits, and teams — turn messy digital, data, cybersecurity, and AI problems into working systems.",
+    "ARC helps companies, nonprofits, and teams of about 10 to 500 people with messy digital, data, cybersecurity, and AI problems — then delivers the working system.",
   audience: {
-    badge: "10–500 person organizations · companies · nonprofits · teams",
-    line: "ARC helps organizations with 10–500 people turn messy digital, data, cybersecurity, and AI problems into working systems — then delivers the working system, not just the strategy.",
+    badge: "Companies, nonprofits, and teams · about 10–500 people",
+    line: "We work with companies, nonprofits, and teams of about 10 to 500 people. Messy data, shaky security, systems that will not scale, AI nobody can explain. We figure out what to do, then we ship it.",
   },
   email: "aking@arctransformationgroup.com",
   calendly: "https://calendly.com/aking-arctransformationgroup/30min",
@@ -23,14 +23,14 @@ export const site = {
   founder: {
     name: "Andrew King",
     role: "Founder",
-    bio: "Andrew King has spent twenty years delivering technology programs inside Fortune 100 and Fortune 500 environments — cybersecurity product lines, live-entertainment platforms, consumer brands, and customer-data architecture. He has coordinated 300+ features on an enterprise cybersecurity release program that improved release value by 25% and contributed $8M+ in annual sales impact; designed CDP and data-platform work at tens of millions of customer profiles, including Ticketmaster-scale live-entertainment delivery; and delivered brand and consumer programs with LEGO and the NFL. He founded ARC so companies, nonprofits, teams, and communities can get that same standard of work: scoped to the problem, sized to what the organization actually needs.",
+    bio: "Andrew spent twenty years delivering technology programs inside Fortune 100 and Fortune 500 companies: cybersecurity product lines, live-entertainment platforms, consumer brands, and customer-data architecture. On one security release program he coordinated 300+ features, improved release value by 25%, and contributed more than $8M in annual sales impact. He also designed CDP work at tens of millions of profiles, including Ticketmaster-scale delivery, and ran brand programs with LEGO and the NFL. He started ARC so mid-size organizations can get that same standard of work without a Fortune 500 budget or a 40-person consulting team.",
     highlights: [
       "Twenty years delivering technology programs in Fortune 100 and Fortune 500 environments",
       "Enterprise cybersecurity: 300+ features coordinated, 25% improvement in release value, $8M+ annual sales impact",
       "Customer-data platforms at tens of millions of profiles, including Ticketmaster-scale live-entertainment delivery",
       "Brand and consumer programs with LEGO and the NFL",
-      "Transformation across process, data, cloud, and security — AI only where it moves an outcome",
-      "Works with companies, nonprofits, teams, and communities — scoped to what they need",
+      "Process, data, cloud, and security first. AI only when it moves a real number.",
+      "Works with 10–500 person companies, nonprofits, and teams",
     ],
     scope: [
       { metric: "20 yrs", label: "Fortune 100 / 500 technology delivery" },
@@ -47,27 +47,27 @@ export const site = {
 export const digitalTransformation = [
   {
     name: "Technology and infrastructure",
-    text: "Cloud, applications, platforms, and the systems that keep daily work running as the stack changes.",
+    text: "Cloud, apps, and the systems people use every day. If those wobble, nothing else sticks.",
   },
   {
     name: "Data and insight",
-    text: "Treating data as something you can trust: quality, access, reporting, and decisions that hold up.",
+    text: "Reporting leadership can trust. Quality, access, and decisions that hold up in a meeting.",
   },
   {
     name: "Process and operations",
-    text: "Redesigning workflows so digital tools change how work actually gets done, not just which logo is on the login screen.",
+    text: "The work itself, not just a new login screen. Tools only count if the workflow actually changes.",
   },
   {
     name: "Cybersecurity and risk",
-    text: "Security, privacy, and compliance built into the change, so growth does not open the door to avoidable risk.",
+    text: "Security and privacy built into the change, so growth does not open a hole you cannot close later.",
   },
   {
     name: "People and readiness",
-    text: "Skills, ownership, and a shared vocabulary so teams, nonprofits, and communities are not left behind by the shift.",
+    text: "Skills, owners, and a shared vocabulary. A system nobody can run is not a system.",
   },
   {
     name: "AI and automation when it helps",
-    text: "One part of the mix, not the whole story. Used where it moves a real outcome, with human review where it matters.",
+    text: "Useful on some problems. Harmful or premature on others. We say which, with a human still in the loop.",
   },
 ];
 
@@ -100,9 +100,9 @@ export const pillars: Pillar[] = [
     href: "/labs",
     icon: "FlaskConical",
     kicker: "Free & open source",
-    summary: "Free tools that build trust before we ever send an invoice.",
+    summary: "Free tools you can run without talking to us.",
     detail:
-      "Open-source scanners and utilities anyone can run. Most people meet ARC here, before an invoice ever shows up.",
+      "Scanners, catalogs, and utilities. Most need no account. This is usually how people meet ARC.",
     status: "live",
   },
   {
@@ -111,9 +111,9 @@ export const pillars: Pillar[] = [
     href: "/studio#offers",
     icon: "Compass",
     kicker: "Advisory & delivery",
-    summary: "Hands-on advisory and delivery for digital transformation.",
+    summary: "Diagnose the problem, then deliver the system.",
     detail:
-      "Named engagements for 10–500 person organizations: readiness reviews, security baselines, data roadmaps, AI sprints, and a full diagnostic when you need the whole picture.",
+      "Scoped reviews for mid-size organizations: readiness, security, data, architecture, AI, or a full diagnostic when you need the whole picture.",
     status: "live",
   },
   {
@@ -122,9 +122,9 @@ export const pillars: Pillar[] = [
     href: "/research",
     icon: "LineChart",
     kicker: "Cited research",
-    summary: "Grounded briefs with academic and industry sources.",
+    summary: "Short papers with sources you can check.",
     detail:
-      "Research you can verify — AI, security, operations, cloud, transformation, and product — with citations, limitations labeled, and outcomes operators can use.",
+      "AI, security, operations, cloud, transformation, and product. If we cannot source a claim, we leave it out.",
     status: "live",
   },
   {
@@ -133,9 +133,9 @@ export const pillars: Pillar[] = [
     href: "/academy",
     icon: "GraduationCap",
     kicker: "Workshops",
-    summary: "Workshops that leave owners and a next step.",
+    summary: "A working session, not a training catalog.",
     detail:
-      "Live sessions against your real systems and backlog: digital readiness, operator working sessions, or a custom day built around the decision you need to make.",
+      "Half-day or two-day workshops against your real systems. You leave with owners and a next step.",
     status: "live",
   },
 ];
@@ -613,14 +613,14 @@ export const labs: Product[] = [
 /** Honest Labs proof. Counts we cannot verify yet are omitted, not invented. */
 export const labsProof = {
   tools: labs.length,
-  note: "Adoption metrics (scans, reports, organizations) will be published here as they accumulate. We will not invent them.",
+  note: "We'll publish usage numbers when we have them.",
 };
 
 export const labGroups = [
   {
     id: "ai",
     name: "AI engineering",
-    lead: "Conformance, prompts, skills, workflows, and agent governance — for teams shipping AI into real systems.",
+    lead: "Check an MCP server, review a prompt, or see what your agents can actually reach.",
     slugs: [
       "mcp-conformance-scanner",
       "prompt-reviewer",
@@ -632,25 +632,25 @@ export const labGroups = [
   {
     id: "security",
     name: "Security and infrastructure",
-    lead: "Reachability, TLS, headers, and AI-application defensive review.",
+    lead: "What's reachable, what's misconfigured, and where an AI app is exposed.",
     slugs: ["connectivity-scanner", "arc-ai-security-scanner"],
   },
   {
     id: "architecture",
     name: "Architecture and planning",
-    lead: "Reference shapes and a defensible AI-stack decision, not a vendor list.",
+    lead: "Reference shapes and a defensible stack decision. Not a vendor list.",
     slugs: ["reference-architectures", "arc-stack-advisor"],
   },
   {
     id: "cost",
     name: "Cost control",
-    lead: "See coding-agent spend before the invoice, without a proxy.",
+    lead: "See coding-agent spend before the invoice hits.",
     slugs: ["tokenloop"],
   },
   {
     id: "operations",
     name: "Operations and journeys",
-    lead: "Where the purchase path stalls, and where the operating workflow actually breaks.",
+    lead: "Where a purchase path stalls, and where the operating workflow actually breaks.",
     slugs: ["arc-journey-scanner", "arc-workflow-scanner"],
   },
 ];
@@ -692,7 +692,7 @@ export const offers: Offer[] = [
     number: "03",
     name: "Cybersecurity Baseline",
     promise:
-      "Find and prioritise the weaknesses most likely to hurt the organisation — readiness work, not audit theater.",
+      "Find and prioritize the weaknesses most likely to hurt the organization. Readiness work, not audit theater.",
     duration: "2–4 weeks",
     startsWith: "Access, secrets, logging, and the systems that actually hold the crown jewels.",
     youLeaveWith:
@@ -930,16 +930,16 @@ export const bestFit = [
 
 export const whyArc = [
   {
-    title: "Who does the work",
-    text: "Andrew King, founder. Twenty years of Fortune 100/500 delivery — cybersecurity product lines, Ticketmaster-scale customer data, and brand programs with LEGO and the NFL. You are not handed off to a bench of juniors after the pitch.",
+    title: "You work with Andrew",
+    text: "Twenty years of Fortune 100/500 delivery: cybersecurity product lines, Ticketmaster-scale customer data, brand programs with LEGO and the NFL. You are not handed to a junior bench after the pitch.",
   },
   {
-    title: "What that experience is for",
-    text: "Sensitive systems, stretched teams, and problems that have already survived two strategy decks. ARC is built to name the stage, score the work, and ship the boring thing that moves a KPI.",
+    title: "The work is operational",
+    text: "Stretched teams. Sensitive systems. Problems that already survived two strategy decks. We score the work, then ship the boring thing that moves a number.",
   },
   {
-    title: "Better than an agency or a lone freelancer",
-    text: "Agencies sell campaigns. Integrators sell platforms. Freelancers sell hours. ARC sells a sequenced plan with owners — and the delivery to make it run — using the same method behind the free Labs tools.",
+    title: "Different from an agency or a freelancer",
+    text: "Agencies sell campaigns. Integrators sell platforms. Freelancers sell hours. We sell a plan with owners, and the delivery to make it run. The free Labs tools are the same method, unbundled.",
   },
 ];
 
@@ -952,16 +952,16 @@ export const notAFit = [
 
 export const howWeEngage = [
   {
-    name: "Named offers",
-    text: "Start with a packaged engagement: readiness review, diligence, security baseline, data roadmap, AI sprint, or the full diagnostic.",
+    name: "A scoped start",
+    text: "Most clients begin with a two-to-seven week review. You leave with a plan, owners, and a clear next step.",
   },
   {
-    name: "Delivery after the plan",
-    text: "If the problem still needs us, we stay on to implement — sized to what the organization actually needs, not to a menu of packages.",
+    name: "Delivery if you still need us",
+    text: "If the plan still needs hands on the work, we stay and implement. We size that from the problem, not from a menu.",
   },
   {
-    name: "Workshops",
-    text: "When the team needs the method in the room: digital readiness, operator working sessions, or a custom day.",
+    name: "A workshop when the room is stuck",
+    text: "Sometimes the issue is getting leadership and operators to agree. That's a half-day or two-day session, not a six-week diagnostic.",
   },
 ];
 
@@ -1001,9 +1001,9 @@ export const academy: Workshop[] = [
       "Half-day. Leadership and operators in one room. Leave with clear language, a readiness snapshot, and a scoped shortlist, not another idea pile.",
     status: "live",
     whoFor:
-      "Companies, nonprofits, communities, and teams that feel digital change moving faster than they are. Especially useful when executives, operators, and technical people are talking past each other about cloud, data, security, process, or AI.",
+      "Leadership and operators in companies and nonprofits who keep talking past each other about cloud, data, security, or AI.",
     objectives: [
-      "Give the room a plain-language vocabulary for the digital ecosystem: platforms and cloud, data trust, cybersecurity basics, process change, automation, and AI when it is relevant.",
+      "Give the room a shared vocabulary: platforms and cloud, data trust, cybersecurity basics, process change, automation, and AI when it is relevant.",
       "Run an honest readiness check across awareness, use cases, data and tools, security and guardrails, ownership, and how you will measure success.",
       "Scope a short list of opportunities people can explain the same way, then leave with a 30-day action plan and named owners.",
     ],
@@ -1230,39 +1230,39 @@ export const caseStudies: CaseStudy[] = [
 export const faqs = [
   {
     q: "Who is ARC for?",
-    a: "Primary commercial work is with 10–500 person organizations — companies, nonprofits, and teams — that have messy digital, data, cybersecurity, or AI problems and need a working system. Communities and smaller groups are welcome when the same method fits; they are not the homepage buyer.",
+    a: "Companies, nonprofits, and teams of about 10 to 500 people with a real digital, data, security, or AI problem. Smaller groups and communities are welcome when the same method fits. They are not who the homepage is written for.",
   },
   {
-    q: "Do you only work on AI projects?",
-    a: "No. ARC is a digital transformation practice. AI is one part of the mix, alongside data, cloud, cybersecurity, process change, and delivery. If AI is not the highest-ROI move, we will say so.",
+    q: "Do you only do AI?",
+    a: "No. ARC is a digital transformation practice. Data, cloud, security, process, and delivery come first. AI is in the mix when it is the highest-ROI move. Often it is not.",
   },
   {
-    q: "How do most engagements start?",
-    a: "Usually with a diagnostic, about three to seven weeks, that ends in a clear summary and a phased roadmap. After that we stay on for delivery if the problem still needs us — sized to what you need, not to a menu of packages.",
+    q: "How does work usually start?",
+    a: "A 30-minute call, then a scoped review of two to seven weeks. That ends in a plan with owners. If you still need us after that, we stay for delivery.",
   },
   {
     q: "Are the Labs tools really free?",
-    a: "Most Labs tools are free to run with no account. A few, like TokenLoop, use a free signup so secrets stay encrypted to your organization. There is no paid tier. Studio is optional if you want a human read on what the tools surface.",
+    a: "Yes. Most run with no account. TokenLoop uses a free signup so keys stay encrypted to your organization. There is no paid tier. Studio is optional if you want a human to read what the tools surface.",
   },
   {
-    q: "What is ARC Academy?",
-    a: "Workshops only. Live sessions against your real systems and backlog: digital readiness and vocabulary, technical operator sessions, or a custom day built around your problem. No course catalog and no certification product right now.",
+    q: "What is Academy?",
+    a: "Workshops only. Digital readiness, a technical operator session, or a custom day built around a decision you have to make. No course catalog. No certification.",
   },
   {
     q: "How do you size the work?",
-    a: "From the problem. We look at what you actually need and what is reasonable for that organization, then we size the engagement to match. The discovery call is to find that fit — not to quote a menu.",
+    a: "From the problem, and from what is reasonable for that organization. The call is to find that fit, not to quote a menu.",
   },
   {
     q: "Will you just build whatever we ask for?",
-    a: "Not if it would be malpractice. Selling a build before the problem is named is how projects burn money. We will push back, and we are usually grateful later that we did.",
+    a: "Not if that would waste your money. Selling a build before the problem is named is how projects burn. We will push back.",
   },
   {
-    q: "When is ARC not the right partner?",
-    a: "If you need a large staffed IT takeover, a logo-driven RFP response, or someone to build a decision that has not been scored. We will say no. That is cheaper than a bad yes.",
+    q: "When should we look elsewhere?",
+    a: "If you need a large team to take over IT next week, a logo-driven RFP response, or someone to build a decision that has not been scored. We will say no.",
   },
   {
     q: "Where are you based?",
-    a: "Remote-first, US-friendly hours. Discovery calls and delivery work happen over video. Workshops can be remote or on-site by arrangement.",
+    a: "Remote-first, US-friendly hours. Calls and delivery over video. Workshops can be remote or on-site.",
   },
 ];
 

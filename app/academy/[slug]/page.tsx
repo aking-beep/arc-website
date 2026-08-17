@@ -58,7 +58,7 @@ export default function WorkshopPage({
           <hr className="my-10 border-border" />
 
           <section>
-            <SectionHeading kicker="Who it's for" title="Bring this if it sounds familiar." />
+          <SectionHeading kicker="Who it's for" title="Who this is for." />
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
               {workshop.whoFor}
             </p>

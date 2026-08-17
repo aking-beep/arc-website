@@ -8,9 +8,9 @@ import { CTA } from "@/components/cta";
 import { caseStudies } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Work · Outcomes over narratives",
+  title: "Work · Programs that shipped",
   description:
-    "Verifiable scope and outcomes from Fortune 100/500 delivery and ARC Studio engagements. Where we cannot name the client, we name the scale.",
+    "Work from Fortune 100/500 programs Andrew ran, plus ARC Studio. Where we cannot name the client, we name the scale.",
 };
 
 export default function WorkPage() {
@@ -18,15 +18,15 @@ export default function WorkPage() {
     <>
       <PageHero
         kicker="Work"
-        title="Outcomes over narratives."
-        lead="Problem, intervention, deliverable, measurable outcome, timeframe. Where confidentiality applies, we name the scale instead of the logo. We do not invent clients."
+        title="Work from programs that shipped."
+        lead="Problem, what we did, what came out of it, how long it took. Where we cannot name the client, we name the scale."
       />
 
       <Section>
         <SectionHeading
           kicker="Evidence"
-          title="What shipped, and what it was worth."
-          lead="Career delivery inside Fortune 100 and Fortune 500 environments, plus ARC Studio diagnostics. Client names withheld where required."
+          title="Four pieces of work."
+          lead="Three from Fortune 100/500 programs Andrew ran. One from ARC Studio. Client names withheld where required."
         />
         <div className="mt-12 grid gap-5">
           {caseStudies.map((study) => (
@@ -71,10 +71,7 @@ export default function WorkPage() {
         </div>
       </Section>
 
-      <CTA
-        title="Want this standard of work on your problem?"
-        lead="Most Studio work starts with a diagnostic. A 30-minute call is enough to tell you whether that is the right first step — and what size of engagement the problem actually needs."
-      />
+      <CTA />
     </>
   );
 }

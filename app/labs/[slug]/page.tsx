@@ -184,13 +184,13 @@ export default function ProductPage({
       <CTA
         title={
           isCatalog
-            ? "Want these adapted to your workflows?"
-            : "Want ARC to help remediate this?"
+            ? "Want these adapted to how you actually work?"
+            : "Need a human to read this report?"
         }
         lead={
           isCatalog
-            ? "Studio can help you pick, wire, and govern the pieces that match how your team actually works. Book a 30-minute call."
-            : "The report is the start. Studio turns findings into a prioritized remediation plan with named owners. Book a 30-minute call."
+            ? "Studio can help you pick, wire, and govern the pieces that match your team. Thirty minutes to see if that's useful."
+            : "The report is the start. Studio turns findings into a plan with owners. Thirty minutes to see if that's worth it."
         }
       />
     </>

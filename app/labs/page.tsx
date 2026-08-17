@@ -19,7 +19,7 @@ export default function LabsPage() {
       <PageHero
         kicker="ARC Labs"
         title="Free tools you can run today."
-        lead={`${labsProof.tools} free tools, grouped by the job they do. Most need no account. TokenLoop uses a free signup so keys stay encrypted. ${labsProof.note}`}
+        lead={`${labsProof.tools} free tools, grouped by the job they do. Most need no account. TokenLoop uses a free signup so keys stay encrypted.`}
       >
         <Button href={site.github} variant="outline">
           <Github className="h-4 w-4" />
@@ -45,8 +45,8 @@ export default function LabsPage() {
       })}
 
       <CTA
-        title="Want ARC to help remediate this?"
-        lead="Labs is the front door. Studio is the remediation plan: prioritized fixes, named owners, and work that survives contact with your stack. Book a 30-minute call."
+        title="Need a human to read the report?"
+        lead="Studio turns findings into a plan with owners. Same point of view as the tools. Thirty minutes to see if that is worth it."
       />
     </>
   );

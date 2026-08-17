@@ -11,7 +11,7 @@ import { digitalTransformation, faqs, pillars, site } from "@/lib/content";
 export const metadata: Metadata = {
   title: "About & contact",
   description:
-    "Meet Andrew King and ARC Transformation Group: digital transformation for 10–500 person organizations — companies, nonprofits, and teams.",
+    "Andrew King founded ARC to bring Fortune 100/500 delivery standards to 10–500 person companies, nonprofits, and teams.",
 };
 
 export default function AboutPage() {
@@ -19,30 +19,9 @@ export default function AboutPage() {
     <>
       <PageHero
         kicker="About"
-        title="One honest partner across strategy, build, and scale."
-        lead="ARC started as an advisory practice and grew into an ecosystem. The through-line never changed: name the stage, show the work, and help 10–500 person organizations ship working systems — not another strategy deck."
+        title="A small practice for mid-size problems."
+        lead="ARC is Andrew King plus the tools, research, and workshops around the same method. We help companies, nonprofits, and teams of about 10 to 500 people figure out what to do about data, security, architecture, and AI — then we ship the system."
       />
-
-      <Section>
-        <SectionHeading
-          kicker="What we mean"
-          title="Digital transformation, in plain terms."
-          lead="Digital transformation is not one product or one AI project. It is how organizations and communities change technology, process, and people together so they keep delivering value as the digital world moves. That is what ARC focuses on."
-        />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {digitalTransformation.map((item) => (
-            <div
-              key={item.name}
-              className="rounded-lg border border-border bg-card p-5"
-            >
-              <h3 className="text-sm font-semibold">{item.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {item.text}
-              </p>
-            </div>
-          ))}
-        </div>
-      </Section>
 
       <Section className="bg-muted/30">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.35fr] lg:items-start">
@@ -100,9 +79,30 @@ export default function AboutPage() {
 
       <Section>
         <SectionHeading
-          kicker="Why an ecosystem"
-          title="Every part feeds the next."
-          lead="Labs, Studio, Research, and Academy. Andrew is the founder — not the entire product. The through-line is the same: name the stage, show the work, ship something operators can run."
+          kicker="What we mean"
+          title="Digital transformation, without the fog."
+          lead="It is not one product, and it is not an AI project with a bow on it. It is how an organization changes technology, process, and people together so the work still holds as the stack moves. That is the job."
+        />
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {digitalTransformation.map((item) => (
+            <div
+              key={item.name}
+              className="rounded-lg border border-border bg-card p-5"
+            >
+              <h3 className="text-sm font-semibold">{item.name}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section className="bg-muted/30">
+        <SectionHeading
+          kicker="The practice"
+          title="Four parts. Same standard."
+          lead="Tools so you can see how we think. Studio for the paid work. Research for the arguments. Workshops when the room is the problem."
         />
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((p) => (
@@ -120,19 +120,19 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      <Section className="bg-muted/30">
+      <Section>
         <SectionHeading
           kicker="Who it's for"
-          title="Primary buyer: 10–500 person organizations."
-          lead="Companies, nonprofits, and teams in that range are the commercial focus. Communities and smaller groups are welcome when the same method fits — they are a deeper mission, not the homepage buyer."
+          title="Mid-size organizations with a real problem."
+          lead="Companies, nonprofits, and teams of about 10 to 500 people are the commercial focus. Smaller groups are welcome when the same method fits. They are not who the homepage is written for."
         />
       </Section>
 
-      <Section>
+      <Section className="bg-muted/30">
         <SectionHeading
           kicker="FAQ"
           title="Straight answers."
-          lead="The questions we get on almost every discovery call."
+          lead="The questions that come up on almost every call."
         />
         <div className="mt-10 max-w-3xl">
           <FaqList items={faqs} />
@@ -144,8 +144,8 @@ export default function AboutPage() {
           <div>
             <SectionHeading
               kicker="Get in touch"
-              title="Let's see if there's a fit."
-              lead="A 30-minute discovery call. No pitch deck, no commitment. We'll listen, ask the hard questions, and tell you straight up whether ARC is the right partner, even if the answer is no."
+              title="Thirty minutes. No deck."
+              lead="We'll listen, ask the hard questions, and tell you whether ARC is the right next step — including when it isn't."
             />
             <div className="mt-8 flex flex-col gap-3">
               <Button href={site.calendly} size="lg">
@@ -164,10 +164,9 @@ export default function AboutPage() {
           </div>
 
           <div className="rounded-xl border border-border bg-card p-6 sm:p-8">
-            <h3 className="text-lg font-semibold">Send a quick note</h3>
+            <h3 className="text-lg font-semibold">Send a note</h3>
             <p className="mt-1 text-sm text-muted-foreground">
-              We read every message. A real human writes back within one business
-              day.
+              A person writes back within one business day.
             </p>
             <div className="mt-6">
               <ContactForm />

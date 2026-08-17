@@ -8,7 +8,6 @@ import { FaqList } from "@/components/faq-list";
 import { CTA } from "@/components/cta";
 import {
   offers,
-  services,
   stages,
   principles,
   bestFit,
@@ -16,13 +15,12 @@ import {
   howWeEngage,
   caseStudies,
   faqs,
-  site,
 } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Studio · Advisory & delivery",
   description:
-    "Named Studio engagements for 10–500 person organizations: readiness reviews, architecture diligence, security baselines, data roadmaps, AI sprints, and a full transformation diagnostic.",
+    "ARC Studio diagnoses digital, data, security, and AI problems for 10–500 person companies, nonprofits, and teams — then stays to deliver the system.",
 };
 
 export default function StudioPage() {
@@ -30,15 +28,15 @@ export default function StudioPage() {
     <>
       <PageHero
         kicker="ARC Studio"
-        title="Strategy that aligns. Work that delivers."
-        lead={`${site.audience.line} Pick a named offer with a duration and a deliverable — then we size the rest of the work to the problem.`}
+        title="Figure out what to do. Then ship it."
+        lead="Studio is the paid work. A scoped review of two to seven weeks, then delivery if you still need us. Built for companies, nonprofits, and teams of about 10 to 500 people — not a staff-aug army, not a slide factory."
       />
 
       <Section id="offers" className="scroll-mt-24 bg-muted/30">
         <SectionHeading
-          kicker="Offers"
-          title="What you can actually buy."
-          lead="Each offer has a visitor-friendly promise, a typical duration, and what you leave with. The discovery call is to pick one — or tell you none of them fit."
+          kicker="How we start"
+          title="Pick the problem, not a package from a menu."
+          lead="Each start has a typical duration and a concrete deliverable. The call is to choose one, or to tell you none of them fit."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2">
           {offers.map((o) => (
@@ -51,7 +49,9 @@ export default function StudioPage() {
               }
             >
               <div className="flex flex-wrap items-center gap-3">
-                <span className="font-mono text-sm text-muted-foreground">{o.number}</span>
+                <span className="font-mono text-sm text-muted-foreground">
+                  {o.number}
+                </span>
                 <span className="text-xs text-muted-foreground">{o.duration}</span>
                 {o.flagship ? (
                   <span className="rounded-full border border-border bg-background px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-muted-foreground">
@@ -60,7 +60,9 @@ export default function StudioPage() {
                 ) : null}
               </div>
               <h3 className="mt-3 text-lg font-semibold tracking-tight">{o.name}</h3>
-              <p className="mt-2 text-base leading-relaxed text-foreground">{o.promise}</p>
+              <p className="mt-2 text-base leading-relaxed text-foreground">
+                {o.promise}
+              </p>
               <dl className="mt-4 space-y-3 text-sm leading-relaxed text-muted-foreground">
                 <div>
                   <dt className="font-medium text-foreground">Starts with</dt>
@@ -78,7 +80,9 @@ export default function StudioPage() {
           {howWeEngage.map((item) => (
             <div key={item.name} className="rounded-lg border border-border bg-card p-5">
               <h3 className="text-sm font-semibold">{item.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {item.text}
+              </p>
             </div>
           ))}
         </div>
@@ -87,8 +91,8 @@ export default function StudioPage() {
       <Section>
         <SectionHeading
           kicker="How we work"
-          title="Five stages. One honest system."
-          lead="Every engagement names where you are, so the work matches the moment instead of the pitch deck."
+          title="Five stages. We always name which one you're in."
+          lead="A near-term fix is not transformation. A vision slide is not next month's release. The stage keeps those from getting mixed up."
         />
         <ol className="mt-12 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
           {stages.map((s) => (
@@ -106,59 +110,11 @@ export default function StudioPage() {
       </Section>
 
       <Section className="bg-muted/30">
-        <SectionHeading
-          kicker="Capability catalog"
-          title="The work behind the offers."
-          lead="The named offers above are how you buy. These nine services are the documented capabilities we pull from — due diligence, security, data, AI, and a full transformation diagnostic."
-        />
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((s) => (
-            <Card
-              key={s.number}
-              className={
-                s.flagship
-                  ? "flex flex-col p-6 ring-1 ring-foreground/15 lg:col-span-3"
-                  : "flex flex-col p-6"
-              }
-            >
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-sm text-muted-foreground">
-                  {s.number}
-                </span>
-                {s.flagship ? (
-                  <span className="rounded-full border border-border bg-background px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    Flagship
-                  </span>
-                ) : null}
-              </div>
-              <h3 className="mt-3 text-lg font-semibold tracking-tight">
-                {s.name}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {s.blurb}
-              </p>
-              <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-                {s.points.map((pt) => (
-                  <li
-                    key={pt}
-                    className="flex items-start gap-2 text-sm text-muted-foreground"
-                  >
-                    <Check className="mt-0.5 h-3.5 w-3.5 flex-none text-emerald-500" />
-                    {pt}
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      <Section>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             kicker="Work"
-            title="Outcomes over narratives."
-            lead="Verifiable scope from Fortune 100/500 delivery and ARC Studio. Where confidentiality applies, we name the scale instead of the logo."
+            title="What shipped, and what it was worth."
+            lead="Programs Andrew ran in Fortune 100/500 environments, plus ARC Studio. Where confidentiality applies, we name the scale instead of the logo."
           />
           <Link
             href="/work"
@@ -200,11 +156,11 @@ export default function StudioPage() {
         </div>
       </Section>
 
-      <Section className="bg-muted/30">
+      <Section>
         <SectionHeading
-          kicker="How we think about the work"
+          kicker="How we think"
           title="The rules we hold ourselves to."
-          lead="Every recommendation has to pass these. If a piece of work does not, we do not ship it. We will usually call that out before you do."
+          lead="If a recommendation cannot pass these, we do not ship it. We will usually say so before you have to."
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {principles.map((p) => (
@@ -229,7 +185,7 @@ export default function StudioPage() {
         </figure>
       </Section>
 
-      <Section>
+      <Section className="bg-muted/30">
         <div className="grid gap-12 lg:grid-cols-2">
           <div>
             <SectionHeading kicker="Fit" title="Who we work best with" />
@@ -257,21 +213,18 @@ export default function StudioPage() {
         </div>
       </Section>
 
-      <Section className="bg-muted/30">
+      <Section>
         <SectionHeading
           kicker="FAQ"
-          title="Before the discovery call."
-          lead="If the answer is not here, ask it on the call. That is what the thirty minutes are for."
+          title="Before the call."
+          lead="If it is not here, ask it on the call. That is what the thirty minutes are for."
         />
         <div className="mt-10 max-w-3xl">
           <FaqList items={faqs} />
         </div>
       </Section>
 
-      <CTA
-        title="Let's see if Studio is the right next step."
-        lead="A 30-minute discovery call. No pitch deck. We'll name the problem, pick the offer that fits — or tell you none of them do."
-      />
+      <CTA />
     </>
   );
 }

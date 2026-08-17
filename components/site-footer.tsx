@@ -26,7 +26,7 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold">Ecosystem</h4>
+            <h4 className="text-sm font-semibold">Practice</h4>
             <ul className="mt-4 space-y-2.5">
               {pillars.map((p) => (
                 <li key={p.id}>

@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { site } from "@/lib/content";
 
 export function CTA({
-  title = "Let's see if there's a fit.",
-  lead = "A 30-minute discovery call. No pitch deck, no commitment. We'll listen, ask the hard questions, and tell you honestly whether ARC is the right next step — even if the answer is no.",
+  title = "Want this standard of work on your problem?",
+  lead = "Most Studio work starts with a diagnostic. A 30-minute call is enough to tell you whether that is the right first step, and what size of engagement the problem actually needs.",
 }: {
   title?: string;
   lead?: string;

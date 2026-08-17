@@ -18,15 +18,15 @@ export default function AcademyPage() {
     <>
       <PageHero
         kicker="ARC Academy"
-        title="Workshops that leave a next step."
-        lead="Three live formats: digital readiness, a technical operator session, or a custom day built around the decision you need to make. No course catalog. No certification product."
+        title="A workshop, not a course."
+        lead="Digital readiness, a technical working session, or a custom day around a decision you have to make. No catalog. No certificate."
       />
 
       <Section>
         <SectionHeading
           kicker="Formats"
-          title="How we run them."
-          lead="Every workshop is hands-on and leaves with owners. Pick the format that matches where you are."
+          title="Three formats."
+          lead="Hands-on, against your real systems. You leave with owners and something to do on Monday."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {academy.map((a) => (
@@ -59,7 +59,7 @@ export default function AcademyPage() {
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-start">
           <SectionHeading
             kicker="Outcomes"
-            title="What a workshop leaves behind."
+            title="What you walk out with."
           />
           <ul className="space-y-4">
             {academyOutcomes.map((o) => (
@@ -76,7 +76,7 @@ export default function AcademyPage() {
 
       <CTA
         title="Want a workshop for your team?"
-        lead="Tell us the decision the room has to make. We'll scope a half-day or two-day session against your real systems — not a generic training deck."
+        lead="Tell us the decision the room has to make. We'll scope a half-day or two-day session against your real systems."
       />
     </>
   );

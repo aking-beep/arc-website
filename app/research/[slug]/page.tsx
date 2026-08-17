@@ -157,8 +157,8 @@ export default function ArticlePage({
       </Container>
 
       <CTA
-        title="Want this applied to your operating model?"
-        lead="Studio can score these findings against your stack and hand you a sequenced plan with named owners. Book a 30-minute call."
+        title="Want this applied to your stack?"
+        lead="Studio can score the paper against your environment: what to do first, what to ignore, who owns it."
       />
     </>
   );
