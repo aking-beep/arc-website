@@ -11,7 +11,7 @@ import { digitalTransformation, faqs, pillars, site } from "@/lib/content";
 export const metadata: Metadata = {
   title: "About & contact",
   description:
-    "Meet Andrew King and ARC Transformation Group: digital transformation for companies, nonprofits, individuals, and communities who want to keep pace without getting left behind.",
+    "Meet Andrew King and ARC Transformation Group: digital transformation for companies, nonprofits, teams, and communities.",
 };
 
 export default function AboutPage() {
@@ -58,6 +58,19 @@ export default function AboutPage() {
               <p className="text-base leading-relaxed text-muted-foreground">
                 {site.founder.bio}
               </p>
+              <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {site.founder.scope.map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-lg border border-border bg-background/60 px-4 py-3"
+                  >
+                    <div className="text-lg font-semibold tracking-tight">
+                      {item.metric}
+                    </div>
+                    <p className="mt-1 text-xs text-muted-foreground">{item.label}</p>
+                  </div>
+                ))}
+              </div>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button href={site.calendly} size="sm">
                   Book a call
@@ -89,7 +102,7 @@ export default function AboutPage() {
         <SectionHeading
           kicker="Why an ecosystem"
           title="Every part feeds the next."
-          lead="Free tools build trust. Trust opens the door to advisory work. What we learn becomes research and workshops. Each part feeds the next."
+          lead="Labs, Studio, Research, and Academy. Andrew is the founder — not the entire product. The through-line is the same: name the stage, show the work, ship something operators can run."
         />
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((p) => (
@@ -108,6 +121,14 @@ export default function AboutPage() {
       </Section>
 
       <Section className="bg-muted/30">
+        <SectionHeading
+          kicker="Who it's for"
+          title="Companies, nonprofits, teams, and communities."
+          lead="That is the commercial work. ARC also exists so smaller organizations and communities are not left behind by the same digital shift Fortune 100 teams already staff for. The method does not change with the size of the room."
+        />
+      </Section>
+
+      <Section>
         <SectionHeading
           kicker="FAQ"
           title="Straight answers."

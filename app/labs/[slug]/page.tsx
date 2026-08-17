@@ -185,12 +185,12 @@ export default function ProductPage({
         title={
           isCatalog
             ? "Want these adapted to your workflows?"
-            : "Want a human read on what this finds?"
+            : "Want ARC to help remediate this?"
         }
         lead={
           isCatalog
-            ? "ARC Studio can help you pick, wire, and govern the pieces that match how your team actually works. Start with a 30-minute call."
-            : "ARC Studio turns scanner output into a prioritized plan with owners — not a longer findings list. Book a 30-minute call."
+            ? "Studio can help you pick, wire, and govern the pieces that match how your team actually works. Book a 30-minute call."
+            : "The report is the start. Studio turns findings into a prioritized remediation plan with named owners. Book a 30-minute call."
         }
       />
     </>

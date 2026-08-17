@@ -18,7 +18,7 @@ import {
 export const metadata: Metadata = {
   title: "Studio · Advisory & delivery",
   description:
-    "ARC Studio helps companies, nonprofits, individuals, and communities with practical digital transformation. Strategy that aligns. Work that delivers.",
+    "ARC Studio helps companies, nonprofits, teams, and communities with practical digital transformation. Strategy that aligns. Work that delivers.",
 };
 
 export default function StudioPage() {
@@ -27,7 +27,7 @@ export default function StudioPage() {
       <PageHero
         kicker="ARC Studio"
         title="Strategy that aligns. Work that delivers."
-        lead="Practical digital transformation for companies, nonprofits, teams, and communities. Data, cloud, cybersecurity, process change, and AI when it fits. Strategy first, then delivery in honest stages. Fixed rates or hourly, scoped to what you need."
+        lead="Practical digital transformation for companies, nonprofits, teams, and communities. Data, cloud, cybersecurity, process change, and AI when it fits. Strategy first, then delivery in honest stages — sized to the problem."
       />
 
       <Section>
@@ -102,15 +102,15 @@ export default function StudioPage() {
       <Section>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
-            kicker="How the work looks"
-            title="Engagement shapes, not fiction."
-            lead="Until clients approve named case studies, we publish composite examples of how ARC engagements typically run — the method, not invented client results."
+            kicker="Work"
+            title="Outcomes over narratives."
+            lead="Verifiable scope from Fortune 100/500 delivery and ARC Studio. Where confidentiality applies, we name the scale instead of the logo."
           />
           <Link
             href="/work"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
           >
-            See engagement examples
+            See the work
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -120,7 +120,7 @@ export default function StudioPage() {
               <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
                 <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
                   <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
-                    {study.kind === "composite" ? "Composite example" : "Case study"}
+                    {study.kind === "career" ? "Prior delivery" : "ARC Studio"}
                   </span>
                   <span>{study.industry}</span>
                 </div>

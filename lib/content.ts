@@ -8,7 +8,7 @@ export const site = {
   short: "ARC",
   tagline: "Digital transformation that ships.",
   description:
-    "ARC helps individuals, companies, nonprofits, and communities keep pace with digital change. We deliver digital transformation, cybersecurity, data platforms, and AI when it helps, as clear work that ships.",
+    "ARC helps companies, nonprofits, teams, and communities keep pace with digital change. Digital transformation, cybersecurity, data platforms, and AI when it helps — as clear work that ships.",
   email: "aking@arctransformationgroup.com",
   calendly: "https://calendly.com/aking-arctransformationgroup/30min",
   github: "https://github.com/aking-beep",
@@ -19,15 +19,22 @@ export const site = {
   founder: {
     name: "Andrew King",
     role: "Founder",
-    bio: "Andrew King has spent about twenty years working with technology across Fortune 100 and Fortune 500 companies. That includes large-scale entertainment, cybersecurity, brands like LEGO and the NFL, major artists and entertainment platforms, plus some of the earliest customer data platforms built at real scale, including Ticketmaster-sized CDP work for tens of millions of users. He started ARC so companies big or small, nonprofits, individuals, and communities can keep pace with digital change without getting left behind. Fixed rates or hourly work, scoped to what you need, whether that means digital transformation, cybersecurity, data platforms, or AI.",
+    bio: "Andrew King has spent twenty years delivering technology programs inside Fortune 100 and Fortune 500 environments — cybersecurity product lines, live-entertainment platforms, consumer brands, and customer-data architecture. He has coordinated 300+ features on an enterprise cybersecurity release program that improved release value by 25% and contributed $8M+ in annual sales impact; designed CDP and data-platform work at tens of millions of customer profiles, including Ticketmaster-scale live-entertainment delivery; and delivered brand and consumer programs with LEGO and the NFL. He founded ARC so companies, nonprofits, teams, and communities can get that same standard of work: scoped to the problem, sized to what the organization actually needs.",
     highlights: [
-      "About 20 years in technology across Fortune 100 and Fortune 500 companies",
-      "Entertainment at scale: platforms, artists, live events",
-      "Cybersecurity and compliance work with global security brands",
-      "Brand and consumer work with companies like LEGO and the NFL",
-      "Early CDP and data-platform builds, including Ticketmaster-scale delivery",
-      "Digital transformation across process, data, cloud, security, plus AI when it fits",
-      "Works with companies, nonprofits, people, and communities at rates that stay realistic",
+      "Twenty years delivering technology programs in Fortune 100 and Fortune 500 environments",
+      "Enterprise cybersecurity: 300+ features coordinated, 25% improvement in release value, $8M+ annual sales impact",
+      "Customer-data platforms at tens of millions of profiles, including Ticketmaster-scale live-entertainment delivery",
+      "Brand and consumer programs with LEGO and the NFL",
+      "Transformation across process, data, cloud, and security — AI only where it moves an outcome",
+      "Works with companies, nonprofits, teams, and communities — scoped to what they need",
+    ],
+    scope: [
+      { metric: "20 yrs", label: "Fortune 100 / 500 technology delivery" },
+      { metric: "300+", label: "Features coordinated in cybersecurity" },
+      { metric: "25%", label: "Release-value improvement" },
+      { metric: "$8M+", label: "Annual sales impact from that program" },
+      { metric: "10M+", label: "Customer profiles at CDP scale" },
+      { metric: "LEGO · NFL", label: "Brand and consumer programs" },
     ],
   },
 };
@@ -244,7 +251,6 @@ export const labs: Product[] = [
     description:
       "Paste a prompt and get structured feedback on clarity, injection surface, ambiguity, and failure modes. The review a senior engineer would give, minus the wait. Static, reproducible, no model call.",
     status: "live",
-    featured: true,
     visual: "prompt",
     ctaLabel: "Review a prompt",
     audience:
@@ -425,7 +431,6 @@ export const labs: Product[] = [
       "Describe the use case, the data, the budget, and the constraints. Get a decision matrix: the recommended shape, what was ruled out and why, named cost drivers (never invented prices), and a board brief you can copy. Free, no account, nothing stored. Built for the decision teams are actually making now — when not to use an agent, when MCP needs an allowlist, and when the answer is a lookup.",
     status: "live",
     badge: "Free",
-    featured: true,
     visual: "architecture",
     ctaLabel: "Open advisor",
     audience:
@@ -500,7 +505,6 @@ export const labs: Product[] = [
       "Scan a public marketing, product, or checkout page and get an evidence-backed audit of the buying path: missing prices, account walls, sales-only CTAs, thin SPA checkouts, and competing asks. Every finding quotes what was on the page. Free, no account, nothing stored.",
     status: "live",
     badge: "Free",
-    featured: true,
     visual: "journey",
     ctaLabel: "Scan a purchase path",
     audience:
@@ -538,7 +542,6 @@ export const labs: Product[] = [
       "Describe your agents, tools, permissions, and data sources. Get an inventory plus a graded governance review across identity, least privilege, data access, human approval, MCP, and auditability — every finding quotes your own words. Free, no account, nothing stored.",
     status: "live",
     badge: "Free",
-    featured: true,
     visual: "governance",
     ctaLabel: "Open scanner",
     audience:
@@ -602,6 +605,12 @@ export const labs: Product[] = [
     ],
   },
 ];
+
+/** Honest Labs proof. Counts we cannot verify yet are omitted, not invented. */
+export const labsProof = {
+  tools: labs.length,
+  note: "Adoption metrics (scans, reports, organizations) will be published here as they accumulate. We will not invent them.",
+};
 
 // ---------------------------------------------------------------------------
 // ARC Studio - the nine services (migrated from the current site).
@@ -735,7 +744,7 @@ export const stages = [
   {
     number: "02",
     name: "Align",
-    text: "What does winning look like, and how do we scope fixed or hourly work to match what you need?",
+    text: "What does winning look like, and how do we size the work to the problem you actually have?",
   },
   {
     number: "03",
@@ -798,11 +807,10 @@ export const principles = [
 ];
 
 export const bestFit = [
-  "Companies, nonprofits, and communities that feel the gap between digital change and real readiness.",
-  "Individuals and teams who want practical help at fixed or hourly rates they can live with.",
+  "Companies, nonprofits, teams, and communities that feel the gap between digital change and real readiness.",
   "Operators who want a working system, not a slide deck.",
   "Groups ready to put real data, real users, and real effort behind the work.",
-  "Leaders who want one honest partner across strategy, build, and scale, not a pile of vendors to manage.",
+  "Leaders who want one honest partner across strategy, build, and scale — not a pile of vendors to manage.",
 ];
 
 // ---------------------------------------------------------------------------
@@ -919,7 +927,7 @@ export const academy: Workshop[] = [
 export const academyOutcomes = [
   "A shared vocabulary so strategy, operators, and delivery stop talking past each other.",
   "Scoped work with owners: readiness shortlists, technical run plans, or custom decisions.",
-  "A team that can keep moving after the workshop ends, at a pace and price that stays realistic.",
+  "A team that can keep moving after the workshop ends.",
 ];
 
 // ---------------------------------------------------------------------------
@@ -930,9 +938,13 @@ export type CaseStudy = {
   client: string;
   title: string;
   status: Status;
-  kind: "composite" | "published";
+  kind: "career" | "arc";
   industry: string;
   summary: string;
+  problem: string;
+  intervention: string;
+  deliverable: string;
+  timeframe: string;
   challenge: string;
   approach: string[];
   outcomes: { metric: string; label: string }[];
@@ -940,47 +952,122 @@ export type CaseStudy = {
 
 export const caseStudies: CaseStudy[] = [
   {
-    slug: "sample-transformation-diagnostic",
-    client: "Composite example · mid-market B2B",
-    title: "From competing bets to one sequenced roadmap",
+    slug: "enterprise-cybersecurity-release-value",
+    client: "Confidential · global cybersecurity company",
+    title: "Coordinating 300+ features so release investment produced sales, not just shipped code",
     status: "live",
-    kind: "composite",
-    industry: "B2B SaaS · ~100–200 people",
+    kind: "career",
+    industry: "Enterprise cybersecurity",
     summary:
-      "A typical Integrated Transformation Diagnostic: three overlapping digital bets, no shared view of debt, and a board asking which one to fund. The shape of the work is five weeks to one sequenced plan with named owners.",
+      "An enterprise cybersecurity product line where feature volume had outpaced release value. The work was to coordinate 300+ features into a program that improved what actually reached customers — and what that was worth.",
+    problem:
+      "A large security product surface was shipping a high volume of features without a shared view of which releases moved customer value or revenue. Coordination cost was rising; release value was not.",
+    intervention:
+      "Program leadership across product, engineering, and go-to-market: a single coordination model for 300+ features, with release-value scoring instead of feature-count as the success measure.",
+    deliverable:
+      "A coordinated release program, a value framework operators could run without the original program lead in the room, and an investment sequence tied to sales impact.",
+    timeframe: "Multi-year product program",
     challenge:
-      "Leadership is running parallel initiatives with no shared map of technical debt, data trust, or security posture. Vendors fill the vacuum with product demos. Nobody can defend a funding sequence.",
+      "Enterprise cybersecurity buyers do not pay for feature volume. They pay for releases that reduce risk and can be sold. The organization was optimizing for coordination of more work, not for the value of what shipped.",
     approach: [
-      "Run the Integrated Transformation Diagnostic across architecture, data, infrastructure, security, operations, and opportunity areas.",
-      "Score every opportunity on business value, risk, feasibility, and adoption.",
-      "Deliver a phased roadmap with named owners and sequenced spend, written for the board as well as the operators who have to execute it.",
+      "Inventory the live feature surface and how it mapped to release trains and sales motions.",
+      "Install a release-value model so the program could say no to work that did not move the number.",
+      "Coordinate 300+ features through one operating cadence with named owners.",
+      "Tie program reporting to sales impact, not to story-point burn.",
     ],
     outcomes: [
-      { metric: "5–7 wks", label: "Typical diagnostic window" },
-      { metric: "1 plan", label: "Competing bets resequenced" },
-      { metric: "4 axes", label: "Every recommendation scored" },
+      { metric: "300+", label: "Features coordinated" },
+      { metric: "25%", label: "Improvement in release value" },
+      { metric: "$8M+", label: "Annual sales impact" },
     ],
   },
   {
-    slug: "mcp-readiness-for-ops",
-    client: "Composite example · platform engineering",
-    title: "Putting a conformance gate in front of production agents",
+    slug: "consumer-cdp-tens-of-millions",
+    client: "Confidential · large-scale consumer platform",
+    title: "Customer-data architecture at tens of millions of profiles",
     status: "live",
-    kind: "composite",
-    industry: "Developer tools · platform engineering",
+    kind: "career",
+    industry: "Live entertainment · consumer platforms",
     summary:
-      "A typical Labs-plus-Studio pattern: agents calling unfinished MCP servers, failures showing up as “the agent is weird,” and a scanner-plus-review loop that turns flaky connectors into gated surfaces.",
+      "CDP and data-platform delivery for a consumer business operating at Ticketmaster scale: tens of millions of customer profiles, complex enterprise constraints, and a platform that had to hold up under live-event load.",
+    problem:
+      "Customer data was fragmented across ticketing, marketing, and experience systems. Reporting could not be trusted at the scale the business actually ran, and new products could not share a single profile of the customer.",
+    intervention:
+      "Enterprise data-platform and CDP architecture: identity, profile assembly, and delivery patterns that could serve tens of millions of customers without pretending a warehouse was a product.",
+    deliverable:
+      "A customer-data architecture and delivery program that operators could run — pipelines, identity, access, and the failure modes named before they hit a live event.",
+    timeframe: "Enterprise delivery program",
     challenge:
-      "Agent workflows depend on community or internal MCP servers with no conformance gate. Failures look like model quality problems instead of handshake, schema, or capability bugs.",
+      "Live-entertainment platforms do not get a quiet quarter to rebuild. The data layer had to support tens of millions of profiles while the business kept selling tickets, running events, and talking to fans.",
     approach: [
-      "Run the MCP Conformance Scanner against every production-bound server.",
-      "Prioritize findings operators can act on: capability negotiation and schema breaks first.",
-      "Add a pass/fail gate to the release checklist, with Studio review for the highest-risk connectors.",
+      "Map the real profile graph: who the customer was across ticketing, CRM, and experience systems.",
+      "Design CDP patterns for identity resolution, consent, and activation at that scale.",
+      "Sequence delivery so the platform could take load during live events, not only in a staging diagram.",
+      "Name failure modes: identity collisions, late data, and access that was too wide for the data it touched.",
     ],
     outcomes: [
-      { metric: "CI gate", label: "Conformance before agents go live" },
-      { metric: "Shared report", label: "One language for implementers" },
-      { metric: "Human review", label: "On high-stakes action tools" },
+      { metric: "10M+", label: "Customer profiles in scope" },
+      { metric: "CDP", label: "Enterprise data architecture" },
+      { metric: "Live events", label: "Delivery under real load" },
+    ],
+  },
+  {
+    slug: "brand-consumer-lego-nfl",
+    client: "LEGO · NFL · live entertainment",
+    title: "Brand and consumer programs at global scale",
+    status: "live",
+    kind: "career",
+    industry: "Consumer brands · live entertainment",
+    summary:
+      "Technology delivery for global consumer brands and live-entertainment platforms — including programs with LEGO and the NFL — where the work had to survive real fans, real events, and real brand standards.",
+    problem:
+      "Consumer and live-entertainment programs fail when the stack is treated as a campaign site: no operating model, no data trust, and no plan for what happens when the event or product launch is over.",
+    intervention:
+      "Hands-on delivery across platforms, data, and operations for brand and entertainment programs that had to work in production, not in a pitch.",
+    deliverable:
+      "Shipped platforms and operating patterns for consumer and live-entertainment work, including programs with LEGO and the NFL, with owners who could run the next version.",
+    timeframe: "Multiple brand and entertainment programs",
+    challenge:
+      "Global brands and leagues do not buy clever demos. They buy systems that hold up for fans, partners, and internal operators — on a deadline that does not move.",
+    approach: [
+      "Treat brand and entertainment work as production systems: data, access, failure modes, and who owns the runbook.",
+      "Build to the event or launch calendar, not to an unbounded transformation slide.",
+      "Keep the next version cheaper than the first — because campaigns become platforms whether you plan for it or not.",
+    ],
+    outcomes: [
+      { metric: "LEGO", label: "Brand and consumer programs" },
+      { metric: "NFL", label: "Live-entertainment programs" },
+      { metric: "F100/F500", label: "Environments the work shipped in" },
+    ],
+  },
+  {
+    slug: "transformation-diagnostic",
+    client: "Confidential · mid-market operator",
+    title: "Three competing initiatives, one sequenced roadmap",
+    status: "live",
+    kind: "arc",
+    industry: "Digital transformation",
+    summary:
+      "An Integrated Transformation Diagnostic: three overlapping digital bets, no shared view of debt, and a board asking which one to fund. Five weeks later — one sequenced plan with named owners and an investment order.",
+    problem:
+      "Leadership was running three digital initiatives with no shared map of architecture, data, security, or operations. Vendors were filling the vacuum with product demos. Nobody could defend a funding sequence.",
+    intervention:
+      "A five-week Integrated Transformation Diagnostic across architecture, data, infrastructure, security, operations, and opportunity areas. Every recommendation scored on business value, risk, feasibility, and adoption.",
+    deliverable:
+      "A board-ready executive summary, a phased roadmap, named owners, sized risks, and a sequence of spend the operators could actually execute.",
+    timeframe: "5-week diagnostic",
+    challenge:
+      "The organization did not need another strategy deck. It needed one plan that killed or resequenced competing bets, with owners who would still be there after the workshop high wore off.",
+    approach: [
+      "Current-state across architecture, data, infra, security, operations, and AI-where-it-helps.",
+      "Score every opportunity on the four axes — drop anything that fails them.",
+      "Resequence three initiatives into one investment order.",
+      "Write the output for the board and for the people who have to run it.",
+    ],
+    outcomes: [
+      { metric: "3 → 1", label: "Competing initiatives, resequenced" },
+      { metric: "5 wks", label: "Diagnostic to board-ready plan" },
+      { metric: "Named owners", label: "Investment sequence attached" },
     ],
   },
 ];
@@ -995,7 +1082,7 @@ export const faqs = [
   },
   {
     q: "How do most engagements start?",
-    a: "Usually with a fixed-rate diagnostic, about three to seven weeks, that ends in a clear summary and a phased roadmap. After that we can keep going on fixed rates or hourly, depending on what you need.",
+    a: "Usually with a diagnostic, about three to seven weeks, that ends in a clear summary and a phased roadmap. After that we stay on for delivery if the problem still needs us — sized to what you need, not to a menu of packages.",
   },
   {
     q: "Are the Labs tools really free?",
@@ -1004,6 +1091,10 @@ export const faqs = [
   {
     q: "What is ARC Academy?",
     a: "Workshops only. Live sessions against your real systems and backlog: digital readiness and vocabulary, technical operator sessions, or a custom day built around your problem. No course catalog and no certification product right now.",
+  },
+  {
+    q: "How do you size the work?",
+    a: "From the problem. We look at what you actually need and what is reasonable for that organization, then we size the engagement to match. The discovery call is to find that fit — not to quote a menu.",
   },
   {
     q: "Will you just build whatever we ask for?",
@@ -1021,6 +1112,7 @@ export const faqs = [
 export const nav = [
   { label: "Labs", href: "/labs" },
   { label: "Studio", href: "/studio" },
+  { label: "Work", href: "/work" },
   { label: "Research", href: "/research" },
   { label: "Academy", href: "/academy" },
   { label: "About", href: "/about" },

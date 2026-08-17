@@ -11,8 +11,10 @@ import {
   stages,
   principles,
   labs,
+  labsProof,
   research,
   services,
+  caseStudies,
   site,
 } from "@/lib/content";
 
@@ -102,7 +104,7 @@ export default function HomePage() {
           <SectionHeading
             kicker="ARC Labs"
             title="Start with something you can run."
-            lead="Open-source scanners, catalogs, and utilities. Most need no account."
+            lead={`${labsProof.tools} free tools. Open source. No paid tier. ${labsProof.note}`}
           />
           <Link
             href="/labs"
@@ -172,6 +174,50 @@ export default function HomePage() {
       </Section>
 
       <Section className="bg-muted/30">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+          <SectionHeading
+            kicker="Work"
+            title="Outcomes over narratives."
+            lead="Verifiable scope from Fortune 100/500 delivery and ARC Studio. Where we cannot name the client, we name the scale."
+          />
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
+          >
+            All work
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-2">
+          {caseStudies.slice(0, 4).map((study) => (
+            <Link key={study.slug} href={`/work/${study.slug}`} className="group block h-full">
+              <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
+                <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+                  <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
+                    {study.kind === "career" ? "Prior delivery" : "ARC Studio"}
+                  </span>
+                  <span>{study.industry}</span>
+                </div>
+                <h3 className="mt-4 text-lg font-semibold tracking-tight">
+                  {study.title}
+                </h3>
+                <div className="mt-6 grid grid-cols-3 gap-3 border-t border-border/60 pt-4">
+                  {study.outcomes.map((o) => (
+                    <div key={o.label}>
+                      <div className="text-lg font-semibold tracking-tight">
+                        {o.metric}
+                      </div>
+                      <p className="text-xs text-muted-foreground">{o.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section>
         <SectionHeading
           kicker="How ARC works"
           title="Five stages. One honest system."
