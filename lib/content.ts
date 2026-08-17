@@ -413,6 +413,42 @@ export const labs: Product[] = [
       { label: "Well-Architected overlay", done: false },
     ],
   },
+  {
+    slug: "arc-stack-advisor",
+    name: "ARC AI Stack Advisor",
+    tagline: "Turn a use case and real constraints into a defensible AI architecture.",
+    description:
+      "Describe the use case, the data, the budget, and the constraints. Get a decision matrix: the recommended shape, what was ruled out and why, named cost drivers (never invented prices), and a board brief you can copy. Free, no account, nothing stored. Built for the decision teams are actually making now — when not to use an agent, when MCP needs an allowlist, and when the answer is a lookup.",
+    status: "live",
+    badge: "Free",
+    visual: "architecture",
+    audience:
+      "CTOs, tech leads, finance partners, and teams with no ML practice who need an architecture they can defend — not a list of trendy tools.",
+    howItWorks: [
+      "Pick a starter or describe the use case, stack, constraints, team, and budget in plain language.",
+      "Deterministic rules match that description to a published catalog of architecture shapes — not vendors.",
+      "You get a decision matrix, a copyable board brief, named cost drivers, and the questions you still have to answer.",
+      "Every finding quotes the sentence that triggered it. Same input, same output. Nothing is stored.",
+    ],
+    features: [
+      "Free on the site — no account, no email gate",
+      "Recommended shape plus ruled-out alternatives with reasons",
+      "Workflow vs agent, MCP/tool governance, copilot-on-a-lookup, on-prem, EU AI Act",
+      "Deployment, model, and tooling classes — shapes, not product names",
+      "Board brief you can copy or print",
+      "Markdown / JSON export and a CLI",
+    ],
+    links: {
+      demo: "https://arc-stack-advisor.vercel.app",
+      docs: "https://arc-stack-advisor.vercel.app/docs",
+    },
+    roadmap: [
+      { label: "Decision matrix + 28 published rules", done: true },
+      { label: "Situation gallery + board brief", done: true },
+      { label: "Human review of the golden suite", done: false },
+      { label: "Optional model narrative (phrasing only)", done: false },
+    ],
+  },
 ];
 
 // ---------------------------------------------------------------------------
