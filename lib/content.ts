@@ -604,126 +604,504 @@ export const labs: Product[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// ARC Studio - the nine services (migrated from the current site).
+// ARC Studio — fixed diagnostics, delivery, and retainers.
+// Each offering has a detail page at /studio/[slug].
 // ---------------------------------------------------------------------------
+export type StudioOffering = {
+  slug: string;
+  codename: string;
+  name: string;
+  tagline: string;
+  blurb: string;
+  duration: string;
+  priceRange: string;
+  lead: string;
+  flagship?: boolean;
+  startsWith: string;
+  youLeaveWith: string;
+  whoFor: string;
+  notFor: string[];
+  deliverables: string[];
+  buildOptions: string[];
+  scoping: string[];
+  typicalFollowOn?: string;
+};
+
+export const studioOfferings: StudioOffering[] = [
+  {
+    slug: "ai-readiness-audit",
+    codename: "Pulse",
+    name: "AI Readiness Audit (C.I.T.H.)",
+    tagline: "Decide where AI belongs — and where it doesn't — before anyone writes code.",
+    blurb:
+      "Capability, Intent, Teams, and Habits scored against your real workflows. You leave knowing which bet to fund, which to defer, and what has to change before anything ships.",
+    duration: "3–4 weeks",
+    priceRange: "$9,500–$14,500",
+    lead: "Pulse",
+    startsWith:
+      "Real processes, real data access, and the people who would have to run whatever gets built.",
+    youLeaveWith:
+      "A scored readiness snapshot, a classified automation backlog, and a 30/60/90-day roadmap with owners.",
+    whoFor:
+      "Leadership teams being pushed toward AI without a clear workflow, owner, or constraint. Operators who need to know whether the next move is build, buy, wait, or fix the data first.",
+    notFor: [
+      "Teams that already have a scoped MVP and just need hands to implement it — start with Nova or a Post-Diagnostic retainer.",
+      "Organizations looking for a vendor demo tour instead of a decision framework.",
+    ],
+    deliverables: [
+      "C.I.T.H. scorecard: Capability, Intent, Teams, Habits — each dimension scored with evidence",
+      "Process opportunity map tied to workflows your team actually runs",
+      "Classified automation backlog: ship now, fix prerequisites first, or defer",
+      "30/60/90-day roadmap with named owners and success measures",
+      "Human-review gates identified for any workflow touching judgment, compliance, or customer trust",
+    ],
+    buildOptions: [
+      "Nova: turn the top-ranked opportunity into MVP scope and functional requirements",
+      "Bedrock / RAG implementation on AWS — workflow design through production rollout",
+      "Post-Diagnostic Execution Retainer: roadmap items delivered in monthly sprints",
+      "Fractional Head of AI / Transformation retainer for ongoing governance and vendor judgment",
+    ],
+    scoping: [
+      "Discovery call (30 min): confirm the problem, stakeholders, and whether Pulse is the right front door",
+      "Intake: access to key systems, sample workflows, and the people who run them",
+      "Week 1–2: workflow interviews, data and integration review, team capability assessment",
+      "Week 2–3: scorecard draft, opportunity map, backlog classification",
+      "Week 3–4: roadmap finalization, exec readout, handoff to delivery or retainer if scoped",
+    ],
+    typicalFollowOn: "Nova for MVP scope, or Post-Diagnostic Execution Retainer to ship the first workflow.",
+  },
+  {
+    slug: "technical-architecture-review",
+    codename: "Atlas",
+    name: "Technical Architecture Review",
+    tagline: "Understand whether the system can scale — and what it costs to operate.",
+    blurb:
+      "Program-level review of how your platform is built, where debt concentrates, and what to modernize first. Written for operators and boards, not architects performing for each other.",
+    duration: "3–4 weeks",
+    priceRange: "$8,500–$13,500",
+    lead: "Atlas",
+    startsWith:
+      "Code, architecture diagrams, deployment history, and the operating constraints you actually have — not a whiteboard fantasy.",
+    youLeaveWith:
+      "A prioritized findings list, a modernization sequence, and risks an operator can act on Monday.",
+    whoFor:
+      "Teams evaluating an acquisition, planning a platform rewrite, or stuck between 'it works' and 'it won't survive the next growth phase.' CTOs and engineering leads who need an honest read before committing spend.",
+    notFor: [
+      "Line-by-line code review for compliance sign-off — that is a different engagement.",
+      "Teams that need a delivery program stood up — pair this with Ridge.",
+    ],
+    deliverables: [
+      "Current-state architecture map: services, data flows, integrations, and ownership",
+      "Risk register with severity, likelihood, and remediation cost estimates",
+      "Technical debt inventory grouped by business impact, not just code smell",
+      "Modernization roadmap sequenced by dependency and ROI",
+      "One-page executive summary for board or investor conversations",
+    ],
+    buildOptions: [
+      "Platform migration or re-architecture — scoped sprints with CI/CD gates",
+      "Service decomposition or API boundary work",
+      "Fractional Cloud / Platform Advisor retainer for ongoing architecture decisions",
+      "Forge follow-on if CI/CD and observability are the primary blockers",
+    ],
+    scoping: [
+      "Discovery call: confirm scope boundaries, systems in play, and decision timeline",
+      "Access: repos, infra diagrams, deployment configs, incident history",
+      "Week 1: architecture walk-through with engineering leads, dependency mapping",
+      "Week 2: debt and risk assessment, stakeholder interviews on pain points",
+      "Week 3–4: findings synthesis, roadmap draft, exec readout and handoff",
+    ],
+    typicalFollowOn: "Forge for CI/CD gaps, or Fractional Cloud / Platform Advisor for ongoing decisions.",
+  },
+  {
+    slug: "cloud-devops-readiness",
+    codename: "Forge",
+    name: "Cloud & DevOps Readiness Review",
+    tagline: "Find out why releases hurt — and what to fix in the pipeline first.",
+    blurb:
+      "Cloud posture, CI/CD audit, observability gaps, and scalability recommendations. Grounded in how your team actually deploys, not how a reference architecture says they should.",
+    duration: "2–3 weeks",
+    priceRange: "$6,500–$10,500",
+    lead: "Forge",
+    startsWith:
+      "Your pipelines, environments, deployment frequency, and the incidents that keep repeating.",
+    youLeaveWith:
+      "A CI/CD maturity snapshot, observability gap list, and a sequenced fix plan your platform team can execute.",
+    whoFor:
+      "Platform and DevOps leads where releases are painful, environments drift, or nobody trusts the monitoring. Teams mid-migration who need an honest read before committing to the next phase.",
+    notFor: [
+      "Full cloud migration execution — this scopes it; a retainer or fixed build delivers it.",
+      "Security compliance certification — pair with Sentinel for that lens.",
+    ],
+    deliverables: [
+      "Cloud posture assessment: accounts, networking, cost patterns, and blast radius",
+      "CI/CD pipeline audit: build, test, deploy stages, environment promotion, rollback capability",
+      "Observability review: logging, metrics, alerting, and on-call readiness",
+      "Scalability recommendations with effort estimates",
+      "Prioritized remediation roadmap sequenced by release risk reduction",
+    ],
+    buildOptions: [
+      "CI/CD pipeline rebuild: GitHub Actions, AWS CodePipeline, or your stack — through to production gates",
+      "Infrastructure-as-code migration (Terraform, CDK, CloudFormation)",
+      "Observability stack setup: CloudWatch, Datadog, or Grafana with alert routing",
+      "Fractional TPM / Delivery Program Lead if releases need governance, not just tooling",
+    ],
+    scoping: [
+      "Discovery call: confirm cloud provider, team size, and the release pain you want solved",
+      "Access: CI/CD configs, infra repos, monitoring dashboards, recent incident postmortems",
+      "Week 1: pipeline walk-through, environment inventory, deployment frequency analysis",
+      "Week 2: observability and scalability assessment, stakeholder interviews",
+      "Week 2–3: findings report, roadmap, and handoff to build or retainer",
+    ],
+    typicalFollowOn: "Post-Diagnostic Execution Retainer for pipeline rebuild, or Fractional TPM for release governance.",
+  },
+  {
+    slug: "data-health-analytics",
+    codename: "Quill",
+    name: "Data Health & Analytics Readiness",
+    tagline: "Find out why leadership doesn't trust the numbers — and fix the first workflow.",
+    blurb:
+      "Data flow map, schema audit, quality scoring, and a remediation roadmap. The goal is a reporting workflow your team can run without a heroic analyst.",
+    duration: "2–3 weeks",
+    priceRange: "$6,500–$10,500",
+    lead: "Quill",
+    startsWith:
+      "The reports leadership already uses — and the spreadsheets they actually trust when those reports are wrong.",
+    youLeaveWith:
+      "A data-trust diagnosis, a sequenced platform path, and the first governed workflow worth shipping.",
+    whoFor:
+      "Operators where dashboards exist but nobody trusts them. Teams planning a CDP, warehouse, or analytics platform migration. Leaders who need data to support decisions, not decorate slide decks.",
+    notFor: [
+      "Full data platform build — this scopes it; delivery is a separate engagement.",
+      "Real-time streaming architecture from scratch without a defined use case.",
+    ],
+    deliverables: [
+      "Data flow map: sources, pipelines, transformations, and consumption points",
+      "Schema audit with lineage gaps and duplication flagged",
+      "Data quality scoring on the datasets that drive decisions",
+      "Reporting trust assessment: which numbers leadership uses vs. ignores",
+      "Remediation roadmap with the first governed workflow identified",
+    ],
+    buildOptions: [
+      "First governed pipeline: ETL/ELT setup, dbt models, or event tracking for one critical workflow",
+      "CDP or warehouse migration scoped to one domain (customer, product, finance)",
+      "Data quality monitoring and alerting for production datasets",
+      "Fractional Cloud / Platform Advisor if data infra decisions need ongoing judgment",
+    ],
+    scoping: [
+      "Discovery call: confirm data sources, reporting pain, and decision timeline",
+      "Access: sample reports, pipeline configs, schema docs, and the analyst who knows where bodies are buried",
+      "Week 1: data flow mapping, stakeholder interviews on trust gaps",
+      "Week 2: schema and quality assessment, platform options evaluation",
+      "Week 2–3: roadmap, first workflow recommendation, exec readout",
+    ],
+    typicalFollowOn: "Post-Diagnostic Execution Retainer to ship the first governed workflow.",
+  },
+  {
+    slug: "security-compliance-posture",
+    codename: "Sentinel",
+    name: "Security & Compliance Posture Review",
+    tagline: "Find the weaknesses that would hurt you — not a checkbox exercise.",
+    blurb:
+      "Risk matrix, access and secrets review, remediation roadmap, and SOC 2 / GDPR / CCPA readiness notes. Readiness work that tells you what to fix first, not audit theater.",
+    duration: "2–3 weeks",
+    priceRange: "$6,500–$12,500",
+    lead: "Sentinel",
+    startsWith:
+      "Access controls, secrets management, logging, and the systems that actually hold the crown jewels.",
+    youLeaveWith:
+      "A ranked exposure list, a 30/60/90 hardening plan, and named owners for the first fixes.",
+    whoFor:
+      "Teams approaching SOC 2, GDPR, or CCPA requirements. Startups scaling past 'everyone is admin.' Operators who know something is wrong but can't prioritize across competing alerts.",
+    notFor: [
+      "Penetration testing or red-team exercises — we scope readiness, not offensive security.",
+      "Compliance certification body work — we prepare you; an auditor certifies.",
+    ],
+    deliverables: [
+      "Risk matrix: threats, likelihood, impact, and current controls",
+      "Access and secrets review: IAM policies, credential storage, rotation gaps",
+      "Logging and monitoring assessment for security-relevant events",
+      "Remediation roadmap prioritized by exposure and compliance timeline",
+      "SOC 2 / GDPR / CCPA readiness notes with gap analysis",
+    ],
+    buildOptions: [
+      "IAM hardening and least-privilege rollout",
+      "Secrets management migration (AWS Secrets Manager, Vault, or your stack)",
+      "Security monitoring and alert routing setup",
+      "Compliance program scaffolding: policies, evidence collection, audit prep",
+    ],
+    scoping: [
+      "Discovery call: confirm compliance targets, timeline, and systems in scope",
+      "Access: IAM configs, secrets inventory, logging setup, existing policies",
+      "Week 1: access and secrets review, risk identification",
+      "Week 2: logging, monitoring, and compliance gap analysis",
+      "Week 2–3: risk matrix, remediation roadmap, exec readout",
+    ],
+    typicalFollowOn: "Post-Diagnostic Execution Retainer for hardening sprints, or Fractional Cloud / Platform Advisor for ongoing posture.",
+  },
+  {
+    slug: "ai-solution-mvp-scope",
+    codename: "Nova",
+    name: "AI Solution Concept + MVP Scope",
+    tagline: "Turn a ranked opportunity into something engineering can build.",
+    blurb:
+      "Workflow design, MVP scope, functional requirements, KPI framework, and rollout plan. The output is a build-ready package — not a proof-of-concept that dies in a slide deck.",
+    duration: "3–5 weeks",
+    priceRange: "$12,000–$22,000",
+    lead: "Nova",
+    startsWith:
+      "One scored opportunity from Pulse (or your own prioritization) with a named owner and real data access.",
+    youLeaveWith:
+      "Functional requirements, architecture sketch, KPI framework, and a rollout plan with human-review gates defined.",
+    whoFor:
+      "Teams that know what problem to solve but need it scoped for engineering. Product and engineering leads who want a build package, not a strategy deck. Organizations ready to commit build resources after the scope is signed.",
+    notFor: [
+      "Teams still deciding whether to do AI at all — start with Pulse.",
+      "Organizations wanting us to build without signed scope — we scope first, then deliver.",
+    ],
+    deliverables: [
+      "Workflow design: inputs, processing steps, outputs, and exception handling",
+      "MVP scope document with in/out boundaries and acceptance criteria",
+      "Functional requirements engineering can estimate against",
+      "KPI framework: what success looks like in numbers, measured how",
+      "Rollout plan: pilot cohort, review gates, production criteria, and rollback triggers",
+      "Human-in-the-loop design for steps requiring judgment or compliance review",
+    ],
+    buildOptions: [
+      "MVP implementation on AWS Bedrock: RAG pipeline, agent workflow, or API integration",
+      "Production rollout with CI/CD gates, monitoring, and cost controls",
+      "Post-Diagnostic Execution Retainer for iterative delivery after MVP",
+      "Fractional Head of AI / Transformation for ongoing product governance",
+    ],
+    scoping: [
+      "Discovery call: confirm the opportunity, data access, and build timeline",
+      "Prerequisite check: Pulse completed or equivalent prioritization in hand",
+      "Week 1–2: workflow design sessions, data and integration mapping",
+      "Week 2–3: MVP scope, requirements draft, KPI definition",
+      "Week 3–5: architecture sketch, rollout plan, stakeholder sign-off, handoff to build",
+    ],
+    typicalFollowOn: "Fixed-price build or Post-Diagnostic Execution Retainer to ship the MVP.",
+  },
+  {
+    slug: "delivery-program-setup",
+    codename: "Ridge",
+    name: "Delivery Program Setup",
+    tagline: "Turn intent into a release plan that actually ships.",
+    blurb:
+      "Project charter, milestone plan, RAID log, release checklist, and weekly governance cadence. The unglamorous work that decides whether anything launches on time.",
+    duration: "2–3 weeks",
+    priceRange: "$7,500–$12,500",
+    lead: "Ridge",
+    startsWith:
+      "Your backlog, release history, dependency map, and the reasons last quarter's commitments slipped.",
+    youLeaveWith:
+      "A project charter, milestone plan with owners, RAID log, and a governance cadence your team can run.",
+    whoFor:
+      "Teams shipping platform work where delivery slips, releases are painful, or governance is missing. Engineering leads who need program structure without hiring a full-time TPM.",
+    notFor: [
+      "Teams that need technical architecture decisions — pair with Atlas.",
+      "Organizations wanting staff augmentation instead of program setup.",
+    ],
+    deliverables: [
+      "Project charter: scope, success criteria, stakeholders, and decision rights",
+      "Milestone plan with dependencies, owners, and realistic dates",
+      "RAID log: risks, assumptions, issues, and dependencies tracked from day one",
+      "Release checklist: definition of done, rollback criteria, and sign-off gates",
+      "Weekly governance cadence: standup format, escalation path, and reporting template",
+    ],
+    buildOptions: [
+      "Fractional TPM / Delivery Program Lead retainer to run the program",
+      "Release train setup with CI/CD integration and deployment gates",
+      "Incident response playbook design (TTD / TTN / TTR targets)",
+      "Post-Diagnostic Execution Retainer for roadmap items alongside program governance",
+    ],
+    scoping: [
+      "Discovery call: confirm program scope, team size, and release pain",
+      "Access: backlog, recent sprint/release history, org chart for owners",
+      "Week 1: stakeholder interviews, dependency mapping, pain point catalog",
+      "Week 2: charter draft, milestone plan, RAID log initialization",
+      "Week 2–3: governance design, release checklist, team walkthrough and handoff",
+    ],
+    typicalFollowOn: "Fractional TPM / Delivery Program Lead retainer to run what Ridge sets up.",
+  },
+  {
+    slug: "integrated-transformation-diagnostic",
+    codename: "Integrated",
+    name: "Integrated Transformation Diagnostic",
+    tagline: "The whole picture — architecture, data, infra, security, and AI — in one sequenced plan.",
+    blurb:
+      "Atlas + Pulse + Ridge combined. Full current-state across every dimension that affects whether your next bet ships, then a phased 6–12 month roadmap with named owners and sized risks.",
+    duration: "5–7 weeks",
+    priceRange: "$22,000–$35,000",
+    lead: "Atlas + Pulse + Ridge",
+    flagship: true,
+    startsWith:
+      "Competing initiatives, no shared debt map, and a board asking which bet to fund.",
+    youLeaveWith:
+      "A board-ready summary, named owners, sized risks, and a 6–12 month investment sequence.",
+    whoFor:
+      "Leadership running parallel digital bets with no shared view of technical debt, data trust, or security posture. Boards or investors asking for a defensible funding sequence. Organizations of 10–500 people ready to commit to a phased plan.",
+    notFor: [
+      "Single-domain problems — one of the focused diagnostics is faster and cheaper.",
+      "Teams wanting a build quote before understanding current state.",
+    ],
+    deliverables: [
+      "Current-state across architecture, data, infrastructure, security, operations, and AI readiness",
+      "Executive summary written for the board, not just the engineering team",
+      "Phased 6–12 month roadmap with sequenced spend and dependency order",
+      "Named owners for every initiative in the plan",
+      "Sized risks with mitigation paths and decision triggers",
+      "Delivery program scaffolding: charter, milestones, and governance cadence",
+    ],
+    buildOptions: [
+      "Post-Diagnostic Execution Retainer scoped to the roadmap ($10K–$25K/month)",
+      "ARC Partner Retainer for integrated ongoing partnership ($25K–$40K/month)",
+      "Individual builds scoped from roadmap items: platform, data, AI, security",
+      "Fractional Head of AI / Transformation or Fractional TPM depending on primary gap",
+    ],
+    scoping: [
+      "Discovery call: confirm competing initiatives, stakeholder map, and board timeline",
+      "Access: full system inventory, recent audits or assessments, org chart",
+      "Week 1–2: parallel workstreams — architecture (Atlas), AI readiness (Pulse), delivery assessment (Ridge)",
+      "Week 3–4: cross-domain synthesis, opportunity scoring on four axes",
+      "Week 5–6: roadmap draft, owner assignment, risk sizing",
+      "Week 6–7: board-ready summary, exec readout, retainer scoping if delivery follows",
+    ],
+    typicalFollowOn: "ARC Partner Retainer or Post-Diagnostic Execution Retainer to deliver the roadmap.",
+  },
+];
+
+/** @deprecated Use studioOfferings — kept for any legacy imports */
 export type Service = {
   number: string;
   name: string;
   blurb: string;
   points: string[];
   flagship?: boolean;
+  slug?: string;
 };
 
-export const services: Service[] = [
+export const services: Service[] = studioOfferings.map((o, i) => ({
+  number: String(i + 1).padStart(2, "0"),
+  name: o.name,
+  blurb: o.blurb,
+  points: o.deliverables.slice(0, 4),
+  flagship: o.flagship,
+  slug: o.slug,
+}));
+
+export function getStudioOfferingBySlug(slug: string): StudioOffering | undefined {
+  return studioOfferings.find((o) => o.slug === slug);
+}
+
+// ---------------------------------------------------------------------------
+// Studio retainers — monthly engagement models.
+// ---------------------------------------------------------------------------
+export type Retainer = {
+  slug: string;
+  name: string;
+  bestFit: string;
+  monthlyFee: string;
+  andrewTime: string;
+  primaryAgents: string;
+  flagship?: boolean;
+};
+
+export const retainers: Retainer[] = [
   {
-    number: "01",
-    name: "Growth & Targeting",
-    blurb:
-      "Find the right buyers, screen them honestly, and stand up an outreach system that doesn't burn out leads or your team.",
-    points: [
-      "Target account research and ICP scoring",
-      "Digital maturity screening",
-      "Buyer mapping and outreach system design",
-      "Pipeline setup and ongoing oversight",
-    ],
-  },
-  {
-    number: "02",
-    name: "Technical Due Diligence",
-    blurb:
-      "A clear-eyed read on the system you've built, or the one you're about to buy. Honest, prioritized, and written so an operator can act on it.",
-    points: [
-      "Code and repo review",
-      "Architecture assessment",
-      "Technical-debt evaluation",
-      "Modernization roadmap",
-    ],
-  },
-  {
-    number: "03",
-    name: "Data Health & Analytics Readiness",
-    blurb:
-      "Can you actually trust your reporting? We find where the data breaks down, and what it takes to fix it at the speed your business runs.",
-    points: [
-      "Schema and pipeline audit",
-      "Event-tracking assessment",
-      "Data quality review",
-      "Reporting trust assessment",
-    ],
-  },
-  {
-    number: "04",
-    name: "Cloud, Infra & DevOps Readiness",
-    blurb:
-      "How your platform actually behaves under load, change, and pressure, plus a roadmap that fixes what matters first.",
-    points: [
-      "Cloud current-state assessment",
-      "CI/CD and environment audit",
-      "Observability assessment",
-      "Scalability roadmap",
-    ],
-  },
-  {
-    number: "05",
-    name: "Security Posture Review",
-    blurb:
-      "A practical look at where you're exposed, what to fix first, and what growth will demand. Readiness work, not audit theater.",
-    points: [
-      "Security posture review",
-      "Access and secrets review",
-      "Risk prioritization",
-      "Scale-ready security roadmap",
-    ],
-  },
-  {
-    number: "06",
-    name: "Delivery & Program Structuring",
-    blurb:
-      "Turning intent into a release plan that actually ships. Charters, milestones, dependencies, governance: the unglamorous work that decides whether anything launches.",
-    points: [
-      "Project intake and charter design",
-      "Milestone and dependency planning",
-      "Release readiness",
-      "Delivery governance cadence",
-    ],
-  },
-  {
-    number: "07",
-    name: "AI Readiness & Automation Opportunity Assessment",
-    blurb:
-      "Where AI and automation will actually move the needle, and where they won't. We rank the real opportunities against your team's capability and habits.",
-    points: [
-      "AI readiness audit",
-      "Process opportunity map",
-      "Integration feasibility",
-      "Phased 30/60/90 roadmap",
-    ],
-  },
-  {
-    number: "08",
-    name: "AI Product & Implementation Design",
-    blurb:
-      "Taking an opportunity and turning it into something a team can actually build. Workflow design, human-in-the-loop checkpoints, real KPIs, and a rollout plan that survives contact with reality.",
-    points: [
-      "AI workflow design",
-      "MVP scoping and functional requirements",
-      "Human-in-the-loop design",
-      "KPI framework and rollout plan",
-    ],
-  },
-  {
-    number: "09",
-    name: "Integrated Transformation Diagnostic",
+    slug: "fractional-head-of-ai",
+    name: "Fractional Head of AI / Transformation",
+    bestFit: "No senior AI exec in-house; needs strategy, governance, vendor judgment, and exec reporting.",
+    monthlyFee: "$12,000–$20,000",
+    andrewTime: "30–50 hrs + agent deliverables",
+    primaryAgents: "Pulse, Nova (lead); Atlas, Quill, Sentinel",
     flagship: true,
-    blurb:
-      "The whole picture, in five to seven weeks. Architecture, data, infrastructure, security, operations, and AI together, then a phased 6-12 month roadmap with real owners, sized risks, and sequenced spend.",
-    points: [
-      "Current-state across architecture, data, infra, security, operations, and AI",
-      "Executive summary written for the board, not the team",
-      "Phased roadmap from where you are to where you're going",
-      "Named owners, sized risks, and a sequence of spend that makes sense",
-    ],
   },
+  {
+    slug: "fractional-tpm",
+    name: "Fractional TPM / Delivery Program Lead",
+    bestFit: "Shipping platform work but delivery slips, releases painful, governance missing.",
+    monthlyFee: "$10,000–$18,000",
+    andrewTime: "40–60 hrs + agent deliverables",
+    primaryAgents: "Ridge (lead); Forge",
+  },
+  {
+    slug: "fractional-cloud-advisor",
+    name: "Fractional Cloud / Platform Advisor",
+    bestFit: "Mid-migration, scaling infra, AWS architecture decisions.",
+    monthlyFee: "$8,000–$14,000",
+    andrewTime: "30–40 hrs + agent deliverables",
+    primaryAgents: "Forge, Atlas (lead); Quill, Sentinel",
+  },
+  {
+    slug: "post-diagnostic-execution",
+    name: "Post-Diagnostic Execution Retainer",
+    bestFit: "Natural follow-on after any ARC diagnostic — turn roadmap into delivered work.",
+    monthlyFee: "$10,000–$25,000",
+    andrewTime: "Scoped to roadmap",
+    primaryAgents: "Led by Ridge; agents per roadmap",
+  },
+  {
+    slug: "growth-pipeline",
+    name: "Growth & Pipeline Management",
+    bestFit: "Founders / SMB leaders who want warm pipeline without a sales hire.",
+    monthlyFee: "$3,500–$7,500",
+    andrewTime: "Agent-driven; Andrew oversight + intros",
+    primaryAgents: "Avery + Rowan + Sloan",
+  },
+  {
+    slug: "arc-partner",
+    name: "ARC Partner Retainer (Integrated)",
+    bestFit: "Ongoing transformation partner across strategy, delivery, AI, and pipeline.",
+    monthlyFee: "$25,000–$40,000",
+    andrewTime: "80+ hrs + full agent roster",
+    primaryAgents: "All agents; Andrew as principal",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Hourly rate card — advisory & overage.
+// ---------------------------------------------------------------------------
+export type HourlyRate = {
+  workType: string;
+  rate: string;
+  notes?: string;
+};
+
+export const hourlyRates: HourlyRate[] = [
+  {
+    workType: "AI / Transformation executive advisory",
+    rate: "$350–$400/hr",
+    notes: "C-suite advisory, AI strategy, board prep, executive roadmaps. Andrew's flagship rate.",
+  },
+  {
+    workType: "AI design & implementation (Bedrock, RAG, agentic)",
+    rate: "$325–$375/hr",
+    notes: "Hands-on solution design using Andrew's AWS AI stack.",
+  },
+  {
+    workType: "Fractional TPM / delivery program lead",
+    rate: "$275–$325/hr",
+    notes: "Release governance, dependency management, incident response playbooks (TTD/TTN/TTR).",
+  },
+  {
+    workType: "Cloud / data / security program advisory",
+    rate: "$275–$325/hr",
+    notes: "AWS architecture review, data platform design, GDPR/SOC2/CCPA program work.",
+  },
+  {
+    workType: "Growth, outreach & pipeline oversight",
+    rate: "$175–$225/hr",
+    notes: "Agent-led work with Andrew in review/oversight mode.",
+  },
+];
+
+export const dealRules = [
+  "Rush / same-week turnaround (<5 business days): +25%",
+  "Minimum billable block: 30 minutes",
+  "Monthly invoicing, net-15",
+  "Above ~$6K/month on hourly, convert to a retainer",
+  "Retainers: three-month minimum, then month-to-month with 30-day cancellation",
+  "Scope re-signed monthly; unused hours do not roll over",
 ];
 
 export const stages = [
@@ -798,11 +1176,16 @@ export const principles = [
 ];
 
 export const bestFit = [
-  "Companies, nonprofits, and communities that feel the gap between digital change and real readiness.",
-  "Individuals and teams who want practical help at fixed or hourly rates they can live with.",
-  "Operators who want a working system, not a slide deck.",
+  "Operators in 10–500 person companies, nonprofits, and teams who need a working system, not a slide deck.",
+  "Leaders who want one honest partner across strategy, build, and scale — not a pile of vendors to manage.",
   "Groups ready to put real data, real users, and real effort behind the work.",
-  "Leaders who want one honest partner across strategy, build, and scale, not a pile of vendors to manage.",
+];
+
+export const notAFit = [
+  "You want a large team staffed next week to take over IT.",
+  "You need a logo-driven RFP response more than an honest diagnosis.",
+  "The problem is still \"we should do AI\" with no workflow, owner, or constraint.",
+  "You want us to build whatever was already decided, without scoring it.",
 ];
 
 // ---------------------------------------------------------------------------

@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { FaqList } from "@/components/faq-list";
 import { CTA } from "@/components/cta";
 import {
-  services,
+  studioOfferings,
+  retainers,
+  hourlyRates,
+  dealRules,
   stages,
   principles,
   bestFit,
+  notAFit,
   caseStudies,
   faqs,
 } from "@/lib/content";
@@ -18,7 +22,7 @@ import {
 export const metadata: Metadata = {
   title: "Studio · Advisory & delivery",
   description:
-    "ARC Studio helps companies, nonprofits, individuals, and communities with practical digital transformation. Strategy that aligns. Work that delivers.",
+    "ARC Studio helps companies, nonprofits, and teams figure out what to do — then ship it. Scoped diagnostics, delivery, and retainers grounded in product, project, and CI/CD work.",
 };
 
 export default function StudioPage() {
@@ -26,15 +30,206 @@ export default function StudioPage() {
     <>
       <PageHero
         kicker="ARC Studio"
-        title="Strategy that aligns. Work that delivers."
-        lead="Practical digital transformation for companies, nonprofits, teams, and communities. Data, cloud, cybersecurity, process change, and AI when it fits. Strategy first, then delivery in honest stages. Fixed rates or hourly, scoped to what you need."
+        title="Figure out what to do. Then ship it."
+        lead="Studio is the paid work. A scoped review of two to seven weeks, then delivery if you still need us. Built for companies, nonprofits, and teams of about 10 to 500 people — not a staff-aug army, not a slide factory."
       />
 
       <Section>
         <SectionHeading
+          kicker="How we start"
+          title="Pick the problem, not a package from a menu."
+          lead="Each start has a typical duration, a fixed price range, and a concrete deliverable. Click into any offering to see if it fits, what you receive, and what we can build after."
+        />
+        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {studioOfferings.map((o, i) => (
+            <Link
+              key={o.slug}
+              href={`/studio/${o.slug}`}
+              className={
+                o.flagship
+                  ? "group block h-full lg:col-span-3"
+                  : "group block h-full"
+              }
+            >
+              <Card
+                className={
+                  o.flagship
+                    ? "flex h-full flex-col p-6 ring-1 ring-foreground/15 transition-all hover:border-foreground/20 hover:shadow-sm"
+                    : "flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm"
+                }
+              >
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="font-mono text-sm text-muted-foreground">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="rounded-full border border-border bg-muted px-2 py-0.5 text-xs font-medium">
+                    {o.codename}
+                  </span>
+                  <span className="text-xs text-muted-foreground">
+                    {o.duration}
+                  </span>
+                  {o.flagship ? (
+                    <span className="rounded-full border border-border bg-background px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                      Flagship
+                    </span>
+                  ) : null}
+                </div>
+                <h3 className="mt-3 flex items-center gap-1.5 text-lg font-semibold tracking-tight">
+                  {o.name}
+                  <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {o.blurb}
+                </p>
+                <div className="mt-4 grid gap-3 border-t border-border/60 pt-4 sm:grid-cols-2">
+                  <div>
+                    <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                      Starts with
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                      {o.startsWith}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                      You leave with
+                    </p>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                      {o.youLeaveWith}
+                    </p>
+                  </div>
+                </div>
+                <p className="mt-4 text-sm font-medium text-foreground">
+                  {o.priceRange}
+                </p>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section className="bg-muted/30">
+        <div className="grid gap-8 md:grid-cols-3">
+          <Card className="p-6">
+            <h3 className="text-base font-semibold">A scoped start</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              Most clients begin with a two-to-seven week review. You leave with a
+              plan, owners, and a clear next step — not a longer findings list.
+            </p>
+          </Card>
+          <Card className="p-6">
+            <h3 className="text-base font-semibold">Delivery if you still need us</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              If the plan still needs hands on the work — CI/CD rebuild, data
+              pipeline, MVP implementation, release governance — we stay and ship.
+              Sized from the problem, not from a menu.
+            </p>
+          </Card>
+          <Card className="p-6">
+            <h3 className="text-base font-semibold">A workshop when the room is stuck</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              Sometimes the issue is getting leadership and operators to agree.
+              That is a half-day or two-day{" "}
+              <Link href="/academy" className="underline underline-offset-4">
+                Academy session
+              </Link>
+              , not a six-week diagnostic.
+            </p>
+          </Card>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHeading
+          kicker="Monthly retainers"
+          title="The stay-engaged layer."
+          lead="Every diagnostic that lands well should convert into one. Three-month minimum, then month-to-month with 30-day cancellation."
+        />
+        <div className="mt-12 overflow-x-auto">
+          <table className="w-full min-w-[640px] text-left text-sm">
+            <thead>
+              <tr className="border-b border-border text-xs uppercase tracking-wider text-muted-foreground">
+                <th className="pb-3 pr-4 font-medium">Retainer</th>
+                <th className="pb-3 pr-4 font-medium">Best fit</th>
+                <th className="pb-3 pr-4 font-medium">Monthly</th>
+                <th className="pb-3 font-medium">Andrew time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {retainers.map((r) => (
+                <tr key={r.slug} className="border-b border-border/60">
+                  <td className="py-4 pr-4 align-top font-medium">
+                    {r.name}
+                    {r.flagship ? (
+                      <span className="ml-2 text-xs text-muted-foreground">
+                        · flagship
+                      </span>
+                    ) : null}
+                  </td>
+                  <td className="py-4 pr-4 align-top text-muted-foreground">
+                    {r.bestFit}
+                  </td>
+                  <td className="py-4 pr-4 align-top font-medium whitespace-nowrap">
+                    {r.monthlyFee}
+                  </td>
+                  <td className="py-4 align-top text-muted-foreground">
+                    {r.andrewTime}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
+      <Section className="bg-muted/30">
+        <SectionHeading
+          kicker="Hourly rate card"
+          title="Advisory & overage."
+          lead="For ad-hoc advisory, scope overage, and work that does not fit a fixed package. 30-min minimum block · net-15."
+        />
+        <div className="mt-12 overflow-x-auto">
+          <table className="w-full min-w-[640px] text-left text-sm">
+            <thead>
+              <tr className="border-b border-border text-xs uppercase tracking-wider text-muted-foreground">
+                <th className="pb-3 pr-4 font-medium">Work type</th>
+                <th className="pb-3 pr-4 font-medium">Rate (USD)</th>
+                <th className="pb-3 font-medium">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              {hourlyRates.map((r) => (
+                <tr key={r.workType} className="border-b border-border/60">
+                  <td className="py-4 pr-4 align-top font-medium">{r.workType}</td>
+                  <td className="py-4 pr-4 align-top font-medium whitespace-nowrap">
+                    {r.rate}
+                  </td>
+                  <td className="py-4 align-top text-muted-foreground">
+                    {r.notes}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <ul className="mt-8 space-y-2">
+          {dealRules.map((rule) => (
+            <li
+              key={rule}
+              className="flex items-start gap-2 text-sm text-muted-foreground"
+            >
+              <Check className="mt-0.5 h-3.5 w-3.5 flex-none text-emerald-500" />
+              {rule}
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section>
+        <SectionHeading
           kicker="How we work"
-          title="Five stages. One honest system."
-          lead="Every engagement names where you are, so the work matches the moment instead of the pitch deck."
+          title="Five stages. We always name which one you are in."
+          lead="A near-term fix is not transformation. A vision slide is not next month's release. The stage keeps those from getting mixed up."
         />
         <ol className="mt-12 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
           {stages.map((s) => (
@@ -52,59 +247,11 @@ export default function StudioPage() {
       </Section>
 
       <Section className="bg-muted/30">
-        <SectionHeading
-          kicker="What we do"
-          title="Where we typically start."
-          lead="Nine documented services — from due diligence and security to AI readiness and a full transformation diagnostic. You do not have to teach us how the work works."
-        />
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((s) => (
-            <Card
-              key={s.number}
-              className={
-                s.flagship
-                  ? "flex flex-col p-6 ring-1 ring-foreground/15 lg:col-span-3"
-                  : "flex flex-col p-6"
-              }
-            >
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-sm text-muted-foreground">
-                  {s.number}
-                </span>
-                {s.flagship ? (
-                  <span className="rounded-full border border-border bg-background px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    Flagship
-                  </span>
-                ) : null}
-              </div>
-              <h3 className="mt-3 text-lg font-semibold tracking-tight">
-                {s.name}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {s.blurb}
-              </p>
-              <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-                {s.points.map((pt) => (
-                  <li
-                    key={pt}
-                    className="flex items-start gap-2 text-sm text-muted-foreground"
-                  >
-                    <Check className="mt-0.5 h-3.5 w-3.5 flex-none text-emerald-500" />
-                    {pt}
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      <Section>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
-            kicker="How the work looks"
-            title="Engagement shapes, not fiction."
-            lead="Until clients approve named case studies, we publish composite examples of how ARC engagements typically run — the method, not invented client results."
+            kicker="Work"
+            title="What shipped, and what it was worth."
+            lead="Programs Andrew ran in Fortune 100/500 environments, plus ARC Studio. Where confidentiality applies, we name the scale instead of the logo."
           />
           <Link
             href="/work"
@@ -146,11 +293,11 @@ export default function StudioPage() {
         </div>
       </Section>
 
-      <Section className="bg-muted/30">
+      <Section>
         <SectionHeading
-          kicker="How we think about the work"
+          kicker="How we think"
           title="The rules we hold ourselves to."
-          lead="Every recommendation has to pass these. If a piece of work does not, we do not ship it. We will usually call that out before you do."
+          lead="If a recommendation cannot pass these, we do not ship it. We will usually say so before you have to."
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {principles.map((p) => (
@@ -175,27 +322,44 @@ export default function StudioPage() {
         </figure>
       </Section>
 
-      <Section>
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-start">
-          <SectionHeading kicker="Fit" title="Who we work best with" />
-          <ul className="grid gap-4">
-            {bestFit.map((b) => (
-              <li key={b} className="flex items-start gap-3">
-                <Check className="mt-1 h-4 w-4 flex-none text-emerald-500" />
-                <span className="text-base leading-relaxed text-muted-foreground">
-                  {b}
-                </span>
-              </li>
-            ))}
-          </ul>
+      <Section className="bg-muted/30">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+          <div>
+            <SectionHeading kicker="Fit" title="Who we work best with" />
+            <ul className="mt-8 grid gap-4">
+              {bestFit.map((b) => (
+                <li key={b} className="flex items-start gap-3">
+                  <Check className="mt-1 h-4 w-4 flex-none text-emerald-500" />
+                  <span className="text-base leading-relaxed text-muted-foreground">
+                    {b}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <SectionHeading kicker="Not a fit" title="When to look elsewhere" />
+            <ul className="mt-8 grid gap-4">
+              {notAFit.map((b) => (
+                <li key={b} className="flex items-start gap-3">
+                  <span className="mt-1 h-4 w-4 flex-none text-center text-sm text-muted-foreground">
+                    —
+                  </span>
+                  <span className="text-base leading-relaxed text-muted-foreground">
+                    {b}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </Section>
 
-      <Section className="bg-muted/30">
+      <Section>
         <SectionHeading
           kicker="FAQ"
-          title="Before the discovery call."
-          lead="If the answer is not here, ask it on the call. That is what the thirty minutes are for."
+          title="Before the call."
+          lead="If it is not here, ask it on the call. That is what the thirty minutes are for."
         />
         <div className="mt-10 max-w-3xl">
           <FaqList items={faqs} />
@@ -203,8 +367,8 @@ export default function StudioPage() {
       </Section>
 
       <CTA
-        title="Let's see if Studio is the right next step."
-        lead="A 30-minute discovery call. No pitch deck. We'll listen, ask the hard questions, and tell you whether a diagnostic, a narrower review, or something else entirely is the honest first move."
+        title="Want this standard of work on your problem?"
+        lead="Most Studio work starts with a diagnostic. A 30-minute call is enough to tell you whether that is the right first step, and what size of engagement the problem actually needs."
       />
     </>
   );

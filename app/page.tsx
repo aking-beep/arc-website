@@ -12,7 +12,7 @@ import {
   principles,
   labs,
   research,
-  services,
+  studioOfferings,
   site,
 } from "@/lib/content";
 
@@ -34,8 +34,8 @@ const doings = [
 
 export default function HomePage() {
   const featuredLabs = labs.filter((p) => p.featured);
-  const featuredServices = services.filter(
-    (s) => s.flagship || ["02", "05"].includes(s.number),
+  const featuredServices = studioOfferings.filter(
+    (s) => s.flagship || ["technical-architecture-review", "security-compliance-posture"].includes(s.slug),
   );
   const featuredResearch = research.slice(0, 3);
 
@@ -130,27 +130,27 @@ export default function HomePage() {
             href="/studio"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
           >
-            All nine services
+            All Studio offerings
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
         <div className="mt-12 grid gap-5 md:grid-cols-2">
           {featuredServices.map((s) => (
             <Link
-              key={s.number}
-              href="/studio"
+              key={s.slug}
+              href={`/studio/${s.slug}`}
               className={s.flagship ? "group block h-full md:col-span-2" : "group block h-full"}
             >
               <Card
                 className={
                   s.flagship
-                    ? "flex h-full flex-col p-6 ring-1 ring-foreground/15 md:col-span-2"
+                    ? "flex h-full flex-col p-6 ring-1 ring-foreground/15 md:col-span-2 transition-all hover:border-foreground/20 hover:shadow-sm"
                     : "flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm"
                 }
               >
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-sm text-muted-foreground">
-                    {s.number}
+                  <span className="rounded-full border border-border bg-muted px-2 py-0.5 text-xs font-medium">
+                    {s.codename}
                   </span>
                   {s.flagship ? (
                     <span className="rounded-full border border-border bg-background px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-muted-foreground">
