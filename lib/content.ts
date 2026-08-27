@@ -666,7 +666,6 @@ export type StudioOffering = {
   tagline: string;
   blurb: string;
   duration: string;
-  priceRange: string;
   lead: string;
   flagship?: boolean;
   startsWith: string;
@@ -688,7 +687,6 @@ export const studioOfferings: StudioOffering[] = [
     blurb:
       "Capability, Intent, Teams, and Habits scored against your real workflows. You leave knowing which bet to fund, which to defer, and what has to change before anything ships.",
     duration: "3–4 weeks",
-    priceRange: "$9,500–$14,500",
     lead: "Pulse",
     startsWith:
       "Real processes, real data access, and the people who would have to run whatever gets built.",
@@ -730,7 +728,6 @@ export const studioOfferings: StudioOffering[] = [
     blurb:
       "Program-level review of how your platform is built, where debt concentrates, and what to modernize first. Written for operators and boards, not architects performing for each other.",
     duration: "3–4 weeks",
-    priceRange: "$8,500–$13,500",
     lead: "Atlas",
     startsWith:
       "Code, architecture diagrams, deployment history, and the operating constraints you actually have — not a whiteboard fantasy.",
@@ -772,7 +769,6 @@ export const studioOfferings: StudioOffering[] = [
     blurb:
       "Cloud posture, CI/CD audit, observability gaps, and scalability recommendations. Grounded in how your team actually deploys, not how a reference architecture says they should.",
     duration: "2–3 weeks",
-    priceRange: "$6,500–$10,500",
     lead: "Forge",
     startsWith:
       "Your pipelines, environments, deployment frequency, and the incidents that keep repeating.",
@@ -814,7 +810,6 @@ export const studioOfferings: StudioOffering[] = [
     blurb:
       "Data flow map, schema audit, quality scoring, and a remediation roadmap. The goal is a reporting workflow your team can run without a heroic analyst.",
     duration: "2–3 weeks",
-    priceRange: "$6,500–$10,500",
     lead: "Quill",
     startsWith:
       "The reports leadership already uses — and the spreadsheets they actually trust when those reports are wrong.",
@@ -856,7 +851,6 @@ export const studioOfferings: StudioOffering[] = [
     blurb:
       "Risk matrix, access and secrets review, remediation roadmap, and SOC 2 / GDPR / CCPA readiness notes. Readiness work that tells you what to fix first, not audit theater.",
     duration: "2–3 weeks",
-    priceRange: "$6,500–$12,500",
     lead: "Sentinel",
     startsWith:
       "Access controls, secrets management, logging, and the systems that actually hold the crown jewels.",
@@ -898,7 +892,6 @@ export const studioOfferings: StudioOffering[] = [
     blurb:
       "Workflow design, MVP scope, functional requirements, KPI framework, and rollout plan. The output is a build-ready package — not a proof-of-concept that dies in a slide deck.",
     duration: "3–5 weeks",
-    priceRange: "$12,000–$22,000",
     lead: "Nova",
     startsWith:
       "One scored opportunity from Pulse (or your own prioritization) with a named owner and real data access.",
@@ -941,7 +934,6 @@ export const studioOfferings: StudioOffering[] = [
     blurb:
       "Project charter, milestone plan, RAID log, release checklist, and weekly governance cadence. The unglamorous work that decides whether anything launches on time.",
     duration: "2–3 weeks",
-    priceRange: "$7,500–$12,500",
     lead: "Ridge",
     startsWith:
       "Your backlog, release history, dependency map, and the reasons last quarter's commitments slipped.",
@@ -983,7 +975,6 @@ export const studioOfferings: StudioOffering[] = [
     blurb:
       "Atlas + Pulse + Ridge combined. Full current-state across every dimension that affects whether your next bet ships, then a phased 6–12 month roadmap with named owners and sized risks.",
     duration: "5–7 weeks",
-    priceRange: "$22,000–$35,000",
     lead: "Atlas + Pulse + Ridge",
     flagship: true,
     startsWith:
@@ -1005,8 +996,8 @@ export const studioOfferings: StudioOffering[] = [
       "Delivery program scaffolding: charter, milestones, and governance cadence",
     ],
     buildOptions: [
-      "Post-Diagnostic Execution Retainer scoped to the roadmap ($10K–$25K/month)",
-      "ARC Partner Retainer for integrated ongoing partnership ($25K–$40K/month)",
+      "Post-Diagnostic Execution Retainer scoped to the roadmap",
+      "ARC Partner Retainer for integrated ongoing partnership",
       "Individual builds scoped from roadmap items: platform, data, AI, security",
       "Fractional Head of AI / Transformation or Fractional TPM depending on primary gap",
     ],
@@ -1052,7 +1043,6 @@ export type Retainer = {
   slug: string;
   name: string;
   bestFit: string;
-  monthlyFee: string;
   andrewTime: string;
   primaryAgents: string;
   flagship?: boolean;
@@ -1063,7 +1053,6 @@ export const retainers: Retainer[] = [
     slug: "fractional-head-of-ai",
     name: "Fractional Head of AI / Transformation",
     bestFit: "No senior AI exec in-house; needs strategy, governance, vendor judgment, and exec reporting.",
-    monthlyFee: "$12,000–$20,000",
     andrewTime: "30–50 hrs + agent deliverables",
     primaryAgents: "Pulse, Nova (lead); Atlas, Quill, Sentinel",
     flagship: true,
@@ -1072,7 +1061,6 @@ export const retainers: Retainer[] = [
     slug: "fractional-tpm",
     name: "Fractional TPM / Delivery Program Lead",
     bestFit: "Shipping platform work but delivery slips, releases painful, governance missing.",
-    monthlyFee: "$10,000–$18,000",
     andrewTime: "40–60 hrs + agent deliverables",
     primaryAgents: "Ridge (lead); Forge",
   },
@@ -1080,7 +1068,6 @@ export const retainers: Retainer[] = [
     slug: "fractional-cloud-advisor",
     name: "Fractional Cloud / Platform Advisor",
     bestFit: "Mid-migration, scaling infra, AWS architecture decisions.",
-    monthlyFee: "$8,000–$14,000",
     andrewTime: "30–40 hrs + agent deliverables",
     primaryAgents: "Forge, Atlas (lead); Quill, Sentinel",
   },
@@ -1088,7 +1075,6 @@ export const retainers: Retainer[] = [
     slug: "post-diagnostic-execution",
     name: "Post-Diagnostic Execution Retainer",
     bestFit: "Natural follow-on after any ARC diagnostic — turn roadmap into delivered work.",
-    monthlyFee: "$10,000–$25,000",
     andrewTime: "Scoped to roadmap",
     primaryAgents: "Led by Ridge; agents per roadmap",
   },
@@ -1096,7 +1082,6 @@ export const retainers: Retainer[] = [
     slug: "growth-pipeline",
     name: "Growth & Pipeline Management",
     bestFit: "Founders / SMB leaders who want warm pipeline without a sales hire.",
-    monthlyFee: "$3,500–$7,500",
     andrewTime: "Agent-driven; Andrew oversight + intros",
     primaryAgents: "Avery + Rowan + Sloan",
   },
@@ -1104,56 +1089,9 @@ export const retainers: Retainer[] = [
     slug: "arc-partner",
     name: "ARC Partner Retainer (Integrated)",
     bestFit: "Ongoing transformation partner across strategy, delivery, AI, and pipeline.",
-    monthlyFee: "$25,000–$40,000",
     andrewTime: "80+ hrs + full agent roster",
     primaryAgents: "All agents; Andrew as principal",
   },
-];
-
-// ---------------------------------------------------------------------------
-// Hourly rate card — advisory & overage.
-// ---------------------------------------------------------------------------
-export type HourlyRate = {
-  workType: string;
-  rate: string;
-  notes?: string;
-};
-
-export const hourlyRates: HourlyRate[] = [
-  {
-    workType: "AI / Transformation executive advisory",
-    rate: "$350–$400/hr",
-    notes: "C-suite advisory, AI strategy, board prep, executive roadmaps. Andrew's flagship rate.",
-  },
-  {
-    workType: "AI design & implementation (Bedrock, RAG, agentic)",
-    rate: "$325–$375/hr",
-    notes: "Hands-on solution design using Andrew's AWS AI stack.",
-  },
-  {
-    workType: "Fractional TPM / delivery program lead",
-    rate: "$275–$325/hr",
-    notes: "Release governance, dependency management, incident response playbooks (TTD/TTN/TTR).",
-  },
-  {
-    workType: "Cloud / data / security program advisory",
-    rate: "$275–$325/hr",
-    notes: "AWS architecture review, data platform design, GDPR/SOC2/CCPA program work.",
-  },
-  {
-    workType: "Growth, outreach & pipeline oversight",
-    rate: "$175–$225/hr",
-    notes: "Agent-led work with Andrew in review/oversight mode.",
-  },
-];
-
-export const dealRules = [
-  "Rush / same-week turnaround (<5 business days): +25%",
-  "Minimum billable block: 30 minutes",
-  "Monthly invoicing, net-15",
-  "Above ~$6K/month on hourly, convert to a retainer",
-  "Retainers: three-month minimum, then month-to-month with 30-day cancellation",
-  "Scope re-signed monthly; unused hours do not roll over",
 ];
 
 export const stages = [

@@ -49,7 +49,6 @@ export default function StudioOfferingPage({
               {offering.codename}
             </span>
             <span>{offering.duration}</span>
-            <span>{offering.priceRange}</span>
             {offering.flagship ? (
               <span className="rounded-full border border-border bg-background px-2.5 py-0.5 font-medium uppercase tracking-wider">
                 Flagship

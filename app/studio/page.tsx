@@ -9,8 +9,6 @@ import { CTA } from "@/components/cta";
 import {
   studioOfferings,
   retainers,
-  hourlyRates,
-  dealRules,
   stages,
   principles,
   bestFit,
@@ -39,7 +37,7 @@ export default function StudioPage() {
         <SectionHeading
           kicker="How we start"
           title="Pick the problem, not a package from a menu."
-          lead="Each start has a typical duration, a fixed price range, and a concrete deliverable. Click into any offering to see if it fits, what you receive, and what we can build after."
+          lead="Each start has a typical duration and a concrete deliverable. Click into any offering to see if it fits, what you receive, and what we can build after."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {studioOfferings.map((o, i) => (
@@ -100,9 +98,6 @@ export default function StudioPage() {
                     </p>
                   </div>
                 </div>
-                <p className="mt-4 text-sm font-medium text-foreground">
-                  {o.priceRange}
-                </p>
               </Card>
             </Link>
           ))}
@@ -131,7 +126,6 @@ export default function StudioPage() {
               <tr className="border-b border-border text-xs uppercase tracking-wider text-muted-foreground">
                 <th className="pb-3 pr-4 font-medium">Retainer</th>
                 <th className="pb-3 pr-4 font-medium">Best fit</th>
-                <th className="pb-3 pr-4 font-medium">Monthly</th>
                 <th className="pb-3 font-medium">Andrew time</th>
               </tr>
             </thead>
@@ -149,9 +143,6 @@ export default function StudioPage() {
                   <td className="py-4 pr-4 align-top text-muted-foreground">
                     {r.bestFit}
                   </td>
-                  <td className="py-4 pr-4 align-top font-medium whitespace-nowrap">
-                    {r.monthlyFee}
-                  </td>
                   <td className="py-4 align-top text-muted-foreground">
                     {r.andrewTime}
                   </td>
@@ -160,49 +151,6 @@ export default function StudioPage() {
             </tbody>
           </table>
         </div>
-      </Section>
-
-      <Section className="bg-muted/30">
-        <SectionHeading
-          kicker="Hourly rate card"
-          title="Advisory & overage."
-          lead="For ad-hoc advisory, scope overage, and work that does not fit a fixed package. 30-min minimum block · net-15."
-        />
-        <div className="mt-12 overflow-x-auto">
-          <table className="w-full min-w-[640px] text-left text-sm">
-            <thead>
-              <tr className="border-b border-border text-xs uppercase tracking-wider text-muted-foreground">
-                <th className="pb-3 pr-4 font-medium">Work type</th>
-                <th className="pb-3 pr-4 font-medium">Rate (USD)</th>
-                <th className="pb-3 font-medium">Notes</th>
-              </tr>
-            </thead>
-            <tbody>
-              {hourlyRates.map((r) => (
-                <tr key={r.workType} className="border-b border-border/60">
-                  <td className="py-4 pr-4 align-top font-medium">{r.workType}</td>
-                  <td className="py-4 pr-4 align-top font-medium whitespace-nowrap">
-                    {r.rate}
-                  </td>
-                  <td className="py-4 align-top text-muted-foreground">
-                    {r.notes}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <ul className="mt-8 space-y-2">
-          {dealRules.map((rule) => (
-            <li
-              key={rule}
-              className="flex items-start gap-2 text-sm text-muted-foreground"
-            >
-              <Check className="mt-0.5 h-3.5 w-3.5 flex-none text-emerald-500" />
-              {rule}
-            </li>
-          ))}
-        </ul>
       </Section>
 
       <Section>
