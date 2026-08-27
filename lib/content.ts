@@ -23,10 +23,10 @@ export const site = {
   founder: {
     name: "Andrew King",
     role: "Founder",
-    bio: "Andrew spent twenty years delivering technology programs inside Fortune 100 and Fortune 500 companies: cybersecurity product lines, live-entertainment platforms, consumer brands, and customer-data architecture. On one security release program he coordinated 300+ features, improved release value by 25%, and contributed more than $8M in annual sales impact. He also designed CDP work at tens of millions of profiles, including Ticketmaster-scale delivery, and ran brand programs with LEGO and the NFL. He started ARC so mid-size organizations can get that same standard of work without a Fortune 500 budget or a 40-person consulting team.",
+    bio: "Andrew spent twenty years delivering technology programs inside Fortune 100 and Fortune 500 companies: cybersecurity product lines, live-entertainment platforms, consumer brands, and customer-data architecture. On one security release program he coordinated 300+ features, improved release value by 25%, and tied release investment to measurable sales impact. He also designed CDP work at tens of millions of profiles, including Ticketmaster-scale delivery, and ran brand programs with LEGO and the NFL. He started ARC so mid-size organizations can get that same standard of work without a 40-person consulting team.",
     highlights: [
       "Twenty years delivering technology programs in Fortune 100 and Fortune 500 environments",
-      "Enterprise cybersecurity: 300+ features coordinated, 25% improvement in release value, $8M+ annual sales impact",
+      "Enterprise cybersecurity: 300+ features coordinated, 25% improvement in release value, sales-linked program impact",
       "Customer-data platforms at tens of millions of profiles, including Ticketmaster-scale live-entertainment delivery",
       "Brand and consumer programs with LEGO and the NFL",
       "Process, data, cloud, and security first. AI only when it moves a real number.",
@@ -36,7 +36,7 @@ export const site = {
       { metric: "20 yrs", label: "Fortune 100 / 500 technology delivery" },
       { metric: "300+", label: "Features coordinated in cybersecurity" },
       { metric: "25%", label: "Release-value improvement" },
-      { metric: "$8M+", label: "Annual sales impact from that program" },
+      { metric: "Sales-linked", label: "Program tied to revenue" },
       { metric: "10M+", label: "Customer profiles at CDP scale" },
       { metric: "LEGO · NFL", label: "Brand and consumer programs" },
     ],
@@ -777,7 +777,7 @@ export const studioOfferings: StudioOffering[] = [
     whoFor:
       "Platform and DevOps leads where releases are painful, environments drift, or nobody trusts the monitoring. Teams mid-migration who need an honest read before committing to the next phase.",
     notFor: [
-      "Full cloud migration execution — this scopes it; a retainer or fixed build delivers it.",
+      "Full cloud migration execution — this scopes it; a retainer or scoped build delivers it.",
       "Security compliance certification — pair with Sentinel for that lens.",
     ],
     deliverables: [
@@ -924,7 +924,7 @@ export const studioOfferings: StudioOffering[] = [
       "Week 2–3: MVP scope, requirements draft, KPI definition",
       "Week 3–5: architecture sketch, rollout plan, stakeholder sign-off, handoff to build",
     ],
-    typicalFollowOn: "Fixed-price build or Post-Diagnostic Execution Retainer to ship the MVP.",
+    typicalFollowOn: "Scoped build or Post-Diagnostic Execution Retainer to ship the MVP.",
   },
   {
     slug: "delivery-program-setup",
@@ -1373,7 +1373,7 @@ export const caseStudies: CaseStudy[] = [
     outcomes: [
       { metric: "300+", label: "Features coordinated" },
       { metric: "25%", label: "Improvement in release value" },
-      { metric: "$8M+", label: "Annual sales impact" },
+      { metric: "Sales-linked", label: "Program tied to revenue" },
     ],
   },
   {

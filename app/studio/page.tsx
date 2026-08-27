@@ -116,15 +116,15 @@ export default function StudioPage() {
 
       <Section>
         <SectionHeading
-          kicker="Monthly retainers"
+          kicker="Ongoing engagement"
           title="The stay-engaged layer."
-          lead="Every diagnostic that lands well should convert into one. Three-month minimum, then month-to-month with 30-day cancellation."
+          lead="Every diagnostic that lands well should convert into ongoing work. Three-month minimum, then month-to-month with 30-day cancellation."
         />
         <div className="mt-12 overflow-x-auto">
           <table className="w-full min-w-[640px] text-left text-sm">
             <thead>
               <tr className="border-b border-border text-xs uppercase tracking-wider text-muted-foreground">
-                <th className="pb-3 pr-4 font-medium">Retainer</th>
+                <th className="pb-3 pr-4 font-medium">Engagement</th>
                 <th className="pb-3 pr-4 font-medium">Best fit</th>
                 <th className="pb-3 font-medium">Andrew time</th>
               </tr>
