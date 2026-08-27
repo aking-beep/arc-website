@@ -8,9 +8,9 @@ import { CTA } from "@/components/cta";
 import { caseStudies } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Work · How engagements look",
+  title: "Work · Programs that shipped",
   description:
-    "Composite examples of how ARC Studio engagements typically run. Named client case studies appear here when clients approve publication.",
+    "Work from Fortune 100/500 programs Andrew ran, plus ARC Studio. Where we cannot name the client, we name the scale.",
 };
 
 export default function WorkPage() {
@@ -18,15 +18,15 @@ export default function WorkPage() {
     <>
       <PageHero
         kicker="Work"
-        title="How the work typically looks."
-        lead="These are composite engagement shapes — the method, timeline, and artifacts — not named-client results. We will publish attributed case studies when clients allow it."
+        title="Work from programs that shipped."
+        lead="Problem, what we did, what came out of it, how long it took. Where we cannot name the client, we name the scale."
       />
 
       <Section>
         <SectionHeading
-          kicker="Examples"
-          title="Engagement patterns"
-          lead="Use these to see how a diagnostic or Labs-plus-Studio loop is structured before you book a call."
+          kicker="Evidence"
+          title="Four pieces of work."
+          lead="Three from Fortune 100/500 programs Andrew ran. One from ARC Studio. Client names withheld where required."
         />
         <div className="mt-12 grid gap-5">
           {caseStudies.map((study) => (
@@ -39,9 +39,10 @@ export default function WorkPage() {
                 <div className="max-w-2xl">
                   <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
                     <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
-                      {study.kind === "composite" ? "Composite example" : "Case study"}
+                      {study.kind === "career" ? "Prior delivery" : "ARC Studio"}
                     </span>
                     <span>{study.industry}</span>
+                    <span>· {study.timeframe}</span>
                   </div>
                   <p className="mt-3 text-xs font-medium uppercase tracking-widest text-muted-foreground">
                     {study.client}
@@ -55,7 +56,7 @@ export default function WorkPage() {
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-4 sm:flex-col sm:items-end">
-                  {study.outcomes.slice(0, 2).map((o) => (
+                  {study.outcomes.slice(0, 3).map((o) => (
                     <div key={o.label} className="text-left sm:text-right">
                       <div className="text-xl font-semibold tracking-tight">
                         {o.metric}
@@ -70,10 +71,7 @@ export default function WorkPage() {
         </div>
       </Section>
 
-      <CTA
-        title="Want a diagnostic for your organization?"
-        lead="Most Studio work starts with a fixed-rate diagnostic. A 30-minute call is enough to tell you whether that is the right first step."
-      />
+      <CTA />
     </>
   );
 }

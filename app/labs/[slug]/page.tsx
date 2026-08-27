@@ -184,13 +184,13 @@ export default function ProductPage({
       <CTA
         title={
           isCatalog
-            ? "Want these adapted to your workflows?"
-            : "Want a human read on what this finds?"
+            ? "Want these adapted to how you actually work?"
+            : "Need a human to read this report?"
         }
         lead={
           isCatalog
-            ? "ARC Studio can help you pick, wire, and govern the pieces that match how your team actually works. Start with a 30-minute call."
-            : "ARC Studio turns scanner output into a prioritized plan with owners — not a longer findings list. Book a 30-minute call."
+            ? "Studio can help you pick, wire, and govern the pieces that match your team. Thirty minutes to see if that's useful."
+            : "The report is the start. Studio turns findings into a plan with owners. Thirty minutes to see if that's worth it."
         }
       />
     </>

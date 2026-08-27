@@ -15,6 +15,7 @@ import {
   principles,
   bestFit,
   notAFit,
+  howWeEngage,
   caseStudies,
   faqs,
 } from "@/lib/content";
@@ -34,7 +35,7 @@ export default function StudioPage() {
         lead="Studio is the paid work. A scoped review of two to seven weeks, then delivery if you still need us. Built for companies, nonprofits, and teams of about 10 to 500 people — not a staff-aug army, not a slide factory."
       />
 
-      <Section>
+      <Section id="offers" className="scroll-mt-24 bg-muted/30">
         <SectionHeading
           kicker="How we start"
           title="Pick the problem, not a package from a menu."
@@ -106,36 +107,15 @@ export default function StudioPage() {
             </Link>
           ))}
         </div>
-      </Section>
-
-      <Section className="bg-muted/30">
-        <div className="grid gap-8 md:grid-cols-3">
-          <Card className="p-6">
-            <h3 className="text-base font-semibold">A scoped start</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Most clients begin with a two-to-seven week review. You leave with a
-              plan, owners, and a clear next step — not a longer findings list.
-            </p>
-          </Card>
-          <Card className="p-6">
-            <h3 className="text-base font-semibold">Delivery if you still need us</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              If the plan still needs hands on the work — CI/CD rebuild, data
-              pipeline, MVP implementation, release governance — we stay and ship.
-              Sized from the problem, not from a menu.
-            </p>
-          </Card>
-          <Card className="p-6">
-            <h3 className="text-base font-semibold">A workshop when the room is stuck</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Sometimes the issue is getting leadership and operators to agree.
-              That is a half-day or two-day{" "}
-              <Link href="/academy" className="underline underline-offset-4">
-                Academy session
-              </Link>
-              , not a six-week diagnostic.
-            </p>
-          </Card>
+        <div className="mt-10 grid gap-4 sm:grid-cols-3">
+          {howWeEngage.map((item) => (
+            <div key={item.name} className="rounded-lg border border-border bg-card p-5">
+              <h3 className="text-sm font-semibold">{item.name}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {item.text}
+              </p>
+            </div>
+          ))}
         </div>
       </Section>
 
@@ -228,7 +208,7 @@ export default function StudioPage() {
       <Section>
         <SectionHeading
           kicker="How we work"
-          title="Five stages. We always name which one you are in."
+          title="Five stages. We always name which one you're in."
           lead="A near-term fix is not transformation. A vision slide is not next month's release. The stage keeps those from getting mixed up."
         />
         <ol className="mt-12 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
@@ -257,7 +237,7 @@ export default function StudioPage() {
             href="/work"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
           >
-            See engagement examples
+            See the work
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -267,7 +247,7 @@ export default function StudioPage() {
               <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
                 <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
                   <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
-                    {study.kind === "composite" ? "Composite example" : "Case study"}
+                    {study.kind === "career" ? "Prior delivery" : "ARC Studio"}
                   </span>
                   <span>{study.industry}</span>
                 </div>
@@ -323,7 +303,7 @@ export default function StudioPage() {
       </Section>
 
       <Section className="bg-muted/30">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+        <div className="grid gap-12 lg:grid-cols-2">
           <div>
             <SectionHeading kicker="Fit" title="Who we work best with" />
             <ul className="mt-8 grid gap-4">
@@ -341,13 +321,8 @@ export default function StudioPage() {
             <SectionHeading kicker="Not a fit" title="When to look elsewhere" />
             <ul className="mt-8 grid gap-4">
               {notAFit.map((b) => (
-                <li key={b} className="flex items-start gap-3">
-                  <span className="mt-1 h-4 w-4 flex-none text-center text-sm text-muted-foreground">
-                    —
-                  </span>
-                  <span className="text-base leading-relaxed text-muted-foreground">
-                    {b}
-                  </span>
+                <li key={b} className="text-base leading-relaxed text-muted-foreground">
+                  {b}
                 </li>
               ))}
             </ul>

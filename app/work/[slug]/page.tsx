@@ -17,8 +17,15 @@ export function generateMetadata({
 }): Metadata {
   const study = caseStudies.find((c) => c.slug === params.slug);
   if (!study) return {};
-  return { title: `${study.title} · Case study`, description: study.summary };
+  return { title: `${study.title} · Work`, description: study.summary };
 }
+
+const steps = [
+  { key: "problem", label: "Problem" },
+  { key: "intervention", label: "Intervention" },
+  { key: "deliverable", label: "Deliverable" },
+  { key: "timeframe", label: "Timeframe" },
+] as const;
 
 export default function CaseStudyPage({
   params,
@@ -31,17 +38,17 @@ export default function CaseStudyPage({
   return (
     <>
       <Container className="py-16 sm:py-20">
-          <Link
-            href="/work"
-            className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Work
-          </Link>
+        <Link
+          href="/work"
+          className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Work
+        </Link>
         <div className="max-w-3xl">
           <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
             <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
-              {study.kind === "composite" ? "Composite example" : "Case study"}
+              {study.kind === "career" ? "Prior delivery" : "ARC Studio"}
             </span>
             <span>{study.industry}</span>
           </div>
@@ -56,7 +63,6 @@ export default function CaseStudyPage({
           </p>
         </div>
 
-        {/* Outcomes */}
         <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-3">
           {study.outcomes.map((o) => (
             <div key={o.label} className="bg-card p-6">
@@ -70,7 +76,23 @@ export default function CaseStudyPage({
       </Container>
 
       <Section className="!border-t-0 !pt-0">
-        <div className="grid gap-12 lg:grid-cols-2">
+        <div className="grid gap-8 lg:grid-cols-2">
+          {steps.map((step) => (
+            <div
+              key={step.key}
+              className="rounded-xl border border-border bg-card p-6"
+            >
+              <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                {step.label}
+              </p>
+              <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+                {study[step.key]}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-16 grid gap-12 lg:grid-cols-2">
           <div>
             <h2 className="text-2xl font-semibold tracking-tight">The challenge</h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground">
@@ -78,7 +100,7 @@ export default function CaseStudyPage({
             </p>
           </div>
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight">Our approach</h2>
+            <h2 className="text-2xl font-semibold tracking-tight">What we did</h2>
             <ul className="mt-4 space-y-3">
               {study.approach.map((a) => (
                 <li key={a} className="flex items-start gap-3">
@@ -96,7 +118,7 @@ export default function CaseStudyPage({
       </Section>
 
       <CTA
-        title="Want this shape of engagement?"
+        title="Want this standard of work on your problem?"
         lead="We'll tell you on a 30-minute call whether a diagnostic, a narrower review, or a workshop is the right first step — including if the answer is none of those."
       />
     </>

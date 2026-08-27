@@ -13,6 +13,16 @@ const nextConfig = {
         destination: "/",
         permanent: false,
       },
+      {
+        source: "/work/sample-transformation-diagnostic",
+        destination: "/work/transformation-diagnostic",
+        permanent: true,
+      },
+      {
+        source: "/work/mcp-readiness-for-ops",
+        destination: "/work",
+        permanent: true,
+      },
     ];
   },
 };

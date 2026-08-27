@@ -26,15 +26,15 @@ export default function ResearchPage() {
     <>
       <PageHero
         kicker="ARC Research"
-        title="Research you can verify."
-        lead="Six grounded briefs across AI development, security, operations, cloud, digital transformation, and product. Plain language, cited sources, operator outcomes. If we cannot source a claim, we say so."
+        title="Research from the work, with sources."
+        lead="Short papers on AI, security, operations, cloud, transformation, and product. If we cannot source a claim, we leave it out."
       />
 
       <Section>
         <SectionHeading
           kicker="Library"
-          title="Research briefs"
-          lead="Each paper includes academic background, evidence, operator outcomes, limitations, and a citation list with links to primary sources."
+          title="The library."
+          lead="Each paper has evidence, what an operator should do with it, where the argument is weak, and links to the sources."
         />
         <div className="mt-12 grid gap-5">
           {research.map((a) => (
@@ -67,8 +67,8 @@ export default function ResearchPage() {
       </Section>
 
       <CTA
-        title="Want these findings applied to your stack?"
-        lead="Studio can turn a research brief into a scored plan for your environment — what to do first, what to ignore, and who owns it. Book a 30-minute call."
+        title="Want this applied to your stack?"
+        lead="Studio can take a paper and score it against your environment: what to do first, what to ignore, who owns it."
       />
     </>
   );
