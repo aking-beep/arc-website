@@ -60,13 +60,6 @@ const jsonLd = {
   email: site.email,
   description: site.description,
   sameAs: [site.github, site.linkedin, site.calendly],
-  founder: {
-    "@type": "Person",
-    name: site.founder.name,
-    jobTitle: site.founder.role,
-    email: site.email,
-    sameAs: [site.linkedin, site.github],
-  },
 };
 
 export default function RootLayout({

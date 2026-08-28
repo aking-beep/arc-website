@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Calendar, Linkedin, Mail } from "lucide-react";
+import { Calendar, Mail } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
@@ -11,7 +11,7 @@ import { digitalTransformation, faqs, pillars, site } from "@/lib/content";
 export const metadata: Metadata = {
   title: "About & contact",
   description:
-    "Andrew King founded ARC to bring Fortune 100/500 delivery standards to 10–500 person companies, nonprofits, and teams.",
+    "ARC brings Fortune 100/500 delivery standards to 10–500 person companies, nonprofits, and teams.",
 };
 
 export default function AboutPage() {
@@ -20,25 +20,25 @@ export default function AboutPage() {
       <PageHero
         kicker="About"
         title="A small practice for mid-size problems."
-        lead="ARC is Andrew King plus the tools, research, and workshops around the same method. We help companies, nonprofits, and teams of about 10 to 500 people figure out what to do about data, security, architecture, and AI — then we ship the system."
+        lead="ARC is a senior-led team — tools, research, and workshops around the same method. We help companies, nonprofits, and teams of about 10 to 500 people figure out what to do about data, security, architecture, and AI — then we ship the system."
       />
 
       <Section className="bg-muted/30">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.35fr] lg:items-start">
           <div>
             <SectionHeading
-              kicker="Founder"
-              title={site.founder.name}
-              lead={site.founder.role}
+              kicker="Who we are"
+              title={site.team.title}
+              lead={site.team.lead}
             />
           </div>
           <div className="space-y-6">
             <div className="rounded-xl border border-border bg-card p-6 sm:p-8">
               <p className="text-base leading-relaxed text-muted-foreground">
-                {site.founder.bio}
+                {site.team.bio}
               </p>
               <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {site.founder.scope.map((item) => (
+                {site.team.scope.map((item) => (
                   <div
                     key={item.label}
                     className="rounded-lg border border-border bg-background/60 px-4 py-3"
@@ -55,16 +55,12 @@ export default function AboutPage() {
                   Book a call
                 </Button>
                 <Button href={`mailto:${site.email}`} variant="outline" size="sm">
-                  Email Andrew
-                </Button>
-                <Button href={site.linkedin} variant="outline" size="sm">
-                  <Linkedin className="h-4 w-4" />
-                  LinkedIn
+                  Email us
                 </Button>
               </div>
             </div>
             <ul className="grid gap-3 sm:grid-cols-2">
-              {site.founder.highlights.map((h) => (
+              {site.team.highlights.map((h) => (
                 <li
                   key={h}
                   className="rounded-lg border border-border bg-background/60 px-4 py-3 text-sm leading-relaxed text-muted-foreground"
@@ -158,7 +154,7 @@ export default function AboutPage() {
                 size="lg"
               >
                 <Mail className="h-4 w-4" />
-                Email Andrew directly
+                Email us
               </Button>
             </div>
           </div>

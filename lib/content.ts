@@ -20,12 +20,12 @@ export const site = {
   linkedin: "https://www.linkedin.com/in/andrew-k-a676aa178/",
   // Choose ONE canonical domain and redirect the other.
   domain: "https://arctransformationgroup.com",
-  founder: {
-    name: "Andrew King",
-    role: "Founder",
-    bio: "Andrew spent twenty years delivering technology programs inside Fortune 100 and Fortune 500 companies: cybersecurity product lines, live-entertainment platforms, consumer brands, and customer-data architecture. On one security release program he coordinated 300+ features, improved release value by 25%, and tied release investment to measurable sales impact. He also designed CDP work at tens of millions of profiles, including Ticketmaster-scale delivery, and ran brand programs with LEGO and the NFL. He started ARC so mid-size organizations can get that same standard of work without a 40-person consulting team.",
+  team: {
+    title: "Senior-led delivery",
+    lead: "Fortune 100/500 experience, without the 40-person bench.",
+    bio: "We bring twenty years of technology program delivery from Fortune 100 and Fortune 500 environments: cybersecurity product lines, live-entertainment platforms, consumer brands, and customer-data architecture. Our team has coordinated 300+ features on enterprise security releases, improved release value by 25%, and tied program investment to measurable sales impact. We have designed CDP work at tens of millions of profiles, including Ticketmaster-scale delivery, and run brand programs with LEGO and the NFL. ARC exists so mid-size organizations get that same standard without a consulting army.",
     highlights: [
-      "Twenty years delivering technology programs in Fortune 100 and Fortune 500 environments",
+      "Twenty years of technology program delivery in Fortune 100 and Fortune 500 environments",
       "Enterprise cybersecurity: 300+ features coordinated, 25% improvement in release value, sales-linked program impact",
       "Customer-data platforms at tens of millions of profiles, including Ticketmaster-scale live-entertainment delivery",
       "Brand and consumer programs with LEGO and the NFL",
@@ -1043,7 +1043,7 @@ export type Retainer = {
   slug: string;
   name: string;
   bestFit: string;
-  andrewTime: string;
+  leadTime: string;
   primaryAgents: string;
   flagship?: boolean;
 };
@@ -1053,7 +1053,7 @@ export const retainers: Retainer[] = [
     slug: "fractional-head-of-ai",
     name: "Fractional Head of AI / Transformation",
     bestFit: "No senior AI exec in-house; needs strategy, governance, vendor judgment, and exec reporting.",
-    andrewTime: "30–50 hrs + agent deliverables",
+    leadTime: "30–50 hrs + agent deliverables",
     primaryAgents: "Pulse, Nova (lead); Atlas, Quill, Sentinel",
     flagship: true,
   },
@@ -1061,36 +1061,36 @@ export const retainers: Retainer[] = [
     slug: "fractional-tpm",
     name: "Fractional TPM / Delivery Program Lead",
     bestFit: "Shipping platform work but delivery slips, releases painful, governance missing.",
-    andrewTime: "40–60 hrs + agent deliverables",
+    leadTime: "40–60 hrs + agent deliverables",
     primaryAgents: "Ridge (lead); Forge",
   },
   {
     slug: "fractional-cloud-advisor",
     name: "Fractional Cloud / Platform Advisor",
     bestFit: "Mid-migration, scaling infra, AWS architecture decisions.",
-    andrewTime: "30–40 hrs + agent deliverables",
+    leadTime: "30–40 hrs + agent deliverables",
     primaryAgents: "Forge, Atlas (lead); Quill, Sentinel",
   },
   {
     slug: "post-diagnostic-execution",
     name: "Post-Diagnostic Execution Retainer",
     bestFit: "Natural follow-on after any ARC diagnostic — turn roadmap into delivered work.",
-    andrewTime: "Scoped to roadmap",
+    leadTime: "Scoped to roadmap",
     primaryAgents: "Led by Ridge; agents per roadmap",
   },
   {
     slug: "growth-pipeline",
     name: "Growth & Pipeline Management",
     bestFit: "Founders / SMB leaders who want warm pipeline without a sales hire.",
-    andrewTime: "Agent-driven; Andrew oversight + intros",
+    leadTime: "Agent-driven; senior oversight + intros",
     primaryAgents: "Avery + Rowan + Sloan",
   },
   {
     slug: "arc-partner",
     name: "ARC Partner Retainer (Integrated)",
     bestFit: "Ongoing transformation partner across strategy, delivery, AI, and pipeline.",
-    andrewTime: "80+ hrs + full agent roster",
-    primaryAgents: "All agents; Andrew as principal",
+    leadTime: "80+ hrs + full agent roster",
+    primaryAgents: "All agents; senior principal lead",
   },
 ];
 
@@ -1173,7 +1173,7 @@ export const bestFit = [
 
 export const whyArc = [
   {
-    title: "You work with Andrew",
+    title: "Senior-led from the first call",
     text: "Twenty years of Fortune 100/500 delivery: cybersecurity product lines, Ticketmaster-scale customer data, brand programs with LEGO and the NFL. You are not handed to a junior bench after the pitch.",
   },
   {

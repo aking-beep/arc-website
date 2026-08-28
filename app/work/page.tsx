@@ -10,7 +10,7 @@ import { caseStudies } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Work · Programs that shipped",
   description:
-    "Work from Fortune 100/500 programs Andrew ran, plus ARC Studio. Where we cannot name the client, we name the scale.",
+    "Work from Fortune 100/500 programs our team has delivered, plus ARC Studio. Where we cannot name the client, we name the scale.",
 };
 
 export default function WorkPage() {
@@ -26,7 +26,7 @@ export default function WorkPage() {
         <SectionHeading
           kicker="Evidence"
           title="Four pieces of work."
-          lead="Three from Fortune 100/500 programs Andrew ran. One from ARC Studio. Client names withheld where required."
+          lead="Three from Fortune 100/500 programs our team has delivered. One from ARC Studio. Client names withheld where required."
         />
         <div className="mt-12 grid gap-5">
           {caseStudies.map((study) => (

@@ -118,7 +118,7 @@ export default function HomePage() {
           <SectionHeading
             kicker="Work"
             title="What that looks like in practice."
-            lead="Fortune 100/500 programs Andrew ran, plus ARC Studio. Where we cannot name the client, we name the scale."
+            lead="Fortune 100/500 programs our team has delivered, plus ARC Studio. Where we cannot name the client, we name the scale."
           />
           <Link
             href="/work"

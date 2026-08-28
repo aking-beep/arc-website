@@ -126,7 +126,7 @@ export default function StudioPage() {
               <tr className="border-b border-border text-xs uppercase tracking-wider text-muted-foreground">
                 <th className="pb-3 pr-4 font-medium">Engagement</th>
                 <th className="pb-3 pr-4 font-medium">Best fit</th>
-                <th className="pb-3 font-medium">Andrew time</th>
+                <th className="pb-3 font-medium">Lead time</th>
               </tr>
             </thead>
             <tbody>
@@ -144,7 +144,7 @@ export default function StudioPage() {
                     {r.bestFit}
                   </td>
                   <td className="py-4 align-top text-muted-foreground">
-                    {r.andrewTime}
+                    {r.leadTime}
                   </td>
                 </tr>
               ))}
@@ -179,7 +179,7 @@ export default function StudioPage() {
           <SectionHeading
             kicker="Work"
             title="What shipped, and what it was worth."
-            lead="Programs Andrew ran in Fortune 100/500 environments, plus ARC Studio. Where confidentiality applies, we name the scale instead of the logo."
+            lead="Programs our team has delivered in Fortune 100/500 environments, plus ARC Studio. Where confidentiality applies, we name the scale instead of the logo."
           />
           <Link
             href="/work"
