@@ -18,12 +18,9 @@ export function CTA({
         <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
           {lead}
         </p>
-        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <div className="mt-8 flex justify-center">
           <Button href={site.calendly} size="lg">
             Book a 30-min discovery call
-          </Button>
-          <Button href={`mailto:${site.email}`} variant="outline" size="lg">
-            Email Andrew directly
           </Button>
         </div>
       </div>

@@ -60,38 +60,6 @@ export default function HomePage() {
         </Container>
       </section>
 
-      <Section>
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:items-start">
-          <SectionHeading
-            kicker="Who you'll work with"
-            title={site.founder.name}
-            lead="Founder. Twenty years inside Fortune 100 and Fortune 500 programs. You talk to him, not a bench that appears after the pitch."
-          />
-          <div>
-            <div className="grid gap-3 sm:grid-cols-3">
-              {site.founder.scope.slice(0, 6).map((item) => (
-                <div
-                  key={item.label}
-                  className="rounded-lg border border-border bg-card px-4 py-3"
-                >
-                  <div className="text-lg font-semibold tracking-tight">
-                    {item.metric}
-                  </div>
-                  <p className="mt-1 text-xs text-muted-foreground">{item.label}</p>
-                </div>
-              ))}
-            </div>
-            <Link
-              href="/about"
-              className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
-            >
-              More about Andrew
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </Section>
-
       <Section className="bg-muted/30">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
