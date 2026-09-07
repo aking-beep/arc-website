@@ -36,7 +36,46 @@ npm run start
 1. Push this folder to a GitHub repo.
 2. In Vercel, **New Project → Import** the repo. Framework preset auto-detects **Next.js**.
 3. Optional env vars for the contact form: `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`.
-4. Add your custom domain. **Pick one canonical domain** — the live site is `.org` but the ARC email is `.com`. Choose one, set it primary, and 301-redirect the other in Vercel's Domains settings.
+4. Add the custom domain. The canonical host is **`arctransformationgroup.com`** — it is the domain we own and the one Google Workspace mail already runs on. See the DNS cutover below.
+
+## DNS cutover to Vercel
+
+`arctransformationgroup.com` is registered at Squarespace Domains and its DNS is
+served by Google Cloud nameservers (`ns-cloud-a*.googledomains.com`), left over
+from Google Domains. Edit the records in the Squarespace domain dashboard.
+
+**Change these** (use the exact values on the domain card in Vercel → project →
+Settings → Domains; Vercel assigns per-project anycast addresses, so do not copy
+an IP out of a blog post):
+
+| Record | Host | From | To |
+| ------ | ---- | ---- | -- |
+| A | `@` | Squarespace: `198.185.159.144/145`, `198.49.23.144/145` | the A value on the Vercel domain card |
+| CNAME | `www` | `ext-sq.squarespace.com` | the CNAME target on the Vercel domain card |
+
+**Leave these alone** — they carry the mail for `aking@arctransformationgroup.com`:
+
+| Record | Host | Value |
+| ------ | ---- | ----- |
+| MX | `@` | `smtp.google.com` (priority 1) |
+| TXT | `@` | `v=spf1 include:_spf.google.com ~all` |
+| TXT | `google._domainkey` | the DKIM public key |
+
+Do **not** delegate the nameservers to Vercel. Nameserver delegation moves the
+whole zone, and any record not recreated on the new provider — mail included —
+stops resolving. Changing the two web records at the current provider keeps mail
+untouched.
+
+Two things to check while you are in there: disconnect the domain from the
+Squarespace site first, or Squarespace may re-add its own A records; and there is
+no `_dmarc` TXT record on the domain, so SPF and DKIM are in place but nothing
+tells receivers what to do with mail that fails them. Adding one is unrelated to
+the deploy but worth doing.
+
+After DNS propagates, load the site in a private window. Vercel's deployment
+protection is what makes the generated `*.vercel.app` URLs demand a login;
+production custom domains should be public, and that is worth confirming with
+your own eyes rather than assuming.
 
 ## Project structure
 
