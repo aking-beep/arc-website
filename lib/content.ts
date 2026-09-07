@@ -8,10 +8,10 @@ export const site = {
   short: "ARC",
   tagline: "Digital transformation that ships.",
   description:
-    "ARC helps companies, nonprofits, and teams of about 10 to 500 people with messy digital, data, cybersecurity, and AI problems — then delivers the working system.",
+    "ARC helps companies, nonprofits, and teams of about 10 to 500 people with messy digital, data, cybersecurity, and AI problems — including agents that now hold real credentials and run a real meter — then delivers the working system.",
   audience: {
     badge: "Companies, nonprofits, and teams · about 10–500 people",
-    line: "We work with companies, nonprofits, and teams of about 10 to 500 people. Messy data, shaky security, systems that will not scale, AI nobody can explain. We figure out what to do, then we ship it.",
+    line: "We work with companies, nonprofits, and teams of about 10 to 500 people. Messy data, shaky security, systems that will not scale, and agents nobody scoped that can already reach production. We figure out what to do, then we ship it.",
   },
   email: "aking@arctransformationgroup.com",
   calendly: "https://calendly.com/aking-arctransformationgroup/30min",
@@ -67,7 +67,130 @@ export const digitalTransformation = [
   },
   {
     name: "AI and automation when it helps",
-    text: "Useful on some problems. Harmful or premature on others. We say which, with a human still in the loop.",
+    text: "Useful on some problems. Harmful or premature on others. Now that agents hold credentials and can act, we say which — with a human still in the loop.",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Market signals — what changed recently, what it means, and where we answer it.
+// Rule: every signal is dated and sourced. Drop anything older than a quarter
+// instead of letting it rot on the homepage.
+// ---------------------------------------------------------------------------
+export type MarketSignal = {
+  /** ISO date of the change itself, not the date we wrote about it. */
+  date: string;
+  label: string;
+  headline: string;
+  soWhat: string;
+  href: string;
+  hrefLabel: string;
+  sources: { name: string; url: string }[];
+};
+
+export const marketSignalsUpdated = "2026-09-07";
+
+export const marketSignals: MarketSignal[] = [
+  {
+    date: "2026-07-28",
+    label: "Protocols",
+    headline: "MCP went stateless. The handshake your servers rely on is retired.",
+    soWhat:
+      "The 2026-07-28 revision drops initialize and the session header, moves version and capabilities into per-request metadata, adds server/discover, and requires routing headers on Streamable HTTP. Old servers keep working for now — on a twelve-month clock.",
+    href: "/labs/mcp-conformance-scanner",
+    hrefLabel: "Scan a server",
+    sources: [
+      {
+        name: "Model Context Protocol — 2026-07-28 specification",
+        url: "https://blog.modelcontextprotocol.io/posts/2026-07-28/",
+      },
+    ],
+  },
+  {
+    date: "2026-08-02",
+    label: "Regulation",
+    headline: "EU AI Act transparency duties are live. High-risk paperwork moved to 2027.",
+    soWhat:
+      "Telling people they are talking to AI, and marking generated content so it can be detected, applies now. The Annex III high-risk obligations slid to 2 December 2027. Teams that heard 'delayed' and stopped reading are exposed on the part that already applies.",
+    href: "/research/eu-ai-act-transparency-live",
+    hrefLabel: "Read the brief",
+    sources: [
+      {
+        name: "European Commission — Article 50 transparency FAQ",
+        url: "https://digital-strategy.ec.europa.eu/en/faqs/transparency-obligations-under-article-50-ai-act",
+      },
+    ],
+  },
+  {
+    date: "2026-08-04",
+    label: "Agent risk",
+    headline: "A national evaluator watched agents act on the live internet without sanction.",
+    soWhat:
+      "The UK AI Security Institute catalogued 19 unsanctioned actions across 10 of 122 evaluation runs, including an agent that created fake identities to pressure a real open-source maintainer into merging malicious code. Least privilege for agents stopped being a policy sentence.",
+    href: "/labs/arc-agent-governance",
+    hrefLabel: "Review agent access",
+    sources: [
+      {
+        name: "UK AI Security Institute — incident report INC-2026-07-28-01",
+        url: "https://www.aisi.gov.uk/blog/incident-report-unsanctioned-agent-behaviour-during-cyber-testing",
+      },
+      {
+        name: "Cloud Security Alliance — identity maturity model for AI agents",
+        url: "https://cloudsecurityalliance.org/blog/2026/08/20/governing-ai-agent-identities-an-identity-maturity-model-for-ai-agents",
+      },
+    ],
+  },
+  {
+    date: "2026-08-18",
+    label: "Security",
+    headline: "The month's AI breaches were links and documents, not jailbreaks.",
+    soWhat:
+      "RovoBlast turned one crafted link into cross-system exfiltration through Atlassian Rovo; CoSnitch did the same through Copilot's OAuth connectors; Black Hat week brought remote-code-execution and credential-theft disclosures in mainstream coding agents. A connected assistant inherits every permission you gave it.",
+    href: "/labs/arc-ai-security-scanner",
+    hrefLabel: "Review an AI app",
+    sources: [
+      {
+        name: "AI Governance Institute — RovoBlast disclosure coverage",
+        url: "https://aigovernance.com/news/rovoblast-prompt-injection-exposes-agentic-data-exfiltration-risk-in-atlassian-rovo",
+      },
+    ],
+  },
+  {
+    date: "2026-08-24",
+    label: "Cost",
+    headline: "Coding-agent billing moved to routed-model pricing.",
+    soWhat:
+      "Cursor's Auto now bills at whichever model answered, plus a per-million token rate on third-party models for teams; the legacy flat rate for enterprise Auto expires 7 September 2026. Claude Code deployments run roughly $150–250 per developer per month. The same agent loop costs a different amount on a different day.",
+    href: "/labs/tokenloop",
+    hrefLabel: "Open TokenLoop",
+    sources: [
+      {
+        name: "Anthropic — Claude Code cost documentation",
+        url: "https://code.claude.com/docs/en/costs",
+      },
+      {
+        name: "Coverage of Cursor's 24 August Auto pricing change",
+        url: "https://cellcog.ai/blog/cursor-auto-pricing/",
+      },
+    ],
+  },
+  {
+    date: "2026-08-26",
+    label: "Enterprise apps",
+    headline: "The system of record grew an agent-facing surface with a meter on it.",
+    soWhat:
+      "Salesforce put its CRM inside Claude and exposed the platform as MCP tools and APIs, with Claude as Slack's default model. Google bundled its coding agent into Gemini Enterprise. Your vendors are shipping agent access whether or not you scoped it — and billing on agent traffic.",
+    href: "/studio/agent-control-review",
+    hrefLabel: "See the Agent Control Review",
+    sources: [
+      {
+        name: "Salesforce — Claudeforce announcement",
+        url: "https://www.salesforce.com/news/press-releases/2026/08/26/salesforce-and-anthropic-announce-claudeforce/",
+      },
+      {
+        name: "Salesforce — Headless 360",
+        url: "https://www.salesforce.com/headless/",
+      },
+    ],
   },
 ];
 
@@ -180,22 +303,22 @@ export const labs: Product[] = [
     name: "MCP Conformance Scanner",
     tagline: "Check any MCP server against the spec in seconds.",
     description:
-      "Point it at a Model Context Protocol server and get a conformance report: what passes, what breaks, and what to fix first — written for an operator, not a linter.",
+      "Point it at a Model Context Protocol server and get a conformance report: what passes, what breaks, and what to fix first — written for an operator, not a linter. The 2026-07-28 revision retired the initialize handshake and the session header, so \"it works in one client\" is no longer evidence that it works.",
     status: "live",
     badge: "Flagship",
     featured: true,
     visual: "conformance",
     ctaLabel: "Scan a server",
     audience:
-      "Teams shipping or consuming MCP servers who need a production gate, not a one-client smoke test.",
+      "Teams shipping or consuming MCP servers who need a production gate, not a one-client smoke test — especially now that enterprise platforms publish tool surfaces by the dozen and the protocol has moved to a stateless core.",
     howItWorks: [
       "Paste a server URL or point the CLI at your local process.",
-      "We run handshake, capability negotiation, and schema checks.",
+      "We exercise the transport, capability, and schema behavior your server actually advertises.",
       "You get a graded report with prioritized fixes an operator can act on.",
       "Share the link with a teammate or drop it into CI when the Action ships.",
     ],
     features: [
-      "Full MCP handshake and capability negotiation checks",
+      "Handshake, capability, and negotiation checks for session-based servers",
       "Tool, resource, and prompt schema validation",
       "Prioritized findings written for an operator, not a linter",
       "Shareable report links",
@@ -208,8 +331,8 @@ export const labs: Product[] = [
     roadmap: [
       { label: "Core conformance suite", done: true },
       { label: "Shareable report links", done: true },
+      { label: "2026-07-28 rule pack: server/discover, per-request _meta, routing headers", done: false },
       { label: "CI GitHub Action", done: false },
-      { label: "Historical diffing", done: false },
     ],
   },
   {
@@ -217,14 +340,14 @@ export const labs: Product[] = [
     name: "TokenLoop",
     tagline: "Stop AI coding-agent spend before the invoice.",
     description:
-      "Spend control for Claude Code and Cursor: per-developer burn, a minutes-scale kill switch, and client chargeback — without proxying traffic through a gateway. Free signup; keys encrypted at rest.",
+      "Spend control for Claude Code and Cursor: per-developer burn, a minutes-scale kill switch, and client chargeback — without proxying traffic through a gateway. Free signup; keys encrypted at rest. Since flat-rate plans gave way to routed-model pricing, the same agent loop bills a different amount depending on which model answered.",
     status: "live",
     badge: "Free product",
     featured: true,
     visual: "spend",
     ctaLabel: "Open TokenLoop",
     audience:
-      "Engineering and agency leads running Claude Code and Cursor who find out about runaway spend on the invoice. They need detect-and-cut plus client bill-back without a proxy.",
+      "Engineering and agency leads running Claude Code and Cursor who find out about runaway spend on the invoice — now that enterprise flat rates are expiring and billing follows whichever model the router picked. They need detect-and-cut plus client bill-back without a proxy.",
     howItWorks: [
       "Create a free account (email + password).",
       "Paste Anthropic and/or Cursor admin keys. We AES-256-GCM encrypt them before storage.",
@@ -448,7 +571,7 @@ export const labs: Product[] = [
     features: [
       "Free on the site — no account, no email gate",
       "Recommended shape plus ruled-out alternatives with reasons",
-      "Workflow vs agent, MCP/tool governance, copilot-on-a-lookup, on-prem, EU AI Act",
+      "Workflow vs agent, MCP/tool governance, copilot-on-a-lookup, on-prem, and the EU AI Act duties that already apply",
       "Deployment, model, and tooling classes — shapes, not product names",
       "Board brief you can copy or print",
       "Markdown / JSON export and a CLI",
@@ -469,7 +592,7 @@ export const labs: Product[] = [
     name: "ARC AI Security Scanner",
     tagline: "Defensive security review for AI applications.",
     description:
-      "Describe an AI application — agents, MCP, RAG, prompts, data flows — and get a graded defensive review covering prompt injection surface, tool authority, data exposure, tenancy, and logging. Every finding quotes your own words. Not a penetration test and not a certification.",
+      "Describe an AI application — agents, MCP, RAG, prompts, data flows — and get a graded defensive review covering prompt injection surface, tool authority, data exposure, tenancy, and logging. Every finding quotes your own words. Not a penetration test and not a certification. The disclosures stacking up this year are not clever jailbreaks: they are ordinary links and documents that turn a connected assistant into an exfiltration path with the permissions you already granted it.",
     status: "live",
     badge: "Free",
     featured: true,
@@ -543,13 +666,13 @@ export const labs: Product[] = [
     name: "ARC Agent Governance",
     tagline: "Know what your agents can reach, what they can do, and where the controls are missing.",
     description:
-      "Describe your agents, tools, permissions, and data sources. Get an inventory plus a graded governance review across identity, least privilege, data access, human approval, MCP, and auditability — every finding quotes your own words. Free, no account, nothing stored.",
+      "Describe your agents, tools, permissions, and data sources. Get an inventory plus a graded governance review across identity, least privilege, data access, human approval, MCP, and auditability — every finding quotes your own words. Free, no account, nothing stored. August 2026 made the question concrete: a national evaluator, several security teams, and the platform vendors themselves all documented agents acting outside the scope someone assumed they had.",
     status: "live",
     badge: "Free",
     visual: "governance",
     ctaLabel: "Review agent access",
     audience:
-      "CIOs, CISOs, AI platform teams, and engineering leads moving from experiments into agent deployment who need to answer what an agent can reach — without a penetration test or a fake certification.",
+      "CIOs, CISOs, AI platform teams, and engineering leads whose vendors shipped agent access this year — headless CRM tools, coding agents, connected assistants — and who now have to answer what an agent can reach, without a penetration test or a fake certification.",
     howItWorks: [
       "Paste a sanitized description or JSON manifest of agents, tools, and data sources.",
       "Deterministic rules match that text to a published governance rubric. No model produces a score.",
@@ -644,7 +767,7 @@ export const labGroups = [
   {
     id: "cost",
     name: "Cost control",
-    lead: "See coding-agent spend before the invoice hits.",
+    lead: "See coding-agent spend before the invoice hits. Routed-model pricing moves the number daily.",
     slugs: ["tokenloop"],
   },
   {
@@ -693,13 +816,14 @@ export const studioOfferings: StudioOffering[] = [
     youLeaveWith:
       "A scored readiness snapshot, a classified automation backlog, and a 30/60/90-day roadmap with owners.",
     whoFor:
-      "Leadership teams being pushed toward AI without a clear workflow, owner, or constraint. Operators who need to know whether the next move is build, buy, wait, or fix the data first.",
+      "Leadership teams being pushed toward AI without a clear workflow, owner, or constraint. Operators who have discovered AI is already running in six places on someone else's credit card and want one scored plan instead of six pilots.",
     notFor: [
       "Teams that already have a scoped MVP and just need hands to implement it — start with Nova or a Post-Diagnostic retainer.",
       "Organizations looking for a vendor demo tour instead of a decision framework.",
     ],
     deliverables: [
       "C.I.T.H. scorecard: Capability, Intent, Teams, Habits — each dimension scored with evidence",
+      "Shadow-AI inventory: which tools and agents are already in use, who turned them on, and what they can reach",
       "Process opportunity map tied to workflows your team actually runs",
       "Classified automation backlog: ship now, fix prerequisites first, or defer",
       "30/60/90-day roadmap with named owners and success measures",
@@ -865,6 +989,7 @@ export const studioOfferings: StudioOffering[] = [
     deliverables: [
       "Risk matrix: threats, likelihood, impact, and current controls",
       "Access and secrets review: IAM policies, credential storage, rotation gaps",
+      "Non-human identity review: service accounts and agent credentials, their scopes, and how they get revoked",
       "Logging and monitoring assessment for security-relevant events",
       "Remediation roadmap prioritized by exposure and compliance timeline",
       "SOC 2 / GDPR / CCPA readiness notes with gap analysis",
@@ -883,6 +1008,48 @@ export const studioOfferings: StudioOffering[] = [
       "Week 2–3: risk matrix, remediation roadmap, exec readout",
     ],
     typicalFollowOn: "Post-Diagnostic Execution Retainer for hardening sprints, or Fractional Cloud / Platform Advisor for ongoing posture.",
+  },
+  {
+    slug: "agent-control-review",
+    codename: "Warden",
+    name: "Agent Control Review",
+    tagline: "Know what your agents can reach, who approved it, and what it costs to run.",
+    blurb:
+      "Your vendors shipped agent access this year whether or not you scoped it. Warden inventories the agents, tools, and credentials already live, sizes the blast radius, and installs the approval gates and spend guardrails before the next platform update widens what an agent can touch.",
+    duration: "2–3 weeks",
+    lead: "Warden",
+    startsWith:
+      "The agents, copilots, connectors, and MCP tools already running in your stack — including the ones a team switched on without telling anyone.",
+    youLeaveWith:
+      "An agent and tool inventory, a blast-radius ranking, approval and revocation gates, and a spend guardrail with a named owner.",
+    whoFor:
+      "CIOs, CISOs, and platform leads who have to answer what an agent can reach, who authorized it, and what it costs — now that the system of record, the IDE, and the chat client all have agent surfaces and usage meters.",
+    notFor: [
+      "Penetration testing or model red-teaming — we scope controls, not offensive security.",
+      "Teams with nothing agentic in production yet — start with Pulse and decide where AI belongs first.",
+    ],
+    deliverables: [
+      "Agent, tool, and credential inventory across vendor copilots, coding agents, and MCP servers",
+      "Blast-radius ranking: what each agent identity can read, write, send, or spend",
+      "Human-approval and revocation gates for irreversible actions",
+      "Spend guardrails: per-team caps, spike alerts, and chargeback owners",
+      "Disclosure and logging check against the transparency duties that took effect 2 August 2026",
+      "A 30/60/90 hardening plan with named owners",
+    ],
+    buildOptions: [
+      "Least-privilege rollout for agent identities: scoped, time-bound credentials instead of standing keys",
+      "Approval workflow and audit logging for agent actions that send, write, or pay",
+      "Spend controls wired to vendor admin APIs — TokenLoop or your own tooling",
+      "Fractional Head of AI / Transformation retainer for ongoing agent governance",
+    ],
+    scoping: [
+      "Discovery call: confirm which agents are live, who owns them, and what they can reach",
+      "Access: agent and connector configs, permission grants, admin billing views, recent incident notes",
+      "Week 1: inventory and permission mapping, owner interviews",
+      "Week 2: blast-radius ranking, gate and guardrail design",
+      "Week 2–3: hardening plan, exec readout, handoff to build or retainer",
+    ],
+    typicalFollowOn: "Post-Diagnostic Execution Retainer for the hardening sprints, or Fractional Head of AI for ongoing governance.",
   },
   {
     slug: "ai-solution-mvp-scope",
@@ -1052,9 +1219,9 @@ export const retainers: Retainer[] = [
   {
     slug: "fractional-head-of-ai",
     name: "Fractional Head of AI / Transformation",
-    bestFit: "No senior AI exec in-house; needs strategy, governance, vendor judgment, and exec reporting.",
+    bestFit: "No senior AI exec in-house; needs strategy, agent governance, vendor judgment, and exec reporting.",
     leadTime: "30–50 hrs + agent deliverables",
-    primaryAgents: "Pulse, Nova (lead); Atlas, Quill, Sentinel",
+    primaryAgents: "Pulse, Nova (lead); Warden, Atlas, Quill, Sentinel",
     flagship: true,
   },
   {
@@ -1178,7 +1345,7 @@ export const whyArc = [
   },
   {
     title: "The work is operational",
-    text: "Stretched teams. Sensitive systems. Problems that already survived two strategy decks. We score the work, then ship the boring thing that moves a number.",
+    text: "Stretched teams. Sensitive systems. Vendor agents that arrived with the last release note. Problems that already survived two strategy decks. We score the work, then ship the boring thing that moves a number.",
   },
   {
     title: "Different from an agency or a freelancer",
@@ -1482,6 +1649,18 @@ export const faqs = [
   {
     q: "How does work usually start?",
     a: "A 30-minute call, then a scoped review of two to seven weeks. That ends in a plan with owners. If you still need us after that, we stay for delivery.",
+  },
+  {
+    q: "Our AI bill came in over plan. Where do we start?",
+    a: "With a free tool. TokenLoop shows per-developer coding-agent spend and can cut a spike in minutes. Studio is for when the overrun is structural — no owner per workflow, no cap, no chargeback — which is now the common case, because vendors bill on routed models and agent traffic instead of flat seats.",
+  },
+  {
+    q: "Our vendors turned on agents inside tools we already pay for. Is that a problem?",
+    a: "It is the question of the quarter. An agent inside your CRM or your IDE inherits the permissions of whoever runs it, and the disclosures of the last few months were ordinary links and documents, not exotic attacks. The Agent Control Review inventories what is live, ranks blast radius, and puts approval and spend gates on the actions that matter. The free Agent Governance tool covers the first pass.",
+  },
+  {
+    q: "EU AI Act transparency rules applied on 2 August 2026. Does that hit us?",
+    a: "If you serve EU users and your product talks to people or generates content, the disclosure and content-marking duties are live now. The Annex III high-risk obligations moved to December 2027, which is why teams who heard \"delayed\" and stopped reading are exposed on the part that already applies. We give you the readiness read and the gap list; your counsel and your auditor sign off.",
   },
   {
     q: "Are the Labs tools really free?",

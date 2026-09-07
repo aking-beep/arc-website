@@ -4,6 +4,7 @@ import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/product-card";
+import { MarketSignals } from "@/components/market-signals";
 import { CTA } from "@/components/cta";
 import { labGroups, labs, labsProof, site } from "@/lib/content";
 
@@ -26,6 +27,12 @@ export default function LabsPage() {
           Browse the GitHub org
         </Button>
       </PageHero>
+
+      <MarketSignals
+        className="bg-muted/30"
+        title="Why these tools matter this month."
+        lead="Each tool exists because something specific broke or changed. Here is the dated version, with the source, so you can decide whether it applies to you before you run anything."
+      />
 
       {labGroups.map((group, i) => {
         const products = group.slugs

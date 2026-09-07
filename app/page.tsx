@@ -4,6 +4,7 @@ import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ProductCard } from "@/components/product-card";
+import { MarketSignals } from "@/components/market-signals";
 import { CTA } from "@/components/cta";
 import {
   pillars,
@@ -59,6 +60,8 @@ export default function HomePage() {
           </div>
         </Container>
       </section>
+
+      <MarketSignals />
 
       <Section className="bg-muted/30">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
