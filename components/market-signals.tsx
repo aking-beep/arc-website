@@ -3,6 +3,7 @@ import { ArrowRight, ExternalLink } from "lucide-react";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { marketSignals, marketSignalsUpdated } from "@/lib/content";
+import { cn } from "@/lib/utils";
 
 function formatSignalDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-US", {
@@ -14,15 +15,17 @@ function formatSignalDate(iso: string) {
 
 export function MarketSignals({
   className,
+  id = "signals",
   title = "What changed in the last month.",
   lead = "The market moved under a lot of AI plans this summer. These are the changes we think actually alter what an operator should do next — dated, sourced, and pointed at the tool or brief that answers them.",
 }: {
   className?: string;
+  id?: string;
   title?: string;
   lead?: string;
 }) {
   return (
-    <Section className={className}>
+    <Section id={id} className={cn("scroll-mt-24", className)}>
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <SectionHeading kicker="Market signals" title={title} lead={lead} />
         <p className="flex-none text-sm text-muted-foreground">

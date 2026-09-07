@@ -60,10 +60,23 @@ components/
   product-card.tsx      Reusable product/service card
   theme-provider.tsx    next-themes wrapper
   theme-toggle.tsx      Light/dark switch
+components/
+  market-signals.tsx    Dated "what changed" strip (home + Labs)
 lib/
   content.ts            Single source of truth for all ecosystem content
+  research.ts           Cited research briefs
   utils.ts              cn() helper
 ```
+
+## Keeping the site current
+
+`marketSignals` in `lib/content.ts` is the dated read on what changed in the
+market, rendered on the home and Labs pages. Every signal needs a date, at
+least one source URL, and an internal link to the tool or brief that answers
+it. Update `marketSignalsUpdated` when you review the list, and delete signals
+older than a quarter rather than letting them age on the homepage. If a
+protocol, price, or regulation changes, fix the affected product copy in the
+same pass — stale product claims cost more trust than a thin signal list.
 
 ## Adding a new product (the whole point)
 

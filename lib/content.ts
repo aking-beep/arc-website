@@ -8,7 +8,7 @@ export const site = {
   short: "ARC",
   tagline: "Digital transformation that ships.",
   description:
-    "ARC helps companies, nonprofits, and teams of about 10 to 500 people with messy digital, data, cybersecurity, and AI problems — including agents that now hold real credentials and run a real meter — then delivers the working system.",
+    "ARC helps companies, nonprofits, and teams of about 10 to 500 people with messy data, security, cloud, and AI-agent problems — then delivers the working system.",
   audience: {
     badge: "Companies, nonprofits, and teams · about 10–500 people",
     line: "We work with companies, nonprofits, and teams of about 10 to 500 people. Messy data, shaky security, systems that will not scale, and agents nobody scoped that can already reach production. We figure out what to do, then we ship it.",

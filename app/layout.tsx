@@ -30,6 +30,10 @@ export const metadata: Metadata = {
   description: site.description,
   keywords: [
     "digital transformation",
+    "AI agent governance",
+    "AI spend control",
+    "MCP conformance",
+    "EU AI Act readiness",
     "cybersecurity readiness",
     "technical due diligence",
     "data and cloud modernization",

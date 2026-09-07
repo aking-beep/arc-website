@@ -45,8 +45,15 @@ export default function HomePage() {
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
               {site.audience.line}
             </p>
-            <p className="mx-auto mt-8 max-w-md text-sm text-muted-foreground">
-              Have something to fix, or just looking around?
+            <p className="mx-auto mt-8 max-w-xl text-sm text-muted-foreground">
+              Have something to fix, or just looking around?{" "}
+              <Link
+                href="#signals"
+                className="font-medium text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground"
+              >
+                Start with what changed this month
+              </Link>{" "}
+              and what each change means for your stack.
             </p>
             <div className="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Button href="/studio#offers" size="lg">
