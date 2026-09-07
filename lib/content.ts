@@ -144,7 +144,7 @@ export const marketSignals: MarketSignal[] = [
     label: "Security",
     headline: "The month's AI breaches were links and documents, not jailbreaks.",
     soWhat:
-      "RovoBlast turned one crafted link into cross-system exfiltration through Atlassian Rovo; CoSnitch did the same through Copilot's OAuth connectors; Black Hat week brought remote-code-execution and credential-theft disclosures in mainstream coding agents. A connected assistant inherits every permission you gave it.",
+      "One crafted link was enough to inject instructions into a live Atlassian Rovo session and exfiltrate documents across every connected system — no jailbreak, no privilege escalation. The same pattern keeps appearing in DevOps integrations, email assistants, and agent frameworks. A connected assistant carries every permission you gave it.",
     href: "/labs/arc-ai-security-scanner",
     hrefLabel: "Review an AI app",
     sources: [
@@ -178,7 +178,7 @@ export const marketSignals: MarketSignal[] = [
     label: "Enterprise apps",
     headline: "The system of record grew an agent-facing surface with a meter on it.",
     soWhat:
-      "Salesforce put its CRM inside Claude and exposed the platform as MCP tools and APIs, with Claude as Slack's default model. Google bundled its coding agent into Gemini Enterprise. Your vendors are shipping agent access whether or not you scoped it — and billing on agent traffic.",
+      "Salesforce put its CRM inside Claude and exposed the platform as MCP tools, APIs, and CLI commands, with agents inheriting existing roles and consumption billed against API usage. Your vendors are shipping agent access whether or not you scoped it — and billing on agent traffic instead of seats.",
     href: "/studio/agent-control-review",
     hrefLabel: "See the Agent Control Review",
     sources: [
