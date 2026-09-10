@@ -4,11 +4,13 @@ import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ProductCard } from "@/components/product-card";
+import { StartHere } from "@/components/start-here";
+import { AlternativesTable } from "@/components/alternatives-table";
 import { MarketSignals } from "@/components/market-signals";
 import { CTA } from "@/components/cta";
 import {
-  pillars,
   labs,
+  labsProof,
   studioOfferings,
   caseStudies,
   bestFit,
@@ -45,43 +47,36 @@ export default function HomePage() {
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
               {site.audience.line}
             </p>
-            <p className="mx-auto mt-8 max-w-xl text-sm text-muted-foreground">
-              Have something to fix, or just looking around?{" "}
-              <Link
-                href="#signals"
-                className="font-medium text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground"
-              >
-                Start with what changed this month
-              </Link>{" "}
-              and what each change means for your stack.
-            </p>
-            <div className="mt-4 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button href="/studio#offers" size="lg">
-                See Studio
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Button href={site.calendly} size="lg">
+                Book a 30-min call
                 <ArrowRight className="h-4 w-4" />
               </Button>
               <Button href="/labs" variant="outline" size="lg">
-                Try a free tool
+                Try a free tool first
               </Button>
             </div>
+            <p className="mx-auto mt-6 text-sm text-muted-foreground">
+              No sales team. No deck. Senior people only.
+            </p>
           </div>
         </Container>
       </section>
 
-      <MarketSignals />
+      <StartHere className="bg-muted/30" />
 
-      <Section className="bg-muted/30">
+      <Section>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
-            kicker="Studio"
-            title="How an engagement usually starts."
-            lead="A scoped review, two to seven weeks. You leave with a plan, owners, and a next step. If you still need us after that, we stay and build."
+            kicker="What we do"
+            title="Pick the problem you actually have."
+            lead="Every engagement starts as a scoped review of two to seven weeks and ends in a plan with named owners. Open any one to see what it covers and what you receive."
           />
           <Link
             href="/studio#offers"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
           >
-            All Studio offerings
+            All {studioOfferings.length} reviews
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -115,7 +110,11 @@ export default function HomePage() {
                   <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {o.blurb}
+                  {o.tagline}
+                </p>
+                <p className="mt-4 border-t border-border/60 pt-4 text-sm leading-relaxed text-muted-foreground">
+                  <span className="font-medium text-foreground">You leave with: </span>
+                  {o.youLeaveWith}
                 </p>
               </Card>
             </Link>
@@ -123,28 +122,26 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section>
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <SectionHeading
-            kicker="Work"
-            title="What that looks like in practice."
-            lead="Fortune 100/500 programs our team has delivered, plus ARC Studio. Where we cannot name the client, we name the scale."
-          />
-          <Link
-            href="/work"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
-          >
-            All work
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+      <Section className="bg-muted/30">
+        <SectionHeading
+          kicker="Track record"
+          title="The standard comes from somewhere."
+          lead="Our team spent twenty years delivering technology programs inside Fortune 100 and Fortune 500 environments. ARC exists so mid-size organizations get that standard without a consulting army."
+        />
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {site.team.scope.map((item) => (
+            <div
+              key={item.label}
+              className="rounded-lg border border-border bg-card px-5 py-4"
+            >
+              <div className="text-xl font-semibold tracking-tight">{item.metric}</div>
+              <p className="mt-1 text-sm text-muted-foreground">{item.label}</p>
+            </div>
+          ))}
         </div>
         <div className="mt-12 grid gap-5 md:grid-cols-2">
-          {caseStudies.slice(0, 4).map((study) => (
-            <Link
-              key={study.slug}
-              href={`/work/${study.slug}`}
-              className="group block h-full"
-            >
+          {caseStudies.slice(0, 2).map((study) => (
+            <Link key={study.slug} href={`/work/${study.slug}`} className="group block h-full">
               <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
                 <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
                   <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
@@ -169,14 +166,25 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
+        <div className="mt-8">
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
+          >
+            See all the work
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
       </Section>
+
+      <AlternativesTable />
 
       <Section className="bg-muted/30">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
-            kicker="Labs"
-            title="Or run a tool first."
-            lead="Free scanners and catalogs. Same point of view as the paid work, without a call."
+            kicker="Free tools"
+            title="Try the thinking before you buy it."
+            lead={`${labsProof.tools} free tools built from the same method as the paid work. Most need no account and store nothing.`}
           />
           <Link
             href="/labs"
@@ -193,7 +201,20 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section>
+      <MarketSignals
+        limit={3}
+        footer={
+          <Link
+            href="/labs#signals"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
+          >
+            See everything that changed
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        }
+      />
+
+      <Section className="bg-muted/30">
         <div className="grid gap-12 lg:grid-cols-2">
           <div>
             <SectionHeading kicker="Fit" title="Who we work best with" />
@@ -221,26 +242,6 @@ export default function HomePage() {
               ))}
             </ul>
           </div>
-        </div>
-      </Section>
-
-      <Section>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {pillars.map((p) => (
-            <Link
-              key={p.id}
-              href={p.href}
-              className="rounded-lg border border-border bg-card p-5 transition-all hover:border-foreground/20 hover:shadow-sm"
-            >
-              <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                {p.kicker}
-              </p>
-              <h3 className="mt-3 text-base font-semibold">{p.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {p.summary}
-              </p>
-            </Link>
-          ))}
         </div>
       </Section>
 
