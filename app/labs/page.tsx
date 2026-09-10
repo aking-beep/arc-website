@@ -30,8 +30,8 @@ export default function LabsPage() {
 
       <MarketSignals
         className="bg-muted/30"
-        title="Why these tools matter this month."
-        lead="Each tool exists because something specific broke or changed. Here is the dated version, with the source, so you can decide whether it applies to you before you run anything."
+        title="Why these tools exist."
+        lead="Each tool answers something specific that broke or changed. Here is the dated version with the source, so you can decide whether it applies to you before you run anything."
       />
 
       {labGroups.map((group, i) => {

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { Section, SectionHeading } from "@/components/ui/section";
@@ -16,14 +17,21 @@ function formatSignalDate(iso: string) {
 export function MarketSignals({
   className,
   id = "signals",
-  title = "What changed in the last month.",
-  lead = "The market moved under a lot of AI plans this summer. These are the changes we think actually alter what an operator should do next — dated, sourced, and pointed at the tool or brief that answers them.",
+  limit,
+  title = "What changed recently, and what to do about it.",
+  lead = "Dated, sourced, and pointed at the tool or brief that answers it. If a change does not affect what you should do next, it does not go on this list.",
+  footer,
 }: {
   className?: string;
   id?: string;
+  /** Show only the most recent N signals. Omit to show all of them. */
+  limit?: number;
   title?: string;
   lead?: string;
+  footer?: ReactNode;
 }) {
+  const shown = limit ? marketSignals.slice(0, limit) : marketSignals;
+
   return (
     <Section id={id} className={cn("scroll-mt-24", className)}>
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
@@ -33,7 +41,7 @@ export function MarketSignals({
         </p>
       </div>
       <ol className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {marketSignals.map((signal) => (
+        {shown.map((signal) => (
           <li key={signal.headline} className="h-full">
             <Card className="flex h-full flex-col p-6">
               <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
@@ -75,6 +83,7 @@ export function MarketSignals({
           </li>
         ))}
       </ol>
+      {footer ? <div className="mt-10">{footer}</div> : null}
     </Section>
   );
 }

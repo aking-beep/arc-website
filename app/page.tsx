@@ -101,7 +101,7 @@ export default function HomePage() {
               >
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="rounded-full border border-border bg-muted px-2 py-0.5 text-xs font-medium">
-                    {o.codename}
+                    {o.focus}
                   </span>
                   <span className="text-xs text-muted-foreground">{o.duration}</span>
                   {o.flagship ? (

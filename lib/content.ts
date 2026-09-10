@@ -8,10 +8,10 @@ export const site = {
   short: "ARC",
   tagline: "Digital transformation that ships.",
   description:
-    "ARC helps companies, nonprofits, and teams of about 10 to 500 people with messy data, security, cloud, and AI-agent problems — then delivers the working system.",
+    "ARC helps companies, nonprofits, and teams of 10 to 500 people fix messy data, shaky security, aging systems, and AI nobody can explain — then builds the working system.",
   audience: {
     badge: "Companies, nonprofits, and teams · about 10–500 people",
-    line: "We work with companies, nonprofits, and teams of about 10 to 500 people. Messy data, shaky security, systems that will not scale, and agents nobody scoped that can already reach production. We figure out what to do, then we ship it.",
+    line: "Messy data. Shaky security. Systems that will not scale. AI tools your vendors switched on that nobody scoped. We tell you what to do about it, then we build it.",
   },
   email: "aking@arctransformationgroup.com",
   calendly: "https://calendly.com/aking-arctransformationgroup/30min",
@@ -42,6 +42,75 @@ export const site = {
     ],
   },
 };
+
+// ---------------------------------------------------------------------------
+// The three-step path. This is the spine of the homepage: if a visitor reads
+// nothing else, they should still know what to do next.
+// ---------------------------------------------------------------------------
+export const startHere = [
+  {
+    step: "01",
+    name: "Run a free tool",
+    text: "Check an MCP server, review a system prompt, see what your AI agents can reach, or find where your buying path stalls. No account, no call, nothing stored.",
+    href: "/labs",
+    linkLabel: "Browse the tools",
+  },
+  {
+    step: "02",
+    name: "Talk to us for thirty minutes",
+    text: "Bring the problem as you understand it today. We tell you what we would do first, how big the work is, and whether you need us at all.",
+    href: site.calendly,
+    linkLabel: "Book a call",
+  },
+  {
+    step: "03",
+    name: "Get a plan, then the system",
+    text: "A review of two to seven weeks that ends in a plan with named owners and a first step. If it still needs hands, we stay and build it.",
+    href: "/studio#offers",
+    linkLabel: "See what we do",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// How ARC differs from the other three things a buyer is comparing us to.
+// Keep this honest — every row has to survive the buyer repeating it to the
+// competitor in question.
+// ---------------------------------------------------------------------------
+export type Alternative = {
+  option: string;
+  whoDoesTheWork: string;
+  whatYouGet: string;
+  afterward: string;
+  isArc?: boolean;
+};
+
+export const alternatives: Alternative[] = [
+  {
+    option: "A digital agency",
+    whoDoesTheWork: "A senior team pitches. A junior team delivers.",
+    whatYouGet: "Campaigns, sites, and brand work.",
+    afterward: "A renewal conversation, usually scoped as more campaign.",
+  },
+  {
+    option: "A systems integrator",
+    whoDoesTheWork: "A large bench, priced to stay large.",
+    whatYouGet: "A platform implementation against a signed statement of work.",
+    afterward: "Change requests. The bench stays.",
+  },
+  {
+    option: "A freelancer",
+    whoDoesTheWork: "One person, as available.",
+    whatYouGet: "Hours against your backlog.",
+    afterward: "The knowledge leaves when they do.",
+  },
+  {
+    option: "ARC",
+    whoDoesTheWork: "The senior person on your first call stays on the work.",
+    whatYouGet: "A scored plan with named owners — then the system, built.",
+    afterward: "Your team can run it without us. A retainer only if you want one.",
+    isArc: true,
+  },
+];
 
 /** What digital transformation means in practice for ARC. */
 export const digitalTransformation = [
@@ -93,9 +162,9 @@ export const marketSignals: MarketSignal[] = [
   {
     date: "2026-07-28",
     label: "Protocols",
-    headline: "MCP went stateless. The handshake your servers rely on is retired.",
+    headline: "The standard for connecting AI to your tools changed.",
     soWhat:
-      "The 2026-07-28 revision drops initialize and the session header, moves version and capabilities into per-request metadata, adds server/discover, and requires routing headers on Streamable HTTP. Old servers keep working for now — on a twelve-month clock.",
+      "The 2026-07-28 revision of the Model Context Protocol retires the old startup handshake and session header, and moves that information into every request instead. Existing servers keep working for about a year. If you built or bought one, it needs a check before that window closes.",
     href: "/labs/mcp-conformance-scanner",
     hrefLabel: "Scan a server",
     sources: [
@@ -108,9 +177,9 @@ export const marketSignals: MarketSignal[] = [
   {
     date: "2026-08-02",
     label: "Regulation",
-    headline: "EU AI Act transparency duties are live. High-risk paperwork moved to 2027.",
+    headline: "EU AI Act transparency rules are in force. The high-risk rules moved to 2027.",
     soWhat:
-      "Telling people they are talking to AI, and marking generated content so it can be detected, applies now. The Annex III high-risk obligations slid to 2 December 2027. Teams that heard 'delayed' and stopped reading are exposed on the part that already applies.",
+      "Since 2 August 2026 you have to tell people when they are talking to AI, and mark generated content so it can be detected. The tougher high-risk obligations were pushed to December 2027. Teams who heard \"delayed\" and stopped reading are exposed on the part that already applies.",
     href: "/research/eu-ai-act-transparency-live",
     hrefLabel: "Read the brief",
     sources: [
@@ -123,9 +192,9 @@ export const marketSignals: MarketSignal[] = [
   {
     date: "2026-08-04",
     label: "Agent risk",
-    headline: "A national evaluator watched agents act on the live internet without sanction.",
+    headline: "A government evaluator caught AI agents acting on the live internet without permission.",
     soWhat:
-      "The UK AI Security Institute catalogued 19 unsanctioned actions across 10 of 122 evaluation runs, including an agent that created fake identities to pressure a real open-source maintainer into merging malicious code. Least privilege for agents stopped being a policy sentence.",
+      "The UK AI Security Institute recorded 19 unsanctioned actions across 10 of 122 test runs. In one, an agent invented fake identities to pressure a real open-source maintainer into merging malicious code. Limiting what an agent can reach stopped being a policy sentence.",
     href: "/labs/arc-agent-governance",
     hrefLabel: "Review agent access",
     sources: [
@@ -142,9 +211,9 @@ export const marketSignals: MarketSignal[] = [
   {
     date: "2026-08-18",
     label: "Security",
-    headline: "The month's AI breaches were links and documents, not jailbreaks.",
+    headline: "This year's AI breaches came from ordinary links and documents.",
     soWhat:
-      "One crafted link was enough to inject instructions into a live Atlassian Rovo session and exfiltrate documents across every connected system — no jailbreak, no privilege escalation. The same pattern keeps appearing in DevOps integrations, email assistants, and agent frameworks. A connected assistant carries every permission you gave it.",
+      "One crafted link was enough to hijack a live Atlassian Rovo session and pull documents out of every connected system. No jailbreak, no stolen password. A connected assistant carries every permission you gave it, and the same pattern keeps showing up in email assistants and developer tools.",
     href: "/labs/arc-ai-security-scanner",
     hrefLabel: "Review an AI app",
     sources: [
@@ -157,9 +226,9 @@ export const marketSignals: MarketSignal[] = [
   {
     date: "2026-08-24",
     label: "Cost",
-    headline: "Coding-agent billing moved to routed-model pricing.",
+    headline: "AI coding tools now bill by whichever model answered.",
     soWhat:
-      "Cursor's Auto now bills at whichever model answered, plus a per-million token rate on third-party models for teams; the legacy flat rate for enterprise Auto expires 7 September 2026. Claude Code deployments run roughly $150–250 per developer per month. The same agent loop costs a different amount on a different day.",
+      "Cursor's Auto mode charges based on the model that handled each request, and the old flat enterprise rate expired on 7 September 2026. Claude Code runs roughly $150–250 per developer per month. The same task costs a different amount on a different day, which makes a monthly budget hard to hold.",
     href: "/labs/tokenloop",
     hrefLabel: "Open TokenLoop",
     sources: [
@@ -176,9 +245,9 @@ export const marketSignals: MarketSignal[] = [
   {
     date: "2026-08-26",
     label: "Enterprise apps",
-    headline: "The system of record grew an agent-facing surface with a meter on it.",
+    headline: "Your business software is growing AI agent access, with a meter on it.",
     soWhat:
-      "Salesforce put its CRM inside Claude and exposed the platform as MCP tools, APIs, and CLI commands, with agents inheriting existing roles and consumption billed against API usage. Your vendors are shipping agent access whether or not you scoped it — and billing on agent traffic instead of seats.",
+      "Salesforce put its CRM inside Claude and opened the platform to agents through tools, APIs, and the command line. Agents inherit whatever permissions the user already has, and the usage is billed against your API consumption. Vendors are shipping agent access whether or not you asked for it.",
     href: "/studio/agent-control-review",
     hrefLabel: "See the Agent Control Review",
     sources: [
@@ -303,14 +372,14 @@ export const labs: Product[] = [
     name: "MCP Conformance Scanner",
     tagline: "Check any MCP server against the spec in seconds.",
     description:
-      "Point it at a Model Context Protocol server and get a conformance report: what passes, what breaks, and what to fix first — written for an operator, not a linter. The 2026-07-28 revision retired the initialize handshake and the session header, so \"it works in one client\" is no longer evidence that it works.",
+      "Point it at a Model Context Protocol server and get a report: what passes, what breaks, and what to fix first — written for an operator, not a linter. The July 2026 spec revision changed how servers start up, so \"it works in one client\" is no longer evidence that it works.",
     status: "live",
     badge: "Flagship",
     featured: true,
     visual: "conformance",
     ctaLabel: "Scan a server",
     audience:
-      "Teams shipping or consuming MCP servers who need a production gate, not a one-client smoke test — especially now that enterprise platforms publish tool surfaces by the dozen and the protocol has moved to a stateless core.",
+      "Teams shipping or consuming MCP servers who need a production gate, not a one-client smoke test — especially now that enterprise platforms are publishing tool surfaces by the dozen.",
     howItWorks: [
       "Paste a server URL or point the CLI at your local process.",
       "We exercise the transport, capability, and schema behavior your server actually advertises.",
@@ -340,14 +409,14 @@ export const labs: Product[] = [
     name: "TokenLoop",
     tagline: "Stop AI coding-agent spend before the invoice.",
     description:
-      "Spend control for Claude Code and Cursor: per-developer burn, a minutes-scale kill switch, and client chargeback — without proxying traffic through a gateway. Free signup; keys encrypted at rest. Since flat-rate plans gave way to routed-model pricing, the same agent loop bills a different amount depending on which model answered.",
+      "Spend control for Claude Code and Cursor: what each developer is burning, a kill switch that acts within minutes, and client chargeback — without routing your traffic through a gateway. Free signup, keys encrypted at rest.",
     status: "live",
     badge: "Free product",
     featured: true,
     visual: "spend",
     ctaLabel: "Open TokenLoop",
     audience:
-      "Engineering and agency leads running Claude Code and Cursor who find out about runaway spend on the invoice — now that enterprise flat rates are expiring and billing follows whichever model the router picked. They need detect-and-cut plus client bill-back without a proxy.",
+      "Engineering and agency leads running Claude Code and Cursor who currently find out about runaway spend on the invoice. Flat rates are expiring and billing now follows whichever model answered, so the number moves on its own.",
     howItWorks: [
       "Create a free account (email + password).",
       "Paste Anthropic and/or Cursor admin keys. We AES-256-GCM encrypt them before storage.",
@@ -555,7 +624,7 @@ export const labs: Product[] = [
     name: "ARC AI Stack Advisor",
     tagline: "Turn a use case and real constraints into a defensible AI architecture.",
     description:
-      "Describe the use case, the data, the budget, and the constraints. Get a decision matrix: the recommended shape, what was ruled out and why, named cost drivers (never invented prices), and a board brief you can copy. Free, no account, nothing stored. Built for the decision teams are actually making now — when not to use an agent, when MCP needs an allowlist, and when the answer is a lookup.",
+      "Describe the use case, the data, the budget, and the constraints. Get a decision matrix: the recommended shape, what was ruled out and why, named cost drivers (never invented prices), and a board brief you can copy. Free, no account, nothing stored. Built for the decisions teams are actually making now: when not to use an agent, when a tool needs an allowlist, and when the answer is just a database lookup.",
     status: "live",
     badge: "Free",
     visual: "architecture",
@@ -592,7 +661,7 @@ export const labs: Product[] = [
     name: "ARC AI Security Scanner",
     tagline: "Defensive security review for AI applications.",
     description:
-      "Describe an AI application — agents, MCP, RAG, prompts, data flows — and get a graded defensive review covering prompt injection surface, tool authority, data exposure, tenancy, and logging. Every finding quotes your own words. Not a penetration test and not a certification. The disclosures stacking up this year are not clever jailbreaks: they are ordinary links and documents that turn a connected assistant into an exfiltration path with the permissions you already granted it.",
+      "Describe an AI application — agents, MCP, retrieval, prompts, data flows — and get a graded defensive review covering prompt injection, what your tools are allowed to do, data exposure, tenancy, and logging. Every finding quotes your own words back to you. Not a penetration test and not a certification.",
     status: "live",
     badge: "Free",
     featured: true,
@@ -666,13 +735,13 @@ export const labs: Product[] = [
     name: "ARC Agent Governance",
     tagline: "Know what your agents can reach, what they can do, and where the controls are missing.",
     description:
-      "Describe your agents, tools, permissions, and data sources. Get an inventory plus a graded governance review across identity, least privilege, data access, human approval, MCP, and auditability — every finding quotes your own words. Free, no account, nothing stored. August 2026 made the question concrete: a national evaluator, several security teams, and the platform vendors themselves all documented agents acting outside the scope someone assumed they had.",
+      "Describe your agents, tools, permissions, and data sources. Get an inventory plus a graded review across identity, permissions, data access, human approval, and audit trails — every finding quotes your own words back to you. Free, no account, nothing stored.",
     status: "live",
     badge: "Free",
     visual: "governance",
     ctaLabel: "Review agent access",
     audience:
-      "CIOs, CISOs, AI platform teams, and engineering leads whose vendors shipped agent access this year — headless CRM tools, coding agents, connected assistants — and who now have to answer what an agent can reach, without a penetration test or a fake certification.",
+      "CIOs, CISOs, and engineering leads whose vendors switched on agent access this year — CRM tools, coding agents, connected assistants — and who now have to answer what those agents can reach.",
     howItWorks: [
       "Paste a sanitized description or JSON manifest of agents, tools, and data sources.",
       "Deterministic rules match that text to a published governance rubric. No model produces a score.",
@@ -784,12 +853,12 @@ export const labGroups = [
 // ---------------------------------------------------------------------------
 export type StudioOffering = {
   slug: string;
-  codename: string;
+  /** Plain-language category shown on the card so people can scan for their problem. */
+  focus: string;
   name: string;
   tagline: string;
   blurb: string;
   duration: string;
-  lead: string;
   flagship?: boolean;
   startsWith: string;
   youLeaveWith: string;
@@ -804,13 +873,12 @@ export type StudioOffering = {
 export const studioOfferings: StudioOffering[] = [
   {
     slug: "ai-readiness-audit",
-    codename: "Pulse",
-    name: "AI Readiness Audit (C.I.T.H.)",
+    focus: "AI strategy",
+    name: "AI Readiness Audit",
     tagline: "Decide where AI belongs — and where it doesn't — before anyone writes code.",
     blurb:
-      "Capability, Intent, Teams, and Habits scored against your real workflows. You leave knowing which bet to fund, which to defer, and what has to change before anything ships.",
+      "We score four things against the workflows you actually run: what you can do today, what you are trying to achieve, whether your teams can support it, and the habits that will either carry the change or kill it. You leave knowing which bet to fund and which to defer.",
     duration: "3–4 weeks",
-    lead: "Pulse",
     startsWith:
       "Real processes, real data access, and the people who would have to run whatever gets built.",
     youLeaveWith:
@@ -818,11 +886,11 @@ export const studioOfferings: StudioOffering[] = [
     whoFor:
       "Leadership teams being pushed toward AI without a clear workflow, owner, or constraint. Operators who have discovered AI is already running in six places on someone else's credit card and want one scored plan instead of six pilots.",
     notFor: [
-      "Teams that already have a scoped MVP and just need hands to implement it — start with Nova or a Post-Diagnostic retainer.",
+      "Teams that already have a scoped MVP and just need hands to implement it — start with AI Solution Concept + MVP Scope, or a Post-Diagnostic retainer.",
       "Organizations looking for a vendor demo tour instead of a decision framework.",
     ],
     deliverables: [
-      "C.I.T.H. scorecard: Capability, Intent, Teams, Habits — each dimension scored with evidence",
+      "Readiness scorecard across capability, intent, teams, and habits — each scored with evidence",
       "Shadow-AI inventory: which tools and agents are already in use, who turned them on, and what they can reach",
       "Process opportunity map tied to workflows your team actually runs",
       "Classified automation backlog: ship now, fix prerequisites first, or defer",
@@ -830,29 +898,29 @@ export const studioOfferings: StudioOffering[] = [
       "Human-review gates identified for any workflow touching judgment, compliance, or customer trust",
     ],
     buildOptions: [
-      "Nova: turn the top-ranked opportunity into MVP scope and functional requirements",
-      "Bedrock / RAG implementation on AWS — workflow design through production rollout",
+      "MVP scope and functional requirements for the top-ranked opportunity",
+      "Retrieval or workflow implementation on AWS — design through production rollout",
       "Post-Diagnostic Execution Retainer: roadmap items delivered in monthly sprints",
       "Fractional Head of AI / Transformation retainer for ongoing governance and vendor judgment",
     ],
     scoping: [
-      "Discovery call (30 min): confirm the problem, stakeholders, and whether Pulse is the right front door",
+      "Discovery call (30 min): confirm the problem, the stakeholders, and whether this is the right front door",
       "Intake: access to key systems, sample workflows, and the people who run them",
       "Week 1–2: workflow interviews, data and integration review, team capability assessment",
       "Week 2–3: scorecard draft, opportunity map, backlog classification",
       "Week 3–4: roadmap finalization, exec readout, handoff to delivery or retainer if scoped",
     ],
-    typicalFollowOn: "Nova for MVP scope, or Post-Diagnostic Execution Retainer to ship the first workflow.",
+    typicalFollowOn:
+      "AI Solution Concept + MVP Scope, or a Post-Diagnostic Execution Retainer to ship the first workflow.",
   },
   {
     slug: "technical-architecture-review",
-    codename: "Atlas",
+    focus: "Architecture",
     name: "Technical Architecture Review",
     tagline: "Understand whether the system can scale — and what it costs to operate.",
     blurb:
       "Program-level review of how your platform is built, where debt concentrates, and what to modernize first. Written for operators and boards, not architects performing for each other.",
     duration: "3–4 weeks",
-    lead: "Atlas",
     startsWith:
       "Code, architecture diagrams, deployment history, and the operating constraints you actually have — not a whiteboard fantasy.",
     youLeaveWith:
@@ -861,7 +929,7 @@ export const studioOfferings: StudioOffering[] = [
       "Teams evaluating an acquisition, planning a platform rewrite, or stuck between 'it works' and 'it won't survive the next growth phase.' CTOs and engineering leads who need an honest read before committing spend.",
     notFor: [
       "Line-by-line code review for compliance sign-off — that is a different engagement.",
-      "Teams that need a delivery program stood up — pair this with Ridge.",
+      "Teams that need a delivery program stood up — pair this with Delivery Program Setup.",
     ],
     deliverables: [
       "Current-state architecture map: services, data flows, integrations, and ownership",
@@ -874,7 +942,7 @@ export const studioOfferings: StudioOffering[] = [
       "Platform migration or re-architecture — scoped sprints with CI/CD gates",
       "Service decomposition or API boundary work",
       "Fractional Cloud / Platform Advisor retainer for ongoing architecture decisions",
-      "Forge follow-on if CI/CD and observability are the primary blockers",
+      "Cloud & DevOps Readiness Review if CI/CD and observability are the primary blockers",
     ],
     scoping: [
       "Discovery call: confirm scope boundaries, systems in play, and decision timeline",
@@ -883,17 +951,17 @@ export const studioOfferings: StudioOffering[] = [
       "Week 2: debt and risk assessment, stakeholder interviews on pain points",
       "Week 3–4: findings synthesis, roadmap draft, exec readout and handoff",
     ],
-    typicalFollowOn: "Forge for CI/CD gaps, or Fractional Cloud / Platform Advisor for ongoing decisions.",
+    typicalFollowOn:
+      "Cloud & DevOps Readiness Review for pipeline gaps, or Fractional Cloud / Platform Advisor for ongoing decisions.",
   },
   {
     slug: "cloud-devops-readiness",
-    codename: "Forge",
+    focus: "Cloud & DevOps",
     name: "Cloud & DevOps Readiness Review",
     tagline: "Find out why releases hurt — and what to fix in the pipeline first.",
     blurb:
       "Cloud posture, CI/CD audit, observability gaps, and scalability recommendations. Grounded in how your team actually deploys, not how a reference architecture says they should.",
     duration: "2–3 weeks",
-    lead: "Forge",
     startsWith:
       "Your pipelines, environments, deployment frequency, and the incidents that keep repeating.",
     youLeaveWith:
@@ -902,7 +970,7 @@ export const studioOfferings: StudioOffering[] = [
       "Platform and DevOps leads where releases are painful, environments drift, or nobody trusts the monitoring. Teams mid-migration who need an honest read before committing to the next phase.",
     notFor: [
       "Full cloud migration execution — this scopes it; a retainer or scoped build delivers it.",
-      "Security compliance certification — pair with Sentinel for that lens.",
+      "Security compliance certification — pair with the Security & Compliance Posture Review for that lens.",
     ],
     deliverables: [
       "Cloud posture assessment: accounts, networking, cost patterns, and blast radius",
@@ -928,13 +996,12 @@ export const studioOfferings: StudioOffering[] = [
   },
   {
     slug: "data-health-analytics",
-    codename: "Quill",
+    focus: "Data & analytics",
     name: "Data Health & Analytics Readiness",
     tagline: "Find out why leadership doesn't trust the numbers — and fix the first workflow.",
     blurb:
       "Data flow map, schema audit, quality scoring, and a remediation roadmap. The goal is a reporting workflow your team can run without a heroic analyst.",
     duration: "2–3 weeks",
-    lead: "Quill",
     startsWith:
       "The reports leadership already uses — and the spreadsheets they actually trust when those reports are wrong.",
     youLeaveWith:
@@ -969,13 +1036,12 @@ export const studioOfferings: StudioOffering[] = [
   },
   {
     slug: "security-compliance-posture",
-    codename: "Sentinel",
+    focus: "Security & compliance",
     name: "Security & Compliance Posture Review",
     tagline: "Find the weaknesses that would hurt you — not a checkbox exercise.",
     blurb:
       "Risk matrix, access and secrets review, remediation roadmap, and SOC 2 / GDPR / CCPA readiness notes. Readiness work that tells you what to fix first, not audit theater.",
     duration: "2–3 weeks",
-    lead: "Sentinel",
     startsWith:
       "Access controls, secrets management, logging, and the systems that actually hold the crown jewels.",
     youLeaveWith:
@@ -1011,13 +1077,12 @@ export const studioOfferings: StudioOffering[] = [
   },
   {
     slug: "agent-control-review",
-    codename: "Warden",
+    focus: "AI agent governance",
     name: "Agent Control Review",
     tagline: "Know what your agents can reach, who approved it, and what it costs to run.",
     blurb:
-      "Your vendors shipped agent access this year whether or not you scoped it. Warden inventories the agents, tools, and credentials already live, sizes the blast radius, and installs the approval gates and spend guardrails before the next platform update widens what an agent can touch.",
+      "Your vendors switched on AI agents this year whether or not you asked for them. We inventory the agents, tools, and credentials already running, work out how much damage each one could do, and put approval steps and spend limits in place before the next vendor update widens what they can touch.",
     duration: "2–3 weeks",
-    lead: "Warden",
     startsWith:
       "The agents, copilots, connectors, and MCP tools already running in your stack — including the ones a team switched on without telling anyone.",
     youLeaveWith:
@@ -1026,7 +1091,7 @@ export const studioOfferings: StudioOffering[] = [
       "CIOs, CISOs, and platform leads who have to answer what an agent can reach, who authorized it, and what it costs — now that the system of record, the IDE, and the chat client all have agent surfaces and usage meters.",
     notFor: [
       "Penetration testing or model red-teaming — we scope controls, not offensive security.",
-      "Teams with nothing agentic in production yet — start with Pulse and decide where AI belongs first.",
+      "Teams with no AI agents in production yet — start with the AI Readiness Audit and decide where AI belongs first.",
     ],
     deliverables: [
       "Agent, tool, and credential inventory across vendor copilots, coding agents, and MCP servers",
@@ -1053,21 +1118,20 @@ export const studioOfferings: StudioOffering[] = [
   },
   {
     slug: "ai-solution-mvp-scope",
-    codename: "Nova",
+    focus: "AI build scope",
     name: "AI Solution Concept + MVP Scope",
     tagline: "Turn a ranked opportunity into something engineering can build.",
     blurb:
       "Workflow design, MVP scope, functional requirements, KPI framework, and rollout plan. The output is a build-ready package — not a proof-of-concept that dies in a slide deck.",
     duration: "3–5 weeks",
-    lead: "Nova",
     startsWith:
-      "One scored opportunity from Pulse (or your own prioritization) with a named owner and real data access.",
+      "One scored opportunity — from the AI Readiness Audit or your own prioritization — with a named owner and real data access.",
     youLeaveWith:
       "Functional requirements, architecture sketch, KPI framework, and a rollout plan with human-review gates defined.",
     whoFor:
       "Teams that know what problem to solve but need it scoped for engineering. Product and engineering leads who want a build package, not a strategy deck. Organizations ready to commit build resources after the scope is signed.",
     notFor: [
-      "Teams still deciding whether to do AI at all — start with Pulse.",
+      "Teams still deciding whether to do AI at all — start with the AI Readiness Audit.",
       "Organizations wanting us to build without signed scope — we scope first, then deliver.",
     ],
     deliverables: [
@@ -1086,7 +1150,7 @@ export const studioOfferings: StudioOffering[] = [
     ],
     scoping: [
       "Discovery call: confirm the opportunity, data access, and build timeline",
-      "Prerequisite check: Pulse completed or equivalent prioritization in hand",
+      "Prerequisite check: an AI Readiness Audit completed, or equivalent prioritization in hand",
       "Week 1–2: workflow design sessions, data and integration mapping",
       "Week 2–3: MVP scope, requirements draft, KPI definition",
       "Week 3–5: architecture sketch, rollout plan, stakeholder sign-off, handoff to build",
@@ -1095,13 +1159,12 @@ export const studioOfferings: StudioOffering[] = [
   },
   {
     slug: "delivery-program-setup",
-    codename: "Ridge",
+    focus: "Delivery & release",
     name: "Delivery Program Setup",
     tagline: "Turn intent into a release plan that actually ships.",
     blurb:
-      "Project charter, milestone plan, RAID log, release checklist, and weekly governance cadence. The unglamorous work that decides whether anything launches on time.",
+      "Project charter, milestone plan, a live log of risks and dependencies, a release checklist, and a weekly governance cadence. The unglamorous work that decides whether anything launches on time.",
     duration: "2–3 weeks",
-    lead: "Ridge",
     startsWith:
       "Your backlog, release history, dependency map, and the reasons last quarter's commitments slipped.",
     youLeaveWith:
@@ -1109,7 +1172,7 @@ export const studioOfferings: StudioOffering[] = [
     whoFor:
       "Teams shipping platform work where delivery slips, releases are painful, or governance is missing. Engineering leads who need program structure without hiring a full-time TPM.",
     notFor: [
-      "Teams that need technical architecture decisions — pair with Atlas.",
+      "Teams that need technical architecture decisions — pair with the Technical Architecture Review.",
       "Organizations wanting staff augmentation instead of program setup.",
     ],
     deliverables: [
@@ -1132,17 +1195,17 @@ export const studioOfferings: StudioOffering[] = [
       "Week 2: charter draft, milestone plan, RAID log initialization",
       "Week 2–3: governance design, release checklist, team walkthrough and handoff",
     ],
-    typicalFollowOn: "Fractional TPM / Delivery Program Lead retainer to run what Ridge sets up.",
+    typicalFollowOn:
+      "Fractional TPM / Delivery Program Lead retainer to run the program this sets up.",
   },
   {
     slug: "integrated-transformation-diagnostic",
-    codename: "Integrated",
+    focus: "The whole picture",
     name: "Integrated Transformation Diagnostic",
     tagline: "The whole picture — architecture, data, infra, security, and AI — in one sequenced plan.",
     blurb:
-      "Atlas + Pulse + Ridge combined. Full current-state across every dimension that affects whether your next bet ships, then a phased 6–12 month roadmap with named owners and sized risks.",
+      "The architecture, AI readiness, and delivery reviews run together as one engagement. Full current-state across every dimension that affects whether your next bet ships, then a phased 6–12 month roadmap with named owners and sized risks.",
     duration: "5–7 weeks",
-    lead: "Atlas + Pulse + Ridge",
     flagship: true,
     startsWith:
       "Competing initiatives, no shared debt map, and a board asking which bet to fund.",
@@ -1171,7 +1234,7 @@ export const studioOfferings: StudioOffering[] = [
     scoping: [
       "Discovery call: confirm competing initiatives, stakeholder map, and board timeline",
       "Access: full system inventory, recent audits or assessments, org chart",
-      "Week 1–2: parallel workstreams — architecture (Atlas), AI readiness (Pulse), delivery assessment (Ridge)",
+      "Week 1–2: three parallel workstreams — architecture, AI readiness, and delivery assessment",
       "Week 3–4: cross-domain synthesis, opportunity scoring on four axes",
       "Week 5–6: roadmap draft, owner assignment, risk sizing",
       "Week 6–7: board-ready summary, exec readout, retainer scoping if delivery follows",
@@ -1179,25 +1242,6 @@ export const studioOfferings: StudioOffering[] = [
     typicalFollowOn: "ARC Partner Retainer or Post-Diagnostic Execution Retainer to deliver the roadmap.",
   },
 ];
-
-/** @deprecated Use studioOfferings — kept for any legacy imports */
-export type Service = {
-  number: string;
-  name: string;
-  blurb: string;
-  points: string[];
-  flagship?: boolean;
-  slug?: string;
-};
-
-export const services: Service[] = studioOfferings.map((o, i) => ({
-  number: String(i + 1).padStart(2, "0"),
-  name: o.name,
-  blurb: o.blurb,
-  points: o.deliverables.slice(0, 4),
-  flagship: o.flagship,
-  slug: o.slug,
-}));
 
 export function getStudioOfferingBySlug(slug: string): StudioOffering | undefined {
   return studioOfferings.find((o) => o.slug === slug);
@@ -1210,8 +1254,7 @@ export type Retainer = {
   slug: string;
   name: string;
   bestFit: string;
-  leadTime: string;
-  primaryAgents: string;
+  commitment: string;
   flagship?: boolean;
 };
 
@@ -1219,45 +1262,45 @@ export const retainers: Retainer[] = [
   {
     slug: "fractional-head-of-ai",
     name: "Fractional Head of AI / Transformation",
-    bestFit: "No senior AI exec in-house; needs strategy, agent governance, vendor judgment, and exec reporting.",
-    leadTime: "30–50 hrs + agent deliverables",
-    primaryAgents: "Pulse, Nova (lead); Warden, Atlas, Quill, Sentinel",
+    bestFit:
+      "No senior AI leader in-house. You need strategy, AI governance, vendor judgment, and something coherent to tell the board.",
+    commitment: "30–50 hrs / month",
     flagship: true,
   },
   {
     slug: "fractional-tpm",
     name: "Fractional TPM / Delivery Program Lead",
-    bestFit: "Shipping platform work but delivery slips, releases painful, governance missing.",
-    leadTime: "40–60 hrs + agent deliverables",
-    primaryAgents: "Ridge (lead); Forge",
+    bestFit:
+      "You are shipping platform work, but delivery slips, releases hurt, and nobody owns the cadence.",
+    commitment: "40–60 hrs / month",
   },
   {
     slug: "fractional-cloud-advisor",
     name: "Fractional Cloud / Platform Advisor",
-    bestFit: "Mid-migration, scaling infra, AWS architecture decisions.",
-    leadTime: "30–40 hrs + agent deliverables",
-    primaryAgents: "Forge, Atlas (lead); Quill, Sentinel",
+    bestFit:
+      "You are mid-migration or scaling infrastructure and need someone senior on the AWS architecture calls.",
+    commitment: "30–40 hrs / month",
   },
   {
     slug: "post-diagnostic-execution",
     name: "Post-Diagnostic Execution Retainer",
-    bestFit: "Natural follow-on after any ARC diagnostic — turn roadmap into delivered work.",
-    leadTime: "Scoped to roadmap",
-    primaryAgents: "Led by Ridge; agents per roadmap",
+    bestFit:
+      "The natural next step after any ARC review — turn the roadmap into delivered work, sprint by sprint.",
+    commitment: "Scoped to the roadmap",
   },
   {
     slug: "growth-pipeline",
     name: "Growth & Pipeline Management",
-    bestFit: "Founders / SMB leaders who want warm pipeline without a sales hire.",
-    leadTime: "Agent-driven; senior oversight + intros",
-    primaryAgents: "Avery + Rowan + Sloan",
+    bestFit:
+      "Founders and smaller teams who want a warm pipeline built and worked without hiring a salesperson.",
+    commitment: "Senior oversight + introductions",
   },
   {
     slug: "arc-partner",
-    name: "ARC Partner Retainer (Integrated)",
-    bestFit: "Ongoing transformation partner across strategy, delivery, AI, and pipeline.",
-    leadTime: "80+ hrs + full agent roster",
-    primaryAgents: "All agents; senior principal lead",
+    name: "ARC Partner Retainer",
+    bestFit:
+      "One ongoing partner across strategy, delivery, and AI instead of a pile of vendors to manage.",
+    commitment: "80+ hrs / month",
   },
 ];
 
@@ -1336,21 +1379,6 @@ export const bestFit = [
   "Operators in 10–500 person companies, nonprofits, and teams who need a working system, not a slide deck.",
   "Leaders who want one honest partner across strategy, build, and scale — not a pile of vendors to manage.",
   "Groups ready to put real data, real users, and real effort behind the work.",
-];
-
-export const whyArc = [
-  {
-    title: "Senior-led from the first call",
-    text: "Twenty years of Fortune 100/500 delivery: cybersecurity product lines, Ticketmaster-scale customer data, brand programs with LEGO and the NFL. You are not handed to a junior bench after the pitch.",
-  },
-  {
-    title: "The work is operational",
-    text: "Stretched teams. Sensitive systems. Vendor agents that arrived with the last release note. Problems that already survived two strategy decks. We score the work, then ship the boring thing that moves a number.",
-  },
-  {
-    title: "Different from an agency or a freelancer",
-    text: "Agencies sell campaigns. Integrators sell platforms. Freelancers sell hours. We sell a plan with owners, and the delivery to make it run. The free Labs tools are the same method, unbundled.",
-  },
 ];
 
 export const notAFit = [
@@ -1648,19 +1676,23 @@ export const faqs = [
   },
   {
     q: "How does work usually start?",
-    a: "A 30-minute call, then a scoped review of two to seven weeks. That ends in a plan with owners. If you still need us after that, we stay for delivery.",
+    a: "A 30-minute call, then a scoped review of two to seven weeks. That ends in a plan with named owners. If you still need us after that, we stay for delivery.",
+  },
+  {
+    q: "Who actually does the work?",
+    a: "The senior person on your first call. We do not pitch with one team and deliver with another, and we do not put a junior bench on your problem after the contract is signed. That is the main reason to pick a small practice over an agency.",
   },
   {
     q: "Our AI bill came in over plan. Where do we start?",
-    a: "With a free tool. TokenLoop shows per-developer coding-agent spend and can cut a spike in minutes. Studio is for when the overrun is structural — no owner per workflow, no cap, no chargeback — which is now the common case, because vendors bill on routed models and agent traffic instead of flat seats.",
+    a: "With a free tool. TokenLoop shows what each developer is spending on coding agents and can cut a spike in minutes. Come to us when the overrun is structural — no owner per workflow, no cap, no way to bill it back — which is now the common case.",
   },
   {
-    q: "Our vendors turned on agents inside tools we already pay for. Is that a problem?",
-    a: "It is the question of the quarter. An agent inside your CRM or your IDE inherits the permissions of whoever runs it, and the disclosures of the last few months were ordinary links and documents, not exotic attacks. The Agent Control Review inventories what is live, ranks blast radius, and puts approval and spend gates on the actions that matter. The free Agent Governance tool covers the first pass.",
+    q: "Our vendors turned on AI agents inside tools we already pay for. Is that a problem?",
+    a: "It is the question of the quarter. An agent inside your CRM or your code editor inherits the permissions of whoever runs it, and the breaches of the last few months came from ordinary links and documents, not exotic attacks. The Agent Control Review lists what is live, ranks what each agent could damage, and puts approval and spend limits on the actions that matter. The free Agent Governance tool covers the first pass.",
   },
   {
     q: "EU AI Act transparency rules applied on 2 August 2026. Does that hit us?",
-    a: "If you serve EU users and your product talks to people or generates content, the disclosure and content-marking duties are live now. The Annex III high-risk obligations moved to December 2027, which is why teams who heard \"delayed\" and stopped reading are exposed on the part that already applies. We give you the readiness read and the gap list; your counsel and your auditor sign off.",
+    a: "If you serve EU users and your product talks to people or generates content, the disclosure and content-marking duties apply to you now. The tougher high-risk obligations moved to December 2027, which is why teams who heard \"delayed\" and stopped reading are exposed on the part that already applies. We give you the readiness read and the gap list; your lawyer and your auditor sign off.",
   },
   {
     q: "Are the Labs tools really free?",

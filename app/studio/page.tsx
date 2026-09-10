@@ -37,7 +37,7 @@ export default function StudioPage() {
         <SectionHeading
           kicker="How we start"
           title="Pick the problem, not a package from a menu."
-          lead="Each start has a typical duration and a concrete deliverable. Click into any offering to see if it fits, what you receive, and what we can build after."
+          lead="Each review has a typical duration and a concrete deliverable. Open any of them to see whether it fits, what you receive, and what we can build afterward."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {studioOfferings.map((o, i) => (
@@ -62,7 +62,7 @@ export default function StudioPage() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="rounded-full border border-border bg-muted px-2 py-0.5 text-xs font-medium">
-                    {o.codename}
+                    {o.focus}
                   </span>
                   <span className="text-xs text-muted-foreground">
                     {o.duration}
@@ -126,7 +126,7 @@ export default function StudioPage() {
               <tr className="border-b border-border text-xs uppercase tracking-wider text-muted-foreground">
                 <th className="pb-3 pr-4 font-medium">Engagement</th>
                 <th className="pb-3 pr-4 font-medium">Best fit</th>
-                <th className="pb-3 font-medium">Lead time</th>
+                <th className="pb-3 font-medium">Typical commitment</th>
               </tr>
             </thead>
             <tbody>
@@ -144,7 +144,7 @@ export default function StudioPage() {
                     {r.bestFit}
                   </td>
                   <td className="py-4 align-top text-muted-foreground">
-                    {r.leadTime}
+                    {r.commitment}
                   </td>
                 </tr>
               ))}
@@ -190,7 +190,7 @@ export default function StudioPage() {
           </Link>
         </div>
         <div className="mt-12 grid gap-5 md:grid-cols-2">
-          {caseStudies.map((study) => (
+          {caseStudies.slice(0, 2).map((study) => (
             <Link key={study.slug} href={`/work/${study.slug}`} className="group block">
               <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
                 <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">

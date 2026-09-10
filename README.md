@@ -47,7 +47,7 @@ app/
   api/contact/route.ts  Contact form API (Resend when configured)
   labs/page.tsx         ARC Labs (free tools)
   labs/[slug]/page.tsx  Reusable PRODUCT template (demo/GitHub/docs/roadmap)
-  studio/page.tsx       ARC Studio (consulting: 9 services, 5 stages, principles)
+  studio/page.tsx       ARC Studio (scoped reviews, retainers, 5 stages, principles)
   research/page.tsx     ARC Research (benchmarks + reports)
   research/[slug]/page.tsx  Reusable ARTICLE/RESEARCH template
   academy/page.tsx      ARC Academy (workshops)
@@ -60,7 +60,8 @@ components/
   product-card.tsx      Reusable product/service card
   theme-provider.tsx    next-themes wrapper
   theme-toggle.tsx      Light/dark switch
-components/
+  start-here.tsx        Three-step path into the practice (home)
+  alternatives-table.tsx  Agency / integrator / freelancer / ARC comparison (home)
   market-signals.tsx    Dated "what changed" strip (home + Labs)
 lib/
   content.ts            Single source of truth for all ecosystem content
@@ -77,6 +78,11 @@ it. Update `marketSignalsUpdated` when you review the list, and delete signals
 older than a quarter rather than letting them age on the homepage. If a
 protocol, price, or regulation changes, fix the affected product copy in the
 same pass — stale product claims cost more trust than a thin signal list.
+
+Studio offerings carry a plain-language `focus` label ("Security & compliance",
+"AI agent governance") rather than an internal codename. Buyers scan for their
+own problem, not for our naming scheme, so when you add an offering, describe
+the problem it solves and cross-reference other offerings by their real names.
 
 ## Adding a new product (the whole point)
 

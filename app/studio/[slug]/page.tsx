@@ -46,7 +46,7 @@ export default function StudioOfferingPage({
         <article className="mx-auto max-w-3xl">
           <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
             <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
-              {offering.codename}
+              {offering.focus}
             </span>
             <span>{offering.duration}</span>
             {offering.flagship ? (
@@ -172,7 +172,7 @@ export default function StudioOfferingPage({
       </Container>
 
       <CTA
-        title={`Want to talk about ${offering.codename}?`}
+        title={`Want to talk about the ${offering.name}?`}
         lead="A 30-minute call is enough to tell you whether this is the right first step — and what size of engagement the problem actually needs."
       />
     </>
