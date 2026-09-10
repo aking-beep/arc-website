@@ -156,7 +156,7 @@ export type MarketSignal = {
   sources: { name: string; url: string }[];
 };
 
-export const marketSignalsUpdated = "2026-09-07";
+export const marketSignalsUpdated = "2026-09-10";
 
 export const marketSignals: MarketSignal[] = [
   {

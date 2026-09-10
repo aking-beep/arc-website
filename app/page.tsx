@@ -20,12 +20,16 @@ import {
 
 export default function HomePage() {
   const featuredLabs = labs.filter((p) => p.featured);
+  // Four focused reviews fill the two-column grid evenly; the flagship spans it.
   const featuredOffers = studioOfferings.filter(
     (o) =>
       o.flagship ||
-      ["security-compliance-posture", "data-health-analytics", "ai-readiness-audit"].includes(
-        o.slug,
-      ),
+      [
+        "ai-readiness-audit",
+        "data-health-analytics",
+        "security-compliance-posture",
+        "agent-control-review",
+      ].includes(o.slug),
   );
 
   return (

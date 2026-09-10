@@ -17,7 +17,38 @@ export function AlternativesTable({ className }: { className?: string }) {
         lead="Agencies, integrators, and freelancers all solve real problems. Here is the honest version of where each one lands, so you can tell quickly whether we are the right shape for your problem."
       />
 
-      <div className="mt-12 overflow-x-auto">
+      <ul className="mt-12 grid gap-4 sm:hidden">
+        {alternatives.map((row) => (
+          <li
+            key={row.option}
+            className={cn(
+              "rounded-lg border border-border p-5",
+              row.isArc ? "bg-muted/50" : "bg-card",
+            )}
+          >
+            <h3 className="text-base font-semibold">{row.option}</h3>
+            <dl className="mt-3 grid gap-3">
+              {columns.map((c) => (
+                <div key={c.key}>
+                  <dt className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    {c.label}
+                  </dt>
+                  <dd
+                    className={cn(
+                      "mt-1 text-sm leading-relaxed",
+                      row.isArc ? "text-foreground" : "text-muted-foreground",
+                    )}
+                  >
+                    {row[c.key]}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-12 hidden overflow-x-auto sm:block">
         <table className="w-full min-w-[720px] border-collapse text-left text-sm">
           <thead>
             <tr className="border-b border-border text-xs uppercase tracking-wider text-muted-foreground">
