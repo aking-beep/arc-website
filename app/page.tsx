@@ -28,28 +28,31 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 grid-bg opacity-70" />
         <Container className="relative py-24 sm:py-32">
-          <div className="max-w-3xl animate-fade-up">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/60 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-              {site.audience.badge}
+          <div className="grid items-center gap-16 xl:grid-cols-[minmax(0,1fr)_26rem] xl:gap-12">
+            <div className="animate-fade-up">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/60 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+                {site.audience.badge}
+              </div>
+              <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
+                Build what&rsquo;s next.
+                <br />
+                Improve what already works.
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+                {site.audience.line}
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Button href="/advisory" size="lg">
+                  Work with ARC
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+                <Button href="/playbooks" variant="outline" size="lg">
+                  Start learning
+                </Button>
+              </div>
             </div>
-            <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
-              Build what&rsquo;s next.
-              <br />
-              Improve what already works.
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-              {site.audience.line}
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href="/advisory" size="lg">
-                Work with ARC
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-              <Button href="/playbooks" variant="outline" size="lg">
-                Start learning
-              </Button>
-            </div>
+            <SystemMap />
           </div>
         </Container>
       </section>
@@ -406,5 +409,73 @@ export default function HomePage() {
         lead="Thirty minutes is enough to work out whether the problem is a system, an organization, or an agent you cannot yet verify — and what the honest first step is."
       />
     </>
+  );
+}
+
+/**
+ * The whole structure in one panel: the company, the three ways it works, the
+ * technology layer underneath, and the research edge. Sits beside the copy at
+ * xl and underneath it at lg. Below that the sections that follow carry the
+ * same information, so it is dropped rather than squeezed.
+ */
+function SystemMap() {
+  return (
+    <Panel className="hidden animate-fade-up p-7 lg:block">
+      <PanelLabel>System map</PanelLabel>
+
+      <div className="mt-5">
+        <p className="text-sm font-semibold tracking-tight">
+          ARC Transformation Group
+        </p>
+        <p className="mt-1 text-xs text-muted-foreground">
+          The company you work with.
+        </p>
+        <ul className="mt-4 grid grid-cols-3 gap-2">
+          {operatingModes.map((mode) => (
+            <li
+              key={mode.id}
+              className="rounded-md border border-border bg-card px-2 py-1.5 text-center font-mono text-[11px] uppercase tracking-wider text-muted-foreground"
+            >
+              {mode.verb}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="mt-6 border-t border-border pt-6">
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-sm font-semibold tracking-tight text-brand">
+            {ark.name}
+          </p>
+          <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+            Technology
+          </span>
+        </div>
+        <p className="mt-1 text-xs text-muted-foreground">{ark.positioning}</p>
+        <ol className="mt-4 flex items-center gap-1.5">
+          {ark.loop.map((step, i) => (
+            <li key={step} className="flex flex-1 items-center gap-1.5">
+              <span className="flex-1 rounded-md border border-brand/30 bg-brand/10 px-1.5 py-1.5 text-center font-mono text-[10px] uppercase tracking-wider text-brand">
+                {step}
+              </span>
+              {i === ark.loop.length - 1 ? null : (
+                <span aria-hidden className="h-px w-2 flex-none rail-x" />
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <div className="mt-6 flex items-baseline justify-between gap-3 border-t border-border pt-6">
+        <p className="text-sm font-semibold tracking-tight">ARK Labs</p>
+        <p className="text-xs text-muted-foreground">
+          Open tools, experiments, research.
+        </p>
+      </div>
+
+      <p className="mt-6 border-t border-border pt-5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+        {ark.principle}
+      </p>
+    </Panel>
   );
 }
