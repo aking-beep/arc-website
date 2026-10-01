@@ -15,7 +15,7 @@ export function Panel({
   return (
     <div
       className={cn(
-        "dark relative overflow-hidden rounded-xl border border-border bg-background text-foreground",
+        "dark relative overflow-hidden rounded-xl border border-border bg-panel text-foreground",
         className,
       )}
     >

@@ -22,6 +22,9 @@
     --brand: 190 92% 26%;
     --brand-foreground: 0 0% 100%;
     --brand-subtle: 190 70% 96%;
+    /* Surface for dark technical panels. Deliberate in both themes rather
+       than inherited, so a panel still reads as a panel in dark mode. */
+    --panel: 224 36% 7%;
   }
 
   .dark {
@@ -41,6 +44,7 @@
     --brand: 187 80% 52%;
     --brand-foreground: 224 32% 8%;
     --brand-subtle: 190 60% 12%;
+    --panel: 224 28% 11%;
   }
 }
 

@@ -41,6 +41,7 @@ const config: Config = {
           foreground: "hsl(var(--brand-foreground))",
           subtle: "hsl(var(--brand-subtle))",
         },
+        panel: "hsl(var(--panel))",
       },
       borderRadius: {
         lg: "var(--radius)",
