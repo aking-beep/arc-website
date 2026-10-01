@@ -19,7 +19,7 @@ export function generateMetadata({
   const offering = getAdvisoryEngagementBySlug(params.slug);
   if (!offering) return {};
   return {
-    title: `${offering.name} · ARC Studio`,
+    title: `${offering.name} · ARC Advisory`,
     description: offering.tagline,
   };
 }
@@ -36,11 +36,11 @@ export default function AdvisoryEngagementPage({
     <>
       <Container className="py-16 sm:py-20">
         <Link
-          href="/studio"
+          href="/advisory"
           className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          ARC Studio
+          ARC Advisory
         </Link>
 
         <article className="mx-auto max-w-3xl">

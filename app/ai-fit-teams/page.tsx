@@ -59,6 +59,7 @@ export default function AiFitTeamsPage() {
       product={product}
       ctaTitle="Want to know whether your organization can carry this?"
       ctaLead="Thirty minutes is enough to tell you whether a team assessment is the right first step, and whether the honest answer might be to defer."
+      ctaTopic="ai-fit-teams"
     >
       <Section>
         <SectionHeading

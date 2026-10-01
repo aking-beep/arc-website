@@ -39,6 +39,7 @@ export default function AgentReadinessPage() {
       product={product}
       ctaTitle="Want the assessment rather than the self-assessment?"
       ctaLead="The full engagement runs against your real systems: the inventory, the blast-radius ranking, the approval gates and a hardening plan with named owners. Thirty minutes is enough to scope it."
+      ctaTopic="agent-readiness"
     >
       <Section>
         <SectionHeading

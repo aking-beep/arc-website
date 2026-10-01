@@ -28,6 +28,7 @@ export default function ArkControlPage() {
       product={product}
       ctaTitle="Running agents against systems you cannot verify?"
       ctaLead="We are working through the verification model with a small number of design partners. If that is the problem you have, a thirty-minute call is the right starting point."
+      ctaTopic="ark-control"
     >
       <Section>
         <SectionHeading

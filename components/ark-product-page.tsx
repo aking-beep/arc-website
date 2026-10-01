@@ -18,11 +18,13 @@ export function ArkProductPage({
   children,
   ctaTitle,
   ctaLead,
+  ctaTopic,
 }: {
   product: ArkProduct;
   children?: ReactNode;
   ctaTitle?: string;
   ctaLead?: string;
+  ctaTopic?: string;
 }) {
   return (
     <>
@@ -136,7 +138,7 @@ export function ArkProductPage({
         </ul>
       </Section>
 
-      <CTA title={ctaTitle} lead={ctaLead} />
+      <CTA title={ctaTitle} lead={ctaLead} topic={ctaTopic} />
     </>
   );
 }

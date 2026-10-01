@@ -12,7 +12,7 @@ const stageOptions = [
   "Honestly not sure. That's why we're reaching out.",
 ];
 
-export function ContactForm() {
+export function ContactForm({ topic }: { topic?: string }) {
   const [sent, setSent] = React.useState(false);
   const [pending, setPending] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
@@ -34,6 +34,7 @@ export function ContactForm() {
           email: data.get("email"),
           company: data.get("company"),
           stage: data.get("stage"),
+          topic,
           message: data.get("message"),
           company_website: data.get("company_website"),
         }),
