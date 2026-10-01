@@ -17,6 +17,11 @@ export type Playbook = {
   /** Display price. "Free" where it is free. */
   price: string;
   ctaLabel: string;
+  /**
+   * What you can actually do with this right now. The free assets are
+   * complete on their page; the paid one is not shipping yet and says so.
+   */
+  availability: string;
   /** Steps shown as a chain on the card. */
   chain?: string[];
   featured?: boolean;
@@ -31,7 +36,9 @@ export const playbooks: Playbook[] = [
     summary:
       "A practical system for turning an AI idea into something people can actually use — from hypothesis through launch.",
     price: "$19",
-    ctaLabel: "Get the Playbook",
+    ctaLabel: "Reserve a copy at $19",
+    availability:
+      "The Playbook is being finalised and is not downloadable yet. Reserve a copy and you get it the day it ships, at this price. The modules, the frameworks and everything you receive are listed in full below, so you can judge it before you commit anything.",
     chain: [
       "Idea",
       "Validate",
@@ -52,6 +59,8 @@ export const playbooks: Playbook[] = [
       "Twenty questions across interfaces, identity, permissions, observability, security and reliability. Scored in the browser, stored nowhere.",
     price: "Free",
     ctaLabel: "Run the assessment",
+    availability:
+      "Free and complete on the page. Scored in your browser; nothing is submitted anywhere.",
   },
   {
     slug: "agent-operating-contract",
@@ -62,6 +71,8 @@ export const playbooks: Playbook[] = [
       "A one-page framework for defining the goal, trigger, state, boundary, evidence and owner behind any agent you let run unattended.",
     price: "Free",
     ctaLabel: "Use the framework",
+    availability:
+      "Free and published in full, with a worked bad and good example for every field. No email gate.",
     chain: ["Goal", "Trigger", "State", "Boundary", "Evidence", "Owner"],
   },
   {
@@ -73,6 +84,8 @@ export const playbooks: Playbook[] = [
       "The sequence we use to decide whether an agent's reported success can be believed, and what it cost to find out.",
     price: "Free",
     ctaLabel: "Open the checklist",
+    availability:
+      "Free and published in full, including the failure mode each step exists to catch. No email gate.",
     chain: ["Attempted", "Authority", "Changed", "Evidence", "Verified", "Cost"],
   },
 ];
