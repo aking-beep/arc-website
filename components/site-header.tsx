@@ -67,7 +67,14 @@ function ProductMenu() {
                 className="block border-b border-border/60 px-4 py-3.5 transition-colors last:border-0 hover:bg-accent/60"
               >
                 <span className="flex items-center justify-between gap-3">
-                  <span className="text-sm font-semibold">{p.name}</span>
+                  <span className="flex items-baseline gap-2 text-sm font-semibold">
+                    {p.name}
+                    {p.flagship ? (
+                      <span className="font-mono text-[10px] font-normal uppercase tracking-wider text-brand">
+                        Flagship
+                      </span>
+                    ) : null}
+                  </span>
                   <MaturityBadge maturity={p.maturity} />
                 </span>
                 <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">
@@ -95,7 +102,7 @@ export function SiteHeader() {
       <div className="container flex h-16 items-center justify-between gap-4">
         <Brand />
 
-        <nav className="hidden flex-none items-center gap-0.5 lg:flex">
+        <nav className="hidden flex-none items-center gap-0.5 xl:flex">
           {nav.map((item) =>
             item.label === "Products" ? (
               <ProductMenu key={item.label} />
@@ -116,22 +123,17 @@ export function SiteHeader() {
           )}
         </nav>
 
-        <div className="hidden flex-none items-center gap-2 lg:flex">
+        {/* Seven nav items and the full company name leave room for one
+            button inside the container. The second CTA lives in the Products
+            menu and the mobile sheet instead of being squeezed in here. */}
+        <div className="hidden flex-none items-center gap-2 xl:flex">
           <ThemeToggle />
-          <Button
-            href="/ark-control"
-            variant="outline"
-            size="sm"
-            className="hidden whitespace-nowrap xl:inline-flex"
-          >
-            Explore ARK Control
-          </Button>
           <Button href="/agent-readiness" size="sm" className="whitespace-nowrap">
             Assess agent readiness
           </Button>
         </div>
 
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-2 xl:hidden">
           <ThemeToggle />
           <button
             type="button"
@@ -146,7 +148,7 @@ export function SiteHeader() {
       </div>
 
       {open ? (
-        <div className="max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-border/60 bg-background lg:hidden">
+        <div className="max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-border/60 bg-background xl:hidden">
           <nav className="container flex flex-col py-4">
             <p className="px-2 pb-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
               Products
@@ -177,6 +179,9 @@ export function SiteHeader() {
               ))}
             <Button href="/agent-readiness" className="mt-4">
               Assess agent readiness
+            </Button>
+            <Button href="/ark-control" variant="outline" className="mt-2">
+              Explore ARK Control
             </Button>
           </nav>
         </div>
