@@ -8,16 +8,16 @@ import { CTA } from "@/components/cta";
 import { academy, academyOutcomes } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Academy · Workshops",
+  title: "Workshops · A workshop, not a course",
   description:
-    "ARC Academy runs hands-on workshops against your real systems and backlog, so the team leaves with owners and a next step.",
+    "ARC runs hands-on workshops against your real systems and backlog, so the team leaves with owners and a next step.",
 };
 
 export default function AcademyPage() {
   return (
     <>
       <PageHero
-        kicker="ARC Academy"
+        kicker="ARC Learn · Workshops"
         title="A workshop, not a course."
         lead="Digital readiness, a technical working session, or a custom day around a decision you have to make. No catalog. No certificate."
       />
