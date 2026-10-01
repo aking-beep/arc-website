@@ -17,7 +17,7 @@ export function generateMetadata({
 }): Metadata {
   const workshop = academy.find((w) => w.slug === params.slug);
   if (!workshop) return {};
-  return { title: `${workshop.name} · Academy`, description: workshop.text };
+  return { title: `${workshop.name} · Workshops`, description: workshop.text };
 }
 
 export default function WorkshopPage({
@@ -36,7 +36,7 @@ export default function WorkshopPage({
           className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          ARC Academy
+          Workshops
         </Link>
 
         <article className="mx-auto max-w-2xl">

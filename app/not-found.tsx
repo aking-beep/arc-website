@@ -9,11 +9,17 @@ export default function NotFound() {
         That page isn&rsquo;t here.
       </h1>
       <p className="mt-4 max-w-md text-muted-foreground">
-        The link is broken, or the page moved. Head home, or book a call if you
-        came here looking for help.
+        The link is broken, or the page moved. The products are under ARK, the
+        frameworks are under Playbooks, and the paid work is under Advisory.
       </p>
-      <div className="mt-8">
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <Button href="/">Back to home</Button>
+        <Button href="/platform" variant="outline">
+          Explore ARK
+        </Button>
+        <Button href="/playbooks" variant="ghost">
+          Playbooks
+        </Button>
       </div>
     </Container>
   );

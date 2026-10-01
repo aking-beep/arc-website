@@ -4,50 +4,87 @@ import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
+import { FlowChain, PanelLabel, Takeaway } from "@/components/diagram";
+import { AlternativesTable } from "@/components/alternatives-table";
 import { FaqList } from "@/components/faq-list";
 import { CTA } from "@/components/cta";
 import {
-  studioOfferings,
-  retainers,
-  stages,
-  principles,
+  advisoryCapabilities,
+  advisoryEngagements,
   bestFit,
-  notAFit,
-  howWeEngage,
   caseStudies,
   faqs,
+  howWeEngage,
+  notAFit,
+  principles,
+  retainers,
+  stages,
 } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Studio · Advisory & delivery",
+  title: "Advisory · Diagnose, design, deliver, scale",
   description:
-    "ARC Studio helps companies, nonprofits, and teams figure out what to do — then ship it. Scoped diagnostics, delivery, and retainers grounded in product, project, and CI/CD work.",
+    "ARC Advisory is the commercial work: scoped reviews across architecture, data, cloud, security, AI and programme structure, then delivery if the plan still needs hands on it.",
 };
 
-export default function StudioPage() {
+export default function AdvisoryPage() {
   return (
     <>
       <PageHero
-        kicker="ARC Studio"
-        title="Figure out what to do. Then ship it."
-        lead="Studio is the paid work. A scoped review of two to seven weeks, then delivery if you still need us. Built for companies, nonprofits, and teams of about 10 to 500 people — not a staff-aug army, not a slide factory."
-      />
+        kicker="ARC Advisory"
+        title="Diagnose. Design. Deliver. Scale."
+        lead="This is the commercial relationship with ARC. Most work starts as a scoped review of two to seven weeks and ends in a plan with named owners. If the plan still needs hands on it, we stay and build."
+      >
+        <FlowChain
+          steps={advisoryCapabilities.map((c) => c.name)}
+          highlightLast
+        />
+      </PageHero>
 
-      <Section id="offers" className="scroll-mt-24 bg-muted/30">
+      <Section>
+        <SectionHeading
+          kicker="Four capabilities"
+          title="What we actually do."
+          lead="Not nine services competing for attention. Four capabilities, in the order a problem moves through them."
+        />
+        <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          {advisoryCapabilities.map((c, i) => (
+            <div key={c.id} className="bg-card p-6 sm:p-8">
+              <span className="font-mono text-xs text-muted-foreground">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-3 text-xl font-semibold tracking-tight">{c.name}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                {c.text}
+              </p>
+              <ul className="mt-5 flex flex-wrap gap-1.5 border-t border-border/60 pt-4">
+                {c.items.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-md border border-border bg-muted/50 px-2 py-0.5 font-mono text-[11px] text-muted-foreground"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section id="engagements" className="scroll-mt-24 bg-muted/30">
         <SectionHeading
           kicker="How we start"
           title="Pick the problem, not a package from a menu."
           lead="Each review has a typical duration and a concrete deliverable. Open any of them to see whether it fits, what you receive, and what we can build afterward."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {studioOfferings.map((o, i) => (
+          {advisoryEngagements.map((o, i) => (
             <Link
               key={o.slug}
-              href={`/studio/${o.slug}`}
+              href={`/advisory/${o.slug}`}
               className={
-                o.flagship
-                  ? "group block h-full lg:col-span-3"
-                  : "group block h-full"
+                o.flagship ? "group block h-full lg:col-span-3" : "group block h-full"
               }
             >
               <Card
@@ -64,9 +101,7 @@ export default function StudioPage() {
                   <span className="rounded-full border border-border bg-muted px-2 py-0.5 text-xs font-medium">
                     {o.focus}
                   </span>
-                  <span className="text-xs text-muted-foreground">
-                    {o.duration}
-                  </span>
+                  <span className="text-xs text-muted-foreground">{o.duration}</span>
                   {o.flagship ? (
                     <span className="rounded-full border border-border bg-background px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-muted-foreground">
                       Flagship
@@ -77,23 +112,19 @@ export default function StudioPage() {
                   {o.name}
                   <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
                   {o.blurb}
                 </p>
                 <div className="mt-4 grid gap-3 border-t border-border/60 pt-4 sm:grid-cols-2">
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                      Starts with
-                    </p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                    <PanelLabel>Starts with</PanelLabel>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                       {o.startsWith}
                     </p>
                   </div>
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                      You leave with
-                    </p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                    <PanelLabel>You leave with</PanelLabel>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                       {o.youLeaveWith}
                     </p>
                   </div>
@@ -116,9 +147,34 @@ export default function StudioPage() {
 
       <Section>
         <SectionHeading
+          kicker="The ARC Delivery System"
+          title="Five stages. We always name which one you are in."
+          lead="A near-term fix is not transformation. A vision slide is not next month's release. Naming the stage is what keeps those from getting mixed up in the same conversation."
+        />
+        <ol className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
+          {stages.map((s) => (
+            <li key={s.number} className="bg-card p-6">
+              <span className="font-mono text-sm text-muted-foreground">
+                {s.number}
+              </span>
+              <h3 className="mt-3 text-base font-semibold">{s.name}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {s.text}
+              </p>
+            </li>
+          ))}
+        </ol>
+        <Takeaway className="mt-12 max-w-3xl">
+          Every recommendation names its stage. If we cannot name it, we have not
+          thought about it hard enough yet.
+        </Takeaway>
+      </Section>
+
+      <Section className="bg-muted/30">
+        <SectionHeading
           kicker="Ongoing engagement"
           title="The stay-engaged layer."
-          lead="Every diagnostic that lands well should convert into ongoing work. Three-month minimum, then month-to-month with 30-day cancellation."
+          lead="A review that lands well usually turns into ongoing work. Three-month minimum, then month-to-month with 30-day cancellation."
         />
         <div className="mt-12 overflow-x-auto">
           <table className="w-full min-w-[640px] text-left text-sm">
@@ -153,37 +209,18 @@ export default function StudioPage() {
         </div>
       </Section>
 
-      <Section>
-        <SectionHeading
-          kicker="How we work"
-          title="Five stages. We always name which one you're in."
-          lead="A near-term fix is not transformation. A vision slide is not next month's release. The stage keeps those from getting mixed up."
-        />
-        <ol className="mt-12 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
-          {stages.map((s) => (
-            <li key={s.number} className="bg-card p-6">
-              <span className="font-mono text-sm text-muted-foreground">
-                {s.number}
-              </span>
-              <h3 className="mt-3 text-base font-semibold">{s.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {s.text}
-              </p>
-            </li>
-          ))}
-        </ol>
-      </Section>
+      <AlternativesTable />
 
       <Section className="bg-muted/30">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             kicker="Work"
             title="What shipped, and what it was worth."
-            lead="Programs our team has delivered in Fortune 100/500 environments, plus ARC Studio. Where confidentiality applies, we name the scale instead of the logo."
+            lead="Programmes our team has delivered in Fortune 100 and Fortune 500 environments, plus ARC's own work. Where confidentiality applies, we name the scale instead of the logo."
           />
           <Link
             href="/work"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
+            className="inline-flex flex-none items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
           >
             See the work
             <ArrowRight className="h-4 w-4" />
@@ -195,14 +232,14 @@ export default function StudioPage() {
               <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
                 <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
                   <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
-                    {study.kind === "career" ? "Prior delivery" : "ARC Studio"}
+                    {study.kind === "career" ? "Prior delivery" : "ARC Advisory"}
                   </span>
                   <span>{study.industry}</span>
                 </div>
                 <h3 className="mt-4 text-lg font-semibold tracking-tight group-hover:underline group-hover:underline-offset-4">
                   {study.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
                   {study.summary}
                 </p>
                 <div className="mt-6 grid grid-cols-3 gap-3 border-t border-border/60 pt-4">
@@ -241,7 +278,7 @@ export default function StudioPage() {
           ))}
         </div>
 
-        <figure className="mt-12 border-l-2 border-foreground/20 pl-6">
+        <figure className="mt-12 border-l-2 border-brand pl-6">
           <blockquote className="max-w-2xl text-xl font-medium leading-relaxed text-balance">
             &ldquo;Selling someone a build when they haven&rsquo;t figured out the
             problem yet is malpractice. We won&rsquo;t do it, even when the budget
@@ -291,7 +328,8 @@ export default function StudioPage() {
 
       <CTA
         title="Want this standard of work on your problem?"
-        lead="Most Studio work starts with a diagnostic. A 30-minute call is enough to tell you whether that is the right first step, and what size of engagement the problem actually needs."
+        lead="Most advisory work starts with a scoped review. A 30-minute call is enough to tell you whether that is the right first step, and what size of engagement the problem actually needs."
+        topic="advisory"
       />
     </>
   );

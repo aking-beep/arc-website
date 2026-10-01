@@ -10,7 +10,7 @@ import { caseStudies } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Work · Programs that shipped",
   description:
-    "Work from Fortune 100/500 programs our team has delivered, plus ARC Studio. Where we cannot name the client, we name the scale.",
+    "Work from Fortune 100/500 programs our team has delivered, plus ARC Advisory. Where we cannot name the client, we name the scale.",
 };
 
 export default function WorkPage() {
@@ -26,7 +26,7 @@ export default function WorkPage() {
         <SectionHeading
           kicker="Evidence"
           title="Four pieces of work."
-          lead="Three from Fortune 100/500 programs our team has delivered. One from ARC Studio. Client names withheld where required."
+          lead="Three from Fortune 100/500 programs our team has delivered. One from ARC Advisory. Client names withheld where required."
         />
         <div className="mt-12 grid gap-5">
           {caseStudies.map((study) => (
@@ -39,7 +39,7 @@ export default function WorkPage() {
                 <div className="max-w-2xl">
                   <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
                     <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
-                      {study.kind === "career" ? "Prior delivery" : "ARC Studio"}
+                      {study.kind === "career" ? "Prior delivery" : "ARC Advisory"}
                     </span>
                     <span>{study.industry}</span>
                     <span>· {study.timeframe}</span>

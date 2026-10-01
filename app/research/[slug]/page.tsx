@@ -158,7 +158,7 @@ export default function ArticlePage({
 
       <CTA
         title="Want this applied to your stack?"
-        lead="Studio can score the paper against your environment: what to do first, what to ignore, who owns it."
+        lead="We can score the paper against your environment: what to do first, what to ignore, who owns it."
       />
     </>
   );

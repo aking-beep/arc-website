@@ -24,26 +24,26 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
   title: {
-    default: "ARC Transformation Group · Digital transformation that ships.",
+    default: "ARC Transformation Group · Technology changes. We help you use it.",
     template: "%s · ARC Transformation Group",
   },
   description: site.description,
   keywords: [
-    "digital transformation",
+    "agent readiness",
+    "outcome assurance",
     "AI agent governance",
-    "AI spend control",
+    "agent infrastructure",
     "MCP conformance",
+    "AI architecture decisions",
     "EU AI Act readiness",
-    "cybersecurity readiness",
     "technical due diligence",
-    "data and cloud modernization",
-    "AI readiness",
-    "nonprofit digital transformation",
+    "cloud and data modernization",
+    "digital transformation",
     "open source tools",
   ],
   openGraph: {
     type: "website",
-    title: "ARC Transformation Group · Digital transformation that ships.",
+    title: "ARC Transformation Group · Technology changes. We help you use it.",
     description: site.description,
     url: site.domain,
     siteName: site.name,
@@ -53,6 +53,7 @@ export const metadata: Metadata = {
     title: "ARC Transformation Group",
     description: site.description,
   },
+  alternates: { canonical: "/" },
   robots: { index: true, follow: true },
 };
 
@@ -86,7 +87,7 @@ export default function RootLayout({
         />
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >

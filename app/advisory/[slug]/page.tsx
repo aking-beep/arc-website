@@ -5,10 +5,10 @@ import { ArrowLeft, Check, X } from "lucide-react";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { CTA } from "@/components/cta";
-import { getStudioOfferingBySlug, studioOfferings } from "@/lib/content";
+import { getAdvisoryEngagementBySlug, advisoryEngagements } from "@/lib/content";
 
 export function generateStaticParams() {
-  return studioOfferings.map((o) => ({ slug: o.slug }));
+  return advisoryEngagements.map((o) => ({ slug: o.slug }));
 }
 
 export function generateMetadata({
@@ -16,31 +16,31 @@ export function generateMetadata({
 }: {
   params: { slug: string };
 }): Metadata {
-  const offering = getStudioOfferingBySlug(params.slug);
+  const offering = getAdvisoryEngagementBySlug(params.slug);
   if (!offering) return {};
   return {
-    title: `${offering.name} · ARC Studio`,
+    title: `${offering.name} · ARC Advisory`,
     description: offering.tagline,
   };
 }
 
-export default function StudioOfferingPage({
+export default function AdvisoryEngagementPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const offering = getStudioOfferingBySlug(params.slug);
+  const offering = getAdvisoryEngagementBySlug(params.slug);
   if (!offering) notFound();
 
   return (
     <>
       <Container className="py-16 sm:py-20">
         <Link
-          href="/studio"
+          href="/advisory"
           className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
-          ARC Studio
+          ARC Advisory
         </Link>
 
         <article className="mx-auto max-w-3xl">

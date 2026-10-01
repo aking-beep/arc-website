@@ -18,6 +18,13 @@
     --input: 220 16% 90%;
     --ring: 222 47% 16%;
     --radius: 0.75rem;
+    /* ARK accent. Used for the product ecosystem, never for decoration. */
+    --brand: 190 92% 26%;
+    --brand-foreground: 0 0% 100%;
+    --brand-subtle: 190 70% 96%;
+    /* Surface for dark technical panels. Deliberate in both themes rather
+       than inherited, so a panel still reads as a panel in dark mode. */
+    --panel: 224 36% 7%;
   }
 
   .dark {
@@ -34,6 +41,10 @@
     --border: 220 20% 18%;
     --input: 220 20% 18%;
     --ring: 210 30% 80%;
+    --brand: 187 80% 52%;
+    --brand-foreground: 224 32% 8%;
+    --brand-subtle: 190 60% 12%;
+    --panel: 224 28% 11%;
   }
 }
 
@@ -60,6 +71,32 @@
   }
   .text-balance {
     text-wrap: balance;
+  }
+  /* Blueprint fill for technical panels and diagrams. */
+  .diagram-bg {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.45) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.45) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  /* Dotted connector between diagram nodes. */
+  .rail-x {
+    background-image: linear-gradient(
+      to right,
+      hsl(var(--border)) 50%,
+      transparent 50%
+    );
+    background-size: 8px 1px;
+    background-repeat: repeat-x;
+  }
+  .rail-y {
+    background-image: linear-gradient(
+      to bottom,
+      hsl(var(--border)) 50%,
+      transparent 50%
+    );
+    background-size: 1px 8px;
+    background-repeat: repeat-y;
   }
 }
 

@@ -8,6 +8,7 @@ type ContactPayload = {
   email?: string;
   company?: string;
   stage?: string;
+  topic?: string;
   message?: string;
   company_website?: string; // honeypot
 };
@@ -23,6 +24,7 @@ const LIMITS = {
   email: 254,
   company: 160,
   stage: 200,
+  topic: 80,
   message: 5000,
 } as const;
 
@@ -53,6 +55,7 @@ export async function POST(request: Request) {
   const email = clean(body.email, LIMITS.email);
   const company = clean(body.company, LIMITS.company);
   const stage = clean(body.stage, LIMITS.stage);
+  const topic = clean(body.topic, LIMITS.topic);
   const message = clean(body.message, LIMITS.message);
 
   if (!name || !email) {
@@ -65,11 +68,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "That email looks invalid." }, { status: 400 });
   }
 
-  const subject = `ARC contact · ${name}${company ? ` (${company})` : ""}`;
+  const subject = `ARC contact${topic ? ` · ${topic}` : ""} · ${name}${company ? ` (${company})` : ""}`;
   const text = [
     `Name: ${name}`,
     `Email: ${email}`,
     company ? `Company: ${company}` : null,
+    topic ? `Topic: ${topic}` : null,
     stage ? `Stage: ${stage}` : null,
     "",
     message || "(no message)",
@@ -116,6 +120,7 @@ export async function POST(request: Request) {
     name,
     email,
     company,
+    topic,
     stage,
     message,
   });
