@@ -15,12 +15,18 @@ import { ark } from "@/lib/ark";
  */
 export function ArkProductPage({
   product,
+  prologue,
+  capabilitiesClassName,
   children,
   ctaTitle,
   ctaLead,
   ctaTopic,
 }: {
   product: ArkProduct;
+  /** Sections that have to land before the product's own capabilities. */
+  prologue?: ReactNode;
+  /** Set when a prologue changes which background the capabilities land on. */
+  capabilitiesClassName?: string;
   children?: ReactNode;
   ctaTitle?: string;
   ctaLead?: string;
@@ -72,6 +78,8 @@ export function ArkProductPage({
         </div>
       </Section>
 
+      {prologue}
+
       {product.evaluates ? (
         <Section className="bg-muted/30">
           <SectionHeading
@@ -100,7 +108,12 @@ export function ArkProductPage({
       ) : null}
 
       {product.capabilities ? (
-        <Section className={product.evaluates ? undefined : "bg-muted/30"}>
+        <Section
+          className={
+            capabilitiesClassName ??
+            (product.evaluates ? undefined : "bg-muted/30")
+          }
+        >
           <SectionHeading
             kicker="What you get"
             title="What the product actually produces."

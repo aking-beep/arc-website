@@ -59,8 +59,26 @@ export default function HomePage() {
         <SectionHeading
           kicker="How this fits together"
           title="One company. Two questions."
-          lead={`ARC asks: ${site.question} ARK asks: ${ark.question}`}
+          lead="ARC Transformation Group is the company you work with. ARK is the technology it builds. They answer different questions, and keeping them apart is what makes either one trustworthy."
         />
+        <dl className="mt-10 grid max-w-3xl gap-4 sm:grid-cols-2">
+          <div className="rounded-lg border border-border bg-card p-5">
+            <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              ARC asks
+            </dt>
+            <dd className="mt-2 text-lg font-medium leading-snug text-balance">
+              {site.question}
+            </dd>
+          </div>
+          <div className="rounded-lg border border-brand/30 bg-brand-subtle/60 p-5">
+            <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              ARK asks
+            </dt>
+            <dd className="mt-2 text-lg font-medium leading-snug text-balance">
+              {ark.question}
+            </dd>
+          </div>
+        </dl>
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((p) => (
             <Link key={p.id} href={p.href} className="group block h-full">

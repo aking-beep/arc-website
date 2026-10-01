@@ -52,8 +52,10 @@ export function Scorecard() {
     };
   });
 
-  const weakest = [...byDimension]
-    .filter((d) => d.percent !== null)
+  // Only name a dimension if it is actually dragging the score down. A full
+  // marks run should not be handed a list of things to fix.
+  const weakest = byDimension
+    .filter((d) => d.percent !== null && d.percent < 100)
     .sort((a, b) => (a.percent ?? 0) - (b.percent ?? 0))
     .slice(0, 3);
 
@@ -178,18 +180,27 @@ export function Scorecard() {
                 </dl>
               </div>
 
-              {weakest.length > 0 ? (
-                <div className="mt-6 border-t border-border/60 pt-5">
-                  <PanelLabel>Fix these first</PanelLabel>
+              <div className="mt-6 border-t border-border/60 pt-5">
+                <PanelLabel>Fix these first</PanelLabel>
+                {weakest.length > 0 ? (
                   <ol className="mt-3 grid gap-1.5">
                     {weakest.map((d) => (
-                      <li key={d.dimension} className="text-sm text-muted-foreground">
+                      <li
+                        key={d.dimension}
+                        className="flex items-baseline justify-between gap-3 text-sm text-muted-foreground"
+                      >
                         {d.dimension}
+                        <span className="font-mono text-[11px]">{d.percent}%</span>
                       </li>
                     ))}
                   </ol>
-                </div>
-              ) : null}
+                ) : (
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    Nothing is dragging the score down. The useful work from here
+                    is narrowing authority further, not adding capability.
+                  </p>
+                )}
+              </div>
 
               <div className="mt-7 grid gap-3">
                 <Button href="/agent-readiness">

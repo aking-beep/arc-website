@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Github } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
@@ -44,10 +45,20 @@ const maturityKey: { maturity: Maturity; text: string }[] = [
 ];
 
 export default function LabsPage() {
-  const counts = maturityKey.map((k) => ({
-    ...k,
-    count: labs.filter((p) => p.maturity === k.maturity).length,
-  }));
+  // Only show a label that something actually carries, so the key never
+  // advertises a stage with nothing in it.
+  const counts = maturityKey
+    .map((k) => ({
+      ...k,
+      count: labs.filter((p) => p.maturity === k.maturity).length,
+    }))
+    .filter((k) => k.count > 0);
+  const keyColumns =
+    counts.length % 4 === 0
+      ? "sm:grid-cols-2 lg:grid-cols-4"
+      : counts.length % 3 === 0
+        ? "sm:grid-cols-3"
+        : "sm:grid-cols-2";
 
   return (
     <>
@@ -68,7 +79,9 @@ export default function LabsPage() {
           title="The labels mean something specific."
           lead="Labs is where work happens before it is a product. Presenting an experiment as infrastructure wastes someone's week, so each project says which it is."
         />
-        <dl className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+        <dl
+          className={`mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border ${keyColumns}`}
+        >
           {counts.map((k) => (
             <div key={k.maturity} className="bg-card p-6">
               <dt className="flex flex-wrap items-center gap-2">
@@ -88,6 +101,17 @@ export default function LabsPage() {
           Nothing here implies production maturity it does not have. If a tool
           is an experiment, the page says experiment.
         </Takeaway>
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          Research-stage work has no running implementation behind it yet, so it
+          lives on the{" "}
+          <Link
+            href="/developers"
+            className="font-medium text-foreground underline underline-offset-4"
+          >
+            developer surface
+          </Link>{" "}
+          rather than here.
+        </p>
       </Section>
 
       <MarketSignals

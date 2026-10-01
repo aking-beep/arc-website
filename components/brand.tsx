@@ -5,12 +5,12 @@ export function Brand({ className }: { className?: string }) {
   return (
     <Link
       href="/"
-      className={cn("group inline-flex items-center gap-2.5", className)}
+      className={cn("group inline-flex flex-none items-center gap-2.5", className)}
     >
-      <span className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-sm font-bold text-primary-foreground">
+      <span className="flex h-8 w-8 flex-none items-center justify-center rounded-md bg-primary text-sm font-bold text-primary-foreground">
         A
       </span>
-      <span className="text-[15px] font-semibold tracking-tight">
+      <span className="whitespace-nowrap text-[15px] font-semibold tracking-tight">
         ARC{" "}
         <span className="font-normal text-muted-foreground">
           Transformation Group

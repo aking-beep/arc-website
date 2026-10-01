@@ -49,7 +49,7 @@ function ProductMenu() {
         type="button"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+        className="inline-flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
       >
         Products
         <ChevronDown
@@ -95,7 +95,7 @@ export function SiteHeader() {
       <div className="container flex h-16 items-center justify-between gap-4">
         <Brand />
 
-        <nav className="hidden items-center gap-0.5 lg:flex">
+        <nav className="hidden flex-none items-center gap-0.5 lg:flex">
           {nav.map((item) =>
             item.label === "Products" ? (
               <ProductMenu key={item.label} />
@@ -104,7 +104,7 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                  "whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium transition-colors",
                   isActive(pathname, item.href)
                     ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground",
@@ -116,12 +116,17 @@ export function SiteHeader() {
           )}
         </nav>
 
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden flex-none items-center gap-2 lg:flex">
           <ThemeToggle />
-          <Button href="/ark-control" variant="outline" size="sm" className="hidden xl:inline-flex">
+          <Button
+            href="/ark-control"
+            variant="outline"
+            size="sm"
+            className="hidden whitespace-nowrap xl:inline-flex"
+          >
             Explore ARK Control
           </Button>
-          <Button href="/agent-readiness" size="sm">
+          <Button href="/agent-readiness" size="sm" className="whitespace-nowrap">
             Assess agent readiness
           </Button>
         </div>
@@ -157,7 +162,7 @@ export function SiteHeader() {
               </Link>
             ))}
             <p className="mt-4 px-2 pb-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              Company
+              Explore
             </p>
             {nav
               .filter((item) => item.label !== "Products")
