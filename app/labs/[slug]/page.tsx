@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, BookOpen, Check, ExternalLink, Github } from "lucide-react";
 import { Container, Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
-import { StatusBadge } from "@/components/ui/badge";
+import { MaturityBadge } from "@/components/ui/badge";
 import { ProductVisualPanel } from "@/components/product-visual";
 import { CTA } from "@/components/cta";
 import { labs } from "@/lib/content";
@@ -21,7 +21,7 @@ export function generateMetadata({
   const product = labs.find((p) => p.slug === params.slug);
   if (!product) return {};
   return {
-    title: `${product.name} · ARC Labs`,
+    title: `${product.name} · ARK Labs`,
     description: product.description,
   };
 }
@@ -47,23 +47,15 @@ export default function ProductPage({
             className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            ARC Labs
+            ARK Labs
           </Link>
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div className="max-w-3xl">
-              <div className="flex items-center gap-3">
-                {product.status !== "live" ? (
-                  <StatusBadge status={product.status} />
-                ) : null}
-                {product.badge ? (
-                  <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    {product.badge}
-                  </span>
-                ) : (
-                  <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    Free tool
-                  </span>
-                )}
+              <div className="flex flex-wrap items-center gap-3">
+                <MaturityBadge maturity={product.maturity} />
+                <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+                  {product.badge ?? "Free tool"}
+                </span>
               </div>
               <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
                 {product.name}
@@ -189,8 +181,8 @@ export default function ProductPage({
         }
         lead={
           isCatalog
-            ? "Studio can help you pick, wire, and govern the pieces that match your team. Thirty minutes to see if that's useful."
-            : "The report is the start. Studio turns findings into a plan with owners. Thirty minutes to see if that's worth it."
+            ? "Advisory can help you pick, wire, and govern the pieces that match your team. Thirty minutes to see if that's useful."
+            : "The report is the start. Advisory turns findings into a plan with owners. Thirty minutes to see if that's worth it."
         }
       />
     </>
