@@ -228,17 +228,17 @@ export const marketSignals: MarketSignal[] = [
     label: "Cost",
     headline: "AI coding tools now bill by whichever model answered.",
     soWhat:
-      "Cursor's Auto mode charges based on the model that handled each request, and the old flat enterprise rate expired on 7 September 2026. Claude Code runs roughly $150–250 per developer per month. The same task costs a different amount on a different day, which makes a monthly budget hard to hold.",
+      "Cursor's Auto mode charges based on the model that handled each request, plus a $0.25-per-million token rate on third-party models for teams, and the old flat enterprise rate expired on 7 September 2026. Claude Code runs roughly $150–250 per developer per month. The same task costs a different amount on a different day, which makes a monthly budget hard to hold.",
     href: "/labs/tokenloop",
     hrefLabel: "Open TokenLoop",
     sources: [
       {
-        name: "Anthropic — Claude Code cost documentation",
-        url: "https://code.claude.com/docs/en/costs",
+        name: "Cursor — Models & Pricing",
+        url: "https://cursor.com/docs/models-and-pricing",
       },
       {
-        name: "Coverage of Cursor's 24 August Auto pricing change",
-        url: "https://cellcog.ai/blog/cursor-auto-pricing/",
+        name: "Anthropic — Claude Code cost documentation",
+        url: "https://code.claude.com/docs/en/costs",
       },
     ],
   },
@@ -258,6 +258,25 @@ export const marketSignals: MarketSignal[] = [
       {
         name: "Salesforce — Headless 360",
         url: "https://www.salesforce.com/headless/",
+      },
+    ],
+  },
+  {
+    date: "2026-09-06",
+    label: "Skills",
+    headline: "Unused skills now have a meter. Operators cannot keep them in sync.",
+    soWhat:
+      "Ask HN on managing SKILL.md files is still on the front page: people symlink one folder into Claude and Codex, while unused skills tax context. Claude Code's /skill-doctor names dead skills and their token cost. The official install path is a plugin marketplace, not a gist.",
+    href: "/labs/arc-skills",
+    hrefLabel: "Browse ARC Skills",
+    sources: [
+      {
+        name: "Ask HN — How do you manage skills files?",
+        url: "https://news.ycombinator.com/item?id=49589914",
+      },
+      {
+        name: "Claude Code changelog — /skill-doctor",
+        url: "https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md",
       },
     ],
   },
@@ -416,7 +435,7 @@ export const labs: Product[] = [
     visual: "spend",
     ctaLabel: "Open TokenLoop",
     audience:
-      "Engineering and agency leads running Claude Code and Cursor who currently find out about runaway spend on the invoice. Flat rates are expiring and billing now follows whichever model answered, so the number moves on its own.",
+      "Engineering and agency leads running Claude Code and Cursor who currently find out about runaway spend on the invoice. Flat rates have expired and billing now follows whichever model answered, so the number moves on its own.",
     howItWorks: [
       "Create a free account (email + password).",
       "Paste Anthropic and/or Cursor admin keys. We AES-256-GCM encrypt them before storage.",
