@@ -98,7 +98,7 @@ export default function AboutPage() {
         <SectionHeading
           kicker="The practice"
           title="Four parts. Same standard."
-          lead="Tools so you can see how we think. Studio for the paid work. Research for the arguments. Workshops when the room is the problem."
+          lead="Advisory for the commercial work. ARK for the products. Labs for the open and experimental. Learn so you can use the method without us."
         />
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((p) => (

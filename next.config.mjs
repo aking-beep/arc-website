@@ -9,11 +9,6 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/platform",
-        destination: "/",
-        permanent: false,
-      },
-      {
         source: "/work/sample-transformation-diagnostic",
         destination: "/work/transformation-diagnostic",
         permanent: true,

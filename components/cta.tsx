@@ -4,7 +4,7 @@ import { site } from "@/lib/content";
 
 export function CTA({
   title = "Want this standard of work on your problem?",
-  lead = "Most Studio work starts with a diagnostic. A 30-minute call is enough to tell you whether that is the right first step, and what size of engagement the problem actually needs.",
+  lead = "Most work starts with a scoped review. A 30-minute call is enough to tell you whether that is the right first step, and what size of engagement the problem actually needs.",
 }: {
   title?: string;
   lead?: string;

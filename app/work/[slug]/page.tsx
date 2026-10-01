@@ -48,7 +48,7 @@ export default function CaseStudyPage({
         <div className="max-w-3xl">
           <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
             <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
-              {study.kind === "career" ? "Prior delivery" : "ARC Studio"}
+              {study.kind === "career" ? "Prior delivery" : "ARC Advisory"}
             </span>
             <span>{study.industry}</span>
           </div>

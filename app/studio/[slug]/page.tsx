@@ -5,10 +5,10 @@ import { ArrowLeft, Check, X } from "lucide-react";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { CTA } from "@/components/cta";
-import { getStudioOfferingBySlug, studioOfferings } from "@/lib/content";
+import { getAdvisoryEngagementBySlug, advisoryEngagements } from "@/lib/content";
 
 export function generateStaticParams() {
-  return studioOfferings.map((o) => ({ slug: o.slug }));
+  return advisoryEngagements.map((o) => ({ slug: o.slug }));
 }
 
 export function generateMetadata({
@@ -16,7 +16,7 @@ export function generateMetadata({
 }: {
   params: { slug: string };
 }): Metadata {
-  const offering = getStudioOfferingBySlug(params.slug);
+  const offering = getAdvisoryEngagementBySlug(params.slug);
   if (!offering) return {};
   return {
     title: `${offering.name} · ARC Studio`,
@@ -24,12 +24,12 @@ export function generateMetadata({
   };
 }
 
-export default function StudioOfferingPage({
+export default function AdvisoryEngagementPage({
   params,
 }: {
   params: { slug: string };
 }) {
-  const offering = getStudioOfferingBySlug(params.slug);
+  const offering = getAdvisoryEngagementBySlug(params.slug);
   if (!offering) notFound();
 
   return (

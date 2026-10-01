@@ -1,4 +1,5 @@
 import {
+  Boxes,
   FlaskConical,
   Compass,
   LayoutDashboard,
@@ -8,6 +9,7 @@ import {
 } from "lucide-react";
 
 const icons: Record<string, LucideIcon> = {
+  Boxes,
   FlaskConical,
   Compass,
   LayoutDashboard,

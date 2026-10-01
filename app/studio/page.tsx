@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 import { FaqList } from "@/components/faq-list";
 import { CTA } from "@/components/cta";
 import {
-  studioOfferings,
+  advisoryEngagements,
   retainers,
   stages,
   principles,
@@ -40,7 +40,7 @@ export default function StudioPage() {
           lead="Each review has a typical duration and a concrete deliverable. Open any of them to see whether it fits, what you receive, and what we can build afterward."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {studioOfferings.map((o, i) => (
+          {advisoryEngagements.map((o, i) => (
             <Link
               key={o.slug}
               href={`/studio/${o.slug}`}

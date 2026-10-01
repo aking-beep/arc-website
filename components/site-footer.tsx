@@ -1,76 +1,95 @@
 import Link from "next/link";
 import { Github } from "lucide-react";
 import { Brand } from "@/components/brand";
-import { pillars, site } from "@/lib/content";
+import { ark } from "@/lib/ark";
+import { arkProducts } from "@/lib/ark";
+import { site } from "@/lib/content";
 
-const resources = [
-  { label: "About", href: "/about" },
-  { label: "Work", href: "/work" },
-  { label: "Privacy", href: "/privacy" },
-  { label: "Terms", href: "/terms" },
-  { label: "Book a call", href: site.calendly },
-  { label: "Email us", href: `mailto:${site.email}` },
-  { label: "GitHub", href: site.github },
+const columns: { heading: string; links: { label: string; href: string }[] }[] = [
+  {
+    heading: "Products",
+    links: arkProducts.map((p) => ({ label: p.name, href: `/${p.slug}` })),
+  },
+  {
+    heading: "Developers",
+    links: [
+      { label: "Platform", href: "/platform" },
+      { label: "Developers", href: "/developers" },
+      { label: "ARK Labs", href: "/labs" },
+      { label: "GitHub", href: site.github },
+    ],
+  },
+  {
+    heading: "Resources",
+    links: [
+      { label: "Playbooks", href: "/playbooks" },
+      { label: "Research", href: "/research" },
+      { label: "Workshops", href: "/academy" },
+      { label: "Agent Readiness Scorecard", href: "/playbooks/agent-readiness-scorecard" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      { label: "Advisory", href: "/advisory" },
+      { label: "About", href: "/about" },
+      { label: "Work", href: "/work" },
+      { label: "Contact", href: "/contact" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Terms", href: "/terms" },
+    ],
+  },
 ];
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-border/60 bg-muted/30">
       <div className="container py-16">
-        <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_repeat(4,1fr)]">
           <div className="max-w-sm">
             <Brand />
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               {site.description}
             </p>
+            <p className="mt-4 border-l-2 border-brand pl-3 text-sm leading-relaxed text-muted-foreground">
+              {ark.explainer}
+            </p>
           </div>
 
-          <div>
-            <h4 className="text-sm font-semibold">Practice</h4>
-            <ul className="mt-4 space-y-2.5">
-              {pillars.map((p) => (
-                <li key={p.id}>
-                  <Link
-                    href={p.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {p.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-sm font-semibold">Company</h4>
-            <ul className="mt-4 space-y-2.5">
-              {resources.map((r) => {
-                const external =
-                  r.href.startsWith("http") || r.href.startsWith("mailto:");
-                return (
-                  <li key={r.label}>
-                    {external ? (
-                      <a
-                        href={r.href}
-                        target={r.href.startsWith("http") ? "_blank" : undefined}
-                        rel={r.href.startsWith("http") ? "noreferrer" : undefined}
-                        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                      >
-                        {r.label}
-                      </a>
-                    ) : (
-                      <Link
-                        href={r.href}
-                        className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                      >
-                        {r.label}
-                      </Link>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          {columns.map((column) => (
+            <div key={column.heading}>
+              <h4 className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                {column.heading}
+              </h4>
+              <ul className="mt-4 space-y-2.5">
+                {column.links.map((link) => {
+                  const external =
+                    link.href.startsWith("http") || link.href.startsWith("mailto:");
+                  return (
+                    <li key={link.label}>
+                      {external ? (
+                        <a
+                          href={link.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        >
+                          {link.label}
+                        </a>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                        >
+                          {link.label}
+                        </Link>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
         </div>
 
         <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-8 text-sm text-muted-foreground sm:flex-row sm:items-center">
@@ -78,7 +97,7 @@ export function SiteFooter() {
             © {new Date().getFullYear()} {site.name}
           </p>
           <div className="flex items-center gap-4">
-            <span>Digital transformation that ships.</span>
+            <span>{ark.principle}</span>
             <a
               href={site.github}
               target="_blank"

@@ -1,44 +1,33 @@
 import type { MetadataRoute } from "next";
-import { site, nav, labs, research, caseStudies, academy, studioOfferings } from "@/lib/content";
+import {
+  academy,
+  advisoryEngagements,
+  caseStudies,
+  labs,
+  nav,
+  research,
+  secondaryRoutes,
+  site,
+} from "@/lib/content";
+import { arkProducts } from "@/lib/ark";
+import { playbooks } from "@/lib/learn";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.domain.replace(/\/$/, "");
-  const staticRoutes = [
+  const routes = [
     "",
-    ...nav.map((n) => n.href),
-    "/work",
-    "/privacy",
-    "/terms",
-  ].map((href) => ({
+    ...nav.map((n) => n.href.split("#")[0]),
+    ...secondaryRoutes,
+    ...arkProducts.map((p) => `/${p.slug}`),
+    ...playbooks.map((p) => `/playbooks/${p.slug}`),
+    ...advisoryEngagements.map((o) => `/advisory/${o.slug}`),
+    ...labs.map((p) => `/labs/${p.slug}`),
+    ...research.map((a) => `/research/${a.slug}`),
+    ...academy.map((w) => `/academy/${w.slug}`),
+    ...caseStudies.map((c) => `/work/${c.slug}`),
+  ];
+  return Array.from(new Set(routes)).map((href) => ({
     url: `${base}${href}`,
     lastModified: new Date(),
   }));
-  const labsRoutes = labs.map((p) => ({
-    url: `${base}/labs/${p.slug}`,
-    lastModified: new Date(),
-  }));
-  const researchRoutes = research.map((a) => ({
-    url: `${base}/research/${a.slug}`,
-    lastModified: new Date(),
-  }));
-  const academyRoutes = academy.map((w) => ({
-    url: `${base}/academy/${w.slug}`,
-    lastModified: new Date(),
-  }));
-  const workRoutes = caseStudies.map((c) => ({
-    url: `${base}/work/${c.slug}`,
-    lastModified: new Date(),
-  }));
-  const studioRoutes = studioOfferings.map((o) => ({
-    url: `${base}/studio/${o.slug}`,
-    lastModified: new Date(),
-  }));
-  return [
-    ...staticRoutes,
-    ...labsRoutes,
-    ...researchRoutes,
-    ...academyRoutes,
-    ...workRoutes,
-    ...studioRoutes,
-  ];
 }

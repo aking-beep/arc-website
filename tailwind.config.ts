@@ -36,6 +36,11 @@ const config: Config = {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+        brand: {
+          DEFAULT: "hsl(var(--brand))",
+          foreground: "hsl(var(--brand-foreground))",
+          subtle: "hsl(var(--brand-subtle))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

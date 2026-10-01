@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "ARC Transformation Group · Digital transformation that ships.";
+export const alt = "ARC Transformation Group · Technology changes. We help you use it.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -44,10 +44,11 @@ export default function OpenGraphImage() {
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div style={{ fontSize: 64, fontWeight: 600, lineHeight: 1.1, maxWidth: 900 }}>
-            Digital transformation that ships.
+            Build what&rsquo;s next.
+            Improve what already works.
           </div>
           <div style={{ fontSize: 28, color: "#94a3b8", maxWidth: 820 }}>
-            Labs · Studio · Research · Academy
+            ARC Advisory · ARK · ARK Labs · Research
           </div>
         </div>
       </div>

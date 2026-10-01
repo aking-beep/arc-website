@@ -6,13 +6,15 @@
 export const site = {
   name: "ARC Transformation Group",
   short: "ARC",
-  tagline: "Digital transformation that ships.",
+  tagline: "Technology changes. We help you use it.",
   description:
-    "ARC helps companies, nonprofits, and teams of 10 to 500 people fix messy data, shaky security, aging systems, and AI nobody can explain — then builds the working system.",
+    "ARC Transformation Group helps people and organizations understand, adopt, build and operate the technologies shaping modern systems — and through ARK, builds infrastructure for reliable agent action.",
   audience: {
-    badge: "Companies, nonprofits, and teams · about 10–500 people",
-    line: "Messy data. Shaky security. Systems that will not scale. AI tools your vendors switched on that nobody scoped. We tell you what to do about it, then we build it.",
+    badge: "AI · Automation · Cloud · Security · Software · Data · Infrastructure",
+    line: "ARC helps people and organizations understand, adopt, build and operate the technologies shaping modern systems. From today's stack to tomorrow's autonomous systems, we turn emerging capability into technology people can actually rely on.",
   },
+  /** The question ARC answers, as distinct from the one ARK answers. */
+  question: "How should we use technology?",
   email: "aking@arctransformationgroup.com",
   calendly: "https://calendly.com/aking-arctransformationgroup/30min",
   github: "https://github.com/aking-beep",
@@ -44,30 +46,126 @@ export const site = {
 };
 
 // ---------------------------------------------------------------------------
-// The three-step path. This is the spine of the homepage: if a visitor reads
-// nothing else, they should still know what to do next.
+// Learn / Build / Operate — the three verbs the company is organised around.
 // ---------------------------------------------------------------------------
-export const startHere = [
+export const operatingModes = [
   {
-    step: "01",
-    name: "Run a free tool",
-    text: "Check an MCP server, review a system prompt, see what your AI agents can reach, or find where your buying path stalls. No account, no call, nothing stored.",
-    href: "/labs",
-    linkLabel: "Browse the tools",
+    id: "learn",
+    verb: "Learn",
+    title: "Understand what technology can do before investing in it.",
+    text: "Research, playbooks, assessments and frameworks for technical and non-technical leaders who have to make a decision and defend it afterwards.",
+    items: [
+      "Research and field notes",
+      "Playbooks and templates",
+      "Readiness assessments",
+      "Workshops",
+    ],
+    href: "/playbooks",
+    linkLabel: "Start learning",
   },
   {
-    step: "02",
-    name: "Talk to us for thirty minutes",
-    text: "Bring the problem as you understand it today. We tell you what we would do first, how big the work is, and whether you need us at all.",
-    href: site.calendly,
-    linkLabel: "Book a call",
+    id: "build",
+    verb: "Build",
+    title: "Turn technology strategy into working systems.",
+    text: "Architecture through implementation, on the systems the business already depends on as well as the ones it is adding.",
+    items: [
+      "AI products and automation",
+      "Applications and integrations",
+      "Cloud infrastructure and data platforms",
+      "Modernisation programmes",
+    ],
+    href: "/advisory",
+    linkLabel: "See how we build",
   },
   {
-    step: "03",
-    name: "Get a plan, then the system",
-    text: "A review of two to seven weeks that ends in a plan with named owners and a first step. If it still needs hands, we stay and build it.",
-    href: "/studio#offers",
-    linkLabel: "See what we do",
+    id: "operate",
+    verb: "Operate",
+    title: "Technology only creates value when it keeps working.",
+    text: "Reliability, security, governance, observability and cost — and through ARK, the infrastructure agents need to act reliably against real systems.",
+    items: [
+      "Reliability and observability",
+      "Security and governance",
+      "Cost and performance",
+      "Agent operations",
+    ],
+    href: "/platform",
+    linkLabel: "Explore ARK",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Established / current / emerging. The argument that new is not the same
+// thing as better, which is what separates ARC from an AI consultancy.
+// ---------------------------------------------------------------------------
+export const technologyLifecycle = [
+  {
+    id: "established",
+    label: "Established",
+    title: "Modernise and improve the systems already running the business.",
+    items: [
+      "Cloud infrastructure",
+      "APIs and integrations",
+      "Data platforms",
+      "Security",
+      "Software architecture",
+      "DevOps",
+      "Analytics",
+    ],
+  },
+  {
+    id: "current",
+    label: "Current",
+    title: "Use today's capabilities more effectively.",
+    items: [
+      "Automation",
+      "AI-enabled workflows",
+      "Cloud-native systems",
+      "Modern application development",
+      "Data intelligence",
+      "Security automation",
+      "Platform engineering",
+    ],
+  },
+  {
+    id: "emerging",
+    label: "Emerging",
+    title: "Prepare for the systems coming next.",
+    items: [
+      "AI agents",
+      "Agent-to-agent systems",
+      "MCP and emerging protocols",
+      "Local and edge AI",
+      "Autonomous workflows",
+      "Agent identity and permissions",
+      "Outcome assurance",
+    ],
+  },
+];
+
+export const lifecyclePrinciple =
+  "Technology should not be adopted because it is new. It should be adopted because it creates measurable value.";
+
+// ---------------------------------------------------------------------------
+// Two audiences, two doors. Education is acquisition, not a side project.
+// ---------------------------------------------------------------------------
+export const audiences = [
+  {
+    id: "organizations",
+    label: "For organizations",
+    title: "Transform your technology systems.",
+    text: "Architecture, AI, automation, cloud, security, development and agent infrastructure — diagnosed, designed, delivered and operated.",
+    items: ["Advisory and architecture", "Build and modernisation", "Security and governance", "Agent readiness"],
+    href: "/advisory",
+    linkLabel: "Work with ARC",
+  },
+  {
+    id: "builders",
+    label: "For individuals and builders",
+    title: "Learn how modern technology actually works.",
+    text: "The same methods we use on paid work, published so you can use them without hiring anyone.",
+    items: ["Playbooks and frameworks", "Free assessments", "Open-source tools", "Research"],
+    href: "/playbooks",
+    linkLabel: "Start learning",
   },
 ];
 
@@ -248,8 +346,8 @@ export const marketSignals: MarketSignal[] = [
     headline: "Your business software is growing AI agent access, with a meter on it.",
     soWhat:
       "Salesforce put its CRM inside Claude and opened the platform to agents through tools, APIs, and the command line. Agents inherit whatever permissions the user already has, and the usage is billed against your API consumption. Vendors are shipping agent access whether or not you asked for it.",
-    href: "/studio/agent-control-review",
-    hrefLabel: "See the Agent Control Review",
+    href: "/agent-readiness",
+    hrefLabel: "Assess agent readiness",
     sources: [
       {
         name: "Salesforce — Claudeforce announcement",
@@ -271,8 +369,32 @@ export const statusLabel: Record<Status, string> = {
   planned: "Planned",
 };
 
+/**
+ * Maturity is deliberately separate from Status. Status says whether a thing
+ * exists; maturity says how far you should trust it. An experiment must never
+ * be presented with the same weight as something we support.
+ */
+export type Maturity =
+  | "available"
+  | "design-partners"
+  | "in-development"
+  | "open-source"
+  | "experiment"
+  | "alpha"
+  | "research";
+
+export const maturityLabel: Record<Maturity, string> = {
+  available: "Available",
+  "design-partners": "Design partners",
+  "in-development": "In development",
+  "open-source": "Open source",
+  experiment: "Experiment",
+  alpha: "Alpha",
+  research: "Research",
+};
+
 // ---------------------------------------------------------------------------
-// The four pillars - the ecosystem map.
+// Brand architecture. ARC is the company; ARK is what ARC builds.
 // ---------------------------------------------------------------------------
 export type Pillar = {
   id: string;
@@ -287,53 +409,54 @@ export type Pillar = {
 
 export const pillars: Pillar[] = [
   {
+    id: "advisory",
+    name: "ARC Advisory",
+    href: "/advisory",
+    icon: "Compass",
+    kicker: "Diagnose · design · deliver · scale",
+    summary: "Work with us on the systems the business runs on.",
+    detail:
+      "Scoped reviews and delivery across architecture, data, cloud, security, AI and programme structure.",
+    status: "live",
+  },
+  {
+    id: "ark",
+    name: "ARK",
+    href: "/platform",
+    icon: "Boxes",
+    kicker: "Products & infrastructure",
+    summary: "Infrastructure for reliable agent action.",
+    detail:
+      "Agent readiness, outcome assurance, and the fit assessments that decide where AI belongs in the first place.",
+    status: "building",
+  },
+  {
     id: "labs",
-    name: "ARC Labs",
+    name: "ARK Labs",
     href: "/labs",
     icon: "FlaskConical",
-    kicker: "Free & open source",
-    summary: "Free tools you can run without talking to us.",
+    kicker: "Open & experimental",
+    summary: "Open tools, scanners and emerging protocol work.",
     detail:
-      "Scanners, catalogs, and utilities. Most need no account. This is usually how people meet ARC.",
+      "Free and mostly MIT licensed. Every project carries its real maturity, so an experiment never reads as a product.",
     status: "live",
   },
   {
-    id: "studio",
-    name: "ARC Studio",
-    href: "/studio#offers",
-    icon: "Compass",
-    kicker: "Advisory & delivery",
-    summary: "Diagnose the problem, then deliver the system.",
-    detail:
-      "Scoped reviews for mid-size organizations: readiness, security, data, architecture, AI, or a full diagnostic when you need the whole picture.",
-    status: "live",
-  },
-  {
-    id: "research",
-    name: "ARC Research",
-    href: "/research",
-    icon: "LineChart",
-    kicker: "Cited research",
-    summary: "Short papers with sources you can check.",
-    detail:
-      "AI, security, operations, cloud, transformation, and product. If we cannot source a claim, we leave it out.",
-    status: "live",
-  },
-  {
-    id: "academy",
-    name: "ARC Academy",
-    href: "/academy",
+    id: "learn",
+    name: "ARC Learn",
+    href: "/playbooks",
     icon: "GraduationCap",
-    kicker: "Workshops",
-    summary: "A working session, not a training catalog.",
+    kicker: "Playbooks & research",
+    summary: "Our methods, published so you can use them without us.",
     detail:
-      "Half-day or two-day workshops against your real systems. You leave with owners and a next step.",
+      "Playbooks, frameworks, free assessments, cited research and workshops.",
     status: "live",
   },
 ];
 
 // ---------------------------------------------------------------------------
-// ARC Labs - free tools.
+// ARK Labs — open tools, scanners and experiments.
+// Every entry carries its real maturity. Nothing here is sold as a product.
 // ---------------------------------------------------------------------------
 export type ProductVisual =
   | "conformance"
@@ -354,6 +477,11 @@ export type Product = {
   tagline: string;
   description: string;
   status: Status;
+  /**
+   * Real maturity, shown on every card and page. A Labs project is never
+   * presented with the weight of a commercial product, so this is required.
+   */
+  maturity: Maturity;
   badge?: string;
   featured?: boolean;
   visual: ProductVisual;
@@ -374,6 +502,7 @@ export const labs: Product[] = [
     description:
       "Point it at a Model Context Protocol server and get a report: what passes, what breaks, and what to fix first — written for an operator, not a linter. The July 2026 spec revision changed how servers start up, so \"it works in one client\" is no longer evidence that it works.",
     status: "live",
+    maturity: "open-source",
     badge: "Flagship",
     featured: true,
     visual: "conformance",
@@ -411,6 +540,7 @@ export const labs: Product[] = [
     description:
       "Spend control for Claude Code and Cursor: what each developer is burning, a kill switch that acts within minutes, and client chargeback — without routing your traffic through a gateway. Free signup, keys encrypted at rest.",
     status: "live",
+    maturity: "alpha",
     badge: "Free product",
     featured: true,
     visual: "spend",
@@ -447,6 +577,7 @@ export const labs: Product[] = [
     description:
       "Paste a prompt and get structured feedback on clarity, injection surface, ambiguity, and failure modes. The review a senior engineer would give, minus the wait. Static, reproducible, no model call.",
     status: "live",
+    maturity: "open-source",
     visual: "prompt",
     ctaLabel: "Review a prompt",
     audience:
@@ -482,6 +613,7 @@ export const labs: Product[] = [
     description:
       "A free, open library of end-to-end AI workflow templates. Each one is a documented pipeline with the prompt, the tools it calls, the data it needs, and the guardrails to keep it safe. Daily briefs, SOWs, RAG, and human-in-the-loop automation, the same shapes ARC uses internally.",
     status: "live",
+    maturity: "open-source",
     badge: "Free catalog",
     visual: "workflows",
     ctaLabel: "Browse templates",
@@ -518,6 +650,7 @@ export const labs: Product[] = [
     description:
       "A free, open library of production-ready Agent Skills — each a SKILL.md package with triggers, steps, and guardrails. Copy them into Claude, Cursor, or any Agent Skills runtime. No account, no lock-in.",
     status: "live",
+    maturity: "open-source",
     visual: "skills",
     ctaLabel: "Browse skills",
     audience:
@@ -552,6 +685,7 @@ export const labs: Product[] = [
     description:
       "Paste a URL or hostname and get a graded report on DNS, TCP, TLS, redirects, latency, and security headers — with prioritized fixes you can paste into a PR. Free, open source, no account required to start.",
     status: "live",
+    maturity: "open-source",
     badge: "Free",
     visual: "connectivity",
     ctaLabel: "Scan an endpoint",
@@ -590,6 +724,7 @@ export const labs: Product[] = [
     description:
       "A free, open library of 20 reference architectures from ARC delivery work: streaming data, operator AI, Labs products, maturity scoring, and more. Each entry names the problem, the component shape, key decisions, failure modes, when not to use it, and a scaling path.",
     status: "live",
+    maturity: "open-source",
     badge: "Free",
     visual: "architecture",
     ctaLabel: "Browse architectures",
@@ -626,6 +761,7 @@ export const labs: Product[] = [
     description:
       "Describe the use case, the data, the budget, and the constraints. Get a decision matrix: the recommended shape, what was ruled out and why, named cost drivers (never invented prices), and a board brief you can copy. Free, no account, nothing stored. Built for the decisions teams are actually making now: when not to use an agent, when a tool needs an allowlist, and when the answer is just a database lookup.",
     status: "live",
+    maturity: "alpha",
     badge: "Free",
     visual: "architecture",
     ctaLabel: "Open advisor",
@@ -663,6 +799,7 @@ export const labs: Product[] = [
     description:
       "Describe an AI application — agents, MCP, retrieval, prompts, data flows — and get a graded defensive review covering prompt injection, what your tools are allowed to do, data exposure, tenancy, and logging. Every finding quotes your own words back to you. Not a penetration test and not a certification.",
     status: "live",
+    maturity: "alpha",
     badge: "Free",
     featured: true,
     visual: "security",
@@ -700,6 +837,7 @@ export const labs: Product[] = [
     description:
       "Scan a public marketing, product, or checkout page and get an evidence-backed audit of the buying path: missing prices, account walls, sales-only CTAs, thin SPA checkouts, and competing asks. Every finding quotes what was on the page. Free, no account, nothing stored.",
     status: "live",
+    maturity: "experiment",
     badge: "Free",
     visual: "journey",
     ctaLabel: "Scan a purchase path",
@@ -737,6 +875,7 @@ export const labs: Product[] = [
     description:
       "Describe your agents, tools, permissions, and data sources. Get an inventory plus a graded review across identity, permissions, data access, human approval, and audit trails — every finding quotes your own words back to you. Free, no account, nothing stored.",
     status: "live",
+    maturity: "alpha",
     badge: "Free",
     visual: "governance",
     ctaLabel: "Review agent access",
@@ -773,6 +912,7 @@ export const labs: Product[] = [
     description:
       "Paste a process in plain language and get a graded diagnosis across handoffs, rework loops, wait states, and automation readiness — with what to fix, what to automate, and what to leave alone. Free, no account, nothing stored.",
     status: "live",
+    maturity: "experiment",
     badge: "Free",
     visual: "process",
     ctaLabel: "Scan a workflow",
@@ -848,10 +988,10 @@ export const labGroups = [
 ];
 
 // ---------------------------------------------------------------------------
-// ARC Studio — fixed diagnostics, delivery, and retainers.
-// Each offering has a detail page at /studio/[slug].
+// ARC Advisory — scoped reviews, delivery and retainers.
+// Each engagement has a detail page at /advisory/[slug].
 // ---------------------------------------------------------------------------
-export type StudioOffering = {
+export type AdvisoryEngagement = {
   slug: string;
   /** Plain-language category shown on the card so people can scan for their problem. */
   focus: string;
@@ -870,7 +1010,7 @@ export type StudioOffering = {
   typicalFollowOn?: string;
 };
 
-export const studioOfferings: StudioOffering[] = [
+export const advisoryEngagements: AdvisoryEngagement[] = [
   {
     slug: "ai-readiness-audit",
     focus: "AI strategy",
@@ -1076,47 +1216,6 @@ export const studioOfferings: StudioOffering[] = [
     typicalFollowOn: "Post-Diagnostic Execution Retainer for hardening sprints, or Fractional Cloud / Platform Advisor for ongoing posture.",
   },
   {
-    slug: "agent-control-review",
-    focus: "AI agent governance",
-    name: "Agent Control Review",
-    tagline: "Know what your agents can reach, who approved it, and what it costs to run.",
-    blurb:
-      "Your vendors switched on AI agents this year whether or not you asked for them. We inventory the agents, tools, and credentials already running, work out how much damage each one could do, and put approval steps and spend limits in place before the next vendor update widens what they can touch.",
-    duration: "2–3 weeks",
-    startsWith:
-      "The agents, copilots, connectors, and MCP tools already running in your stack — including the ones a team switched on without telling anyone.",
-    youLeaveWith:
-      "An agent and tool inventory, a blast-radius ranking, approval and revocation gates, and a spend guardrail with a named owner.",
-    whoFor:
-      "CIOs, CISOs, and platform leads who have to answer what an agent can reach, who authorized it, and what it costs — now that the system of record, the IDE, and the chat client all have agent surfaces and usage meters.",
-    notFor: [
-      "Penetration testing or model red-teaming — we scope controls, not offensive security.",
-      "Teams with no AI agents in production yet — start with the AI Readiness Audit and decide where AI belongs first.",
-    ],
-    deliverables: [
-      "Agent, tool, and credential inventory across vendor copilots, coding agents, and MCP servers",
-      "Blast-radius ranking: what each agent identity can read, write, send, or spend",
-      "Human-approval and revocation gates for irreversible actions",
-      "Spend guardrails: per-team caps, spike alerts, and chargeback owners",
-      "Disclosure and logging check against the transparency duties that took effect 2 August 2026",
-      "A 30/60/90 hardening plan with named owners",
-    ],
-    buildOptions: [
-      "Least-privilege rollout for agent identities: scoped, time-bound credentials instead of standing keys",
-      "Approval workflow and audit logging for agent actions that send, write, or pay",
-      "Spend controls wired to vendor admin APIs — TokenLoop or your own tooling",
-      "Fractional Head of AI / Transformation retainer for ongoing agent governance",
-    ],
-    scoping: [
-      "Discovery call: confirm which agents are live, who owns them, and what they can reach",
-      "Access: agent and connector configs, permission grants, admin billing views, recent incident notes",
-      "Week 1: inventory and permission mapping, owner interviews",
-      "Week 2: blast-radius ranking, gate and guardrail design",
-      "Week 2–3: hardening plan, exec readout, handoff to build or retainer",
-    ],
-    typicalFollowOn: "Post-Diagnostic Execution Retainer for the hardening sprints, or Fractional Head of AI for ongoing governance.",
-  },
-  {
     slug: "ai-solution-mvp-scope",
     focus: "AI build scope",
     name: "AI Solution Concept + MVP Scope",
@@ -1243,12 +1342,12 @@ export const studioOfferings: StudioOffering[] = [
   },
 ];
 
-export function getStudioOfferingBySlug(slug: string): StudioOffering | undefined {
-  return studioOfferings.find((o) => o.slug === slug);
+export function getAdvisoryEngagementBySlug(slug: string): AdvisoryEngagement | undefined {
+  return advisoryEngagements.find((o) => o.slug === slug);
 }
 
 // ---------------------------------------------------------------------------
-// Studio retainers — monthly engagement models.
+// Advisory retainers — monthly engagement models.
 // ---------------------------------------------------------------------------
 export type Retainer = {
   slug: string;
@@ -1289,13 +1388,6 @@ export const retainers: Retainer[] = [
     commitment: "Scoped to the roadmap",
   },
   {
-    slug: "growth-pipeline",
-    name: "Growth & Pipeline Management",
-    bestFit:
-      "Founders and smaller teams who want a warm pipeline built and worked without hiring a salesperson.",
-    commitment: "Senior oversight + introductions",
-  },
-  {
     slug: "arc-partner",
     name: "ARC Partner Retainer",
     bestFit:
@@ -1304,6 +1396,38 @@ export const retainers: Retainer[] = [
   },
 ];
 
+/**
+ * Advisory, summarised to four capabilities. The full engagement list lives on
+ * /advisory; the homepage only needs to say what kind of help this is.
+ */
+export const advisoryCapabilities = [
+  {
+    id: "diagnose",
+    name: "Diagnose",
+    text: "Find out what is actually true about the systems, the data, the risk and the team — before anyone commits a budget to fixing the wrong thing.",
+    items: ["Technical due diligence", "Architecture review", "Readiness assessment", "Security posture"],
+  },
+  {
+    id: "design",
+    name: "Design",
+    text: "Turn the findings into an architecture and a sequence: what gets built, in what order, with which dependency resolved first.",
+    items: ["Target architecture", "MVP and product scope", "Data and integration design", "Roadmap sequencing"],
+  },
+  {
+    id: "deliver",
+    name: "Deliver",
+    text: "Ship it. Build, integrate, migrate and release, with the governance that keeps a programme from quietly slipping a quarter.",
+    items: ["Build and integration", "Cloud and platform work", "Delivery governance", "Release and rollout"],
+  },
+  {
+    id: "scale",
+    name: "Scale",
+    text: "Make the result durable: measured, owned, secured and cheap enough to keep running after we leave.",
+    items: ["Observability and reliability", "Cost and performance", "Security and governance", "Ownership handover"],
+  },
+];
+
+/** The five stages of the ARC Delivery System. Named on every recommendation. */
 export const stages = [
   {
     number: "01",
@@ -1404,7 +1528,7 @@ export const howWeEngage = [
 ];
 
 // ---------------------------------------------------------------------------
-// ARC Research - grounded, cited briefs.
+// ARC Research — grounded, cited briefs.
 // ---------------------------------------------------------------------------
 export type {
   Article,
@@ -1414,7 +1538,7 @@ export type {
 export { research, getResearchBySlug } from "./research";
 
 // ---------------------------------------------------------------------------
-// ARC Academy - workshops.
+// Workshops. Part of the Learn layer, surfaced under /playbooks.
 // Each workshop has a slug and a light curriculum so the card opens a
 // preview page (/academy/[slug]) with objectives, curriculum, and outcomes.
 // ---------------------------------------------------------------------------
@@ -1663,32 +1787,36 @@ export const caseStudies: CaseStudy[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// FAQ - shared across About and Studio.
+// FAQ.
 // ---------------------------------------------------------------------------
 export const faqs = [
   {
-    q: "Who is ARC for?",
-    a: "Companies, nonprofits, and teams of about 10 to 500 people with a real digital, data, security, or AI problem. Smaller groups and communities are welcome when the same method fits. They are not who the homepage is written for.",
+    q: "What is the difference between ARC and ARK?",
+    a: "ARC Transformation Group is the company. It is who you contract with, and it covers advisory, delivery and transformation work across cloud, data, security, software and AI. ARK is the technology ecosystem ARC builds: the products, the protocol work and the research. ARC asks how an organization should use technology. ARK asks how intelligent software should interact with technology.",
+  },
+  {
+    q: "Is ARK something I can buy today?",
+    a: "Parts of it. AI Fit is free on the web right now. ARK Agent Readiness is available as a free scorecard and as a paid assessment. AI Fit Teams is a three-to-four week engagement. ARK Control is in design-partner development and is not purchasable yet — we would rather say that than put a pricing page in front of something unfinished.",
   },
   {
     q: "Do you only do AI?",
-    a: "No. ARC is a digital transformation practice. Data, cloud, security, process, and delivery come first. AI is in the mix when it is the highest-ROI move. Often it is not.",
+    a: "No, and that is the point of the Established / Current / Emerging split. Most of the value in a technology estate is in systems that already exist: cloud, APIs, data platforms, security, architecture. AI and agents are the emerging end. Technology should not be adopted because it is new, only because it creates measurable value.",
   },
   {
     q: "How does work usually start?",
-    a: "A 30-minute call, then a scoped review of two to seven weeks. That ends in a plan with named owners. If you still need us after that, we stay for delivery.",
+    a: "Three ways, and two of them are free. Run a scorecard or a Labs tool and read the report. Read a playbook and use the framework without us. Or book a 30-minute call, which leads to a scoped review of two to seven weeks ending in a plan with named owners.",
   },
   {
     q: "Who actually does the work?",
     a: "The senior person on your first call. We do not pitch with one team and deliver with another, and we do not put a junior bench on your problem after the contract is signed. That is the main reason to pick a small practice over an agency.",
   },
   {
-    q: "Our AI bill came in over plan. Where do we start?",
-    a: "With a free tool. TokenLoop shows what each developer is spending on coding agents and can cut a spike in minutes. Come to us when the overrun is structural — no owner per workflow, no cap, no way to bill it back — which is now the common case.",
+    q: "Our vendors turned on AI agents inside tools we already pay for. Is that a problem?",
+    a: "It is the question of the quarter. An agent inside your CRM or your code editor inherits the permissions of whoever runs it, and this year's breaches came from ordinary links and documents rather than exotic attacks. Start with the free Agent Readiness Scorecard, then the ARK Agent Readiness assessment if you need the inventory, the blast-radius ranking and the approval gates.",
   },
   {
-    q: "Our vendors turned on AI agents inside tools we already pay for. Is that a problem?",
-    a: "It is the question of the quarter. An agent inside your CRM or your code editor inherits the permissions of whoever runs it, and the breaches of the last few months came from ordinary links and documents, not exotic attacks. The Agent Control Review lists what is live, ranks what each agent could damage, and puts approval and spend limits on the actions that matter. The free Agent Governance tool covers the first pass.",
+    q: "What does \"evidence, not claims\" actually mean?",
+    a: "That a system reporting success is not the same thing as the work being done. An agent can finish a run while the payment failed, or report a record as updated when the destination system never changed. Evidence means confirmation from the system that was supposed to change, independent of the thing that claims to have changed it. Where we cannot verify an outcome, we report it as unverified rather than as a success.",
   },
   {
     q: "EU AI Act transparency rules applied on 2 August 2026. Does that hit us?",
@@ -1696,11 +1824,11 @@ export const faqs = [
   },
   {
     q: "Are the Labs tools really free?",
-    a: "Yes. Most run with no account. TokenLoop uses a free signup so keys stay encrypted to your organization. There is no paid tier. Studio is optional if you want a human to read what the tools surface.",
+    a: "Yes. Most run with no account and store nothing. There is no paid tier. Every Labs project carries its real maturity — open source, alpha, experiment or research — so you can tell what is supported and what is not before you depend on it.",
   },
   {
-    q: "What is Academy?",
-    a: "Workshops only. Digital readiness, a technical operator session, or a custom day built around a decision you have to make. No course catalog. No certification.",
+    q: "Why are the playbooks so cheap, or free?",
+    a: "Because they work better as distribution than as revenue. Three of the four are free and complete on the page. The AI Product Playbook is $19. If you can run our method without hiring us, that is a good outcome for both of us.",
   },
   {
     q: "How do you size the work?",
@@ -1722,12 +1850,34 @@ export const faqs = [
 
 // ---------------------------------------------------------------------------
 // Navigation.
+//
+// Products is a menu over the four things you can actually buy or run. The
+// runtime, the protocol work and the individual scanners deliberately do not
+// appear here — they sit under Platform, Developers and Labs.
 // ---------------------------------------------------------------------------
-export const nav = [
-  { label: "Labs", href: "/labs" },
-  { label: "Studio", href: "/studio" },
-  { label: "Work", href: "/work" },
+export type NavItem = {
+  label: string;
+  href: string;
+  /** Rendered as a dropdown when present. */
+  children?: { label: string; href: string; summary: string }[];
+};
+
+export const nav: NavItem[] = [
+  { label: "Products", href: "/platform#products" },
+  { label: "Platform", href: "/platform" },
+  { label: "Developers", href: "/developers" },
   { label: "Research", href: "/research" },
-  { label: "Academy", href: "/academy" },
-  { label: "About", href: "/about" },
+  { label: "Playbooks", href: "/playbooks" },
+  { label: "Advisory", href: "/advisory" },
+  { label: "Company", href: "/about" },
+];
+
+/** Secondary routes that belong in the sitemap and footer but not the header. */
+export const secondaryRoutes = [
+  "/labs",
+  "/work",
+  "/academy",
+  "/contact",
+  "/privacy",
+  "/terms",
 ];
