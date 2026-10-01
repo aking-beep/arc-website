@@ -323,7 +323,7 @@ export const developerAreas: {
     name: "Runtime",
     maturity: "research",
     text: "Where a unit of AI work should execute, decided from capability, privacy, policy, latency and cost rather than from habit. Local, edge and cloud are a routing decision, not an ideology.",
-    href: "/platform#runtime",
+    href: "/developers#runtime",
     linkLabel: "Read the thinking",
   },
   {
