@@ -392,7 +392,7 @@ export const labs: Product[] = [
       "Kill switch: detect, alert, throttle, or revoke (admin APIs)",
       "Agency chargeback with markup and CSV export",
       "Keys encrypted at rest. Never returned to the browser",
-      "Honest scope: minutes-scale cut, not true per-request blocking",
+      "Scope: a minutes-scale cut, not per-request blocking",
     ],
     links: {
       app: "https://tokenloop.vercel.app",
@@ -667,7 +667,7 @@ export const labs: Product[] = [
   },
 ];
 
-/** Honest Labs proof. Counts we cannot verify yet are omitted, not invented. */
+/** Labs proof. Counts we cannot verify yet are omitted rather than invented. */
 export const labsProof = {
   tools: labs.length,
   note: "We'll publish usage numbers when we have them.",
@@ -1236,7 +1236,7 @@ export const academy: Workshop[] = [
       "Teams with a specific problem where a fixed agenda would waste the day. Bring the topic. We build the session around your stack, constraints, and the decision you need to make.",
     objectives: [
       "Use a short intake to define the question, the audience, and the success criteria before anyone books the room.",
-      "Run a tailored working session that still holds ARC's bar: plain language, named stage, scored options, and no strategy sold as a shippable deliverable.",
+      "Run a tailored working session that still holds the same bar: options scored on value, risk, feasibility and adoption, with assumptions written down and strategy kept separate from what ships.",
       "Leave with owners and a next step specific enough to start, whether the topic was technical, operational, or mission-driven.",
     ],
     curriculum: [
