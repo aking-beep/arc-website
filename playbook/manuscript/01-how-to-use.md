@@ -39,10 +39,12 @@ Appendices A, B and C are working libraries rather than reading material:
   the tools, the input schema and the human gate in place. Modules 03 and 05
   send you here.
 
-All three are also published openly under the MIT licence. Appendix D has the
-repository links and the licence text. What this Playbook adds is the ordering:
-each entry is attached to the module where you would actually reach for it, so
-you are not browsing a catalog of twenty things hoping one applies.
+Every entry is printed in full — nothing in the appendices is a summary — and
+every one is also in the ZIP as an editable file. They are ordered by module
+rather than alphabetically, so you are not browsing a catalog of fifty-six
+things hoping one applies: you reach module 04, and the architectures that
+answer module 04 are the ones in front of you. Appendix D says what you may do
+with all of it.
 
 ## Conventions
 

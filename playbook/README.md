@@ -38,14 +38,32 @@ have their own repository, and those repositories are the source of truth. If
 the appendices were copies in this repo they would be stale within a month, and
 the Playbook would start describing skills that no longer exist.
 
-`npm run playbook:assets` pulls them at build time from the public GitHub
-repositories, records the commit SHA it pulled, and prints the licence notice
-into the PDF. The SHA goes on the colophon page, so any buyer can tell exactly
-which revision they have.
+`npm run playbook:assets` pulls them at build time, records the commit SHA it
+pulled, and writes it to the colophon page, so any buyer can tell exactly which
+revision they have.
 
-All three are MIT licensed. The licence text ships in the bundle and the
-landing page says plainly that the raw catalogs are free on GitHub. Selling
-curation is defensible; implying exclusivity would not be.
+### What goes into the appendices
+
+Every entry is printed **in full**, not summarised: each skill with its
+triggers, steps and guardrails, each architecture with its decisions, failure
+modes and when-not-to-use-it notes, each template with its prompt, tools, input
+schema and human gate. Entries are grouped under the module that sends you to
+them, which is the part `curation.json` encodes and the part a buyer is paying
+for. The same files ship as editable Markdown in the ZIP.
+
+Three things are stripped on the way in, in `prepareBody()`:
+
+- the entry's own h1, because the appendix prints the title above it;
+- embedded images, because each architecture's illustration carries alt text
+  identical to the Scenario paragraph directly above it and twenty of them add
+  roughly six megabytes for no information — the image files go in the ZIP
+  instead, via the `extraDirs` field in `libraries.mjs`;
+- `_Harvested from:_` provenance lines, which are accurate inside the source
+  repository and meaningless to a reader.
+
+Headings inside an entry are demoted two levels so the hierarchy holds: the
+appendix owns h1, the module group h2, the entry h3, and the entry's own
+sections land at h4 and below.
 
 ## Page and print specification
 
@@ -66,7 +84,7 @@ curation is defensible; implying exclusivity would not be.
 ```
 Cover
 Title page
-Colophon and licence
+Colophon
 How to use this Playbook
 The five-step system (one page, the whole argument)
 Module 01  Idea
@@ -81,7 +99,7 @@ Worksheets (11)
 Appendix A  ARC Skills library
 Appendix B  Reference Architectures
 Appendix C  AI Workflow Templates
-Appendix D  Licences and attribution
+Appendix D  Usage and edition
 ```
 
 Every module follows the same five-part shape, so a reader can navigate by

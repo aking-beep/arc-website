@@ -1,7 +1,7 @@
 {
   "$comment": [
     "Which Playbook module each library entry belongs to. This file is the curation.",
-    "The three libraries are public and MIT licensed; the ordering is what the bundle adds.",
+    "Entries print in full; this ordering is what makes them usable rather than a pile.",
     "`entries` is hand-maintained. `categoryDefault` catches anything added upstream after",
     "this edition shipped, so the build never fails on a new file — it lands in a plausible",
     "module and gets a proper home in the next edition."

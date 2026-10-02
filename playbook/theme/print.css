@@ -310,30 +310,100 @@ table.grid th {
 
 /* --- Appendices ---------------------------------------------------------- */
 
+/*
+ * The appendices print each entry in full, so they are a reference section
+ * rather than a list: the appendix owns h1, a module group owns h2, an entry
+ * owns h3, and the entry's own headings were demoted into h4-h6 by the build
+ * script. Everything below exists to keep that hierarchy legible once an entry
+ * runs past a page break.
+ */
+
+.module-group {
+  break-before: page;
+  page-break-before: always;
+}
+
+.module-group h2 {
+  margin: 0 0 0.2em;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid var(--accent);
+  font-size: 14pt;
+}
+
 section[data-section="appendix"] h2 {
   margin-top: 1.4em;
   font-size: 12pt;
 }
 
 section[data-section="appendix"] h3 {
-  margin: 1em 0 0.2em;
-  font-size: 10.5pt;
+  margin: 0;
+  font-size: 13pt;
   color: var(--ink);
 }
 
+section[data-section="appendix"] h4 {
+  margin: 1.1em 0 0.3em;
+  font-size: 10.5pt;
+  color: var(--accent);
+}
+
+section[data-section="appendix"] h5,
+section[data-section="appendix"] h6 {
+  margin: 0.9em 0 0.25em;
+  font-weight: 600;
+  font-size: 10pt;
+  line-height: 1.25;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+section[data-section="appendix"] h6 {
+  font-size: 9.5pt;
+  color: var(--muted);
+}
+
 .entry-meta {
-  margin: 0 0 0.5em;
+  margin: 0.15em 0 0.8em;
   color: var(--muted);
   font-family: "IBM Plex Mono", monospace;
   font-size: 8.5pt;
 }
 
-.entry {
-  break-inside: avoid;
-  page-break-inside: avoid;
-  margin-bottom: 0.9em;
-  padding-bottom: 0.7em;
-  border-bottom: 0.5pt solid var(--rule);
+/*
+ * An entry is a whole document and routinely runs over a page, so it cannot
+ * be kept intact. It gets a rule above it instead, which is what tells the
+ * reader a new entry started when the page turned mid-way through the last one.
+ */
+.appendix-entry {
+  margin-top: 1.5em;
+  padding-top: 0.9em;
+  border-top: 1pt solid var(--accent);
+}
+
+.module-group + .appendix-entry {
+  margin-top: 1.1em;
+}
+
+/* --- Code blocks --------------------------------------------------------- */
+
+/*
+ * The architectures carry ASCII component diagrams in fences. They are wider
+ * than the text column, so they are allowed to shrink rather than be clipped
+ * by the page edge.
+ */
+pre {
+  margin: 0.8em 0 1em;
+  padding: 0.6em 0.75em;
+  background: #f4f7f8;
+  border-left: 2.5pt solid var(--rule);
+  font-size: 8pt;
+  line-height: 11.5pt;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+pre code {
+  font-size: inherit;
 }
 
 /* --- Cover --------------------------------------------------------------- */

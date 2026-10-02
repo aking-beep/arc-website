@@ -114,17 +114,16 @@ async function renderColophon(meta) {
   for (const library of sources?.libraries ?? []) {
     rows.push(
       `<dt>Appendix ${escapeHtml(library.appendix)}</dt><dd>${escapeHtml(library.title)} — ` +
-        `${library.entryCount} entries at <code>${escapeHtml(library.shortSha)}</code>, ` +
-        `${escapeHtml(library.license)}</dd>`,
+        `${library.entryCount} entries at <code>${escapeHtml(library.shortSha)}</code></dd>`,
     );
   }
 
   return `
 <section class="chapter" data-section="colophon">
   <h2>Colophon</h2>
-  <p>The three libraries in appendices A, B and C are pulled from their own
-     repositories when this PDF is built, so the revisions below are exactly what
-     you are holding. Appendix D has the links and the licence.</p>
+  <p>Appendices A, B and C are assembled when this PDF is built, so the revisions
+     below are exactly what you are holding. Appendix D says what you may do with
+     all of it.</p>
   <dl class="colophon">${rows.join("\n    ")}</dl>
   <p class="colophon">Set in IBM Plex Sans and IBM Plex Mono. Typeset for US Letter;
      it prints on A4 with a slightly larger margin.</p>
