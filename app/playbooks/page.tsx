@@ -148,7 +148,7 @@ export default function PlaybooksPage() {
           <SectionHeading
             kicker="Workshops"
             title="When the room is the problem."
-            lead="Sometimes the blocker is not the technology, it is that leadership and operators describe the same problem in different words. That is a session, not a six-week diagnostic."
+            lead="Sometimes the blocker is not the technology, it is that leadership and operators describe the same problem in different words. That is a session rather than a six-week diagnostic."
           />
           <Link
             href="/academy"

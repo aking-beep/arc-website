@@ -106,7 +106,7 @@ export default function AssuranceChecklistPage() {
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
             Cost per run flatters you every time a cheap failure inflates the
             denominator. Divide total spend — including retries and abandoned
-            attempts — by the outcomes that actually verified, and the number
+            attempts — by the outcomes that verified, and the number
             stops being comfortable and starts being useful.
           </p>
         </Panel>

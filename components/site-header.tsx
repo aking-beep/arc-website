@@ -5,27 +5,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { nav } from "@/lib/content";
-import { arkProducts } from "@/lib/ark";
+import { nav, type NavItem } from "@/lib/content";
 import { Brand } from "@/components/brand";
-import { MaturityBadge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 
-const productRoutes = arkProducts.map((p) => `/${p.slug}`);
-
-function isActive(pathname: string, href: string) {
-  const path = href.split("#")[0];
-  if (path === "/platform" && href.includes("#products")) {
-    return productRoutes.some((r) => pathname === r);
-  }
-  if (path === "/about") {
-    return ["/about", "/work", "/contact"].some((r) => pathname.startsWith(r));
-  }
-  return pathname === path || pathname.startsWith(path + "/");
+function isActive(pathname: string, item: NavItem) {
+  const matches = (href: string) => {
+    const path = href.split("#")[0];
+    return pathname === path || pathname.startsWith(path + "/");
+  };
+  if (matches(item.href)) return true;
+  return (item.children ?? []).some((child) => matches(child.href));
 }
 
-function ProductMenu() {
+function Dropdown({ item, active }: { item: NavItem; active: boolean }) {
   const [open, setOpen] = React.useState(false);
   const closeTimer = React.useRef<ReturnType<typeof setTimeout>>();
 
@@ -45,40 +39,32 @@ function ProductMenu() {
       onFocus={show}
       onBlur={hide}
     >
-      <button
-        type="button"
+      <Link
+        href={item.href}
         aria-expanded={open}
-        onClick={() => setOpen((v) => !v)}
-        className="inline-flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+        className={cn(
+          "inline-flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium transition-colors",
+          active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+        )}
       >
-        Products
+        {item.label}
         <ChevronDown
           className={cn("h-3.5 w-3.5 transition-transform", open && "rotate-180")}
         />
-      </button>
+      </Link>
       {open ? (
-        <div className="absolute left-0 top-full z-50 w-[22rem] pt-2">
+        <div className="absolute left-0 top-full z-50 w-[24rem] pt-2">
           <div className="overflow-hidden rounded-xl border border-border bg-card shadow-lg">
-            {arkProducts.map((p) => (
+            {item.children?.map((child) => (
               <Link
-                key={p.slug}
-                href={`/${p.slug}`}
+                key={child.href}
+                href={child.href}
                 onClick={() => setOpen(false)}
                 className="block border-b border-border/60 px-4 py-3.5 transition-colors last:border-0 hover:bg-accent/60"
               >
-                <span className="flex items-center justify-between gap-3">
-                  <span className="flex items-baseline gap-2 text-sm font-semibold">
-                    {p.name}
-                    {p.flagship ? (
-                      <span className="font-mono text-[10px] font-normal uppercase tracking-wider text-brand">
-                        Flagship
-                      </span>
-                    ) : null}
-                  </span>
-                  <MaturityBadge maturity={p.maturity} />
-                </span>
+                <span className="block text-sm font-semibold">{child.label}</span>
                 <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">
-                  {p.tagline}
+                  {child.summary}
                 </span>
               </Link>
             ))}
@@ -102,17 +88,21 @@ export function SiteHeader() {
       <div className="container flex h-16 items-center justify-between gap-4">
         <Brand />
 
-        <nav className="hidden flex-none items-center gap-0.5 xl:flex">
+        <nav className="hidden flex-none items-center gap-0.5 lg:flex">
           {nav.map((item) =>
-            item.label === "Products" ? (
-              <ProductMenu key={item.label} />
+            item.children ? (
+              <Dropdown
+                key={item.label}
+                item={item}
+                active={isActive(pathname, item)}
+              />
             ) : (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
                   "whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                  isActive(pathname, item.href)
+                  isActive(pathname, item)
                     ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground",
                 )}
@@ -123,17 +113,14 @@ export function SiteHeader() {
           )}
         </nav>
 
-        {/* Seven nav items and the full company name leave room for one
-            button inside the container. The second CTA lives in the Products
-            menu and the mobile sheet instead of being squeezed in here. */}
-        <div className="hidden flex-none items-center gap-2 xl:flex">
+        <div className="hidden flex-none items-center gap-2 lg:flex">
           <ThemeToggle />
-          <Button href="/agent-readiness" size="sm" className="whitespace-nowrap">
-            Assess agent readiness
+          <Button href="/contact" size="sm" className="whitespace-nowrap">
+            Talk to us
           </Button>
         </div>
 
-        <div className="flex items-center gap-2 xl:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <ThemeToggle />
           <button
             type="button"
@@ -148,40 +135,33 @@ export function SiteHeader() {
       </div>
 
       {open ? (
-        <div className="max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-border/60 bg-background xl:hidden">
+        <div className="max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-border/60 bg-background lg:hidden">
           <nav className="container flex flex-col py-4">
-            <p className="px-2 pb-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              Products
-            </p>
-            {arkProducts.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/${p.slug}`}
-                className="flex items-center justify-between gap-3 rounded-md px-2 py-2.5 text-sm font-medium hover:bg-accent/60"
-              >
-                {p.name}
-                <MaturityBadge maturity={p.maturity} />
-              </Link>
-            ))}
-            <p className="mt-4 px-2 pb-2 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              Explore
-            </p>
-            {nav
-              .filter((item) => item.label !== "Products")
-              .map((item) => (
+            {nav.map((item) => (
+              <div key={item.label} className="py-1">
                 <Link
-                  key={item.href}
                   href={item.href}
-                  className="rounded-md px-2 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground"
+                  className="block rounded-md px-2 py-2.5 text-sm font-semibold hover:bg-accent/60"
                 >
                   {item.label}
                 </Link>
-              ))}
-            <Button href="/agent-readiness" className="mt-4">
-              Assess agent readiness
-            </Button>
-            <Button href="/ark-control" variant="outline" className="mt-2">
-              Explore ARK Control
+                {item.children ? (
+                  <div className="ml-2 border-l border-border/60 pl-3">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className="block rounded-md px-2 py-2 text-sm text-muted-foreground hover:text-foreground"
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            ))}
+            <Button href="/contact" className="mt-4">
+              Talk to us
             </Button>
           </nav>
         </div>

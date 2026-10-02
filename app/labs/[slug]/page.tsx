@@ -176,7 +176,7 @@ export default function ProductPage({
       <CTA
         title={
           isCatalog
-            ? "Want these adapted to how you actually work?"
+            ? "Want these adapted to how your team works?"
             : "Need a human to read this report?"
         }
         lead={

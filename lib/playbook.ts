@@ -37,7 +37,7 @@ export const playbookHero = {
 export const playbookProblem = {
   kicker: "The gap",
   title: "Shipping code is not the same as shipping a product.",
-  lead: "AI closed the distance between an idea and a working interface. It did not answer any of the questions that decide whether the thing survives contact with a real user.",
+  lead: "AI closed the distance between an idea and a working interface. It did not answer any of the questions that decide whether the thing survives contact with a user who did not build it.",
   openers: [
     "AI can generate an interface. It can write code. It can connect APIs. It can deploy an application.",
     "None of those things automatically make what you built a product.",
@@ -81,7 +81,7 @@ export const playbookSystem = [
   {
     step: "03",
     name: "Architect",
-    question: "How will this hold up once it is real?",
+    question: "How will this hold up once people depend on it?",
     text: "Application shape, AI components, data, integrations, infrastructure and the build sequence that follows from them.",
     modules: ["Architecture", "Build"],
   },
@@ -96,7 +96,7 @@ export const playbookSystem = [
     step: "05",
     name: "Launch",
     question: "How does anyone find it, and how do we know it worked?",
-    text: "Distribution, pricing, the measures that matter, and how you iterate once real users arrive.",
+    text: "Distribution, pricing, the measures that matter, and how you iterate once people start using it.",
     modules: ["Launch"],
   },
 ];
@@ -169,7 +169,7 @@ export const playbookModules = [
     step: "Harden",
     text: "Define quality, reliability, failure modes and acceptance criteria for the AI itself.",
     outputs: [
-      "An evaluation set built from real inputs",
+      "An evaluation set built from the inputs you have seen",
       "Pass thresholds agreed before you measure",
       "The failure modes you have accepted, and the ones you have not",
     ],
@@ -181,17 +181,17 @@ export const playbookModules = [
     text: "Work through security, privacy, analytics, monitoring and the operational load you are taking on.",
     outputs: [
       "A security and privacy pass against a written checklist",
-      "The signals you will watch, and the alert that actually pages someone",
-      "An honest estimate of the operating cost per user",
+      "The signals you will watch, and the one alert that pages someone",
+      "An estimate of the operating cost per user",
     ],
   },
   {
     number: "08",
     name: "Launch",
     step: "Launch",
-    text: "Define distribution, pricing, measurement and how you will iterate once real users arrive.",
+    text: "Define distribution, pricing, measurement and how you will iterate once people start using it.",
     outputs: [
-      "One distribution channel you will actually work",
+      "One distribution channel you will keep working",
       "A price, and the reasoning behind it",
       "The two numbers that decide whether to continue",
     ],
@@ -280,12 +280,12 @@ export const playbookPreview = [
   },
   {
     label: "From module 06 · Evaluation",
-    title: "An eval set made of real inputs, not clean ones",
-    body: "Build it from the messiest twenty inputs you can find. If you cannot find twenty real inputs, you have a validation problem rather than an evaluation problem.",
+    title: "An eval set made of your messiest twenty inputs",
+    body: "Build it from the messiest twenty inputs you can find. If you cannot find twenty, you have a validation problem rather than an evaluation problem.",
   },
   {
     label: "From module 07 · Production readiness",
-    title: "The alert that actually pages someone",
+    title: "The one alert that pages someone",
     body: "List every signal you plan to watch, then cross out the ones nobody would get out of bed for. What remains is your monitoring. The rest is a dashboard.",
   },
 ];
@@ -295,7 +295,7 @@ export const playbookPreview = [
 // ---------------------------------------------------------------------------
 export const playbookAudience = {
   forYou: [
-    "AI builders shipping their first real product",
+    "AI builders shipping their first product",
     "Solo and technical founders",
     "Product managers working without a research team",
     "People who started by vibe coding and now need it to hold up",
@@ -319,8 +319,8 @@ export const playbookFaqs = [
     a: "No. There are no videos and no certificate. It is a working document you fill in while you build, which is why the worksheets ship as editable Markdown as well as print pages.",
   },
   {
-    q: "Are the three libraries summaries, or the real thing?",
-    a: "The real thing. All 56 entries are printed in full in the PDF appendices — every skill with its triggers, steps and guardrails, every architecture with its decisions, failure modes and when-not-to-use-it notes, every template with its prompt, tools, input schema and human gate. The same files are in the ZIP so you can edit them. Each entry is also filed under the module that sends you to it, so you are not browsing a catalog hoping something applies.",
+    q: "Are the three libraries summaries, or the full documents?",
+    a: "The full documents. All 56 entries are printed in full in the PDF appendices — every skill with its triggers, steps and guardrails, every architecture with its decisions, failure modes and when-not-to-use-it notes, every template with its prompt, tools, input schema and human gate. The same files are in the ZIP so you can edit them. Each entry is also filed under the module that sends you to it, so you are not browsing a catalog hoping something applies.",
   },
   {
     q: "Will it be out of date in six months?",

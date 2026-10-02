@@ -173,7 +173,7 @@ export default function AdvisoryEngagementPage({
 
       <CTA
         title={`Want to talk about the ${offering.name}?`}
-        lead="A 30-minute call is enough to tell you whether this is the right first step — and what size of engagement the problem actually needs."
+        lead="A 30-minute call is enough to tell you whether this is the right first step — and what size of engagement the problem needs."
       />
     </>
   );

@@ -6,12 +6,12 @@
 export const site = {
   name: "ARC Transformation Group",
   short: "ARC",
-  tagline: "Technology changes. We help you use it.",
+  tagline: "Make technology work for your business.",
   description:
-    "ARC Transformation Group helps people and organizations understand, adopt, build and operate the technologies shaping modern systems — and through ARK, builds infrastructure for reliable agent action.",
+    "ARC helps growing companies work out what to improve, what to automate and what to build across AI, cloud, data, security and software — and then helps get it working.",
   audience: {
-    badge: "AI · Automation · Cloud · Security · Software · Data · Infrastructure",
-    line: "ARC helps people and organizations understand, adopt, build and operate the technologies shaping modern systems. From today's stack to tomorrow's autonomous systems, we turn emerging capability into technology people can actually rely on.",
+    badge: "AI · Automation · Cloud · Security · Software",
+    line: "ARC helps growing companies work out what to improve, what to automate and what to build — and then helps get it working.",
   },
   /** The question ARC answers, as distinct from the one ARK answers. */
   question: "How should we use technology?",
@@ -31,7 +31,7 @@ export const site = {
       "Enterprise cybersecurity: 300+ features coordinated, 25% improvement in release value, sales-linked program impact",
       "Customer-data platforms at tens of millions of profiles, including Ticketmaster-scale live-entertainment delivery",
       "Brand and consumer programs with LEGO and the NFL",
-      "Process, data, cloud, and security first. AI only when it moves a real number.",
+      "Process, data, cloud, and security first. AI when it moves a number we agreed on.",
       "Works with 10–500 person companies, nonprofits, and teams",
     ],
     scope: [
@@ -46,132 +46,8 @@ export const site = {
 };
 
 // ---------------------------------------------------------------------------
-// Learn / Build / Operate — the three verbs the company is organised around.
-// ---------------------------------------------------------------------------
-export const operatingModes = [
-  {
-    id: "learn",
-    verb: "Learn",
-    title: "Understand what technology can do before investing in it.",
-    text: "Research, playbooks, assessments and frameworks for technical and non-technical leaders who have to make a decision and defend it afterwards.",
-    items: [
-      "Research and field notes",
-      "Playbooks and templates",
-      "Readiness assessments",
-      "Workshops",
-    ],
-    href: "/playbooks",
-    linkLabel: "Start learning",
-  },
-  {
-    id: "build",
-    verb: "Build",
-    title: "Turn technology strategy into working systems.",
-    text: "Architecture through implementation, on the systems the business already depends on as well as the ones it is adding.",
-    items: [
-      "AI products and automation",
-      "Applications and integrations",
-      "Cloud infrastructure and data platforms",
-      "Modernisation programmes",
-    ],
-    href: "/advisory",
-    linkLabel: "See how we build",
-  },
-  {
-    id: "operate",
-    verb: "Operate",
-    title: "Technology only creates value when it keeps working.",
-    text: "Reliability, security, governance, observability and cost — and through ARK, the infrastructure agents need to act reliably against real systems.",
-    items: [
-      "Reliability and observability",
-      "Security and governance",
-      "Cost and performance",
-      "Agent operations",
-    ],
-    href: "/platform",
-    linkLabel: "Explore ARK",
-  },
-];
-
-// ---------------------------------------------------------------------------
-// Established / current / emerging. The argument that new is not the same
-// thing as better, which is what separates ARC from an AI consultancy.
-// ---------------------------------------------------------------------------
-export const technologyLifecycle = [
-  {
-    id: "established",
-    label: "Established",
-    title: "Modernise and improve the systems already running the business.",
-    items: [
-      "Cloud infrastructure",
-      "APIs and integrations",
-      "Data platforms",
-      "Security",
-      "Software architecture",
-      "DevOps",
-      "Analytics",
-    ],
-  },
-  {
-    id: "current",
-    label: "Current",
-    title: "Use today's capabilities more effectively.",
-    items: [
-      "Automation",
-      "AI-enabled workflows",
-      "Cloud-native systems",
-      "Modern application development",
-      "Data intelligence",
-      "Security automation",
-      "Platform engineering",
-    ],
-  },
-  {
-    id: "emerging",
-    label: "Emerging",
-    title: "Prepare for the systems coming next.",
-    items: [
-      "AI agents",
-      "Agent-to-agent systems",
-      "MCP and emerging protocols",
-      "Local and edge AI",
-      "Autonomous workflows",
-      "Agent identity and permissions",
-      "Outcome assurance",
-    ],
-  },
-];
-
-export const lifecyclePrinciple =
-  "Technology should not be adopted because it is new. It should be adopted because it creates measurable value.";
-
-// ---------------------------------------------------------------------------
-// Two audiences, two doors. Education is acquisition, not a side project.
-// ---------------------------------------------------------------------------
-export const audiences = [
-  {
-    id: "organizations",
-    label: "For organizations",
-    title: "Transform your technology systems.",
-    text: "Architecture, AI, automation, cloud, security, development and agent infrastructure — diagnosed, designed, delivered and operated.",
-    items: ["Advisory and architecture", "Build and modernisation", "Security and governance", "Agent readiness"],
-    href: "/advisory",
-    linkLabel: "Work with ARC",
-  },
-  {
-    id: "builders",
-    label: "For individuals and builders",
-    title: "Learn how modern technology actually works.",
-    text: "The same methods we use on paid work, published so you can use them without hiring anyone.",
-    items: ["Playbooks and frameworks", "Free assessments", "Open-source tools", "Research"],
-    href: "/playbooks",
-    linkLabel: "Start learning",
-  },
-];
-
-// ---------------------------------------------------------------------------
 // How ARC differs from the other three things a buyer is comparing us to.
-// Keep this honest — every row has to survive the buyer repeating it to the
+// Every row has to survive the buyer repeating it to the
 // competitor in question.
 // ---------------------------------------------------------------------------
 export type Alternative = {
@@ -222,7 +98,7 @@ export const digitalTransformation = [
   },
   {
     name: "Process and operations",
-    text: "The work itself, not just a new login screen. Tools only count if the workflow actually changes.",
+    text: "The work itself, rather than a new login screen. A tool counts when the workflow changes.",
   },
   {
     name: "Cybersecurity and risk",
@@ -292,7 +168,7 @@ export const marketSignals: MarketSignal[] = [
     label: "Agent risk",
     headline: "A government evaluator caught AI agents acting on the live internet without permission.",
     soWhat:
-      "The UK AI Security Institute recorded 19 unsanctioned actions across 10 of 122 test runs. In one, an agent invented fake identities to pressure a real open-source maintainer into merging malicious code. Limiting what an agent can reach stopped being a policy sentence.",
+      "The UK AI Security Institute recorded 19 unsanctioned actions across 10 of 122 test runs. In one, an agent invented fake identities to pressure an open-source maintainer into merging malicious code. Limiting what an agent can reach stopped being a policy sentence.",
     href: "/labs/arc-agent-governance",
     hrefLabel: "Review agent access",
     sources: [
@@ -457,7 +333,7 @@ export const pillars: Pillar[] = [
     kicker: "Open & experimental",
     summary: "Open tools, scanners and emerging protocol work.",
     detail:
-      "Free and mostly MIT licensed. Every project carries its real maturity, so an experiment never reads as a product.",
+      "Free and mostly MIT licensed. Every project carries its maturity, so an experiment never reads as a product.",
     status: "live",
   },
   {
@@ -475,7 +351,7 @@ export const pillars: Pillar[] = [
 
 // ---------------------------------------------------------------------------
 // ARK Labs — open tools, scanners and experiments.
-// Every entry carries its real maturity. Nothing here is sold as a product.
+// Every entry carries its maturity. Nothing here is sold as a product.
 // ---------------------------------------------------------------------------
 export type ProductVisual =
   | "conformance"
@@ -507,7 +383,7 @@ export type Product = {
   audience: string;
   howItWorks: string[];
   features: string[];
-  /** Primary product action — label must match what the destination actually is. */
+  /** Primary product action — label must match what the destination is. */
   ctaLabel?: string;
   links: { app?: string; github?: string; docs?: string };
   roadmap?: { label: string; done: boolean }[];
@@ -519,7 +395,7 @@ export const labs: Product[] = [
     name: "MCP Conformance Scanner",
     tagline: "Check any MCP server against the spec in seconds.",
     description:
-      "Point it at a Model Context Protocol server and get a report: what passes, what breaks, and what to fix first — written for an operator, not a linter. The July 2026 spec revision changed how servers start up, so \"it works in one client\" is no longer evidence that it works.",
+      "Point it at a Model Context Protocol server and get a report: what passes, what breaks, and what to fix first, written for an operator to act on. The July 2026 spec revision changed how servers start up, so \"it works in one client\" is no longer evidence that it works.",
     status: "live",
     maturity: "open-source",
     badge: "Flagship",
@@ -527,17 +403,17 @@ export const labs: Product[] = [
     visual: "conformance",
     ctaLabel: "Scan a server",
     audience:
-      "Teams shipping or consuming MCP servers who need a production gate, not a one-client smoke test — especially now that enterprise platforms are publishing tool surfaces by the dozen.",
+      "Teams shipping or consuming MCP servers who need a production gate rather than a one-client smoke test — especially now that enterprise platforms are publishing tool surfaces by the dozen.",
     howItWorks: [
       "Paste a server URL or point the CLI at your local process.",
-      "We exercise the transport, capability, and schema behavior your server actually advertises.",
+      "We exercise the transport, capability, and schema behavior your server advertises.",
       "You get a graded report with prioritized fixes an operator can act on.",
       "Share the link with a teammate or drop it into CI when the Action ships.",
     ],
     features: [
       "Handshake, capability, and negotiation checks for session-based servers",
       "Tool, resource, and prompt schema validation",
-      "Prioritized findings written for an operator, not a linter",
+      "Prioritized findings written for an operator to act on",
       "Shareable report links",
     ],
     links: {
@@ -628,7 +504,7 @@ export const labs: Product[] = [
   {
     slug: "connectivity-scanner",
     name: "Connectivity Scanner",
-    tagline: "Is your endpoint actually reachable, secure, and fast?",
+    tagline: "Is your endpoint reachable, secure, and fast?",
     description:
       "Paste a URL or hostname and get a graded report on DNS, TCP, TLS, redirects, latency, and security headers — with prioritized fixes you can paste into a PR. Free, open source, no account required to start.",
     status: "live",
@@ -667,16 +543,16 @@ export const labs: Product[] = [
   {
     slug: "arc-stack-advisor",
     name: "ARC AI Stack Advisor",
-    tagline: "Turn a use case and real constraints into a defensible AI architecture.",
+    tagline: "Turn a use case and your constraints into a defensible AI architecture.",
     description:
-      "Describe the use case, the data, the budget, and the constraints. Get a decision matrix: the recommended shape, what was ruled out and why, named cost drivers (never invented prices), and a board brief you can copy. Free, no account, nothing stored. Built for the decisions teams are actually making now: when not to use an agent, when a tool needs an allowlist, and when the answer is just a database lookup.",
+      "Describe the use case, the data, the budget, and the constraints. Get a decision matrix: the recommended shape, what was ruled out and why, named cost drivers (never invented prices), and a board brief you can copy. Free, no account, nothing stored. Built for the decisions teams are making now: when not to use an agent, when a tool needs an allowlist, and when the answer is just a database lookup.",
     status: "live",
     maturity: "alpha",
     badge: "Free",
     visual: "architecture",
     ctaLabel: "Open advisor",
     audience:
-      "CTOs, tech leads, finance partners, and teams with no ML practice who need an architecture they can defend — not a list of trendy tools.",
+      "CTOs, tech leads, finance partners, and teams with no ML practice who need an architecture they can defend in a budget conversation.",
     howItWorks: [
       "Pick a starter or describe the use case, stack, constraints, team, and budget in plain language.",
       "Deterministic rules match that description to a published catalog of architecture shapes — not vendors.",
@@ -752,7 +628,7 @@ export const labs: Product[] = [
     visual: "journey",
     ctaLabel: "Scan a purchase path",
     audience:
-      "CMOs, product, marketing, and engineering leads who need a specific, citable read on where buyers stall — not a generic conversion checklist.",
+      "CMOs, product, marketing, and engineering leads who need a specific, citable read on where buyers stall on their own site.",
     howItWorks: [
       "Paste a public site URL (home, pricing, product, or checkout). Optional notes about what you already know.",
       "We fetch that page and a few same-origin funnel pages (pricing, cart, checkout). No login, no form submit, no payment.",
@@ -818,7 +694,7 @@ export const labs: Product[] = [
   {
     slug: "arc-workflow-scanner",
     name: "ARC Workflow Scanner",
-    tagline: "Describe a workflow. Get back where it actually breaks.",
+    tagline: "Describe a workflow. Get back where it breaks.",
     description:
       "Paste a process in plain language and get a graded diagnosis across handoffs, rework loops, wait states, and automation readiness — with what to fix, what to automate, and what to leave alone. Free, no account, nothing stored.",
     status: "live",
@@ -862,7 +738,7 @@ export const labGroups = [
   {
     id: "ai",
     name: "AI engineering",
-    lead: "Check an MCP server, review a prompt, or see what your agents can actually reach.",
+    lead: "Check an MCP server, review a prompt, or see what your agents can reach.",
     slugs: ["mcp-conformance-scanner", "prompt-reviewer", "arc-agent-governance"],
   },
   {
@@ -874,7 +750,7 @@ export const labGroups = [
   {
     id: "architecture",
     name: "Architecture and planning",
-    lead: "A defensible stack decision from your real constraints. Not a vendor list.",
+    lead: "A stack decision you can defend, built from your constraints, your data and your budget.",
     slugs: ["arc-stack-advisor"],
   },
   {
@@ -886,7 +762,7 @@ export const labGroups = [
   {
     id: "operations",
     name: "Operations and journeys",
-    lead: "Where a purchase path stalls, and where the operating workflow actually breaks.",
+    lead: "Where a purchase path stalls, and where the operating workflow breaks.",
     slugs: ["arc-journey-scanner", "arc-workflow-scanner"],
   },
 ];
@@ -921,10 +797,10 @@ export const advisoryEngagements: AdvisoryEngagement[] = [
     name: "AI Readiness Audit",
     tagline: "Decide where AI belongs — and where it doesn't — before anyone writes code.",
     blurb:
-      "We score four things against the workflows you actually run: what you can do today, what you are trying to achieve, whether your teams can support it, and the habits that will either carry the change or kill it. You leave knowing which bet to fund and which to defer.",
+      "We score four things against the workflows you run: what you can do today, what you are trying to achieve, whether your teams can support it, and the habits that will either carry the change or kill it. You leave knowing which bet to fund and which to defer.",
     duration: "3–4 weeks",
     startsWith:
-      "Real processes, real data access, and the people who would have to run whatever gets built.",
+      "Your processes, access to your data, and the people who would have to run whatever gets built.",
     youLeaveWith:
       "A scored readiness snapshot, a classified automation backlog, and a 30/60/90-day roadmap with owners.",
     whoFor:
@@ -936,7 +812,7 @@ export const advisoryEngagements: AdvisoryEngagement[] = [
     deliverables: [
       "Readiness scorecard across capability, intent, teams, and habits — each scored with evidence",
       "Shadow-AI inventory: which tools and agents are already in use, who turned them on, and what they can reach",
-      "Process opportunity map tied to workflows your team actually runs",
+      "Process opportunity map tied to the workflows your team runs",
       "Classified automation backlog: ship now, fix prerequisites first, or defer",
       "30/60/90-day roadmap with named owners and success measures",
       "Human-review gates identified for any workflow touching judgment, compliance, or customer trust",
@@ -966,11 +842,11 @@ export const advisoryEngagements: AdvisoryEngagement[] = [
       "Program-level review of how your platform is built, where debt concentrates, and what to modernize first. Written for operators and boards, not architects performing for each other.",
     duration: "3–4 weeks",
     startsWith:
-      "Code, architecture diagrams, deployment history, and the operating constraints you actually have — not a whiteboard fantasy.",
+      "Code, architecture diagrams, deployment history, and the operating constraints you have, rather than a whiteboard version of them.",
     youLeaveWith:
       "A prioritized findings list, a modernization sequence, and risks an operator can act on Monday.",
     whoFor:
-      "Teams evaluating an acquisition, planning a platform rewrite, or stuck between 'it works' and 'it won't survive the next growth phase.' CTOs and engineering leads who need an honest read before committing spend.",
+      "Teams evaluating an acquisition, planning a platform rewrite, or stuck between 'it works' and 'it won't survive the next growth phase.' CTOs and engineering leads who need a clear read before committing spend.",
     notFor: [
       "Line-by-line code review for compliance sign-off — that is a different engagement.",
       "Teams that need a delivery program stood up — pair this with Delivery Program Setup.",
@@ -978,7 +854,7 @@ export const advisoryEngagements: AdvisoryEngagement[] = [
     deliverables: [
       "Current-state architecture map: services, data flows, integrations, and ownership",
       "Risk register with severity, likelihood, and remediation cost estimates",
-      "Technical debt inventory grouped by business impact, not just code smell",
+      "Technical debt inventory grouped by business impact rather than code smell",
       "Modernization roadmap sequenced by dependency and ROI",
       "One-page executive summary for board or investor conversations",
     ],
@@ -1004,14 +880,14 @@ export const advisoryEngagements: AdvisoryEngagement[] = [
     name: "Cloud & DevOps Readiness Review",
     tagline: "Find out why releases hurt — and what to fix in the pipeline first.",
     blurb:
-      "Cloud posture, CI/CD audit, observability gaps, and scalability recommendations. Grounded in how your team actually deploys, not how a reference architecture says they should.",
+      "Cloud posture, CI/CD audit, observability gaps, and scalability recommendations. Grounded in how your team deploys today, rather than how a reference architecture says they should.",
     duration: "2–3 weeks",
     startsWith:
       "Your pipelines, environments, deployment frequency, and the incidents that keep repeating.",
     youLeaveWith:
       "A CI/CD maturity snapshot, observability gap list, and a sequenced fix plan your platform team can execute.",
     whoFor:
-      "Platform and DevOps leads where releases are painful, environments drift, or nobody trusts the monitoring. Teams mid-migration who need an honest read before committing to the next phase.",
+      "Platform and DevOps leads where releases are painful, environments drift, or nobody trusts the monitoring. Teams mid-migration who need a clear read before committing to the next phase.",
     notFor: [
       "Full cloud migration execution — this scopes it; a retainer or scoped build delivers it.",
       "Security compliance certification — pair with the Security & Compliance Posture Review for that lens.",
@@ -1027,7 +903,7 @@ export const advisoryEngagements: AdvisoryEngagement[] = [
       "CI/CD pipeline rebuild: GitHub Actions, AWS CodePipeline, or your stack — through to production gates",
       "Infrastructure-as-code migration (Terraform, CDK, CloudFormation)",
       "Observability stack setup: CloudWatch, Datadog, or Grafana with alert routing",
-      "Fractional TPM / Delivery Program Lead if releases need governance, not just tooling",
+      "Fractional TPM / Delivery Program Lead if releases need governance as well as tooling",
     ],
     scoping: [
       "Discovery call: confirm cloud provider, team size, and the release pain you want solved",
@@ -1047,7 +923,7 @@ export const advisoryEngagements: AdvisoryEngagement[] = [
       "Data flow map, schema audit, quality scoring, and a remediation roadmap. The goal is a reporting workflow your team can run without a heroic analyst.",
     duration: "2–3 weeks",
     startsWith:
-      "The reports leadership already uses — and the spreadsheets they actually trust when those reports are wrong.",
+      "The reports leadership already uses — and the spreadsheets they fall back on when those reports are wrong.",
     youLeaveWith:
       "A data-trust diagnosis, a sequenced platform path, and the first governed workflow worth shipping.",
     whoFor:
@@ -1082,12 +958,12 @@ export const advisoryEngagements: AdvisoryEngagement[] = [
     slug: "security-compliance-posture",
     focus: "Security & compliance",
     name: "Security & Compliance Posture Review",
-    tagline: "Find the weaknesses that would hurt you — not a checkbox exercise.",
+    tagline: "Find the weaknesses that would hurt you most, ranked by what they would cost.",
     blurb:
       "Risk matrix, access and secrets review, remediation roadmap, and SOC 2 / GDPR / CCPA readiness notes. Readiness work that tells you what to fix first, not audit theater.",
     duration: "2–3 weeks",
     startsWith:
-      "Access controls, secrets management, logging, and the systems that actually hold the crown jewels.",
+      "Access controls, secrets management, logging, and the systems holding the data that would hurt most to lose.",
     youLeaveWith:
       "A ranked exposure list, a 30/60/90 hardening plan, and named owners for the first fixes.",
     whoFor:
@@ -1125,14 +1001,14 @@ export const advisoryEngagements: AdvisoryEngagement[] = [
     name: "AI Solution Concept + MVP Scope",
     tagline: "Turn a ranked opportunity into something engineering can build.",
     blurb:
-      "Workflow design, MVP scope, functional requirements, KPI framework, and rollout plan. The output is a build-ready package — not a proof-of-concept that dies in a slide deck.",
+      "Workflow design, MVP scope, functional requirements, KPI framework, and rollout plan. The output is a build-ready package: scope, requirements and a rollout plan engineering can start on.",
     duration: "3–5 weeks",
     startsWith:
-      "One scored opportunity — from the AI Readiness Audit or your own prioritization — with a named owner and real data access.",
+      "One scored opportunity — from the AI Readiness Audit or your own prioritization — with a named owner and access to the data it needs.",
     youLeaveWith:
       "Functional requirements, architecture sketch, KPI framework, and a rollout plan with human-review gates defined.",
     whoFor:
-      "Teams that know what problem to solve but need it scoped for engineering. Product and engineering leads who want a build package, not a strategy deck. Organizations ready to commit build resources after the scope is signed.",
+      "Teams that know what problem to solve but need it scoped for engineering. Product and engineering leads who want a build package rather than a strategy deck. Organizations ready to commit build resources after the scope is signed.",
     notFor: [
       "Teams still deciding whether to do AI at all — start with the AI Readiness Audit.",
       "Organizations wanting us to build without signed scope — we scope first, then deliver.",
@@ -1164,7 +1040,7 @@ export const advisoryEngagements: AdvisoryEngagement[] = [
     slug: "delivery-program-setup",
     focus: "Delivery & release",
     name: "Delivery Program Setup",
-    tagline: "Turn intent into a release plan that actually ships.",
+    tagline: "Turn intent into a release plan with dates someone owns.",
     blurb:
       "Project charter, milestone plan, a live log of risks and dependencies, a release checklist, and a weekly governance cadence. The unglamorous work that decides whether anything launches on time.",
     duration: "2–3 weeks",
@@ -1222,7 +1098,7 @@ export const advisoryEngagements: AdvisoryEngagement[] = [
     ],
     deliverables: [
       "Current-state across architecture, data, infrastructure, security, operations, and AI readiness",
-      "Executive summary written for the board, not just the engineering team",
+      "Executive summary written for the board as well as the engineering team",
       "Phased 6–12 month roadmap with sequenced spend and dependency order",
       "Named owners for every initiative in the plan",
       "Sized risks with mitigation paths and decision triggers",
@@ -1308,7 +1184,7 @@ export const advisoryCapabilities = [
   {
     id: "diagnose",
     name: "Diagnose",
-    text: "Find out what is actually true about the systems, the data, the risk and the team — before anyone commits a budget to fixing the wrong thing.",
+    text: "Find out what is true about the systems, the data, the risk and the team — before anyone commits a budget to fixing the wrong thing.",
     items: ["Technical due diligence", "Architecture review", "Readiness assessment", "Security posture"],
   },
   {
@@ -1336,17 +1212,17 @@ export const stages = [
   {
     number: "01",
     name: "Discover",
-    text: "What is actually happening, and what is the real problem worth solving?",
+    text: "What is happening, and which problem is worth solving?",
   },
   {
     number: "02",
     name: "Align",
-    text: "What does winning look like, and how do we size the work to the problem you actually have?",
+    text: "What does winning look like, and how do we size the work to the problem in front of you?",
   },
   {
     number: "03",
     name: "Deliver",
-    text: "What ships, who owns it, and how does it stay stable in your real business?",
+    text: "What ships, who owns it, and how does it stay stable once your team is running it?",
   },
   {
     number: "04",
@@ -1374,12 +1250,12 @@ export const principles = [
   {
     number: "03",
     title: "Boring beats clever.",
-    text: "A spreadsheet running a real operation beats a custom system that only sort of works. Every time.",
+    text: "A spreadsheet that runs the operation beats a custom system that half works.",
   },
   {
     number: "04",
     title: "Four axes, or it's just a slide.",
-    text: "Every recommendation has to land on business value, risk, feasibility, and adoption. If it lands on only one, it's a slide, not a plan.",
+    text: "Every recommendation has to land on business value, risk, feasibility, and adoption. One out of four makes it a slide.",
   },
   {
     number: "05",
@@ -1393,25 +1269,25 @@ export const principles = [
   },
   {
     number: "07",
-    title: "Build for the world you're actually in.",
+    title: "Build for the business you have.",
     text: "Tight budgets. Stretched teams. Uneven technical depth. Results that have to show up soon enough for people to trust them. That is the world we design for, including nonprofits and communities.",
   },
   {
     number: "08",
     title: "Build for the next version, too.",
-    text: "If a system falls over when a teammate leaves or a vendor changes an API, it's a liability, not a system. We build so version two is cheaper than version one.",
+    text: "If a system falls over when a teammate leaves or a vendor changes an API, it is a liability. We build so version two is cheaper than version one.",
   },
 ];
 
 export const bestFit = [
-  "Operators in 10–500 person companies, nonprofits, and teams who need a working system, not a slide deck.",
-  "Leaders who want one honest partner across strategy, build, and scale — not a pile of vendors to manage.",
-  "Groups ready to put real data, real users, and real effort behind the work.",
+  "Operators in 10–500 person companies, nonprofits, and teams who need a working system at the end of it.",
+  "Leaders who want one partner across strategy, build and scale instead of six vendors to coordinate.",
+  "Groups ready to put their data, their users and their own time behind the work.",
 ];
 
 export const notAFit = [
   "You want a large team staffed next week to take over IT.",
-  "You need a logo-driven RFP response more than an honest diagnosis.",
+  "You need a logo-driven RFP response more than a diagnosis.",
   "The problem is still “we should do AI” with no workflow, owner, or constraint.",
   "You want us to build whatever was already decided, without scoring it.",
 ];
@@ -1427,7 +1303,7 @@ export const howWeEngage = [
   },
   {
     name: "A workshop when the room is stuck",
-    text: "Sometimes the issue is getting leadership and operators to agree. That's a half-day or two-day session, not a six-week diagnostic.",
+    text: "Sometimes the issue is getting leadership and operators to agree. That's a half-day or two-day session rather than a six-week diagnostic.",
   },
 ];
 
@@ -1462,22 +1338,22 @@ export const academy: Workshop[] = [
   {
     slug: "digital-readiness-workshop",
     name: "Digital Readiness Workshop",
-    text: "Build a shared vocabulary for digital change, score where you actually stand, and scope what is worth doing first.",
+    text: "Build a shared vocabulary for digital change, score where you stand, and scope what is worth doing first.",
     detail:
-      "Half-day. Leadership and operators in one room. Leave with clear language, a readiness snapshot, and a scoped shortlist, not another idea pile.",
+      "Half-day. Leadership and operators in one room. Leave with clear language, a readiness snapshot, and a scoped shortlist.",
     status: "live",
     whoFor:
       "Leadership and operators in companies and nonprofits who keep talking past each other about cloud, data, security, or AI.",
     objectives: [
       "Give the room a shared vocabulary: platforms and cloud, data trust, cybersecurity basics, process change, automation, and AI when it is relevant.",
-      "Run an honest readiness check across awareness, use cases, data and tools, security and guardrails, ownership, and how you will measure success.",
+      "Run a readiness check across awareness, use cases, data and tools, security and guardrails, ownership, and how you will measure success.",
       "Scope a short list of opportunities people can explain the same way, then leave with a 30-day action plan and named owners.",
     ],
     curriculum: [
       "Open and align. Why this session exists, what \"ready\" means here, and what you will leave with. No trends lecture.",
       "Shared vocabulary. Walk the terms teams mix up: digitization vs. digital transformation, pilot vs. production, cloud vs. \"someone else's computer,\" data trust vs. a pretty dashboard, automation vs. judgment, AI when it helps vs. AI theater. Agree on language you will use after the room empties.",
       "Readiness snapshot. Score the current state together: awareness, use-case clarity, workflow integration, data and approved tools, security and basic guardrails, leadership alignment, and measurement. Surface the gaps out loud.",
-      "Opportunity scoping. Map real workflows (not abstract ideas). For each candidate, name the problem, who uses it, how often it happens, what systems and data it needs, and what risk or review it requires.",
+      "Opportunity scoping. Map the workflows people run this week. For each candidate, name the problem, who uses it, how often it happens, what systems and data it needs, and what risk or review it requires.",
       "Prioritize and scope. Sort into quick wins, strategic bets, and \"not yet.\" Pick three to five scoped bets with owners, success measures, and a 30-day review date. Sketch light guardrails so people can move without guessing.",
     ],
     outcomes: [
@@ -1489,19 +1365,19 @@ export const academy: Workshop[] = [
   {
     slug: "operator-working-session",
     name: "Operator Working Session",
-    text: "A technical working session against your real systems, using ARC's stages, four axes, and delivery principles.",
+    text: "A technical working session against your own systems, using ARC's stages, four axes, and delivery principles.",
     detail:
       "One or two days. We work in your tools and constraints. Leave with a run plan your team can execute without us in the room.",
     status: "live",
     whoFor:
-      "Technical and operating leads who need the plan built across architecture, data, infra, security, delivery, and the human loops that keep it stable. Best when you have a real stack and a real backlog to put on the table.",
+      "Technical and operating leads who need the plan built across architecture, data, infra, security, delivery, and the human loops that keep it stable. Best when you have a running stack and a live backlog to put on the table.",
     objectives: [
       "Apply ARC's operating method in your environment: name the stage (Discover, Align, Deliver, Measure, Sustain), keep strategy separate from what ships next, and score work on the four axes.",
       "Pressure-test the technical path in your actual systems: data trust, connectors, permissions, failure modes, and what breaks when someone is out.",
       "Leave with an operator-ready run plan: owners, sequence, KPIs, and human review where it matters.",
     ],
     curriculum: [
-      "Systems walk-through. Get into the real stack: data sources, pipelines, apps, connectors, access, and the workflow you want to change. No whiteboard fantasy version.",
+      "Systems walk-through. Get into the running stack: data sources, pipelines, apps, connectors, access, and the workflow you want to change.",
       "Name the stage. Place each candidate in Discover, Align, Deliver, Measure, or Sustain. Call out where strategy is being sold as a deliverable.",
       "Four-axes scoring, applied. Score each opportunity on business value, risk, feasibility, and adoption with your constraints in the room. Drop anything that fails the axes.",
       "Technical design of the boring next step. Map one workflow end to end: inputs, systems, integrations, checks, and where a human stays in the loop. Call assumptions, dependencies, and unknowns.",
@@ -1523,7 +1399,7 @@ export const academy: Workshop[] = [
     whoFor:
       "Teams with a specific problem where a fixed agenda would waste the day. Bring the topic. We build the session around your stack, constraints, and the decision you need to make.",
     objectives: [
-      "Use a short intake to define the real question, audience, and success criteria before anyone books the room.",
+      "Use a short intake to define the question, the audience, and the success criteria before anyone books the room.",
       "Run a tailored working session that still holds ARC's bar: plain language, named stage, scored options, and no strategy sold as a shippable deliverable.",
       "Leave with owners and a next step specific enough to start, whether the topic was technical, operational, or mission-driven.",
     ],
@@ -1531,11 +1407,11 @@ export const academy: Workshop[] = [
       "Intake (before the day). Scoping call: problem statement, who must be in the room, constraints, materials to bring, and what \"done\" looks like. We send a draft agenda for your sign-off.",
       "Open on your terms. Confirm the decision or artifact the day must produce. Align on vocabulary for this topic so the room is not arguing past each other.",
       "Deep work on your agenda. Facilitated time on the problem you brought. Examples of past custom days include cloud and data modernization, cybersecurity posture, MCP or agent work, CDP migration, governance and risk, delivery structuring, and nonprofit program enablement. Yours may be different.",
-      "Decision and owners. Capture what is in, what is out, who holds what, and the honest first step. Same quality bar as our other workshops: assumptions labeled, next step specific enough for Monday.",
+      "Decision and owners. Capture what is in, what is out, who holds what, and the first step. Same quality bar as our other workshops: assumptions labeled, next step specific enough for Monday.",
       "Follow-through pack. Agenda notes, decisions, owners, and open questions in a form your team can reuse. Optional follow-up hour if you want a check-in after the first week of work.",
     ],
     outcomes: [
-      "A signed agenda and materials built for your problem, not a reused template.",
+      "A signed agenda and materials built for your problem, rather than a reused template.",
       "A worked plan or decision log for the topic you brought.",
       "Clear owners and a next step ready to start after the session.",
     ],
@@ -1572,12 +1448,12 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "enterprise-cybersecurity-release-value",
     client: "Confidential · global cybersecurity company",
-    title: "Coordinating 300+ features so release investment produced sales, not just shipped code",
+    title: "Coordinating 300+ features so release investment showed up in sales",
     status: "live",
     kind: "career",
     industry: "Enterprise cybersecurity",
     summary:
-      "An enterprise cybersecurity product line where feature volume had outpaced release value. The work was to coordinate 300+ features into a program that improved what actually reached customers — and what that was worth.",
+      "An enterprise cybersecurity product line where feature volume had outpaced release value. The work was to coordinate 300+ features into a program that improved what reached customers — and what that was worth.",
     problem:
       "A large security product surface was shipping a high volume of features without a shared view of which releases moved customer value or revenue. Coordination cost was rising; release value was not.",
     intervention:
@@ -1609,7 +1485,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "CDP and data-platform delivery for a consumer business operating at Ticketmaster scale: tens of millions of customer profiles, complex enterprise constraints, and a platform that had to hold up under live-event load.",
     problem:
-      "Customer data was fragmented across ticketing, marketing, and experience systems. Reporting could not be trusted at the scale the business actually ran, and new products could not share a single profile of the customer.",
+      "Customer data was fragmented across ticketing, marketing, and experience systems. Reporting could not be trusted at the scale the business ran, and new products could not share a single profile of the customer.",
     intervention:
       "Enterprise data-platform and CDP architecture: identity, profile assembly, and delivery patterns that could serve tens of millions of customers without pretending a warehouse was a product.",
     deliverable:
@@ -1618,15 +1494,15 @@ export const caseStudies: CaseStudy[] = [
     challenge:
       "Live-entertainment platforms do not get a quiet quarter to rebuild. The data layer had to support tens of millions of profiles while the business kept selling tickets, running events, and talking to fans.",
     approach: [
-      "Map the real profile graph: who the customer was across ticketing, CRM, and experience systems.",
+      "Map the profile graph: who the customer was across ticketing, CRM, and experience systems.",
       "Design CDP patterns for identity resolution, consent, and activation at that scale.",
-      "Sequence delivery so the platform could take load during live events, not only in a staging diagram.",
+      "Sequence delivery so the platform could take load during live events rather than only in a staging diagram.",
       "Name failure modes: identity collisions, late data, and access that was too wide for the data it touched.",
     ],
     outcomes: [
       { metric: "10M+", label: "Customer profiles in scope" },
       { metric: "CDP", label: "Enterprise data architecture" },
-      { metric: "Live events", label: "Delivery under real load" },
+      { metric: "Live events", label: "Delivery under live load" },
     ],
   },
   {
@@ -1637,7 +1513,7 @@ export const caseStudies: CaseStudy[] = [
     kind: "career",
     industry: "Consumer brands · live entertainment",
     summary:
-      "Technology delivery for global consumer brands and live-entertainment platforms — including programs with LEGO and the NFL — where the work had to survive real fans, real events, and real brand standards.",
+      "Technology delivery for global consumer brands and live-entertainment platforms — including programs with LEGO and the NFL — where the work had to survive fans, event deadlines and brand standards.",
     problem:
       "Consumer and live-entertainment programs fail when the stack is treated as a campaign site: no operating model, no data trust, and no plan for what happens when the event or product launch is over.",
     intervention:
@@ -1672,7 +1548,7 @@ export const caseStudies: CaseStudy[] = [
     intervention:
       "A five-week Integrated Transformation Diagnostic across architecture, data, infrastructure, security, operations, and opportunity areas. Every recommendation scored on business value, risk, feasibility, and adoption.",
     deliverable:
-      "A board-ready executive summary, a phased roadmap, named owners, sized risks, and a sequence of spend the operators could actually execute.",
+      "A board-ready executive summary, a phased roadmap, named owners, sized risks, and a sequence of spend the operators could execute.",
     timeframe: "5-week diagnostic",
     challenge:
       "The organization did not need another strategy deck. It needed one plan that killed or resequenced competing bets, with owners who would still be there after the workshop high wore off.",
@@ -1704,14 +1580,14 @@ export const faqs = [
   },
   {
     q: "Do you only do AI?",
-    a: "No, and that is the point of the Established / Current / Emerging split. Most of the value in a technology estate is in systems that already exist: cloud, APIs, data platforms, security, architecture. AI and agents are the emerging end. Technology should not be adopted because it is new, only because it creates measurable value.",
+    a: "No. Most of the value in a technology estate is in the systems already running the business: cloud, APIs, data platforms, security, architecture. That is the Modernize side of what we do, and for a lot of clients it is the whole engagement. AI belongs where it moves a number somebody is already measuring.",
   },
   {
     q: "How does work usually start?",
-    a: "Three ways, and two of them are free. Run a scorecard or a Labs tool and read the report. Read a playbook and use the framework without us. Or book a 30-minute call, which leads to a scoped review of two to seven weeks ending in a plan with named owners.",
+    a: "Three ways, two of them free. Run a scorecard or a Labs tool and read the report. Read a playbook and use the framework without us. Or book a 30-minute call, which leads to a scoped review of two to seven weeks ending in a plan with named owners.",
   },
   {
-    q: "Who actually does the work?",
+    q: "Who does the work?",
     a: "The senior person on your first call. We do not pitch with one team and deliver with another, and we do not put a junior bench on your problem after the contract is signed. That is the main reason to pick a small practice over an agency.",
   },
   {
@@ -1719,16 +1595,16 @@ export const faqs = [
     a: "It is the question of the quarter. An agent inside your CRM or your code editor inherits the permissions of whoever runs it, and this year's breaches came from ordinary links and documents rather than exotic attacks. Start with the free Agent Readiness Scorecard, then the ARK Agent Readiness assessment if you need the inventory, the blast-radius ranking and the approval gates.",
   },
   {
-    q: "What does \"evidence, not claims\" actually mean?",
-    a: "That a system reporting success is not the same thing as the work being done. An agent can finish a run while the payment failed, or report a record as updated when the destination system never changed. Evidence means confirmation from the system that was supposed to change, independent of the thing that claims to have changed it. Where we cannot verify an outcome, we report it as unverified rather than as a success.",
+    q: "How do you know an automated system did what it said it did?",
+    a: "We check the system that was supposed to change. An agent can finish a run while the payment failed, or report a record as updated when the destination system never received it, so the run log is the weakest possible source. Confirmation has to come from the destination, independent of the thing claiming to have changed it. Where we cannot get that confirmation, we report the outcome as unverified.",
   },
   {
     q: "EU AI Act transparency rules applied on 2 August 2026. Does that hit us?",
     a: "If you serve EU users and your product talks to people or generates content, the disclosure and content-marking duties apply to you now. The tougher high-risk obligations moved to December 2027, which is why teams who heard \"delayed\" and stopped reading are exposed on the part that already applies. We give you the readiness read and the gap list; your lawyer and your auditor sign off.",
   },
   {
-    q: "Are the Labs tools really free?",
-    a: "Yes. Most run with no account and store nothing. There is no paid tier. Every Labs project carries its real maturity — open source, alpha, experiment or research — so you can tell what is supported and what is not before you depend on it.",
+    q: "Are the Labs tools free?",
+    a: "Yes. Most run with no account and store nothing. There is no paid tier. Every Labs project carries its maturity — open source, alpha, experiment or research — so you can tell what is supported and what is not before you depend on it.",
   },
   {
     q: "Why are the playbooks so cheap, or free?",
@@ -1755,9 +1631,13 @@ export const faqs = [
 // ---------------------------------------------------------------------------
 // Navigation.
 //
-// Products is a menu over the four things you can actually buy or run. The
-// runtime, the protocol work and the individual scanners deliberately do not
-// appear here — they sit under Platform, Developers and Labs.
+// Six entries and one button. The previous bar had seven capability names in
+// it, which asked a visitor to understand our internal taxonomy before they
+// could find their own problem.
+//
+// Two of the entries open a menu. Everything else a visitor might want —
+// research, workshops, the individual scanners, the developer surface — is
+// reachable from the page behind the entry it belongs to, and from the footer.
 // ---------------------------------------------------------------------------
 export type NavItem = {
   label: string;
@@ -1767,19 +1647,73 @@ export type NavItem = {
 };
 
 export const nav: NavItem[] = [
-  { label: "Products", href: "/platform#products" },
-  { label: "Platform", href: "/platform" },
-  { label: "Developers", href: "/developers" },
-  { label: "Research", href: "/research" },
+  {
+    label: "Services",
+    href: "/services",
+    children: [
+      {
+        label: "Modernize",
+        href: "/services/modernize",
+        summary: "Cloud, architecture, data, security and delivery.",
+      },
+      {
+        label: "Automate",
+        href: "/services/automate",
+        summary: "Where AI saves time, and where it does not belong.",
+      },
+      {
+        label: "Build",
+        href: "/services/build",
+        summary: "Products, applications, integrations and workflows.",
+      },
+      {
+        label: "Operate",
+        href: "/services/operate",
+        summary: "Governance, observability, controls and evaluation.",
+      },
+    ],
+  },
+  {
+    label: "Agent Infrastructure",
+    href: "/platform",
+    children: [
+      {
+        label: "Overview",
+        href: "/platform",
+        summary: "What ARK is and why it exists.",
+      },
+      {
+        label: "ARK Control",
+        href: "/ark-control",
+        summary: "Permissions and approval gates for agent actions.",
+      },
+      {
+        label: "ARK Agent Readiness",
+        href: "/agent-readiness",
+        summary: "What your agents can reach, and where the gaps are.",
+      },
+      {
+        label: "AI Fit",
+        href: "/ai-fit",
+        summary: "Whether a workload belongs in an AI system at all.",
+      },
+      {
+        label: "For developers",
+        href: "/developers",
+        summary: "Protocols, scanners and architecture notes.",
+      },
+    ],
+  },
+  { label: "ARK Labs", href: "/labs" },
   { label: "Playbooks", href: "/playbooks" },
-  { label: "Advisory", href: "/advisory" },
-  { label: "Company", href: "/about" },
+  { label: "Work", href: "/work" },
+  { label: "About", href: "/about" },
 ];
 
 /** Secondary routes that belong in the sitemap and footer but not the header. */
 export const secondaryRoutes = [
-  "/labs",
-  "/work",
+  "/advisory",
+  "/research",
   "/academy",
   "/contact",
   "/privacy",

@@ -8,9 +8,9 @@ import { CTA } from "@/components/cta";
 import { academy, academyOutcomes } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Workshops · A workshop, not a course",
+  title: "Workshops · A working session with your team",
   description:
-    "ARC runs hands-on workshops against your real systems and backlog, so the team leaves with owners and a next step.",
+    "ARC runs hands-on workshops against your own systems and backlog, so the team leaves with owners and a next step.",
 };
 
 export default function AcademyPage() {
@@ -18,7 +18,7 @@ export default function AcademyPage() {
     <>
       <PageHero
         kicker="ARC Learn · Workshops"
-        title="A workshop, not a course."
+        title="A working session, with your systems on the table."
         lead="Digital readiness, a technical working session, or a custom day around a decision you have to make. No catalog. No certificate."
       />
 
@@ -26,7 +26,7 @@ export default function AcademyPage() {
         <SectionHeading
           kicker="Formats"
           title="Three formats."
-          lead="Hands-on, against your real systems. You leave with owners and something to do on Monday."
+          lead="Hands-on, against your own systems. You leave with owners and something to do on Monday."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {academy.map((a) => (
@@ -76,7 +76,7 @@ export default function AcademyPage() {
 
       <CTA
         title="Want a workshop for your team?"
-        lead="Tell us the decision the room has to make. We'll scope a half-day or two-day session against your real systems."
+        lead="Tell us the decision the room has to make. We'll scope a half-day or two-day session against your own systems."
       />
     </>
   );

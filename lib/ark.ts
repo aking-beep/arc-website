@@ -11,7 +11,11 @@ import type { Maturity } from "@/lib/content";
 export const ark = {
   name: "ARK",
   positioning: "Infrastructure for reliable agent action.",
-  principle: "Evidence, not claims.",
+  /**
+   * Stated as the thing we do rather than as a contrast. "Evidence, not
+   * claims" announced a quality; this says which check we run.
+   */
+  principle: "We check the system that was supposed to change.",
   loop: ["Measure", "Verify", "Govern", "Optimize"],
   question: "How should intelligent software interact with technology?",
   explainer:
@@ -101,7 +105,7 @@ export type ArkProduct = {
   ctaLabel: string;
   /** Where the primary CTA goes. External when the tool already exists. */
   ctaHref: string;
-  /** What this honestly is today, stated before anything aspirational. */
+  /** What this is today, stated before anything aspirational. */
   todayLabel: string;
   today: string;
   /** Headline sections for the product page. */
@@ -119,16 +123,16 @@ export const arkProducts: ArkProduct[] = [
     navLabel: "ARK Control",
     tagline: "Outcome assurance for production AI agents.",
     summary:
-      "Understand what agents attempted, what authority they used, and whether the intended outcome actually occurred.",
+      "Understand what agents attempted, what authority they used, and whether the intended outcome occurred.",
     maturity: "design-partners",
     flagship: true,
     ctaLabel: "Talk to us about design partnership",
     ctaHref: "/contact?topic=ark-control",
     todayLabel: "Where this is today",
     today:
-      "ARK Control is in design-partner development. It is not a product you can buy or sign up for yet. We are working through the verification model with a small number of teams running agents against real systems, and we would rather say that plainly than put a fake pricing page in front of you.",
+      "ARK Control is in design-partner development. It is not a product you can buy or sign up for yet. We are working through the verification model with a small number of teams running agents against production systems. There is no pricing page because there is nothing to price yet.",
     intro: [
-      "Seeing a trace tells you what the agent attempted. Assurance asks a different question: did the intended outcome actually occur?",
+      "Seeing a trace tells you what the agent attempted. Assurance asks a different question: did the intended outcome occur?",
       "ARK Control is being built to connect execution evidence — the trace, the tool call, the identity, the policy decision — with outcome evidence collected from the systems that were supposed to change.",
     ],
     capabilities: [
@@ -216,12 +220,12 @@ export const arkProducts: ArkProduct[] = [
       "Available free on the web with no account and nothing stored. Deterministic rules match your description to a published catalogue of architecture shapes. A model never produces the recommendation or the score.",
     intro: [
       "The most expensive AI decision is the one nobody scored. A team picks an agent because agents are what people are building, and discovers nine months later that the answer was a database lookup with a good interface.",
-      "AI Fit takes a use case, the data behind it, the budget and the real constraints, and returns a decision you can defend: the recommended shape, what was ruled out and why, the cost drivers that actually move, and a brief you can hand to a board.",
+      "AI Fit takes a use case, the data behind it, the budget and the constraints, and returns a decision you can defend: the recommended shape, what was ruled out and why, the cost drivers that move, and a brief you can hand to a board.",
     ],
     capabilities: [
       {
         name: "Recommended shape",
-        text: "An architecture class — not a vendor, not a product name you will be locked into.",
+        text: "An architecture class. No vendor name, nothing you get locked into.",
       },
       {
         name: "Ruled-out alternatives",
@@ -229,7 +233,7 @@ export const arkProducts: ArkProduct[] = [
       },
       {
         name: "Named cost drivers",
-        text: "What will actually drive spend. Never an invented price.",
+        text: "What will drive spend. Never an invented price.",
       },
       {
         name: "Open questions",
@@ -239,7 +243,7 @@ export const arkProducts: ArkProduct[] = [
     limits: [
       "It is deliberately not a vendor recommendation engine.",
       "It will not invent pricing it cannot source.",
-      "It answers the architecture question, not the organisational one — that is AI Fit Teams.",
+      "It answers the architecture question. The organisational one is AI Fit Teams.",
     ],
   },
   {
@@ -257,7 +261,7 @@ export const arkProducts: ArkProduct[] = [
       "Available as a three-to-four week assessment run by ARC. It is the organisational counterpart to AI Fit: the same scoring discipline, applied to the teams, workflows and habits that decide whether anything ships.",
     intro: [
       "Technology readiness and organisational readiness fail differently. A sound architecture still dies if nobody owns the workflow, the data access takes four months, or the people expected to run it were never asked.",
-      "AI Fit Teams scores four dimensions against the work your organisation actually does: what it can do today, what it is trying to achieve, whether the teams can support it, and the habits that will carry or kill the change.",
+      "AI Fit Teams scores four dimensions against the work your organisation does: what it can do today, what it is trying to achieve, whether the teams can support it, and the habits that will carry or kill the change.",
     ],
     capabilities: [
       {
@@ -278,8 +282,8 @@ export const arkProducts: ArkProduct[] = [
       },
     ],
     limits: [
-      "It is an assessment, not a change-management programme.",
-      "It will tell you to defer work if that is the honest answer.",
+      "It is an assessment. Running the change afterwards is separate work.",
+      "It will tell you to defer work when that is the answer.",
     ],
   },
 ];
@@ -292,7 +296,7 @@ export function getArkProduct(slug: string) {
 // The agent operating contract — the framework ARC publishes free.
 // ---------------------------------------------------------------------------
 export const operatingContract = {
-  headline: "Agents need operating contracts, not just prompts.",
+  headline: "Agents need operating contracts.",
   chain: ["Goal", "Trigger", "State", "Boundary", "Evidence", "Owner"],
   architecture: ["Scope", "Identity", "Access", "Action", "Stop"],
   lead: "An agent responsible for ongoing work needs more than instructions.",
@@ -302,7 +306,7 @@ export const operatingContract = {
     { name: "Persistent state", text: "What it is allowed to remember between runs, and for how long." },
     { name: "Enforced authority", text: "What it can reach, written as permissions rather than as guidance in a prompt." },
     { name: "Evidence requirements", text: "What has to be produced to show the work was done." },
-    { name: "A human owner", text: "A named person, not a team inbox." },
+    { name: "A human owner", text: "A named person. A team inbox does not count." },
     { name: "Stop conditions", text: "What makes it halt rather than retry." },
     { name: "Recovery behaviour", text: "What happens to work already in flight when it does." },
   ],
@@ -322,7 +326,7 @@ export const developerAreas: {
   {
     name: "Runtime",
     maturity: "research",
-    text: "Where a unit of AI work should execute, decided from capability, privacy, policy, latency and cost rather than from habit. Local, edge and cloud are a routing decision, not an ideology.",
+    text: "Where a unit of AI work should execute, decided from capability, privacy, policy, latency and cost rather than from habit. Local, edge and cloud are a routing decision.",
     href: "/developers#runtime",
     linkLabel: "Read the thinking",
   },

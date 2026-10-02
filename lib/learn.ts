@@ -20,7 +20,7 @@ export type Playbook = {
   price: string;
   ctaLabel: string;
   /**
-   * What you can actually do with this right now. The free assets are
+   * What you can do with this right now. The free assets are
    * complete on their page; the paid one is not shipping yet and says so.
    */
   availability: string;
@@ -38,7 +38,7 @@ export const playbooks: Playbook[] = [
     name: playbookProduct.name,
     tagline: playbookHero.title,
     summary:
-      "A practical system for turning an AI idea into something people can actually use — from hypothesis through launch. Ships with the ARC Skills library, 20 reference architectures and 16 workflow templates.",
+      "A practical system for turning an AI idea into something people can use — from hypothesis through launch. Ships with the ARC Skills library, 20 reference architectures and 16 workflow templates.",
     price: playbookProduct.price,
     ctaLabel: "See the Playbook",
     availability:
@@ -51,7 +51,7 @@ export const playbooks: Playbook[] = [
     slug: "agent-readiness-scorecard",
     kind: "assessment",
     name: "Agent Readiness Scorecard",
-    tagline: "Can agents actually operate your systems?",
+    tagline: "Can agents operate your systems?",
     summary:
       "Twenty questions across interfaces, identity, permissions, observability, security and reliability. Scored in the browser, stored nowhere.",
     price: "Free",
@@ -126,7 +126,7 @@ export const operatingContractFields = [
   },
   {
     field: "Evidence",
-    question: "What must exist afterwards to show the work was actually done?",
+    question: "What must exist afterwards to show the work was done?",
     bad: "A log line saying success.",
     good: "The changed record id, its before and after values, and the policy decision that allowed it.",
   },
@@ -166,7 +166,7 @@ export const assuranceChecklist = [
   },
   {
     step: "03",
-    question: "What actually changed?",
+    question: "What changed?",
     detail:
       "The concrete state change in the destination system: the record, the row, the transaction, the file.",
     failure: "The only record of the change is the agent's own claim that it made one.",
@@ -189,7 +189,7 @@ export const assuranceChecklist = [
     step: "06",
     question: "What did the verified outcome cost?",
     detail:
-      "Total spend across retries and failed attempts, divided by outcomes that actually verified.",
+      "Total spend across retries and failed attempts, divided by outcomes that verified.",
     failure:
       "You are reporting cost per run, which flatters you every time a cheap failure inflates the denominator.",
   },

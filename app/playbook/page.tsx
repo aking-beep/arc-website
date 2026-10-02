@@ -137,7 +137,7 @@ export default function PlaybookPage() {
         <SectionHeading
           kicker="In the bundle"
           title="A method, and the assets to run it."
-          lead="One download. The Playbook itself, the worksheets you fill in while you build, and three libraries printed in full and attached to the module where you would actually reach for them."
+          lead="One download. The Playbook itself, the worksheets you fill in while you build, and three libraries printed in full and attached to the module where you would reach for them."
         />
 
         <div className="mt-12 overflow-hidden rounded-lg border border-border bg-card">
@@ -387,7 +387,7 @@ function PriceCard({ checkout }: { checkout: ReturnType<typeof publicCheckoutCon
 /**
  * Product structured data. Price and currency come from lib/playbook.ts, the
  * same values the page renders, so the markup cannot drift from the visible
- * price — which is both a Google requirement and the honest arrangement.
+ * price — which is both a Google requirement and the arrangement we offer.
  */
 function ProductSchema() {
   const schema = {

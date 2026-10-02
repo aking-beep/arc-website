@@ -48,7 +48,7 @@ export default function PlatformPage() {
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground sm:text-xl">
               Software is starting to act. Agents hold credentials, call tools and
-              change real systems without a person watching each step. {ark.name} is
+              change production systems without a person watching each step. {ark.name} is
               being built for the part nobody solved: whether those actions can be
               trusted, verified and governed.
             </p>
@@ -148,7 +148,7 @@ export default function PlatformPage() {
       <Section id="products" className="scroll-mt-24">
         <SectionHeading
           kicker="Products"
-          title="Four products. Each with its real maturity attached."
+          title="Four products, each with its maturity attached."
           lead="The runtime work, the protocol work and the individual scanners are deliberately not on this list. They sit underneath, in Developers and Labs, because presenting an experiment as a product is how trust gets spent."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2">
@@ -258,7 +258,7 @@ export default function PlatformPage() {
           <SectionHeading
             kicker="Underneath"
             title="The layers that are not products yet."
-            lead="Runtime, protocols, open tools and documentation. Each labelled with what it actually is, which in some cases is research."
+            lead="Runtime, protocols, open tools and documentation. Each labelled with what it is, which in some cases is research."
           />
           <Link
             href="/developers"

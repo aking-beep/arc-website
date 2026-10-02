@@ -25,7 +25,7 @@ const supportingTools = [
 export const metadata: Metadata = {
   title: "ARK Agent Readiness · Make your systems usable by agents",
   description:
-    "Evaluate whether agents can safely and reliably interact with your applications, APIs, tools and workflows. Free scorecard, or a full assessment against your real systems.",
+    "Evaluate whether agents can safely and reliably interact with your applications, APIs, tools and workflows. Free scorecard, or a full assessment against your own systems.",
 };
 
 export default function AgentReadinessPage() {
@@ -38,7 +38,7 @@ export default function AgentReadinessPage() {
     <ArkProductPage
       product={product}
       ctaTitle="Want the assessment rather than the self-assessment?"
-      ctaLead="The full engagement runs against your real systems: the inventory, the blast-radius ranking, the approval gates and a hardening plan with named owners. Thirty minutes is enough to scope it."
+      ctaLead="The full engagement runs against your own systems: the inventory, the blast-radius ranking, the approval gates and a hardening plan with named owners. Thirty minutes is enough to scope it."
       ctaTopic="agent-readiness"
     >
       <Section>

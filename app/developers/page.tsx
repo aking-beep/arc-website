@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 const runtimeAxes = [
   {
     name: "Capability",
-    text: "Does the work actually need a frontier model, or is a smaller local one sufficient and more predictable?",
+    text: "Does the work need a frontier model, or is a smaller local one sufficient and more predictable?",
   },
   {
     name: "Privacy",
@@ -49,7 +49,7 @@ export default function DevelopersPage() {
       <PageHero
         kicker="ARK · Developers"
         title="The layer underneath the products."
-        lead="Protocols, open tools, architecture notes and the runtime research. Published with its real maturity attached, because an experiment presented as infrastructure wastes someone's week."
+        lead="Protocols, open tools, architecture notes and the runtime research. Published with its maturity attached, because an experiment presented as infrastructure wastes someone's week."
       >
         <div className="flex flex-col gap-3 sm:flex-row">
           <Button href={site.github} variant="outline">
@@ -243,7 +243,7 @@ export default function DevelopersPage() {
       </Section>
 
       <CTA
-        title="Building the agent side of a real system?"
+        title="Building the agent side of a production system?"
         lead="If you are implementing protocols, tool authority or verification against production systems, we would rather talk to you than market at you."
       />
     </>

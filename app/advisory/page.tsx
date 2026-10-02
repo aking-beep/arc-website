@@ -44,7 +44,7 @@ export default function AdvisoryPage() {
       <Section>
         <SectionHeading
           kicker="Four capabilities"
-          title="What we actually do."
+          title="What we do."
           lead="Not nine services competing for attention. Four capabilities, in the order a problem moves through them."
         />
         <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
@@ -75,7 +75,7 @@ export default function AdvisoryPage() {
       <Section id="engagements" className="scroll-mt-24 bg-muted/30">
         <SectionHeading
           kicker="How we start"
-          title="Pick the problem, not a package from a menu."
+          title="Pick the problem. We size the work from there."
           lead="Each review has a typical duration and a concrete deliverable. Open any of them to see whether it fits, what you receive, and what we can build afterward."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -328,7 +328,7 @@ export default function AdvisoryPage() {
 
       <CTA
         title="Want this standard of work on your problem?"
-        lead="Most advisory work starts with a scoped review. A 30-minute call is enough to tell you whether that is the right first step, and what size of engagement the problem actually needs."
+        lead="Most advisory work starts with a scoped review. A 30-minute call is enough to tell you whether that is the right first step, and what size of engagement the problem needs."
         topic="advisory"
       />
     </>

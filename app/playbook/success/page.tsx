@@ -100,7 +100,7 @@ export default async function SuccessPage({
   );
 }
 
-/** Returns the transaction id only when Paddle says it was actually paid. */
+/** Returns the transaction id only when Paddle confirms the payment. */
 async function confirmPurchase(
   transactionId: string | undefined,
 ): Promise<string | null> {

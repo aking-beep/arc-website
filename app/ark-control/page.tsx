@@ -17,7 +17,7 @@ const product = getArkProduct("ark-control");
 export const metadata: Metadata = {
   title: "ARK Control · Outcome assurance for production AI agents",
   description:
-    "Understand what agents attempted, what authority they used, and whether the intended outcome actually occurred. In design-partner development.",
+    "Understand what agents attempted, what authority they used, and whether the intended outcome occurred. In design-partner development.",
 };
 
 export default function ArkControlPage() {
@@ -71,7 +71,7 @@ export default function ArkControlPage() {
             <SectionHeading
               kicker="Observability is not assurance"
               title="Two different questions."
-              lead="Seeing a trace tells you what the agent attempted. Assurance asks whether the intended outcome actually occurred — and insists the answer come from somewhere other than the agent."
+              lead="Seeing a trace tells you what the agent attempted. Assurance asks whether the intended outcome occurred, and insists the answer come from somewhere other than the agent."
             />
             <SplitClaim
               className="mt-12"

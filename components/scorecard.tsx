@@ -24,7 +24,7 @@ function bandFor(score: number) {
 
 /**
  * Scored entirely in the browser. Nothing is submitted anywhere, which is the
- * only reason it can honestly be offered without an email gate.
+ * only reason it can be offered without an email gate.
  */
 export function Scorecard() {
   const [answers, setAnswers] = React.useState<Answers>({});
@@ -52,7 +52,7 @@ export function Scorecard() {
     };
   });
 
-  // Only name a dimension if it is actually dragging the score down. A full
+  // Only name a dimension if it is dragging the score down. A full
   // marks run should not be handed a list of things to fix.
   const weakest = byDimension
     .filter((d) => d.percent !== null && d.percent < 100)
