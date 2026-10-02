@@ -52,15 +52,18 @@ export function looksLikeToken(value: unknown): value is string {
  * The lookup is by hash so an attacker cannot usefully time the database, but
  * anywhere two hashes are compared in process this is what does it.
  */
+const HEX_DIGEST = /^[a-f0-9]+$/i;
+
 export function hashesMatch(a: string, b: string): boolean {
   if (typeof a !== "string" || typeof b !== "string" || a.length !== b.length) {
     return false;
   }
-  try {
-    return timingSafeEqual(Buffer.from(a, "hex"), Buffer.from(b, "hex"));
-  } catch {
-    return false;
-  }
+  // Buffer.from(value, "hex") stops at the first non-hex character and returns
+  // what it got, so two different malformed strings both decode to an empty
+  // buffer and would compare equal. Reject anything that is not a digest.
+  if (!HEX_DIGEST.test(a) || !HEX_DIGEST.test(b)) return false;
+
+  return timingSafeEqual(Buffer.from(a, "hex"), Buffer.from(b, "hex"));
 }
 
 export type TokenRejection =
