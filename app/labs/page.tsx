@@ -112,6 +112,18 @@ export default function LabsPage() {
           </Link>{" "}
           rather than here.
         </p>
+        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+          The skills, reference-architecture and workflow-template libraries are
+          no longer listed here. They ship as part of the{" "}
+          <Link
+            href="/playbook"
+            className="font-medium text-foreground underline underline-offset-4"
+          >
+            ARC AI Product Playbook
+          </Link>
+          , curated and tied to the module they belong to. The raw catalogs stay
+          MIT licensed and public on GitHub.
+        </p>
       </Section>
 
       <MarketSignals

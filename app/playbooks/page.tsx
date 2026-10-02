@@ -6,13 +6,13 @@ import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { FlowChain, PanelLabel, Takeaway } from "@/components/diagram";
 import { CTA } from "@/components/cta";
-import { playbooks } from "@/lib/learn";
+import { playbookHref, playbooks } from "@/lib/learn";
 import { academy, research } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Playbooks · Use our methods without hiring us",
   description:
-    "Playbooks, frameworks, free assessments and checklists from ARC. Three are free and complete on the page. The AI Product Playbook is $19.",
+    "Playbooks, frameworks, free assessments and checklists from ARC. Three are free and complete on the page. The AI Product Playbook is $39.",
 };
 
 export default function PlaybooksPage() {
@@ -29,7 +29,7 @@ export default function PlaybooksPage() {
 
       {featured ? (
         <Section>
-          <Link href={`/playbooks/${featured.slug}`} className="group block">
+          <Link href={playbookHref(featured)} className="group block">
             <Card className="p-8 ring-1 ring-brand/20 transition-all hover:border-foreground/20 hover:shadow-sm sm:p-12">
               <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
                 <div>
@@ -68,7 +68,7 @@ export default function PlaybooksPage() {
         />
         <div className="mt-12 grid gap-5 lg:grid-cols-3">
           {rest.map((p) => (
-            <Link key={p.slug} href={`/playbooks/${p.slug}`} className="group block h-full">
+            <Link key={p.slug} href={playbookHref(p)} className="group block h-full">
               <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
                 <div className="flex items-center justify-between gap-3">
                   <PanelLabel>{p.kind}</PanelLabel>

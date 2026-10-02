@@ -10,7 +10,7 @@ import {
   site,
 } from "@/lib/content";
 import { arkProducts } from "@/lib/ark";
-import { playbooks } from "@/lib/learn";
+import { playbookHref, playbooks } from "@/lib/learn";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.domain.replace(/\/$/, "");
@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...nav.map((n) => n.href.split("#")[0]),
     ...secondaryRoutes,
     ...arkProducts.map((p) => `/${p.slug}`),
-    ...playbooks.map((p) => `/playbooks/${p.slug}`),
+    ...playbooks.map(playbookHref),
     ...advisoryEngagements.map((o) => `/advisory/${o.slug}`),
     ...labs.map((p) => `/labs/${p.slug}`),
     ...research.map((a) => `/research/${a.slug}`),

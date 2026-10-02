@@ -42,7 +42,7 @@ export function FlowChain({
   className,
   highlightLast,
 }: {
-  steps: string[];
+  steps: readonly string[];
   className?: string;
   /** Mark the final node as the outcome of the chain. */
   highlightLast?: boolean;

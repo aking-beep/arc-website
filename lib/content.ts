@@ -365,8 +365,8 @@ export const marketSignals: MarketSignal[] = [
     headline: "Unused skills now have a meter. Operators cannot keep them in sync.",
     soWhat:
       "Ask HN on managing SKILL.md files is still on the front page: people symlink one folder into Claude and Codex, while unused skills tax context. Claude Code's /skill-doctor names dead skills and their token cost. The official install path is a plugin marketplace, not a gist.",
-    href: "/labs/arc-skills",
-    hrefLabel: "Browse ARC Skills",
+    href: "/playbook",
+    hrefLabel: "Get the skills library",
     sources: [
       {
         name: "Ask HN — How do you manage skills files?",
@@ -626,78 +626,6 @@ export const labs: Product[] = [
     ],
   },
   {
-    slug: "ai-workflow-templates",
-    name: "AI Workflow Templates",
-    tagline: "Ready-to-run AI workflows you can copy, wire up, and ship today.",
-    description:
-      "A free, open library of end-to-end AI workflow templates. Each one is a documented pipeline with the prompt, the tools it calls, the data it needs, and the guardrails to keep it safe. Daily briefs, SOWs, RAG, and human-in-the-loop automation, the same shapes ARC uses internally.",
-    status: "live",
-    maturity: "open-source",
-    badge: "Free catalog",
-    visual: "workflows",
-    ctaLabel: "Browse templates",
-    audience:
-      "Operators and engineers who need a copy-pasteable pipeline with a human gate, not a prompt graveyard or an auto-send agent.",
-    howItWorks: [
-      "Browse by job: operations, consulting, retrieval, automation, quality.",
-      "Open a template and copy the prompt, tools, and required input schema.",
-      "Run a structural dry-run (no model call) to check the payload.",
-      "Keep the human-in-the-loop step. Most templates never auto-send or auto-write.",
-    ],
-    features: [
-      "16 templates from ARC operator packages and the Labs blueprint",
-      "Prompt skeletons, tool lists, and example input/output",
-      "HITL by default on anything that sends, writes, or pays",
-      "JSON API, CLI, and Markdown export. MIT licensed",
-    ],
-    links: {
-      app: "https://aiworkflowtemplates.arctransformationgrouplab.dev",
-      github: "https://github.com/aking-beep/ai-workflow-templates",
-      docs: "https://github.com/aking-beep/ai-workflow-templates#readme",
-    },
-    roadmap: [
-      { label: "Catalog + dry-run + CLI", done: true },
-      { label: "Operator, consulting, RAG, and quality templates", done: true },
-      { label: "Runnable reference implementations", done: false },
-      { label: "Eval harness per template", done: false },
-    ],
-  },
-  {
-    slug: "arc-skills",
-    name: "ARC Skills",
-    tagline: "Open, copy-pasteable agent skills for real operator work.",
-    description:
-      "A free, open library of production-ready Agent Skills — each a SKILL.md package with triggers, steps, and guardrails. Copy them into Claude, Cursor, or any Agent Skills runtime. No account, no lock-in.",
-    status: "live",
-    maturity: "open-source",
-    visual: "skills",
-    ctaLabel: "Browse skills",
-    audience:
-      "Operators and engineers who want copy-pasteable agent skills with documented inputs and guardrails, not a private prompt graveyard.",
-    howItWorks: [
-      "Browse 20 skills by job: engineering, ops, growth, security, AI, and more.",
-      "Copy or download the SKILL.md and drop it into ~/.cursor/skills or .claude/skills.",
-      "Keep the guardrails; adapt the trigger phrases to how your users actually ask.",
-    ],
-    features: [
-      "Agent Skills spec (SKILL.md) packages, MIT-licensed",
-      "Searchable catalog plus JSON and raw-markdown API",
-      "Copy / download with Cursor and Claude install paths",
-      "Spec validator in CI so contributions stay loadable",
-    ],
-    links: {
-      app: "https://arc-skills-phi.vercel.app",
-      github: "https://github.com/aking-beep/arc-skills",
-      docs: "https://github.com/aking-beep/arc-skills#readme",
-    },
-    roadmap: [
-      { label: "20 operator skills + catalog UI", done: true },
-      { label: "Copy / download SKILL.md", done: true },
-      { label: "JSON + raw markdown API", done: true },
-      { label: "Open in Cursor / Claude deep links", done: false },
-    ],
-  },
-  {
     slug: "connectivity-scanner",
     name: "Connectivity Scanner",
     tagline: "Is your endpoint actually reachable, secure, and fast?",
@@ -734,43 +662,6 @@ export const labs: Product[] = [
       { label: "GitHub Action + SSRF-guarded redirects", done: true },
       { label: "Shareable report permalinks", done: false },
       { label: "SVG status badge", done: false },
-    ],
-  },
-  {
-    slug: "reference-architectures",
-    name: "Reference Architectures",
-    tagline: "Battle-tested system blueprints you can adapt instead of starting from a blank diagram.",
-    description:
-      "A free, open library of 20 reference architectures from ARC delivery work: streaming data, operator AI, Labs products, maturity scoring, and more. Each entry names the problem, the component shape, key decisions, failure modes, when not to use it, and a scaling path.",
-    status: "live",
-    maturity: "open-source",
-    badge: "Free",
-    visual: "architecture",
-    ctaLabel: "Browse architectures",
-    audience:
-      "Engineers and operators who need a proven shape with trade-offs named — not a blank diagram or a vendor reference architecture they cannot defend.",
-    howItWorks: [
-      "Browse by category: Data, AI, Web, Backend, SaaS, Integration, Cloud.",
-      "Read When not to use, then Shape, then Failure modes.",
-      "Copy the ASCII (or SVG) diagram into your design doc and adapt the decisions.",
-      "Search from the CLI or pull the JSON API — no account required.",
-    ],
-    features: [
-      "20 architectures with origin citations back to Drive",
-      "When-not-to-use notes on every entry",
-      "Kinesis, Bedrock, HITL, spend control, maturity scoring, and more",
-      "JSON API, CLI, and open Markdown under content/",
-    ],
-    links: {
-      app: "https://reference-architectures.vercel.app",
-      github: "https://github.com/aking-beep/reference-architectures",
-      docs: "https://github.com/aking-beep/reference-architectures#readme",
-    },
-    roadmap: [
-      { label: "Drive-harvested catalog + origin notes", done: true },
-      { label: "Search UI, JSON API, CLI", done: true },
-      { label: "Mermaid diagrams + IaC snippets", done: false },
-      { label: "Well-Architected overlay", done: false },
     ],
   },
   {
@@ -972,13 +863,7 @@ export const labGroups = [
     id: "ai",
     name: "AI engineering",
     lead: "Check an MCP server, review a prompt, or see what your agents can actually reach.",
-    slugs: [
-      "mcp-conformance-scanner",
-      "prompt-reviewer",
-      "arc-skills",
-      "ai-workflow-templates",
-      "arc-agent-governance",
-    ],
+    slugs: ["mcp-conformance-scanner", "prompt-reviewer", "arc-agent-governance"],
   },
   {
     id: "security",
@@ -989,8 +874,8 @@ export const labGroups = [
   {
     id: "architecture",
     name: "Architecture and planning",
-    lead: "Reference shapes and a defensible stack decision. Not a vendor list.",
-    slugs: ["reference-architectures", "arc-stack-advisor"],
+    lead: "A defensible stack decision from your real constraints. Not a vendor list.",
+    slugs: ["arc-stack-advisor"],
   },
   {
     id: "cost",
