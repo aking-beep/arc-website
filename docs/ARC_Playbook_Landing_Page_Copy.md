@@ -170,8 +170,7 @@ doing them in this order.
 **H2** Four pages, before you pay for the rest.
 
 **Lead**
-If these are not useful on their own, the other two hundred pages will not save
-it.
+If these are not useful on their own, the rest of the book will not save it.
 
 **From module 02 · Validation — Set the go / no-go threshold before you look**
 Write the number that means stop before you run the test. A threshold chosen
