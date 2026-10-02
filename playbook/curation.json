@@ -1,0 +1,109 @@
+{
+  "$comment": [
+    "Which Playbook module each library entry belongs to. This file is the curation.",
+    "The three libraries are public and MIT licensed; the ordering is what the bundle adds.",
+    "`entries` is hand-maintained. `categoryDefault` catches anything added upstream after",
+    "this edition shipped, so the build never fails on a new file — it lands in a plausible",
+    "module and gets a proper home in the next edition."
+  ],
+  "modules": {
+    "01": "Idea",
+    "02": "Validation",
+    "03": "Product",
+    "04": "Architecture",
+    "05": "Build",
+    "06": "Evaluation",
+    "07": "Production readiness",
+    "08": "Launch"
+  },
+  "libraries": {
+    "skills": {
+      "categoryDefault": "05",
+      "entries": {
+        "ai-readiness-audit": "02",
+        "technical-due-diligence": "02",
+        "meeting-notes-to-actions": "02",
+        "ai-workflow-mvp-scope": "03",
+        "delivery-charter": "03",
+        "architecture-decision-record": "04",
+        "data-trust-audit": "04",
+        "mcp-server-review": "04",
+        "pr-review-summary": "05",
+        "spec-to-test-plan": "06",
+        "prompt-ship-review": "06",
+        "devops-readiness-audit": "07",
+        "security-posture-review": "07",
+        "incident-timeline": "07",
+        "postmortem-writer": "07",
+        "on-call-handoff": "07",
+        "api-changelog-writer": "08",
+        "customer-reply-triage": "08",
+        "icp-account-score": "08",
+        "outreach-sequence": "08"
+      }
+    },
+    "architectures": {
+      "categoryDefault": {
+        "ai": "04",
+        "backend": "05",
+        "cloud": "07",
+        "data": "04",
+        "integration": "04",
+        "saas": "04",
+        "web": "05"
+      },
+      "entries": {
+        "ai/bedrock-knowledge-base-pipeline": "04",
+        "ai/deterministic-operator-pipeline": "04",
+        "ai/hitl-workflow-automation": "04",
+        "ai/llm-app-backend": "04",
+        "ai/operator-intelligence-loop": "04",
+        "ai/synthetic-eval-loop": "06",
+        "backend/async-job-processing": "05",
+        "cloud/well-architected-review-loop": "07",
+        "data/event-driven-ingestion": "04",
+        "data/kinesis-data-streams": "04",
+        "data/streaming-service-decision": "04",
+        "integration/mcp-conformance-gate": "04",
+        "integration/webhook-delivery-system": "05",
+        "saas/agent-spend-control": "07",
+        "saas/experience-intelligence-pipeline": "07",
+        "saas/maturity-assessment-balance-score": "03",
+        "saas/multi-tenant-saas": "04",
+        "saas/verified-recovery-loyalty-ledger": "03",
+        "web/arc-labs-nextjs-stack": "05",
+        "web/read-heavy-web-service": "05"
+      }
+    },
+    "templates": {
+      "categoryDefault": {
+        "automation": "05",
+        "consulting": "03",
+        "content": "08",
+        "extraction": "05",
+        "operations": "05",
+        "quality": "06",
+        "research": "01",
+        "retrieval": "04"
+      },
+      "entries": {
+        "automation/email-draft-and-route": "05",
+        "automation/meeting-to-crm": "05",
+        "consulting/consulting-assessment": "02",
+        "consulting/kickoff-brief": "03",
+        "consulting/rfp-response-matrix": "08",
+        "consulting/sow-generator-lite": "08",
+        "content/content-repurpose": "08",
+        "extraction/structured-extraction": "05",
+        "operations/approval-routing": "04",
+        "operations/daily-operating-brief": "07",
+        "operations/evidence-to-operating-objects": "05",
+        "quality/mcp-conformance-gate": "06",
+        "quality/prompt-review-gate": "06",
+        "research/agentic-research-brief": "01",
+        "retrieval/rag-over-your-docs": "04",
+        "retrieval/rag-readiness-checker": "02"
+      }
+    }
+  }
+}

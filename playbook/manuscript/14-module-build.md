@@ -100,7 +100,9 @@ and expensive later. This also feeds the per-user operating cost in module 07.
 - [ ] A measured cost per complete workflow run
 
 → **Worksheet 8 — Build sequence**
+
 → **Appendix A — ARC Skills library**
+
 → **Appendix C — AI Workflow Templates**
 
 ## Where this bites

@@ -7,7 +7,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "playbook:assets": "node scripts/playbook/fetch-appendices.mjs",
+    "playbook:pdf": "node scripts/playbook/build-pdf.mjs",
+    "playbook:preview": "node scripts/playbook/preview.mjs",
+    "playbook:bundle": "node scripts/playbook/bundle.mjs",
+    "playbook:build": "npm run playbook:assets && npm run playbook:pdf && npm run playbook:bundle"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -25,7 +30,9 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.19",
+    "marked": "^14.1.4",
     "postcss": "^8.4.40",
+    "puppeteer-core": "^23.11.1",
     "tailwindcss": "^3.4.7",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.5.4"

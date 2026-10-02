@@ -90,6 +90,7 @@ because after the result arrives you will be attached to the work.
 - [ ] A written decision for what happens if the test fails
 
 → **Worksheet 1 — Product hypothesis**
+
 → **Worksheet 2 — Assumption register**
 
 ## Where this bites

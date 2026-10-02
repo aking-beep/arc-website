@@ -95,7 +95,9 @@ when the build gets hard.
 - [ ] A dated paragraph recording the result against the threshold
 
 → **Worksheet 3 — Validation plan and threshold**
+
 → **Worksheet 4 — Conversation log**
+
 → **Worksheet 5 — Alternative cost**
 
 ## Where this bites
