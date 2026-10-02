@@ -201,10 +201,11 @@ export const playbookModules = [
 // ---------------------------------------------------------------------------
 // What is in the bundle.
 //
-// The three libraries below are ARC's own open-source catalogs. They are MIT
-// licensed and the page says so, because claiming they are exclusive would be
-// false. What the Playbook adds is curation: each one is cut down, ordered to
-// the five-step system, and tied to the module it belongs to.
+// All of it is content the buyer gets in the download: the three libraries are
+// printed in full in the PDF appendices and shipped as editable files in the
+// ZIP. Where ARC publishes a catalog elsewhere is a distribution decision and
+// not something a buyer of this product has to think about, so the page does
+// not raise it.
 // ---------------------------------------------------------------------------
 export type BundleItem = {
   id: string;
@@ -212,8 +213,6 @@ export type BundleItem = {
   count?: string;
   format: string;
   text: string;
-  /** Set where the item is also published openly, so the page can say so. */
-  openSource?: { license: string; repo: string };
 };
 
 export const playbookBundle: BundleItem[] = [
@@ -235,34 +234,22 @@ export const playbookBundle: BundleItem[] = [
     id: "skills",
     name: "ARC Skills library",
     count: "20 agent skills",
-    format: "SKILL.md packages",
+    format: "PDF + SKILL.md packages",
     text: "Production-ready agent skills with triggers, steps and guardrails, for operator work like due diligence, incident timelines, PR review and prompt ship review. Drop them into Cursor or Claude.",
-    openSource: {
-      license: "MIT",
-      repo: "https://github.com/aking-beep/arc-skills",
-    },
   },
   {
     id: "architectures",
     name: "Reference Architectures",
     count: "20 blueprints",
-    format: "Markdown + diagrams",
+    format: "PDF + editable Markdown",
     text: "System shapes from ARC delivery work, each naming the problem, the component shape, the key decisions, the failure modes, when not to use it, and the scaling path.",
-    openSource: {
-      license: "MIT",
-      repo: "https://github.com/aking-beep/reference-architectures",
-    },
   },
   {
     id: "templates",
     name: "AI Workflow Templates",
     count: "16 templates",
-    format: "Markdown + prompt skeletons",
+    format: "PDF + editable Markdown",
     text: "End-to-end workflows with the prompt, the tools it calls, the input schema and the human-in-the-loop gate already in place.",
-    openSource: {
-      license: "MIT",
-      repo: "https://github.com/aking-beep/ai-workflow-templates",
-    },
   },
 ];
 
@@ -270,9 +257,9 @@ export const playbookBundle: BundleItem[] = [
 export const playbookIncludes = [
   "The complete ARC AI Product Playbook, 8 modules",
   "11 worksheets and frameworks, fillable",
-  "ARC Skills library, 20 agent skills",
-  "Reference Architectures, 20 blueprints",
-  "AI Workflow Templates, 16 workflows",
+  "ARC Skills library, 20 agent skills, printed in full",
+  "Reference Architectures, 20 blueprints, printed in full",
+  "AI Workflow Templates, 16 workflows, printed in full",
   "Editable Markdown for everything, so you can adapt it",
   "Free updates to this edition",
 ];
@@ -332,8 +319,8 @@ export const playbookFaqs = [
     a: "No. There are no videos and no certificate. It is a working document you fill in while you build, which is why the worksheets ship as editable Markdown as well as print pages.",
   },
   {
-    q: "The three libraries are open source. Why are they in a paid bundle?",
-    a: "Because they are, and we say so on this page. The ARC Skills, reference architectures and workflow templates are MIT licensed and free on GitHub. What you are paying for is the Playbook and the curation: each library is cut down, ordered to the five-step system, and attached to the module where you would actually reach for it. If you only want the raw catalogs, take them from GitHub.",
+    q: "Are the three libraries summaries, or the real thing?",
+    a: "The real thing. All 56 entries are printed in full in the PDF appendices — every skill with its triggers, steps and guardrails, every architecture with its decisions, failure modes and when-not-to-use-it notes, every template with its prompt, tools, input schema and human gate. The same files are in the ZIP so you can edit them. Each entry is also filed under the module that sends you to it, so you are not browsing a catalog hoping something applies.",
   },
   {
     q: "Will it be out of date in six months?",

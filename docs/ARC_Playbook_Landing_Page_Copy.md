@@ -102,23 +102,22 @@ waste the work you already did.
 
 **Lead**
 One download. The Playbook itself, the worksheets you fill in while you build,
-and three libraries cut down and attached to the module where you would
+and three libraries printed in full and attached to the module where you would
 actually reach for them.
 
 | Item | Size | Format |
 | --- | --- | --- |
 | The ARC AI Product Playbook | 8 modules | PDF |
 | Worksheets and frameworks | 11 worksheets | PDF + editable Markdown |
-| ARC Skills library | 20 agent skills | SKILL.md packages |
-| Reference Architectures | 20 blueprints | Markdown + diagrams |
-| AI Workflow Templates | 16 templates | Markdown + prompt skeletons |
+| ARC Skills library | 20 agent skills | PDF + SKILL.md packages |
+| Reference Architectures | 20 blueprints | PDF + editable Markdown |
+| AI Workflow Templates | 16 templates | PDF + editable Markdown |
 
-**Honesty note, shown on the page**
-The three libraries are ARC's own open-source catalogs. They are MIT licensed
-and free on GitHub, and we are not going to pretend otherwise. What the
-Playbook adds is curation: each one is cut down, ordered to the five-step
-system, and tied to the module it belongs to. If you only want the raw
-catalogs, take them from GitHub.
+**Note, shown on the page**
+The three libraries are printed in full, not summarised, and every entry is
+filed under the module that sends you to it. So you are not browsing a catalog
+of fifty-six things hoping one applies — you reach module 04, and the
+architectures that answer module 04 are the ones in front of you.
 
 ---
 
@@ -252,13 +251,13 @@ No. There are no videos and no certificate. It is a working document you fill
 in while you build, which is why the worksheets ship as editable Markdown as
 well as print pages.
 
-**The three libraries are open source. Why are they in a paid bundle?**
-Because they are, and we say so on this page. The ARC Skills, reference
-architectures and workflow templates are MIT licensed and free on GitHub. What
-you are paying for is the Playbook and the curation: each library is cut down,
-ordered to the five-step system, and attached to the module where you would
-actually reach for it. If you only want the raw catalogs, take them from
-GitHub.
+**Are the three libraries summaries, or the real thing?**
+The real thing. All 56 entries are printed in full in the PDF appendices —
+every skill with its triggers, steps and guardrails, every architecture with
+its decisions, failure modes and when-not-to-use-it notes, every template with
+its prompt, tools, input schema and human gate. The same files are in the ZIP
+so you can edit them. Each entry is also filed under the module that sends you
+to it, so you are not browsing a catalog hoping something applies.
 
 **Will it be out of date in six months?**
 The model names will be. The sequence will not. The Playbook deliberately

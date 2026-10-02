@@ -121,8 +121,7 @@ export default function LabsPage() {
           >
             ARC AI Product Playbook
           </Link>
-          , curated and tied to the module they belong to. The raw catalogs stay
-          MIT licensed and public on GitHub.
+          , printed in full and filed under the module each one belongs to.
         </p>
       </Section>
 
