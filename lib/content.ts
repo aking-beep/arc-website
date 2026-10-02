@@ -289,67 +289,6 @@ export const maturityLabel: Record<Maturity, string> = {
 };
 
 // ---------------------------------------------------------------------------
-// Brand architecture. ARC is the company; ARK is what ARC builds.
-// ---------------------------------------------------------------------------
-export type Pillar = {
-  id: string;
-  name: string;
-  href: string;
-  icon: string; // lucide-react icon name
-  kicker: string;
-  summary: string;
-  detail: string;
-  status: Status;
-};
-
-export const pillars: Pillar[] = [
-  {
-    id: "advisory",
-    name: "ARC Advisory",
-    href: "/advisory",
-    icon: "Compass",
-    kicker: "Diagnose · design · deliver · scale",
-    summary: "Work with us on the systems the business runs on.",
-    detail:
-      "Scoped reviews and delivery across architecture, data, cloud, security, AI and programme structure.",
-    status: "live",
-  },
-  {
-    id: "ark",
-    name: "ARK",
-    href: "/platform",
-    icon: "Boxes",
-    kicker: "Products & infrastructure",
-    summary: "Infrastructure for reliable agent action.",
-    detail:
-      "Agent readiness, outcome assurance, and the fit assessments that decide where AI belongs in the first place.",
-    status: "building",
-  },
-  {
-    id: "labs",
-    name: "ARK Labs",
-    href: "/labs",
-    icon: "FlaskConical",
-    kicker: "Open & experimental",
-    summary: "Open tools, scanners and emerging protocol work.",
-    detail:
-      "Free and mostly MIT licensed. Every project carries its maturity, so an experiment never reads as a product.",
-    status: "live",
-  },
-  {
-    id: "learn",
-    name: "ARC Learn",
-    href: "/playbooks",
-    icon: "GraduationCap",
-    kicker: "Playbooks & research",
-    summary: "Our methods, published so you can use them without us.",
-    detail:
-      "Playbooks, frameworks, free assessments, cited research and workshops.",
-    status: "live",
-  },
-];
-
-// ---------------------------------------------------------------------------
 // ARK Labs — open tools, scanners and experiments.
 // Every entry carries its maturity. Nothing here is sold as a product.
 // ---------------------------------------------------------------------------
@@ -1336,7 +1275,7 @@ export type CaseStudy = {
   intervention: string;
   deliverable: string;
   timeframe: string;
-  challenge: string;
+  stakes: string;
   approach: string[];
   outcomes: { metric: string; label: string }[];
 };
@@ -1358,7 +1297,7 @@ export const caseStudies: CaseStudy[] = [
     deliverable:
       "A coordinated release program, a value framework operators could run without the original program lead in the room, and an investment sequence tied to sales impact.",
     timeframe: "Multi-year product program",
-    challenge:
+    stakes:
       "Enterprise cybersecurity buyers do not pay for feature volume. They pay for releases that reduce risk and can be sold. The organization was optimizing for coordination of more work, not for the value of what shipped.",
     approach: [
       "Inventory the live feature surface and how it mapped to release trains and sales motions.",
@@ -1388,7 +1327,7 @@ export const caseStudies: CaseStudy[] = [
     deliverable:
       "A customer-data architecture and delivery program that operators could run — pipelines, identity, access, and the failure modes named before they hit a live event.",
     timeframe: "Enterprise delivery program",
-    challenge:
+    stakes:
       "Live-entertainment platforms do not get a quiet quarter to rebuild. The data layer had to support tens of millions of profiles while the business kept selling tickets, running events, and talking to fans.",
     approach: [
       "Map the profile graph: who the customer was across ticketing, CRM, and experience systems.",
@@ -1418,7 +1357,7 @@ export const caseStudies: CaseStudy[] = [
     deliverable:
       "Shipped platforms and operating patterns for consumer and live-entertainment work, including programs with LEGO and the NFL, with owners who could run the next version.",
     timeframe: "Multiple brand and entertainment programs",
-    challenge:
+    stakes:
       "Global brands and leagues do not buy clever demos. They buy systems that hold up for fans, partners, and internal operators — on a deadline that does not move.",
     approach: [
       "Treat brand and entertainment work as production systems: data, access, failure modes, and who owns the runbook.",
@@ -1447,7 +1386,7 @@ export const caseStudies: CaseStudy[] = [
     deliverable:
       "A board-ready executive summary, a phased roadmap, named owners, sized risks, and a sequence of spend the operators could execute.",
     timeframe: "5-week diagnostic",
-    challenge:
+    stakes:
       "The organization did not need another strategy deck. It needed one plan that killed or resequenced competing bets, with owners who would still be there after the workshop high wore off.",
     approach: [
       "Current-state across architecture, data, infra, security, operations, and AI-where-it-helps.",
