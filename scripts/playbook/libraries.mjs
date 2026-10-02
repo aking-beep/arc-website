@@ -1,8 +1,9 @@
 /**
- * The three open-source libraries that ship inside the Playbook bundle.
+ * The three libraries that ship inside the Playbook bundle.
  *
- * They live in their own repositories and those repositories are the source of
- * truth. Nothing here is a copy of their content — only enough to find it.
+ * They are maintained in their own repositories and those repositories are the
+ * source of truth. Nothing here is a copy of their content — only enough to
+ * find it at build time.
  */
 
 export const libraries = [
@@ -16,7 +17,6 @@ export const libraries = [
     dir: "skills",
     /** Catalog entries are directories containing this file. */
     entryFile: "SKILL.md",
-    license: "MIT",
     lead:
       "Agent skills you can drop into Cursor, Claude Code, or anything else that loads a SKILL.md. Each one carries its own triggers, steps and guardrails, so the skill is the specification rather than a prompt you have to maintain.",
     useWhen:
@@ -31,7 +31,13 @@ export const libraries = [
     dir: "content",
     /** Catalog entries are Markdown files nested one category deep. */
     entryFile: null,
-    license: "MIT",
+    /**
+     * Copied into the ZIP but not into the PDF. Each architecture embeds its
+     * scenario illustration with alt text identical to the Scenario paragraph
+     * directly above it, so printing twenty of them would add six megabytes
+     * and no information. Buyers still get the files.
+     */
+    extraDirs: ["public/scenarios", "public/diagrams"],
     lead:
       "System shapes taken from delivery work. Each one names the problem it solves, the component shape, the decisions it forces, the failure modes, the scaling path, and — the section worth reading first — when not to use it.",
     useWhen:
@@ -45,7 +51,6 @@ export const libraries = [
     repo: "ai-workflow-templates",
     dir: "content",
     entryFile: null,
-    license: "MIT",
     lead:
       "End-to-end workflows with the prompt, the tools it calls, the input schema and the human-in-the-loop gate already in place. They are starting points, not products.",
     useWhen:

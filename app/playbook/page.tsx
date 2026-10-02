@@ -6,7 +6,6 @@ import { CheckoutButton } from "@/components/playbook/checkout-button";
 import { PlaybookViewTracker } from "@/components/playbook/view-tracker";
 import { FlowChain, Panel, PanelLabel, Takeaway } from "@/components/diagram";
 import { FaqList } from "@/components/faq-list";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
@@ -138,7 +137,7 @@ export default function PlaybookPage() {
         <SectionHeading
           kicker="In the bundle"
           title="A method, and the assets to run it."
-          lead="One download. The Playbook itself, the worksheets you fill in while you build, and three libraries cut down and attached to the module where you would actually reach for them."
+          lead="One download. The Playbook itself, the worksheets you fill in while you build, and three libraries printed in full and attached to the module where you would actually reach for them."
         />
 
         <div className="mt-12 overflow-hidden rounded-lg border border-border bg-card">
@@ -155,11 +154,6 @@ export default function PlaybookPage() {
                 <tr key={item.id} className="align-top">
                   <td className="px-5 py-4">
                     <span className="font-medium text-foreground">{item.name}</span>
-                    {item.openSource ? (
-                      <Badge className="ml-2 align-middle font-mono text-[10px] uppercase tracking-wider">
-                        {item.openSource.license}
-                      </Badge>
-                    ) : null}
                     <p className="mt-1.5 max-w-prose leading-relaxed text-muted-foreground">
                       {item.text}
                     </p>
@@ -176,16 +170,11 @@ export default function PlaybookPage() {
           </table>
         </div>
 
-        {/*
-          The three libraries really are free on GitHub. Saying so here costs a
-          few sales and is the only version of this page we are willing to run.
-        */}
         <Takeaway className="mt-10 max-w-3xl">
-          The three libraries are ARC&rsquo;s own open-source catalogs. They are MIT
-          licensed and free on GitHub, and we are not going to pretend otherwise. What
-          the Playbook adds is curation: each one is cut down, ordered to the five-step
-          system, and tied to the module it belongs to. If you only want the raw
-          catalogs, take them from GitHub.
+          The three libraries are printed in full, not summarised, and every entry is
+          filed under the module that sends you to it. So you are not browsing a
+          catalog of fifty-six things hoping one applies &mdash; you reach module 04,
+          and the architectures that answer module 04 are the ones in front of you.
         </Takeaway>
       </Section>
 

@@ -1,5 +1,6 @@
 /**
- * Pull the three open-source libraries and turn them into Playbook appendices.
+ * Pull the three libraries and turn them into Playbook appendices, printed in
+ * full.
  *
  * Why at build time rather than committed: the libraries have their own
  * repositories and change on their own schedule. A copy in this repo would be
@@ -10,7 +11,7 @@
  *   node scripts/playbook/fetch-appendices.mjs
  *
  * Writes:
- *   playbook/build/assets/<id>/      raw catalog + LICENSE, for the ZIP
+ *   playbook/build/assets/<id>/      editable catalog files, for the ZIP
  *   playbook/build/appendices/*.md   appendix pages, for the PDF
  *   playbook/build/appendices/sources.json
  *
@@ -58,7 +59,6 @@ async function resolveHead(library) {
     sha: commit.sha,
     shortSha: commit.sha.slice(0, 7),
     committedAt: commit.commit?.committer?.date ?? null,
-    license: repoInfo.license?.spdx_id ?? library.license,
     htmlUrl: repoInfo.html_url,
   };
 }
@@ -146,6 +146,57 @@ function titleCase(slug) {
     .join(" ");
 }
 
+/**
+ * Prepare an entry's own Markdown for printing inside an appendix.
+ *
+ * The appendix owns h1 and the module group owns h2, so the entry becomes h3
+ * and everything it wrote as a section has to move down with it. Without the
+ * shift, an entry's `## Steps` would outrank the entry it belongs to and the
+ * table of contents would read as nonsense.
+ */
+function prepareBody(body) {
+  const lines = [];
+  let inFence = false;
+  let droppedTitle = false;
+
+  for (const line of body.split(/\r?\n/)) {
+    if (/^\s*```/.test(line)) {
+      inFence = !inFence;
+      lines.push(line);
+      continue;
+    }
+
+    if (inFence) {
+      lines.push(line);
+      continue;
+    }
+
+    // The entry's own h1 repeats the title we print above it.
+    if (!droppedTitle && /^#\s+/.test(line)) {
+      droppedTitle = true;
+      continue;
+    }
+
+    // Images are repo-relative and their alt text repeats the paragraph above.
+    if (/^\s*!\[[^\]]*\]\([^)]*\)\s*$/.test(line)) continue;
+
+    // Internal provenance ("Harvested from: Operator-AI / 01_Synthetic…").
+    // Accurate inside the repo, meaningless to a buyer.
+    if (/^\s*_Harvested from:_/i.test(line)) continue;
+
+    const heading = /^(#{1,4})\s+(.*)$/.exec(line);
+    if (heading) {
+      const depth = Math.min(heading[1].length + 2, 6);
+      lines.push(`${"#".repeat(depth)} ${heading[2]}`);
+      continue;
+    }
+
+    lines.push(line);
+  }
+
+  return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+
 function describe(entry) {
   const { data, body } = parseFrontMatter(entry.raw);
   const title =
@@ -153,24 +204,10 @@ function describe(entry) {
     (data.name && titleCase(data.name)) ||
     titleCase(entry.key.split("/").pop());
 
-  // Skills put a usable summary in `description`. The architectures and
-  // templates do not, so take the first real sentence of the body instead.
-  let summary = data.description || "";
-  if (!summary) {
-    const firstParagraph = body
-      .split(/\n{2,}/)
-      .map((block) => block.trim())
-      .find(
-        (block) =>
-          block &&
-          !block.startsWith("#") &&
-          !block.startsWith("!") &&
-          !block.startsWith("```") &&
-          !block.startsWith("_"),
-      );
-    summary = firstParagraph ? firstParagraph.replace(/\s+/g, " ") : "";
-  }
-  if (summary.length > 260) summary = `${summary.slice(0, 257).trimEnd()}…`;
+  // Skills keep their one-line summary in front matter, so it has to be
+  // printed. The architectures and templates open with the same sentence in
+  // the body itself, and printing it twice would just look careless.
+  const summary = (data.description || "").replace(/\s+/g, " ").trim();
 
   const tags = Array.isArray(data.tags)
     ? data.tags
@@ -181,8 +218,10 @@ function describe(entry) {
   return {
     title,
     summary,
+    body: prepareBody(body),
     category: data.category || entry.category || "",
     difficulty: data.difficulty || "",
+    compatibility: data.compatibility || "",
     tags: tags.filter(Boolean),
   };
 }
@@ -204,6 +243,27 @@ function escapeHtml(value) {
     .replace(/>/g, "&gt;");
 }
 
+/**
+ * Every skill declares the same runtimes and a couple add a sentence on top.
+ * The appendix lead already names the runtimes, so printing that sentence
+ * twenty more times is noise. Return the shared opening so only the part an
+ * entry adds gets printed — and only when it ends cleanly, otherwise the
+ * remainder would start mid-sentence.
+ */
+function sharedCompatibility(entries) {
+  const values = entries.map((entry) => entry.compatibility).filter(Boolean);
+  if (values.length < 2) return "";
+
+  let prefix = values[0];
+  for (const value of values.slice(1)) {
+    while (prefix && !value.startsWith(prefix)) {
+      prefix = prefix.slice(0, prefix.lastIndexOf(" ") + 1).trimEnd();
+    }
+    if (!prefix) return "";
+  }
+  return /[.!?]$/.test(prefix) ? prefix : "";
+}
+
 function renderAppendix(library, head, entries, curation) {
   const byModule = new Map();
   for (const entry of entries) {
@@ -212,6 +272,7 @@ function renderAppendix(library, head, entries, curation) {
     byModule.get(key).push(entry);
   }
   const moduleKeys = [...byModule.keys()].sort();
+  const sharedRuntime = sharedCompatibility(entries);
 
   const lines = [
     "---",
@@ -226,31 +287,50 @@ function renderAppendix(library, head, entries, curation) {
     "",
     library.useWhen,
     "",
-    `**${entries.length} entries**, grouped by the module that sends you to them. ` +
-      `The full text of every entry is in the ZIP that came with this PDF, under ` +
-      `\`${library.id}/\`. This appendix is the index.`,
+    `**${entries.length} entries, printed in full**, grouped by the module that ` +
+      `sends you to them. Every one is also in the ZIP under \`${library.id}/\` ` +
+      `so you can edit it.`,
     "",
-    `*Pulled from \`${library.owner}/${library.repo}\` at \`${head.shortSha}\`` +
-      (head.committedAt ? ` (${head.committedAt.slice(0, 10)})` : "") +
-      `. ${head.license} licensed — see appendix D.*`,
+    // Index first. Fifty-odd entries printed in full is a reference section,
+    // and a reference section without a contents list is a pile of paper.
+    "## In this appendix",
     "",
+    `| Module | ${library.id === "skills" ? "Skill" : library.id === "architectures" ? "Architecture" : "Workflow"} | File |`,
+    "| --- | --- | --- |",
   ];
+
+  for (const key of moduleKeys) {
+    for (const entry of byModule.get(key)) {
+      lines.push(
+        `| ${key === "unsorted" ? "—" : key} | ${entry.title} | \`${entry.key}\` |`,
+      );
+    }
+  }
+  lines.push("");
 
   for (const key of moduleKeys) {
     const heading =
       key === "unsorted"
         ? "Not yet placed"
         : `Module ${key} · ${curation.modules[key] ?? ""}`.trim();
-    lines.push(`## ${heading}`, "");
+    lines.push('<div class="module-group">', "", `## ${heading}`, "", "</div>", "");
+
     for (const entry of byModule.get(key)) {
-      const meta = [entry.category, entry.difficulty].filter(Boolean).join(" · ");
-      lines.push('<div class="entry">', "");
+      const meta = [entry.category, entry.difficulty, ...entry.tags]
+        .filter(Boolean)
+        .join(" · ");
+
+      lines.push('<div class="appendix-entry">', "");
       lines.push(`### ${entry.title}`, "");
       lines.push(
         `<p class="entry-meta">${escapeHtml(entry.key)}${meta ? ` — ${escapeHtml(meta)}` : ""}</p>`,
         "",
       );
       if (entry.summary) lines.push(entry.summary, "");
+
+      const runtime = entry.compatibility.slice(sharedRuntime.length).trim();
+      if (runtime) lines.push(`*${runtime}*`, "");
+      lines.push(entry.body, "");
       lines.push("</div>", "");
     }
   }
@@ -258,60 +338,70 @@ function renderAppendix(library, head, entries, curation) {
   return `${lines.join("\n").trimEnd()}\n`;
 }
 
-function renderLicences(results) {
+/**
+ * Appendix D is one page: which revision of each library is bound into this
+ * copy, and what the buyer may do with all of it.
+ */
+function renderUsage(results) {
+  const total = results.reduce((sum, result) => sum + result.entries.length, 0);
+
   const lines = [
     "---",
     "section: appendix",
-    "title: Licences and attribution",
+    "title: Usage and edition",
     'appendix: "D"',
     "---",
     "",
-    "# Appendix D · Licences and attribution",
+    "# Appendix D · Usage and edition",
     "",
-    "Appendices A, B and C are published openly by ARC Transformation Group under",
-    "the MIT licence. They are free to take from GitHub, and this page tells you",
-    "exactly where and at which revision.",
+    "## What you may do with this",
     "",
-    "What this Playbook adds is the method they attach to, and the ordering: every",
-    "entry in those appendices is filed under the module where you would actually",
-    "reach for it. If you only want the raw catalogs, the links below are the whole",
-    "answer and you owe us nothing for them.",
+    "Everything in this bundle — the Playbook text, the eleven worksheets, and all",
+    `${total} entries in appendices A, B and C — is © ARC Transformation Group.`,
     "",
-    "## Revisions in this edition",
+    "Your purchase covers use by you and your team: read it, print it, fill in the",
+    "worksheets, copy the skills and templates into your own repositories, and",
+    "adapt any of it for products you are building. You do not need to ask and you",
+    "do not need to credit us.",
     "",
-    "| Library | Repository | Revision | Entries | Licence |",
+    "It does not cover redistributing the bundle itself, or using it as paid",
+    "training material for other organisations. Email us for that rather than",
+    "buying twelve copies, and we will sort out a licence.",
+    "",
+    "## This edition",
+    "",
+    "The three libraries are assembled when the PDF is built, so the revisions",
+    "below are exactly what is printed in this copy. Quote the revision if you",
+    "ever need to ask us about a specific entry.",
+    "",
+    "| Appendix | Library | Entries | Revision | Dated |",
     "| --- | --- | --- | --- | --- |",
   ];
 
   for (const result of results) {
     lines.push(
-      `| Appendix ${result.library.appendix} — ${result.library.title} ` +
-        `| ${result.head.htmlUrl} ` +
-        `| \`${result.head.shortSha}\` ` +
+      `| ${result.library.appendix} ` +
+        `| ${result.library.title} ` +
         `| ${result.entries.length} ` +
-        `| ${result.head.license} |`,
+        `| \`${result.head.shortSha}\` ` +
+        `| ${result.head.committedAt ? result.head.committedAt.slice(0, 10) : "—"} |`,
     );
   }
 
   lines.push(
     "",
-    "## MIT licence",
+    "## Updates",
     "",
-    "The licence text below applies to the content of appendices A, B and C and to",
-    "the corresponding directories in the accompanying ZIP. It does not apply to the",
-    "Playbook text or the worksheets.",
+    "The download link from your purchase email resolves to the current revision of",
+    "this edition. When the libraries are refreshed, the same link gives you the new",
+    "bundle — there is nothing to buy again and nothing to log into.",
     "",
-    "```",
-    results[0]?.licenseText?.trim() ?? "See the LICENSE file in each repository.",
-    "```",
+    "## One note on the architecture illustrations",
     "",
-    "## The Playbook itself",
-    "",
-    "The Playbook text, the worksheets and the five-step system are © ARC",
-    "Transformation Group. Your purchase covers use by you and your team, including",
-    "filling in and adapting the worksheets for your own products. It does not cover",
-    "redistribution or use as paid training material for other organisations — email",
-    "us for that and we will sort out a licence.",
+    "Appendix B describes a scenario image for each architecture. The images are not",
+    "printed here, because each one's caption repeats the Scenario paragraph",
+    "immediately above it and twenty of them would add several megabytes to a file",
+    "you have to download. They are in the ZIP under `architectures/scenarios/`.",
     "",
   );
 
@@ -344,14 +434,23 @@ async function main() {
       ...describe(entry),
     }));
 
-    // Raw catalog and licence into the bundle, exactly as published.
+    // Editable copies into the bundle, exactly as published.
     const target = path.join(assetsDir, library.id);
     await fs.cp(path.join(repoRoot, library.dir), target, { recursive: true });
-    const licenseText = await fs
-      .readFile(path.join(repoRoot, "LICENSE"), "utf8")
-      .catch(() => "");
-    if (licenseText) {
-      await fs.writeFile(path.join(target, "LICENSE"), licenseText);
+
+    // Anything the PDF leaves out still ships, so the buyer is not missing a
+    // file just because printing it was a bad trade.
+    for (const extra of library.extraDirs ?? []) {
+      const source = path.join(repoRoot, extra);
+      const exists = await fs
+        .access(source)
+        .then(() => true)
+        .catch(() => false);
+      if (exists) {
+        await fs.cp(source, path.join(target, path.basename(extra)), {
+          recursive: true,
+        });
+      }
     }
 
     await writeFileEnsured(
@@ -359,13 +458,13 @@ async function main() {
       renderAppendix(library, head, entries, curation),
     );
 
-    results.push({ library, head, entries, licenseText });
+    results.push({ library, head, entries });
     console.log(`${entries.length} entries at ${head.shortSha}`);
   }
 
   await writeFileEnsured(
-    path.join(appendicesDir, "9d-appendix-licences.md"),
-    renderLicences(results),
+    path.join(appendicesDir, "9d-appendix-usage.md"),
+    renderUsage(results),
   );
 
   await writeFileEnsured(
@@ -382,7 +481,6 @@ async function main() {
           sha: head.sha,
           shortSha: head.shortSha,
           committedAt: head.committedAt,
-          license: head.license,
           entryCount: entries.length,
         })),
       },

@@ -4,8 +4,8 @@
  *   node scripts/playbook/bundle.mjs
  *
  * Produces playbook/build/arc-ai-product-playbook-assets.zip containing the
- * worksheets as Markdown, the three libraries as published, and a README that
- * tells a buyer what they are looking at and what the licence covers.
+ * worksheets as Markdown, the three libraries as editable files, and a README
+ * that tells a buyer what they are looking at and what they may do with it.
  *
  * Uses the system `zip` rather than a Node archiver. One less dependency, and
  * the output is a plain archive any operating system opens without help.
@@ -30,7 +30,7 @@ function bundleReadme(meta, sources) {
     .map(
       (library) =>
         `| ${library.id}/ | ${library.title} | ${library.entryCount} | ` +
-        `${library.license} | \`${library.shortSha}\` | ${library.repo} |`,
+        `Appendix ${library.appendix} | \`${library.shortSha}\` |`,
     )
     .join("\n");
 
@@ -46,28 +46,31 @@ for filling in and adapting.
 | Folder | What it is |
 | --- | --- |
 | \`worksheets/\` | The eleven worksheets as Markdown, one file each. Keep them in your project repository next to the thing they describe. |
-| \`skills/\` | The ARC Skills library, as published. |
-| \`architectures/\` | The Reference Architectures library, as published. |
-| \`templates/\` | The AI Workflow Templates library, as published. |
+| \`skills/\` | The ARC Skills library. One folder per skill, each with its \`SKILL.md\`. |
+| \`architectures/\` | The Reference Architectures library, plus the scenario and diagram images under \`scenarios/\` and \`diagrams/\`. |
+| \`templates/\` | The AI Workflow Templates library. |
+
+Everything in the three library folders is also printed in full in the PDF
+appendices. These are the same documents as editable files, so you can copy a
+skill into a repository or rewrite a template's prompt without retyping it.
 
 ## Libraries in this edition
 
-| Folder | Library | Entries | Licence | Revision | Source |
-| --- | --- | --- | --- | --- | --- |
+| Folder | Library | Entries | Printed in | Revision |
+| --- | --- | --- | --- | --- |
 ${rows}
 
-The three libraries are MIT licensed and published openly at the links above.
-Their \`LICENSE\` file travels with each folder. You can use, modify and
-redistribute them on those terms, independently of this bundle.
+## What you may do with this
 
-## Licence for the Playbook and the worksheets
+All of it — the Playbook text, the worksheets, and all three libraries — is
+© ${meta.publisher}. Your purchase covers use by you and your team: copy the
+skills and templates into your own repositories, adapt any of it for products
+you are building, and fill in the worksheets. You do not need to ask and you
+do not need to credit us.
 
-The Playbook text, the worksheets and the five-step system are
-© ${meta.publisher}. Your purchase covers use by you and your team, including
-filling in and adapting the worksheets for your own products. It does not
-cover redistribution or use as paid training material for other organisations.
-Email us and we will sort out a licence for that rather than have you buy
-twelve copies.
+It does not cover redistributing the bundle itself, or using it as paid
+training material for other organisations. Email us and we will sort out a
+licence for that rather than have you buy twelve copies.
 
 ## Updates
 
