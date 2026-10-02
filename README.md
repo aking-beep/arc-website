@@ -100,30 +100,38 @@ your own eyes rather than assuming.
 ```
 app/
   layout.tsx            Root layout, fonts, theme provider, header/footer
-  page.tsx              Home — ecosystem front door
+  page.tsx              Home — symptoms, the four things we help with, proof
   api/contact/route.ts  Contact form API (Resend when configured)
-  labs/page.tsx         ARC Labs (free tools)
+  services/page.tsx     The four buyer problems
+  services/[slug]/page.tsx  Modernize / Automate / Build / Operate
+  advisory/page.tsx     How engagements are shaped: sizes, reviews, retainers
+  advisory/[slug]/page.tsx  Reusable SCOPED REVIEW template
+  platform/page.tsx     ARK — agent infrastructure
+  labs/page.tsx         ARK Labs (free tools)
   labs/[slug]/page.tsx  Reusable PRODUCT template (demo/GitHub/docs/roadmap)
-  studio/page.tsx       ARC Studio (scoped reviews, retainers, 5 stages, principles)
+  playbook/page.tsx     The AI Product Playbook (paid download)
+  playbooks/page.tsx    Free frameworks and resources
   research/page.tsx     ARC Research (benchmarks + reports)
   research/[slug]/page.tsx  Reusable ARTICLE/RESEARCH template
-  academy/page.tsx      ARC Academy (workshops)
-  about/page.tsx        About + contact
+  academy/page.tsx      Workshops
+  about/page.tsx        Who does the work, and how ARC and ARK differ
   work/[slug]/page.tsx  Reusable CASE STUDY template
 components/
   ui/                   Design-system primitives (button, card, badge, section, container)
-  site-header.tsx       Product-first navigation
+  site-header.tsx       Navigation, with dropdowns driven by nav[].children
   site-footer.tsx       Shared footer + ecosystem map
   product-card.tsx      Reusable product/service card
   theme-provider.tsx    next-themes wrapper
   theme-toggle.tsx      Light/dark switch
-  start-here.tsx        Three-step path into the practice (home)
-  alternatives-table.tsx  Agency / integrator / freelancer / ARC comparison (home)
-  market-signals.tsx    Dated "what changed" strip (home + Labs)
+  alternatives-table.tsx  Agency / integrator / freelancer / ARC comparison
+  market-signals.tsx    Dated "what changed" strip (Labs)
 lib/
   content.ts            Single source of truth for all ecosystem content
+  services.ts           The four buyer problems and the homepage copy
   research.ts           Cited research briefs
   utils.ts              cn() helper
+docs/
+  WRITING.md            The copy standard every page has to pass
 ```
 
 ## Keeping the site current
@@ -136,10 +144,15 @@ older than a quarter rather than letting them age on the homepage. If a
 protocol, price, or regulation changes, fix the affected product copy in the
 same pass — stale product claims cost more trust than a thin signal list.
 
-Studio offerings carry a plain-language `focus` label ("Security & compliance",
-"AI agent governance") rather than an internal codename. Buyers scan for their
-own problem, not for our naming scheme, so when you add an offering, describe
-the problem it solves and cross-reference other offerings by their real names.
+Every page has to pass the copy standard in [`docs/WRITING.md`](docs/WRITING.md)
+before it ships. The short version: name the buyer's problem before naming the
+discipline, and do not announce a quality the page can demonstrate instead.
+
+The top level of the site offers four choices, not nine. `lib/services.ts` holds
+them; scoped engagements live under `/advisory/<slug>` and are grouped by the
+service area that sends a visitor to them. When you add an engagement, give it a
+`focus` label describing the problem it solves rather than an internal codename,
+and map it into a service area so it is reachable from the four.
 
 ## Adding a new product (the whole point)
 
@@ -163,7 +176,7 @@ No new website. Just content.
    - `CONTACT_TO_EMAIL` — usually `aking@arctransformationgroup.com`
    - `CONTACT_FROM_EMAIL` — a verified Resend sender
 5. **Domain:** pick one canonical host (`.com` or `.org`), set it primary, 301 the other.
-6. **Smoke test:** home, `/labs/mcp-conformance-scanner`, `/about` contact form, `/privacy`.
+6. **Smoke test:** home, `/services/modernize`, `/labs/mcp-conformance-scanner`, `/contact`, `/privacy`.
 7. **Dependabot:** enable on the GitHub repo for dependency alerts.
 
 Analytics ships via `@vercel/analytics` with no extra config once the project is on Vercel.
