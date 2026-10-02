@@ -1,0 +1,22 @@
+{
+  "title": "ARC AI Product Playbook",
+  "subtitle": "From Idea to Shipped Product",
+  "edition": "First edition",
+  "publisher": "ARC Transformation Group",
+  "imprint": "ARK Labs",
+  "accent": "#0A6E7C",
+  "order": [
+    "00-front-matter.md",
+    "01-how-to-use.md",
+    "02-the-system.md",
+    "10-module-idea.md",
+    "11-module-validation.md",
+    "12-module-product.md",
+    "13-module-architecture.md",
+    "14-module-build.md",
+    "15-module-evaluation.md",
+    "16-module-production-readiness.md",
+    "17-module-launch.md",
+    "20-worksheets.md"
+  ]
+}
