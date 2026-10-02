@@ -9,7 +9,7 @@ import { FlowChain, Panel, PanelLabel, Takeaway } from "@/components/diagram";
 import { MarketSignals } from "@/components/market-signals";
 import { CTA } from "@/components/cta";
 import { ark, arkProducts } from "@/lib/ark";
-import { playbooks } from "@/lib/learn";
+import { playbookHref, playbooks } from "@/lib/learn";
 import {
   advisoryCapabilities,
   audiences,
@@ -293,7 +293,7 @@ export default function HomePage() {
           {featuredPlaybooks.map((p) => (
             <Link
               key={p.slug}
-              href={`/playbooks/${p.slug}`}
+              href={playbookHref(p)}
               className="group block h-full"
             >
               <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">

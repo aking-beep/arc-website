@@ -6,6 +6,8 @@
 // would make them worse and harder to find.
 // ============================================================================
 
+import { playbookHero, playbookProduct, playbookSystemChain } from "@/lib/playbook";
+
 export type PlaybookKind = "playbook" | "framework" | "assessment" | "checklist";
 
 export type Playbook = {
@@ -23,7 +25,9 @@ export type Playbook = {
    */
   availability: string;
   /** Steps shown as a chain on the card. */
-  chain?: string[];
+  chain?: readonly string[];
+  /** Set where the asset lives outside /playbooks/[slug]. */
+  href?: string;
   featured?: boolean;
 };
 
@@ -31,23 +35,16 @@ export const playbooks: Playbook[] = [
   {
     slug: "ark-ai-product-playbook",
     kind: "playbook",
-    name: "ARK AI Product Playbook",
-    tagline: "You built it with AI. Now make it real.",
+    name: playbookProduct.name,
+    tagline: playbookHero.title,
     summary:
-      "A practical system for turning an AI idea into something people can actually use — from hypothesis through launch.",
-    price: "$19",
-    ctaLabel: "Reserve a copy at $19",
+      "A practical system for turning an AI idea into something people can actually use — from hypothesis through launch. Ships with the ARC Skills library, 20 reference architectures and 16 workflow templates.",
+    price: playbookProduct.price,
+    ctaLabel: "See the Playbook",
     availability:
-      "The Playbook is being finalised and is not downloadable yet. Reserve a copy and you get it the day it ships, at this price. The modules, the frameworks and everything you receive are listed in full below, so you can judge it before you commit anything.",
-    chain: [
-      "Idea",
-      "Validate",
-      "Product",
-      "Architecture",
-      "Build",
-      "Evaluate",
-      "Launch",
-    ],
+      "A PDF plus editable Markdown assets. One payment, a private download link, nothing to log into.",
+    chain: playbookSystemChain,
+    href: "/playbook",
     featured: true,
   },
   {
@@ -94,90 +91,10 @@ export function getPlaybook(slug: string) {
   return playbooks.find((p) => p.slug === slug);
 }
 
-// ---------------------------------------------------------------------------
-// AI Product Playbook — sales page content.
-// ---------------------------------------------------------------------------
-export const productPlaybook = {
-  openers: [
-    "AI can generate an interface. It can write code. It can connect APIs. It can deploy an application.",
-    "None of those things automatically make what you built a product.",
-  ],
-  questions: [
-    "Who is this for?",
-    "What problem are you solving?",
-    "Will anyone pay for it?",
-    "What belongs in the MVP?",
-    "How should it be architected?",
-    "What data does it need?",
-    "What can go wrong?",
-    "How will you evaluate the AI?",
-    "How will you secure it?",
-    "What should you measure?",
-    "How do you launch it?",
-  ],
-  modules: [
-    {
-      number: "01",
-      name: "Idea",
-      text: "Turn a concept into a clear product hypothesis you can test rather than defend.",
-    },
-    {
-      number: "02",
-      name: "Validation",
-      text: "Define the customer, the problem, the alternatives, and the evidence you need before building.",
-    },
-    {
-      number: "03",
-      name: "Product",
-      text: "Define the value proposition, the workflow, the requirements, and what the MVP excludes.",
-    },
-    {
-      number: "04",
-      name: "Architecture",
-      text: "Map the application, the AI components, data, integrations, infrastructure and security.",
-    },
-    {
-      number: "05",
-      name: "Build",
-      text: "Turn the architecture into a deliberate build sequence instead of whatever the model suggests next.",
-    },
-    {
-      number: "06",
-      name: "Evaluation",
-      text: "Define quality, reliability, failure modes and acceptance criteria for the AI itself.",
-    },
-    {
-      number: "07",
-      name: "Production readiness",
-      text: "Work through security, privacy, analytics, monitoring and the operational load you are taking on.",
-    },
-    {
-      number: "08",
-      name: "Launch",
-      text: "Define distribution, pricing, measurement and how you will iterate once real users arrive.",
-    },
-  ],
-  builtFor: [
-    "AI builders shipping their first real product",
-    "Solo and technical founders",
-    "Product managers working without a research team",
-    "People who started by vibe coding and now need it to hold up",
-    "Small product teams without a product organisation behind them",
-    "Operators turning an internal workflow into software",
-  ],
-  includes: [
-    "The complete ARK AI Product Playbook",
-    "Product-definition worksheets",
-    "Validation framework",
-    "MVP scoping framework",
-    "Architecture checklist",
-    "AI evaluation framework",
-    "Production-readiness checklist",
-    "Launch framework",
-    "Reusable product-development templates",
-  ],
-  system: ["Validate it", "Architect it", "Test it", "Secure it", "Measure it", "Ship it"],
-};
+/** The paid Playbook sells from /playbook; the free assets live under the hub. */
+export function playbookHref(playbook: Playbook) {
+  return playbook.href ?? `/playbooks/${playbook.slug}`;
+}
 
 // ---------------------------------------------------------------------------
 // Agent Operating Contract — the full framework, published on the page.

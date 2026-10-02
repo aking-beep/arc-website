@@ -35,6 +35,29 @@ const nextConfig = {
         destination: "/advisory/:slug",
         permanent: true,
       },
+      // The Playbook sells from its own route now.
+      {
+        source: "/playbooks/ark-ai-product-playbook",
+        destination: "/playbook",
+        permanent: true,
+      },
+      // The skills, architecture and workflow libraries ship inside the
+      // Playbook rather than standing as separate Labs products.
+      {
+        source: "/labs/arc-skills",
+        destination: "/playbook",
+        permanent: true,
+      },
+      {
+        source: "/labs/reference-architectures",
+        destination: "/playbook",
+        permanent: true,
+      },
+      {
+        source: "/labs/ai-workflow-templates",
+        destination: "/playbook",
+        permanent: true,
+      },
     ];
   },
 };

@@ -1,0 +1,305 @@
+// ============================================================================
+// Purchase persistence and the private bundle, on Supabase.
+//
+// Supabase over a heavier backend because the two things needed here —
+// a table and a private bucket that can mint short-lived signed URLs — are
+// both one HTTP call, and neither needs a server process of our own.
+//
+// Raw fetch over @supabase/supabase-js for the same reason the Resend
+// integration in /api/contact uses fetch: four endpoints are involved, the
+// SDK would be the largest dependency in the project, and this way the whole
+// data path is visible in one file.
+//
+// Every function here assumes the caller has already decided the request is
+// authorised. The service-role key bypasses row-level security.
+// ============================================================================
+
+import "server-only";
+
+import { storageConfig, supabaseConfig } from "@/lib/commerce/config";
+import type { EntitlementRecord } from "@/lib/commerce/tokens";
+
+const PURCHASES = "playbook_purchases";
+
+export type StoreResult<T> =
+  | { ok: true; data: T }
+  | { ok: false; reason: "unconfigured" | "error"; detail: string };
+
+function unconfigured(detail: string): StoreResult<never> {
+  return { ok: false, reason: "unconfigured", detail };
+}
+
+function failed(detail: string): StoreResult<never> {
+  return { ok: false, reason: "error", detail };
+}
+
+async function supabaseFetch(
+  path: string,
+  init: RequestInit & { prefer?: string } = {},
+) {
+  const config = supabaseConfig();
+  if (!config.configured) {
+    throw new Error(`Supabase not configured: missing ${config.missing.join(", ")}`);
+  }
+
+  const { prefer, headers, ...rest } = init;
+  const response = await fetch(`${config.restUrl}${path}`, {
+    ...rest,
+    cache: "no-store",
+    headers: {
+      apikey: config.serviceRoleKey,
+      authorization: `Bearer ${config.serviceRoleKey}`,
+      "content-type": "application/json",
+      ...(prefer ? { prefer } : {}),
+      ...headers,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      `Supabase ${rest.method ?? "GET"} ${path} failed: ${response.status} ${await response.text()}`,
+    );
+  }
+
+  return response;
+}
+
+// ---------------------------------------------------------------------------
+// Purchases
+// ---------------------------------------------------------------------------
+
+export type PurchaseRow = {
+  id: string;
+  paddle_event_id: string;
+  paddle_transaction_id: string;
+  email: string | null;
+  price_id: string | null;
+  currency: string | null;
+  amount_minor: string | null;
+  token_hash: string;
+  download_count: number;
+  download_limit: number | null;
+  first_downloaded_at: string | null;
+  last_downloaded_at: string | null;
+  revoked_at: string | null;
+  expires_at: string | null;
+  created_at: string;
+};
+
+export type RecordPurchaseInput = {
+  eventId: string;
+  transactionId: string;
+  email: string | null;
+  priceId: string | null;
+  currency: string | null;
+  amountMinor: string | null;
+  tokenHash: string;
+  downloadLimit: number | null;
+  occurredAt: string;
+};
+
+export type RecordPurchaseOutcome = {
+  row: PurchaseRow;
+  /** False when the transaction was already stored — a redelivered webhook. */
+  created: boolean;
+};
+
+/**
+ * Insert-if-new, keyed on the Paddle transaction id.
+ *
+ * Idempotency lives in the database rather than in the handler because Paddle
+ * retries, and two retries can land on two instances at the same moment. A
+ * read-then-write in application code has a race that a unique index does not.
+ * `on_conflict` with `ignore-duplicates` makes the second arrival a no-op, and
+ * the follow-up select returns the original row — so the original token stays
+ * valid and no second email goes out with a token the first email did not
+ * mention.
+ */
+export async function recordPurchase(
+  input: RecordPurchaseInput,
+): Promise<StoreResult<RecordPurchaseOutcome>> {
+  const config = supabaseConfig();
+  if (!config.configured) {
+    return unconfigured(`missing ${config.missing.join(", ")}`);
+  }
+
+  try {
+    const response = await supabaseFetch(
+      `/${PURCHASES}?on_conflict=paddle_transaction_id`,
+      {
+        method: "POST",
+        prefer: "resolution=ignore-duplicates,return=representation",
+        body: JSON.stringify({
+          paddle_event_id: input.eventId,
+          paddle_transaction_id: input.transactionId,
+          email: input.email,
+          price_id: input.priceId,
+          currency: input.currency,
+          amount_minor: input.amountMinor,
+          token_hash: input.tokenHash,
+          download_limit: input.downloadLimit,
+          purchased_at: input.occurredAt,
+        }),
+      },
+    );
+
+    const inserted = (await response.json()) as PurchaseRow[];
+    if (inserted.length > 0) return { ok: true, data: { row: inserted[0], created: true } };
+
+    // Empty array means the conflict was ignored: we have seen this one.
+    const existing = await supabaseFetch(
+      `/${PURCHASES}?paddle_transaction_id=eq.${encodeURIComponent(input.transactionId)}&select=*&limit=1`,
+    );
+    const rows = (await existing.json()) as PurchaseRow[];
+    if (rows.length === 0) {
+      return failed("insert was ignored but no existing row was found");
+    }
+    return { ok: true, data: { row: rows[0], created: false } };
+  } catch (error) {
+    return failed(error instanceof Error ? error.message : String(error));
+  }
+}
+
+export async function findPurchaseByTokenHash(
+  tokenHash: string,
+): Promise<StoreResult<PurchaseRow | null>> {
+  const config = supabaseConfig();
+  if (!config.configured) {
+    return unconfigured(`missing ${config.missing.join(", ")}`);
+  }
+
+  try {
+    const response = await supabaseFetch(
+      `/${PURCHASES}?token_hash=eq.${encodeURIComponent(tokenHash)}&select=*&limit=1`,
+    );
+    const rows = (await response.json()) as PurchaseRow[];
+    return { ok: true, data: rows[0] ?? null };
+  } catch (error) {
+    return failed(error instanceof Error ? error.message : String(error));
+  }
+}
+
+export async function findPurchaseByTransactionId(
+  transactionId: string,
+): Promise<StoreResult<PurchaseRow | null>> {
+  const config = supabaseConfig();
+  if (!config.configured) {
+    return unconfigured(`missing ${config.missing.join(", ")}`);
+  }
+
+  try {
+    const response = await supabaseFetch(
+      `/${PURCHASES}?paddle_transaction_id=eq.${encodeURIComponent(transactionId)}&select=*&limit=1`,
+    );
+    const rows = (await response.json()) as PurchaseRow[];
+    return { ok: true, data: rows[0] ?? null };
+  } catch (error) {
+    return failed(error instanceof Error ? error.message : String(error));
+  }
+}
+
+/**
+ * Increment through a database function rather than read-modify-write, so two
+ * parallel downloads cannot both read the same count and store count + 1.
+ */
+export async function recordDownload(
+  tokenHash: string,
+): Promise<StoreResult<number>> {
+  const config = supabaseConfig();
+  if (!config.configured) {
+    return unconfigured(`missing ${config.missing.join(", ")}`);
+  }
+
+  try {
+    const response = await supabaseFetch("/rpc/playbook_record_download", {
+      method: "POST",
+      body: JSON.stringify({ p_token_hash: tokenHash }),
+    });
+    const count = (await response.json()) as number | null;
+    return { ok: true, data: typeof count === "number" ? count : 0 };
+  } catch (error) {
+    return failed(error instanceof Error ? error.message : String(error));
+  }
+}
+
+export function toEntitlement(row: PurchaseRow): EntitlementRecord {
+  return {
+    tokenHash: row.token_hash,
+    revokedAt: row.revoked_at,
+    expiresAt: row.expires_at,
+    downloadCount: row.download_count,
+    downloadLimit: row.download_limit,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Private bucket
+// ---------------------------------------------------------------------------
+
+export type BundleFile = "pdf" | "zip";
+
+export type SignedDownload = {
+  file: BundleFile;
+  url: string;
+  filename: string;
+  expiresInSeconds: number;
+};
+
+/**
+ * Mint a short-lived signed URL for one object in the private bucket.
+ *
+ * Signing happens here, on the server, after the entitlement has been
+ * checked. The bucket is never public and the service-role key never reaches
+ * the browser — the client only ever receives a URL that expires.
+ */
+export async function signBundleUrl(
+  file: BundleFile,
+): Promise<StoreResult<SignedDownload>> {
+  const supabase = supabaseConfig();
+  const storage = storageConfig();
+
+  if (!supabase.configured) return unconfigured(`missing ${supabase.missing.join(", ")}`);
+  if (!storage.configured) return unconfigured(`missing ${storage.missing.join(", ")}`);
+
+  const objectPath = file === "pdf" ? storage.pdfPath : storage.zipPath;
+  const filename = objectPath.split("/").pop() || `playbook.${file}`;
+
+  try {
+    const response = await fetch(
+      `${supabase.storageUrl}/object/sign/${encodeURIComponent(storage.bucket)}/${objectPath
+        .split("/")
+        .map(encodeURIComponent)
+        .join("/")}`,
+      {
+        method: "POST",
+        cache: "no-store",
+        headers: {
+          apikey: supabase.serviceRoleKey,
+          authorization: `Bearer ${supabase.serviceRoleKey}`,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ expiresIn: storage.signedUrlTtlSeconds }),
+      },
+    );
+
+    if (!response.ok) {
+      return failed(`sign failed: ${response.status} ${await response.text()}`);
+    }
+
+    const payload = (await response.json()) as { signedURL?: string };
+    if (!payload.signedURL) return failed("sign response had no signedURL");
+
+    return {
+      ok: true,
+      data: {
+        file,
+        // Supabase returns a path relative to /storage/v1.
+        url: `${supabase.storageUrl}${payload.signedURL.replace(/^\/storage\/v1/, "")}`,
+        filename,
+        expiresInSeconds: storage.signedUrlTtlSeconds,
+      },
+    };
+  } catch (error) {
+    return failed(error instanceof Error ? error.message : String(error));
+  }
+}
