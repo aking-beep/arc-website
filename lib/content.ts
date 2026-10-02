@@ -1114,7 +1114,7 @@ export const advisoryEngagements: AdvisoryEngagement[] = [
       "Discovery call: confirm competing initiatives, stakeholder map, and board timeline",
       "Access: full system inventory, recent audits or assessments, org chart",
       "Week 1–2: three parallel workstreams — architecture, AI readiness, and delivery assessment",
-      "Week 3–4: cross-domain synthesis, opportunity scoring on four axes",
+      "Week 3–4: cross-domain synthesis, opportunity scoring on value, risk, feasibility and adoption",
       "Week 5–6: roadmap draft, owner assignment, risk sizing",
       "Week 6–7: board-ready summary, exec readout, retainer scoping if delivery follows",
     ],
@@ -1173,109 +1173,6 @@ export const retainers: Retainer[] = [
     bestFit:
       "One ongoing partner across strategy, delivery, and AI instead of a pile of vendors to manage.",
     commitment: "80+ hrs / month",
-  },
-];
-
-/**
- * Advisory, summarised to four capabilities. The full engagement list lives on
- * /advisory; the homepage only needs to say what kind of help this is.
- */
-export const advisoryCapabilities = [
-  {
-    id: "diagnose",
-    name: "Diagnose",
-    text: "Find out what is true about the systems, the data, the risk and the team — before anyone commits a budget to fixing the wrong thing.",
-    items: ["Technical due diligence", "Architecture review", "Readiness assessment", "Security posture"],
-  },
-  {
-    id: "design",
-    name: "Design",
-    text: "Turn the findings into an architecture and a sequence: what gets built, in what order, with which dependency resolved first.",
-    items: ["Target architecture", "MVP and product scope", "Data and integration design", "Roadmap sequencing"],
-  },
-  {
-    id: "deliver",
-    name: "Deliver",
-    text: "Ship it. Build, integrate, migrate and release, with the governance that keeps a programme from quietly slipping a quarter.",
-    items: ["Build and integration", "Cloud and platform work", "Delivery governance", "Release and rollout"],
-  },
-  {
-    id: "scale",
-    name: "Scale",
-    text: "Make the result durable: measured, owned, secured and cheap enough to keep running after we leave.",
-    items: ["Observability and reliability", "Cost and performance", "Security and governance", "Ownership handover"],
-  },
-];
-
-/** The five stages of the ARC Delivery System. Named on every recommendation. */
-export const stages = [
-  {
-    number: "01",
-    name: "Discover",
-    text: "What is happening, and which problem is worth solving?",
-  },
-  {
-    number: "02",
-    name: "Align",
-    text: "What does winning look like, and how do we size the work to the problem in front of you?",
-  },
-  {
-    number: "03",
-    name: "Deliver",
-    text: "What ships, who owns it, and how does it stay stable once your team is running it?",
-  },
-  {
-    number: "04",
-    name: "Measure",
-    text: "Is the work producing the outcomes we said it would, against numbers that matter?",
-  },
-  {
-    number: "05",
-    name: "Sustain",
-    text: "How do we keep the results compounding so next quarter is easier than this one?",
-  },
-];
-
-export const principles = [
-  {
-    number: "01",
-    title: "Always name the stage.",
-    text: "Every recommendation tells you which stage of work it is. If we can't name it, we haven't thought about it hard enough.",
-  },
-  {
-    number: "02",
-    title: "Don't confuse strategy with deliverables.",
-    text: "A near-term fix is never sold as transformation. A long-term vision is never confused with what we're shipping next month.",
-  },
-  {
-    number: "03",
-    title: "Boring beats clever.",
-    text: "A spreadsheet that runs the operation beats a custom system that half works.",
-  },
-  {
-    number: "04",
-    title: "Four axes, or it's just a slide.",
-    text: "Every recommendation has to land on business value, risk, feasibility, and adoption. One out of four makes it a slide.",
-  },
-  {
-    number: "05",
-    title: "Show your work.",
-    text: "Every output names its assumptions, constraints, dependencies, and unknowns. Nobody has time to reverse-engineer how we got there.",
-  },
-  {
-    number: "06",
-    title: "Plain language. Real numbers.",
-    text: "\"Digital transformation\" and \"AI-powered\" mean nothing on their own. \"Cut claim-triage time by 38% with a clearer workflow, better data, and human review on the hard cases\" means something. We write the second kind.",
-  },
-  {
-    number: "07",
-    title: "Build for the business you have.",
-    text: "Tight budgets. Stretched teams. Uneven technical depth. Results that have to show up soon enough for people to trust them. That is the world we design for, including nonprofits and communities.",
-  },
-  {
-    number: "08",
-    title: "Build for the next version, too.",
-    text: "If a system falls over when a teammate leaves or a vendor changes an API, it is a liability. We build so version two is cheaper than version one.",
   },
 ];
 
@@ -1365,26 +1262,26 @@ export const academy: Workshop[] = [
   {
     slug: "operator-working-session",
     name: "Operator Working Session",
-    text: "A technical working session against your own systems, using ARC's stages, four axes, and delivery principles.",
+    text: "A technical working session against your own systems, scoring the work in front of you on business value, risk, feasibility and adoption.",
     detail:
       "One or two days. We work in your tools and constraints. Leave with a run plan your team can execute without us in the room.",
     status: "live",
     whoFor:
       "Technical and operating leads who need the plan built across architecture, data, infra, security, delivery, and the human loops that keep it stable. Best when you have a running stack and a live backlog to put on the table.",
     objectives: [
-      "Apply ARC's operating method in your environment: name the stage (Discover, Align, Deliver, Measure, Sustain), keep strategy separate from what ships next, and score work on the four axes.",
+      "Separate the strategy from the deliverable: what is a near-term fix, what is a bet, and what ships next month.",
       "Pressure-test the technical path in your actual systems: data trust, connectors, permissions, failure modes, and what breaks when someone is out.",
       "Leave with an operator-ready run plan: owners, sequence, KPIs, and human review where it matters.",
     ],
     curriculum: [
       "Systems walk-through. Get into the running stack: data sources, pipelines, apps, connectors, access, and the workflow you want to change.",
-      "Name the stage. Place each candidate in Discover, Align, Deliver, Measure, or Sustain. Call out where strategy is being sold as a deliverable.",
-      "Four-axes scoring, applied. Score each opportunity on business value, risk, feasibility, and adoption with your constraints in the room. Drop anything that fails the axes.",
+      "Sort the backlog. Separate what needs discovery, what is ready to build, and what is already running and needs measuring. Call out where strategy is being sold as a deliverable.",
+      "Score each opportunity on business value, risk, feasibility, and adoption, with your constraints in the room. Drop anything that fails on more than one.",
       "Technical design of the boring next step. Map one workflow end to end: inputs, systems, integrations, checks, and where a human stays in the loop. Call assumptions, dependencies, and unknowns.",
       "Operator run plan. Owners, sequence, dependencies, KPIs, review cadence, and the checks that keep version two cheaper than version one. Written so the team can run it after we leave.",
     ],
     outcomes: [
-      "Candidates staged and scored on ARC's four axes with constraints visible.",
+      "Candidates sorted and scored on value, risk, feasibility and adoption, with constraints visible.",
       "One designed next step with technical path, human review, and named assumptions.",
       "A run plan with owners, sequence, KPIs, and a review cadence your team can execute.",
     ],
@@ -1554,7 +1451,7 @@ export const caseStudies: CaseStudy[] = [
       "The organization did not need another strategy deck. It needed one plan that killed or resequenced competing bets, with owners who would still be there after the workshop high wore off.",
     approach: [
       "Current-state across architecture, data, infra, security, operations, and AI-where-it-helps.",
-      "Score every opportunity on the four axes — drop anything that fails them.",
+      "Score every opportunity on business value, risk, feasibility and adoption. Drop anything that fails on more than one.",
       "Resequence three initiatives into one investment order.",
       "Write the output for the board and for the people who have to run it.",
     ],
