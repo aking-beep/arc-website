@@ -38,6 +38,12 @@ export type ServiceArea = {
   /** Slugs from advisoryEngagements that belong to this area. */
   engagements: string[];
   linkLabel: string;
+  /**
+   * The photograph for this area. One shoot, one grade, so four cards read as
+   * a set rather than four stock pictures. `alt` describes the picture; it is
+   * not a second place to sell.
+   */
+  image: { src: string; alt: string };
 };
 
 export const serviceAreas: ServiceArea[] = [
@@ -73,6 +79,10 @@ export const serviceAreas: ServiceArea[] = [
       "integrated-transformation-diagnostic",
     ],
     linkLabel: "Explore technology modernization",
+    image: {
+      src: "/images/area-modernize.jpg",
+      alt: "A plant room of ageing steel electrical cabinets, one standing open with newer equipment fitted inside it, lit by a single work lamp",
+    },
   },
   {
     slug: "automate",
@@ -100,6 +110,10 @@ export const serviceAreas: ServiceArea[] = [
       "Teams who already have a scoped build and need hands to implement it. Start at Build instead.",
     engagements: ["ai-readiness-audit", "ai-solution-mvp-scope"],
     linkLabel: "Explore AI and automation",
+    image: {
+      src: "/images/area-automate.jpg",
+      alt: "A single robotic arm moving above a conveyor on a dark factory floor at night",
+    },
   },
   {
     slug: "build",
@@ -127,6 +141,10 @@ export const serviceAreas: ServiceArea[] = [
       "Discovery that has not happened yet. If the problem is not named, scoping it first will save you the build.",
     engagements: ["ai-solution-mvp-scope", "delivery-program-setup"],
     linkLabel: "Explore product and engineering",
+    image: {
+      src: "/images/area-build.jpg",
+      alt: "A workshop bench from above with hand tools, a partly assembled metal frame and weighted-down drawings",
+    },
   },
   {
     slug: "operate",
@@ -154,6 +172,10 @@ export const serviceAreas: ServiceArea[] = [
       "A research sandbox where autonomous tool use is the point. These controls exist for systems with consequences.",
     engagements: ["security-compliance-posture", "delivery-program-setup"],
     linkLabel: "Explore agent infrastructure",
+    image: {
+      src: "/images/area-operate.jpg",
+      alt: "An empty chair in front of a wall of out-of-focus monitoring dashboards in a dim operations room",
+    },
   },
 ];
 
@@ -175,6 +197,10 @@ export const homeHero = {
   lead: "ARC helps growing companies work out what to improve, what to automate and what to build — and then helps get it working.",
   primary: { label: "Tell us what's not working", href: "/contact" },
   secondary: { label: "See how we can help", href: "/services" },
+  image: {
+    src: "/images/hero-valley.jpg",
+    alt: "A forested valley at dawn with mist in the folds of the hills and a single road and line of transmission towers running through it",
+  },
 };
 
 /**

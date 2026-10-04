@@ -40,7 +40,7 @@ export default function ProductPage({
   return (
     <>
       <section className="relative overflow-hidden border-b border-border/60">
-        <div className="pointer-events-none absolute inset-0 grid-bg opacity-60" />
+        <div className="pointer-events-none absolute inset-0 bloom opacity-70" aria-hidden />
         <Container className="relative py-16 sm:py-20">
           <Link
             href="/labs"

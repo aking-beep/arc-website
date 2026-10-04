@@ -37,7 +37,7 @@ export default function PlatformPage() {
   return (
     <>
       <section className="relative overflow-hidden border-b border-border/60">
-        <div className="pointer-events-none absolute inset-0 grid-bg opacity-60" />
+        <div className="pointer-events-none absolute inset-0 bloom opacity-70" aria-hidden />
         <Container className="relative py-20 sm:py-28">
           <div className="max-w-3xl animate-fade-up">
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">

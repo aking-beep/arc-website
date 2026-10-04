@@ -10,6 +10,44 @@ import { Brand } from "@/components/brand";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 
+/**
+ * True while the page opens on a photograph and we are still scrolled over it.
+ * The header then sits on the image with no background of its own, which is the
+ * difference between a page that was designed and a page with a header on it.
+ */
+function useOverlayHeader() {
+  const pathname = usePathname();
+  const [overlay, setOverlay] = React.useState(false);
+
+  React.useEffect(() => {
+    const hero = document.querySelector<HTMLElement>("[data-photo-hero]");
+    if (!hero) {
+      setOverlay(false);
+      return;
+    }
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      // Switch once the header would otherwise overhang the end of the image.
+      const threshold = hero.offsetHeight - 72;
+      setOverlay(window.scrollY < Math.max(threshold, 0));
+    };
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [pathname]);
+
+  return overlay;
+}
+
 function isActive(pathname: string, item: NavItem) {
   const matches = (href: string) => {
     const path = href.split("#")[0];
@@ -19,7 +57,15 @@ function isActive(pathname: string, item: NavItem) {
   return (item.children ?? []).some((child) => matches(child.href));
 }
 
-function Dropdown({ item, active }: { item: NavItem; active: boolean }) {
+function Dropdown({
+  item,
+  active,
+  overlay,
+}: {
+  item: NavItem;
+  active: boolean;
+  overlay: boolean;
+}) {
   const [open, setOpen] = React.useState(false);
   const closeTimer = React.useRef<ReturnType<typeof setTimeout>>();
 
@@ -43,8 +89,14 @@ function Dropdown({ item, active }: { item: NavItem; active: boolean }) {
         href={item.href}
         aria-expanded={open}
         className={cn(
-          "inline-flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium transition-colors",
-          active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+          "inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition-colors",
+          overlay
+            ? active
+              ? "text-on-image"
+              : "text-on-image/70 hover:text-on-image"
+            : active
+              ? "text-foreground"
+              : "text-muted-foreground hover:text-foreground",
         )}
       >
         {item.label}
@@ -53,8 +105,8 @@ function Dropdown({ item, active }: { item: NavItem; active: boolean }) {
         />
       </Link>
       {open ? (
-        <div className="absolute left-0 top-full z-50 w-[24rem] pt-2">
-          <div className="overflow-hidden rounded-xl border border-border bg-card shadow-lg">
+        <div className="absolute left-0 top-full z-50 w-[24rem] pt-3">
+          <div className="overflow-hidden rounded-2xl bg-card shadow-xl ring-1 ring-border">
             {item.children?.map((child) => (
               <Link
                 key={child.href}
@@ -78,15 +130,25 @@ function Dropdown({ item, active }: { item: NavItem; active: boolean }) {
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
+  const overlayScroll = useOverlayHeader();
+  /* An open mobile sheet needs a real background even over a photograph. */
+  const overlay = overlayScroll && !open;
 
   React.useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
+    <header
+      className={cn(
+        "sticky top-0 z-50 transition-colors duration-300",
+        overlay
+          ? "bg-transparent text-on-image"
+          : "border-b border-border/60 bg-background/80 backdrop-blur-md",
+      )}
+    >
       <div className="container flex h-16 items-center justify-between gap-4">
-        <Brand />
+        <Brand onImage={overlay} />
 
         <nav className="hidden flex-none items-center gap-0.5 lg:flex">
           {nav.map((item) =>
@@ -95,16 +157,21 @@ export function SiteHeader() {
                 key={item.label}
                 item={item}
                 active={isActive(pathname, item)}
+                overlay={overlay}
               />
             ) : (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                  isActive(pathname, item)
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground",
+                  "whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium transition-colors",
+                  overlay
+                    ? isActive(pathname, item)
+                      ? "text-on-image"
+                      : "text-on-image/70 hover:text-on-image"
+                    : isActive(pathname, item)
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 {item.label}
@@ -114,20 +181,30 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden flex-none items-center gap-2 lg:flex">
-          <ThemeToggle />
-          <Button href="/contact" size="sm" className="whitespace-nowrap">
+          <ThemeToggle onImage={overlay} />
+          <Button
+            href="/contact"
+            size="sm"
+            variant={overlay ? "light" : "primary"}
+            className="whitespace-nowrap"
+          >
             Talk to us
           </Button>
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
-          <ThemeToggle />
+          <ThemeToggle onImage={overlay} />
           <button
             type="button"
             aria-label="Toggle menu"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-muted-foreground"
+            className={cn(
+              "inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors",
+              overlay
+                ? "glass text-on-image"
+                : "ring-1 ring-border text-muted-foreground",
+            )}
           >
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>

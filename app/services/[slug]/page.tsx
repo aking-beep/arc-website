@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
-import { PageHero } from "@/components/page-hero";
+import { PhotoChip, PhotoHero } from "@/components/ui/photo";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { Panel, PanelLabel } from "@/components/diagram";
@@ -37,7 +37,14 @@ export default function ServiceAreaPage({ params }: Params) {
 
   return (
     <>
-      <PageHero kicker={area.verb} title={area.heading} lead={area.body} />
+      <PhotoHero
+        src={area.image.src}
+        alt={area.image.alt}
+        eyebrow={<PhotoChip>{area.verb}</PhotoChip>}
+        title={area.heading}
+        lead={area.summary}
+        height="short"
+      />
 
       {/* The symptoms come before the offer, so a visitor can confirm this is
           their page before reading what we sell. */}
@@ -47,22 +54,23 @@ export default function ServiceAreaPage({ params }: Params) {
             <SectionHeading
               kicker="Sound familiar?"
               title="You are probably here because of one of these."
+              lead={area.body}
             />
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
               If more than two apply, the problem is usually further upstream
               than it looks, and the first conversation is about finding where.
             </p>
           </div>
-          <ul className="grid gap-px self-start overflow-hidden rounded-xl border border-border bg-border">
+          <Card className="divide-y divide-border/60 self-start overflow-hidden shadow-md">
             {area.symptoms.map((symptom) => (
-              <li
+              <p
                 key={symptom}
-                className="bg-card px-5 py-4 text-base leading-relaxed text-muted-foreground"
+                className="px-6 py-4 text-base leading-relaxed text-muted-foreground"
               >
                 {symptom}
-              </li>
+              </p>
             ))}
-          </ul>
+          </Card>
         </div>
       </Section>
 

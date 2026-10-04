@@ -1,6 +1,11 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+/**
+ * A card is separated from the page by elevation and a warm surface, not by a
+ * 1px outline. The hairline border survives only to hold the edge in dark mode,
+ * where shadow alone is invisible.
+ */
 export function Card({
   className,
   ...props
@@ -8,7 +13,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-lg border border-border bg-card text-card-foreground",
+        "rounded-2xl bg-card text-card-foreground shadow-sm ring-1 ring-border/70 dark:ring-border",
         className,
       )}
       {...props}

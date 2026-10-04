@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { Container, Section, SectionHeading } from "@/components/ui/section";
+import { Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { PhotoCard, PhotoChip, PhotoHero } from "@/components/ui/photo";
 import { Icon } from "@/components/icon";
 import { CTA } from "@/components/cta";
 import { caseStudies, site } from "@/lib/content";
@@ -12,51 +13,43 @@ import { playbookProduct } from "@/lib/playbook";
 export default function HomePage() {
   return (
     <>
-      <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 grid-bg opacity-70" />
-        <Container className="relative py-24 sm:py-32">
-          <div className="max-w-3xl animate-fade-up">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/60 px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-              {homeHero.kicker}
-            </div>
-            <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
-              {homeHero.title}
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
-              {homeHero.lead}
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href={homeHero.primary.href} size="lg">
-                {homeHero.primary.label}
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-              <Button href={homeHero.secondary.href} variant="outline" size="lg">
-                {homeHero.secondary.label}
-              </Button>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <PhotoHero
+        src={homeHero.image.src}
+        alt={homeHero.image.alt}
+        eyebrow={<PhotoChip>{homeHero.kicker}</PhotoChip>}
+        title={homeHero.title}
+        lead={homeHero.lead}
+        actions={
+          <>
+            <Button href={homeHero.primary.href} variant="light" size="lg">
+              {homeHero.primary.label}
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+            <Button href={homeHero.secondary.href} variant="glass" size="lg">
+              {homeHero.secondary.label}
+            </Button>
+          </>
+        }
+      />
 
       {/* Before anything about ARC. A visitor should find their own week in
           this list, which is the only reason they will read the next section. */}
-      <Section className="bg-muted/30">
+      <Section className="bg-brand-subtle/60">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] lg:gap-16">
-          <h2 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+          <h2 className="text-[2rem] font-semibold leading-[1.08] tracking-display text-balance sm:text-[2.75rem]">
             {homeSymptoms.title}
           </h2>
           <div>
-            <ul className="grid gap-px overflow-hidden rounded-xl border border-border bg-border">
+            <Card className="divide-y divide-border/60 overflow-hidden shadow-md">
               {homeSymptoms.items.map((item) => (
-                <li
+                <p
                   key={item}
-                  className="bg-card px-5 py-4 text-base leading-relaxed text-muted-foreground"
+                  className="px-6 py-4 text-base leading-relaxed text-muted-foreground"
                 >
                   {item}
-                </li>
+                </p>
               ))}
-            </ul>
+            </Card>
             <p className="mt-6 text-lg font-medium">{homeSymptoms.close}</p>
           </div>
         </div>
@@ -68,52 +61,41 @@ export default function HomePage() {
           title="We help with four things."
           lead="Each one starts from a situation rather than a discipline, because the discipline is our problem to work out, not yours."
         />
-        <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border">
+        {/* Each area is a picture of the kind of place the work happens in.
+            The detail lives on the area's own page; a visitor choosing between
+            four things needs to recognise one, not read all four. */}
+        <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {serviceAreas.map((area, index) => (
-            <div
+            <Link
               key={area.slug}
-              className="grid gap-6 bg-card p-6 sm:p-8 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-12"
+              href={`/services/${area.slug}`}
+              className="group block"
             >
-              <div>
-                <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-foreground">
-                    <Icon name={area.icon} className="h-5 w-5" />
-                  </span>
-                  <span className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                    {String(index + 1).padStart(2, "0")} · {area.verb}
-                  </span>
-                </div>
-                <h3 className="mt-4 text-2xl font-semibold tracking-tight text-balance">
+              <PhotoCard
+                src={area.image.src}
+                alt={area.image.alt}
+                sizes="(min-width: 640px) 50vw, 100vw"
+                chips={
+                  <PhotoChip>
+                    <Icon name={area.icon} className="h-3.5 w-3.5" />
+                    <span className="font-mono tracking-[0.14em]">
+                      {String(index + 1).padStart(2, "0")} · {area.verb}
+                    </span>
+                  </PhotoChip>
+                }
+              >
+                <h3 className="text-2xl font-semibold leading-tight tracking-display text-balance sm:text-[1.75rem]">
                   {area.heading}
                 </h3>
-              </div>
-              <div>
-                <p className="text-base leading-relaxed text-muted-foreground">
-                  {area.body}
+                <p className="mt-2.5 max-w-sm text-sm leading-relaxed text-on-image/75">
+                  {area.summary}
                 </p>
-                <ul className="mt-5 grid gap-2 sm:grid-cols-2">
-                  {area.symptoms.slice(0, 4).map((symptom) => (
-                    <li
-                      key={symptom}
-                      className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground"
-                    >
-                      <span
-                        aria-hidden
-                        className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-brand/60"
-                      />
-                      {symptom}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href={`/services/${area.slug}`}
-                  className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
-                >
+                <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium transition-all group-hover:gap-3">
                   {area.linkLabel}
                   <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
+                </span>
+              </PhotoCard>
+            </Link>
           ))}
         </div>
       </Section>
@@ -138,15 +120,15 @@ export default function HomePage() {
         <div className="mt-12 grid gap-5 lg:grid-cols-2">
           {caseStudies.slice(0, 4).map((study) => (
             <Link key={study.slug} href={`/work/${study.slug}`} className="group block h-full">
-              <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
-                <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+              <Card className="flex h-full flex-col p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                <p className="font-mono text-[11px] uppercase tracking-wider text-brand">
                   {study.industry}
                 </p>
-                <h3 className="mt-3 flex items-start gap-1.5 text-lg font-semibold leading-snug tracking-tight">
+                <h3 className="mt-3 flex items-start gap-1.5 text-xl font-semibold leading-snug tracking-tight">
                   {study.title}
                   <ArrowUpRight className="mt-1 h-4 w-4 flex-none text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </h3>
-                <dl className="mt-5 flex flex-1 flex-wrap items-end gap-x-8 gap-y-4 border-t border-border/60 pt-5">
+                <dl className="mt-6 flex flex-1 flex-wrap items-end gap-x-8 gap-y-4 border-t border-border/60 pt-6">
                   {study.outcomes.slice(0, 3).map((outcome) => (
                     <div key={outcome.label}>
                       <dt className="sr-only">{outcome.label}</dt>
@@ -183,8 +165,8 @@ export default function HomePage() {
               </Button>
             </div>
           </div>
-          <Card className="p-6">
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+          <Card className="p-7 shadow-md">
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand">
               Where we have come from
             </p>
             <dl className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-1">

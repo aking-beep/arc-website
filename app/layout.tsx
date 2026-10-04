@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -7,9 +7,13 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { site } from "@/lib/content";
 
-const sans = IBM_Plex_Sans({
+/*
+ * IBM Plex Sans is a developer-tooling typeface and reads as one. Instrument
+ * Sans is slightly narrower with a taller x-height, so display sizes carry
+ * weight without needing to be set enormous.
+ */
+const sans = Instrument_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
   display: "swap",
 });

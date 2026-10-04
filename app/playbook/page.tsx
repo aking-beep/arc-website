@@ -59,7 +59,7 @@ export default function PlaybookPage() {
 
       {/* 1 · Hero ------------------------------------------------------- */}
       <section className="relative overflow-hidden border-b border-border/60">
-        <div className="pointer-events-none absolute inset-0 grid-bg opacity-60" />
+        <div className="pointer-events-none absolute inset-0 bloom opacity-70" aria-hidden />
         <Container className="relative py-20 sm:py-24">
           <div className="grid gap-12 lg:grid-cols-[1.15fr_1fr] lg:items-start">
             <div className="animate-fade-up">
