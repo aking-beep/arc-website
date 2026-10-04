@@ -40,7 +40,7 @@ export default function AboutPage() {
             />
           </div>
           <div className="space-y-6">
-            <div className="rounded-xl border border-border bg-card p-6 sm:p-8">
+            <div className="rounded-2xl bg-card shadow-sm ring-1 ring-border/70 dark:ring-border p-6 sm:p-8">
               <p className="text-base leading-relaxed text-muted-foreground">
                 {site.team.bio}
               </p>
@@ -48,7 +48,7 @@ export default function AboutPage() {
                 {site.team.scope.map((item) => (
                   <div
                     key={item.label}
-                    className="rounded-lg border border-border bg-background/60 px-4 py-3"
+                    className="rounded-xl bg-background/70 ring-1 ring-border/70 dark:ring-border px-4 py-3"
                   >
                     <div className="text-lg font-semibold tracking-tight">
                       {item.metric}
@@ -70,7 +70,7 @@ export default function AboutPage() {
               {site.team.highlights.map((h) => (
                 <li
                   key={h}
-                  className="rounded-lg border border-border bg-background/60 px-4 py-3 text-sm leading-relaxed text-muted-foreground"
+                  className="rounded-xl bg-background/70 ring-1 ring-border/70 dark:ring-border px-4 py-3 text-sm leading-relaxed text-muted-foreground"
                 >
                   {h}
                 </li>
@@ -88,7 +88,7 @@ export default function AboutPage() {
         />
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {digitalTransformation.map((item) => (
-            <div key={item.name} className="rounded-lg border border-border bg-card p-5">
+            <div key={item.name} className="rounded-xl bg-card shadow-xs ring-1 ring-border/70 dark:ring-border p-5">
               <h3 className="text-sm font-semibold">{item.name}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 {item.text}

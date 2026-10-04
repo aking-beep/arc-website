@@ -67,7 +67,7 @@ export default function AiFitTeamsPage() {
           title="Technology readiness and organizational readiness fail differently."
           lead="A sound architecture still dies if nobody owns the workflow, the data access takes four months, or the people expected to run it were never asked."
         />
-        <dl className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+        <dl className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-border/60 shadow-sm ring-1 ring-border/60 dark:ring-border sm:grid-cols-2 lg:grid-cols-4">
           {dimensions.map((d) => (
             <div key={d.name} className="bg-card p-6 sm:p-8">
               <dt className="text-lg font-semibold tracking-tight">{d.name}</dt>

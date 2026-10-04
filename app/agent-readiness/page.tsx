@@ -151,7 +151,7 @@ export default function AgentReadinessPage() {
         <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {tools.map((tool) => (
             <Link key={tool.slug} href={`/labs/${tool.slug}`} className="group block h-full">
-              <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
+              <Card className="flex h-full flex-col p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <h3 className="text-base font-semibold">{tool.name}</h3>
                   <MaturityBadge maturity={tool.maturity} />

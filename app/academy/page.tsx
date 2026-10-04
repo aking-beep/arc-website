@@ -35,7 +35,7 @@ export default function AcademyPage() {
               href={`/academy/${a.slug}`}
               className="group block h-full"
             >
-              <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
+              <Card className="flex h-full flex-col p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                 <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                   Workshop
                 </span>

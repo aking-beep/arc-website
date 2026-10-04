@@ -73,7 +73,7 @@ export default function PlatformPage() {
               title="ARC and ARK are not the same thing."
             />
             <dl className="mt-10 grid gap-6">
-              <div className="rounded-xl border border-border bg-card p-6">
+              <div className="rounded-2xl bg-card shadow-sm ring-1 ring-border/70 dark:ring-border p-6">
                 <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                   ARC Transformation Group
                 </dt>
@@ -124,7 +124,7 @@ export default function PlatformPage() {
           {executionGap.failures.map((failure) => (
             <li
               key={failure}
-              className="rounded-lg border border-border bg-card p-5 text-base leading-relaxed text-muted-foreground"
+              className="rounded-xl bg-card shadow-xs ring-1 ring-border/70 dark:ring-border p-5 text-base leading-relaxed text-muted-foreground"
             >
               {failure}
             </li>
@@ -161,8 +161,8 @@ export default function PlatformPage() {
               <Card
                 className={
                   p.flagship
-                    ? "flex h-full flex-col p-6 ring-1 ring-brand/20 transition-all hover:border-foreground/20 hover:shadow-sm sm:p-8"
-                    : "flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm"
+                    ? "flex h-full flex-col p-6 ring-1 ring-brand/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:p-8"
+                    : "flex h-full flex-col p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                 }
               >
                 <div className="flex flex-wrap items-center gap-3">
@@ -240,7 +240,7 @@ export default function PlatformPage() {
               </Button>
             </div>
           </div>
-          <dl className="grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2">
+          <dl className="grid gap-px overflow-hidden rounded-2xl bg-border/60 shadow-sm ring-1 ring-border/60 dark:ring-border sm:grid-cols-2">
             {operatingContract.needs.map((need) => (
               <div key={need.name} className="bg-card p-5">
                 <dt className="text-sm font-semibold">{need.name}</dt>

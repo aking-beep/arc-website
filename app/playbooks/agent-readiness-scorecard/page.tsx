@@ -40,7 +40,7 @@ export default function ScorecardPage() {
           title="What the score means."
           lead="The middle band is the one to watch. Enough capability to put agents into production, not enough evidence to know what they did."
         />
-        <ol className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-border/60 shadow-sm ring-1 ring-border/60 dark:ring-border sm:grid-cols-2 lg:grid-cols-4">
           {scorecardBands.map((band) => (
             <li key={band.label} className="bg-card p-6">
               <span className="font-mono text-xs text-muted-foreground">

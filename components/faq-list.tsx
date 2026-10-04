@@ -10,7 +10,7 @@ export function FaqList({
   items: { q: string; a: string }[];
 }) {
   return (
-    <div className="divide-y divide-border rounded-xl border border-border bg-card">
+    <div className="divide-y divide-border rounded-2xl bg-card shadow-sm ring-1 ring-border/70 dark:ring-border">
       {items.map((item) => (
         <FaqItem key={item.q} question={item.q} answer={item.a} />
       ))}

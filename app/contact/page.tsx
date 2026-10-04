@@ -94,7 +94,7 @@ export default function ContactPage({
                   text: "No marketing list, no drip sequence, no deck sent afterwards that restates what you already told us.",
                 },
               ].map((item) => (
-                <div key={item.heading} className="rounded-lg border border-border bg-card p-5">
+                <div key={item.heading} className="rounded-xl bg-card shadow-xs ring-1 ring-border/70 dark:ring-border p-5">
                   <PanelLabel>{item.heading}</PanelLabel>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                     {item.text}

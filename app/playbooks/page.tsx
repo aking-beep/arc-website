@@ -30,7 +30,7 @@ export default function PlaybooksPage() {
       {featured ? (
         <Section>
           <Link href={playbookHref(featured)} className="group block">
-            <Card className="p-8 ring-1 ring-brand/20 transition-all hover:border-foreground/20 hover:shadow-sm sm:p-12">
+            <Card className="p-8 ring-1 ring-brand/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:p-12">
               <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
                 <div>
                   <div className="flex flex-wrap items-center gap-3">
@@ -69,7 +69,7 @@ export default function PlaybooksPage() {
         <div className="mt-12 grid gap-5 lg:grid-cols-3">
           {rest.map((p) => (
             <Link key={p.slug} href={playbookHref(p)} className="group block h-full">
-              <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
+              <Card className="flex h-full flex-col p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                 <div className="flex items-center justify-between gap-3">
                   <PanelLabel>{p.kind}</PanelLabel>
                   <span className="font-mono text-xs font-medium">{p.price}</span>
@@ -123,7 +123,7 @@ export default function PlaybooksPage() {
         <div className="mt-12 grid gap-5 lg:grid-cols-3">
           {research.slice(0, 3).map((a) => (
             <Link key={a.slug} href={`/research/${a.slug}`} className="group block h-full">
-              <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
+              <Card className="flex h-full flex-col p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                 <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
                   <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
                     {a.topic}
@@ -161,7 +161,7 @@ export default function PlaybooksPage() {
         <div className="mt-12 grid gap-5 lg:grid-cols-3">
           {academy.map((w) => (
             <Link key={w.slug} href={`/academy/${w.slug}`} className="group block h-full">
-              <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
+              <Card className="flex h-full flex-col p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                 <h3 className="flex items-center gap-1.5 text-base font-semibold">
                   {w.name}
                   <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

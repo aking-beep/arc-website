@@ -135,7 +135,7 @@ export function ProductVisualPanel({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-xl border border-border bg-card shadow-sm animate-fade-up",
+        "overflow-hidden rounded-2xl bg-card shadow-sm ring-1 ring-border/70 dark:ring-border shadow-sm animate-fade-up",
         className,
       )}
     >

@@ -97,7 +97,7 @@ export default function AdvisoryPage() {
                     href={`/advisory/${engagement.slug}`}
                     className="group block h-full"
                   >
-                    <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
+                    <Card className="flex h-full flex-col p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                       <div className="flex flex-wrap items-center gap-3">
                         <span className="rounded-full border border-border bg-muted px-2 py-0.5 text-xs font-medium">
                           {engagement.focus}

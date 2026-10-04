@@ -153,7 +153,7 @@ export default function DevelopersPage() {
           title="Where should a unit of AI work execute?"
           lead="Local, edge and cloud are usually argued as an ideology. They are a routing decision, and the inputs to it are boring and measurable."
         />
-        <dl className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
+        <dl className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-border/60 shadow-sm ring-1 ring-border/60 dark:ring-border sm:grid-cols-2 lg:grid-cols-5">
           {runtimeAxes.map((axis) => (
             <div key={axis.name} className="bg-card p-6">
               <dt className="text-sm font-semibold">{axis.name}</dt>

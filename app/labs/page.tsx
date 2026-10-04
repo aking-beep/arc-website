@@ -80,7 +80,7 @@ export default function LabsPage() {
           lead="Labs is where work happens before it is a product. Presenting an experiment as infrastructure wastes someone's week, so each project says which it is."
         />
         <dl
-          className={`mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border ${keyColumns}`}
+          className={`mt-12 grid gap-px overflow-hidden rounded-2xl bg-border/60 shadow-sm ring-1 ring-border/60 dark:ring-border ${keyColumns}`}
         >
           {counts.map((k) => (
             <div key={k.maturity} className="bg-card p-6">

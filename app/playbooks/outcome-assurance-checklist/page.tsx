@@ -39,7 +39,7 @@ export default function AssuranceChecklistPage() {
           {assuranceChecklist.map((step) => (
             <li
               key={step.step}
-              className="grid gap-px overflow-hidden rounded-xl border border-border bg-border lg:grid-cols-[1.3fr_1fr]"
+              className="grid gap-px overflow-hidden rounded-2xl bg-border/60 shadow-sm ring-1 ring-border/60 dark:ring-border lg:grid-cols-[1.3fr_1fr]"
             >
               <div className="bg-card p-6 sm:p-8">
                 <span className="font-mono text-xs text-muted-foreground">
@@ -89,7 +89,7 @@ export default function AssuranceChecklistPage() {
           {executionGap.failures.map((failure) => (
             <li
               key={failure}
-              className="rounded-lg border border-border bg-card p-5 text-base leading-relaxed text-muted-foreground"
+              className="rounded-xl bg-card shadow-xs ring-1 ring-border/70 dark:ring-border p-5 text-base leading-relaxed text-muted-foreground"
             >
               {failure}
             </li>

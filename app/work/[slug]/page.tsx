@@ -118,7 +118,7 @@ export default function CaseStudyPage({
           <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
             05 · Evidence
           </p>
-          <div className="mt-4 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-3">
+          <div className="mt-4 grid gap-px overflow-hidden rounded-2xl bg-border/60 shadow-sm ring-1 ring-border/60 dark:ring-border sm:grid-cols-3">
             {study.outcomes.map((o) => (
               <div key={o.label} className="bg-card p-6">
                 <div className="text-3xl font-semibold tracking-tight">

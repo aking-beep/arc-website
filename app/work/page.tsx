@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
-import { Section, SectionHeading } from "@/components/ui/section";
+import { Section } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { CTA } from "@/components/cta";
 import { caseStudies } from "@/lib/content";
@@ -23,19 +23,21 @@ export default function WorkPage() {
       />
 
       <Section>
-        <SectionHeading
-          kicker="Evidence"
-          title="Four pieces of work."
-          lead="Three from Fortune 100/500 programs our team has delivered. One from ARC Advisory. Client names withheld where required."
-        />
-        <div className="mt-12 grid gap-5">
+        {/* The hero already says what these are and how they read. A second
+            heading restating it was pure page furniture. */}
+        <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
+          Three from Fortune 100 and Fortune 500 programs our team has
+          delivered. One from ARC Advisory. Client names are withheld where
+          required.
+        </p>
+        <div className="mt-10 grid gap-5">
           {caseStudies.map((study) => (
             <Link
               key={study.slug}
               href={`/work/${study.slug}`}
               className="group block"
             >
-              <Card className="flex flex-col gap-4 p-6 transition-all hover:border-foreground/20 hover:shadow-sm sm:flex-row sm:items-center sm:justify-between">
+              <Card className="flex flex-col gap-4 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:flex-row sm:items-center sm:justify-between">
                 <div className="max-w-2xl">
                   <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
                     <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">

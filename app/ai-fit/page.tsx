@@ -58,7 +58,7 @@ export default function AiFitPage() {
               The most expensive AI decision is the one nobody scored.
             </Takeaway>
           </div>
-          <dl className="grid gap-px overflow-hidden rounded-xl border border-border bg-border">
+          <dl className="grid gap-px overflow-hidden rounded-2xl bg-border/60 shadow-sm ring-1 ring-border/60 dark:ring-border">
             {decisions.map((d) => (
               <div key={d.question} className="bg-card p-6">
                 <dt className="text-base font-semibold">{d.question}</dt>

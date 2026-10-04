@@ -140,7 +140,7 @@ export default function PlaybookPage() {
           lead="One download. The Playbook itself, the worksheets you fill in while you build, and three libraries printed in full and attached to the module where you would reach for them."
         />
 
-        <div className="mt-12 overflow-hidden rounded-lg border border-border bg-card">
+        <div className="mt-12 overflow-hidden rounded-xl bg-card shadow-xs ring-1 ring-border/70 dark:ring-border">
           <table className="w-full text-left text-sm">
             <thead className="border-b border-border bg-muted/50">
               <tr>
@@ -208,7 +208,7 @@ export default function PlaybookPage() {
           ))}
         </ol>
 
-        <div className="mt-12 overflow-hidden rounded-lg border border-border bg-card">
+        <div className="mt-12 overflow-hidden rounded-xl bg-card shadow-xs ring-1 ring-border/70 dark:ring-border">
           <table className="w-full text-left text-sm">
             <thead className="border-b border-border bg-muted/50">
               <tr>

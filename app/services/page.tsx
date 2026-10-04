@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
+import { Photo, PhotoChip } from "@/components/ui/photo";
 import { Icon } from "@/components/icon";
 import { CTA } from "@/components/cta";
 import { serviceAreas } from "@/lib/services";
@@ -32,37 +33,53 @@ export default function ServicesPage() {
               href={`/services/${area.slug}`}
               className="group block h-full"
             >
-              <Card className="flex h-full flex-col p-7 transition-all hover:border-foreground/20 hover:shadow-sm sm:p-8">
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-foreground">
-                  <Icon name={area.icon} className="h-5 w-5" />
-                </span>
-                <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                  {area.verb}
-                </p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-balance">
-                  {area.heading}
-                </h2>
-                <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-                  {area.body}
-                </p>
-                <ul className="mt-6 grid flex-1 gap-2 border-t border-border/60 pt-5">
-                  {area.symptoms.slice(0, 3).map((symptom) => (
-                    <li
-                      key={symptom}
-                      className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground"
-                    >
-                      <span
-                        aria-hidden
-                        className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-brand/60"
-                      />
-                      {symptom}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all group-hover:gap-2.5">
-                  {area.linkLabel}
-                  <ArrowRight className="h-4 w-4" />
-                </p>
+              {/* The picture leads, the detail follows underneath it. The
+                  homepage uses full-bleed photo tiles; this page has more to
+                  say per card, so the image takes the top third instead. */}
+              <Card className="flex h-full flex-col overflow-hidden p-0 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                <div className="relative aspect-[16/9]">
+                  <Photo
+                    src={area.image.src}
+                    alt={area.image.alt}
+                    scrim="even"
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute bottom-4 left-5">
+                    <PhotoChip>
+                      <Icon name={area.icon} className="h-3.5 w-3.5" />
+                      <span className="font-mono tracking-[0.14em]">
+                        {area.verb.toUpperCase()}
+                      </span>
+                    </PhotoChip>
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col p-7 sm:p-8">
+                  <h2 className="text-2xl font-semibold leading-tight tracking-display text-balance">
+                    {area.heading}
+                  </h2>
+                  <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+                    {area.body}
+                  </p>
+                  <ul className="mt-6 grid flex-1 gap-2 border-t border-border/60 pt-5">
+                    {area.symptoms.slice(0, 3).map((symptom) => (
+                      <li
+                        key={symptom}
+                        className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground"
+                      >
+                        <span
+                          aria-hidden
+                          className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-brand/60"
+                        />
+                        {symptom}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all group-hover:gap-2.5">
+                    {area.linkLabel}
+                    <ArrowRight className="h-4 w-4" />
+                  </p>
+                </div>
               </Card>
             </Link>
           ))}

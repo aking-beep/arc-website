@@ -116,7 +116,7 @@ export default function ServiceAreaPage({ params }: Params) {
                 href={`/advisory/${engagement.slug}`}
                 className="group block h-full"
               >
-                <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
+                <Card className="flex h-full flex-col p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                   <div className="flex items-center justify-between gap-3">
                     <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
                       {engagement.focus}
@@ -150,7 +150,7 @@ export default function ServiceAreaPage({ params }: Params) {
               href={`/services/${other.slug}`}
               className="group block h-full"
             >
-              <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
+              <Card className="flex h-full flex-col p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                 <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                   {other.verb}
                 </p>

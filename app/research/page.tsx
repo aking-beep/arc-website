@@ -47,7 +47,7 @@ export default function ResearchPage() {
               what we build.
             </Takeaway>
           </div>
-          <div className="grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2">
+          <div className="grid gap-px overflow-hidden rounded-2xl bg-border/60 shadow-sm ring-1 ring-border/60 dark:ring-border sm:grid-cols-2">
             {[
               { metric: String(research.length), label: "Published briefs" },
               { metric: String(sourceCount), label: "Cited sources" },
@@ -87,7 +87,7 @@ export default function ResearchPage() {
         <div className="mt-12 grid gap-5">
           {research.map((a) => (
             <Link key={a.slug} href={`/research/${a.slug}`} className="group block">
-              <Card className="flex flex-col gap-4 p-6 transition-all hover:border-foreground/20 hover:shadow-sm sm:flex-row sm:items-center sm:justify-between">
+              <Card className="flex flex-col gap-4 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:flex-row sm:items-center sm:justify-between">
                 <div className="max-w-2xl">
                   <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
                     <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">

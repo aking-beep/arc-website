@@ -87,7 +87,7 @@ export function ArkProductPage({
             title="Three layers, assessed separately."
             lead="A system can have a clean interface and no way to say who did what. These fail independently, so they are scored independently."
           />
-          <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border lg:grid-cols-3">
+          <div className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-border/60 shadow-sm ring-1 ring-border/60 dark:ring-border lg:grid-cols-3">
             {product.evaluates.map((group) => (
               <div key={group.group} className="bg-card p-6 sm:p-8">
                 <PanelLabel>{group.group}</PanelLabel>
@@ -118,7 +118,7 @@ export function ArkProductPage({
             kicker="What you get"
             title="What the product produces."
           />
-          <dl className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          <dl className="mt-12 grid gap-px overflow-hidden rounded-2xl bg-border/60 shadow-sm ring-1 ring-border/60 dark:ring-border sm:grid-cols-2 lg:grid-cols-3">
             {product.capabilities.map((c) => (
               <div key={c.name} className="bg-card p-6">
                 <dt className="text-sm font-semibold">{c.name}</dt>

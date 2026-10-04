@@ -43,7 +43,7 @@ export default function ArkControlPage() {
                 {executionGap.failures.map((failure) => (
                   <li
                     key={failure}
-                    className="rounded-lg border border-border bg-card p-5 text-base leading-relaxed text-muted-foreground"
+                    className="rounded-xl bg-card shadow-xs ring-1 ring-border/70 dark:ring-border p-5 text-base leading-relaxed text-muted-foreground"
                   >
                     {failure}
                   </li>
@@ -117,7 +117,7 @@ export default function ArkControlPage() {
           ].map((stage, i) => (
             <div
               key={stage.name}
-              className="rounded-lg border border-border bg-card p-6"
+              className="rounded-xl bg-card shadow-xs ring-1 ring-border/70 dark:ring-border p-6"
             >
               <span className="font-mono text-xs text-muted-foreground">
                 {String(i + 1).padStart(2, "0")}

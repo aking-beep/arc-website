@@ -133,7 +133,7 @@ export function SplitClaim({
   className?: string;
 }) {
   return (
-    <div className={cn("grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-2", className)}>
+    <div className={cn("grid gap-px overflow-hidden rounded-2xl bg-border/60 shadow-sm ring-1 ring-border/60 dark:ring-border md:grid-cols-2", className)}>
       <div className="bg-card p-6 sm:p-8">
         <PanelLabel>{leftLabel}</PanelLabel>
         <dl className="mt-6 grid gap-4">
