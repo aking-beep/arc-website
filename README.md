@@ -118,7 +118,8 @@ app/
   work/[slug]/page.tsx  Reusable CASE STUDY template
 components/
   ui/                   Design-system primitives (button, card, badge, section, container)
-  site-header.tsx       Navigation, with dropdowns driven by nav[].children
+  ui/photo.tsx          Photography: hero, card, chip, scrim handling
+  site-header.tsx       Navigation; floats transparent over a photo hero
   site-footer.tsx       Shared footer + ecosystem map
   product-card.tsx      Reusable product/service card
   theme-provider.tsx    next-themes wrapper
@@ -130,8 +131,11 @@ lib/
   services.ts           The four buyer problems and the homepage copy
   research.ts           Cited research briefs
   utils.ts              cn() helper
+public/
+  images/               The photographs. One shoot, one grade.
 docs/
   WRITING.md            The copy standard every page has to pass
+  DESIGN.md             The visual standard, and what made it generic before
 ```
 
 ## Keeping the site current
@@ -145,8 +149,11 @@ protocol, price, or regulation changes, fix the affected product copy in the
 same pass — stale product claims cost more trust than a thin signal list.
 
 Every page has to pass the copy standard in [`docs/WRITING.md`](docs/WRITING.md)
-before it ships. The short version: name the buyer's problem before naming the
-discipline, and do not announce a quality the page can demonstrate instead.
+and the visual standard in [`docs/DESIGN.md`](docs/DESIGN.md) before it ships.
+The short version of each: name the buyer's problem before naming the discipline
+and do not announce a quality the page can demonstrate instead; separate
+surfaces by elevation rather than by outline, and never reach for a framework's
+default palette, radii or graph-paper hero.
 
 The top level of the site offers four choices, not nine. `lib/services.ts` holds
 them; scoped engagements live under `/advisory/<slug>` and are grouped by the
