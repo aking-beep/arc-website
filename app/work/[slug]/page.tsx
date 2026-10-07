@@ -20,13 +20,6 @@ export function generateMetadata({
   return { title: `${study.title} · Work`, description: study.summary };
 }
 
-const steps = [
-  { key: "problem", label: "Problem" },
-  { key: "intervention", label: "Intervention" },
-  { key: "deliverable", label: "Deliverable" },
-  { key: "timeframe", label: "Timeframe" },
-] as const;
-
 export default function CaseStudyPage({
   params,
 }: {
@@ -51,6 +44,7 @@ export default function CaseStudyPage({
               {study.kind === "career" ? "Prior delivery" : "ARC Advisory"}
             </span>
             <span>{study.industry}</span>
+            <span>· {study.timeframe}</span>
           </div>
           <p className="mt-4 text-sm font-medium uppercase tracking-widest text-muted-foreground">
             {study.client}
@@ -62,46 +56,42 @@ export default function CaseStudyPage({
             {study.summary}
           </p>
         </div>
-
-        <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-3">
-          {study.outcomes.map((o) => (
-            <div key={o.label} className="bg-card p-6">
-              <div className="text-3xl font-semibold tracking-tight">
-                {o.metric}
-              </div>
-              <p className="mt-1 text-sm text-muted-foreground">{o.label}</p>
-            </div>
-          ))}
-        </div>
       </Container>
 
+      {/*
+        The order is fixed: the problem, what it was costing, what we did, what
+        changed, and only then the numbers. Leading with the numbers asks a
+        reader to care about a result before they know what was wrong.
+      */}
       <Section className="!border-t-0 !pt-0">
-        <div className="grid gap-8 lg:grid-cols-2">
-          {steps.map((step) => (
-            <div
-              key={step.key}
-              className="rounded-xl border border-border bg-card p-6"
-            >
-              <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                {step.label}
-              </p>
-              <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-                {study[step.key]}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-16 grid gap-12 lg:grid-cols-2">
+        <div className="grid gap-10 lg:grid-cols-2">
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight">The challenge</h2>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              {study.challenge}
+            <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+              01 · The problem
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              {study.problem}
             </p>
           </div>
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight">What we did</h2>
-            <ul className="mt-4 space-y-3">
+            <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+              02 · What was at stake
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              {study.stakes}
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-14 grid gap-10 lg:grid-cols-2">
+          <div>
+            <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+              03 · What we did
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              {study.intervention}
+            </p>
+            <ul className="mt-5 space-y-3">
               {study.approach.map((a) => (
                 <li key={a} className="flex items-start gap-3">
                   <span className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500">
@@ -113,6 +103,30 @@ export default function CaseStudyPage({
                 </li>
               ))}
             </ul>
+          </div>
+          <div>
+            <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+              04 · What changed
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              {study.deliverable}
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-14">
+          <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+            05 · Evidence
+          </p>
+          <div className="mt-4 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-3">
+            {study.outcomes.map((o) => (
+              <div key={o.label} className="bg-card p-6">
+                <div className="text-3xl font-semibold tracking-tight">
+                  {o.metric}
+                </div>
+                <p className="mt-1 text-sm text-muted-foreground">{o.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </Section>

@@ -7,34 +7,41 @@ import { site } from "@/lib/content";
 
 const columns: { heading: string; links: { label: string; href: string }[] }[] = [
   {
-    heading: "Products",
-    links: arkProducts.map((p) => ({ label: p.name, href: `/${p.slug}` })),
+    heading: "Services",
+    links: [
+      { label: "Modernize", href: "/services/modernize" },
+      { label: "Automate", href: "/services/automate" },
+      { label: "Build", href: "/services/build" },
+      { label: "Operate", href: "/services/operate" },
+      { label: "How we engage", href: "/advisory" },
+    ],
   },
   {
-    heading: "Developers",
+    heading: "Agent infrastructure",
     links: [
-      { label: "Platform", href: "/platform" },
-      { label: "Developers", href: "/developers" },
-      { label: "ARK Labs", href: "/labs" },
-      { label: "GitHub", href: site.github },
+      ...arkProducts.map((p) => ({ label: p.name, href: `/${p.slug}` })),
+      { label: "For developers", href: "/developers" },
     ],
   },
   {
     heading: "Resources",
     links: [
-      { label: "Playbooks", href: "/playbooks" },
+      { label: "Define · $5", href: "/playbook/define" },
+      { label: "Build · $10", href: "/playbook/build" },
+      { label: "Ship · $20", href: "/playbook/ship" },
+      { label: "Free frameworks", href: "/playbooks" },
+      { label: "Labs", href: "/labs" },
       { label: "Research", href: "/research" },
       { label: "Workshops", href: "/academy" },
-      { label: "Agent Readiness Scorecard", href: "/playbooks/agent-readiness-scorecard" },
     ],
   },
   {
     heading: "Company",
     links: [
-      { label: "Advisory", href: "/advisory" },
       { label: "About", href: "/about" },
       { label: "Work", href: "/work" },
       { label: "Contact", href: "/contact" },
+      { label: "GitHub", href: site.github },
       { label: "Privacy", href: "/privacy" },
       { label: "Terms", href: "/terms" },
     ],

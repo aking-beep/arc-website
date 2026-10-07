@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 const stageOptions = [
   "Discover: we have a hunch, not a plan yet.",
   "Align: we know the problem, need a strategy.",
-  "Deliver: ready to build and ship something real.",
+  "Deliver: ready to build and ship.",
   "Measure: already shipped, need to prove outcomes.",
   "Sustain: it works, now we need it to keep working.",
   "Honestly not sure. That's why we're reaching out.",
@@ -63,7 +63,7 @@ export function ContactForm({ topic }: { topic?: string }) {
       <div className="rounded-lg border border-border bg-muted/40 p-8 text-center">
         <h3 className="text-lg font-semibold">Thanks. Message received.</h3>
         <p className="mt-2 text-sm text-muted-foreground">
-          A real human writes back within one business day. No marketing list, no
+          A person writes back within one business day. No marketing list, no
           drip campaign.
         </p>
       </div>
@@ -136,7 +136,7 @@ export function ContactForm({ topic }: { topic?: string }) {
         {pending ? "Sending…" : "Send →"}
       </Button>
       <p className="text-center text-xs text-muted-foreground">
-        No marketing list. No drip campaign. Just a real reply from a real person.
+        No marketing list, no drip campaign. A person replies.
       </p>
     </form>
   );

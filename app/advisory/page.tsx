@@ -1,145 +1,128 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
-import { FlowChain, PanelLabel, Takeaway } from "@/components/diagram";
+import { PanelLabel } from "@/components/diagram";
 import { AlternativesTable } from "@/components/alternatives-table";
 import { FaqList } from "@/components/faq-list";
 import { CTA } from "@/components/cta";
 import {
-  advisoryCapabilities,
   advisoryEngagements,
   bestFit,
-  caseStudies,
   faqs,
   howWeEngage,
   notAFit,
-  principles,
   retainers,
-  stages,
 } from "@/lib/content";
+import { serviceAreas } from "@/lib/services";
 
 export const metadata: Metadata = {
-  title: "Advisory · Diagnose, design, deliver, scale",
+  title: "How we work · Scoped reviews, then delivery",
   description:
-    "ARC Advisory is the commercial work: scoped reviews across architecture, data, cloud, security, AI and programme structure, then delivery if the plan still needs hands on it.",
+    "Most work with ARC starts as a two-to-seven week scoped review that ends in a plan with named owners. If the plan still needs hands on it, we stay and build.",
 };
+
+/**
+ * Engagements are grouped by the service area that sends you to them, so this
+ * page reads as the mechanics behind /services rather than a second, competing
+ * list of what we sell.
+ */
+const groups = serviceAreas
+  .map((area) => ({
+    area,
+    engagements: area.engagements
+      .map((slug) => advisoryEngagements.find((e) => e.slug === slug))
+      .filter((e): e is NonNullable<typeof e> => Boolean(e)),
+  }))
+  .filter((group) => group.engagements.length > 0);
 
 export default function AdvisoryPage() {
   return (
     <>
       <PageHero
-        kicker="ARC Advisory"
-        title="Diagnose. Design. Deliver. Scale."
-        lead="This is the commercial relationship with ARC. Most work starts as a scoped review of two to seven weeks and ends in a plan with named owners. If the plan still needs hands on it, we stay and build."
-      >
-        <FlowChain
-          steps={advisoryCapabilities.map((c) => c.name)}
-          highlightLast
-        />
-      </PageHero>
+        kicker="How we work"
+        title="Start small. Find out what the problem costs before you fund the fix."
+        lead="Most work begins as a scoped review of two to seven weeks, ending in a plan with named owners and a sequence of spend. If the plan still needs hands on it, we stay and build it."
+      />
 
       <Section>
         <SectionHeading
-          kicker="Four capabilities"
-          title="What we actually do."
-          lead="Not nine services competing for attention. Four capabilities, in the order a problem moves through them."
+          kicker="Three sizes"
+          title="How engagements are shaped."
+          lead="We size the work from the problem. The call exists to find that size, which sometimes turns out to be nothing."
         />
-        <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-          {advisoryCapabilities.map((c, i) => (
-            <div key={c.id} className="bg-card p-6 sm:p-8">
+        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+          {howWeEngage.map((item, index) => (
+            <Card key={item.name} className="flex h-full flex-col p-6 sm:p-7">
               <span className="font-mono text-xs text-muted-foreground">
-                {String(i + 1).padStart(2, "0")}
+                {String(index + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-3 text-xl font-semibold tracking-tight">{c.name}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {c.text}
+              <h3 className="mt-3 text-lg font-semibold tracking-tight">
+                {item.name}
+              </h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                {item.text}
               </p>
-              <ul className="mt-5 flex flex-wrap gap-1.5 border-t border-border/60 pt-4">
-                {c.items.map((item) => (
-                  <li
-                    key={item}
-                    className="rounded-md border border-border bg-muted/50 px-2 py-0.5 font-mono text-[11px] text-muted-foreground"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </Card>
           ))}
         </div>
       </Section>
 
       <Section id="engagements" className="scroll-mt-24 bg-muted/30">
         <SectionHeading
-          kicker="How we start"
-          title="Pick the problem, not a package from a menu."
-          lead="Each review has a typical duration and a concrete deliverable. Open any of them to see whether it fits, what you receive, and what we can build afterward."
+          kicker="Scoped reviews"
+          title="The reviews, grouped by the problem they answer."
+          lead="Each one has a duration and something concrete at the end. Open any of them to see what it starts with, what you receive, and what we can build afterwards."
         />
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {advisoryEngagements.map((o, i) => (
-            <Link
-              key={o.slug}
-              href={`/advisory/${o.slug}`}
-              className={
-                o.flagship ? "group block h-full lg:col-span-3" : "group block h-full"
-              }
-            >
-              <Card
-                className={
-                  o.flagship
-                    ? "flex h-full flex-col p-6 ring-1 ring-foreground/15 transition-all hover:border-foreground/20 hover:shadow-sm"
-                    : "flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm"
-                }
-              >
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="font-mono text-sm text-muted-foreground">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="rounded-full border border-border bg-muted px-2 py-0.5 text-xs font-medium">
-                    {o.focus}
-                  </span>
-                  <span className="text-xs text-muted-foreground">{o.duration}</span>
-                  {o.flagship ? (
-                    <span className="rounded-full border border-border bg-background px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                      Flagship
-                    </span>
-                  ) : null}
-                </div>
-                <h3 className="mt-3 flex items-center gap-1.5 text-lg font-semibold tracking-tight">
-                  {o.name}
-                  <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        <div className="mt-12 grid gap-12">
+          {groups.map(({ area, engagements }) => (
+            <div key={area.slug}>
+              <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-border pb-4">
+                <h3 className="text-xl font-semibold tracking-tight">
+                  {area.heading}
                 </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                  {o.blurb}
-                </p>
-                <div className="mt-4 grid gap-3 border-t border-border/60 pt-4 sm:grid-cols-2">
-                  <div>
-                    <PanelLabel>Starts with</PanelLabel>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                      {o.startsWith}
-                    </p>
-                  </div>
-                  <div>
-                    <PanelLabel>You leave with</PanelLabel>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                      {o.youLeaveWith}
-                    </p>
-                  </div>
-                </div>
-              </Card>
-            </Link>
-          ))}
-        </div>
-        <div className="mt-10 grid gap-4 sm:grid-cols-3">
-          {howWeEngage.map((item) => (
-            <div key={item.name} className="rounded-lg border border-border bg-card p-5">
-              <h3 className="text-sm font-semibold">{item.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {item.text}
-              </p>
+                <Link
+                  href={`/services/${area.slug}`}
+                  className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {area.verb} →
+                </Link>
+              </div>
+              <div className="mt-6 grid gap-5 md:grid-cols-2">
+                {engagements.map((engagement) => (
+                  <Link
+                    key={engagement.slug}
+                    href={`/advisory/${engagement.slug}`}
+                    className="group block h-full"
+                  >
+                    <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="rounded-full border border-border bg-muted px-2 py-0.5 text-xs font-medium">
+                          {engagement.focus}
+                        </span>
+                        <span className="text-xs text-muted-foreground">
+                          {engagement.duration}
+                        </span>
+                      </div>
+                      <h4 className="mt-3 flex items-start gap-1.5 text-lg font-semibold leading-snug tracking-tight">
+                        {engagement.name}
+                        <ArrowUpRight className="mt-1 h-4 w-4 flex-none text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </h4>
+                      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                        {engagement.blurb}
+                      </p>
+                      <div className="mt-4 border-t border-border/60 pt-4">
+                        <PanelLabel>You leave with</PanelLabel>
+                        <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                          {engagement.youLeaveWith}
+                        </p>
+                      </div>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
             </div>
           ))}
         </div>
@@ -147,34 +130,9 @@ export default function AdvisoryPage() {
 
       <Section>
         <SectionHeading
-          kicker="The ARC Delivery System"
-          title="Five stages. We always name which one you are in."
-          lead="A near-term fix is not transformation. A vision slide is not next month's release. Naming the stage is what keeps those from getting mixed up in the same conversation."
-        />
-        <ol className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
-          {stages.map((s) => (
-            <li key={s.number} className="bg-card p-6">
-              <span className="font-mono text-sm text-muted-foreground">
-                {s.number}
-              </span>
-              <h3 className="mt-3 text-base font-semibold">{s.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {s.text}
-              </p>
-            </li>
-          ))}
-        </ol>
-        <Takeaway className="mt-12 max-w-3xl">
-          Every recommendation names its stage. If we cannot name it, we have not
-          thought about it hard enough yet.
-        </Takeaway>
-      </Section>
-
-      <Section className="bg-muted/30">
-        <SectionHeading
-          kicker="Ongoing engagement"
-          title="The stay-engaged layer."
-          lead="A review that lands well usually turns into ongoing work. Three-month minimum, then month-to-month with 30-day cancellation."
+          kicker="Ongoing"
+          title="When a review turns into standing work."
+          lead="Three-month minimum, then month to month with 30 days' notice."
         />
         <div className="mt-12 overflow-x-auto">
           <table className="w-full min-w-[640px] text-left text-sm">
@@ -188,14 +146,7 @@ export default function AdvisoryPage() {
             <tbody>
               {retainers.map((r) => (
                 <tr key={r.slug} className="border-b border-border/60">
-                  <td className="py-4 pr-4 align-top font-medium">
-                    {r.name}
-                    {r.flagship ? (
-                      <span className="ml-2 text-xs text-muted-foreground">
-                        · flagship
-                      </span>
-                    ) : null}
-                  </td>
+                  <td className="py-4 pr-4 align-top font-medium">{r.name}</td>
                   <td className="py-4 pr-4 align-top text-muted-foreground">
                     {r.bestFit}
                   </td>
@@ -210,82 +161,6 @@ export default function AdvisoryPage() {
       </Section>
 
       <AlternativesTable />
-
-      <Section className="bg-muted/30">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <SectionHeading
-            kicker="Work"
-            title="What shipped, and what it was worth."
-            lead="Programmes our team has delivered in Fortune 100 and Fortune 500 environments, plus ARC's own work. Where confidentiality applies, we name the scale instead of the logo."
-          />
-          <Link
-            href="/work"
-            className="inline-flex flex-none items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
-          >
-            See the work
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
-          {caseStudies.slice(0, 2).map((study) => (
-            <Link key={study.slug} href={`/work/${study.slug}`} className="group block">
-              <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
-                <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-                  <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
-                    {study.kind === "career" ? "Prior delivery" : "ARC Advisory"}
-                  </span>
-                  <span>{study.industry}</span>
-                </div>
-                <h3 className="mt-4 text-lg font-semibold tracking-tight group-hover:underline group-hover:underline-offset-4">
-                  {study.title}
-                </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                  {study.summary}
-                </p>
-                <div className="mt-6 grid grid-cols-3 gap-3 border-t border-border/60 pt-4">
-                  {study.outcomes.map((o) => (
-                    <div key={o.label}>
-                      <div className="text-lg font-semibold tracking-tight">
-                        {o.metric}
-                      </div>
-                      <p className="text-xs text-muted-foreground">{o.label}</p>
-                    </div>
-                  ))}
-                </div>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </Section>
-
-      <Section>
-        <SectionHeading
-          kicker="How we think"
-          title="The rules we hold ourselves to."
-          lead="If a recommendation cannot pass these, we do not ship it. We will usually say so before you have to."
-        />
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {principles.map((p) => (
-            <div key={p.number} className="rounded-lg border border-border bg-card p-5">
-              <span className="font-mono text-xs text-muted-foreground">
-                {p.number}
-              </span>
-              <h3 className="mt-2 text-sm font-semibold">{p.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {p.text}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <figure className="mt-12 border-l-2 border-brand pl-6">
-          <blockquote className="max-w-2xl text-xl font-medium leading-relaxed text-balance">
-            &ldquo;Selling someone a build when they haven&rsquo;t figured out the
-            problem yet is malpractice. We won&rsquo;t do it, even when the budget
-            says we could.&rdquo;
-          </blockquote>
-        </figure>
-      </Section>
 
       <Section className="bg-muted/30">
         <div className="grid gap-12 lg:grid-cols-2">
@@ -313,6 +188,13 @@ export default function AdvisoryPage() {
             </ul>
           </div>
         </div>
+        <figure className="mt-14 border-l-2 border-brand pl-6">
+          <blockquote className="max-w-2xl text-xl font-medium leading-relaxed text-balance">
+            &ldquo;Selling someone a build when they haven&rsquo;t figured out the
+            problem yet is malpractice. We won&rsquo;t do it, even when the budget
+            says we could.&rdquo;
+          </blockquote>
+        </figure>
       </Section>
 
       <Section>
@@ -327,8 +209,8 @@ export default function AdvisoryPage() {
       </Section>
 
       <CTA
-        title="Want this standard of work on your problem?"
-        lead="Most advisory work starts with a scoped review. A 30-minute call is enough to tell you whether that is the right first step, and what size of engagement the problem actually needs."
+        title="Tell us what's happening."
+        lead="A 30-minute call is enough to tell you whether a scoped review is the right first step, and what size of engagement the problem needs."
         topic="advisory"
       />
     </>

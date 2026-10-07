@@ -3,19 +3,27 @@ import {
   FlaskConical,
   Compass,
   LayoutDashboard,
+  Layers,
   LineChart,
   GraduationCap,
+  ShieldCheck,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 
-const icons: Record<string, LucideIcon> = {
+const icons = {
   Boxes,
   FlaskConical,
   Compass,
   LayoutDashboard,
+  Layers,
   LineChart,
   GraduationCap,
-};
+  ShieldCheck,
+  Sparkles,
+} satisfies Record<string, LucideIcon>;
+
+export type IconName = keyof typeof icons;
 
 export function Icon({
   name,
@@ -24,6 +32,6 @@ export function Icon({
   name: string;
   className?: string;
 }) {
-  const Cmp = icons[name] ?? Compass;
+  const Cmp = (icons as Record<string, LucideIcon>)[name] ?? Compass;
   return <Cmp className={className} aria-hidden />;
 }

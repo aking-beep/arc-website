@@ -12,8 +12,9 @@ import {
   looksLikeTransactionId,
   withinSuccessWindow,
 } from "@/lib/commerce/paddle-api";
+import { playbookSlugForPriceId } from "@/lib/commerce/config";
 import { site } from "@/lib/content";
-import { playbookIncludes, playbookProduct } from "@/lib/playbook";
+import { getPlaybookTier, playbookPublisher } from "@/lib/playbook";
 
 export const metadata: Metadata = {
   title: "Your Playbook is ready",
@@ -32,6 +33,7 @@ export default async function SuccessPage({
   // transaction to ask about, never evidence that anything was paid.
   const transactionId = searchParams._ptxn;
   const confirmed = await confirmPurchase(transactionId);
+  const tier = confirmed ? getPlaybookTier(confirmed.slug) : undefined;
 
   return (
     <Container className="py-20 sm:py-28">
@@ -40,7 +42,7 @@ export default async function SuccessPage({
           Thank you
         </p>
         <h1 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-          Your Playbook is ready.
+          {tier ? `${tier.name} is ready.` : "Your playbook is ready."}
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
           We have emailed your download link to the address you used at checkout. It
@@ -58,7 +60,7 @@ export default async function SuccessPage({
               then{" "}
               <a
                 className="font-medium text-foreground underline underline-offset-4"
-                href={`mailto:${site.email}?subject=${encodeURIComponent(`${playbookProduct.name} download`)}`}
+                href={`mailto:${site.email}?subject=${encodeURIComponent(`${tier?.productName ?? "Playbook"} download`)}`}
               >
                 email us
               </a>{" "}
@@ -76,23 +78,29 @@ export default async function SuccessPage({
         */}
         {confirmed ? (
           <div className="mt-6">
-            <SuccessDownload transactionId={confirmed} />
+            <SuccessDownload transactionId={confirmed.id} product={confirmed.slug} />
           </div>
         ) : null}
 
-        <Card className="mt-6 p-6">
-          <PanelLabel>What you bought</PanelLabel>
-          <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground">
-            {playbookIncludes.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </Card>
+        {tier ? (
+          <Card className="mt-6 p-6">
+            <PanelLabel>{tier.productName}</PanelLabel>
+            <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground">
+              {tier.includes.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </Card>
+        ) : (
+          <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+            The email names which playbook you bought. {playbookPublisher} sells
+            Define, Build, and Ship as separate downloads.
+          </p>
+        )}
 
         <p className="mt-10 border-t border-border/60 pt-6 text-sm leading-relaxed text-muted-foreground">
-          Start with module 02 if you only have an hour.{" "}
           <Link href="/playbook" className="underline underline-offset-4">
-            Back to the Playbook
+            Back to the playbooks
           </Link>
         </p>
       </div>
@@ -100,10 +108,10 @@ export default async function SuccessPage({
   );
 }
 
-/** Returns the transaction id only when Paddle says it was actually paid. */
+/** Returns the transaction only when Paddle confirms a payment for one of our playbooks. */
 async function confirmPurchase(
   transactionId: string | undefined,
-): Promise<string | null> {
+): Promise<{ id: string; slug: NonNullable<ReturnType<typeof playbookSlugForPriceId>> } | null> {
   if (!looksLikeTransactionId(transactionId)) return null;
 
   const result = await fetchTransaction(transactionId);
@@ -111,5 +119,10 @@ async function confirmPurchase(
   if (!isPaid(result.transaction)) return null;
   if (!withinSuccessWindow(result.transaction)) return null;
 
-  return result.transaction.id;
+  const slug = result.transaction.priceIds
+    .map((id) => playbookSlugForPriceId(id))
+    .find((value): value is NonNullable<typeof value> => value !== null);
+  if (!slug) return null;
+
+  return { id: result.transaction.id, slug };
 }

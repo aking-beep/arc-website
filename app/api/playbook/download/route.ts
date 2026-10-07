@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { playbookSlugForPriceId } from "@/lib/commerce/config";
 import { clientIp, rateLimit } from "@/lib/commerce/rate-limit";
 import {
   findPurchaseByTokenHash,
@@ -112,7 +113,28 @@ export async function POST(request: Request) {
     );
   }
 
-  const signed = await signBundleUrl(file);
+  if (!found.data) {
+    return NextResponse.json(
+      { error: rejectionMessage.not_found, reason: "not_found" },
+      { status: 404 },
+    );
+  }
+
+  const slug = found.data.price_id
+    ? playbookSlugForPriceId(found.data.price_id)
+    : null;
+  if (!slug) {
+    log("error", "purchase price does not match a playbook", {
+      ref: ref(tokenHash),
+      priceId: found.data.price_id,
+    });
+    return NextResponse.json(
+      { error: "Downloads are temporarily unavailable. Try again shortly." },
+      { status: 503 },
+    );
+  }
+
+  const signed = await signBundleUrl(file, slug);
   if (!signed.ok) {
     log("error", "could not sign bundle url", {
       ref: ref(tokenHash),

@@ -18,6 +18,7 @@ import "server-only";
 
 import { storageConfig, supabaseConfig } from "@/lib/commerce/config";
 import type { EntitlementRecord } from "@/lib/commerce/tokens";
+import type { PlaybookSlug } from "@/lib/playbook";
 
 const PURCHASES = "playbook_purchases";
 
@@ -254,9 +255,10 @@ export type SignedDownload = {
  */
 export async function signBundleUrl(
   file: BundleFile,
+  slug: PlaybookSlug,
 ): Promise<StoreResult<SignedDownload>> {
   const supabase = supabaseConfig();
-  const storage = storageConfig();
+  const storage = storageConfig(slug);
 
   if (!supabase.configured) return unconfigured(`missing ${supabase.missing.join(", ")}`);
   if (!storage.configured) return unconfigured(`missing ${storage.missing.join(", ")}`);

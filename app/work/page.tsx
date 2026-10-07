@@ -8,9 +8,9 @@ import { CTA } from "@/components/cta";
 import { caseStudies } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Work · Programs that shipped",
+  title: "Work · What changed, and what it was worth",
   description:
-    "Work from Fortune 100/500 programs our team has delivered, plus ARC Advisory. Where we cannot name the client, we name the scale.",
+    "Four pieces of work: the problem, what was at stake, what we did, what changed, and the numbers. Where we cannot name the client, we name the scale.",
 };
 
 export default function WorkPage() {
@@ -18,8 +18,8 @@ export default function WorkPage() {
     <>
       <PageHero
         kicker="Work"
-        title="Work from programs that shipped."
-        lead="Problem, what we did, what came out of it, how long it took. Where we cannot name the client, we name the scale."
+        title="What changed, and what it was worth."
+        lead="Each of these reads the same way: the problem, what was at stake, what we did, what changed, and the numbers. Where we cannot name the client, we name the scale."
       />
 
       <Section>

@@ -24,7 +24,7 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
   title: {
-    default: "ARC Transformation Group · Technology changes. We help you use it.",
+    default: "ARC Transformation Group · Make technology work for your business.",
     template: "%s · ARC Transformation Group",
   },
   description: site.description,
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "website",
-    title: "ARC Transformation Group · Technology changes. We help you use it.",
+    title: "ARC Transformation Group · Make technology work for your business.",
     description: site.description,
     url: site.domain,
     siteName: site.name,

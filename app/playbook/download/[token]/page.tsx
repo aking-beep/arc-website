@@ -5,7 +5,7 @@ import { DownloadPanel } from "@/components/playbook/download-panel";
 import { PanelLabel } from "@/components/diagram";
 import { Card } from "@/components/ui/card";
 import { Container } from "@/components/ui/section";
-import { supabaseConfig } from "@/lib/commerce/config";
+import { playbookSlugForPriceId, supabaseConfig } from "@/lib/commerce/config";
 import { findPurchaseByTokenHash, toEntitlement } from "@/lib/commerce/store";
 import {
   checkEntitlement,
@@ -15,7 +15,7 @@ import {
   type TokenRejection,
 } from "@/lib/commerce/tokens";
 import { site } from "@/lib/content";
-import { playbookIncludes, playbookProduct } from "@/lib/playbook";
+import { getPlaybookTier } from "@/lib/playbook";
 
 /**
  * A tokenised URL must never be indexed, archived, or sent as a referrer to
@@ -68,33 +68,32 @@ export default async function DownloadPage({
   const verdict = checkEntitlement(found.data ? toEntitlement(found.data) : null);
   if (!verdict.ok) return <Rejected reason={verdict.reason} />;
 
+  const tier = found.data?.price_id
+    ? getPlaybookTier(playbookSlugForPriceId(found.data.price_id) ?? "")
+    : undefined;
+  if (!tier) return <Unmatched />;
+
   return (
     <Shell
       kicker="Your purchase"
-      title="Download your Playbook"
-      lead="Both files are yours. The link in your email keeps working, so you can come back for updates to this edition."
+      title={`Download ${tier.name}`}
+      lead="Both files are yours. The link in your email keeps working, so you can come back for updates to this edition. It covers this playbook only."
     >
       {/*
         The token is handed to a client island rather than embedded in a form
         action, so it never leaves this page as a query string and never ends
         up in a server access log as part of a URL with parameters.
       */}
-      <DownloadPanel token={token} />
+      <DownloadPanel token={token} pdfText={tier.pdfBlurb} zipText={tier.zipBlurb} />
 
       <Card className="mt-6 p-6">
-        <PanelLabel>In the bundle</PanelLabel>
+        <PanelLabel>{tier.productName}</PanelLabel>
         <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground">
-          {playbookIncludes.map((item) => (
+          {tier.includes.map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
       </Card>
-
-      <p className="mt-8 text-sm leading-relaxed text-muted-foreground">
-        If you only have an hour, start with module 02. Validation and evaluation are
-        where most AI products are weakest, and they are the two a model cannot do for
-        you.
-      </p>
     </Shell>
   );
 }
@@ -112,11 +111,34 @@ function Rejected({ reason }: { reason: TokenRejection }) {
           email clients sometimes break it across two lines. If it still does not work,{" "}
           <a
             className="font-medium text-foreground underline underline-offset-4"
-            href={`mailto:${site.email}?subject=${encodeURIComponent(`${playbookProduct.name} download`)}`}
+            href={`mailto:${site.email}?subject=${encodeURIComponent("Playbook download")}`}
           >
             email us
           </a>{" "}
           and we will reissue it.
+        </p>
+      </Card>
+    </Shell>
+  );
+}
+
+function Unmatched() {
+  return (
+    <Shell
+      kicker="Download"
+      title="We could not match that purchase to a playbook."
+      lead="The link is valid, and the files for this price are not configured on this site."
+    >
+      <Card className="p-6">
+        <p className="text-sm leading-relaxed text-muted-foreground">
+          Email us and we will send the right file.{" "}
+          <a
+            className="font-medium text-foreground underline underline-offset-4"
+            href={`mailto:${site.email}?subject=${encodeURIComponent("Playbook download")}`}
+          >
+            Contact us
+          </a>
+          .
         </p>
       </Card>
     </Shell>
@@ -136,7 +158,7 @@ function Unavailable() {
           hour,{" "}
           <a
             className="font-medium text-foreground underline underline-offset-4"
-            href={`mailto:${site.email}?subject=${encodeURIComponent(`${playbookProduct.name} download`)}`}
+            href={`mailto:${site.email}?subject=${encodeURIComponent("Playbook download")}`}
           >
             email us
           </a>
@@ -171,7 +193,7 @@ function Shell({
         <div className="mt-10">{children}</div>
         <p className="mt-10 border-t border-border/60 pt-6 text-sm text-muted-foreground">
           <Link href="/playbook" className="underline underline-offset-4">
-            Back to the Playbook
+            Back to the playbooks
           </Link>
         </p>
       </div>

@@ -106,7 +106,7 @@ export default function AssuranceChecklistPage() {
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
             Cost per run flatters you every time a cheap failure inflates the
             denominator. Divide total spend — including retries and abandoned
-            attempts — by the outcomes that actually verified, and the number
+            attempts — by the outcomes that verified, and the number
             stops being comfortable and starts being useful.
           </p>
         </Panel>
@@ -115,7 +115,7 @@ export default function AssuranceChecklistPage() {
 
       <CTA
         title="Cannot answer question four?"
-        lead="Then your evidence and your claim are coming from the same place. That is the problem ARK Control is being built for, and we are working through it with design partners now."
+        lead="Then your evidence and your claim are coming from the same place. That is the problem Agent Control is being built for, and we are working through it with design partners now."
       />
     </>
   );

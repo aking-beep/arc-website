@@ -19,12 +19,12 @@ import {
 } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "ARK Labs · Open tools, scanners and experiments",
+  title: "Labs · Open tools, scanners and experiments",
   description:
-    "Free ARK Labs tools: scanners, catalogues and utilities you can run yourself. Most need no account. Every project carries its real maturity.",
+    "Free Labs tools from ARC: scanners, catalogues and utilities you can run yourself. Most need no account. Every project carries its maturity.",
 };
 
-/** What each badge actually commits us to. Stated so the labels mean something. */
+/** What each badge commits us to. Stated so the labels mean something. */
 const maturityKey: { maturity: Maturity; text: string }[] = [
   {
     maturity: "open-source",
@@ -36,7 +36,7 @@ const maturityKey: { maturity: Maturity; text: string }[] = [
   },
   {
     maturity: "experiment",
-    text: "We are finding out whether the approach is sound. Treat the output as a prompt for a conversation, not a verdict.",
+    text: "We are finding out whether the approach is sound. Treat the output as a starting point for a conversation.",
   },
   {
     maturity: "research",
@@ -45,7 +45,7 @@ const maturityKey: { maturity: Maturity; text: string }[] = [
 ];
 
 export default function LabsPage() {
-  // Only show a label that something actually carries, so the key never
+  // Only show a label that something carries, so the key never
   // advertises a stage with nothing in it.
   const counts = maturityKey
     .map((k) => ({
@@ -63,9 +63,9 @@ export default function LabsPage() {
   return (
     <>
       <PageHero
-        kicker="ARK Labs"
+        kicker="Labs"
         title="Open tools, scanners and experiments."
-        lead={`${labsProof.tools} free tools, grouped by the job they do. Most need no account and store nothing. None of them are sold as products — every one carries its real maturity, so you can tell what is supported before you depend on it.`}
+        lead={`${labsProof.tools} free tools, grouped by the job they do. Most need no account and store nothing. None of them are sold as products. Every one carries its maturity, so you can tell what is supported before you depend on it.`}
       >
         <Button href={site.github} variant="outline">
           <Github className="h-4 w-4" />

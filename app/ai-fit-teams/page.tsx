@@ -10,7 +10,7 @@ const product = getArkProduct("ai-fit-teams");
 const dimensions = [
   {
     name: "Capability",
-    text: "What the organization can actually do today: the skills in the building, the systems people can reach, and the work that already runs without heroics.",
+    text: "What the organization can do today: the skills in the building, the systems people can reach, and the work that already runs without heroics.",
   },
   {
     name: "Intent",
@@ -22,7 +22,7 @@ const dimensions = [
   },
   {
     name: "Habits",
-    text: "How decisions actually get made and reversed here. Habits carry a change or quietly kill it, and they are the dimension nobody scores.",
+    text: "How decisions get made and reversed here. Habits carry a change or quietly kill it, and they are the dimension nobody scores.",
   },
 ];
 
@@ -58,7 +58,7 @@ export default function AiFitTeamsPage() {
     <ArkProductPage
       product={product}
       ctaTitle="Want to know whether your organization can carry this?"
-      ctaLead="Thirty minutes is enough to tell you whether a team assessment is the right first step, and whether the honest answer might be to defer."
+      ctaLead="Thirty minutes is enough to tell you whether a team assessment is the right first step, and whether the answer might be to defer."
       ctaTopic="ai-fit-teams"
     >
       <Section>
@@ -87,13 +87,13 @@ export default function AiFitTeamsPage() {
           <div>
             <SectionHeading
               kicker="How it runs"
-              title="Three to four weeks, against the work you actually do."
-              lead="Real processes, real data access, and the people who would have to run whatever gets built. Not a vendor demo tour."
+              title="Three to four weeks, against the work you do."
+              lead="Your processes, access to your data, and the people who would have to run whatever gets built."
             />
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
               The output is deliberately boring: a scored snapshot, a backlog
               you can argue with, and a sequence with owners attached. If the
-              honest answer is that you should not do this yet, the assessment
+              answer is that you should not do this yet, the assessment
               says so and tells you what would have to change first.
             </p>
           </div>

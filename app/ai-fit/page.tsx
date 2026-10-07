@@ -23,11 +23,11 @@ const decisions = [
   },
   {
     question: "What has to be true to afford it?",
-    text: "The cost drivers that actually move the number, named — not a made-up price per user.",
+    text: "The cost drivers that move the number, named. Never a made-up price per user.",
   },
   {
     question: "Which duties already apply?",
-    text: "Disclosure and content-marking obligations are in force now. That changes design, not just legal review.",
+    text: "Disclosure and content-marking obligations are in force now. That changes design as well as legal review.",
   },
 ];
 
@@ -74,7 +74,7 @@ export default function AiFitPage() {
       <Section className="bg-muted/30">
         <SectionHeading
           kicker="How it works"
-          title="Deterministic rules, not a model guessing."
+          title="The rules are deterministic."
           lead="You describe the use case in plain language. Published rules match that description to a catalogue of architecture shapes. Every finding quotes the sentence that triggered it, so the same input always produces the same output."
         />
         <Panel className="mt-12 p-6 sm:p-8">

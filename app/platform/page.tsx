@@ -23,12 +23,11 @@ import {
   operatingContract,
 } from "@/lib/ark";
 import { assuranceChecklist } from "@/lib/learn";
-import { site } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "ARK · Infrastructure for reliable agent action",
+  title: "Agent infrastructure · Readiness, records, and checks",
   description:
-    "ARK is the technology and product ecosystem built by ARC Transformation Group: agent readiness, outcome assurance, protocols and runtime research. Evidence, not claims.",
+    "Agent infrastructure from ARC Transformation Group: readiness, outcome checks for production agents, protocols, and runtime research.",
 };
 
 export default function PlatformPage() {
@@ -41,16 +40,16 @@ export default function PlatformPage() {
         <Container className="relative py-20 sm:py-28">
           <div className="max-w-3xl animate-fade-up">
             <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-              {ark.explainer}
+              Agent infrastructure
             </p>
             <h1 className="mt-5 text-4xl font-semibold tracking-tight text-balance sm:text-6xl">
-              Infrastructure for the agent-operated enterprise.
+              Infrastructure for software that acts on its own.
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground sm:text-xl">
-              Software is starting to act. Agents hold credentials, call tools and
-              change real systems without a person watching each step. {ark.name} is
-              being built for the part nobody solved: whether those actions can be
-              trusted, verified and governed.
+              Agents hold credentials, call tools, and change production systems
+              without a person watching each step. This is the ARC work for the
+              part that still has to be checked: whether those actions can be
+              trusted, verified, and governed.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/agent-readiness" size="lg">
@@ -58,7 +57,7 @@ export default function PlatformPage() {
                 <ArrowRight className="h-4 w-4" />
               </Button>
               <Button href="/ark-control" variant="outline" size="lg">
-                Explore ARK Control
+                Explore Agent Control
               </Button>
             </div>
           </div>
@@ -69,31 +68,11 @@ export default function PlatformPage() {
         <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-start">
           <div>
             <SectionHeading
-              kicker="Two questions"
-              title="ARC and ARK are not the same thing."
+              kicker="This part of ARC"
+              title="Readiness, a record, and a check."
+              lead="The same company that runs the advisory work publishes these pages. Agent Readiness asks whether your systems can survive an agent. Agent Control, still with design partners, asks whether the intended change happened."
             />
-            <dl className="mt-10 grid gap-6">
-              <div className="rounded-xl border border-border bg-card p-6">
-                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                  ARC Transformation Group
-                </dt>
-                <dd className="mt-3 text-lg font-medium">{site.question}</dd>
-                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  The company. The commercial relationship, and the advisory and
-                  delivery work across cloud, data, security, software and AI.
-                </dd>
-              </div>
-              <div className="rounded-xl border border-brand/30 bg-brand-subtle/60 p-6">
-                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                  ARK
-                </dt>
-                <dd className="mt-3 text-lg font-medium">{ark.question}</dd>
-                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  The technology ecosystem. Products, protocols and research for
-                  the layer where software acts on its own behalf.
-                </dd>
-              </div>
-            </dl>
+            <p className="mt-8 text-lg font-medium leading-snug">{ark.question}</p>
           </div>
           <Panel className="p-6 sm:p-8">
             <PanelLabel>The system</PanelLabel>
@@ -148,7 +127,7 @@ export default function PlatformPage() {
       <Section id="products" className="scroll-mt-24">
         <SectionHeading
           kicker="Products"
-          title="Four products. Each with its real maturity attached."
+          title="Four products, each with its maturity attached."
           lead="The runtime work, the protocol work and the individual scanners are deliberately not on this list. They sit underneath, in Developers and Labs, because presenting an experiment as a product is how trust gets spent."
         />
         <div className="mt-12 grid gap-5 md:grid-cols-2">
@@ -210,7 +189,7 @@ export default function PlatformPage() {
               </p>
               <div className="mt-8">
                 <Button href="/ark-control">
-                  Read the ARK Control thinking
+                  Read the Agent Control thinking
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </div>
@@ -258,7 +237,7 @@ export default function PlatformPage() {
           <SectionHeading
             kicker="Underneath"
             title="The layers that are not products yet."
-            lead="Runtime, protocols, open tools and documentation. Each labelled with what it actually is, which in some cases is research."
+            lead="Runtime, protocols, open tools and documentation. Each labelled with what it is, which in some cases is research."
           />
           <Link
             href="/developers"

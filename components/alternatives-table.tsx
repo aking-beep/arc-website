@@ -14,7 +14,7 @@ export function AlternativesTable({ className }: { className?: string }) {
       <SectionHeading
         kicker="How we compare"
         title="You are probably choosing between four things."
-        lead="Agencies, integrators, and freelancers all solve real problems. Here is the honest version of where each one lands, so you can tell quickly whether we are the right shape for your problem."
+        lead="Agencies, integrators and freelancers each solve a version of this. Here is where each one lands, so you can tell quickly whether we are the right shape for your problem."
       />
 
       <ul className="mt-12 grid gap-4 sm:hidden">

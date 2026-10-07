@@ -1,12 +1,9 @@
 // ============================================================================
 // ARC Playbooks — the Learn layer.
 //
-// These exist so someone can use ARC's methods without hiring ARC. Three of
-// the four are free and complete on the page; gating a PDF behind an email
-// would make them worse and harder to find.
+// These exist so someone can use ARC's methods without hiring ARC. All three
+// are free and complete on the page. The paid playbooks live at /playbook.
 // ============================================================================
-
-import { playbookHero, playbookProduct, playbookSystemChain } from "@/lib/playbook";
 
 export type PlaybookKind = "playbook" | "framework" | "assessment" | "checklist";
 
@@ -20,7 +17,7 @@ export type Playbook = {
   price: string;
   ctaLabel: string;
   /**
-   * What you can actually do with this right now. The free assets are
+   * What you can do with this right now. The free assets are
    * complete on their page; the paid one is not shipping yet and says so.
    */
   availability: string;
@@ -33,25 +30,10 @@ export type Playbook = {
 
 export const playbooks: Playbook[] = [
   {
-    slug: "ark-ai-product-playbook",
-    kind: "playbook",
-    name: playbookProduct.name,
-    tagline: playbookHero.title,
-    summary:
-      "A practical system for turning an AI idea into something people can actually use — from hypothesis through launch. Ships with the ARC Skills library, 20 reference architectures and 16 workflow templates.",
-    price: playbookProduct.price,
-    ctaLabel: "See the Playbook",
-    availability:
-      "A PDF plus editable Markdown assets. One payment, a private download link, nothing to log into.",
-    chain: playbookSystemChain,
-    href: "/playbook",
-    featured: true,
-  },
-  {
     slug: "agent-readiness-scorecard",
     kind: "assessment",
     name: "Agent Readiness Scorecard",
-    tagline: "Can agents actually operate your systems?",
+    tagline: "Can agents operate your systems?",
     summary:
       "Twenty questions across interfaces, identity, permissions, observability, security and reliability. Scored in the browser, stored nowhere.",
     price: "Free",
@@ -126,7 +108,7 @@ export const operatingContractFields = [
   },
   {
     field: "Evidence",
-    question: "What must exist afterwards to show the work was actually done?",
+    question: "What must exist afterwards to show the work was done?",
     bad: "A log line saying success.",
     good: "The changed record id, its before and after values, and the policy decision that allowed it.",
   },
@@ -166,7 +148,7 @@ export const assuranceChecklist = [
   },
   {
     step: "03",
-    question: "What actually changed?",
+    question: "What changed?",
     detail:
       "The concrete state change in the destination system: the record, the row, the transaction, the file.",
     failure: "The only record of the change is the agent's own claim that it made one.",
@@ -189,7 +171,7 @@ export const assuranceChecklist = [
     step: "06",
     question: "What did the verified outcome cost?",
     detail:
-      "Total spend across retries and failed attempts, divided by outcomes that actually verified.",
+      "Total spend across retries and failed attempts, divided by outcomes that verified.",
     failure:
       "You are reporting cost per run, which flatters you every time a cheap failure inflates the denominator.",
   },

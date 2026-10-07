@@ -14,7 +14,7 @@ import {
 const playbook = getPlaybook("agent-readiness-scorecard");
 
 export const metadata: Metadata = {
-  title: "Agent Readiness Scorecard · Can agents actually operate your systems?",
+  title: "Agent Readiness Scorecard · Can agents operate your systems?",
   description:
     "A free self-assessment across discovery, interfaces, identity, permissions, observability, security and reliability. Scored in your browser. Nothing is stored.",
 };
@@ -26,7 +26,7 @@ export default function ScorecardPage() {
     <>
       <PageHero
         kicker="Free assessment"
-        title="Can agents actually operate your systems?"
+        title="Can agents operate your systems?"
         lead={`${scorecardQuestions.length} questions across ${scorecardDimensions.length} dimensions. Scored in your browser, stored nowhere, no email required. Most teams discover the interfaces are further along than the controls behind them.`}
       />
 

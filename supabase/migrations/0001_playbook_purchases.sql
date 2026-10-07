@@ -2,8 +2,8 @@
 -- ARC AI Product Playbook — purchases and entitlements.
 --
 -- Run once against the Supabase project, then create the private bucket named
--- in PLAYBOOK_STORAGE_BUCKET and upload the two bundle objects to the paths in
--- PLAYBOOK_PDF_OBJECT and PLAYBOOK_ZIP_OBJECT.
+-- in PLAYBOOK_STORAGE_BUCKET and upload each playbook's PDF and ZIP to the
+-- paths in PLAYBOOK_DEFINE_*, PLAYBOOK_BUILD_*, and PLAYBOOK_SHIP_*.
 --
 -- Deliberately one table. V1 has no accounts, so there is nothing to join to:
 -- a purchase is the entitlement.

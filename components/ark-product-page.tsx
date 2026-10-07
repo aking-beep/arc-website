@@ -6,12 +6,11 @@ import { MaturityBadge } from "@/components/ui/badge";
 import { PanelLabel } from "@/components/diagram";
 import { CTA } from "@/components/cta";
 import type { ArkProduct } from "@/lib/ark";
-import { ark } from "@/lib/ark";
 
 /**
- * Shared shell for the four ARK product pages. The "where this is today"
+ * Shared shell for the agent-infrastructure product pages. The "where this is today"
  * block is part of the shell rather than optional, so no product page can
- * ship without stating its real maturity above the fold.
+ * ship without stating its maturity above the fold.
  */
 export function ArkProductPage({
   product,
@@ -41,7 +40,7 @@ export function ArkProductPage({
             <div className="animate-fade-up">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                  {ark.name} product
+                  ARC product
                 </span>
                 <MaturityBadge maturity={product.maturity} />
               </div>
@@ -116,7 +115,7 @@ export function ArkProductPage({
         >
           <SectionHeading
             kicker="What you get"
-            title="What the product actually produces."
+            title="What the product produces."
           />
           <dl className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
             {product.capabilities.map((c) => (

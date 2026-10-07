@@ -21,7 +21,7 @@ export function generateMetadata({
   const product = labs.find((p) => p.slug === params.slug);
   if (!product) return {};
   return {
-    title: `${product.name} · ARK Labs`,
+    title: `${product.name} · Labs`,
     description: product.description,
   };
 }
@@ -47,7 +47,7 @@ export default function ProductPage({
             className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" />
-            ARK Labs
+            Labs
           </Link>
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div className="max-w-3xl">
@@ -176,7 +176,7 @@ export default function ProductPage({
       <CTA
         title={
           isCatalog
-            ? "Want these adapted to how you actually work?"
+            ? "Want these adapted to how your team works?"
             : "Need a human to read this report?"
         }
         lead={
