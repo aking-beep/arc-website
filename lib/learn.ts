@@ -38,7 +38,7 @@ export const playbooks: Playbook[] = [
     name: playbookProduct.name,
     tagline: playbookHero.title,
     summary:
-      "A practical system for turning an AI idea into something people can use — from hypothesis through launch. Ships with the ARC Skills library, 20 reference architectures and 16 workflow templates.",
+      "Fifteen decisions from an idea to a product people can use, plus the files you build with: 20 skills, 20 architectures, 16 workflows, and the checklists.",
     price: playbookProduct.price,
     ctaLabel: "See the Playbook",
     availability:
