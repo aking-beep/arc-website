@@ -85,7 +85,7 @@ function renderCover(meta) {
   return `
 <div class="cover">
   <div>
-    <p class="imprint">${escapeHtml(meta.publisher)} · ${escapeHtml(meta.imprint)}</p>
+    <p class="imprint">${escapeHtml(meta.publisher)}${meta.imprint ? ` · ${escapeHtml(meta.imprint)}` : ""}</p>
   </div>
   <div>
     <h1>${escapeHtml(meta.title)}</h1>
@@ -108,7 +108,7 @@ async function renderColophon(meta) {
   const rows = [
     `<dt>Edition</dt><dd>${escapeHtml(meta.edition)}</dd>`,
     `<dt>Built</dt><dd>${new Date().toISOString().slice(0, 10)}</dd>`,
-    `<dt>Published by</dt><dd>${escapeHtml(meta.publisher)}, ${escapeHtml(meta.imprint)} imprint</dd>`,
+    `<dt>Published by</dt><dd>${escapeHtml(meta.publisher)}${meta.imprint ? `, ${escapeHtml(meta.imprint)} imprint` : ""}</dd>`,
   ];
 
   for (const library of sources?.libraries ?? []) {

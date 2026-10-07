@@ -1,25 +1,23 @@
 // ============================================================================
-// ARK — the technology and product ecosystem built by ARC.
+// Agent infrastructure — the product work ARC publishes under its own name.
 //
 // Rule for this file: never describe a capability as further along than it is.
-// Every product carries a maturity, and the copy has to match it. If ARK
+// Every product carries a maturity, and the copy has to match it. If Agent
 // Control is not shipping, the page says so in the first screen.
 // ============================================================================
 
 import type { Maturity } from "@/lib/content";
 
 export const ark = {
-  name: "ARK",
   positioning: "Infrastructure for reliable agent action.",
   /**
-   * Stated as the thing we do rather than as a contrast. "Evidence, not
-   * claims" announced a quality; this says which check we run.
+   * Stated as the thing we do. This says which check we run.
    */
   principle: "We check the system that was supposed to change.",
   loop: ["Measure", "Verify", "Govern", "Optimize"],
-  question: "How should intelligent software interact with technology?",
+  question: "How should software that acts on its own be checked?",
   explainer:
-    "ARK is the product and research ecosystem developed by ARC Transformation Group.",
+    "Agent infrastructure from ARC: readiness, outcome checks, and the assessments that decide where AI belongs.",
 };
 
 /**
@@ -47,7 +45,7 @@ export const executionGap = {
 };
 
 /**
- * The operating lifecycle ARK is being built around. This is the architecture
+ * The operating lifecycle this work is built around. This is the architecture
  * claim: agents need infrastructure at each of these points, not just a model.
  */
 export const agentLifecycle: { name: string; text: string }[] = [
@@ -119,8 +117,8 @@ export type ArkProduct = {
 export const arkProducts: ArkProduct[] = [
   {
     slug: "ark-control",
-    name: "ARK Control",
-    navLabel: "ARK Control",
+    name: "Agent Control",
+    navLabel: "Agent Control",
     tagline: "Outcome assurance for production AI agents.",
     summary:
       "Understand what agents attempted, what authority they used, and whether the intended outcome occurred.",
@@ -130,10 +128,10 @@ export const arkProducts: ArkProduct[] = [
     ctaHref: "/contact?topic=ark-control",
     todayLabel: "Where this is today",
     today:
-      "ARK Control is in design-partner development. It is not a product you can buy or sign up for yet. We are working through the verification model with a small number of teams running agents against production systems. There is no pricing page because there is nothing to price yet.",
+      "Agent Control is in design-partner development. It is not a product you can buy or sign up for yet. We are working through the verification model with a small number of teams running agents against production systems. There is no pricing page because there is nothing to price yet.",
     intro: [
       "Seeing a trace tells you what the agent attempted. Assurance asks a different question: did the intended outcome occur?",
-      "ARK Control is being built to connect execution evidence — the trace, the tool call, the identity, the policy decision — with outcome evidence collected from the systems that were supposed to change.",
+      "Agent Control is being built to connect execution evidence — the trace, the tool call, the identity, the policy decision — with outcome evidence collected from the systems that were supposed to change.",
     ],
     capabilities: [
       {
@@ -170,7 +168,7 @@ export const arkProducts: ArkProduct[] = [
   },
   {
     slug: "agent-readiness",
-    name: "ARK Agent Readiness",
+    name: "Agent Readiness",
     navLabel: "Agent Readiness",
     tagline: "Make your systems usable by agents.",
     summary:
@@ -180,7 +178,7 @@ export const arkProducts: ArkProduct[] = [
     ctaHref: "/playbooks/agent-readiness-scorecard",
     todayLabel: "Where this is today",
     today:
-      "Available in two forms. The scorecard is free and takes a few minutes. The full assessment is a two-to-three week engagement run by ARC against your actual systems, and it uses the open scanners in ARK Labs as part of the evidence.",
+      "Available in two forms. The scorecard is free and takes a few minutes. The full assessment is a two-to-three week engagement run by ARC against the systems you already operate, and it uses the open scanners in Labs as part of the evidence.",
     intro: [
       "Most systems were designed for humans clicking through a screen. Agents arrive through a different door: they discover capabilities, read schemas, authenticate as themselves and act without a person watching each step.",
       "Agent readiness is the question of whether your systems can survive that. Not whether an agent can be made to work once in a demo, but whether it can act correctly, within its authority, and leave a record.",
@@ -340,7 +338,7 @@ export const developerAreas: {
   {
     name: "Open tools",
     maturity: "open-source",
-    text: "Scanners, catalogues and reference implementations from ARK Labs. MIT licensed, no account, most of them store nothing.",
+    text: "Scanners, catalogues and reference implementations from Labs. MIT licensed, no account, most of them store nothing.",
     href: "/labs",
     linkLabel: "Browse the tools",
   },

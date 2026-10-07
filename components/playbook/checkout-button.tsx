@@ -5,7 +5,7 @@ import { initializePaddle, type Paddle } from "@paddle/paddle-js";
 
 import { Button, type ButtonProps } from "@/components/ui/button";
 import { trackEvent } from "@/lib/analytics";
-import { playbookProduct } from "@/lib/playbook";
+import type { PlaybookSlug } from "@/lib/playbook";
 
 /**
  * Opens Paddle's hosted checkout overlay.
@@ -37,12 +37,16 @@ const label: Record<State, (idle: string) => string> = {
 
 export function CheckoutButton({
   config,
+  product,
+  priceAmount,
   children,
   size = "lg",
   variant = "primary",
   className,
 }: {
   config: CheckoutConfig;
+  product: PlaybookSlug;
+  priceAmount: number;
   children?: React.ReactNode;
   size?: ButtonProps["size"];
   variant?: ButtonProps["variant"];
@@ -51,8 +55,7 @@ export function CheckoutButton({
   const [state, setState] = React.useState<State>("idle");
   const paddleRef = React.useRef<Paddle | null>(null);
 
-  const idleLabel =
-    typeof children === "string" ? children : `Get the Playbook — ${playbookProduct.price}`;
+  const idleLabel = typeof children === "string" ? children : `Get ${product}`;
 
   if (!config.configured || !config.clientToken || !config.priceId) {
     return (
@@ -76,7 +79,8 @@ export function CheckoutButton({
     try {
       setState("loading");
       trackEvent("playbook_checkout_start", {
-        price: playbookProduct.priceAmount,
+        product,
+        price: priceAmount,
         environment: config.environment,
       });
 
@@ -90,6 +94,7 @@ export function CheckoutButton({
             // analytics that the overlay reported completion.
             if (event.name === "checkout.completed") {
               trackEvent("playbook_purchase_complete", {
+                product,
                 transaction_id: event.data?.transaction_id,
               });
             }

@@ -117,7 +117,7 @@ export function FlowStack({
 
 /**
  * Two-column contrast block. Left is what the system reported, right is what
- * was verified — the core ARK Control argument.
+ * was verified — the core Agent Control argument.
  */
 export function SplitClaim({
   leftLabel,

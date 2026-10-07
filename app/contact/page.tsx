@@ -17,8 +17,8 @@ export const metadata: Metadata = {
 /** Known entry points, so a product CTA arrives with context attached. */
 const topics: Record<string, { label: string; lead: string }> = {
   "ark-control": {
-    label: "ARK Control design partnership",
-    lead: "ARK Control is in design-partner development. If you are running agents against production systems and cannot currently verify what they changed, that is exactly the conversation we want.",
+    label: "Agent Control design partnership",
+    lead: "Agent Control is in design-partner development. If you are running agents against production systems and cannot currently verify what they changed, that is exactly the conversation we want.",
   },
   "agent-readiness": {
     label: "Agent Readiness assessment",

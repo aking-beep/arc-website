@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   extractPurchase,
+  matchKnownPrice,
   parseSignatureHeader,
   purchaseMatchesPrice,
   verifyWebhookSignature,
@@ -199,9 +200,30 @@ describe("purchaseMatchesPrice", () => {
     expect(purchaseMatchesPrice(purchase, "pri_something_else")).toBe(false);
   });
 
-  it("fulfils when Paddle sent no items, rather than refusing a paid order", () => {
+  it("does not match when Paddle sent no items, because the playbook would be a guess", () => {
     const noItems = extractPurchase(completedTransaction({ items: [] }))!;
-    expect(purchaseMatchesPrice(noItems, "pri_playbook")).toBe(true);
+    expect(purchaseMatchesPrice(noItems, "pri_playbook")).toBe(false);
+  });
+});
+
+describe("matchKnownPrice", () => {
+  const known = ["pri_define", "pri_build", "pri_ship"];
+
+  it("returns the price we sell when several are configured", () => {
+    const purchase = extractPurchase(
+      completedTransaction({ items: [{ price: { id: "pri_build" }, quantity: 1 }] }),
+    )!;
+    expect(matchKnownPrice(purchase, known)).toBe("pri_build");
+  });
+
+  it("returns null for a price we do not sell", () => {
+    const purchase = extractPurchase(completedTransaction())!;
+    expect(matchKnownPrice(purchase, known)).toBeNull();
+  });
+
+  it("returns null when the transaction has no items", () => {
+    const purchase = extractPurchase(completedTransaction({ items: [] }))!;
+    expect(matchKnownPrice(purchase, known)).toBeNull();
   });
 });
 

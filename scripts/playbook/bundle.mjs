@@ -36,7 +36,7 @@ function bundleReadme(meta, sources) {
 
   return `# ${meta.title} — editable assets
 
-${meta.edition}. Published by ${meta.publisher} under the ${meta.imprint} imprint.
+${meta.edition}. Published by ${meta.publisher}${meta.imprint ? ` under the ${meta.imprint} imprint` : ""}.
 
 This ZIP is the working half of the product. The PDF is for reading; this is
 for filling in and adapting.

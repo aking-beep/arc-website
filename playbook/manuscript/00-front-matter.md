@@ -11,7 +11,7 @@ can actually use.
 
 <div class="front-note">
 
-Published by ARC Transformation Group under the ARK Labs imprint.
+Published by ARC Transformation Group.
 
 ARC helps people and organizations understand, adopt, build and operate the
 technologies shaping modern systems. This Playbook is the product-development

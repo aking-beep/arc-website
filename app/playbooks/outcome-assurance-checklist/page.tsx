@@ -115,7 +115,7 @@ export default function AssuranceChecklistPage() {
 
       <CTA
         title="Cannot answer question four?"
-        lead="Then your evidence and your claim are coming from the same place. That is the problem ARK Control is being built for, and we are working through it with design partners now."
+        lead="Then your evidence and your claim are coming from the same place. That is the problem Agent Control is being built for, and we are working through it with design partners now."
       />
     </>
   );

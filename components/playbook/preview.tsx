@@ -10,8 +10,8 @@ export function Preview() {
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <SectionHeading
           kicker="Preview"
-          title="Read the opening before you pay for the rest."
-          lead="Eight pages, free: the cover, how the book is used, the contents, and the first chapters. The paid PDF and the files are not on this site."
+          title="The free preview is the opening of Define."
+          lead="Eight pages: the cover, how the set is used, the contents, and the first chapters of Define. Build and Ship are separate paid files, and they are not in this preview."
         />
         <PreviewLink
           href={playbookPreviewPdf}

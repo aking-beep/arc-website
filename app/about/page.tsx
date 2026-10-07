@@ -5,11 +5,12 @@ import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { PanelLabel, Takeaway } from "@/components/diagram";
+import { PanelLabel } from "@/components/diagram";
 import { FaqList } from "@/components/faq-list";
 import { CTA } from "@/components/cta";
 import { ark } from "@/lib/ark";
 import { digitalTransformation, faqs, site } from "@/lib/content";
+import { playbookTiers } from "@/lib/playbook";
 
 export const metadata: Metadata = {
   title: "About · Who does the work",
@@ -100,20 +101,20 @@ export default function AboutPage() {
 
       <Section>
         <SectionHeading
-          kicker="ARC and ARK"
-          title="ARC is the company. ARK is what ARC builds."
-          lead="Two names, because they answer two different questions and conflating them makes both harder to trust."
+          kicker="One company"
+          title="The work, the playbooks, and the tools carry the same name."
+          lead="ARC Transformation Group is who you contract with. The pages for agents, and the three playbooks, are published by that same practice."
         />
-        <div className="mt-12 grid gap-5 lg:grid-cols-2">
+        <div className="mt-12 grid gap-5 lg:grid-cols-3">
           <Card className="p-6 sm:p-8">
-            <PanelLabel>ARC Transformation Group</PanelLabel>
-            <p className="mt-4 text-2xl font-semibold tracking-tight text-balance">
+            <PanelLabel>Services</PanelLabel>
+            <p className="mt-4 text-xl font-semibold tracking-tight text-balance">
               {site.question}
             </p>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              The company and the commercial relationship. Architecture, data,
-              cloud, security, software, delivery and AI — reviewed, designed,
-              built and operated.
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Modernize, automate, build, and operate. Architecture, data, cloud,
+              security, software, and AI, reviewed and delivered by the person on
+              the first call.
             </p>
             <Link
               href="/services"
@@ -123,15 +124,32 @@ export default function AboutPage() {
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Card>
-          <Card className="border-brand/30 bg-brand-subtle/50 p-6 sm:p-8">
-            <PanelLabel>ARK</PanelLabel>
-            <p className="mt-4 text-2xl font-semibold tracking-tight text-balance">
+          <Card className="p-6 sm:p-8">
+            <PanelLabel>Playbooks</PanelLabel>
+            <p className="mt-4 text-xl font-semibold tracking-tight text-balance">
+              {playbookTiers.map((tier) => `${tier.name} ${tier.price}`).join(" · ")}
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Three separate PDFs for the product work. Define asks whether it
+              should exist. Build asks how the system should be made. Ship asks
+              whether it is ready, and includes the files you build with.
+            </p>
+            <Link
+              href="/playbook"
+              className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
+            >
+              See the playbooks
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Card>
+          <Card className="p-6 sm:p-8">
+            <PanelLabel>Agent infrastructure</PanelLabel>
+            <p className="mt-4 text-xl font-semibold tracking-tight text-balance">
               {ark.question}
             </p>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              The technology we build for the layer where software starts acting
-              on its own: agent readiness, outcome assurance, and the fit
-              assessments that decide where AI belongs in the first place.
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Agent Readiness, Agent Control with design partners, and the free
+              Labs tools. {ark.principle}
             </p>
             <Link
               href="/platform"
@@ -142,7 +160,6 @@ export default function AboutPage() {
             </Link>
           </Card>
         </div>
-        <Takeaway className="mt-12 max-w-3xl">{ark.principle}</Takeaway>
       </Section>
 
       <Section className="bg-muted/30">

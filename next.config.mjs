@@ -18,7 +18,7 @@ const nextConfig = {
         destination: "/work",
         permanent: true,
       },
-      // Studio became Advisory. The Agent Control Review became ARK Agent
+      // Studio became Advisory. The Agent Control Review became Agent
       // Readiness, so it moves out of the engagement list entirely.
       {
         source: "/studio/agent-control-review",
@@ -41,21 +41,20 @@ const nextConfig = {
         destination: "/playbook",
         permanent: true,
       },
-      // The skills, architecture and workflow libraries ship inside the
-      // Playbook rather than standing as separate Labs products.
+      // The skills, architecture and workflow libraries ship inside Ship.
       {
         source: "/labs/arc-skills",
-        destination: "/playbook",
+        destination: "/playbook/ship",
         permanent: true,
       },
       {
         source: "/labs/reference-architectures",
-        destination: "/playbook",
+        destination: "/playbook/ship",
         permanent: true,
       },
       {
         source: "/labs/ai-workflow-templates",
-        destination: "/playbook",
+        destination: "/playbook/ship",
         permanent: true,
       },
     ];

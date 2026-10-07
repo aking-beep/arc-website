@@ -17,13 +17,22 @@ type FileKey = "pdf" | "zip";
  * with Paddle on the server before any URL is signed, so this component has
  * no authority of its own.
  */
-export function SuccessDownload({ transactionId }: { transactionId: string }) {
+export function SuccessDownload({
+  transactionId,
+  product,
+}: {
+  transactionId: string;
+  product: string;
+}) {
   const [busy, setBusy] = React.useState<FileKey | null>(null);
   const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    trackEvent("playbook_purchase_complete", { transaction_id: transactionId });
-  }, [transactionId]);
+    trackEvent("playbook_purchase_complete", {
+      product,
+      transaction_id: transactionId,
+    });
+  }, [product, transactionId]);
 
   async function download(file: FileKey) {
     if (busy) return;
