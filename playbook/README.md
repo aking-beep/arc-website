@@ -1,7 +1,7 @@
 # ARC AI Product Playbook — production
 
-Everything needed to produce the sellable bundle: a print-ready PDF and a ZIP
-of editable Markdown.
+Everything needed to produce the three sellable playbooks. Each one is a
+print-ready PDF and a ZIP of the editable files that belong to it.
 
 ```
 playbook/
@@ -15,18 +15,26 @@ playbook/
 
 ```bash
 npm run playbook:assets    # pull the three libraries from their repos
-npm run playbook:pdf       # render the PDF
-npm run playbook:bundle    # PDF + editable Markdown -> ZIP
-npm run playbook:build     # all three, in order
+npm run playbook:pdf       # render one PDF per playbook
+npm run playbook:bundle    # one ZIP per playbook
+npm run playbook:build     # assets, PDFs, ZIPs, and the public preview
+npm run playbook:provision # create sandbox prices and upload, when keys exist
 ```
 
-Output lands in `playbook/build/`:
+Output lands in `playbook/build/` and is not committed:
 
 | File | What it is |
 | --- | --- |
-| `arc-ai-product-playbook.pdf` | The product. Upload this. |
-| `arc-ai-product-playbook-assets.zip` | Editable Markdown. Upload this too. |
-| `appendices/` | Generated library appendices, intermediate. |
+| `define/arc-playbook-define.pdf` | Modules 01–03 and worksheets 1–6. USD 5. |
+| `define/arc-playbook-define.zip` | That PDF plus those worksheets as Markdown. |
+| `build/arc-playbook-build.pdf` | Modules 04, 05, and 07, and worksheets 7, 8, and 10. USD 10. |
+| `build/arc-playbook-build.zip` | That PDF plus those worksheets as Markdown. |
+| `ship/arc-playbook-ship.pdf` | Modules 06 and 08, worksheets 9 and 11, and the three libraries. USD 20. |
+| `ship/arc-playbook-ship.zip` | That PDF, those worksheets, and the editable libraries. |
+| `appendices/` | Generated library appendices. Printed only in Ship. |
+
+`npm run playbook:build` also refreshes `public/playbook/preview.pdf` from the
+opening of Define, through the first page of Module 01.
 
 Rendering uses the Chrome already on the machine via `puppeteer-core`. Set
 `CHROME_PATH` if it is not at one of the usual locations.
@@ -79,12 +87,13 @@ sections land at h4 and below.
 | Page numbers | Bottom outer, module name bottom inner | |
 | Bleed | None | It is a download, not a press run. |
 
-### Structure
+### Manuscript order
+
+The source is still one method, in this order. The build then slices it into
+the three products above.
 
 ```
-Cover
-Title page
-Colophon
+Front matter
 How to use this Playbook
 The five-step system (one page, the whole argument)
 Module 01  Idea
@@ -123,11 +132,33 @@ Carried over from the site, because the product should read like the company.
 - Say what the Playbook does not cover.
 - Plain language. If a sentence needs a diagram, draw the diagram.
 
+The cut is `scripts/playbook/editions.mjs`. Define takes modules 01–03 and
+worksheets 1–6. Build takes modules 04, 05, and 07 and worksheets 7, 8, and
+10. Ship takes modules 06 and 08, worksheets 9 and 11, and every library
+appendix. A worksheet that moves modules has to move editions in the same
+change, or the build throws.
+
 ## Shipping a new edition
 
 1. Edit the manuscript. Bump `edition` in `playbook/manuscript/meta.json`.
 2. `npm run playbook:build`.
-3. Check the colophon shows the new edition and the library SHAs.
-4. Upload both artefacts to the private bucket under the configured prefix.
+3. Check each colophon shows the edition, and that Ship's colophon shows the
+   library SHAs.
+4. `npm run playbook:provision` with the storage keys set, or upload the six
+   objects over the same paths by hand.
 5. Buyers keep the same download link — it resolves to the current object, so
    "free updates to this edition" costs nothing to honour.
+
+## Provisioning checkout
+
+`npm run playbook:provision` reads `.env.local`. With `PADDLE_API_KEY` it
+finds or creates one one-time USD price per playbook (5.00, 10.00, 20.00) and
+writes the price id. With `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, and
+`PLAYBOOK_STORAGE_BUCKET` it creates that bucket as private if needed and
+uploads the six objects.
+
+It does not invent an id when the key is missing. It will not create
+production prices unless `PADDLE_ENVIRONMENT=production` and you pass
+`--confirm-production`. The client-side token still comes from the Paddle
+dashboard. The webhook secret does too, unless you pass `--create-webhook`
+and `NEXT_PUBLIC_SITE_URL` is a public https origin.

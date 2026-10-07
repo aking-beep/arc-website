@@ -62,14 +62,15 @@ typing, it is judgement. Decide in advance which things a human owns:
 Everything else is fair game, and should be — refusing the leverage because it
 is fashionable to worry about it is just slower.
 
-> **ARC Skills, appendix A.** Twenty agent skills with triggers, steps and
-> guardrails, for operator work like PR review, incident timelines and prompt
-> ship review. They are most useful here: the review skills are how you keep
-> the quality bar constant when the volume of generated code goes up.
+> **ARC Skills are in the Ship playbook.** Twenty agent skills with triggers,
+> steps and guardrails, for operator work like PR review, incident timelines
+> and prompt ship review. They are most useful here: the review skills are how
+> you keep the quality bar constant when the volume of generated code goes up.
 
-> **AI Workflow Templates, appendix C.** Sixteen end-to-end workflows with the
-> prompt, the tools it calls, the input schema and the human gate already in
-> place. Start from the nearest one rather than from an empty file.
+> **AI Workflow Templates are in the Ship playbook.** Sixteen end-to-end
+> workflows with the prompt, the tools it calls, the input schema and the
+> human gate already in place. Start from the nearest one rather than from an
+> empty file.
 
 ### Keep the evaluation set running from day one
 
@@ -101,9 +102,9 @@ and expensive later. This also feeds the per-user operating cost in module 07.
 
 → **Worksheet 8 — Build sequence**
 
-→ **Appendix A — ARC Skills library**
+→ **Ship playbook — ARC Skills library**
 
-→ **Appendix C — AI Workflow Templates**
+→ **Ship playbook — AI Workflow Templates**
 
 ## Where this bites
 

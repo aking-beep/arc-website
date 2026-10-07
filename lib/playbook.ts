@@ -44,7 +44,7 @@ export type PlaybookTier = {
   currency: "USD";
   priceNote: string;
   format: string;
-  /** Where this sits in the book. */
+  /** Where this sits in the method. */
   part: string;
   summary: string;
   /** What the buyer can point at after they finish it. */
@@ -66,40 +66,34 @@ export const playbookTiers: readonly PlaybookTier[] = [
     currency: "USD",
     priceNote: "one-off, no subscription",
     format: "PDF + editable worksheets",
-    part: "Part I · chapters 01–04",
+    part: "Modules 01–03",
     summary:
-      "Who has the problem, what would count as success, the smallest version that can finish the job, and the one workflow that version has to complete.",
+      "The one-sentence claim, the evidence that would change your mind, and the single workflow the first version has to finish.",
     outcome:
-      "A product brief, a validation record, an MVP boundary, and a workflow someone else could follow.",
+      "A hypothesis, a go-or-stop threshold written before you look, and an exclusions list for the first version.",
     includes: [
-      "Chapter 01, the five-line product brief",
-      "Chapter 02, the evidence ladder and five validation questions",
-      "Chapter 03, the MVP boundary",
-      "Chapter 04, the user workflow",
-      "Editable brief, validation notes, and MVP worksheet",
+      "Module 01, Idea: the hypothesis and the assumption that would kill the product",
+      "Module 02, Validation: the threshold, the conversations, and the cost of the alternative",
+      "Module 03, Product: one workflow, and what the first version leaves out",
+      "Worksheets 1–6, from the product hypothesis through the MVP exclusions",
       "Updates to this edition",
     ],
     chapters: [
       {
-        name: "01 · Outcome",
-        text: "User, situation, pain, outcome, and the evidence that would prove the product worked.",
+        name: "01 · Idea",
+        text: "A sentence with a specific person, a specific problem, a specific outcome, and what they do today.",
       },
       {
         name: "02 · Validation",
-        text: "What people do today, how often it hurts, and what they already spend to avoid it.",
+        text: "A threshold set before the conversations, and evidence you could point at.",
       },
       {
-        name: "03 · Product and MVP",
-        text: "The smallest version that finishes the job and produces evidence. A demo is not that.",
-      },
-      {
-        name: "04 · Workflow",
-        text: "The one path a user walks, from the trigger to a result someone can check.",
+        name: "03 · Product",
+        text: "One workflow from trigger to result, and the list of what version one leaves out.",
       },
     ],
-    pdfBlurb:
-      "Part I, print-ready: the outcome, the validation, the MVP boundary, and the workflow.",
-    zipBlurb: "The product brief, the validation notes, and the MVP worksheet as editable Markdown.",
+    pdfBlurb: "Modules 01 to 03, print-ready: Idea, Validation, and Product, with worksheets 1 to 6.",
+    zipBlurb: "Worksheets 1 to 6 as editable Markdown.",
   },
   {
     slug: "build",
@@ -110,42 +104,36 @@ export const playbookTiers: readonly PlaybookTier[] = [
     priceAmount: 10,
     currency: "USD",
     priceNote: "one-off, no subscription",
-    format: "PDF + editable checklists",
-    part: "Part II · chapters 05–08",
+    format: "PDF + editable worksheets",
+    part: "Modules 04, 05, and 07",
     summary:
-      "Where a model earns its place, the shape of the system, the data it is allowed to see, and the controls that stop a bad run.",
+      "Where the model sits in the system, the order you build in, and the security, privacy, and cost checks before anyone relies on it.",
     outcome:
-      "An architecture you can defend, a context boundary, and a security checklist filled in before the build.",
+      "A one-page diagram with the model boundary marked, a build sequence that starts at the largest unknown, and a production checklist with a yes or a ticket on each line.",
     includes: [
-      "Chapter 05, choosing the AI pattern",
-      "Chapter 06, the architecture and its failure boundary",
-      "Chapter 07, the data and context layer",
-      "Chapter 08, security, privacy, and governance",
-      "Architecture decision framework",
-      "Security checklist, as an editable file",
+      "Module 04, Architecture: the parts, the model boundary, and the trade-offs you accepted",
+      "Module 05, Build: the build order, and the decisions that stay with you",
+      "Module 07, Production readiness: security, privacy, monitoring, and cost per user",
+      "Worksheets 7, 8, and 10: the architecture record, the build sequence, and the production checklist",
       "Updates to this edition",
     ],
     chapters: [
       {
-        name: "05 · AI pattern",
-        text: "Where a model earns its place, and where ordinary software is clearer, cheaper, or safer.",
+        name: "04 · Architecture",
+        text: "A one-page diagram, with a line around everything whose output is probabilistic.",
       },
       {
-        name: "06 · Architecture",
-        text: "The shape of the system, with the boundary around anything a model can get wrong.",
+        name: "05 · Build",
+        text: "One vertical slice through the riskiest part first, then a definition of done for each slice.",
       },
       {
-        name: "07 · Data and context",
-        text: "The data the product needs, where it comes from, and what it is allowed to see.",
-      },
-      {
-        name: "08 · Security",
-        text: "What must not leak, who can act, and how a bad run gets stopped.",
+        name: "07 · Production readiness",
+        text: "Security, privacy, monitoring, and what a user costs you to run.",
       },
     ],
     pdfBlurb:
-      "Part II, print-ready: the AI pattern, the architecture, the context layer, and the security chapter.",
-    zipBlurb: "The architecture decision framework and the security checklist as editable Markdown.",
+      "Modules 04, 05, and 07, print-ready: Architecture, Build, and Production readiness, with worksheets 7, 8, and 10.",
+    zipBlurb: "Worksheets 7, 8, and 10 as editable Markdown.",
   },
   {
     slug: "ship",
@@ -157,44 +145,38 @@ export const playbookTiers: readonly PlaybookTier[] = [
     currency: "USD",
     priceNote: "one-off, no subscription",
     format: "PDF + skills, architectures, workflows, and worksheets",
-    part: "Parts III–V · chapters 09–16",
+    part: "Modules 06 and 08, plus the libraries",
     summary:
-      "How you grade it, how it reaches people, what you change after they use it, and the files you build with: 20 skills, 20 architectures, 16 workflows, and a 30-day sprint.",
+      "The numbers that mean working, the one channel you will keep using, and the skills, architectures, and workflow files you adapt.",
     outcome:
-      "An evaluation suite, a launch gate, and the implementation files in the tools you already use.",
+      "An evaluation set with a pass line chosen before you measure, a launch plan with one channel and two numbers, and the library files.",
     includes: [
-      "Chapter 09, evaluations and quality",
-      "Chapter 10, launch and instrumentation",
-      "Chapter 11, operate and improve",
-      "20 ARC Skills",
-      "20 reference architectures",
+      "Module 06, Evaluation: the cases, the pass line, and the failures you have accepted",
+      "Module 08, Launch: one channel, a price, and the two numbers that decide whether you continue",
+      "Worksheets 9 and 11: the evaluation plan and the launch plan",
+      "20 ARC Skills, printed and as SKILL.md files",
+      "20 reference architectures, with the scenario and diagram files",
       "16 AI workflow templates",
-      "30-day build sprint",
-      "Evaluation, launch, and operating worksheets",
       "Updates to this edition",
     ],
     chapters: [
       {
-        name: "09 · Evaluation",
-        text: "The cases you will grade, the pass line, and the failures you have not accepted.",
+        name: "06 · Evaluation",
+        text: "A set built from real inputs, a way to judge each output, and a pass line chosen before you measure.",
       },
       {
-        name: "10 · Launch",
-        text: "How it reaches people, what you measure, and the gate that says it is ready.",
+        name: "08 · Launch",
+        text: "One channel you can sustain, a price tied to the alternative's cost, and two numbers that decide whether you continue.",
       },
       {
-        name: "11 · Operate",
-        text: "What changes after real use: cost, quality, the workflow, and what you stop doing.",
-      },
-      {
-        name: "12–16 · Files",
-        text: "Skills, reference architectures, workflow templates, worksheets, and the 30-day sprint.",
+        name: "Libraries",
+        text: "20 skills, 20 reference architectures, and 16 workflow templates, printed in full and included again as editable files.",
       },
     ],
     pdfBlurb:
-      "Parts III–V, print-ready: evaluation, launch, operations, and the skills, architectures, and workflow libraries.",
+      "Modules 06 and 08, print-ready, plus the skills, architectures, and workflow libraries, with worksheets 9 and 11.",
     zipBlurb:
-      "20 skills, 20 architectures, 16 workflow templates, and the evaluation, launch, and operating worksheets as editable files.",
+      "20 skills, 20 architectures, 16 workflow templates, and worksheets 9 and 11 as editable files.",
   },
 ];
 
@@ -209,7 +191,7 @@ export function playbookTierHref(slug: PlaybookSlug): string {
 export const playbookLanding = {
   kicker: "Playbooks",
   title: "Three playbooks. Buy the part of the work you are in.",
-  lead: "Define is the decision of whether the product should exist. Build is the system around it. Ship is how you prove it, launch it, and the files you fill in. Each one is its own PDF and its own download.",
+  lead: "Define is modules 01 to 03: whether the product should exist, and what the first version leaves out. Build is the system, the build order, and production readiness. Ship is evaluation, launch, and the skills, architectures, and workflow files. Each one is its own PDF.",
   rule: "Do not use AI where deterministic software is clearer, cheaper, faster, or safer.",
 };
 
@@ -235,7 +217,7 @@ export const playbookFaqs = [
   },
   {
     q: "Which one should I buy?",
-    a: "Define, if you have not yet written who the product is for and what would count as success. Build, if that is settled and you are choosing the system. Ship, if you are grading, launching, or you want the skills, architectures, and workflow files.",
+    a: "Define, if you have not written the hypothesis and the line that means stop. Build, if that is settled and you are drawing the system and the build order. Ship, if you are grading, launching, or you want the skills, architectures, and workflow files.",
   },
   {
     q: "What format do I get?",
@@ -247,11 +229,11 @@ export const playbookFaqs = [
   },
   {
     q: "Where are the skills, architectures, and workflows?",
-    a: "In Ship. That download has all 20 skills, all 20 reference architectures, and all 16 workflow templates, printed in the PDF and again as editable files. Define and Build do not include them.",
+    a: "In Ship. That download prints the libraries in full and includes the same files in the ZIP: 20 skills, 20 reference architectures, and 16 workflow templates. Define and Build do not include them.",
   },
   {
     q: "Can I read some of it first?",
-    a: "Yes. The free preview is the opening of Define: the cover, how the set is used, the contents, and the first chapters. Build and Ship are not in that preview.",
+    a: "Yes. The free preview is the opening of Define: the cover, how the three playbooks fit together, the five-step system, and the first page of Module 01. Build and Ship are not in that preview.",
   },
   {
     q: "Will it be out of date in six months?",
@@ -280,22 +262,22 @@ export const playbookPreviewPdf = "/playbook/preview.pdf";
 export const playbookShots = [
   {
     src: "/playbook/cover.png",
-    alt: "Cover of the ARC product playbooks, titled From Idea to Shipped Product",
-    caption: "The cover of the set",
+    alt: "Cover of the Define playbook, titled Should this product exist",
+    caption: "The Define cover",
   },
   {
     src: "/playbook/preview-images/how-to-use.png",
-    alt: "A page titled How to use this playbook, with passes from Define through Learn",
-    caption: "How you work through it",
+    alt: "A page titled How to use this playbook, listing modules 01 to 03 and pointing to Build and Ship as separate purchases",
+    caption: "What this file contains",
   },
   {
     src: "/playbook/preview-images/contents.png",
-    alt: "Table of contents: Part I Define, Part II Build the system, Parts III to V prove, ship, and the files",
-    caption: "Where the three playbooks split",
+    alt: "The five-step system: Validate, Define, Architect, Harden, and Launch, with the modules each step contains",
+    caption: "Where this file sits in the method",
   },
   {
     src: "/playbook/preview-images/product-brief.png",
-    alt: "Chapter one of Define, a five-line product brief with fields for user, situation, pain, outcome, and evidence",
-    caption: "The five-line brief, in Define",
+    alt: "The opening of Module 01, Idea, asking for a one-sentence claim and the assumption that would kill the product",
+    caption: "Module 01, the first page",
   },
 ] as const;

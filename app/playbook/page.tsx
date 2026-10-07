@@ -92,7 +92,7 @@ export default function PlaybookPage() {
             <SectionHeading
               kicker="The split"
               title="Each playbook answers one question."
-              lead="The chapters follow the order in the book. You can stop when the question you have is answered."
+              lead="Define, then Build, then Ship, if you are walking the whole method. Each one stands on its own."
             />
             <ol className="mt-10 space-y-6">
               {playbookTiers.map((tier, index) => (

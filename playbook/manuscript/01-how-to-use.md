@@ -27,6 +27,9 @@ willing to show another person. Not when you have read it.
 
 ## The three libraries
 
+The libraries ship with the Ship playbook, printed there as appendices A, B
+and C and again as editable files. They are not part of Define or Build.
+
 Appendices A, B and C are working libraries rather than reading material:
 
 - **Appendix A — ARC Skills.** Agent skills you can drop into Cursor or Claude.
