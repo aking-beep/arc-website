@@ -12,7 +12,7 @@ import { academy, research } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Playbooks · Use our methods without hiring us",
   description:
-    "Playbooks, frameworks, free assessments and checklists from ARC. Three are free and complete on the page. The AI Product Playbook is $39.",
+    "Playbooks, frameworks, free assessments and checklists from ARC. Three are free and complete on the page. The AI Product Playbook is $5.",
 };
 
 export default function PlaybooksPage() {

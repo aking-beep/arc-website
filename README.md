@@ -223,7 +223,7 @@ management, data handling, least-privilege access) — handle it then, not now.
 
 ## Selling the Playbook
 
-`/playbook` sells the **ARC AI Product Playbook** for $39 as a one-off purchase:
+`/playbook` sells the **ARC AI Product Playbook** for $5 as a one-off purchase:
 Paddle takes the payment, a webhook records it and emails a private download
 link, and the link resolves to short-lived signed URLs for two objects in a
 private bucket. There are no accounts.
@@ -269,7 +269,7 @@ every identifier below has to come from your own accounts.
 
 1. Create a Paddle Billing account and work in **sandbox** first.
 2. Catalog → Products → create *ARC AI Product Playbook*; add a one-time price
-   of **USD 39.00**. Copy the **price id** (`pri_...`) into
+   of **USD 5.00**. Copy the **price id** (`pri_...`) into
    `PLAYBOOK_PADDLE_PRICE_ID`.
 3. Developer tools → Authentication → create an **API key** →
    `PADDLE_API_KEY`.

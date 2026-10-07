@@ -14,8 +14,8 @@ export const playbookProduct = {
   name: "ARC AI Product Playbook",
   subtitle: "From Idea to Shipped Product",
   /** Display price. The charge itself is defined by the Paddle price ID. */
-  price: "$39",
-  priceAmount: 39,
+  price: "$5",
+  priceAmount: 5,
   currency: "USD",
   priceNote: "one-off, no subscription",
   format: "PDF + editable implementation assets (ZIP)",
@@ -270,7 +270,7 @@ export const playbookFaqs = [
   },
   {
     q: "What if it is not useful?",
-    a: "Email us within 30 days and we refund it. We would rather return $39 than have a product with a reputation for wasting people's time.",
+    a: "Email us within 30 days and we refund it. We would rather return the $5 than have a product with a reputation for wasting people's time.",
   },
   {
     q: "Do you also do this work for people?",

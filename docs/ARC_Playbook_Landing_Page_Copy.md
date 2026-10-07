@@ -6,7 +6,7 @@ product, then the files you build with.
 
 - **Route:** `/playbook`
 - **Product:** ARC AI Product Playbook — From Idea to Shipped Product
-- **Price:** USD $39, one-off. The charge is the Paddle price id, never a number invented in the client.
+- **Price:** USD $5, one-off. The charge is the Paddle price id, which must be a $5 price. The page does not invent one.
 - **Format:** PDF + editable implementation assets (ZIP)
 - **Public preview:** `/playbook/preview.pdf` and the page images under `public/playbook/`. The paid PDF and ZIP are not in this repository.
 
