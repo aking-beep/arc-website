@@ -14,7 +14,7 @@ import { labs, site } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Developers · Protocols, open tools and runtime research",
   description:
-    "The ARK developer surface: agent-facing protocols, MIT-licensed scanners and catalogues, architecture notes, and open research into where AI work should execute.",
+    "The ARC developer surface: agent-facing protocols, MIT-licensed scanners and catalogues, architecture notes, and open research into where AI work should execute.",
 };
 
 /** Routing axes for the runtime question. Research, not a shipping product. */
@@ -47,7 +47,7 @@ export default function DevelopersPage() {
   return (
     <>
       <PageHero
-        kicker="ARK · Developers"
+        kicker="Developers"
         title="The layer underneath the products."
         lead="Protocols, open tools, architecture notes and the runtime research. Published with its maturity attached, because an experiment presented as infrastructure wastes someone's week."
       >
@@ -57,7 +57,7 @@ export default function DevelopersPage() {
             Browse the GitHub org
           </Button>
           <Button href="/labs" variant="ghost">
-            All ARK Labs tools
+            All Labs tools
             <ArrowRight className="h-4 w-4" />
           </Button>
         </div>
@@ -174,7 +174,7 @@ export default function DevelopersPage() {
           <SectionHeading
             kicker="Open tools"
             title="MIT licensed, no account, most store nothing."
-            lead={`${openTools.length} of the ARK Labs projects ship their source. Clone them, read the rules, disagree with the rules, open a pull request.`}
+            lead={`${openTools.length} of the Labs projects ship their source. Clone them, read the rules, disagree with the rules, open a pull request.`}
           />
           <Link
             href="/labs"

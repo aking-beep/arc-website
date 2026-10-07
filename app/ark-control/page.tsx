@@ -15,7 +15,7 @@ import { assuranceChecklist } from "@/lib/learn";
 const product = getArkProduct("ark-control");
 
 export const metadata: Metadata = {
-  title: "ARK Control · Outcome assurance for production AI agents",
+  title: "Agent Control · Outcome assurance for production AI agents",
   description:
     "Understand what agents attempted, what authority they used, and whether the intended outcome occurred. In design-partner development.",
 };

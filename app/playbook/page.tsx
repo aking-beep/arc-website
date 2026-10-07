@@ -1,57 +1,130 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Check, Minus } from "lucide-react";
 
-import { FinalCTA } from "@/components/playbook/final-cta";
-import { PlaybookHero } from "@/components/playbook/hero";
 import { Preview } from "@/components/playbook/preview";
-import { Pricing } from "@/components/playbook/pricing";
-import { ProductRoadmap } from "@/components/playbook/product-roadmap";
-import { Toolkit } from "@/components/playbook/toolkit";
+import { TierCards } from "@/components/playbook/tier-cards";
 import { PlaybookViewTracker } from "@/components/playbook/view-tracker";
-import { WhatsIncluded } from "@/components/playbook/whats-included";
 import { FaqList } from "@/components/faq-list";
 import { Card } from "@/components/ui/card";
-import { Section, SectionHeading } from "@/components/ui/section";
+import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { PanelLabel } from "@/components/diagram";
 import { publicCheckoutConfig } from "@/lib/commerce/checkout";
 import { site } from "@/lib/content";
-import { playbookAudience, playbookFaqs, playbookProduct } from "@/lib/playbook";
+import {
+  playbookAudience,
+  playbookFaqs,
+  playbookLanding,
+  playbookPublisher,
+  playbookSlugs,
+  playbookTiers,
+  type PlaybookSlug,
+} from "@/lib/playbook";
 
 const canonical = `${site.domain.replace(/\/+$/, "")}/playbook`;
 
 const description =
-  "A practical system for taking an AI idea through fifteen decisions to a product people can use, with skills, reference architectures, workflow templates, and the checklists you fill in while you build. One-time purchase.";
+  "Three separate playbooks for an AI product. Define is $5, Build is $10, and Ship is $20. Each one is its own PDF and its own download.";
 
 export const metadata: Metadata = {
-  title: `${playbookProduct.name} · ${playbookProduct.subtitle}`,
+  title: "Playbooks · Define $5, Build $10, Ship $20",
   description,
   alternates: { canonical },
   openGraph: {
     type: "website",
     url: canonical,
-    title: `${playbookProduct.name} · ${playbookProduct.subtitle}`,
+    title: "Three playbooks. Define, Build, and Ship.",
     description,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${playbookProduct.name} · ${playbookProduct.subtitle}`,
+    title: "Three playbooks. Define, Build, and Ship.",
     description,
   },
 };
 
 export default function PlaybookPage() {
-  const checkout = publicCheckoutConfig();
+  const checkouts = Object.fromEntries(
+    playbookSlugs.map((slug) => [slug, publicCheckoutConfig(slug)]),
+  ) as Record<PlaybookSlug, ReturnType<typeof publicCheckoutConfig>>;
 
   return (
     <>
-      <PlaybookViewTracker />
-      <ProductSchema />
+      <PlaybookViewTracker source="catalog" />
+      <CatalogSchema />
       <FaqSchema />
 
-      <PlaybookHero checkout={checkout} />
-      <WhatsIncluded />
-      <ProductRoadmap />
-      <Toolkit />
+      <section className="border-b border-border/60">
+        <Container className="py-16 sm:py-24">
+          <div className="max-w-3xl animate-fade-up">
+            <p className="mb-4 text-sm font-medium uppercase tracking-widest text-muted-foreground">
+              {playbookLanding.kicker}
+            </p>
+            <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+              {playbookLanding.title}
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              {playbookLanding.lead}
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      <Section id="pricing" className="scroll-mt-20">
+        <SectionHeading
+          kicker="Prices"
+          title="One checkout each. Nothing is bundled."
+          lead="Paddle handles the payment. The download link for that playbook arrives by email. The charge is the price id configured for that playbook, which has to be the amount printed here."
+        />
+        <TierCards checkouts={checkouts} />
+        <p className="mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          All three together are $35. The free scorecard and checklists live on the{" "}
+          <Link href="/playbooks" className="underline underline-offset-4">
+            frameworks page
+          </Link>
+          .
+        </p>
+      </Section>
+
+      <Section className="bg-muted/30">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:items-start">
+          <div>
+            <SectionHeading
+              kicker="The split"
+              title="Each playbook answers one question."
+              lead="Define, then Build, then Ship, if you are walking the whole method. Each one stands on its own."
+            />
+            <ol className="mt-10 space-y-6">
+              {playbookTiers.map((tier, index) => (
+                <li key={tier.slug} className="grid gap-2 sm:grid-cols-[7rem_minmax(0,1fr)]">
+                  <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                    {String(index + 1).padStart(2, "0")} · {tier.price}
+                  </p>
+                  <div>
+                    <h3 className="text-lg font-semibold tracking-tight">
+                      {tier.name}. {tier.subtitle}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                      {tier.outcome}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <Card className="p-6 sm:p-8">
+            <PanelLabel>The rule in all three</PanelLabel>
+            <p className="mt-4 text-xl font-medium leading-snug tracking-tight text-balance">
+              {playbookLanding.rule}
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Use a model where interpretation, synthesis, generation, classification,
+              ranking, or a conversation in ordinary language is what creates the value.
+            </p>
+          </Card>
+        </div>
+      </Section>
+
       <Preview />
 
       <Section>
@@ -72,7 +145,7 @@ export default function PlaybookPage() {
             </ul>
           </Card>
           <Card className="bg-muted/40 p-6 sm:p-8">
-            <PanelLabel>Skip it if</PanelLabel>
+            <PanelLabel>Skip them if</PanelLabel>
             <ul className="mt-5 space-y-3">
               {playbookAudience.notForYou.map((item) => (
                 <li
@@ -88,36 +161,39 @@ export default function PlaybookPage() {
         </div>
       </Section>
 
-      <Pricing checkout={checkout} />
-
-      <Section>
+      <Section className="bg-muted/30">
         <SectionHeading kicker="Questions" title="What people ask before buying." />
         <div className="mt-12 max-w-3xl">
           <FaqList items={[...playbookFaqs]} />
         </div>
       </Section>
-
-      <FinalCTA checkout={checkout} />
     </>
   );
 }
 
-function ProductSchema() {
+function CatalogSchema() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Product",
-    name: playbookProduct.name,
-    description,
-    brand: { "@type": "Brand", name: playbookProduct.publisher },
-    image: `${canonical.replace(/\/playbook$/, "")}/playbook/cover.png`,
-    url: canonical,
-    offers: {
-      "@type": "Offer",
-      price: String(playbookProduct.priceAmount),
-      priceCurrency: playbookProduct.currency,
-      availability: "https://schema.org/InStock",
-      url: canonical,
-    },
+    "@type": "ItemList",
+    name: "ARC Playbooks",
+    itemListElement: playbookTiers.map((tier, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Product",
+        name: tier.productName,
+        description: tier.summary,
+        brand: { "@type": "Brand", name: playbookPublisher },
+        url: `${canonical}/${tier.slug}`,
+        offers: {
+          "@type": "Offer",
+          price: String(tier.priceAmount),
+          priceCurrency: tier.currency,
+          availability: "https://schema.org/InStock",
+          url: `${canonical}/${tier.slug}`,
+        },
+      },
+    })),
   };
 
   return (

@@ -19,9 +19,9 @@ import {
 } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "ARK Labs · Open tools, scanners and experiments",
+  title: "Labs · Open tools, scanners and experiments",
   description:
-    "Free ARK Labs tools: scanners, catalogues and utilities you can run yourself. Most need no account. Every project carries its maturity.",
+    "Free Labs tools from ARC: scanners, catalogues and utilities you can run yourself. Most need no account. Every project carries its maturity.",
 };
 
 /** What each badge commits us to. Stated so the labels mean something. */
@@ -63,7 +63,7 @@ export default function LabsPage() {
   return (
     <>
       <PageHero
-        kicker="ARK Labs"
+        kicker="Labs"
         title="Open tools, scanners and experiments."
         lead={`${labsProof.tools} free tools, grouped by the job they do. Most need no account and store nothing. None of them are sold as products. Every one carries its maturity, so you can tell what is supported before you depend on it.`}
       >

@@ -10,55 +10,34 @@ import { playbookHref, playbooks } from "@/lib/learn";
 import { academy, research } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Playbooks · Use our methods without hiring us",
+  title: "Free frameworks · Scorecard, contract, and checklist",
   description:
-    "Playbooks, frameworks, free assessments and checklists from ARC. Three are free and complete on the page. The AI Product Playbook is $5.",
+    "Free frameworks from ARC: an agent readiness scorecard, an operating contract, and an outcome checklist. Complete on the page. The paid playbooks are a separate set.",
 };
 
 export default function PlaybooksPage() {
-  const featured = playbooks.find((p) => p.featured);
-  const rest = playbooks.filter((p) => !p.featured);
-
   return (
     <>
       <PageHero
-        kicker="ARC Learn"
-        title="Use our methods without hiring us."
-        lead="These are the frameworks we run on paid work, published. Three of the four are free and complete on the page — no email gate, no drip sequence. If you can get the result yourself, that is a good outcome for both of us."
+        kicker="Free frameworks"
+        title="Use these without hiring us."
+        lead="An assessment, a framework, and a checklist. All three are free and complete on the page. The paid product playbooks are a separate set: Define, Build, and Ship."
       />
 
-      {featured ? (
-        <Section>
-          <Link href={playbookHref(featured)} className="group block">
-            <Card className="p-8 ring-1 ring-brand/20 transition-all hover:border-foreground/20 hover:shadow-sm sm:p-12">
-              <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
-                <div>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <PanelLabel>Featured · {featured.kind}</PanelLabel>
-                    <span className="font-mono text-xs font-medium">
-                      {featured.price}
-                    </span>
-                  </div>
-                  <h2 className="mt-4 flex items-start gap-2 text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-                    {featured.name}
-                    <ArrowUpRight className="mt-2 h-5 w-5 flex-none text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </h2>
-                  <p className="mt-4 text-xl leading-relaxed">{featured.tagline}</p>
-                  <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-                    {featured.summary}
-                  </p>
-                </div>
-                {featured.chain ? (
-                  <div className="rounded-xl border border-border bg-muted/40 p-6">
-                    <PanelLabel>The system</PanelLabel>
-                    <FlowChain steps={featured.chain} className="mt-5" highlightLast />
-                  </div>
-                ) : null}
-              </div>
-            </Card>
-          </Link>
-        </Section>
-      ) : null}
+      <Section>
+        <Link href="/playbook" className="group block">
+          <Card className="p-8 transition-all hover:border-foreground/20 hover:shadow-sm sm:p-10">
+            <PanelLabel>Paid playbooks</PanelLabel>
+            <h2 className="mt-4 flex items-start gap-2 text-2xl font-semibold tracking-tight text-balance sm:text-3xl">
+              Define is $5. Build is $10. Ship is $20.
+              <ArrowUpRight className="mt-1 h-5 w-5 flex-none text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </h2>
+            <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">
+              Three PDFs, sold separately, for the product work: whether it should exist, how the system should be built, and how you prove it and launch it.
+            </p>
+          </Card>
+        </Link>
+      </Section>
 
       <Section className="bg-muted/30">
         <SectionHeading
@@ -67,7 +46,7 @@ export default function PlaybooksPage() {
           lead="An assessment, a framework and a checklist. All published in full, all scored or worked on the page itself."
         />
         <div className="mt-12 grid gap-5 lg:grid-cols-3">
-          {rest.map((p) => (
+          {playbooks.map((p) => (
             <Link key={p.slug} href={playbookHref(p)} className="group block h-full">
               <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
                 <div className="flex items-center justify-between gap-3">

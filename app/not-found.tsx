@@ -9,16 +9,16 @@ export default function NotFound() {
         That page isn&rsquo;t here.
       </h1>
       <p className="mt-4 max-w-md text-muted-foreground">
-        The link is broken, or the page moved. The products are under ARK, the
-        frameworks are under Playbooks, and the paid work is under Advisory.
+        The link is broken, or the page moved. Services, playbooks, and the
+        free frameworks are the three places to look.
       </p>
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <Button href="/">Back to home</Button>
-        <Button href="/platform" variant="outline">
-          Explore ARK
-        </Button>
-        <Button href="/playbooks" variant="ghost">
+        <Button href="/playbook" variant="outline">
           Playbooks
+        </Button>
+        <Button href="/services" variant="ghost">
+          Services
         </Button>
       </div>
     </Container>

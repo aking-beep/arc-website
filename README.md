@@ -13,10 +13,10 @@ This is not a consulting brochure — it's the operating system for the ARC ecos
 - **lucide-react** for icons
 - Marketing content lives in `lib/content.ts` — no CMS, no database behind the pages
 - Contact form posts to `/api/contact` (optional Resend delivery)
-- One commercial product: the **ARC AI Product Playbook** at `/playbook`, sold
-  through Paddle with purchases stored in Supabase. Everything commerce-related
-  is env-driven and inert until configured — see
-  [Selling the Playbook](#selling-the-playbook).
+- Three commercial products at `/playbook`: **Define ($5)**, **Build ($10)**,
+  and **Ship ($20)**, sold separately through Paddle with purchases stored in
+  Supabase. Everything commerce-related is env-driven and inert until
+  configured — see [Selling the Playbooks](#selling-the-playbooks).
 
 Design direction is deliberately restrained (Linear / Vercel / Anthropic / Stripe): whitespace, strong typography, subtle motion, almost no stock photography.
 
@@ -106,15 +106,16 @@ app/
   services/[slug]/page.tsx  Modernize / Automate / Build / Operate
   advisory/page.tsx     How engagements are shaped: sizes, reviews, retainers
   advisory/[slug]/page.tsx  Reusable SCOPED REVIEW template
-  platform/page.tsx     ARK — agent infrastructure
-  labs/page.tsx         ARK Labs (free tools)
+  platform/page.tsx     Agent infrastructure
+  labs/page.tsx         Labs (free tools)
   labs/[slug]/page.tsx  Reusable PRODUCT template (demo/GitHub/docs/roadmap)
-  playbook/page.tsx     The AI Product Playbook (paid download)
+  playbook/page.tsx     The three paid playbooks
+  playbook/[slug]/page.tsx  Define, Build, or Ship
   playbooks/page.tsx    Free frameworks and resources
   research/page.tsx     ARC Research (benchmarks + reports)
   research/[slug]/page.tsx  Reusable ARTICLE/RESEARCH template
   academy/page.tsx      Workshops
-  about/page.tsx        Who does the work, and how ARC and ARK differ
+  about/page.tsx        Who does the work
   work/[slug]/page.tsx  Reusable CASE STUDY template
 components/
   ui/                   Design-system primitives (button, card, badge, section, container)
@@ -221,16 +222,25 @@ Threat level rises only when you build the **Platform** pillar with real logins
 and customer data. That warrants its own security design (auth, session
 management, data handling, least-privilege access) — handle it then, not now.
 
-## Selling the Playbook
+## Selling the Playbooks
 
-`/playbook` sells the **ARC AI Product Playbook** for $5 as a one-off purchase:
-Paddle takes the payment, a webhook records it and emails a private download
-link, and the link resolves to short-lived signed URLs for two objects in a
-private bucket. There are no accounts.
+`/playbook` sells three separate products. **Define** is USD 5 (modules 01–03
+and worksheets 1–6). **Build** is USD 10 (modules 04, 05, and 07, and
+worksheets 7, 8, and 10). **Ship** is USD 20 (modules 06 and 08, worksheets 9
+and 11, and the skills, architectures, and workflow files). Buying one does
+not include the others. Paddle takes the payment, a webhook records which
+price was paid and emails a private download link, and the link resolves to
+short-lived signed URLs for that playbook's PDF and ZIP in a private bucket.
+There are no accounts.
+
+The page prints those three amounts. Paddle charges whatever price id you put
+in the matching variable, so each id has to be a one-time price of that amount.
+The repository does not invent price ids. Until a playbook's id is set, its
+button reads "Checkout is not configured yet".
 
 ### How a purchase flows
 
-1. `/playbook` renders the landing page. The checkout button loads
+1. `/playbook` renders the three playbooks. A checkout button loads
    `@paddle/paddle-js` on first click and opens Paddle's hosted overlay.
 2. Paddle takes payment and posts `transaction.completed` to
    `/api/paddle/webhook`.
@@ -268,9 +278,12 @@ every identifier below has to come from your own accounts.
 **1. Paddle**
 
 1. Create a Paddle Billing account and work in **sandbox** first.
-2. Catalog → Products → create *ARC AI Product Playbook*; add a one-time price
-   of **USD 5.00**. Copy the **price id** (`pri_...`) into
-   `PLAYBOOK_PADDLE_PRICE_ID`.
+2. Catalog → Products → create three products, each with one one-time price:
+   - *ARC Playbook: Define* at **USD 5.00** → `PLAYBOOK_DEFINE_PADDLE_PRICE_ID`
+   - *ARC Playbook: Build* at **USD 10.00** → `PLAYBOOK_BUILD_PADDLE_PRICE_ID`
+   - *ARC Playbook: Ship* at **USD 20.00** → `PLAYBOOK_SHIP_PADDLE_PRICE_ID`
+   Copy each **price id** (`pri_...`). Do not reuse `PLAYBOOK_PADDLE_PRICE_ID`;
+   that variable belonged to the old single product and is ignored.
 3. Developer tools → Authentication → create an **API key** →
    `PADDLE_API_KEY`.
 4. Developer tools → Authentication → **client-side token** →
@@ -292,9 +305,25 @@ every identifier below has to come from your own accounts.
 2. Run `supabase/migrations/0001_playbook_purchases.sql` in the SQL editor.
 3. Storage → create a bucket, **private** (public toggle off). Put its name in
    `PLAYBOOK_STORAGE_BUCKET`.
-4. `npm run playbook:build`, then upload the two files from `playbook/build/`
-   into that bucket. Put their object paths in `PLAYBOOK_PDF_OBJECT` and
-   `PLAYBOOK_ZIP_OBJECT`.
+4. Build the three products with `npm run playbook:build`. That writes, under
+   `playbook/build/` (gitignored):
+
+   | Playbook | PDF | ZIP |
+   | --- | --- | --- |
+   | Define | `define/arc-playbook-define.pdf` | `define/arc-playbook-define.zip` |
+   | Build | `build/arc-playbook-build.pdf` | `build/arc-playbook-build.zip` |
+   | Ship | `ship/arc-playbook-ship.pdf` | `ship/arc-playbook-ship.zip` |
+
+   The public preview at `public/playbook/preview.pdf` is the opening of
+   Define, through the first page of Module 01. It is not a paid file.
+5. With `PADDLE_API_KEY`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, and
+   `PLAYBOOK_STORAGE_BUCKET` in `.env.local`, `npm run playbook:provision`
+   creates the three one-time sandbox prices and uploads the six objects.
+   It writes the price ids and object paths into `.env.local`. It refuses a
+   price that is not one-time USD 5.00, 10.00, or 20.00 for its playbook.
+   Sandbox is the default. Live prices require `PADDLE_ENVIRONMENT=production`
+   and `--confirm-production`. It cannot mint the client-side token or, unless
+   you pass `--create-webhook` with a public https site URL, the webhook secret.
 
 **3. Email**
 
@@ -315,13 +344,19 @@ every identifier below has to come from your own accounts.
 | `PADDLE_ENVIRONMENT` | optional | `sandbox` (default) or `production`. |
 | `PADDLE_API_KEY` | checkout | Server-side confirmation of a transaction on the success page. |
 | `NEXT_PUBLIC_PADDLE_CLIENT_TOKEN` | checkout | Opens the hosted overlay. Public by design. |
-| `PLAYBOOK_PADDLE_PRICE_ID` | checkout | The price to charge. No default. |
+| `PLAYBOOK_DEFINE_PADDLE_PRICE_ID` | Define checkout | One-time USD 5.00 price id. No default. |
+| `PLAYBOOK_BUILD_PADDLE_PRICE_ID` | Build checkout | One-time USD 10.00 price id. No default. |
+| `PLAYBOOK_SHIP_PADDLE_PRICE_ID` | Ship checkout | One-time USD 20.00 price id. No default. |
 | `PADDLE_WEBHOOK_SECRET` | fulfillment | Without it the webhook rejects every delivery. |
 | `SUPABASE_URL` | fulfillment | Project URL. |
 | `SUPABASE_SERVICE_ROLE_KEY` | fulfillment | Server-only. Never prefix with `NEXT_PUBLIC_`. |
-| `PLAYBOOK_STORAGE_BUCKET` | download | Must be a private bucket. |
-| `PLAYBOOK_PDF_OBJECT` | download | Object path of the PDF. |
-| `PLAYBOOK_ZIP_OBJECT` | download | Object path of the ZIP. |
+| `PLAYBOOK_STORAGE_BUCKET` | download | Must be a private bucket. Shared by all three. |
+| `PLAYBOOK_DEFINE_PDF_OBJECT` | Define download | Object path of the Define PDF. |
+| `PLAYBOOK_DEFINE_ZIP_OBJECT` | Define download | Object path of the Define ZIP. |
+| `PLAYBOOK_BUILD_PDF_OBJECT` | Build download | Object path of the Build PDF. |
+| `PLAYBOOK_BUILD_ZIP_OBJECT` | Build download | Object path of the Build ZIP. |
+| `PLAYBOOK_SHIP_PDF_OBJECT` | Ship download | Object path of the Ship PDF. |
+| `PLAYBOOK_SHIP_ZIP_OBJECT` | Ship download | Object path of the Ship ZIP. |
 | `PLAYBOOK_SIGNED_URL_TTL` | optional | Seconds, default 300, capped at 3600. |
 | `RESEND_API_KEY` | email | Shared with the contact form. |
 | `PLAYBOOK_FROM_EMAIL` | email | Verified sender. |
@@ -337,7 +372,7 @@ in full and the button reads *"Checkout is not configured yet"*.
 2. Expose the webhook so Paddle can reach it — `ngrok http 3000` or a Vercel
    preview deployment — and point the sandbox notification destination at
    `<public-url>/api/paddle/webhook`.
-3. Open `/playbook`, click the CTA, and pay with Paddle's test card
+3. Open `/playbook`, buy one playbook, and pay with Paddle's test card
    `4242 4242 4242 4242`, any future expiry, any CVC.
 4. Expect, in order: a `purchase recorded` line in the server log, a row in
    `playbook_purchases`, and the email. Each log line carries the transaction
@@ -352,10 +387,11 @@ in full and the button reads *"Checkout is not configured yet"*.
 
 ### Shipping a new edition of the PDF
 
-`npm run playbook:build` regenerates both artefacts; see
+`npm run playbook:build` regenerates the six artefacts; see
 [`playbook/README.md`](playbook/README.md). Upload them over the same object
-paths — buyers keep their existing links, which is what makes "free updates to
-this edition" free to honour.
+paths — `npm run playbook:provision` does that when the storage keys are set.
+Buyers keep their existing links, which is what makes "free updates to this
+edition" free to honour.
 
 ### Contact-form environment variables
 

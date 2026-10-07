@@ -14,8 +14,10 @@
     "playbook:assets": "node scripts/playbook/fetch-appendices.mjs",
     "playbook:pdf": "node scripts/playbook/build-pdf.mjs",
     "playbook:preview": "node scripts/playbook/preview.mjs",
+    "playbook:preview-public": "node scripts/playbook/public-preview.mjs",
     "playbook:bundle": "node scripts/playbook/bundle.mjs",
-    "playbook:build": "npm run playbook:assets && npm run playbook:pdf && npm run playbook:bundle"
+    "playbook:build": "npm run playbook:assets && npm run playbook:pdf && npm run playbook:bundle && npm run playbook:preview-public",
+    "playbook:provision": "node scripts/playbook/provision.mjs"
   },
   "dependencies": {
     "@paddle/paddle-js": "^1.6.5",

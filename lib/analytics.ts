@@ -19,9 +19,9 @@ import { track } from "@vercel/analytics";
 export type PlaybookEvents = {
   playbook_view: { source?: string };
   playbook_preview_click: { target: string };
-  playbook_checkout_start: { price: number; environment: string };
+  playbook_checkout_start: { product: string; price: number; environment: string };
   /** Client-side signal only. The webhook is the record of a sale. */
-  playbook_purchase_complete: { transaction_id?: string };
+  playbook_purchase_complete: { product: string; transaction_id?: string };
   playbook_download_view: { status: string };
   playbook_download_start: { file: string };
   playbook_download_success: { file: string };

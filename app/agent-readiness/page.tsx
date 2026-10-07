@@ -23,7 +23,7 @@ const supportingTools = [
 ];
 
 export const metadata: Metadata = {
-  title: "ARK Agent Readiness · Make your systems usable by agents",
+  title: "Agent Readiness · Make your systems usable by agents",
   description:
     "Evaluate whether agents can safely and reliably interact with your applications, APIs, tools and workflows. Free scorecard, or a full assessment against your own systems.",
 };
@@ -146,7 +146,7 @@ export default function AgentReadinessPage() {
         <SectionHeading
           kicker="Evidence"
           title="The assessment uses open tools you can run yourself."
-          lead="Nothing in the engagement depends on a black box. These are in ARK Labs, free, and carry their own maturity."
+          lead="Nothing in the engagement depends on a black box. These are in Labs, free, and carry their own maturity."
         />
         <div className="mt-12 grid gap-5 sm:grid-cols-2">
           {tools.map((tool) => (

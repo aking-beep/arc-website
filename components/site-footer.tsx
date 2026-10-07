@@ -26,9 +26,11 @@ const columns: { heading: string; links: { label: string; href: string }[] }[] =
   {
     heading: "Resources",
     links: [
-      { label: "The AI Product Playbook", href: "/playbook" },
-      { label: "Playbooks", href: "/playbooks" },
-      { label: "ARK Labs tools", href: "/labs" },
+      { label: "Define · $5", href: "/playbook/define" },
+      { label: "Build · $10", href: "/playbook/build" },
+      { label: "Ship · $20", href: "/playbook/ship" },
+      { label: "Free frameworks", href: "/playbooks" },
+      { label: "Labs", href: "/labs" },
       { label: "Research", href: "/research" },
       { label: "Workshops", href: "/academy" },
     ],

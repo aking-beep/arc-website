@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 
-import { paddleConfig } from "@/lib/commerce/config";
+import { paddleConfig, playbookSlugForPriceId } from "@/lib/commerce/config";
 import { sendPurchaseEmail } from "@/lib/commerce/email";
 import {
   extractPurchase,
-  purchaseMatchesPrice,
+  matchKnownPrice,
   verifyWebhookSignature,
   type PaddleWebhookEvent,
 } from "@/lib/commerce/paddle";
@@ -103,7 +103,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Unusable payload." }, { status: 400 });
   }
 
-  if (!purchaseMatchesPrice(purchase, paddle.priceId)) {
+  const knownPriceIds = Object.values(paddle.prices);
+  const matchedPriceId = matchKnownPrice(purchase, knownPriceIds);
+  const slug = matchedPriceId ? playbookSlugForPriceId(matchedPriceId) : null;
+
+  if (!matchedPriceId || !slug) {
     log("info", "transaction was for a different product", {
       transactionId: purchase.transactionId,
       priceIds: purchase.priceIds,
@@ -120,7 +124,7 @@ export async function POST(request: Request) {
     eventId: purchase.eventId,
     transactionId: purchase.transactionId,
     email: purchase.email,
-    priceId: purchase.priceIds[0] ?? paddle.priceId,
+    priceId: matchedPriceId,
     currency: purchase.currency,
     amountMinor: purchase.totalMinorUnits,
     tokenHash,
@@ -149,6 +153,7 @@ export async function POST(request: Request) {
 
   log("info", "purchase recorded", {
     transactionId: purchase.transactionId,
+    slug,
     hasEmail: Boolean(purchase.email),
   });
 
@@ -157,6 +162,7 @@ export async function POST(request: Request) {
       to: purchase.email,
       token,
       transactionId: purchase.transactionId,
+      slug,
     });
     if (!sent.ok) {
       // The sale is recorded and the entitlement exists, so this is not a

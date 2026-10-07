@@ -13,7 +13,7 @@ export const site = {
     badge: "AI · Automation · Cloud · Security · Software",
     line: "ARC helps growing companies work out what to improve, what to automate and what to build — and then helps get it working.",
   },
-  /** The question ARC answers, as distinct from the one ARK answers. */
+  /** The question the practice answers. */
   question: "How should we use technology?",
   email: "aking@arctransformationgroup.com",
   calendly: "https://calendly.com/aking-arctransformationgroup/30min",
@@ -289,7 +289,7 @@ export const maturityLabel: Record<Maturity, string> = {
 };
 
 // ---------------------------------------------------------------------------
-// ARK Labs — open tools, scanners and experiments.
+// Labs — open tools, scanners and experiments.
 // Every entry carries its maturity. Nothing here is sold as a product.
 // ---------------------------------------------------------------------------
 export type ProductVisual =
@@ -1407,12 +1407,8 @@ export const caseStudies: CaseStudy[] = [
 // ---------------------------------------------------------------------------
 export const faqs = [
   {
-    q: "What is the difference between ARC and ARK?",
-    a: "ARC Transformation Group is the company. It is who you contract with, and it covers advisory, delivery and transformation work across cloud, data, security, software and AI. ARK is the technology ecosystem ARC builds: the products, the protocol work and the research. ARC asks how an organization should use technology. ARK asks how intelligent software should interact with technology.",
-  },
-  {
-    q: "Is ARK something I can buy today?",
-    a: "Parts of it. AI Fit is free on the web right now. ARK Agent Readiness is available as a free scorecard and as a paid assessment. AI Fit Teams is a three-to-four week engagement. ARK Control is in design-partner development and is not purchasable yet — we would rather say that than put a pricing page in front of something unfinished.",
+    q: "Can I buy Agent Control?",
+    a: "Not yet. Agent Control is in design-partner development, and there is no pricing page in front of it. AI Fit is free on the web. Agent Readiness is a free scorecard and a paid assessment. AI Fit Teams is a three-to-four week engagement. The product playbooks are separate: Define is $5, Build is $10, and Ship is $20.",
   },
   {
     q: "Do you only do AI?",
@@ -1428,7 +1424,7 @@ export const faqs = [
   },
   {
     q: "Our vendors turned on AI agents inside tools we already pay for. Is that a problem?",
-    a: "It is the question of the quarter. An agent inside your CRM or your code editor inherits the permissions of whoever runs it, and this year's breaches came from ordinary links and documents rather than exotic attacks. Start with the free Agent Readiness Scorecard, then the ARK Agent Readiness assessment if you need the inventory, the blast-radius ranking and the approval gates.",
+    a: "It is the question of the quarter. An agent inside your CRM or your code editor inherits the permissions of whoever runs it, and this year's breaches came from ordinary links and documents rather than exotic attacks. Start with the free Agent Readiness Scorecard, then the Agent Readiness assessment if you need the inventory, the blast-radius ranking and the approval gates.",
   },
   {
     q: "How do you know an automated system did what it said it did?",
@@ -1444,7 +1440,7 @@ export const faqs = [
   },
   {
     q: "Why are the playbooks so cheap, or free?",
-    a: "Because they work better as distribution than as revenue. Three of the four are free and complete on the page. The AI Product Playbook is $19. If you can run our method without hiring us, that is a good outcome for both of us.",
+    a: "The scorecard, the operating contract, and the outcome checklist are free and complete on the page. The three product playbooks are separate purchases: Define is $5, Build is $10, and Ship is $20. If you can run the method without hiring us, that is a good outcome for both of us.",
   },
   {
     q: "How do you size the work?",
@@ -1516,15 +1512,15 @@ export const nav: NavItem[] = [
       {
         label: "Overview",
         href: "/platform",
-        summary: "What ARK is and why it exists.",
+        summary: "How agents act, and how you check the result.",
       },
       {
-        label: "ARK Control",
+        label: "Agent Control",
         href: "/ark-control",
         summary: "Permissions and approval gates for agent actions.",
       },
       {
-        label: "ARK Agent Readiness",
+        label: "Agent Readiness",
         href: "/agent-readiness",
         summary: "What your agents can reach, and where the gaps are.",
       },
@@ -1540,8 +1536,8 @@ export const nav: NavItem[] = [
       },
     ],
   },
-  { label: "ARK Labs", href: "/labs" },
-  { label: "Playbooks", href: "/playbooks" },
+  { label: "Labs", href: "/labs" },
+  { label: "Playbooks", href: "/playbook" },
   { label: "Work", href: "/work" },
   { label: "About", href: "/about" },
 ];

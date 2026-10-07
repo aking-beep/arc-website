@@ -1,12 +1,9 @@
 // ============================================================================
 // ARC Playbooks — the Learn layer.
 //
-// These exist so someone can use ARC's methods without hiring ARC. Three of
-// the four are free and complete on the page; gating a PDF behind an email
-// would make them worse and harder to find.
+// These exist so someone can use ARC's methods without hiring ARC. All three
+// are free and complete on the page. The paid playbooks live at /playbook.
 // ============================================================================
-
-import { playbookHero, playbookProduct, playbookSystemChain } from "@/lib/playbook";
 
 export type PlaybookKind = "playbook" | "framework" | "assessment" | "checklist";
 
@@ -32,21 +29,6 @@ export type Playbook = {
 };
 
 export const playbooks: Playbook[] = [
-  {
-    slug: "ark-ai-product-playbook",
-    kind: "playbook",
-    name: playbookProduct.name,
-    tagline: playbookHero.title,
-    summary:
-      "Fifteen decisions from an idea to a product people can use, plus the files you build with: 20 skills, 20 architectures, 16 workflows, and the checklists.",
-    price: playbookProduct.price,
-    ctaLabel: "See the Playbook",
-    availability:
-      "A PDF plus editable Markdown assets. One payment, a private download link, nothing to log into.",
-    chain: playbookSystemChain,
-    href: "/playbook",
-    featured: true,
-  },
   {
     slug: "agent-readiness-scorecard",
     kind: "assessment",

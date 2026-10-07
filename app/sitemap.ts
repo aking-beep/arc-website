@@ -11,6 +11,7 @@ import {
 } from "@/lib/content";
 import { arkProducts } from "@/lib/ark";
 import { playbookHref, playbooks } from "@/lib/learn";
+import { playbookTierHref, playbookTiers } from "@/lib/playbook";
 import { serviceAreas } from "@/lib/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -25,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...serviceAreas.map((a) => `/services/${a.slug}`),
     ...arkProducts.map((p) => `/${p.slug}`),
     ...playbooks.map(playbookHref),
+    ...playbookTiers.map((tier) => playbookTierHref(tier.slug)),
     ...advisoryEngagements.map((o) => `/advisory/${o.slug}`),
     ...labs.map((p) => `/labs/${p.slug}`),
     ...research.map((a) => `/research/${a.slug}`),

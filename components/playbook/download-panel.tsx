@@ -9,24 +9,13 @@ import { trackEvent } from "@/lib/analytics";
 
 type FileKey = "pdf" | "zip";
 
-const files: {
+const fileMeta: {
   key: FileKey;
   name: string;
-  text: string;
   icon: typeof FileText;
 }[] = [
-  {
-    key: "pdf",
-    name: "The Playbook (PDF)",
-    text: "The full Playbook, print-ready: the sequence from idea to a product in use.",
-    icon: FileText,
-  },
-  {
-    key: "zip",
-    name: "Editable assets (ZIP)",
-    text: "Skills, architectures, workflow templates, and the product, evaluation, security, and launch worksheets as editable files.",
-    icon: Package,
-  },
+  { key: "pdf", name: "Playbook (PDF)", icon: FileText },
+  { key: "zip", name: "Editable files (ZIP)", icon: Package },
 ];
 
 /**
@@ -37,7 +26,16 @@ const files: {
  * window in which a live download link is sitting in the DOM for an extension
  * or a screenshot to pick up.
  */
-export function DownloadPanel({ token }: { token: string }) {
+export function DownloadPanel({
+  token,
+  pdfText,
+  zipText,
+}: {
+  token: string;
+  pdfText: string;
+  zipText: string;
+}) {
+  const blurbs: Record<FileKey, string> = { pdf: pdfText, zip: zipText };
   const [busy, setBusy] = React.useState<FileKey | null>(null);
   const [error, setError] = React.useState<string | null>(null);
 
@@ -86,12 +84,12 @@ export function DownloadPanel({ token }: { token: string }) {
   return (
     <div>
       <div className="grid gap-4 sm:grid-cols-2">
-        {files.map((file) => (
+        {fileMeta.map((file) => (
           <Card key={file.key} className="flex flex-col p-6">
             <file.icon className="h-5 w-5 text-muted-foreground" aria-hidden />
             <h2 className="mt-4 text-base font-semibold tracking-tight">{file.name}</h2>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-              {file.text}
+              {blurbs[file.key]}
             </p>
             <Button
               className="mt-5"

@@ -19,6 +19,14 @@
 
 import "server-only";
 
+import {
+  playbookPdfEnv,
+  playbookPriceEnv,
+  playbookSlugs,
+  playbookZipEnv,
+  type PlaybookSlug,
+} from "@/lib/playbook";
+
 function read(name: string): string | undefined {
   const value = process.env[name];
   if (value === undefined) return undefined;
@@ -39,17 +47,25 @@ function missing(required: Record<string, string | undefined>): string[] {
 
 export type PaddleEnvironment = "sandbox" | "production";
 
+export type PlaybookPrices = Partial<Record<PlaybookSlug, string>>;
+
 export type PaddleConfig =
   | {
       configured: true;
       environment: PaddleEnvironment;
       apiKey: string;
       clientToken: string;
-      priceId: string;
+      /** One public price id per playbook. A missing entry means that playbook cannot be bought yet. */
+      prices: PlaybookPrices;
       webhookSecret: string | undefined;
       apiBase: string;
     }
-  | { configured: false; environment: PaddleEnvironment; missing: string[] };
+  | {
+      configured: false;
+      environment: PaddleEnvironment;
+      missing: string[];
+      prices: PlaybookPrices;
+    };
 
 /**
  * `sandbox` is the default on purpose. Charging real money has to be an
@@ -59,27 +75,50 @@ export function paddleEnvironment(): PaddleEnvironment {
   return read("PADDLE_ENVIRONMENT") === "production" ? "production" : "sandbox";
 }
 
+/**
+ * Reads the three price ids. There is no fallback and no shared id: the old
+ * single-product variable is ignored on purpose, because it was a different
+ * product at a different price.
+ */
+export function readPlaybookPrices(): PlaybookPrices {
+  const prices: PlaybookPrices = {};
+  for (const slug of playbookSlugs) {
+    const id = read(playbookPriceEnv[slug]);
+    if (id) prices[slug] = id;
+  }
+  return prices;
+}
+
+export function playbookSlugForPriceId(priceId: string): PlaybookSlug | null {
+  const prices = readPlaybookPrices();
+  for (const slug of playbookSlugs) {
+    if (prices[slug] === priceId) return slug;
+  }
+  return null;
+}
+
 export function paddleConfig(): PaddleConfig {
   const environment = paddleEnvironment();
   const apiKey = read("PADDLE_API_KEY");
   const clientToken = read("NEXT_PUBLIC_PADDLE_CLIENT_TOKEN");
-  const priceId = read("PLAYBOOK_PADDLE_PRICE_ID");
   const webhookSecret = read("PADDLE_WEBHOOK_SECRET");
+  const prices = readPlaybookPrices();
 
   const gaps = missing({
     PADDLE_API_KEY: apiKey,
     NEXT_PUBLIC_PADDLE_CLIENT_TOKEN: clientToken,
-    PLAYBOOK_PADDLE_PRICE_ID: priceId,
   });
 
-  if (gaps.length > 0) return { configured: false, environment, missing: gaps };
+  if (gaps.length > 0) {
+    return { configured: false, environment, missing: gaps, prices };
+  }
 
   return {
     configured: true,
     environment,
     apiKey: apiKey!,
     clientToken: clientToken!,
-    priceId: priceId!,
+    prices,
     webhookSecret,
     apiBase:
       environment === "production"
@@ -142,17 +181,22 @@ export type StorageConfig =
 /** Signed links are for immediate use, not for pasting into a chat. */
 const DEFAULT_SIGNED_URL_TTL = 300;
 
-export function storageConfig(): StorageConfig {
+/**
+ * Storage for one playbook. The bucket is shared. Each playbook has its own
+ * PDF and ZIP, and a missing path fails that playbook closed rather than
+ * serving another playbook's file.
+ */
+export function storageConfig(slug: PlaybookSlug): StorageConfig {
   // No default bucket name. A wrong guess here either 404s in production or,
   // worse, resolves to some other bucket that happens to exist.
   const bucket = read("PLAYBOOK_STORAGE_BUCKET");
-  const pdfPath = read("PLAYBOOK_PDF_OBJECT");
-  const zipPath = read("PLAYBOOK_ZIP_OBJECT");
+  const pdfPath = read(playbookPdfEnv[slug]);
+  const zipPath = read(playbookZipEnv[slug]);
 
   const gaps = missing({
     PLAYBOOK_STORAGE_BUCKET: bucket,
-    PLAYBOOK_PDF_OBJECT: pdfPath,
-    PLAYBOOK_ZIP_OBJECT: zipPath,
+    [playbookPdfEnv[slug]]: pdfPath,
+    [playbookZipEnv[slug]]: zipPath,
   });
   if (gaps.length > 0) return { configured: false, missing: gaps };
 
@@ -224,19 +268,24 @@ export type CommerceReadiness = {
 export function commerceReadiness(): CommerceReadiness {
   const paddle = paddleConfig();
   const supabase = supabaseConfig();
-  const storage = storageConfig();
+  const storage = playbookSlugs.map((slug) => storageConfig(slug));
   const email = emailConfig();
+  const anyPrice = playbookSlugs.some((slug) => Boolean(paddle.prices[slug]));
+  const anyFiles = storage.some((item) => item.configured);
 
   return {
-    checkout: paddle.configured,
-    fulfillment: paddle.configured && supabase.configured,
-    download: supabase.configured && storage.configured,
+    checkout: paddle.configured && anyPrice,
+    fulfillment: paddle.configured && anyPrice && supabase.configured,
+    download: supabase.configured && anyFiles,
     email: email.configured,
     environment: paddleEnvironment(),
     missing: [
       ...(paddle.configured ? [] : paddle.missing),
+      ...(anyPrice
+        ? []
+        : playbookSlugs.map((slug) => playbookPriceEnv[slug])),
       ...(supabase.configured ? [] : supabase.missing),
-      ...(storage.configured ? [] : storage.missing),
+      ...storage.flatMap((item) => (item.configured ? [] : item.missing)),
       ...(email.configured ? [] : email.missing),
     ],
   };

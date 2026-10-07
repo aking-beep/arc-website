@@ -164,14 +164,20 @@ export function extractPurchase(event: PaddleWebhookEvent): PurchaseFacts | null
 
 /**
  * Guard against fulfilling a transaction for something else sold through the
- * same Paddle account later. An empty item list is treated as a match because
- * Paddle has sent completed transactions without expanded items before, and
- * refusing to fulfil a paid order is the worse failure.
+ * same Paddle account. An empty item list does not match: with more than one
+ * playbook, a missing price id would make us guess which files to send.
  */
 export function purchaseMatchesPrice(
   purchase: PurchaseFacts,
   expectedPriceId: string,
 ): boolean {
-  if (purchase.priceIds.length === 0) return true;
   return purchase.priceIds.includes(expectedPriceId);
+}
+
+/** The first price id on the transaction that we sell. Null if none match. */
+export function matchKnownPrice(
+  purchase: PurchaseFacts,
+  knownPriceIds: readonly string[],
+): string | null {
+  return purchase.priceIds.find((id) => knownPriceIds.includes(id)) ?? null;
 }

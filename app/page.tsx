@@ -7,7 +7,7 @@ import { Icon } from "@/components/icon";
 import { CTA } from "@/components/cta";
 import { caseStudies, site } from "@/lib/content";
 import { homeHero, homeSymptoms, serviceAreas } from "@/lib/services";
-import { playbookProduct } from "@/lib/playbook";
+import { playbookTiers } from "@/lib/playbook";
 
 export default function HomePage() {
   return (
@@ -171,11 +171,11 @@ export default function HomePage() {
             <SectionHeading
               kicker="Resources"
               title="Use our methods without hiring us."
-              lead="The assessments and scanners are free and run in your browser. The Playbook is the whole method as a book, for teams who would rather run it themselves."
+              lead={`Three playbooks cover the product work: ${playbookTiers.map((tier) => `${tier.name} (${tier.price})`).join(", ")}. The scorecard and the scanners are free.`}
             />
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button href="/playbook">
-                Get the {playbookProduct.name.replace("The ", "")}
+                See the playbooks
                 <ArrowRight className="h-4 w-4" />
               </Button>
               <Button href="/labs" variant="outline">

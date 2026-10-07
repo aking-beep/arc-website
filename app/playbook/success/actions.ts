@@ -1,6 +1,6 @@
 "use server";
 
-import { paddleConfig } from "@/lib/commerce/config";
+import { paddleConfig, playbookSlugForPriceId } from "@/lib/commerce/config";
 import {
   fetchTransaction,
   isPaid,
@@ -81,10 +81,17 @@ export async function requestSuccessDownload(
     return { ok: false, message: GENERIC };
   }
 
-  if (
-    transaction.priceIds.length > 0 &&
-    !transaction.priceIds.includes(paddle.priceId)
-  ) {
+  const slug = transaction.priceIds
+    .map((id) => playbookSlugForPriceId(id))
+    .find((value): value is NonNullable<typeof value> => value !== null);
+
+  if (!slug) {
+    console.info({
+      scope: "playbook.success",
+      message: "transaction price did not match a playbook",
+      transactionId,
+      priceIds: transaction.priceIds,
+    });
     return { ok: false, message: GENERIC };
   }
 
@@ -96,7 +103,7 @@ export async function requestSuccessDownload(
     };
   }
 
-  const signed = await signBundleUrl(file);
+  const signed = await signBundleUrl(file, slug);
   if (!signed.ok) {
     console.error({
       scope: "playbook.success",
