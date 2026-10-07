@@ -18,13 +18,13 @@ const files: {
   {
     key: "pdf",
     name: "The Playbook (PDF)",
-    text: "Eight modules, eleven worksheets and the three library appendices, print-ready.",
+    text: "The full Playbook, print-ready: the sequence from idea to a product in use.",
     icon: FileText,
   },
   {
     key: "zip",
     name: "Editable assets (ZIP)",
-    text: "The worksheets as Markdown, plus the skills, architectures and workflow templates.",
+    text: "Skills, architectures, workflow templates, and the product, evaluation, security, and launch worksheets as editable files.",
     icon: Package,
   },
 ];

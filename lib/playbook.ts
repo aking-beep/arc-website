@@ -28,175 +28,86 @@ export const playbookProduct = {
 // ---------------------------------------------------------------------------
 export const playbookHero = {
   kicker: "ARC AI Product Playbook",
-  title: "You built it with AI. Now make it real.",
-  lead: "From idea to shipped product without guessing what comes next.",
+  title: "Go from an AI idea to a product people can actually use.",
+  lead: "A practical system for defining, designing, architecting, building, evaluating, and launching AI products.",
   ctaLabel: "Get the Playbook",
-  secondaryCtaLabel: "See what's inside",
+  secondaryCtaLabel: "Preview what's inside",
+  /** Sits next to the price. The charge is still the Paddle price, not this label. */
+  priceLabel: "Launch price",
+  microcopy:
+    "One-time purchase. Instant digital access. A PDF plus the editable files you build with.",
 };
 
-export const playbookProblem = {
-  kicker: "The gap",
-  title: "Shipping code is not the same as shipping a product.",
-  lead: "AI closed the distance between an idea and a working interface. It did not answer any of the questions that decide whether the thing survives contact with a user who did not build it.",
-  openers: [
-    "AI can generate an interface. It can write code. It can connect APIs. It can deploy an application.",
-    "None of those things automatically make what you built a product.",
-  ],
-  questions: [
-    "Who is this for?",
-    "What problem are you solving?",
-    "Will anyone pay for it?",
-    "What belongs in the MVP?",
-    "How should it be architected?",
-    "What data does it need?",
-    "What can go wrong?",
-    "How will you evaluate the AI?",
-    "How will you secure it?",
-    "What should you measure?",
-    "How do you launch it?",
-  ],
-  takeaway:
-    "The Playbook is the sequence for answering those in an order that does not waste the work you already did.",
-};
-
-// ---------------------------------------------------------------------------
-// The five-step ARC system. Each step owns a group of modules, so the system
-// and the table of contents cannot drift apart.
-// ---------------------------------------------------------------------------
-export const playbookSystem = [
+/**
+ * Fifteen decisions, in the order that keeps the next one cheap. This is the
+ * sequence on the product page. Cards elsewhere use the five passes below,
+ * because fifteen pills do not fit on a card.
+ */
+export const playbookRoadmap = [
   {
-    step: "01",
-    name: "Validate",
-    question: "Is this worth building at all?",
-    text: "Turn the idea into a hypothesis with a named customer, a named problem and the evidence that would change your mind.",
-    modules: ["Idea", "Validation"],
-  },
-  {
-    step: "02",
-    name: "Define",
-    question: "What exactly are we building, and what are we not?",
-    text: "Value proposition, the one workflow that matters, the requirements, and an explicit list of what the MVP excludes.",
-    modules: ["Product"],
-  },
-  {
-    step: "03",
-    name: "Architect",
-    question: "How will this hold up once people depend on it?",
-    text: "Application shape, AI components, data, integrations, infrastructure and the build sequence that follows from them.",
-    modules: ["Architecture", "Build"],
-  },
-  {
-    step: "04",
-    name: "Harden",
-    question: "How do we know it works, and what happens when it does not?",
-    text: "Evaluation criteria for the AI itself, then security, privacy, monitoring and the operational load you are taking on.",
-    modules: ["Evaluation", "Production readiness"],
-  },
-  {
-    step: "05",
-    name: "Launch",
-    question: "How does anyone find it, and how do we know it worked?",
-    text: "Distribution, pricing, the measures that matter, and how you iterate once people start using it.",
-    modules: ["Launch"],
-  },
-];
-
-export const playbookSystemChain = playbookSystem.map((s) => s.name);
-
-// ---------------------------------------------------------------------------
-// The eight modules. `outputs` is what the reader finishes the module holding,
-// which is what the worksheets in the ZIP produce.
-// ---------------------------------------------------------------------------
-export const playbookModules = [
-  {
-    number: "01",
     name: "Idea",
-    step: "Validate",
-    text: "Turn a concept into a clear product hypothesis you can test rather than defend.",
-    outputs: [
-      "A one-sentence product hypothesis",
-      "The riskiest assumption, written down",
-      "The cheapest test that would disprove it",
-    ],
+    text: "Write the change you want in one sentence, and the assumption that would kill it.",
   },
   {
-    number: "02",
-    name: "Validation",
-    step: "Validate",
-    text: "Define the customer, the problem, the alternatives, and the evidence you need before building.",
-    outputs: [
-      "A named customer and the job they are trying to do",
-      "What they do today instead, and what it costs them",
-      "A go / no-go threshold set before you look at the results",
-    ],
+    name: "Problem",
+    text: "Name what people do today, how often it hurts, and what they already spend to avoid it.",
   },
   {
-    number: "03",
+    name: "User",
+    text: "One person who has the problem strongly enough to change how they work.",
+  },
+  {
     name: "Product",
-    step: "Define",
-    text: "Define the value proposition, the workflow, the requirements, and what the MVP excludes.",
-    outputs: [
-      "The one workflow the MVP has to do well",
-      "A requirements list separated into must, should and not yet",
-      "An explicit exclusions list you can point at later",
-    ],
+    text: "The smallest version that finishes the job and produces evidence. A demo is not that.",
   },
   {
-    number: "04",
+    name: "AI fit",
+    text: "Where a model earns its place, and where ordinary software is clearer, cheaper, or safer.",
+  },
+  {
+    name: "Workflow",
+    text: "The one path a user walks, from the trigger to a result someone can check.",
+  },
+  {
     name: "Architecture",
-    step: "Architect",
-    text: "Map the application, the AI components, data, integrations, infrastructure and security.",
-    outputs: [
-      "A component diagram with the AI boundary marked",
-      "The data the product needs, and where it comes from",
-      "Decisions recorded with the trade-off you accepted",
-    ],
+    text: "The shape of the system, with the boundary around anything a model can get wrong.",
   },
   {
-    number: "05",
-    name: "Build",
-    step: "Architect",
-    text: "Turn the architecture into a deliberate build sequence instead of whatever the model suggests next.",
-    outputs: [
-      "A build order with a demonstrable result at each step",
-      "The parts you will not let the model decide",
-      "A definition of done per slice",
-    ],
+    name: "Context",
+    text: "The data the product needs, where it comes from, and what it is allowed to see.",
   },
   {
-    number: "06",
+    name: "Skills",
+    text: "The repeated jobs, written once, so the next build does not start from a blank prompt.",
+  },
+  {
+    name: "Agents",
+    text: "Where a tool-using agent is warranted, and where a person stays on the action.",
+  },
+  {
+    name: "Security",
+    text: "What must not leak, who can act, and how a bad run gets stopped.",
+  },
+  {
     name: "Evaluation",
-    step: "Harden",
-    text: "Define quality, reliability, failure modes and acceptance criteria for the AI itself.",
-    outputs: [
-      "An evaluation set built from the inputs you have seen",
-      "Pass thresholds agreed before you measure",
-      "The failure modes you have accepted, and the ones you have not",
-    ],
+    text: "The cases you will grade, the pass line, and the failures you have not accepted.",
   },
   {
-    number: "07",
-    name: "Production readiness",
-    step: "Harden",
-    text: "Work through security, privacy, analytics, monitoring and the operational load you are taking on.",
-    outputs: [
-      "A security and privacy pass against a written checklist",
-      "The signals you will watch, and the one alert that pages someone",
-      "An estimate of the operating cost per user",
-    ],
+    name: "Build",
+    text: "An order of work with something you can show at the end of each slice.",
   },
   {
-    number: "08",
     name: "Launch",
-    step: "Launch",
-    text: "Define distribution, pricing, measurement and how you will iterate once people start using it.",
-    outputs: [
-      "One distribution channel you will keep working",
-      "A price, and the reasoning behind it",
-      "The two numbers that decide whether to continue",
-    ],
+    text: "How it reaches people, what you measure, and the gate that says it is ready.",
   },
-];
+  {
+    name: "Improve",
+    text: "What changes after real use: cost, quality, the workflow, and what you stop doing.",
+  },
+] as const;
+
+/** The five passes the book is worked in. Short enough for a card. */
+export const playbookSystemChain = ["Define", "Design", "Build", "Prove", "Learn"] as const;
 
 // ---------------------------------------------------------------------------
 // What is in the bundle.
@@ -217,102 +128,125 @@ export type BundleItem = {
 
 export const playbookBundle: BundleItem[] = [
   {
-    id: "playbook",
-    name: "The ARC AI Product Playbook",
-    count: "8 modules",
-    format: "PDF",
-    text: "The full method, with the decision named at every step and the output you should be holding at the end of each module.",
-  },
-  {
-    id: "worksheets",
-    name: "Worksheets and frameworks",
-    count: "11 worksheets",
-    format: "PDF + editable Markdown",
-    text: "The hypothesis sheet, validation plan, MVP scope, architecture checklist, evaluation plan, production-readiness checklist and launch plan, as fillable pages.",
-  },
-  {
     id: "skills",
-    name: "ARC Skills library",
-    count: "20 agent skills",
-    format: "PDF + SKILL.md packages",
-    text: "Production-ready agent skills with triggers, steps and guardrails, for operator work like due diligence, incident timelines, PR review and prompt ship review. Drop them into Cursor or Claude.",
+    name: "ARC Skills",
+    count: "20 skills",
+    format: "PDF + SKILL.md",
+    text: "Repeated jobs written as skills: the trigger, the steps, and the guardrails. Drop them into Cursor or Claude instead of re-prompting the same work.",
   },
   {
     id: "architectures",
     name: "Reference Architectures",
     count: "20 blueprints",
-    format: "PDF + editable Markdown",
-    text: "System shapes from ARC delivery work, each naming the problem, the component shape, the key decisions, the failure modes, when not to use it, and the scaling path.",
+    format: "PDF + Markdown",
+    text: "System shapes from delivery work. Each one names the problem, the components, the decisions, the failure modes, and when not to use it.",
   },
   {
-    id: "templates",
+    id: "workflows",
     name: "AI Workflow Templates",
-    count: "16 templates",
-    format: "PDF + editable Markdown",
-    text: "End-to-end workflows with the prompt, the tools it calls, the input schema and the human-in-the-loop gate already in place.",
+    count: "16 workflows",
+    format: "PDF + Markdown",
+    text: "End-to-end workflows with the prompt, the tools, the input schema, and the point where a person stays in the loop.",
+  },
+  {
+    id: "product",
+    name: "Product templates",
+    count: "Brief, PRD, MVP",
+    format: "Fillable Markdown",
+    text: "The product brief, the PRD, and the MVP boundary: what must ship, what waits, and the one workflow the first version has to finish.",
+  },
+  {
+    id: "evaluation",
+    name: "Evaluation frameworks",
+    format: "Fillable Markdown",
+    text: "How you grade the system before you launch it: the cases, the pass line, and the failures you have not accepted.",
+  },
+  {
+    id: "security",
+    name: "Security checklists",
+    format: "Fillable Markdown",
+    text: "Privacy, permissions, and what a bad run is allowed to touch. Worked before the build, not after an incident.",
+  },
+  {
+    id: "launch",
+    name: "Launch checklists",
+    format: "Fillable Markdown",
+    text: "The gate between a finished build and a product someone else depends on, including what you will measure on day one.",
+  },
+  {
+    id: "updates",
+    name: "Updates to this edition",
+    format: "Same download link",
+    text: "Buyers of this edition get later 1.x files through the same private link. A new edition would be a separate purchase.",
   },
 ];
 
-/** Short list used on cards and in the fulfillment email. */
+/** Short list used on the product page, the download page, and the email. */
 export const playbookIncludes = [
-  "The complete ARC AI Product Playbook, 8 modules",
-  "11 worksheets and frameworks, fillable",
-  "ARC Skills library, 20 agent skills, printed in full",
-  "Reference Architectures, 20 blueprints, printed in full",
-  "AI Workflow Templates, 16 workflows, printed in full",
-  "Editable Markdown for everything, so you can adapt it",
-  "Free updates to this edition",
+  "The complete AI Product Playbook",
+  "20 ARC Skills",
+  "20 reference architectures",
+  "16 AI workflow templates",
+  "AI product brief and PRD",
+  "AI fit assessment",
+  "Architecture decision framework",
+  "Evaluation framework",
+  "Security checklist",
+  "Production readiness checklist",
+  "Launch checklist",
+  "Updates to this edition",
 ];
 
 // ---------------------------------------------------------------------------
-// Preview cards — what a buyer sees before paying.
+// Public preview. The paid PDF and ZIP are not in this repository.
 // ---------------------------------------------------------------------------
-export const playbookPreview = [
+export const playbookPreviewPdf = "/playbook/preview.pdf";
+
+export const playbookShots = [
   {
-    label: "From module 02 · Validation",
-    title: "Set the go / no-go threshold before you look",
-    body: "Write the number that means stop before you run the test. A threshold chosen afterwards is a description of what you already wanted to do.",
+    src: "/playbook/cover.png",
+    alt: "Cover of the ARC AI Product Playbook, titled From Idea to Shipped Product",
+    caption: "The cover",
   },
   {
-    label: "From module 04 · Architecture",
-    title: "Mark the AI boundary on the diagram",
-    body: "Everything inside the boundary can be wrong in ways you cannot fully prevent. Everything outside it is expected to be deterministic. Teams that skip this line end up defending model output as if it were a database read.",
+    src: "/playbook/preview-images/how-to-use.png",
+    alt: "A page titled How to use this playbook, with five passes from Define to Learn",
+    caption: "How you work through it",
   },
   {
-    label: "From module 06 · Evaluation",
-    title: "An eval set made of your messiest twenty inputs",
-    body: "Build it from the messiest twenty inputs you can find. If you cannot find twenty, you have a validation problem rather than an evaluation problem.",
+    src: "/playbook/preview-images/contents.png",
+    alt: "Table of contents for the ARC product system, from defining the outcome through the 30-day build sprint",
+    caption: "The contents",
   },
   {
-    label: "From module 07 · Production readiness",
-    title: "The one alert that pages someone",
-    body: "List every signal you plan to watch, then cross out the ones nobody would get out of bed for. What remains is your monitoring. The rest is a dashboard.",
+    src: "/playbook/preview-images/product-brief.png",
+    alt: "Chapter one, a five-line product brief with fields for user, situation, pain, outcome, and evidence",
+    caption: "The five-line brief",
   },
-];
+] as const;
 
 // ---------------------------------------------------------------------------
 // Audience and FAQ.
 // ---------------------------------------------------------------------------
 export const playbookAudience = {
   forYou: [
-    "AI builders shipping their first product",
-    "Solo and technical founders",
-    "Product managers working without a research team",
-    "People who started by vibe coding and now need it to hold up",
-    "Small product teams without a product organisation behind them",
-    "Operators turning an internal workflow into software",
+    "Founders building a first AI product and deciding what should exist",
+    "Product and program leads moving a prototype toward something a customer can rely on",
+    "Operators automating a workflow and needing to know where a person stays in it",
+    "Technical leads choosing an architecture, and where an agent is the wrong shape",
+    "Builders in Cursor, Claude Code, or Codex who need the product decisions around the code",
   ],
   notForYou: [
-    "Teams who already have a product organisation and a research function",
-    "Anyone looking for code they can paste without making decisions",
-    "Readers who want a course with videos and a certificate",
+    "Anyone looking for prompts to paste without making the decisions",
+    "Readers who want a video course and a certificate",
+    "Teams shopping for a model comparison or a vendor shortlist",
   ],
 };
 
 export const playbookFaqs = [
   {
     q: "What exactly do I get, and in what format?",
-    a: "A PDF of the Playbook plus a ZIP of editable Markdown: the worksheets, the 20 ARC Skills, the 20 reference architectures and the 16 workflow templates. No login, no application to learn, no subscription.",
+    a: "A PDF of the Playbook plus a ZIP of editable files: 20 ARC Skills, 20 reference architectures, 16 workflow templates, and the product, evaluation, security, and launch worksheets. No login and no subscription.",
   },
   {
     q: "Is this a course?",
@@ -320,7 +254,7 @@ export const playbookFaqs = [
   },
   {
     q: "Are the three libraries summaries, or the full documents?",
-    a: "The full documents. All 56 entries are printed in full in the PDF appendices — every skill with its triggers, steps and guardrails, every architecture with its decisions, failure modes and when-not-to-use-it notes, every template with its prompt, tools, input schema and human gate. The same files are in the ZIP so you can edit them. Each entry is also filed under the module that sends you to it, so you are not browsing a catalog hoping something applies.",
+    a: "The full documents. All 56 entries are printed in the PDF and shipped again as editable files: every skill with its trigger, steps and guardrails, every architecture with its decisions and when not to use it, every workflow with its prompt, tools, schema and the point where a person stays in the loop.",
   },
   {
     q: "Will it be out of date in six months?",
@@ -344,7 +278,12 @@ export const playbookFaqs = [
   },
 ];
 
+export const playbookBuildLine = {
+  title: "Don't just read the framework. Build with it.",
+  lead: "The PDF is the sequence. The download is the files you fill in and drop into the tools you already use.",
+};
+
 export const playbookClosing = {
-  title: "Stop guessing what comes next.",
-  lead: "The Playbook is the sequence we run on paid product work, written down so you can run it yourself.",
+  title: "Build the system, not just the demo.",
+  lead: "A clear workflow, an architecture you can defend, a way to tell whether it works, and a launch plan.",
 };
