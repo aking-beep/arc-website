@@ -224,12 +224,14 @@ management, data handling, least-privilege access) — handle it then, not now.
 
 ## Selling the Playbooks
 
-`/playbook` sells three separate products. **Define** is USD 5 (Part I).
-**Build** is USD 10 (Part II). **Ship** is USD 20 (Parts III–V, including the
-skills, architectures, and workflow files). Buying one does not include the
-others. Paddle takes the payment, a webhook records which price was paid and
-emails a private download link, and the link resolves to short-lived signed
-URLs for that playbook's PDF and ZIP in a private bucket. There are no accounts.
+`/playbook` sells three separate products. **Define** is USD 5 (modules 01–03
+and worksheets 1–6). **Build** is USD 10 (modules 04, 05, and 07, and
+worksheets 7, 8, and 10). **Ship** is USD 20 (modules 06 and 08, worksheets 9
+and 11, and the skills, architectures, and workflow files). Buying one does
+not include the others. Paddle takes the payment, a webhook records which
+price was paid and emails a private download link, and the link resolves to
+short-lived signed URLs for that playbook's PDF and ZIP in a private bucket.
+There are no accounts.
 
 The page prints those three amounts. Paddle charges whatever price id you put
 in the matching variable, so each id has to be a one-time price of that amount.
@@ -303,15 +305,25 @@ every identifier below has to come from your own accounts.
 2. Run `supabase/migrations/0001_playbook_purchases.sql` in the SQL editor.
 3. Storage → create a bucket, **private** (public toggle off). Put its name in
    `PLAYBOOK_STORAGE_BUCKET`.
-4. Upload a private PDF and ZIP for each playbook. Put their object paths in
-   `PLAYBOOK_DEFINE_PDF_OBJECT`, `PLAYBOOK_DEFINE_ZIP_OBJECT`,
-   `PLAYBOOK_BUILD_PDF_OBJECT`, `PLAYBOOK_BUILD_ZIP_OBJECT`,
-   `PLAYBOOK_SHIP_PDF_OBJECT`, and `PLAYBOOK_SHIP_ZIP_OBJECT`.
-   `npm run playbook:build` still builds the older single manuscript. Do not
-   upload that file as one of these three until it has been split to match
-   the playbook it is supposed to be. The public preview at
-   `public/playbook/preview.pdf` is the only PDF in the repository, and it is
-   the opening of Define.
+4. Build the three products with `npm run playbook:build`. That writes, under
+   `playbook/build/` (gitignored):
+
+   | Playbook | PDF | ZIP |
+   | --- | --- | --- |
+   | Define | `define/arc-playbook-define.pdf` | `define/arc-playbook-define.zip` |
+   | Build | `build/arc-playbook-build.pdf` | `build/arc-playbook-build.zip` |
+   | Ship | `ship/arc-playbook-ship.pdf` | `ship/arc-playbook-ship.zip` |
+
+   The public preview at `public/playbook/preview.pdf` is the opening of
+   Define, through the first page of Module 01. It is not a paid file.
+5. With `PADDLE_API_KEY`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, and
+   `PLAYBOOK_STORAGE_BUCKET` in `.env.local`, `npm run playbook:provision`
+   creates the three one-time sandbox prices and uploads the six objects.
+   It writes the price ids and object paths into `.env.local`. It refuses a
+   price that is not one-time USD 5.00, 10.00, or 20.00 for its playbook.
+   Sandbox is the default. Live prices require `PADDLE_ENVIRONMENT=production`
+   and `--confirm-production`. It cannot mint the client-side token or, unless
+   you pass `--create-webhook` with a public https site URL, the webhook secret.
 
 **3. Email**
 
@@ -375,10 +387,11 @@ in full and the button reads *"Checkout is not configured yet"*.
 
 ### Shipping a new edition of the PDF
 
-`npm run playbook:build` regenerates both artefacts; see
+`npm run playbook:build` regenerates the six artefacts; see
 [`playbook/README.md`](playbook/README.md). Upload them over the same object
-paths — buyers keep their existing links, which is what makes "free updates to
-this edition" free to honour.
+paths — `npm run playbook:provision` does that when the storage keys are set.
+Buyers keep their existing links, which is what makes "free updates to this
+edition" free to honour.
 
 ### Contact-form environment variables
 

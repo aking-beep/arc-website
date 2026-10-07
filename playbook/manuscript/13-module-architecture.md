@@ -50,11 +50,11 @@ For each AI component, four questions:
 Write the answers down with the trade-off beside each one. The trade-off is the
 part you will need later; the decision on its own looks arbitrary in six months.
 
-> **Reference architectures, appendix B.** Twenty system shapes from delivery
-> work, each naming the problem, the component shape, the key decisions, the
-> failure modes, when not to use it, and the scaling path. Find the closest
-> shape and start from it. Do not adopt one whose "when not to use it" section
-> describes your situation.
+> **Reference architectures are in the Ship playbook.** Twenty system shapes
+> from delivery work, each naming the problem, the component shape, the key
+> decisions, the failure modes, when not to use it, and the scaling path. Find
+> the closest shape and start from it. Leave one alone when its "when not to
+> use it" section describes your situation.
 
 ### Follow the data
 
@@ -100,7 +100,7 @@ needs a second pass."
 
 → **Worksheet 7 — Architecture decision record**
 
-→ **Appendix B — Reference Architectures**
+→ **Ship playbook — Reference Architectures**
 
 ## Where this bites
 

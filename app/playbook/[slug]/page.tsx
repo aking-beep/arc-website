@@ -171,7 +171,7 @@ export default function PlaybookTierPage({
         <SectionHeading
           kicker="The other two"
           title="Sold separately."
-          lead="This page is only this playbook. The other two cover different chapters and different files."
+          lead="This page is only this playbook. The other two cover different modules and different files."
         />
         <div className="mt-12 grid gap-5 lg:grid-cols-2">
           {others.map((other) => (

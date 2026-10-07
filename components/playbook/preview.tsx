@@ -11,7 +11,7 @@ export function Preview() {
         <SectionHeading
           kicker="Preview"
           title="The free preview is the opening of Define."
-          lead="Eight pages: the cover, how the set is used, the contents, and the first chapters of Define. Build and Ship are separate paid files, and they are not in this preview."
+          lead="Six pages: the cover, how the three playbooks fit together, the five-step system, and the first page of Module 01. Build and Ship are separate paid files, and they are not in this preview."
         />
         <PreviewLink
           href={playbookPreviewPdf}
