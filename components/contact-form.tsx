@@ -12,7 +12,13 @@ const stageOptions = [
   "Honestly not sure. That's why we're reaching out.",
 ];
 
-export function ContactForm({ topic }: { topic?: string }) {
+export function ContactForm({
+  topic,
+  defaultMessage,
+}: {
+  topic?: string;
+  defaultMessage?: string;
+}) {
   const [sent, setSent] = React.useState(false);
   const [pending, setPending] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
@@ -122,6 +128,7 @@ export function ContactForm({ topic }: { topic?: string }) {
           name="message"
           rows={4}
           maxLength={5000}
+          defaultValue={defaultMessage}
           className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
         />
       </div>

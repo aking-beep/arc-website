@@ -236,7 +236,12 @@ There are no accounts.
 The page prints those three amounts. Paddle charges whatever price id you put
 in the matching variable, so each id has to be a one-time price of that amount.
 The repository does not invent price ids. Until a playbook's id is set, its
-button reads "Checkout is not configured yet".
+button on `/playbook` reads "Checkout is not configured yet".
+
+Ad destinations are `/offer`, `/offer/define`, `/offer/build`, and `/offer/ship`.
+Point a campaign at the page for that playbook. The same checkout opens there
+once the price id is set. Until then, the button asks for a payment link by
+email, and the price on the button is the price on the page.
 
 ### How a purchase flows
 
