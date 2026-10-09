@@ -58,7 +58,7 @@ export function OfferCatalog({
 
       <section className="relative overflow-hidden border-b border-border/60">
         <div className="pointer-events-none absolute inset-0 grid-bg opacity-60" />
-        <Container className="relative py-14 sm:py-20">
+        <Container className="relative py-10 sm:py-14">
           <div className="max-w-2xl">
             <p className="mb-4 text-sm font-medium uppercase tracking-widest text-muted-foreground">
               {offerCatalog.kicker}
@@ -76,7 +76,7 @@ export function OfferCatalog({
         </Container>
       </section>
 
-      <Container className="py-12 sm:py-16">
+      <Container className="py-10 sm:py-14">
         <div className="grid gap-5 lg:grid-cols-3">
           {tiers.map((tier) => (
             <Card key={tier.slug} className="flex flex-col p-6 sm:p-7">
@@ -88,12 +88,12 @@ export function OfferCatalog({
               </h2>
               <p className="mt-3 text-3xl font-semibold tracking-tight">{tier.price}</p>
               <p className="mt-1 text-sm text-muted-foreground">{tier.priceNote}</p>
+              <div className="mt-5">
+                <OfferBuy tier={tier} config={checkouts[tier.slug]} />
+              </div>
               <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
                 {tier.summary}
               </p>
-              <div className="mt-6">
-                <OfferBuy tier={tier} config={checkouts[tier.slug]} />
-              </div>
               <Link
                 href={offerHref(tier.slug)}
                 className="mt-4 text-sm font-medium underline underline-offset-4"

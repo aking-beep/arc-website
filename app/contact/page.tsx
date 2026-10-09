@@ -64,6 +64,31 @@ export default function ContactPage({
         }
       />
 
+      {playbook ? (
+        <Section>
+          <div className="mx-auto max-w-xl">
+            <Card className="p-6 sm:p-8">
+              <h2 className="text-lg font-semibold">Send a note</h2>
+              <p className="mt-1 text-sm text-muted-foreground">
+                A person writes back within one business day with a payment link for {playbook.name}, {playbook.price}.
+              </p>
+              <div className="mt-6">
+                <ContactForm
+                  topic={topicLabel}
+                  defaultMessage={`I want ${playbook.productName}, ${playbook.price}.`}
+                />
+              </div>
+            </Card>
+            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+              Or email{" "}
+              <a className="underline underline-offset-4" href={`mailto:${site.email}?subject=${encodeURIComponent(topicLabel ?? playbook.productName)}`}>
+                {site.email}
+              </a>
+              .
+            </p>
+          </div>
+        </Section>
+      ) : (
       <Section>
         <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
           <div>
@@ -125,16 +150,12 @@ export default function ContactPage({
               </p>
             ) : null}
             <div className="mt-6">
-              <ContactForm
-                topic={topicLabel}
-                defaultMessage={
-                  playbook ? `I want ${playbook.productName}, ${playbook.price}.` : undefined
-                }
-              />
+              <ContactForm topic={topicLabel} />
             </div>
           </Card>
         </div>
       </Section>
+      )}
     </>
   );
 }
