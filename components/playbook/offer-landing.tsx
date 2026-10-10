@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Lock } from "lucide-react";
 
 import { OfferBuy } from "@/components/playbook/offer-buy";
+import { Paywall } from "@/components/playbook/paywall";
 import { PlaybookViewTracker } from "@/components/playbook/view-tracker";
-import { PreviewLink } from "@/components/playbook/preview-link";
 import { Card } from "@/components/ui/card";
 import { Container } from "@/components/ui/section";
 import type { CheckoutConfig } from "@/components/playbook/checkout-button";
@@ -19,14 +19,11 @@ import {
   offerTiers,
 } from "@/lib/offer";
 import {
-  playbookPreviewPdf,
+  playbookCover,
   playbookPublisher,
-  playbookShots,
   type PlaybookSlug,
   type PlaybookTier,
 } from "@/lib/playbook";
-
-const cover = playbookShots[0];
 
 export function OfferCatalog({
   checkouts,
@@ -88,6 +85,10 @@ export function OfferCatalog({
               </h2>
               <p className="mt-3 text-3xl font-semibold tracking-tight">{tier.price}</p>
               <p className="mt-1 text-sm text-muted-foreground">{tier.priceNote}</p>
+              <p className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground">
+                <Lock className="h-3.5 w-3.5" aria-hidden />
+                Paid file. Payment emails the download.
+              </p>
               <div className="mt-5">
                 <OfferBuy tier={tier} config={checkouts[tier.slug]} />
               </div>
@@ -98,7 +99,7 @@ export function OfferCatalog({
                 href={offerHref(tier.slug)}
                 className="mt-4 text-sm font-medium underline underline-offset-4"
               >
-                See what is in {tier.name}
+                Open {tier.name}
               </Link>
             </Card>
           ))}
@@ -119,7 +120,6 @@ export function OfferProduct({
   config: CheckoutConfig;
 }) {
   const others = offerTiers().filter((item) => item.slug !== tier.slug);
-  const showPreview = tier.slug === "define";
   const url = `${site.domain.replace(/\/+$/, "")}${offerHref(tier.slug)}`;
 
   return (
@@ -171,12 +171,12 @@ export function OfferProduct({
               </p>
             </div>
 
-            {showPreview ? (
+            {tier.slug === "define" ? (
               <figure className="overflow-hidden rounded-lg border border-border bg-card">
                 <div className="relative aspect-[3/4] bg-muted">
                   <Image
-                    src={cover.src}
-                    alt={cover.alt}
+                    src={playbookCover.src}
+                    alt={playbookCover.alt}
                     fill
                     priority
                     sizes="(min-width: 1024px) 22rem, 100vw"
@@ -184,12 +184,7 @@ export function OfferProduct({
                   />
                 </div>
                 <figcaption className="border-t border-border px-4 py-3 text-sm text-muted-foreground">
-                  <PreviewLink href={playbookPreviewPdf} className="underline underline-offset-4">
-                    Read the first six pages
-                  </PreviewLink>
-                  <span className="mt-1 block">
-                    The opening of Define, through the first page of Module 01.
-                  </span>
+                  {playbookCover.caption}
                 </figcaption>
               </figure>
             ) : (
@@ -209,16 +204,10 @@ export function OfferProduct({
       <Container className="py-14 sm:py-20">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)]">
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight">What is in the file</h2>
-            <ul className="mt-6 space-y-3">
-              {tier.includes.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-sm leading-relaxed">
-                  <Check className="mt-0.5 h-4 w-4 flex-none text-brand" aria-hidden />
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-8 max-w-xl text-sm leading-relaxed text-muted-foreground">
+            <Paywall product={tier.name} price={tier.price} file={`${tier.part}. ${tier.format}.`}>
+              <OfferBuy tier={tier} config={config} />
+            </Paywall>
+            <p className="mt-6 max-w-xl text-sm leading-relaxed text-muted-foreground">
               {offerDelivery} {offerRefund}
             </p>
           </div>
