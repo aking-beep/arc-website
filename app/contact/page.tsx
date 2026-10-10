@@ -7,6 +7,8 @@ import { Card } from "@/components/ui/card";
 import { ContactForm } from "@/components/contact-form";
 import { PanelLabel } from "@/components/diagram";
 import { site } from "@/lib/content";
+import { OfferBuy } from "@/components/playbook/offer-buy";
+import { publicCheckoutConfig } from "@/lib/commerce/checkout";
 import { getPlaybookTier } from "@/lib/playbook";
 
 export const metadata: Metadata = {
@@ -47,6 +49,9 @@ export default function ContactPage({
   const key = searchParams?.topic ?? "";
   const topic = topics[key];
   const playbook = key === "playbook" ? getPlaybookTier(searchParams?.product ?? "") : undefined;
+  // A playbook that can be bought online goes straight to checkout here too,
+  // so an old "email me a link" URL never makes a buyer wait for a person.
+  const checkout = playbook ? publicCheckoutConfig(playbook.slug) : undefined;
   const topicLabel = playbook ? `${playbook.productName} · ${playbook.price}` : topic?.label;
   const topicLead = playbook
     ? `You asked about ${playbook.name}, ${playbook.price}, one-off. Send a note and we email a payment link for that file.`
@@ -67,6 +72,15 @@ export default function ContactPage({
       {playbook ? (
         <Section>
           <div className="mx-auto max-w-xl">
+            {checkout?.configured ? (
+              <Card className="mb-6 p-6 sm:p-8">
+                <h2 className="text-lg font-semibold">Buy it now</h2>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Pay {playbook.price} by card and get the download link straight away. No need to wait for a reply.
+                </p>
+                <OfferBuy tier={playbook} config={checkout} className="mt-6" note={false} />
+              </Card>
+            ) : null}
             <Card className="p-6 sm:p-8">
               <h2 className="text-lg font-semibold">Send a note</h2>
               <p className="mt-1 text-sm text-muted-foreground">
