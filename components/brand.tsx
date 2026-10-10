@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-export function Brand({ className }: { className?: string }) {
+export function Brand({ className, href = "/" }: { className?: string; href?: string }) {
   return (
     <Link
-      href="/"
+      href={href}
       className={cn("group inline-flex flex-none items-center gap-2.5", className)}
     >
       <span className="flex h-8 w-8 flex-none items-center justify-center rounded-md bg-primary text-sm font-bold text-primary-foreground">

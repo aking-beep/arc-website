@@ -1,9 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Github } from "lucide-react";
 import { Brand } from "@/components/brand";
 import { ark } from "@/lib/ark";
 import { arkProducts } from "@/lib/ark";
 import { site } from "@/lib/content";
+import { isOfferPath } from "@/lib/offer";
 
 const columns: { heading: string; links: { label: string; href: string }[] }[] = [
   {
@@ -49,6 +53,31 @@ const columns: { heading: string; links: { label: string; href: string }[] }[] =
 ];
 
 export function SiteFooter() {
+  const offer = isOfferPath(usePathname());
+
+  if (offer) {
+    return (
+      <footer className="border-t border-border/60">
+        <div className="container flex flex-col items-start justify-between gap-4 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center">
+          <p>
+            © {new Date().getFullYear()} {site.name}
+          </p>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy" className="hover:text-foreground">
+              Privacy
+            </Link>
+            <Link href="/terms" className="hover:text-foreground">
+              Terms
+            </Link>
+            <Link href="/playbook" className="hover:text-foreground">
+              Full playbook pages
+            </Link>
+          </div>
+        </div>
+      </footer>
+    );
+  }
+
   return (
     <footer className="border-t border-border/60 bg-muted/30">
       <div className="container py-16">

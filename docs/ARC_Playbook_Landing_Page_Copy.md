@@ -14,6 +14,7 @@ Buying one does not include the others. All three together are $35, as three che
 The charge is the Paddle price id for that playbook. The page does not invent one. A missing id leaves that playbook's button as "Checkout is not configured yet".
 
 - **Routes:** `/playbook`, `/playbook/define`, `/playbook/build`, `/playbook/ship`
+- **Ad destinations:** `/offer`, `/offer/define`, `/offer/build`, `/offer/ship`. These are the pages to put in an ad. The site navigation is off. Each product page opens on that playbook's question, price, and checkout. They are `noindex` so they do not compete with `/playbook` in search.
 - **Public preview:** `/playbook/preview.pdf` is the opening of Define, through the first page of Module 01. Build and Ship are not in it.
 - **Paid files:** `npm run playbook:build` writes one PDF and one ZIP per playbook under `playbook/build/`, which is gitignored. `npm run playbook:provision` creates the Paddle prices and uploads those files when the account keys are present. It does not invent a price id.
 

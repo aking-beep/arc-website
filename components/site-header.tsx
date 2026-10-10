@@ -9,6 +9,7 @@ import { nav, type NavItem } from "@/lib/content";
 import { Brand } from "@/components/brand";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
+import { isOfferPath } from "@/lib/offer";
 
 function isActive(pathname: string, item: NavItem) {
   const matches = (href: string) => {
@@ -77,6 +78,7 @@ function Dropdown({ item, active }: { item: NavItem; active: boolean }) {
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const offer = isOfferPath(pathname);
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -86,8 +88,12 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
       <div className="container flex h-16 items-center justify-between gap-4">
-        <Brand />
+        <Brand href={offer ? "/offer" : "/"} />
 
+        {offer ? (
+          <ThemeToggle />
+        ) : (
+        <>
         <nav className="hidden flex-none items-center gap-0.5 lg:flex">
           {nav.map((item) =>
             item.children ? (
@@ -119,7 +125,10 @@ export function SiteHeader() {
             Talk to us
           </Button>
         </div>
+        </>
+        )}
 
+        {offer ? null : (
         <div className="flex items-center gap-2 lg:hidden">
           <ThemeToggle />
           <button
@@ -132,9 +141,10 @@ export function SiteHeader() {
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
         </div>
+        )}
       </div>
 
-      {open ? (
+      {open && !offer ? (
         <div className="max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-border/60 bg-background lg:hidden">
           <nav className="container flex flex-col py-4">
             {nav.map((item) => (
