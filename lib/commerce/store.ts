@@ -161,6 +161,108 @@ export async function recordPurchase(
   }
 }
 
+function missingAccessTable(detail: string): boolean {
+  return (
+    detail.includes("playbook_access_tokens") &&
+    /PGRST205|42P01|does not exist|schema cache/i.test(detail)
+  );
+}
+
+/**
+ * Resolve a token the buyer presented.
+ *
+ * The hash on the purchase is the link from the original email. A hash in
+ * playbook_access_tokens is a later recovery link for the same purchase.
+ * Either one opens that purchase. A missing access table does not break the
+ * original link.
+ */
+export async function findPurchaseForPresentedToken(
+  tokenHash: string,
+): Promise<StoreResult<PurchaseRow | null>> {
+  const direct = await findPurchaseByTokenHash(tokenHash);
+  if (!direct.ok || direct.data) return direct;
+
+  const config = supabaseConfig();
+  if (!config.configured) {
+    return unconfigured(`missing ${config.missing.join(", ")}`);
+  }
+
+  try {
+    const response = await supabaseFetch(
+      `/playbook_access_tokens?token_hash=eq.${encodeURIComponent(tokenHash)}&select=purchase:playbook_purchases(*)&limit=1`,
+    );
+    const rows = (await response.json()) as { purchase: PurchaseRow | PurchaseRow[] | null }[];
+    const purchase = rows[0]?.purchase;
+    if (Array.isArray(purchase)) return { ok: true, data: purchase[0] ?? null };
+    return { ok: true, data: purchase ?? null };
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    if (missingAccessTable(detail)) return { ok: true, data: null };
+    return failed(detail);
+  }
+}
+
+export async function findPurchasesByEmail(
+  email: string,
+): Promise<StoreResult<PurchaseRow[]>> {
+  const config = supabaseConfig();
+  if (!config.configured) {
+    return unconfigured(`missing ${config.missing.join(", ")}`);
+  }
+
+  try {
+    const response = await supabaseFetch(
+      `/${PURCHASES}?email=ilike.${encodeURIComponent(email)}&revoked_at=is.null&select=*&order=purchased_at.desc&limit=10`,
+    );
+    const rows = (await response.json()) as PurchaseRow[];
+    return { ok: true, data: rows };
+  } catch (error) {
+    return failed(error instanceof Error ? error.message : String(error));
+  }
+}
+
+export async function countAccessTokens(
+  purchaseId: string,
+): Promise<StoreResult<number>> {
+  const config = supabaseConfig();
+  if (!config.configured) {
+    return unconfigured(`missing ${config.missing.join(", ")}`);
+  }
+
+  try {
+    const response = await supabaseFetch(
+      `/playbook_access_tokens?purchase_id=eq.${encodeURIComponent(purchaseId)}&select=id&limit=21`,
+    );
+    const rows = (await response.json()) as { id: string }[];
+    return { ok: true, data: rows.length };
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    if (missingAccessTable(detail)) return { ok: false, reason: "unconfigured", detail };
+    return failed(detail);
+  }
+}
+
+export async function insertAccessToken(
+  purchaseId: string,
+  tokenHash: string,
+): Promise<StoreResult<true>> {
+  const config = supabaseConfig();
+  if (!config.configured) {
+    return unconfigured(`missing ${config.missing.join(", ")}`);
+  }
+
+  try {
+    await supabaseFetch("/playbook_access_tokens", {
+      method: "POST",
+      prefer: "return=minimal",
+      body: JSON.stringify({ purchase_id: purchaseId, token_hash: tokenHash }),
+    });
+    return { ok: true, data: true };
+  } catch (error) {
+    return failed(error instanceof Error ? error.message : String(error));
+  }
+}
+
 export async function findPurchaseByTokenHash(
   tokenHash: string,
 ): Promise<StoreResult<PurchaseRow | null>> {
