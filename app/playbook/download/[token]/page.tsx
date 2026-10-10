@@ -6,7 +6,7 @@ import { PanelLabel } from "@/components/diagram";
 import { Card } from "@/components/ui/card";
 import { Container } from "@/components/ui/section";
 import { playbookSlugForPriceId, supabaseConfig } from "@/lib/commerce/config";
-import { findPurchaseByTokenHash, toEntitlement } from "@/lib/commerce/store";
+import { findPurchaseForPresentedToken, toEntitlement } from "@/lib/commerce/store";
 import {
   checkEntitlement,
   hashToken,
@@ -55,7 +55,7 @@ export default async function DownloadPage({
     return <Unavailable />;
   }
 
-  const found = await findPurchaseByTokenHash(hashToken(token));
+  const found = await findPurchaseForPresentedToken(hashToken(token));
   if (!found.ok) {
     console.error({
       scope: "playbook.download.page",
@@ -115,7 +115,11 @@ function Rejected({ reason }: { reason: TokenRejection }) {
           >
             email us
           </a>{" "}
-          and we will reissue it.
+          or{" "}
+          <Link href="/playbook/recover" className="font-medium text-foreground underline underline-offset-4">
+            request a fresh link
+          </Link>
+          .
         </p>
       </Card>
     </Shell>

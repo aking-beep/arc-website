@@ -27,11 +27,14 @@ export async function sendPurchaseEmail({
   token,
   transactionId,
   slug,
+  again = false,
 }: {
   to: string;
   token: string;
   transactionId: string;
   slug: PlaybookSlug;
+  /** A recovery link. The original purchase email is left as it was. */
+  again?: boolean;
 }): Promise<SendResult> {
   const config = emailConfig();
   const link = downloadUrl(token);
@@ -66,9 +69,11 @@ export async function sendPurchaseEmail({
         from: config.from,
         to: [to],
         ...(config.replyTo ? { reply_to: config.replyTo } : {}),
-        subject: `Your ${tier.productName} download`,
-        text: plainText(link, tier),
-        html: html(link, tier),
+        subject: again
+          ? `Your ${tier.productName} download link`
+          : `Your ${tier.productName} download`,
+        text: plainText(link, tier, again),
+        html: html(link, tier, again),
       }),
     });
 
@@ -90,11 +95,14 @@ export async function sendPurchaseEmail({
 function plainText(
   link: string,
   tier: NonNullable<ReturnType<typeof getPlaybookTier>>,
+  again: boolean,
 ): string {
   return [
     `${tier.productName} — ${tier.subtitle}`,
     "",
-    "Thanks for buying this playbook. Your download link is below. It works on",
+    again
+      ? "Here is a fresh download link for the playbook you already bought. It works on"
+      : "Thanks for buying this playbook. Your download link is below. It works on",
     "more than one device and there is nothing to log into.",
     "",
     link,
@@ -117,6 +125,7 @@ function plainText(
 function html(
   link: string,
   tier: NonNullable<ReturnType<typeof getPlaybookTier>>,
+  again: boolean,
 ): string {
   const items = tier.includes
     .map(
@@ -135,8 +144,11 @@ function html(
     <p style="margin:0 0 24px;font-size:15px;color:#0a6e7c;">${escapeHtml(tier.subtitle)}</p>
 
     <p style="margin:0 0 20px;font-size:15px;line-height:1.6;">
-      Thanks for buying this playbook. Your download link is below. It works on more
-      than one device, and there is nothing to log into.
+      ${
+        again
+          ? "Here is a fresh download link for the playbook you already bought. It works on more than one device, and there is nothing to log into."
+          : "Thanks for buying this playbook. Your download link is below. It works on more than one device, and there is nothing to log into."
+      }
     </p>
 
     <p style="margin:0 0 24px;">

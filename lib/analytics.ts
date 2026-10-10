@@ -20,8 +20,12 @@ export type PlaybookEvents = {
   playbook_view: { source?: string };
   playbook_preview_click: { target: string };
   playbook_checkout_start: { product: string; price: number; environment: string };
+  /** Overlay closed before checkout.completed. Not a failed charge. */
+  playbook_checkout_abandon: { product: string };
+  /** Overlay reported an error. No card data, no message from Paddle. */
+  playbook_checkout_error: { product: string };
   /** Client-side signal only. The webhook is the record of a sale. */
-  playbook_purchase_complete: { product: string; transaction_id?: string };
+  playbook_purchase_complete: { product: string; transaction_id?: string; price?: number };
   playbook_download_view: { status: string };
   playbook_download_start: { file: string };
   playbook_download_success: { file: string };

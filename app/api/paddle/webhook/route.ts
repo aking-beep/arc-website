@@ -154,6 +154,8 @@ export async function POST(request: Request) {
   log("info", "purchase recorded", {
     transactionId: purchase.transactionId,
     slug,
+    currency: purchase.currency,
+    amountMinor: purchase.totalMinorUnits,
     hasEmail: Boolean(purchase.email),
   });
 
