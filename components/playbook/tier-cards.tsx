@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Lock } from "lucide-react";
 
-import { CheckoutButton, type CheckoutConfig } from "@/components/playbook/checkout-button";
+import { OfferBuy } from "@/components/playbook/offer-buy";
+import type { CheckoutConfig } from "@/components/playbook/checkout-button";
 import { Card } from "@/components/ui/card";
 import {
   playbookTierHref,
@@ -41,28 +42,17 @@ function TierCard({
       </div>
       <h3 className="mt-4 text-2xl font-semibold tracking-tight">{tier.name}</h3>
       <p className="mt-2 text-base font-medium">{tier.subtitle}</p>
-      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{tier.summary}</p>
-      <ul className="mt-5 flex-1 space-y-2 border-t border-border/60 pt-5">
-        {tier.includes.slice(0, 4).map((item) => (
-          <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed">
-            <Check className="mt-0.5 h-4 w-4 flex-none text-brand" aria-hidden />
-            {item}
-          </li>
-        ))}
-      </ul>
-      <CheckoutButton
-        config={checkout}
-        product={tier.slug}
-        priceAmount={tier.priceAmount}
-        className="mt-6"
-      >
-        {`Get ${tier.name} — ${tier.price}`}
-      </CheckoutButton>
+      <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{tier.summary}</p>
+      <p className="mt-5 inline-flex items-center gap-2 text-sm text-muted-foreground">
+        <Lock className="h-3.5 w-3.5" aria-hidden />
+        Paid file. It arrives by email after payment.
+      </p>
+      <OfferBuy tier={tier} config={checkout} className="mt-6" />
       <Link
         href={playbookTierHref(tier.slug)}
         className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-foreground"
       >
-        See what is inside
+        Open {tier.name}
         <ArrowRight className="h-4 w-4" />
       </Link>
     </Card>

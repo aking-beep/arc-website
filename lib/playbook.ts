@@ -232,8 +232,8 @@ export const playbookFaqs = [
     a: "In Ship. That download prints the libraries in full and includes the same files in the ZIP: 20 skills, 20 reference architectures, and 16 workflow templates. Define and Build do not include them.",
   },
   {
-    q: "Can I read some of it first?",
-    a: "Yes. The free preview is the opening of Define: the cover, how the three playbooks fit together, the five-step system, and the first page of Module 01. Build and Ship are not in that preview.",
+    q: "Can I read it before I pay?",
+    a: "No. The playbook is a paid file. Payment emails a private download link. There is no public copy.",
   },
   {
     q: "Will it be out of date in six months?",
@@ -257,27 +257,9 @@ export const playbookFaqs = [
   },
 ];
 
-export const playbookPreviewPdf = "/playbook/preview.pdf";
-
-export const playbookShots = [
-  {
-    src: "/playbook/cover.png",
-    alt: "Cover of the Define playbook, titled Should this product exist",
-    caption: "The Define cover",
-  },
-  {
-    src: "/playbook/preview-images/how-to-use.png",
-    alt: "A page titled How to use this playbook, listing modules 01 to 03 and pointing to Build and Ship as separate purchases",
-    caption: "What this file contains",
-  },
-  {
-    src: "/playbook/preview-images/contents.png",
-    alt: "The five-step system: Validate, Define, Architect, Harden, and Launch, with the modules each step contains",
-    caption: "Where this file sits in the method",
-  },
-  {
-    src: "/playbook/preview-images/product-brief.png",
-    alt: "The opening of Module 01, Idea, asking for a one-sentence claim and the assumption that would kill the product",
-    caption: "Module 01, the first page",
-  },
-] as const;
+/** Cover only. The manuscript pages are not published. */
+export const playbookCover = {
+  src: "/playbook/cover.png",
+  alt: "Cover of the Define playbook, titled Should this product exist",
+  caption: "The Define cover. The file is a paid download.",
+} as const;

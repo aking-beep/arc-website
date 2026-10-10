@@ -1,5 +1,9 @@
 /**
- * Publish the opening of the Define PDF as the free preview.
+ * Keep the Define cover as the product image.
+ *
+ * The manuscript is a paid file. This script does not publish a preview PDF
+ * or interior pages. It removes those files if an older build left them in
+ * public/.
  *
  *   node scripts/playbook/public-preview.mjs
  *
@@ -109,38 +113,16 @@ async function main() {
     throw new Error("Module 01 does not start before Module 02");
   }
 
+  const coverDest = path.join(paths.root, "public", "playbook", "cover.png");
+  await renderPage(pdf, 1, coverDest);
+  console.log(`  page 1 → ${path.relative(paths.root, coverDest)}`);
+
   const previewPdf = path.join(paths.root, "public", "playbook", "preview.pdf");
-  await slicePdf(pdf, previewPdf, moduleStart);
-
-  const shots = [
-    { pattern: /^/, dest: path.join(paths.root, "public", "playbook", "cover.png"), page: 1 },
-    {
-      pattern: /How to use this playbook/,
-      dest: path.join(paths.root, "public", "playbook", "preview-images", "how-to-use.png"),
-    },
-    {
-      pattern: /The five-step system/,
-      dest: path.join(paths.root, "public", "playbook", "preview-images", "contents.png"),
-    },
-    {
-      pattern: /one-sentence claim this product makes/,
-      dest: path.join(paths.root, "public", "playbook", "preview-images", "product-brief.png"),
-      page: moduleStart,
-    },
-  ];
-
-  for (const shot of shots) {
-    const page = shot.page ?? firstPageMatching(pdf, count, shot.pattern);
-    if (!page) throw new Error(`No page matched ${shot.pattern}`);
-    if (page > moduleStart) {
-      throw new Error(`Gallery page ${page} is past the free preview, which ends on page ${moduleStart}`);
-    }
-    await renderPage(pdf, page, shot.dest);
-    console.log(`  page ${page} → ${path.relative(paths.root, shot.dest)}`);
-  }
-
+  const previewDir = path.join(paths.root, "public", "playbook", "preview-images");
+  await fs.rm(previewPdf, { force: true });
+  await fs.rm(previewDir, { recursive: true, force: true });
   console.log(
-    `  ${path.relative(paths.root, previewPdf)} — pages 1–${moduleStart} of ${count}`,
+    `  paid file is ${count} pages. Public site keeps the cover only. Module 01 starts on page ${moduleStart}.`,
   );
 }
 

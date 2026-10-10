@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Check, Minus } from "lucide-react";
 
-import { Preview } from "@/components/playbook/preview";
 import { TierCards } from "@/components/playbook/tier-cards";
 import { PlaybookViewTracker } from "@/components/playbook/view-tracker";
 import { FaqList } from "@/components/faq-list";
@@ -73,8 +72,8 @@ export default function PlaybookPage() {
       <Section id="pricing" className="scroll-mt-20">
         <SectionHeading
           kicker="Prices"
-          title="One checkout each. Nothing is bundled."
-          lead="Paddle handles the payment. The download link for that playbook arrives by email. The charge is the price id configured for that playbook, which has to be the amount printed here."
+          title="One payment each. The file stays behind it."
+          lead="Each playbook is a paid download. Payment emails a private link for that file. Buying one leaves the other two locked."
         />
         <TierCards checkouts={checkouts} />
         <p className="mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
@@ -124,8 +123,6 @@ export default function PlaybookPage() {
           </Card>
         </div>
       </Section>
-
-      <Preview />
 
       <Section>
         <SectionHeading

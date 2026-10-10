@@ -33,8 +33,8 @@ Output lands in `playbook/build/` and is not committed:
 | `ship/arc-playbook-ship.zip` | That PDF, those worksheets, and the editable libraries. |
 | `appendices/` | Generated library appendices. Printed only in Ship. |
 
-`npm run playbook:build` also refreshes `public/playbook/preview.pdf` from the
-opening of Define, through the first page of Module 01.
+`npm run playbook:build` refreshes `public/playbook/cover.png` and removes any
+public preview PDF or interior page images. The manuscript stays in the paid files.
 
 Rendering uses the Chrome already on the machine via `puppeteer-core`. Set
 `CHROME_PATH` if it is not at one of the usual locations.
