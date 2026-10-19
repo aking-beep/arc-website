@@ -5,6 +5,8 @@
 // are free and complete on the page. The paid playbooks live at /playbook.
 // ============================================================================
 
+import { operatingContractChain } from "@/lib/ark";
+
 export type PlaybookKind = "playbook" | "framework" | "assessment" | "checklist";
 
 export type Playbook = {
@@ -52,7 +54,7 @@ export const playbooks: Playbook[] = [
     ctaLabel: "Use the framework",
     availability:
       "Free and published in full, with a worked bad and good example for every field. No email gate.",
-    chain: ["Goal", "Trigger", "State", "Boundary", "Evidence", "Owner"],
+    chain: operatingContractChain,
   },
   {
     slug: "outcome-assurance-checklist",

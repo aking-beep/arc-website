@@ -333,9 +333,22 @@ export function getArkProduct(slug: string) {
 // This is a document schema rather than a process, which is why it stays a
 // separate diagram from the chain above.
 // ---------------------------------------------------------------------------
+/**
+ * The six fields, named once. Both the agents hub and the free framework page
+ * render from this, so the two cannot drift apart.
+ */
+export const operatingContractChain = [
+  "Goal",
+  "Trigger",
+  "State",
+  "Boundary",
+  "Evidence",
+  "Owner",
+] as const;
+
 export const operatingContract = {
   headline: "Agents need operating contracts.",
-  chain: ["Goal", "Trigger", "State", "Boundary", "Evidence", "Owner"],
+  chain: operatingContractChain,
   lead: "An agent responsible for ongoing work needs more than instructions.",
   needs: [
     { name: "A defined objective", text: "What done looks like, in terms someone else could check." },

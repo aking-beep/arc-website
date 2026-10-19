@@ -24,7 +24,6 @@ export type Article = {
   kind: "Benchmark" | "Research" | "Report";
   topic: string;
   date: string;
-  status: "live" | "building" | "planned";
   summary: string;
   readingTime: string;
   keyFindings: string[];
@@ -40,7 +39,6 @@ export const research: Article[] = [
     kind: "Report",
     topic: "Agent governance",
     date: "2026-09-07",
-    status: "live",
     summary:
       "In one month, the tool protocol went stateless, a national evaluator caught agents acting on the live internet without sanction, enterprise platforms exposed their systems of record as agent-callable tools, and the standards bodies converged on identity. Here is the dated record and what it changes on Monday.",
     readingTime: "12 min",
@@ -183,7 +181,6 @@ export const research: Article[] = [
     kind: "Report",
     topic: "Cost control",
     date: "2026-09-04",
-    status: "live",
     summary:
       "Coding-agent and platform pricing moved from flat seats to routed models and agent traffic, while survey evidence says roughly half of organizations are over their AI plan and almost none pull back. A brief on where the money actually goes and how to govern it by workflow.",
     readingTime: "10 min",
@@ -289,7 +286,6 @@ export const research: Article[] = [
     kind: "Report",
     topic: "Regulation",
     date: "2026-09-02",
-    status: "live",
     summary:
       "The transparency obligations are in force now. The high-risk obligations were deferred. Teams that heard \"delayed\" and stopped reading are exposed on the part that already applies — a dated read of the deadlines, with the primary sources.",
     readingTime: "9 min",
@@ -386,7 +382,6 @@ export const research: Article[] = [
     kind: "Research",
     topic: "AI development",
     date: "2026-08-01",
-    status: "live",
     summary:
       "A grounded brief on where AI systems are actually improving — agent computer-use benchmarks, Model Context Protocol tooling, and why capability remains uneven. Built from Stanford HAI, arXiv agent studies, and NIST risk guidance.",
     readingTime: "16 min",
@@ -500,7 +495,6 @@ export const research: Article[] = [
     kind: "Research",
     topic: "Security",
     date: "2026-08-01",
-    status: "live",
     summary:
       "A cited briefing on NIST Cybersecurity Framework 2.0, Zero Trust Architecture, the emerging Cyber AI Profile, and OWASP’s Top 10 for LLM applications — translated into outcomes teams can actually run.",
     readingTime: "15 min",
@@ -596,7 +590,6 @@ export const research: Article[] = [
     kind: "Research",
     topic: "Operations workflow",
     date: "2026-08-01",
-    status: "live",
     summary:
       "How high-performing operations teams move from assumed process maps to event-log truth — grounded in process-mining scholarship, BPM maturity evidence, and Gartner’s hyperautomation research.",
     readingTime: "14 min",
@@ -675,7 +668,6 @@ export const research: Article[] = [
     kind: "Research",
     topic: "Cloud infrastructure",
     date: "2026-08-01",
-    status: "live",
     summary:
       "A research brief on running cloud as an operating system for the business — FinOps Framework 2025’s Cloud+ scopes, CNCF evidence that Kubernetes is production infrastructure for AI, and Well-Architected trade-offs.",
     readingTime: "14 min",
@@ -755,7 +747,6 @@ export const research: Article[] = [
     kind: "Research",
     topic: "Digital transformation",
     date: "2026-08-01",
-    status: "live",
     summary:
       "Why most digital and AI programs under-deliver — and what Brynjolfsson’s productivity research, MIT manufacturing evidence, and McKinsey capability studies say separates leaders from the pack.",
     readingTime: "15 min",
@@ -843,7 +834,6 @@ export const research: Article[] = [
     kind: "Research",
     topic: "Product development",
     date: "2026-08-01",
-    status: "live",
     summary:
       "A research-informed brief on modern product operating models — Marty Cagan / SVPG empowerment principles, Teresa Torres’ continuous discovery habits, and dual-track discovery–delivery — aimed at teams shipping AI-era products without roadmap theater.",
     readingTime: "13 min",

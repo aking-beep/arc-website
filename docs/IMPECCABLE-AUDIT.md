@@ -1003,6 +1003,21 @@ theme; `theme-color` per scheme; visible focus rings on links; dark-mode
 | Brand mark, per-page OG images, `BriefToc` | P3. Real work, no conversion impact this quarter. |
 | A price on the eight advisory engagements | The field exists on `ArkProduct`. Adding it to `AdvisoryEngagement` is trivial; deciding the eight numbers is not, and inventing them would break the standard the site is built on. |
 
+### Verification pass (2026-10-19, after the fact)
+
+Each of the six headline findings was re-checked against the code rather than
+against memory. Four were clean. Two had residue, now fixed in `0e8f1d2`:
+
+| Finding | Residue found | Fix |
+| --- | --- | --- |
+| Five-state scale | `lib/research.ts` carried its **own** copy of the dead `Status` type — `"live" \| "building" \| "planned"` — plus nine `status: "live"` data entries, rendered nowhere. The same defect the headline finding named, in a file the first sweep missed. | Type field and all nine entries deleted. |
+| One canonical chain | The operating-contract field list was defined **twice**, identically, in `lib/ark.ts` and `lib/learn.ts`. Two copies of one chain is the same class of problem as six chains, one order of magnitude smaller. | One `operatingContractChain` in `lib/ark.ts`; `lib/learn.ts` imports it. |
+
+Current state: 0 unlabelled controls, 0 dead state identifiers, 5 states with
+5 distinct appearances, 3 distinct chains (agent chain, operating contract,
+assurance checklist) each describing a different object, 0 bare `<CTA />`, 0
+`/playbooks` references. Build, lint, typecheck and 74 tests pass.
+
 ### One number that needs your confirmation
 
 The assessment is priced at **$15,000, 2–3 weeks**, set in one place —
