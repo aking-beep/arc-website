@@ -1018,6 +1018,53 @@ Current state: 0 unlabelled controls, 0 dead state identifiers, 5 states with
 assurance checklist) each describing a different object, 0 bare `<CTA />`, 0
 `/playbooks` references. Build, lint, typecheck and 74 tests pass.
 
+### Second verification pass — the class, not the instances
+
+The two residues above shared one root cause: **a second copy of something
+already deduplicated elsewhere**. Rather than wait for a third instance,
+both detectors were generalised and run over the whole repository.
+
+**Dead exports.** Every exported value in `lib/` and `components/`, checked
+for a reference outside its own file (including `tests/` and `scripts/`, which
+the first sweep missed and which produced ~30 false positives). Three genuine
+dead values found and removed: `getArkProduct` and `ChainLegend` (both
+orphaned by last week's page rewrites — my own) and the generic `Badge`
+(pre-existing). Exported *types* that annotate exported data in the same file
+were correctly excluded; they are a module's contract, not dead weight.
+
+**Duplicated literals.** Every string-array literal and every string over 45
+characters, grouped by value. Tailwind class strings dominate the output and
+are noise. Filtering to real copy left six duplications — and five of the six
+were mine, created when I built the new pages last week by copying blocks
+rather than extracting them:
+
+| Duplicated | Where | Fix |
+| --- | --- | --- |
+| Retainers table + two sentences | `/advisory`, `/consulting` | `components/retainer-table.tsx` |
+| Workshops grid + lead | `/consulting`, `/frameworks` | `components/workshop-grid.tsx` |
+| Free scan / paid card pair | `/agents`, `/assessment` | `components/start-here.tsx` |
+| Execution-gap section + reported-run figures | `/`, `/agents` | `components/execution-gap.tsx` |
+| Engagements lead sentence | `/advisory`, `/consulting` | `advisoryEngagementsLead` in `lib/content.ts` |
+| Refund promise | `lib/offer.ts`, `lib/playbook.ts` | `playbookRefund` in `lib/playbook.ts` |
+
+Two smaller ones alongside: the Outcome Assurance tagline was hardcoded on its
+own page as well as in `lib/learn.ts`, and `ark.positioning` and
+`assessment.tagline` were the same sentence — a company line and a product
+line should not be identical. Both fixed.
+
+Re-running the extraction caught two **new** dead exports it had just created
+(`retainerCopy`, `workshopCopy`, exported for no reason); both are now
+module-private. Fixing dead exports is a poor moment to add more.
+
+**Left alone deliberately:** seven unreferenced exports in `lib/commerce/`
+(`commerceReadiness`, `paddleEnvironment`, `readPlaybookPrices`,
+`downloadUrl`, `SUCCESS_DOWNLOAD_WINDOW_HOURS`, `resetRateLimits`,
+`findPurchaseByTransactionId`). That module is a working, tested,
+security-sensitive payment path that the commercial audit marked *keep and
+freeze*. An unreferenced export in a payment library is a different risk
+calculus from a dead UI component — some are plainly test or operational
+seams. They are listed here for a decision rather than removed on my judgement.
+
 ### One number that needs your confirmation
 
 The assessment is priced at **$15,000, 2–3 weeks**, set in one place —

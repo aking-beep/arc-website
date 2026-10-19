@@ -210,6 +210,10 @@ export const playbookAudience = {
   ],
 };
 
+/** The refund promise. One sentence, one place — the ad pages import it too. */
+export const playbookRefund =
+  "Email us within 30 days and we refund the playbook you bought.";
+
 export const playbookFaqs = [
   {
     q: "Are these three parts of one purchase?",
@@ -249,7 +253,7 @@ export const playbookFaqs = [
   },
   {
     q: "What if it is not useful?",
-    a: "Email us within 30 days and we refund the playbook you bought.",
+    a: playbookRefund,
   },
   {
     q: "Do you also do this work for people?",

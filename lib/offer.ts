@@ -7,6 +7,7 @@
 
 import {
   getPlaybookTier,
+  playbookRefund,
   playbookSlugs,
   playbookTiers,
   type PlaybookSlug,
@@ -29,8 +30,7 @@ export const offerAudience =
 export const offerDelivery =
   "One payment. The PDF and the files for that playbook arrive by email. There is no account and no subscription.";
 
-export const offerRefund =
-  "Email us within 30 days and we refund the playbook you bought.";
+export const offerRefund = playbookRefund;
 
 /** The situation the ad should match. The product subtitle is the headline. */
 export const offerFit: Record<PlaybookSlug, string> = {

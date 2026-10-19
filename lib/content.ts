@@ -6,7 +6,9 @@
 export const site = {
   name: "ARC Transformation Group",
   short: "ARC",
-  tagline: "Know what your agents can reach, change and prove.",
+  // The assessment's own tagline lives in lib/ark.ts. This is the company
+  // line, which is deliberately broader than the one product.
+  tagline: "Agent governance: the list of what your agents can change.",
   description:
     "ARC writes down what your AI agents can reach, what they can change, and which actions should need a person. Free scan, or a fixed-fee assessment.",
   audience: {
@@ -1050,6 +1052,10 @@ export const advisoryEngagements: AdvisoryEngagement[] = [
     typicalFollowOn: "ARC Partner Retainer or Post-Diagnostic Execution Retainer to deliver the roadmap.",
   },
 ];
+
+/** Said the same way wherever the engagements are listed. */
+export const advisoryEngagementsLead =
+  "Each one has a duration and something concrete at the end. Open any of them to see what it starts with, what you receive, and what we can build afterwards.";
 
 export function getAdvisoryEngagementBySlug(slug: string): AdvisoryEngagement | undefined {
   return advisoryEngagements.find((o) => o.slug === slug);

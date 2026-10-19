@@ -11,7 +11,7 @@ import { assuranceChecklist, getPlaybook } from "@/lib/learn";
 const playbook = getPlaybook("outcome-assurance-checklist");
 
 export const metadata: Metadata = {
-  title: "Outcome Assurance Checklist · Six questions between a finished run and a finished job",
+  title: `Outcome Assurance Checklist · ${playbook?.tagline ?? ""}`,
   description:
     "The sequence we use to decide whether an agent's reported success can be believed, and what it cost to find out. Free and published in full.",
 };
@@ -23,7 +23,7 @@ export default function AssuranceChecklistPage() {
     <>
       <PageHero
         kicker="Free checklist"
-        title="Six questions between a finished run and a finished job."
+        title={playbook.tagline}
         lead={executionGap.lead}
       >
         <FlowChain steps={playbook.chain ?? []} highlightLast />

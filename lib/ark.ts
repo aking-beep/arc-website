@@ -203,7 +203,9 @@ export const assessment: ArkProduct = {
   href: "/assessment",
   name: "Agent Access Assessment",
   navLabel: "Assessment",
-  tagline: "Know what your agents can reach, change and prove.",
+  // Deliberately not `ark.positioning`. The company line is broader than any
+  // one engagement; a product that borrows it says nothing about itself.
+  tagline: "The list of every agent, what it can change, and who approved it.",
   summary:
     "An inventory of every agent running against your systems, what each one can change, and which actions should need a person. Two to three weeks, fixed fee.",
   state: "available",
@@ -322,10 +324,6 @@ export const agentControl: ArkProduct = {
 };
 
 export const arkProducts: ArkProduct[] = [assessment, agentControl];
-
-export function getArkProduct(slug: string) {
-  return arkProducts.find((p) => p.slug === slug);
-}
 
 // ---------------------------------------------------------------------------
 // The agent operating contract — the framework ARC publishes free.

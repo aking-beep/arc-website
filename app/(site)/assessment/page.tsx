@@ -4,8 +4,8 @@ import { ArrowRight } from "lucide-react";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { StateBadge } from "@/components/ui/badge";
 import { ArkProductPage } from "@/components/ark-product-page";
+import { StartHere } from "@/components/start-here";
 import { AgentChain } from "@/components/agent-chain";
 import { EvidenceArtifact } from "@/components/evidence-artifact";
 import { FlowStack, Panel, PanelLabel } from "@/components/diagram";
@@ -93,56 +93,9 @@ export default function AssessmentPage() {
         </div>
       </Section>
 
-      <Section className="bg-muted/30">
-        <SectionHeading
-          kicker="Before you buy anything"
-          title="Two free ways to find out whether you need this."
-          lead="Both are complete on their own page. Most people run one of them and never speak to us, which is a good outcome."
-        />
-        <div className="mt-12 grid gap-5 lg:grid-cols-2">
-          <Card className="flex h-full flex-col p-8">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <StateBadge state="labs" />
-              <span className="font-mono text-xs">Free</span>
-            </div>
-            <h3 className="mt-4 text-2xl font-semibold tracking-tight">
-              Agent access scan
-            </h3>
-            <p className="mt-3 flex-1 text-base leading-relaxed text-muted-foreground">
-              Describe your agents, tools and permissions and get a graded
-              report with every finding quoting your own words back to you.
-              Nothing is stored.
-            </p>
-            <div className="mt-7">
-              <Button href="/labs/arc-agent-governance" variant="outline">
-                Run the scan
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </div>
-          </Card>
+      <StartHere className="bg-muted/30" secondary="scorecard" />
 
-          <Card className="flex h-full flex-col p-8">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <StateBadge state="available" />
-              <span className="font-mono text-xs">Free</span>
-            </div>
-            <h3 className="mt-4 text-2xl font-semibold tracking-tight">
-              Readiness scorecard
-            </h3>
-            <p className="mt-3 flex-1 text-base leading-relaxed text-muted-foreground">
-              {scorecardQuestions.length} questions across{" "}
-              {scorecardDimensions.length} dimensions, scored in your browser.
-              Self-reported, so treat it as a starting point rather than
-              evidence.
-            </p>
-            <div className="mt-7">
-              <Button href="/frameworks/agent-readiness-scorecard" variant="outline">
-                Run the scorecard
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </div>
-          </Card>
-        </div>
+      <Section>
         <p className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
           The difference between the free versions and this engagement is
           evidence. The scan reads what you type. The assessment reads what you

@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { AgentChainCompact } from "@/components/agent-chain";
 import { EvidenceArtifact } from "@/components/evidence-artifact";
-import { SplitClaim, Takeaway } from "@/components/diagram";
 import { MarketSignals } from "@/components/market-signals";
 import { CTA } from "@/components/cta";
+import { ExecutionGap } from "@/components/execution-gap";
 import { site } from "@/lib/content";
 import { assessment, executionGap } from "@/lib/ark";
 import { assuranceChecklist } from "@/lib/learn";
@@ -102,26 +102,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section className="bg-muted/30">
-        <SectionHeading
-          kicker="Why it is hard"
-          title={executionGap.headline}
-          lead={executionGap.lead}
-        />
-        <SplitClaim
-          className="mt-12"
-          leftLabel="What the run reported"
-          rightLabel="What the record asks"
-          left={[
-            { label: "Status", value: "completed" },
-            { label: "Steps", value: "7 / 7" },
-            { label: "Tool calls", value: "12 ok, 0 failed" },
-            { label: "Latency", value: "4.2s" },
-          ]}
-          right={assuranceChecklist.map((step) => step.question)}
-        />
-        <Takeaway className="mt-12">{executionGap.takeaway}</Takeaway>
-      </Section>
+      <ExecutionGap className="bg-muted/30" />
 
       <Section>
         <div className="grid gap-12 lg:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] lg:gap-16">

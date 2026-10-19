@@ -9,6 +9,8 @@ import { AgentChain } from "@/components/agent-chain";
 import { EvidenceArtifact } from "@/components/evidence-artifact";
 import { Panel, PanelLabel, SplitClaim, Takeaway } from "@/components/diagram";
 import { CTA } from "@/components/cta";
+import { ExecutionGap } from "@/components/execution-gap";
+import { StartHere } from "@/components/start-here";
 import {
   agentControl,
   assessment,
@@ -113,76 +115,9 @@ export default function AgentsPage() {
         </div>
       </Section>
 
-      <Section>
-        <SectionHeading
-          kicker="The execution gap"
-          title={executionGap.headline}
-          lead={executionGap.lead}
-        />
-        <SplitClaim
-          className="mt-12"
-          leftLabel="What the run reported"
-          rightLabel="What the record asks"
-          left={[
-            { label: "Status", value: "completed" },
-            { label: "Steps", value: "7 / 7" },
-            { label: "Tool calls", value: "12 ok, 0 failed" },
-            { label: "Latency", value: "4.2s" },
-          ]}
-          right={assuranceChecklist.map((step) => step.question)}
-        />
-        <Takeaway className="mt-12">{executionGap.takeaway}</Takeaway>
-      </Section>
+      <ExecutionGap kicker="The execution gap" />
 
-      <Section className="bg-muted/30">
-        <SectionHeading
-          kicker="Start here"
-          title="Free first. Paid only if the answer is uncomfortable."
-        />
-        <div className="mt-12 grid gap-5 lg:grid-cols-2">
-          <Card className="flex h-full flex-col p-8">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <StateBadge state="labs" />
-              <span className="font-mono text-xs">Free</span>
-            </div>
-            <h3 className="mt-4 text-2xl font-semibold tracking-tight">
-              Agent access scan
-            </h3>
-            <p className="mt-3 flex-1 text-base leading-relaxed text-muted-foreground">
-              Describe your agents, tools and permissions in plain language and
-              get a graded report back. Deterministic rules, every finding
-              quoting your own words, nothing stored.
-            </p>
-            <div className="mt-7">
-              <Button href="/labs/arc-agent-governance">
-                Run the scan
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </div>
-          </Card>
-
-          <Card className="flex h-full flex-col p-8 ring-1 ring-foreground/10">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <StateBadge state="available" />
-              <span className="font-mono text-xs">
-                {assessment.price?.amount} · {assessment.price?.duration}
-              </span>
-            </div>
-            <h3 className="mt-4 text-2xl font-semibold tracking-tight">
-              {assessment.name}
-            </h3>
-            <p className="mt-3 flex-1 text-base leading-relaxed text-muted-foreground">
-              {assessment.summary}
-            </p>
-            <div className="mt-7">
-              <Button href="/assessment" variant="outline">
-                See what is in it
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </div>
-          </Card>
-        </div>
-      </Section>
+      <StartHere className="bg-muted/30" secondary="assessment" />
 
       <Section>
         <SectionHeading

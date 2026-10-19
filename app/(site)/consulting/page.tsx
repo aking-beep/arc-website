@@ -7,8 +7,14 @@ import { Card } from "@/components/ui/card";
 import { Icon } from "@/components/icon";
 import { PanelLabel } from "@/components/diagram";
 import { CTA } from "@/components/cta";
+import { RetainerTable } from "@/components/retainer-table";
+import { WorkshopGrid } from "@/components/workshop-grid";
 import { serviceAreas } from "@/lib/services";
-import { academy, advisoryEngagements, howWeEngage, retainers } from "@/lib/content";
+import {
+  advisoryEngagements,
+  advisoryEngagementsLead,
+  howWeEngage,
+} from "@/lib/content";
 import { playbookTiers } from "@/lib/playbook";
 
 export const metadata: Metadata = {
@@ -101,7 +107,7 @@ export default function ConsultingPage() {
           <SectionHeading
             kicker="Scoped reviews"
             title="The engagements."
-            lead="Each one has a duration and something concrete at the end. Open any of them to see what it starts with, what you receive, and what we can build afterwards."
+            lead={advisoryEngagementsLead}
           />
           <Link
             href="/advisory"
@@ -146,96 +152,9 @@ export default function ConsultingPage() {
         </div>
       </Section>
 
-      <Section className="bg-muted/30">
-        <SectionHeading
-          kicker="Ongoing"
-          title="When a review turns into standing work."
-          lead="Three-month minimum, then month to month with 30 days' notice."
-        />
+      <RetainerTable className="bg-muted/30" />
 
-        <ul className="mt-12 grid gap-4 lg:hidden">
-          {retainers.map((r) => (
-            <li key={r.slug} className="rounded-lg border border-border bg-card p-5">
-              <h3 className="text-base font-semibold">{r.name}</h3>
-              <dl className="mt-3 grid gap-3">
-                <div>
-                  <dt className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    Best fit
-                  </dt>
-                  <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    {r.bestFit}
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
-                    Typical commitment
-                  </dt>
-                  <dd className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    {r.commitment}
-                  </dd>
-                </div>
-              </dl>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-12 hidden overflow-x-auto lg:block">
-          <table className="w-full text-left text-sm">
-            <thead>
-              <tr className="border-b border-border text-xs uppercase tracking-wider text-muted-foreground">
-                <th scope="col" className="pb-3 pr-4 font-medium">Engagement</th>
-                <th scope="col" className="pb-3 pr-4 font-medium">Best fit</th>
-                <th scope="col" className="pb-3 font-medium">Typical commitment</th>
-              </tr>
-            </thead>
-            <tbody>
-              {retainers.map((r) => (
-                <tr key={r.slug} className="border-b border-border/60">
-                  <td className="py-4 pr-4 align-top font-medium">{r.name}</td>
-                  <td className="py-4 pr-4 align-top text-muted-foreground">
-                    {r.bestFit}
-                  </td>
-                  <td className="py-4 align-top text-muted-foreground">
-                    {r.commitment}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Section>
-
-      <Section>
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <SectionHeading
-            kicker="Workshops"
-            title="When the room is the problem."
-            lead="Sometimes the blocker is not the technology, it is that leadership and operators describe the same problem in different words. That is a session rather than a six-week diagnostic."
-          />
-          <Link
-            href="/academy"
-            className="inline-flex flex-none items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
-          >
-            All workshops
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
-          {academy.map((w) => (
-            <Link key={w.slug} href={`/academy/${w.slug}`} className="group block h-full">
-              <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
-                <h3 className="flex items-center gap-1.5 text-base font-semibold">
-                  {w.name}
-                  <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                  {w.text}
-                </p>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </Section>
+      <WorkshopGrid />
 
       <Section className="bg-muted/30">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)] lg:items-center lg:gap-16">

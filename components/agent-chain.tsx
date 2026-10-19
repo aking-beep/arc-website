@@ -46,7 +46,7 @@ const tagLabel: Record<ChainCoverage, string> = {
   research: "Research",
 };
 
-export function ChainLegend({ className }: { className?: string }) {
+function ChainLegend({ className }: { className?: string }) {
   return (
     <ul
       className={cn(

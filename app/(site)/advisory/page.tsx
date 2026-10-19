@@ -8,8 +8,10 @@ import { PanelLabel } from "@/components/diagram";
 import { AlternativesTable } from "@/components/alternatives-table";
 import { FaqList } from "@/components/faq-list";
 import { CTA } from "@/components/cta";
+import { RetainerTable } from "@/components/retainer-table";
 import {
   advisoryEngagements,
+  advisoryEngagementsLead,
   bestFit,
   faqs,
   howWeEngage,
@@ -74,7 +76,7 @@ export default function AdvisoryPage() {
         <SectionHeading
           kicker="Scoped reviews"
           title="The reviews, grouped by the problem they answer."
-          lead="Each one has a duration and something concrete at the end. Open any of them to see what it starts with, what you receive, and what we can build afterwards."
+          lead={advisoryEngagementsLead}
         />
         <div className="mt-12 grid gap-12">
           {groups.map(({ area, engagements }) => (
@@ -128,37 +130,7 @@ export default function AdvisoryPage() {
         </div>
       </Section>
 
-      <Section>
-        <SectionHeading
-          kicker="Ongoing"
-          title="When a review turns into standing work."
-          lead="Three-month minimum, then month to month with 30 days' notice."
-        />
-        <div className="mt-12 overflow-x-auto">
-          <table className="w-full min-w-[640px] text-left text-sm">
-            <thead>
-              <tr className="border-b border-border text-xs uppercase tracking-wider text-muted-foreground">
-                <th className="pb-3 pr-4 font-medium">Engagement</th>
-                <th className="pb-3 pr-4 font-medium">Best fit</th>
-                <th className="pb-3 font-medium">Typical commitment</th>
-              </tr>
-            </thead>
-            <tbody>
-              {retainers.map((r) => (
-                <tr key={r.slug} className="border-b border-border/60">
-                  <td className="py-4 pr-4 align-top font-medium">{r.name}</td>
-                  <td className="py-4 pr-4 align-top text-muted-foreground">
-                    {r.bestFit}
-                  </td>
-                  <td className="py-4 align-top text-muted-foreground">
-                    {r.commitment}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Section>
+      <RetainerTable />
 
       <AlternativesTable />
 
