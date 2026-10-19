@@ -65,9 +65,7 @@ export function StartHere({
           <Card className="flex h-full flex-col p-8 ring-1 ring-foreground/10">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <StateBadge state={assessment.state} />
-              <span className="font-mono text-xs">
-                {assessment.price?.amount} · {assessment.price?.duration}
-              </span>
+              <span className="font-mono text-xs">2–3 weeks</span>
             </div>
             <h3 className="mt-4 text-2xl font-semibold tracking-tight">
               {assessment.name}

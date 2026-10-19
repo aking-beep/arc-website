@@ -243,7 +243,7 @@ export default function DevelopersPage() {
       </Section>
 
       <CTA
-        variant="talk"
+        variant="tool"
         title="Building the agent side of a production system?"
         lead="If you are implementing protocols, tool authority or verification against production systems, we would rather talk to you than market at you."
       />

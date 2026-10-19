@@ -3,6 +3,10 @@ import { Section, SectionHeading } from "@/components/ui/section";
 import { ArkProductPage } from "@/components/ark-product-page";
 import { Panel, PanelLabel, SplitClaim, Takeaway } from "@/components/diagram";
 import { AgentChain } from "@/components/agent-chain";
+import {
+  AssuranceExamples,
+  VerificationModel,
+} from "@/components/assurance-examples";
 import { agentChain, agentControl, executionGap } from "@/lib/ark";
 import { assuranceChecklist } from "@/lib/learn";
 
@@ -70,6 +74,10 @@ export default function AgentControlPage() {
               right={assuranceChecklist.map((step) => step.question)}
             />
           </Section>
+
+          <AssuranceExamples />
+
+          <VerificationModel className="bg-muted/30" />
         </>
       }
     >

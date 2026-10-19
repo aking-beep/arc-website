@@ -13,9 +13,9 @@ import { assessment } from "@/lib/ark";
 import { scorecardDimensions, scorecardQuestions } from "@/lib/learn";
 
 export const metadata: Metadata = {
-  title: "Agent Access Assessment · $15,000, two to three weeks",
+  title: "Agent Readiness Assessment · Are our systems ready for agents?",
   description:
-    "An inventory of every agent running against your systems, what each one can change, and which actions should need a person. Fixed fee, fixed scope, and you keep the Agent Access Record.",
+    "Assess interfaces, APIs, MCP, identity, permissions, approval paths, security, reliability, observability and cost. Two to three weeks against your own systems.",
 };
 
 const weeks = [

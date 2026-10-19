@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
+import { proofDisclaimer } from "@/components/proof";
 import { Card } from "@/components/ui/card";
 import { PanelLabel } from "@/components/diagram";
 import { FaqList } from "@/components/faq-list";
@@ -45,7 +46,10 @@ export default function AboutPage() {
               <p className="text-base leading-relaxed text-muted-foreground">
                 {site.team.bio}
               </p>
-              <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                Team delivery history
+              </p>
+              <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {site.team.scope.map((item) => (
                   <div
                     key={item.label}
@@ -58,6 +62,9 @@ export default function AboutPage() {
                   </div>
                 ))}
               </div>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                {proofDisclaimer}
+              </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button href="/work" size="sm">
                   See the work
@@ -148,7 +155,7 @@ export default function AboutPage() {
               {ark.question}
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              the Agent Access Assessment, the Agent Control research, and the free
+              the Agent Readiness Assessment, the Agent Control research, and the free
               Labs tools. {ark.principle}
             </p>
             <Link

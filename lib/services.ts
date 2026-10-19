@@ -153,7 +153,7 @@ export const serviceAreas: ServiceArea[] = [
     notFor:
       "A research sandbox where autonomous tool use is the point. These controls exist for systems with consequences.",
     engagements: ["security-compliance-posture", "delivery-program-setup"],
-    linkLabel: "Explore agent infrastructure",
+    linkLabel: "Explore agent governance",
   },
 ];
 
@@ -170,11 +170,11 @@ export function getServiceArea(slug: string): ServiceArea | undefined {
 // ---------------------------------------------------------------------------
 
 export const homeHero = {
-  title: "What are your agents allowed to do, and who signed off?",
-  kicker: "Agent governance",
-  lead: "Your vendors turned agents on inside tools you already pay for. Each one holds the permissions of whoever switched it on, and none of them is in a list anyone maintains. ARC writes that list, ranks what each agent could break, and says which actions should stop and wait for a person.",
-  primary: { label: "Run the free scan", href: "/labs/arc-agent-governance" },
-  secondary: { label: "See the assessment — $15,000", href: "/assessment" },
+  kicker: "Agent infrastructure",
+  title: "Know what your AI agents did — not just what they said they did.",
+  lead: "ARC builds assessments and infrastructure for reliable agent action. Understand what agents can access, control what they are allowed to do, and verify what actually changed.",
+  primary: { label: "Assess Agent Readiness", href: "/assessment" },
+  secondary: { label: "Explore Agent Control", href: "/agents/control" },
   note: "For the person who owns security, IT or the system of record at a 50–500 person company.",
 };
 
@@ -224,17 +224,17 @@ export const homeLadder = [
     linkLabel: "Run the scan",
   },
   {
-    name: "Agent Access Assessment",
-    price: "$15,000",
-    text: "Two to three weeks against your own systems. The inventory, the blast-radius ranking, the approval gates, and the Agent Access Record.",
+    name: "Agent Readiness Assessment",
+    price: "2–3 weeks",
+    text: "Evidence-based, against your own systems. The inventory, the blast-radius ranking, the approval and revocation gates, and a 30/60/90 hardening plan.",
     href: "/assessment",
-    linkLabel: "See what is in it",
+    linkLabel: "Scope an assessment",
   },
   {
-    name: "Everything else",
+    name: "Implementation",
     price: "Scoped",
-    text: "Cloud, data, security, delivery and the AI readiness work. Still here, still sold, and no longer the first thing on this page.",
+    text: "Remediate what the assessment found: identity, permissions, approval gates, revocation, APIs, MCP, security, observability and cost controls.",
     href: "/consulting",
-    linkLabel: "See the consulting work",
+    linkLabel: "See the services",
   },
 ];

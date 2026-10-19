@@ -1,7 +1,6 @@
 import { Section, SectionHeading } from "@/components/ui/section";
 import { SplitClaim, Takeaway } from "@/components/diagram";
 import { executionGap } from "@/lib/ark";
-import { assuranceChecklist } from "@/lib/learn";
 
 /**
  * The core argument: a finished run is not a finished job.
@@ -11,9 +10,16 @@ import { assuranceChecklist } from "@/lib/learn";
  */
 const reported = [
   { label: "Status", value: "completed" },
-  { label: "Steps", value: "7 / 7" },
-  { label: "Tool calls", value: "12 ok, 0 failed" },
-  { label: "Latency", value: "4.2s" },
+  { label: "Tool calls", value: "successful" },
+  { label: "Errors", value: "0" },
+];
+
+const assuranceAsks = [
+  "Was the intended system changed?",
+  "Was the agent authorized?",
+  "Was approval required?",
+  "Can the result be independently verified?",
+  "What evidence exists?",
 ];
 
 export function ExecutionGap({
@@ -35,10 +41,10 @@ export function ExecutionGap({
       />
       <SplitClaim
         className="mt-12"
-        leftLabel="What the run reported"
-        rightLabel="What the record asks"
+        leftLabel="Agent run"
+        rightLabel="Outcome assurance"
         left={[...reported, ...extraRows]}
-        right={assuranceChecklist.map((step) => step.question)}
+        right={assuranceAsks}
       />
       <Takeaway className="mt-12">{executionGap.takeaway}</Takeaway>
     </Section>

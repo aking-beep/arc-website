@@ -82,6 +82,30 @@ export default function LabsPage() {
             </div>
           ))}
         </dl>
+        <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
+          {[
+            {
+              name: "Evidence",
+              text: "Two of these — the agent governance scan and the MCP conformance scanner — produce findings we use as evidence in an Agent Readiness Assessment. The rest are free tools that stand on their own.",
+            },
+            {
+              name: "Acquisition",
+              text: "They are how most people meet us. Running one and never speaking to us is a good outcome, and the commonest one.",
+            },
+            {
+              name: "Not products",
+              text: "Nothing here is sold, supported under an SLA, or part of a roadmap you can hold us to. The badge on each card says which kind of unfinished it is.",
+            },
+          ].map((item) => (
+            <div key={item.name} className="bg-card p-6">
+              <h3 className="text-sm font-semibold">{item.name}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
+
         <Takeaway className="mt-12 max-w-3xl">
           Nothing here implies a maturity it does not have. If a tool
           is an experiment, the page says experiment.

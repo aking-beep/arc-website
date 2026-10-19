@@ -9,12 +9,12 @@ import { AgentChain } from "@/components/agent-chain";
 import { EvidenceArtifact } from "@/components/evidence-artifact";
 import { Panel, PanelLabel, SplitClaim, Takeaway } from "@/components/diagram";
 import { CTA } from "@/components/cta";
+import { ArchitectureModel } from "@/components/architecture-model";
+import { ProductJourney } from "@/components/product-journey";
 import { ExecutionGap } from "@/components/execution-gap";
 import { StartHere } from "@/components/start-here";
 import {
-  agentControl,
   assessment,
-  developerAreas,
   executionGap,
   operatingContract,
 } from "@/lib/ark";
@@ -23,9 +23,9 @@ import { labs } from "@/lib/content";
 import { serviceAreas } from "@/lib/services";
 
 export const metadata: Metadata = {
-  title: "Agent governance · What your agents can reach and change",
+  title: "Agent infrastructure · Readiness, authority and outcome assurance",
   description:
-    "An inventory of every agent running against your systems, what each one can change, and which actions should need a person. Free scan, or a fixed-fee assessment.",
+    "AI Fit, Agent Readiness and Agent Control: decide whether AI belongs, prepare your systems for agents, and verify what actually changed. Each one carries its real state.",
 };
 
 const operate = serviceAreas.find((a) => a.slug === "operate");
@@ -64,7 +64,7 @@ export default function AgentsPage() {
                   <ArrowRight className="h-4 w-4" />
                 </Button>
                 <Button href="/assessment" variant="outline" size="lg">
-                  See the assessment — {assessment.price?.amount}
+                  Assess Agent Readiness
                 </Button>
               </div>
             </div>
@@ -95,6 +95,10 @@ export default function AgentsPage() {
           </div>
         </Section>
       ) : null}
+
+      <ProductJourney className="bg-muted/30" kicker="Three products" />
+
+      <ArchitectureModel />
 
       <Section className="bg-muted/30">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
@@ -175,48 +179,6 @@ export default function AgentsPage() {
               </div>
             ))}
           </dl>
-        </div>
-      </Section>
-
-      <Section>
-        <SectionHeading
-          kicker="Not for sale"
-          title="The two nodes we do not cover."
-          lead="Verification and evidence are the end of the chain and the part nobody has solved at a price a mid-size company would pay. We publish the thinking rather than a roadmap."
-        />
-        <div className="mt-12 grid gap-5 lg:grid-cols-2">
-          <Link href={agentControl.href} className="group block h-full">
-            <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm sm:p-8">
-              <StateBadge state={agentControl.state} />
-              <h3 className="mt-4 flex items-center gap-1.5 text-xl font-semibold tracking-tight">
-                {agentControl.name}
-                <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                {agentControl.summary}
-              </p>
-              <p className="mt-5 border-t border-border/60 pt-4 text-sm leading-relaxed text-muted-foreground">
-                <span className="font-medium text-foreground">Where this is today: </span>
-                Research. Not in the navigation, not for sale, no waiting list.
-              </p>
-            </Card>
-          </Link>
-
-          <div className="grid gap-5">
-            {developerAreas
-              .filter((area) => area.state === "research")
-              .map((area) => (
-                <Card key={area.name} className="flex flex-col p-6">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <h3 className="text-base font-semibold">{area.name}</h3>
-                    <StateBadge state={area.state} />
-                  </div>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    {area.text}
-                  </p>
-                </Card>
-              ))}
-          </div>
         </div>
       </Section>
 

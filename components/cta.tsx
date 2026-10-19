@@ -1,7 +1,6 @@
 import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/content";
-import { assessment } from "@/lib/ark";
 
 /**
  * The closing ask, by intent.
@@ -20,7 +19,7 @@ const actions: Record<
 > = {
   scan: {
     primary: { label: "Run the free scan", href: "/labs/arc-agent-governance" },
-    secondary: { label: `See the assessment — ${assessment.price?.amount}`, href: "/assessment" },
+    secondary: { label: "Assess Agent Readiness", href: "/assessment" },
   },
   assessment: {
     primary: { label: "Book 30 minutes", href: site.calendly },

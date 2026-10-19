@@ -17,7 +17,7 @@ const columns: { heading: string; links: { label: string; href: string }[] }[] =
     heading: "Agents",
     links: [
       { label: "Agent governance", href: "/agents" },
-      { label: "Agent Access Assessment", href: "/assessment" },
+      { label: "Agent Readiness Assessment", href: "/assessment" },
       { label: "Free scan", href: "/labs/arc-agent-governance" },
       ...arkProducts
         .filter((p) => p.state === "research")

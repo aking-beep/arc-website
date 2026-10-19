@@ -8,6 +8,7 @@ import { EvidenceArtifact } from "@/components/evidence-artifact";
 import { MarketSignals } from "@/components/market-signals";
 import { CTA } from "@/components/cta";
 import { ExecutionGap } from "@/components/execution-gap";
+import { ProductJourney } from "@/components/product-journey";
 import { site } from "@/lib/content";
 import { assessment, executionGap } from "@/lib/ark";
 import { assuranceChecklist } from "@/lib/learn";
@@ -102,7 +103,9 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <ExecutionGap className="bg-muted/30" />
+      <ExecutionGap className="bg-muted/30" kicker="The execution gap" />
+
+      <ProductJourney />
 
       <Section>
         <div className="grid gap-12 lg:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] lg:gap-16">
@@ -119,7 +122,11 @@ export default function HomePage() {
               ))}
             </dl>
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-              {site.team.lead}{" "}
+              <span className="font-medium text-foreground">
+                Team delivery history:
+              </span>{" "}
+              {site.team.lead} Those programmes were delivered in prior roles,
+              not bought from ARC.{" "}
               <Link
                 href="/about"
                 className="font-medium text-foreground underline underline-offset-4"
@@ -136,8 +143,8 @@ export default function HomePage() {
       <Section className="bg-muted/30">
         <SectionHeading
           kicker="How this works"
-          title="Start free. Pay when the answer is uncomfortable."
-          lead="Three steps, three prices, in the order most people take them. Nothing here requires a call to find out what it costs."
+          title="Free tool, then assessment, then the work it finds."
+          lead="The order most people take, and what each step actually produces."
         />
         <ol className="mt-12 grid gap-5 lg:grid-cols-3">
           {homeLadder.map((rung, i) => (
@@ -188,7 +195,7 @@ export default function HomePage() {
       <CTA
         variant="scan"
         title="Start with the list you do not have."
-        lead={`The scan is free and runs in your browser. If the report is uncomfortable, the assessment is ${assessment.price?.amount} and takes ${assessment.price?.duration}.`}
+        lead="The scan is free and runs in your browser. If the report is uncomfortable, the assessment runs two to three weeks against your own systems."
       />
     </>
   );

@@ -63,7 +63,7 @@ export const agentChain: ChainNode[] = [
   {
     name: "Agent",
     coverage: "covered",
-    text: "Which agents exist, who turned them on, and which are running without an owner.",
+    text: "Which agents exist, who turned them on, and which are running without a named owner.",
   },
   {
     name: "Identity",
@@ -76,11 +76,6 @@ export const agentChain: ChainNode[] = [
     text: "What that identity is allowed to do, and whether it is narrower than the person it works for.",
   },
   {
-    name: "Policy",
-    coverage: "partial",
-    text: "The rules that should govern the action. We write down what applies. We do not enforce it at run time.",
-  },
-  {
     name: "Tool / MCP / API",
     coverage: "covered",
     text: "Every tool, MCP server and API the agent can reach, and which of them can change something.",
@@ -91,19 +86,126 @@ export const agentChain: ChainNode[] = [
     text: "What was attempted, reconstructed from the logs you already keep — where you keep them.",
   },
   {
-    name: "Verification",
+    name: "System change",
     coverage: "research",
-    text: "Independent confirmation that the destination system changed. This is Agent Control, and it is not a product yet.",
+    text: "Whether the destination system actually changed. Reading that means a connector per system, which is why it is research rather than a product.",
   },
   {
     name: "Evidence",
     coverage: "research",
-    text: "A record of the change that does not come from the agent that claims to have made it.",
+    text: "A record of the change that does not come from the agent claiming to have made it.",
   },
   {
-    name: "Audit",
-    coverage: "covered",
-    text: "The Agent Access Record: every agent, its authority, its approver, dated and signed.",
+    name: "Verified outcome",
+    coverage: "research",
+    text: "A pass, a fail, or an explicit unknown. Missing evidence is never converted into success.",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// The architecture model.
+//
+// Five layers rather than a sequence. A2A sits inside Execution alongside
+// tool calls, APIs and MCP — it is a surface, not a separate product, and
+// nothing here claims an implementation that does not exist.
+// ---------------------------------------------------------------------------
+export const architectureModel: {
+  layer: string;
+  text: string;
+  items: { name: string; state: State }[];
+}[] = [
+  {
+    layer: "Identity",
+    text: "Who is acting, and on whose behalf.",
+    items: [
+      { name: "Human → Agent", state: "available" },
+      { name: "Agent → Tool", state: "available" },
+      { name: "Agent → MCP", state: "available" },
+      { name: "Agent → Agent", state: "research" },
+    ],
+  },
+  {
+    layer: "Authority",
+    text: "What that identity may do, and who can stop it.",
+    items: [
+      { name: "Permissions", state: "available" },
+      { name: "Delegation", state: "available" },
+      { name: "Approval", state: "available" },
+      { name: "Revocation", state: "available" },
+    ],
+  },
+  {
+    layer: "Execution",
+    text: "How the action actually leaves the agent.",
+    items: [
+      { name: "Tool calls", state: "available" },
+      { name: "APIs", state: "available" },
+      { name: "MCP", state: "available" },
+      { name: "A2A", state: "research" },
+    ],
+  },
+  {
+    layer: "Evidence",
+    text: "What is left behind afterwards.",
+    items: [
+      { name: "Attempt", state: "available" },
+      { name: "Action", state: "available" },
+      { name: "Destination state", state: "research" },
+      { name: "Outcome", state: "research" },
+    ],
+  },
+  {
+    layer: "Assurance",
+    text: "What the evidence adds up to.",
+    items: [
+      { name: "Verified", state: "research" },
+      { name: "Failed", state: "research" },
+      { name: "Unknown", state: "research" },
+    ],
+  },
+];
+
+// ---------------------------------------------------------------------------
+// The product journey. Decide, prepare, verify.
+// ---------------------------------------------------------------------------
+export const productJourney: {
+  step: string;
+  name: string;
+  href: string;
+  question: string;
+  purpose: string;
+  state: State;
+  note?: string;
+}[] = [
+  {
+    step: "Decide",
+    name: "AI Fit",
+    href: "/labs/arc-stack-advisor",
+    question: "Should this use AI at all?",
+    purpose:
+      "Work out whether the workload belongs in AI, in ordinary automation, in plain software, or in a different architecture entirely.",
+    state: "labs",
+    note: "Free on the web. No account, nothing stored.",
+  },
+  {
+    step: "Prepare",
+    name: "Agent Readiness",
+    href: "/assessment",
+    question: "Are our systems ready for agents?",
+    purpose:
+      "Assess interfaces, APIs, MCP, identity, authentication, permissions, approval paths, security, reliability, observability and cost.",
+    state: "available",
+    note: "The engagement you can buy today.",
+  },
+  {
+    step: "Verify",
+    name: "Agent Control",
+    href: "/agents/control",
+    question: "Did the agent actually accomplish what it claimed?",
+    purpose:
+      "Connect execution evidence, identity, authority and destination-system evidence into a verified outcome.",
+    state: "research",
+    note: "Research. Not for sale, and there is no waiting list.",
   },
 ];
 
@@ -201,32 +303,19 @@ export type ArkProduct = {
 export const assessment: ArkProduct = {
   slug: "assessment",
   href: "/assessment",
-  name: "Agent Access Assessment",
+  name: "Agent Readiness Assessment",
   navLabel: "Assessment",
   // Deliberately not `ark.positioning`. The company line is broader than any
   // one engagement; a product that borrows it says nothing about itself.
-  tagline: "The list of every agent, what it can change, and who approved it.",
+  tagline: "Can our systems safely support agents?",
   summary:
     "An inventory of every agent running against your systems, what each one can change, and which actions should need a person. Two to three weeks, fixed fee.",
   state: "available",
-  price: {
-    amount: "$15,000",
-    unit: "fixed fee",
-    duration: "2–3 weeks",
-    includes: [
-      "Agent, tool and credential inventory across the systems you name",
-      "Blast-radius ranking: what each identity could change that you cannot undo",
-      "Approval and revocation gates recommended for the irreversible actions",
-      "The Agent Access Record: every agent, its authority, its approver, dated",
-      "A 30/60/90 hardening plan with named owners",
-    ],
-    note: "One fee, agreed before we start. No hourly billing and no change requests.",
-  },
-  ctaLabel: "Book 30 minutes",
+  ctaLabel: "Scope an Agent Readiness Assessment",
   ctaHref: "/contact?topic=assessment",
   todayLabel: "Where this is today",
   today:
-    "Available now, run by the senior person on your first call. Two to three weeks against the systems you already operate, using the open scanners in Labs as part of the evidence. The deliverable is a document, not software you have to install.",
+    "Available now, run by the senior person on your first call. Two to three weeks against the systems you already operate, using the open scanners in Labs as part of the evidence. The deliverable is a document, not software you have to install. Scope and fee are agreed before the work starts.",
   intro: [
     "Your vendors turned agents on inside tools you already pay for. A CRM assistant, a coding agent, a connected copilot — each one holding the permissions of whoever switched it on, and none of them in a list anyone maintains.",
     "This is the engagement that produces the list. Not a maturity model and not a strategy deck: an inventory of what exists, what it can change, and which actions a person should have to approve before they happen.",
@@ -277,6 +366,57 @@ export const assessment: ArkProduct = {
     "It reads configuration and logs. It does not verify that a change happened in a destination system — that is Agent Control, and it is research.",
     "It is a document, not a running control. Enforcement is your systems' job, and we say where it has to live.",
   ],
+};
+
+/**
+ * Observability answers "what did the agent attempt". Assurance answers
+ * "did the intended outcome occur". These are the worked examples of the gap.
+ */
+export const assuranceExamples: {
+  claim: string;
+  executionEvidence: string[];
+  assuranceAsks: string[];
+}[] = [
+  {
+    claim: "I issued the refund.",
+    executionEvidence: [
+      "Payment API called",
+      "Request returned successfully",
+      "Workflow completed",
+    ],
+    assuranceAsks: [
+      "Does the payment system contain the refund?",
+      "Was the correct customer affected?",
+      "Was the agent authorized to issue it?",
+      "Was approval required first?",
+      "What evidence proves the outcome?",
+    ],
+  },
+  {
+    claim: "I updated the CRM.",
+    executionEvidence: ["CRM API called", "Request succeeded"],
+    assuranceAsks: [
+      "Does the destination CRM now contain the intended state?",
+      "Which record changed, and from what to what?",
+      "Was the change made under the right identity?",
+    ],
+  },
+];
+
+/** What a verification would be assembled from, and what it can return. */
+export const verificationModel = {
+  inputs: [
+    { name: "Execution record", text: "What was attempted, through which tools, at what cost." },
+    { name: "Authority record", text: "Which identity acted, under which credential." },
+    { name: "Policy decision", text: "Which rule applied, and whether a human approved." },
+    { name: "Outcome evidence", text: "What the destination system says changed." },
+  ],
+  results: [
+    { name: "Verified", text: "The destination system confirms the intended change." },
+    { name: "Failed", text: "The destination system contradicts the agent's claim." },
+    { name: "Unknown", text: "No independent evidence exists. This is never reported as success." },
+  ],
+  rule: "Missing evidence is an unknown, not a pass.",
 };
 
 export const agentControl: ArkProduct = {

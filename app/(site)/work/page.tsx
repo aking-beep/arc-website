@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
-import { Section, SectionHeading } from "@/components/ui/section";
-import { Card } from "@/components/ui/card";
 import { CTA } from "@/components/cta";
-import { caseStudies } from "@/lib/content";
+import { CaseStudyGroup, ProductProof, proofDisclaimer } from "@/components/proof";
 
 export const metadata: Metadata = {
   title: "Work · What changed, and what it was worth",
   description:
-    "Four pieces of work: the problem, what was at stake, what we did, what changed, and the numbers. Where we cannot name the client, we name the scale.",
+    "ARC's own engagements, kept separate from the Fortune 100 and Fortune 500 programmes our team delivered in prior roles. Where the client cannot be named, the scale is.",
 };
 
 export default function WorkPage() {
@@ -19,57 +15,24 @@ export default function WorkPage() {
       <PageHero
         kicker="Work"
         title="What changed, and what it was worth."
-        lead="Each of these reads the same way: the problem, what was at stake, what we did, what changed, and the numbers. Where we cannot name the client, we name the scale."
+        lead="Two different kinds of evidence, kept apart. What ARC has delivered as ARC, and what our team delivered before ARC existed. Conflating them would be the easiest lie on this site."
       />
 
-      <Section>
-        <SectionHeading
-          kicker="Evidence"
-          title="Four pieces of work."
-          lead="Three from Fortune 100/500 programs our team has delivered. One from ARC Advisory. Client names withheld where required."
-        />
-        <div className="mt-12 grid gap-5">
-          {caseStudies.map((study) => (
-            <Link
-              key={study.slug}
-              href={`/work/${study.slug}`}
-              className="group block"
-            >
-              <Card className="flex flex-col gap-4 p-6 transition-all hover:border-foreground/20 hover:shadow-sm sm:flex-row sm:items-center sm:justify-between">
-                <div className="max-w-2xl">
-                  <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
-                    <span className="rounded-full border border-border bg-muted px-2.5 py-0.5 font-medium">
-                      {study.kind === "career" ? "Prior delivery" : "ARC Advisory"}
-                    </span>
-                    <span>{study.industry}</span>
-                    <span>· {study.timeframe}</span>
-                  </div>
-                  <p className="mt-3 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                    {study.client}
-                  </p>
-                  <h3 className="mt-1 flex items-center gap-1.5 text-lg font-semibold tracking-tight">
-                    {study.title}
-                    <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {study.summary}
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-4 sm:flex-col sm:items-end">
-                  {study.outcomes.slice(0, 3).map((o) => (
-                    <div key={o.label} className="text-left sm:text-right">
-                      <div className="text-xl font-semibold tracking-tight">
-                        {o.metric}
-                      </div>
-                      <p className="text-xs text-muted-foreground">{o.label}</p>
-                    </div>
-                  ))}
-                </div>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </Section>
+      <CaseStudyGroup
+        kind="arc"
+        title="Delivered as ARC."
+        lead="Engagements run under this name. There is one, it is recent, and the list grows at the rate the work happens."
+      />
+
+      <CaseStudyGroup
+        kind="career"
+        className="bg-muted/30"
+        title="Delivered by our team, before ARC."
+        lead="Fortune 100 and Fortune 500 programmes from prior roles. The experience is why the assessments are worth buying; it is not a customer list."
+        disclaimer={proofDisclaimer}
+      />
+
+      <ProductProof />
 
       <CTA
         variant="talk"

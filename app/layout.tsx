@@ -23,23 +23,28 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
   title: {
     default:
-      "ARC Transformation Group · What are your agents allowed to do?",
+      "ARC Transformation Group · Infrastructure for reliable agent action",
     template: "%s · ARC Transformation Group",
   },
   description: site.description,
   // Kept to the wedge. A keyword list spanning six categories is a
   // machine-readable version of the positioning problem.
+  // Kept to the wedge: agent readiness and agent outcome assurance. A list
+  // spanning six categories is a machine-readable version of the positioning
+  // problem, so this one stays short.
   keywords: [
-    "AI agent governance",
-    "agent access inventory",
-    "agent permissions audit",
-    "AI agent identity",
-    "MCP governance",
-    "agent approval gates",
+    "agent infrastructure",
+    "AI agent readiness",
+    "agent governance",
+    "agent assurance",
+    "AI agent permissions",
+    "MCP conformance",
+    "agent outcome verification",
+    "enterprise AI agents",
   ],
   openGraph: {
     type: "website",
-    title: "ARC Transformation Group · What are your agents allowed to do?",
+    title: "ARC Transformation Group · Infrastructure for reliable agent action",
     description: site.description,
     url: site.domain,
     siteName: site.name,

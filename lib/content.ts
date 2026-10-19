@@ -8,9 +8,9 @@ export const site = {
   short: "ARC",
   // The assessment's own tagline lives in lib/ark.ts. This is the company
   // line, which is deliberately broader than the one product.
-  tagline: "Agent governance: the list of what your agents can change.",
+  tagline: "Infrastructure for reliable agent action.",
   description:
-    "ARC writes down what your AI agents can reach, what they can change, and which actions should need a person. Free scan, or a fixed-fee assessment.",
+    "ARC builds assessments and infrastructure for reliable agent action: what agents can access, what they are allowed to do, and whether what they changed can be verified.",
   audience: {
     badge: "AI · Automation · Cloud · Security · Software",
     line: "ARC helps growing companies work out what to improve, what to automate and what to build — and then helps get it working.",
@@ -1395,7 +1395,7 @@ export const caseStudies: CaseStudy[] = [
 export const faqs = [
   {
     q: "What can I actually buy today?",
-    a: "The Agent Access Assessment: $15,000, two to three weeks, and you keep the Agent Access Record at the end. Everything else is either free — the scan, the scorecard, the frameworks, the Labs tools — or it is consulting we scope from the problem. Agent Control is research. It is not for sale and there is no waiting list.",
+    a: "The Agent Readiness Assessment: two to three weeks against your own systems, and you keep the Agent Access Record at the end. Scope and fee are agreed before the work starts. Everything else is either free — the scan, the scorecard, the frameworks, the Labs tools — or it is consulting we scope from the problem. Agent Control is research. It is not for sale and there is no waiting list.",
   },
   {
     q: "Do you only do AI?",
@@ -1411,7 +1411,7 @@ export const faqs = [
   },
   {
     q: "Our vendors turned on AI agents inside tools we already pay for. Is that a problem?",
-    a: "It is the question of the quarter, and it is the reason this practice exists. An agent inside your CRM or your code editor inherits the permissions of whoever runs it, and this year's breaches came from ordinary links and documents rather than exotic attacks. Start with the free scan, then the Agent Access Assessment if you need the inventory, the blast-radius ranking and the approval gates.",
+    a: "It is the question of the quarter, and it is the reason this practice exists. An agent inside your CRM or your code editor inherits the permissions of whoever runs it, and this year's breaches came from ordinary links and documents rather than exotic attacks. Start with the free scan, then the Agent Readiness Assessment if you need the inventory, the blast-radius ranking and the approval gates.",
   },
   {
     q: "How do you know an automated system did what it said it did?",
@@ -1462,7 +1462,16 @@ export type NavItem = {
   label: string;
   href: string;
   /** Rendered as a dropdown when present. */
-  children?: { label: string; href: string; summary: string }[];
+  children?: {
+    label: string;
+    href: string;
+    summary: string;
+    /**
+     * Rendered as a tag beside the label. Set it on anything that cannot be
+     * bought, so a menu entry can never imply availability it does not have.
+     */
+    state?: State;
+  }[];
 };
 
 /**
@@ -1478,9 +1487,37 @@ export type NavItem = {
  * the chain diagram and from the footer.
  */
 export const nav: NavItem[] = [
-  { label: "Agents", href: "/agents" },
-  { label: "Assessment", href: "/assessment" },
+  {
+    label: "Products",
+    href: "/agents",
+    children: [
+      {
+        label: "Agent governance",
+        href: "/agents",
+        summary: "How the three fit together, and where the chain runs out.",
+      },
+      {
+        label: "AI Fit",
+        href: "/labs/arc-stack-advisor",
+        summary: "Decide. Should this use AI at all?",
+        state: "labs",
+      },
+      {
+        label: "Agent Readiness",
+        href: "/assessment",
+        summary: "Prepare. Are our systems ready for agents?",
+        state: "available",
+      },
+      {
+        label: "Agent Control",
+        href: "/agents/control",
+        summary: "Verify. Did the agent accomplish what it claimed?",
+        state: "research",
+      },
+    ],
+  },
   { label: "Labs", href: "/labs" },
+  { label: "Developers", href: "/developers" },
   { label: "Research", href: "/research" },
   { label: "Consulting", href: "/consulting" },
   { label: "About", href: "/about" },

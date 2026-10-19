@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Panel, PanelLabel } from "@/components/diagram";
 import { CTA } from "@/components/cta";
@@ -161,6 +162,25 @@ export default function ServiceAreaPage({ params }: Params) {
           ))}
         </div>
       </Section>
+
+      {area.slug === "operate" ? (
+        <Section data-agent-cross-link className="bg-muted/30">
+          <SectionHeading
+            kicker="Where this goes"
+            title="This is the agent work."
+            lead="Operate is the service wrapper around the two agent products. The inventory and the authority model come from the assessment; independent outcome verification is still research."
+          />
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <Button href="/assessment">
+              Agent Readiness Assessment
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+            <Button href="/agents" variant="outline">
+              Agent governance overview
+            </Button>
+          </div>
+        </Section>
+      ) : null}
 
       <CTA
         variant="talk"

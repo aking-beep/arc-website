@@ -22,7 +22,7 @@ const topics: Record<string, { label: string; lead: string }> = {
     lead: "Agent Control is research and is not for sale. If you are running agents against production systems and cannot verify what they changed, we would rather compare notes than market at you.",
   },
   assessment: {
-    label: "Agent Access Assessment",
+    label: "Agent Readiness Assessment",
     lead: "The assessment runs two to three weeks against your actual systems: the inventory, the blast-radius ranking, the approval gates and a hardening plan with named owners.",
   },
   "ai-readiness": {
