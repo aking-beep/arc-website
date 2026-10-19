@@ -203,7 +203,7 @@ export function Scorecard() {
               </div>
 
               <div className="mt-7 grid gap-3">
-                <Button href="/agent-readiness">
+                <Button href="/assessment">
                   See the full assessment
                   <ArrowRight className="h-4 w-4" />
                 </Button>
@@ -223,7 +223,7 @@ export function Scorecard() {
             This is self-reported, so treat it as a starting point rather than
             evidence. The{" "}
             <Link
-              href="/agent-readiness"
+              href="/assessment"
               className="font-medium text-foreground underline underline-offset-4"
             >
               full assessment

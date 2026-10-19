@@ -10,6 +10,11 @@ type ContactPayload = {
   stage?: string;
   topic?: string;
   message?: string;
+  /**
+   * "capture" is the one-field report request behind a Labs report. It carries
+   * an email and nothing else, so the name requirement below does not apply.
+   */
+  kind?: "contact" | "capture";
   company_website?: string; // honeypot
 };
 
@@ -57,10 +62,15 @@ export async function POST(request: Request) {
   const stage = clean(body.stage, LIMITS.stage);
   const topic = clean(body.topic, LIMITS.topic);
   const message = clean(body.message, LIMITS.message);
+  const capture = body.kind === "capture";
 
-  if (!name || !email) {
+  if (!email || (!capture && !name)) {
     return NextResponse.json(
-      { error: "Name and work email are required." },
+      {
+        error: capture
+          ? "A work email is required."
+          : "Name and work email are required.",
+      },
       { status: 400 },
     );
   }
@@ -68,9 +78,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "That email looks invalid." }, { status: 400 });
   }
 
-  const subject = `ARC contact${topic ? ` · ${topic}` : ""} · ${name}${company ? ` (${company})` : ""}`;
+  const who = name || email;
+  const subject = capture
+    ? `ARC report request${topic ? ` · ${topic}` : ""} · ${who}`
+    : `ARC contact${topic ? ` · ${topic}` : ""} · ${who}${company ? ` (${company})` : ""}`;
   const text = [
-    `Name: ${name}`,
+    name ? `Name: ${name}` : null,
     `Email: ${email}`,
     company ? `Company: ${company}` : null,
     topic ? `Topic: ${topic}` : null,

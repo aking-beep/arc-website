@@ -3,8 +3,6 @@ import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
 import { site } from "@/lib/content";
 
 const sans = IBM_Plex_Sans({
@@ -91,13 +89,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex min-h-screen flex-col">
-            <SiteHeader />
-            <main id="main" className="flex-1">
-              {children}
-            </main>
-            <SiteFooter />
-          </div>
+          <div className="flex min-h-screen flex-col">{children}</div>
           <Analytics />
         </ThemeProvider>
       </body>

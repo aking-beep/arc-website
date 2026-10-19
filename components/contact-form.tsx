@@ -22,6 +22,9 @@ export function ContactForm({
   const [sent, setSent] = React.useState(false);
   const [pending, setPending] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
+  const formId = React.useId();
+  const stageId = `${formId}-stage`;
+  const messageId = `${formId}-message`;
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -66,7 +69,7 @@ export function ContactForm({
 
   if (sent) {
     return (
-      <div className="rounded-lg border border-border bg-muted/40 p-8 text-center">
+      <div role="status" className="rounded-lg border border-border bg-muted/40 p-8 text-center">
         <h3 className="text-lg font-semibold">Thanks. Message received.</h3>
         <p className="mt-2 text-sm text-muted-foreground">
           A person writes back within one business day. No marketing list, no
@@ -89,25 +92,27 @@ export function ContactForm({
       />
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Your name" name="name" required maxLength={120} />
+        <Field label="Your name" name="name" required maxLength={120} autoComplete="name" />
         <Field
           label="Work email"
           name="email"
           type="email"
           required
           maxLength={254}
+          autoComplete="email"
         />
       </div>
       <Field label="Company" name="company" maxLength={160} />
 
       <div>
-        <label className="mb-1.5 block text-sm font-medium">
+        <label htmlFor={stageId} className="mb-1.5 block text-sm font-medium">
           Which stage best describes where you are?
         </label>
         <select
+          id={stageId}
           name="stage"
           defaultValue=""
-          className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+          className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           <option value="" disabled>
             Optional: helps us prep for the call.
@@ -121,15 +126,16 @@ export function ContactForm({
       </div>
 
       <div>
-        <label className="mb-1.5 block text-sm font-medium">
+        <label htmlFor={messageId} className="mb-1.5 block text-sm font-medium">
           What&rsquo;s on your mind?
         </label>
         <textarea
+          id={messageId}
           name="message"
           rows={4}
           maxLength={5000}
           defaultValue={defaultMessage}
-          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+          className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         />
       </div>
 
@@ -155,25 +161,30 @@ function Field({
   type = "text",
   required,
   maxLength,
+  autoComplete,
 }: {
   label: string;
   name: string;
   type?: string;
   required?: boolean;
   maxLength?: number;
+  autoComplete?: string;
 }) {
+  const id = React.useId();
   return (
     <div>
-      <label className="mb-1.5 block text-sm font-medium">
+      <label htmlFor={id} className="mb-1.5 block text-sm font-medium">
         {label}
         {required ? <span className="text-muted-foreground"> *</span> : null}
       </label>
       <input
+        id={id}
         type={type}
         name={name}
         required={required}
         maxLength={maxLength}
-        className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+        autoComplete={autoComplete}
+        className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       />
     </div>
   );

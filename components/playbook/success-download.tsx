@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Download } from "lucide-react";
 
-import { requestSuccessDownload } from "@/app/playbook/success/actions";
+import { requestSuccessDownload } from "@/app/(site)/playbook/success/actions";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { trackEvent } from "@/lib/analytics";

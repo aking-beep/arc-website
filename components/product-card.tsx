@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { MaturityBadge } from "@/components/ui/badge";
+import { StateBadge } from "@/components/ui/badge";
 import { type Product } from "@/lib/content";
 
 export function ProductCard({
@@ -16,9 +16,9 @@ export function ProductCard({
     <Link href={href} className="group block h-full">
       <Card className="flex h-full flex-col p-6 transition-all hover:border-foreground/20 hover:shadow-sm">
         <div className="flex items-center justify-between gap-3">
-          <MaturityBadge maturity={product.maturity} />
+          <StateBadge state={product.state} />
           <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-            Free
+            {product.priceLabel ?? "Free"}
           </span>
         </div>
         <h3 className="mt-4 flex items-center gap-1.5 text-lg font-semibold tracking-tight">

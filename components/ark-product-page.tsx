@@ -2,33 +2,40 @@ import type { ReactNode } from "react";
 import { ArrowRight, Minus } from "lucide-react";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
-import { MaturityBadge } from "@/components/ui/badge";
+import { StateBadge } from "@/components/ui/badge";
 import { PanelLabel } from "@/components/diagram";
-import { CTA } from "@/components/cta";
+import { PriceBlock } from "@/components/price-block";
+import { CTA, type CtaVariant } from "@/components/cta";
 import type { ArkProduct } from "@/lib/ark";
 
 /**
- * Shared shell for the agent-infrastructure product pages. The "where this is today"
- * block is part of the shell rather than optional, so no product page can
- * ship without stating its maturity above the fold.
+ * Shared shell for the product pages.
+ *
+ * Two blocks are part of the shell rather than optional, so no product page
+ * can ship without them: "where this is today" above the fold, and the limits
+ * list at the bottom. The price renders whenever the product has one — which
+ * is how a page that cannot be bought stays visibly different from one that
+ * can, without anybody having to remember a rule.
  */
 export function ArkProductPage({
   product,
   prologue,
-  capabilitiesClassName,
+  artifact,
   children,
   ctaTitle,
   ctaLead,
+  ctaVariant = "assessment",
   ctaTopic,
 }: {
   product: ArkProduct;
   /** Sections that have to land before the product's own capabilities. */
   prologue?: ReactNode;
-  /** Set when a prologue changes which background the capabilities land on. */
-  capabilitiesClassName?: string;
+  /** The deliverable, shown rather than described. */
+  artifact?: ReactNode;
   children?: ReactNode;
-  ctaTitle?: string;
-  ctaLead?: string;
+  ctaTitle: string;
+  ctaLead: string;
+  ctaVariant?: CtaVariant;
   ctaTopic?: string;
 }) {
   return (
@@ -40,9 +47,9 @@ export function ArkProductPage({
             <div className="animate-fade-up">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                  ARC product
+                  ARC
                 </span>
-                <MaturityBadge maturity={product.maturity} />
+                <StateBadge state={product.state} />
               </div>
               <h1 className="mt-5 text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
                 {product.name}
@@ -79,10 +86,21 @@ export function ArkProductPage({
 
       {prologue}
 
-      {product.evaluates ? (
+      {artifact ? (
         <Section className="bg-muted/30">
           <SectionHeading
-            kicker="What it evaluates"
+            kicker="The deliverable"
+            title="What you are left holding."
+            lead="The engagement ends in an object, not a conversation. This is what it looks like."
+          />
+          <div className="mt-12">{artifact}</div>
+        </Section>
+      ) : null}
+
+      {product.evaluates ? (
+        <Section>
+          <SectionHeading
+            kicker="What it covers"
             title="Three layers, assessed separately."
             lead="A system can have a clean interface and no way to say who did what. These fail independently, so they are scored independently."
           />
@@ -107,16 +125,8 @@ export function ArkProductPage({
       ) : null}
 
       {product.capabilities ? (
-        <Section
-          className={
-            capabilitiesClassName ??
-            (product.evaluates ? undefined : "bg-muted/30")
-          }
-        >
-          <SectionHeading
-            kicker="What you get"
-            title="What the product produces."
-          />
+        <Section className={product.evaluates ? "bg-muted/30" : undefined}>
+          <SectionHeading kicker="What you get" title="What the work produces." />
           <dl className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
             {product.capabilities.map((c) => (
               <div key={c.name} className="bg-card p-6">
@@ -131,6 +141,24 @@ export function ArkProductPage({
       ) : null}
 
       {children}
+
+      {product.price ? (
+        <Section>
+          <div className="grid gap-12 lg:grid-cols-[1fr_1.05fr] lg:items-start">
+            <SectionHeading
+              kicker="Price"
+              title="One fee, on the page."
+              lead="You should not have to book a call to find out what something costs. If the scope changes, the number changes before the work starts, not after."
+            />
+            <PriceBlock price={product.price}>
+              <Button href={product.ctaHref} size="lg">
+                {product.ctaLabel}
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            </PriceBlock>
+          </div>
+        </Section>
+      ) : null}
 
       <Section className="bg-muted/30">
         <SectionHeading
@@ -150,7 +178,7 @@ export function ArkProductPage({
         </ul>
       </Section>
 
-      <CTA title={ctaTitle} lead={ctaLead} topic={ctaTopic} />
+      <CTA title={ctaTitle} lead={ctaLead} variant={ctaVariant} topic={ctaTopic} />
     </>
   );
 }

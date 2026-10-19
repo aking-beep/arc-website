@@ -17,6 +17,13 @@
 import { track } from "@vercel/analytics";
 
 export type PlaybookEvents = {
+  /** The funnel that matters: scan → captured email → assessment. */
+  report_email_captured: { topic: string };
+  assessment_view: Record<string, never>;
+  assessment_cta_click: { placement: string };
+  scan_cta_click: { placement: string };
+  contact_submit: { topic?: string };
+
   playbook_view: { source?: string };
   playbook_preview_click: { target: string };
   playbook_checkout_start: { product: string; price: number; environment: string };

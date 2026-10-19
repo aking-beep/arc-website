@@ -123,6 +123,14 @@ const toneClass = {
   bad: "text-red-400",
 } as const;
 
+/**
+ * An example of a tool's output.
+ *
+ * These rows are written, not measured. The site's whole position is that it
+ * does not publish numbers it cannot substantiate, so the frame says "example
+ * output" in visible text rather than leaving a reader to assume a dashboard
+ * screenshot is real data.
+ */
 export function ProductVisualPanel({
   visual,
   className,
@@ -133,7 +141,7 @@ export function ProductVisualPanel({
   const frame = frames[visual];
 
   return (
-    <div
+    <figure
       className={cn(
         "overflow-hidden rounded-xl border border-border bg-card shadow-sm animate-fade-up",
         className,
@@ -146,13 +154,15 @@ export function ProductVisualPanel({
         <span className="ml-3 truncate font-mono text-xs text-muted-foreground">
           {frame.title}
         </span>
+        <span className="ml-auto flex-none rounded-full border border-dashed border-border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+          Example
+        </span>
       </div>
       <ul className="divide-y divide-border/60">
-        {frame.rows.map((row, i) => (
+        {frame.rows.map((row) => (
           <li
             key={row.label}
             className="flex items-center justify-between gap-4 px-5 py-3.5"
-            style={{ animationDelay: `${80 + i * 60}ms` }}
           >
             <span className="text-sm text-muted-foreground">{row.label}</span>
             <span
@@ -166,6 +176,9 @@ export function ProductVisualPanel({
           </li>
         ))}
       </ul>
-    </div>
+      <figcaption className="border-t border-border/60 px-5 py-2.5 text-xs text-muted-foreground">
+        Example output. Your report is built from what you give the tool.
+      </figcaption>
+    </figure>
   );
 }

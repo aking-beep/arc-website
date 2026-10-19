@@ -1,50 +1,54 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Github } from "lucide-react";
 import { Brand } from "@/components/brand";
-import { ark } from "@/lib/ark";
-import { arkProducts } from "@/lib/ark";
+import { ark, arkProducts } from "@/lib/ark";
 import { site } from "@/lib/content";
-import { isOfferPath } from "@/lib/offer";
 
+/**
+ * A server component.
+ *
+ * This was a client component solely so it could read the pathname and render
+ * a short version on the ad pages. The ad pages now live in their own route
+ * group with their own layout, which means the whole footer — and the content
+ * it reads — stays out of the client bundle.
+ */
 const columns: { heading: string; links: { label: string; href: string }[] }[] = [
   {
-    heading: "Services",
+    heading: "Agents",
     links: [
-      { label: "Modernize", href: "/services/modernize" },
-      { label: "Automate", href: "/services/automate" },
-      { label: "Build", href: "/services/build" },
-      { label: "Operate", href: "/services/operate" },
-      { label: "How we engage", href: "/advisory" },
+      { label: "Agent governance", href: "/agents" },
+      { label: "Agent Access Assessment", href: "/assessment" },
+      { label: "Free scan", href: "/labs/arc-agent-governance" },
+      ...arkProducts
+        .filter((p) => p.state === "research")
+        .map((p) => ({ label: `${p.name} (research)`, href: p.href })),
     ],
   },
   {
-    heading: "Agent infrastructure",
+    heading: "Free",
     links: [
-      ...arkProducts.map((p) => ({ label: p.name, href: `/${p.slug}` })),
+      { label: "Labs tools", href: "/labs" },
+      { label: "Frameworks", href: "/frameworks" },
+      { label: "Readiness scorecard", href: "/frameworks/agent-readiness-scorecard" },
+      { label: "Research", href: "/research" },
       { label: "For developers", href: "/developers" },
     ],
   },
   {
-    heading: "Resources",
+    heading: "Consulting",
     links: [
-      { label: "Define · $5", href: "/playbook/define" },
-      { label: "Build · $10", href: "/playbook/build" },
-      { label: "Ship · $20", href: "/playbook/ship" },
-      { label: "Free frameworks", href: "/playbooks" },
-      { label: "Labs", href: "/labs" },
-      { label: "Research", href: "/research" },
+      { label: "What we do", href: "/consulting" },
+      { label: "How we engage", href: "/advisory" },
       { label: "Workshops", href: "/academy" },
+      { label: "Work", href: "/work" },
     ],
   },
   {
     heading: "Company",
     links: [
       { label: "About", href: "/about" },
-      { label: "Work", href: "/work" },
       { label: "Contact", href: "/contact" },
+      { label: "Playbooks", href: "/playbook" },
       { label: "GitHub", href: site.github },
       { label: "Privacy", href: "/privacy" },
       { label: "Terms", href: "/terms" },
@@ -53,31 +57,6 @@ const columns: { heading: string; links: { label: string; href: string }[] }[] =
 ];
 
 export function SiteFooter() {
-  const offer = isOfferPath(usePathname());
-
-  if (offer) {
-    return (
-      <footer className="border-t border-border/60">
-        <div className="container flex flex-col items-start justify-between gap-4 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center">
-          <p>
-            © {new Date().getFullYear()} {site.name}
-          </p>
-          <div className="flex items-center gap-4">
-            <Link href="/privacy" className="hover:text-foreground">
-              Privacy
-            </Link>
-            <Link href="/terms" className="hover:text-foreground">
-              Terms
-            </Link>
-            <Link href="/playbook" className="hover:text-foreground">
-              Full playbook pages
-            </Link>
-          </div>
-        </div>
-      </footer>
-    );
-  }
-
   return (
     <footer className="border-t border-border/60 bg-muted/30">
       <div className="container py-16">
@@ -94,9 +73,9 @@ export function SiteFooter() {
 
           {columns.map((column) => (
             <div key={column.heading}>
-              <h4 className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+              <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                 {column.heading}
-              </h4>
+              </h2>
               <ul className="mt-4 space-y-2.5">
                 {column.links.map((link) => {
                   const external =
@@ -144,6 +123,30 @@ export function SiteFooter() {
               <Github className="h-4 w-4" />
             </a>
           </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/** The short footer the ad pages use. Kept here so both live in one file. */
+export function OfferFooter() {
+  return (
+    <footer className="border-t border-border/60">
+      <div className="container flex flex-col items-start justify-between gap-4 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center">
+        <p>
+          © {new Date().getFullYear()} {site.name}
+        </p>
+        <div className="flex items-center gap-4">
+          <Link href="/privacy" className="hover:text-foreground">
+            Privacy
+          </Link>
+          <Link href="/terms" className="hover:text-foreground">
+            Terms
+          </Link>
+          <Link href="/playbook" className="hover:text-foreground">
+            Full playbook pages
+          </Link>
         </div>
       </div>
     </footer>

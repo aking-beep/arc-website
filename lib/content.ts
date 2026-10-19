@@ -170,7 +170,7 @@ export const marketSignals: MarketSignal[] = [
     soWhat:
       "The UK AI Security Institute recorded 19 unsanctioned actions across 10 of 122 test runs. In one, an agent invented fake identities to pressure an open-source maintainer into merging malicious code. Limiting what an agent can reach stopped being a policy sentence.",
     href: "/labs/arc-agent-governance",
-    hrefLabel: "Review agent access",
+    hrefLabel: "Run the free scan",
     sources: [
       {
         name: "UK AI Security Institute — incident report INC-2026-07-28-01",
@@ -222,8 +222,8 @@ export const marketSignals: MarketSignal[] = [
     headline: "Your business software is growing AI agent access, with a meter on it.",
     soWhat:
       "Salesforce put its CRM inside Claude and opened the platform to agents through tools, APIs, and the command line. Agents inherit whatever permissions the user already has, and the usage is billed against your API consumption. Vendors are shipping agent access whether or not you asked for it.",
-    href: "/agent-readiness",
-    hrefLabel: "Assess agent readiness",
+    href: "/assessment",
+    hrefLabel: "See the assessment",
     sources: [
       {
         name: "Salesforce — Claudeforce announcement",
@@ -241,8 +241,8 @@ export const marketSignals: MarketSignal[] = [
     headline: "Unused skills now have a meter. Operators cannot keep them in sync.",
     soWhat:
       "Ask HN on managing SKILL.md files is still on the front page: people symlink one folder into Claude and Codex, while unused skills tax context. Claude Code's /skill-doctor names dead skills and their token cost. The official install path is a plugin marketplace, not a gist.",
-    href: "/playbook",
-    hrefLabel: "Get the skills library",
+    href: "/consulting",
+    hrefLabel: "See the playbooks",
     sources: [
       {
         name: "Ask HN — How do you manage skills files?",
@@ -256,41 +256,39 @@ export const marketSignals: MarketSignal[] = [
   },
 ];
 
-export type Status = "live" | "building" | "planned";
+/**
+ * Five states, five appearances.
+ *
+ * The previous scale had seven maturity values and three status values that
+ * rendered into three visual treatments, so "open source and supported" and
+ * "we are finding out whether this works" looked identical. A label a visitor
+ * cannot tell apart from another label is not doing the job it exists for.
+ *
+ * Shape carries the meaning as well as colour, so the scale survives
+ * greyscale and the common colour-vision deficiencies.
+ */
+export type State = "available" | "beta" | "labs" | "research" | "soon";
 
-export const statusLabel: Record<Status, string> = {
-  live: "Live",
-  building: "In progress",
-  planned: "Planned",
+export const stateLabel: Record<State, string> = {
+  available: "Available",
+  beta: "Beta",
+  labs: "Labs",
+  research: "Research",
+  soon: "Coming soon",
 };
 
-/**
- * Maturity is deliberately separate from Status. Status says whether a thing
- * exists; maturity says how far you should trust it. An experiment must never
- * be presented with the same weight as something we support.
- */
-export type Maturity =
-  | "available"
-  | "design-partners"
-  | "in-development"
-  | "open-source"
-  | "experiment"
-  | "alpha"
-  | "research";
-
-export const maturityLabel: Record<Maturity, string> = {
-  available: "Available",
-  "design-partners": "Design partners",
-  "in-development": "In development",
-  "open-source": "Open source",
-  experiment: "Experiment",
-  alpha: "Alpha",
-  research: "Research",
+/** What each badge commits us to. Rendered on /labs so the labels mean something. */
+export const stateMeaning: Record<State, string> = {
+  available: "Buy it or use it today. Supported, and the page says what it costs.",
+  beta: "It works and is in use, but the surface is still moving. Do not wire it into something you cannot unwire.",
+  labs: "A free tool. Source published, usually MIT. No account, and most of them store nothing.",
+  research: "Thinking published without a running implementation behind it. There is nothing to sign up for.",
+  soon: "Committed and not built yet. If this is on a page, the page says what is missing.",
 };
 
 // ---------------------------------------------------------------------------
 // Labs — open tools, scanners and experiments.
-// Every entry carries its maturity. Nothing here is sold as a product.
+// Every entry carries its state. Nothing here is sold as a product.
 // ---------------------------------------------------------------------------
 export type ProductVisual =
   | "conformance"
@@ -310,13 +308,14 @@ export type Product = {
   name: string;
   tagline: string;
   description: string;
-  status: Status;
   /**
-   * Real maturity, shown on every card and page. A Labs project is never
-   * presented with the weight of a commercial product, so this is required.
+   * Shown on every card and page. A Labs tool is never presented with the
+   * weight of a commercial product, so this is required.
    */
-  maturity: Maturity;
+  state: State;
   badge?: string;
+  /** Shown on the card. Defaults to "Free", which is true of everything here today. */
+  priceLabel?: string;
   featured?: boolean;
   visual: ProductVisual;
   audience: string;
@@ -335,8 +334,7 @@ export const labs: Product[] = [
     tagline: "Check any MCP server against the spec in seconds.",
     description:
       "Point it at a Model Context Protocol server and get a report: what passes, what breaks, and what to fix first, written for an operator to act on. The July 2026 spec revision changed how servers start up, so \"it works in one client\" is no longer evidence that it works.",
-    status: "live",
-    maturity: "open-source",
+    state: "labs",
     badge: "Flagship",
     featured: true,
     visual: "conformance",
@@ -373,8 +371,7 @@ export const labs: Product[] = [
     tagline: "Stop AI coding-agent spend before the invoice.",
     description:
       "Spend control for Claude Code and Cursor: what each developer is burning, a kill switch that acts within minutes, and client chargeback — without routing your traffic through a gateway. Free signup, keys encrypted at rest.",
-    status: "live",
-    maturity: "alpha",
+    state: "beta",
     badge: "Free product",
     featured: true,
     visual: "spend",
@@ -410,8 +407,7 @@ export const labs: Product[] = [
     tagline: "A second set of eyes on your system prompts.",
     description:
       "Paste a prompt and get structured feedback on clarity, injection surface, ambiguity, and failure modes. The review a senior engineer would give, minus the wait. Static, reproducible, no model call.",
-    status: "live",
-    maturity: "open-source",
+    state: "labs",
     visual: "prompt",
     ctaLabel: "Review a prompt",
     audience:
@@ -446,8 +442,7 @@ export const labs: Product[] = [
     tagline: "Is your endpoint reachable, secure, and fast?",
     description:
       "Paste a URL or hostname and get a graded report on DNS, TCP, TLS, redirects, latency, and security headers — with prioritized fixes you can paste into a PR. Free, open source, no account required to start.",
-    status: "live",
-    maturity: "open-source",
+    state: "labs",
     badge: "Free",
     visual: "connectivity",
     ctaLabel: "Scan an endpoint",
@@ -485,8 +480,7 @@ export const labs: Product[] = [
     tagline: "Turn a use case and your constraints into a defensible AI architecture.",
     description:
       "Describe the use case, the data, the budget, and the constraints. Get a decision matrix: the recommended shape, what was ruled out and why, named cost drivers (never invented prices), and a board brief you can copy. Free, no account, nothing stored. Built for the decisions teams are making now: when not to use an agent, when a tool needs an allowlist, and when the answer is just a database lookup.",
-    status: "live",
-    maturity: "alpha",
+    state: "beta",
     badge: "Free",
     visual: "architecture",
     ctaLabel: "Open advisor",
@@ -523,8 +517,7 @@ export const labs: Product[] = [
     tagline: "Defensive security review for AI applications.",
     description:
       "Describe an AI application — agents, MCP, retrieval, prompts, data flows — and get a graded defensive review covering prompt injection, what your tools are allowed to do, data exposure, tenancy, and logging. Every finding quotes your own words back to you. Not a penetration test and not a certification.",
-    status: "live",
-    maturity: "alpha",
+    state: "beta",
     badge: "Free",
     featured: true,
     visual: "security",
@@ -561,8 +554,7 @@ export const labs: Product[] = [
     tagline: "Paste a URL. See where the purchase path stalls.",
     description:
       "Scan a public marketing, product, or checkout page and get an evidence-backed audit of the buying path: missing prices, account walls, sales-only CTAs, thin SPA checkouts, and competing asks. Every finding quotes what was on the page. Free, no account, nothing stored.",
-    status: "live",
-    maturity: "experiment",
+    state: "labs",
     badge: "Free",
     visual: "journey",
     ctaLabel: "Scan a purchase path",
@@ -599,8 +591,7 @@ export const labs: Product[] = [
     tagline: "Know what your agents can reach, what they can do, and where the controls are missing.",
     description:
       "Describe your agents, tools, permissions, and data sources. Get an inventory plus a graded review across identity, permissions, data access, human approval, and audit trails — every finding quotes your own words back to you. Free, no account, nothing stored.",
-    status: "live",
-    maturity: "alpha",
+    state: "beta",
     badge: "Free",
     visual: "governance",
     ctaLabel: "Review agent access",
@@ -636,8 +627,7 @@ export const labs: Product[] = [
     tagline: "Describe a workflow. Get back where it breaks.",
     description:
       "Paste a process in plain language and get a graded diagnosis across handoffs, rework loops, wait states, and automation readiness — with what to fix, what to automate, and what to leave alone. Free, no account, nothing stored.",
-    status: "live",
-    maturity: "experiment",
+    state: "labs",
     badge: "Free",
     visual: "process",
     ctaLabel: "Scan a workflow",
@@ -1163,7 +1153,6 @@ export type Workshop = {
   name: string;
   text: string; // short line used on the card
   detail: string; // format line used on the card
-  status: Status;
   whoFor: string;
   objectives: string[];
   curriculum: string[];
@@ -1177,7 +1166,6 @@ export const academy: Workshop[] = [
     text: "Build a shared vocabulary for digital change, score where you stand, and scope what is worth doing first.",
     detail:
       "Half-day. Leadership and operators in one room. Leave with clear language, a readiness snapshot, and a scoped shortlist.",
-    status: "live",
     whoFor:
       "Leadership and operators in companies and nonprofits who keep talking past each other about cloud, data, security, or AI.",
     objectives: [
@@ -1204,7 +1192,6 @@ export const academy: Workshop[] = [
     text: "A technical working session against your own systems, scoring the work in front of you on business value, risk, feasibility and adoption.",
     detail:
       "One or two days. We work in your tools and constraints. Leave with a run plan your team can execute without us in the room.",
-    status: "live",
     whoFor:
       "Technical and operating leads who need the plan built across architecture, data, infra, security, delivery, and the human loops that keep it stable. Best when you have a running stack and a live backlog to put on the table.",
     objectives: [
@@ -1231,7 +1218,6 @@ export const academy: Workshop[] = [
     text: "You set the problem. We design the day around it, with the same ARC standard for clarity, owners, and next steps.",
     detail:
       "Scoped after a short intake. Half-day or multi-day. Topic is yours: cloud, data, cybersecurity, CDP, governance, delivery, nonprofit programs, AI, or something else entirely.",
-    status: "live",
     whoFor:
       "Teams with a specific problem where a fixed agenda would waste the day. Bring the topic. We build the session around your stack, constraints, and the decision you need to make.",
     objectives: [
@@ -1267,7 +1253,6 @@ export type CaseStudy = {
   slug: string;
   client: string;
   title: string;
-  status: Status;
   kind: "career" | "arc";
   industry: string;
   summary: string;
@@ -1285,7 +1270,6 @@ export const caseStudies: CaseStudy[] = [
     slug: "enterprise-cybersecurity-release-value",
     client: "Confidential · global cybersecurity company",
     title: "Coordinating 300+ features so release investment showed up in sales",
-    status: "live",
     kind: "career",
     industry: "Enterprise cybersecurity",
     summary:
@@ -1315,7 +1299,6 @@ export const caseStudies: CaseStudy[] = [
     slug: "consumer-cdp-tens-of-millions",
     client: "Confidential · large-scale consumer platform",
     title: "Customer-data architecture at tens of millions of profiles",
-    status: "live",
     kind: "career",
     industry: "Live entertainment · consumer platforms",
     summary:
@@ -1345,7 +1328,6 @@ export const caseStudies: CaseStudy[] = [
     slug: "brand-consumer-lego-nfl",
     client: "LEGO · NFL · live entertainment",
     title: "Brand and consumer programs at global scale",
-    status: "live",
     kind: "career",
     industry: "Consumer brands · live entertainment",
     summary:
@@ -1374,7 +1356,6 @@ export const caseStudies: CaseStudy[] = [
     slug: "transformation-diagnostic",
     client: "Confidential · mid-market operator",
     title: "Three competing initiatives, one sequenced roadmap",
-    status: "live",
     kind: "arc",
     industry: "Digital transformation",
     summary:
@@ -1407,8 +1388,8 @@ export const caseStudies: CaseStudy[] = [
 // ---------------------------------------------------------------------------
 export const faqs = [
   {
-    q: "Can I buy Agent Control?",
-    a: "Not yet. Agent Control is in design-partner development, and there is no pricing page in front of it. AI Fit is free on the web. Agent Readiness is a free scorecard and a paid assessment. AI Fit Teams is a three-to-four week engagement. The product playbooks are separate: Define is $5, Build is $10, and Ship is $20.",
+    q: "What can I actually buy today?",
+    a: "The Agent Access Assessment: $15,000, two to three weeks, and you keep the Agent Access Record at the end. Everything else is either free — the scan, the scorecard, the frameworks, the Labs tools — or it is consulting we scope from the problem. Agent Control is research. It is not for sale and there is no waiting list.",
   },
   {
     q: "Do you only do AI?",
@@ -1416,7 +1397,7 @@ export const faqs = [
   },
   {
     q: "How does work usually start?",
-    a: "Three ways, two of them free. Run a scorecard or a Labs tool and read the report. Read a playbook and use the framework without us. Or book a 30-minute call, which leads to a scoped review of two to seven weeks ending in a plan with named owners.",
+    a: "Run the free scan and read the report. If the answer is uncomfortable, book thirty minutes and we scope the assessment. Most people do the first and never do the second, which is a fine outcome.",
   },
   {
     q: "Who does the work?",
@@ -1424,7 +1405,7 @@ export const faqs = [
   },
   {
     q: "Our vendors turned on AI agents inside tools we already pay for. Is that a problem?",
-    a: "It is the question of the quarter. An agent inside your CRM or your code editor inherits the permissions of whoever runs it, and this year's breaches came from ordinary links and documents rather than exotic attacks. Start with the free Agent Readiness Scorecard, then the Agent Readiness assessment if you need the inventory, the blast-radius ranking and the approval gates.",
+    a: "It is the question of the quarter, and it is the reason this practice exists. An agent inside your CRM or your code editor inherits the permissions of whoever runs it, and this year's breaches came from ordinary links and documents rather than exotic attacks. Start with the free scan, then the Agent Access Assessment if you need the inventory, the blast-radius ranking and the approval gates.",
   },
   {
     q: "How do you know an automated system did what it said it did?",
@@ -1436,11 +1417,11 @@ export const faqs = [
   },
   {
     q: "Are the Labs tools free?",
-    a: "Yes. Most run with no account and store nothing. There is no paid tier. Every Labs project carries its maturity — open source, alpha, experiment or research — so you can tell what is supported and what is not before you depend on it.",
+    a: "Yes. Most run with no account and store nothing. There is no paid tier. Every tool carries its state — Labs, Beta or Research — so you can tell what is supported before you depend on it.",
   },
   {
     q: "Why are the playbooks so cheap, or free?",
-    a: "The scorecard, the operating contract, and the outcome checklist are free and complete on the page. The three product playbooks are separate purchases: Define is $5, Build is $10, and Ship is $20. If you can run the method without hiring us, that is a good outcome for both of us.",
+    a: "The scorecard, the operating contract, and the outcome checklist are free and complete on the page. The three product playbooks are a side door for a different reader — a founder building a first AI product — and they are priced accordingly: $5, $10 and $20. If you can run the method without hiring us, that is a good outcome for both of us.",
   },
   {
     q: "How do you size the work?",
@@ -1478,74 +1459,36 @@ export type NavItem = {
   children?: { label: string; href: string; summary: string }[];
 };
 
+/**
+ * Six entries, one button, no dropdowns.
+ *
+ * The previous bar fixed seven capability names at the top level and then
+ * reintroduced the same problem one level down, in a five-item menu where
+ * four of the five were internal product names. Every entry here is a
+ * destination; the hub pages carry the depth.
+ *
+ * Agent Control is deliberately absent. It is research, it cannot be bought,
+ * and a nav slot would imply otherwise. It is reachable from /agents, from
+ * the chain diagram and from the footer.
+ */
 export const nav: NavItem[] = [
-  {
-    label: "Services",
-    href: "/services",
-    children: [
-      {
-        label: "Modernize",
-        href: "/services/modernize",
-        summary: "Cloud, architecture, data, security and delivery.",
-      },
-      {
-        label: "Automate",
-        href: "/services/automate",
-        summary: "Where AI saves time, and where it does not belong.",
-      },
-      {
-        label: "Build",
-        href: "/services/build",
-        summary: "Products, applications, integrations and workflows.",
-      },
-      {
-        label: "Operate",
-        href: "/services/operate",
-        summary: "Governance, observability, controls and evaluation.",
-      },
-    ],
-  },
-  {
-    label: "Agent Infrastructure",
-    href: "/platform",
-    children: [
-      {
-        label: "Overview",
-        href: "/platform",
-        summary: "How agents act, and how you check the result.",
-      },
-      {
-        label: "Agent Control",
-        href: "/ark-control",
-        summary: "Permissions and approval gates for agent actions.",
-      },
-      {
-        label: "Agent Readiness",
-        href: "/agent-readiness",
-        summary: "What your agents can reach, and where the gaps are.",
-      },
-      {
-        label: "AI Fit",
-        href: "/ai-fit",
-        summary: "Whether a workload belongs in an AI system at all.",
-      },
-      {
-        label: "For developers",
-        href: "/developers",
-        summary: "Protocols, scanners and architecture notes.",
-      },
-    ],
-  },
+  { label: "Agents", href: "/agents" },
+  { label: "Assessment", href: "/assessment" },
   { label: "Labs", href: "/labs" },
-  { label: "Playbooks", href: "/playbook" },
-  { label: "Work", href: "/work" },
+  { label: "Research", href: "/research" },
+  { label: "Consulting", href: "/consulting" },
   { label: "About", href: "/about" },
 ];
 
 /** Secondary routes that belong in the sitemap and footer but not the header. */
 export const secondaryRoutes = [
+  "/agents/control",
+  "/frameworks",
+  "/developers",
+  "/work",
+  "/playbook",
+  "/services",
   "/advisory",
-  "/research",
   "/academy",
   "/contact",
   "/privacy",

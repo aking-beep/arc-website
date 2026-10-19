@@ -41,6 +41,30 @@ const nextConfig = {
         destination: "/playbook",
         permanent: true,
       },
+      // --- 2026-10 restructure -------------------------------------------
+      // The site now leads with agent governance. Everything below is a page
+      // that moved, not a page that died, so every one of these is permanent.
+      { source: "/platform", destination: "/agents", permanent: true },
+      { source: "/ark-control", destination: "/agents/control", permanent: true },
+      { source: "/agent-readiness", destination: "/assessment", permanent: true },
+      // AI Fit was a product page in front of a Labs tool, and AI Fit Teams
+      // was the AI Readiness Audit under a second name.
+      { source: "/ai-fit", destination: "/labs/arc-stack-advisor", permanent: true },
+      {
+        source: "/ai-fit-teams",
+        destination: "/advisory/ai-readiness-audit",
+        permanent: true,
+      },
+      // /playbook sold PDFs and /playbooks held the free frameworks. One
+      // character between two different businesses.
+      { source: "/playbooks", destination: "/frameworks", permanent: true },
+      {
+        source: "/playbooks/:slug",
+        destination: "/frameworks/:slug",
+        permanent: true,
+      },
+      { source: "/services", destination: "/consulting", permanent: true },
+
       // The skills, architecture and workflow libraries ship inside Ship.
       {
         source: "/labs/arc-skills",

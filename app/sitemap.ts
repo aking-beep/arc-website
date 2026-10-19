@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ]),
     ...secondaryRoutes,
     ...serviceAreas.map((a) => `/services/${a.slug}`),
-    ...arkProducts.map((p) => `/${p.slug}`),
+    ...arkProducts.map((p) => p.href),
     ...playbooks.map(playbookHref),
     ...playbookTiers.map((tier) => playbookTierHref(tier.slug)),
     ...advisoryEngagements.map((o) => `/advisory/${o.slug}`),

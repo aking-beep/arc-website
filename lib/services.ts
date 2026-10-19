@@ -170,32 +170,77 @@ export function getServiceArea(slug: string): ServiceArea | undefined {
 // ---------------------------------------------------------------------------
 
 export const homeHero = {
-  title: "Make technology work for your business.",
-  kicker: "AI · Automation · Cloud · Security · Software",
-  lead: "ARC helps growing companies work out what to improve, what to automate and what to build — and then helps get it working.",
-  primary: { label: "Tell us what's not working", href: "/contact" },
-  secondary: { label: "See how we can help", href: "/services" },
+  title: "What are your agents allowed to do, and who signed off?",
+  kicker: "Agent governance",
+  lead: "Your vendors turned agents on inside tools you already pay for. Each one holds the permissions of whoever switched it on, and none of them is in a list anyone maintains. ARC writes that list, ranks what each agent could break, and says which actions should stop and wait for a person.",
+  primary: { label: "Run the free scan", href: "/labs/arc-agent-governance" },
+  secondary: { label: "See the assessment — $15,000", href: "/assessment" },
+  note: "For the person who owns security, IT or the system of record at a 50–500 person company.",
 };
 
 /**
- * Pain recognition, before anything about us. A visitor should hit at least
- * one of these and think: that is my week.
+ * Pain recognition, before anything about us. These are the Operate symptoms,
+ * which were the sharpest copy on the old site and were sitting in the fourth
+ * slot of a dropdown.
  */
 export const homeSymptoms = {
-  title: "Technology is moving faster. Your business still has to work.",
+  title: "Agents are already running against your systems.",
   items: [
-    "You are being pushed to adopt AI and you are not sure where it belongs.",
-    "Your systems do not talk to each other.",
-    "Your team spends too much time on work that should already be automated.",
-    "The data exists, and nobody fully trusts it.",
-    "You built an AI prototype and now it has to be reliable enough to use.",
-    "Or the way the company uses technology is not keeping up with where the business is going.",
+    "Nobody can list what your agents can reach or what they can change.",
+    "Your vendors switched on agent features inside tools you already pay for.",
+    "A run reports success and you cannot confirm anything actually changed.",
+    "An agent works in a demo and you will not let it near a customer.",
+    "Someone has asked what the agents can do, and the honest answer is a page in Notion.",
   ],
-  close: "That's where we come in.",
+  close: "That list is the thing we produce.",
 };
 
+export const homeWhy = {
+  title: "Deterministic, quoted, and limited on purpose.",
+  lead: "Three things that are unusual enough to be worth stating, because each one is checkable rather than claimed.",
+  items: [
+    {
+      name: "Rules, not a model",
+      text: "Published rules produce every finding and every score. A model never generates a number, so the same input always gives the same report.",
+    },
+    {
+      name: "Your own words",
+      text: "Each finding quotes the sentence that triggered it. You can disagree with a rule and see exactly which one to argue with.",
+    },
+    {
+      name: "Limits on the page",
+      text: "Every page says what the thing is not, and what state it is in. Two of the nine links in the chain are research, and we mark them that way.",
+    },
+  ],
+};
+
+/** The ladder, with prices visible. */
+export const homeLadder = [
+  {
+    name: "Agent access scan",
+    price: "Free",
+    text: "Describe your agents, tools and permissions. Get a graded report with every finding quoting your own words. Nothing is stored.",
+    href: "/labs/arc-agent-governance",
+    linkLabel: "Run the scan",
+  },
+  {
+    name: "Agent Access Assessment",
+    price: "$15,000",
+    text: "Two to three weeks against your own systems. The inventory, the blast-radius ranking, the approval gates, and the Agent Access Record.",
+    href: "/assessment",
+    linkLabel: "See what is in it",
+  },
+  {
+    name: "Everything else",
+    price: "Scoped",
+    text: "Cloud, data, security, delivery and the AI readiness work. Still here, still sold, and no longer the first thing on this page.",
+    href: "/consulting",
+    linkLabel: "See the consulting work",
+  },
+];
+
 export const homeClose = {
-  title: "Not sure which one you need?",
-  lead: "Good. You shouldn't have to diagnose your own technology problem before talking to someone who does this for a living. Tell us what's happening and we'll help work out whether you need a small fix, a focused project, a larger programme — or nothing from us at all.",
-  cta: "Talk to ARC",
+  title: "Not sure whether this is your problem?",
+  lead: "Run the scan. It is free, it runs in your browser, and it will tell you in a few minutes whether there is anything here worth paying for.",
+  cta: "Run the free scan",
 };

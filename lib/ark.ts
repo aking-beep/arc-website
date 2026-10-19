@@ -1,23 +1,21 @@
 // ============================================================================
-// Agent infrastructure — the product work ARC publishes under its own name.
+// Agent governance — the ARC work for software that acts on its own.
 //
 // Rule for this file: never describe a capability as further along than it is.
-// Every product carries a maturity, and the copy has to match it. If Agent
-// Control is not shipping, the page says so in the first screen.
+// Every product carries a state, and the copy has to match it. The assessment
+// is the only thing here that can be bought, so it is the only thing that
+// carries a price.
 // ============================================================================
 
-import type { Maturity } from "@/lib/content";
+import type { State } from "@/lib/content";
 
 export const ark = {
-  positioning: "Infrastructure for reliable agent action.",
-  /**
-   * Stated as the thing we do. This says which check we run.
-   */
+  positioning: "Know what your agents can reach, change and prove.",
+  /** Stated as the thing we do. This says which check we run. */
   principle: "We check the system that was supposed to change.",
-  loop: ["Measure", "Verify", "Govern", "Optimize"],
-  question: "How should software that acts on its own be checked?",
+  question: "What are your agents allowed to do, and who signed off?",
   explainer:
-    "Agent infrastructure from ARC: readiness, outcome checks, and the assessments that decide where AI belongs.",
+    "Agent governance from ARC: an inventory of every agent, what it can change, and which actions need a person.",
 };
 
 /**
@@ -33,80 +31,166 @@ export const executionGap = {
     "It can call the correct tool with the wrong authority.",
     "It can finish a workflow while violating the policy that should have governed it.",
   ],
-  chain: [
-    "Agent request",
-    "Model decision",
-    "Tool action",
-    "System change",
-    "Outcome evidence",
-    "Verified outcome",
-  ],
   takeaway: "Execution success is not a verified outcome.",
 };
 
-/**
- * The operating lifecycle this work is built around. This is the architecture
- * claim: agents need infrastructure at each of these points, not just a model.
- */
-export const agentLifecycle: { name: string; text: string }[] = [
+// ---------------------------------------------------------------------------
+// The canonical chain.
+//
+// One diagram, used on the home page, the agents hub and the assessment page.
+// Every other chain in the codebase was retired into prose, because a visitor
+// who reads two pages should not meet two models of the same process.
+//
+// `coverage` is what keeps this honest. Drawing nine nodes at equal weight
+// would present research as shipped capability, which is the thing the state
+// badges exist to prevent.
+// ---------------------------------------------------------------------------
+export type ChainCoverage = "covered" | "partial" | "research";
+
+export type ChainNode = {
+  name: string;
+  coverage: ChainCoverage;
+  text: string;
+};
+
+export const chainCoverageLabel: Record<ChainCoverage, string> = {
+  covered: "In the assessment",
+  partial: "Partial — named in the report",
+  research: "Research — not for sale",
+};
+
+export const agentChain: ChainNode[] = [
   {
-    name: "Discover",
-    text: "Find out which capabilities, tools and resources exist, and which ones apply to the task in hand.",
+    name: "Agent",
+    coverage: "covered",
+    text: "Which agents exist, who turned them on, and which are running without an owner.",
   },
   {
-    name: "Authenticate",
-    text: "Prove which agent is acting, on whose behalf, and under which credential.",
-  },
-  {
-    name: "Understand",
-    text: "Read schemas, contracts and side effects well enough to call a tool correctly the first time.",
+    name: "Identity",
+    coverage: "covered",
+    text: "Which credential each one acts under, and whether you can tell two agents apart in a log.",
   },
   {
     name: "Permission",
-    text: "Resolve what this identity is allowed to do right now, including the actions that need a human.",
+    coverage: "covered",
+    text: "What that identity is allowed to do, and whether it is narrower than the person it works for.",
   },
   {
-    name: "Execute",
-    text: "Run the work in an environment that fits its privacy, latency, policy and cost constraints.",
+    name: "Policy",
+    coverage: "partial",
+    text: "The rules that should govern the action. We write down what applies. We do not enforce it at run time.",
   },
   {
-    name: "Verify",
-    text: "Collect evidence from the systems that were supposed to change, not from the agent's own report.",
+    name: "Tool / MCP / API",
+    coverage: "covered",
+    text: "Every tool, MCP server and API the agent can reach, and which of them can change something.",
   },
   {
-    name: "Measure",
-    text: "Attribute cost, latency and success to a unit of work a business can recognise.",
+    name: "Action",
+    coverage: "partial",
+    text: "What was attempted, reconstructed from the logs you already keep — where you keep them.",
   },
   {
-    name: "Remember",
-    text: "Persist state so the next run starts from what happened, not from an empty context.",
+    name: "Verification",
+    coverage: "research",
+    text: "Independent confirmation that the destination system changed. This is Agent Control, and it is not a product yet.",
+  },
+  {
+    name: "Evidence",
+    coverage: "research",
+    text: "A record of the change that does not come from the agent that claims to have made it.",
   },
   {
     name: "Audit",
-    text: "Keep a record someone can defend later: what was attempted, under what authority, with what result.",
+    coverage: "covered",
+    text: "The Agent Access Record: every agent, its authority, its approver, dated and signed.",
   },
 ];
+
+// ---------------------------------------------------------------------------
+// The deliverable, as an object. The site sells a document, so it shows one.
+// This is illustrative data and every surface that renders it says so.
+// ---------------------------------------------------------------------------
+export type RecordRow = {
+  agent: string;
+  canChange: string;
+  approver: string | null;
+  checked: string;
+  state: "ok" | "warn" | "bad";
+};
+
+export const accessRecordExample: {
+  title: string;
+  caption: string;
+  rows: RecordRow[];
+} = {
+  title: "Agent Access Record",
+  caption:
+    "Illustrative. Not a customer record — the real one is built from your systems.",
+  rows: [
+    {
+      agent: "crm-sync",
+      canChange: "Opportunity stage, amount",
+      approver: "J. Patel",
+      checked: "2 days ago",
+      state: "ok",
+    },
+    {
+      agent: "invoice-bot",
+      canChange: "Create charge, send invoice",
+      approver: null,
+      checked: "never",
+      state: "bad",
+    },
+    {
+      agent: "support-copilot",
+      canChange: "Send email as support@",
+      approver: "M. Chen",
+      checked: "2 days ago",
+      state: "ok",
+    },
+    {
+      agent: "deploy-agent",
+      canChange: "Production deploy, rollback",
+      approver: "R. Osei",
+      checked: "31 days ago",
+      state: "warn",
+    },
+    {
+      agent: "sheets-helper",
+      canChange: "Read finance drive",
+      approver: null,
+      checked: "never",
+      state: "warn",
+    },
+  ],
+};
 
 // ---------------------------------------------------------------------------
 // Products.
 // ---------------------------------------------------------------------------
 export type ArkProduct = {
   slug: string;
+  /** Canonical route. Set explicitly so a rename never silently moves a page. */
+  href: string;
   name: string;
-  /** Short label for nav menus. */
   navLabel: string;
   tagline: string;
-  /** One sentence for cards and the nav dropdown. */
   summary: string;
-  maturity: Maturity;
-  flagship?: boolean;
+  state: State;
+  /** Only something that can be bought carries a price. */
+  price?: {
+    amount: string;
+    unit: string;
+    duration: string;
+    includes: string[];
+    note: string;
+  };
   ctaLabel: string;
-  /** Where the primary CTA goes. External when the tool already exists. */
   ctaHref: string;
   /** What this is today, stated before anything aspirational. */
   todayLabel: string;
   today: string;
-  /** Headline sections for the product page. */
   intro: string[];
   evaluates?: { group: string; items: string[] }[];
   capabilities?: { name: string; text: string }[];
@@ -114,177 +198,130 @@ export type ArkProduct = {
   limits: string[];
 };
 
-export const arkProducts: ArkProduct[] = [
-  {
-    slug: "ark-control",
-    name: "Agent Control",
-    navLabel: "Agent Control",
-    tagline: "Outcome assurance for production AI agents.",
-    summary:
-      "Understand what agents attempted, what authority they used, and whether the intended outcome occurred.",
-    maturity: "design-partners",
-    flagship: true,
-    ctaLabel: "Talk to us about design partnership",
-    ctaHref: "/contact?topic=ark-control",
-    todayLabel: "Where this is today",
-    today:
-      "Agent Control is in design-partner development. It is not a product you can buy or sign up for yet. We are working through the verification model with a small number of teams running agents against production systems. There is no pricing page because there is nothing to price yet.",
-    intro: [
-      "Seeing a trace tells you what the agent attempted. Assurance asks a different question: did the intended outcome occur?",
-      "Agent Control is being built to connect execution evidence — the trace, the tool call, the identity, the policy decision — with outcome evidence collected from the systems that were supposed to change.",
+export const assessment: ArkProduct = {
+  slug: "assessment",
+  href: "/assessment",
+  name: "Agent Access Assessment",
+  navLabel: "Assessment",
+  tagline: "Know what your agents can reach, change and prove.",
+  summary:
+    "An inventory of every agent running against your systems, what each one can change, and which actions should need a person. Two to three weeks, fixed fee.",
+  state: "available",
+  price: {
+    amount: "$15,000",
+    unit: "fixed fee",
+    duration: "2–3 weeks",
+    includes: [
+      "Agent, tool and credential inventory across the systems you name",
+      "Blast-radius ranking: what each identity could change that you cannot undo",
+      "Approval and revocation gates recommended for the irreversible actions",
+      "The Agent Access Record: every agent, its authority, its approver, dated",
+      "A 30/60/90 hardening plan with named owners",
     ],
-    capabilities: [
-      {
-        name: "Execution record",
-        text: "What the agent attempted, which tools and protocols it used, and how long each step took.",
-      },
-      {
-        name: "Authority record",
-        text: "Which identity acted, which credential it used, which policy applied, and whether a human approved.",
-      },
-      {
-        name: "Outcome evidence",
-        text: "Independent confirmation from the destination system that the intended change exists.",
-      },
-      {
-        name: "Verification result",
-        text: "A pass, a fail, or an explicit unknown. An unverifiable outcome is reported as unverifiable, never as success.",
-      },
-      {
-        name: "Cost attribution",
-        text: "Spend tied to a unit of completed work rather than to tokens, so the number means something to a budget holder.",
-      },
-      {
-        name: "Audit trail",
-        text: "A record built to be read later by someone who was not in the room when it ran.",
-      },
-    ],
-    limits: [
-      "It is not available for purchase. Design-partner conversations only.",
-      "It is not a model-evaluation product and does not score answer quality.",
-      "It cannot verify an outcome in a system it has no read access to — the evidence has to come from somewhere.",
-      "It is not a compliance certification. It produces the evidence; your auditor draws the conclusion.",
-    ],
+    note: "One fee, agreed before we start. No hourly billing and no change requests.",
   },
-  {
-    slug: "agent-readiness",
-    name: "Agent Readiness",
-    navLabel: "Agent Readiness",
-    tagline: "Make your systems usable by agents.",
-    summary:
-      "Evaluate whether agents can safely and reliably interact with your applications, APIs, tools and workflows.",
-    maturity: "available",
-    ctaLabel: "Run the readiness scorecard",
-    ctaHref: "/playbooks/agent-readiness-scorecard",
-    todayLabel: "Where this is today",
-    today:
-      "Available in two forms. The scorecard is free and takes a few minutes. The full assessment is a two-to-three week engagement run by ARC against the systems you already operate, and it uses the open scanners in Labs as part of the evidence.",
-    intro: [
-      "Most systems were designed for humans clicking through a screen. Agents arrive through a different door: they discover capabilities, read schemas, authenticate as themselves and act without a person watching each step.",
-      "Agent readiness is the question of whether your systems can survive that. Not whether an agent can be made to work once in a demo, but whether it can act correctly, within its authority, and leave a record.",
-    ],
-    evaluates: [
-      {
-        group: "Interface",
-        items: ["Discovery", "APIs", "MCP and agent protocols", "Schemas", "Tool interfaces"],
-      },
-      {
-        group: "Authority",
-        items: ["Authentication", "Identity", "Permissions", "Approval paths", "Revocation"],
-      },
-      {
-        group: "Operations",
-        items: ["Security", "Reliability", "Observability", "Cost", "Failure behaviour"],
-      },
-    ],
-    limits: [
-      "It is not a penetration test and not a red-team exercise.",
-      "It does not certify anything. It tells you what is ready and what is not.",
-      "The free scorecard is self-reported, so it is a starting point rather than evidence.",
-    ],
-  },
-  {
-    slug: "ai-fit",
-    name: "AI Fit",
-    navLabel: "AI Fit",
-    tagline: "Determine where AI belongs before you build it.",
-    summary:
-      "Evaluate the problem, workload, economics, architecture and risks before committing engineering resources.",
-    maturity: "available",
-    ctaLabel: "Open AI Fit",
-    ctaHref: "https://arc-stack-advisor.vercel.app",
-    todayLabel: "Where this is today",
-    today:
-      "Available free on the web with no account and nothing stored. Deterministic rules match your description to a published catalogue of architecture shapes. A model never produces the recommendation or the score.",
-    intro: [
-      "The most expensive AI decision is the one nobody scored. A team picks an agent because agents are what people are building, and discovers nine months later that the answer was a database lookup with a good interface.",
-      "AI Fit takes a use case, the data behind it, the budget and the constraints, and returns a decision you can defend: the recommended shape, what was ruled out and why, the cost drivers that move, and a brief you can hand to a board.",
-    ],
-    capabilities: [
-      {
-        name: "Recommended shape",
-        text: "An architecture class. No vendor name, nothing you get locked into.",
-      },
-      {
-        name: "Ruled-out alternatives",
-        text: "What was considered and rejected, with the reason attached to each one.",
-      },
-      {
-        name: "Named cost drivers",
-        text: "What will drive spend. Never an invented price.",
-      },
-      {
-        name: "Open questions",
-        text: "The things the tool cannot decide for you, listed rather than glossed over.",
-      },
-    ],
-    limits: [
-      "It is deliberately not a vendor recommendation engine.",
-      "It will not invent pricing it cannot source.",
-      "It answers the architecture question. The organisational one is AI Fit Teams.",
-    ],
-  },
-  {
-    slug: "ai-fit-teams",
-    name: "AI Fit Teams",
-    navLabel: "AI Fit Teams",
-    tagline: "Prepare the organization around the technology.",
-    summary:
-      "Understand AI readiness across teams, workflows, capabilities, governance and adoption.",
-    maturity: "available",
-    ctaLabel: "Start a team assessment",
-    ctaHref: "/contact?topic=ai-fit-teams",
-    todayLabel: "Where this is today",
-    today:
-      "Available as a three-to-four week assessment run by ARC. It is the organisational counterpart to AI Fit: the same scoring discipline, applied to the teams, workflows and habits that decide whether anything ships.",
-    intro: [
-      "Technology readiness and organisational readiness fail differently. A sound architecture still dies if nobody owns the workflow, the data access takes four months, or the people expected to run it were never asked.",
-      "AI Fit Teams scores four dimensions against the work your organisation does: what it can do today, what it is trying to achieve, whether the teams can support it, and the habits that will carry or kill the change.",
-    ],
-    capabilities: [
-      {
-        name: "Readiness scorecard",
-        text: "Capability, intent, teams and habits, each scored with evidence rather than opinion.",
-      },
-      {
-        name: "Shadow-AI inventory",
-        text: "Which tools and agents are already running, who switched them on, and what they can reach.",
-      },
-      {
-        name: "Classified backlog",
-        text: "Ship now, fix the prerequisite first, or defer — with the prerequisite named.",
-      },
-      {
-        name: "30/60/90 roadmap",
-        text: "Named owners and success measures, including the human-review gates.",
-      },
-    ],
-    limits: [
-      "It is an assessment. Running the change afterwards is separate work.",
-      "It will tell you to defer work when that is the answer.",
-    ],
-  },
-];
+  ctaLabel: "Book 30 minutes",
+  ctaHref: "/contact?topic=assessment",
+  todayLabel: "Where this is today",
+  today:
+    "Available now, run by the senior person on your first call. Two to three weeks against the systems you already operate, using the open scanners in Labs as part of the evidence. The deliverable is a document, not software you have to install.",
+  intro: [
+    "Your vendors turned agents on inside tools you already pay for. A CRM assistant, a coding agent, a connected copilot — each one holding the permissions of whoever switched it on, and none of them in a list anyone maintains.",
+    "This is the engagement that produces the list. Not a maturity model and not a strategy deck: an inventory of what exists, what it can change, and which actions a person should have to approve before they happen.",
+  ],
+  evaluates: [
+    {
+      group: "Inventory",
+      items: ["Agents", "Identities", "Credentials", "Tools", "MCP servers", "APIs"],
+    },
+    {
+      group: "Authority",
+      items: ["Permissions", "Blast radius", "Approval paths", "Revocation", "Ownership"],
+    },
+    {
+      group: "Evidence",
+      items: ["Logging", "Attribution", "Retention", "What an auditor can be shown"],
+    },
+  ],
+  capabilities: [
+    {
+      name: "The inventory",
+      text: "Every agent we can find, including the ones a team switched on without telling anyone.",
+    },
+    {
+      name: "Blast radius",
+      text: "Ranked by what each identity could change irreversibly — payments, deletions, outbound mail.",
+    },
+    {
+      name: "Approval gates",
+      text: "Which actions should stop and wait for a person, and where that gate has to live to be real.",
+    },
+    {
+      name: "The Agent Access Record",
+      text: "The artifact: agent, authority, approver, last checked. Dated and signed.",
+    },
+    {
+      name: "Revocation paths",
+      text: "How fast each agent can be switched off, and from how many places.",
+    },
+    {
+      name: "30/60/90 plan",
+      text: "What to fix first, with a named owner against each line.",
+    },
+  ],
+  limits: [
+    "It is not a penetration test and not a red-team exercise.",
+    "It does not certify anything. It tells you what is reachable and what is not governed.",
+    "It reads configuration and logs. It does not verify that a change happened in a destination system — that is Agent Control, and it is research.",
+    "It is a document, not a running control. Enforcement is your systems' job, and we say where it has to live.",
+  ],
+};
+
+export const agentControl: ArkProduct = {
+  slug: "agent-control",
+  href: "/agents/control",
+  name: "Agent Control",
+  navLabel: "Agent Control",
+  tagline: "Outcome assurance for production AI agents.",
+  summary:
+    "Connect what an agent attempted with evidence, collected from the systems that were supposed to change, that it happened.",
+  state: "research",
+  ctaLabel: "Read the thinking",
+  ctaHref: "/agents/control",
+  todayLabel: "Where this is today",
+  today:
+    "Research. It is not a product, it is not in beta, and there is nothing to sign up for. It is not in the site navigation on purpose. We will build it when a design partner is paying for one connector that returns a pass, a fail, or an explicit unknown — and this page will say so on the day that happens.",
+  intro: [
+    "Seeing a trace tells you what the agent attempted. Assurance asks a different question: did the intended outcome occur?",
+    "The honest problem with building it is integration. Verifying an outcome means reading the destination system — your billing, your CRM, your ledger — and that is one connector per system. We are publishing the thinking rather than pretending the connectors exist.",
+  ],
+  capabilities: [
+    {
+      name: "Execution record",
+      text: "What the agent attempted, which tools it used, and how long each step took.",
+    },
+    {
+      name: "Authority record",
+      text: "Which identity acted, under which credential, which policy applied, and whether a human approved.",
+    },
+    {
+      name: "Outcome evidence",
+      text: "Independent confirmation from the destination system that the intended change exists.",
+    },
+    {
+      name: "Verification result",
+      text: "A pass, a fail, or an explicit unknown. An unverifiable outcome is reported as unverifiable, never as success.",
+    },
+  ],
+  limits: [
+    "It is not available for purchase, and there is no waiting list.",
+    "It is not a model-evaluation product and does not score answer quality.",
+    "It cannot verify an outcome in a system it has no read access to — the evidence has to come from somewhere.",
+    "It is not a compliance certification. It would produce evidence; your auditor draws the conclusion.",
+  ],
+};
+
+export const arkProducts: ArkProduct[] = [assessment, agentControl];
 
 export function getArkProduct(slug: string) {
   return arkProducts.find((p) => p.slug === slug);
@@ -292,11 +329,13 @@ export function getArkProduct(slug: string) {
 
 // ---------------------------------------------------------------------------
 // The agent operating contract — the framework ARC publishes free.
+//
+// This is a document schema rather than a process, which is why it stays a
+// separate diagram from the chain above.
 // ---------------------------------------------------------------------------
 export const operatingContract = {
   headline: "Agents need operating contracts.",
   chain: ["Goal", "Trigger", "State", "Boundary", "Evidence", "Owner"],
-  architecture: ["Scope", "Identity", "Access", "Action", "Stop"],
   lead: "An agent responsible for ongoing work needs more than instructions.",
   needs: [
     { name: "A defined objective", text: "What done looks like, in terms someone else could check." },
@@ -316,37 +355,37 @@ export const operatingContract = {
 // ---------------------------------------------------------------------------
 export const developerAreas: {
   name: string;
-  maturity: Maturity;
+  state: State;
   text: string;
   href: string;
   linkLabel: string;
 }[] = [
   {
-    name: "Runtime",
-    maturity: "research",
-    text: "Where a unit of AI work should execute, decided from capability, privacy, policy, latency and cost rather than from habit. Local, edge and cloud are a routing decision.",
-    href: "/developers#runtime",
-    linkLabel: "Read the thinking",
-  },
-  {
     name: "Protocols",
-    maturity: "open-source",
-    text: "Agent-facing interfaces: MCP, agent-to-agent patterns, and the machine-to-machine conventions forming around them. We test against the published specs and publish what breaks.",
+    state: "labs",
+    text: "Agent-facing interfaces: MCP and the machine-to-machine conventions forming around it. We test against the published specs and publish what breaks.",
     href: "/labs/mcp-conformance-scanner",
     linkLabel: "Check a server",
   },
   {
     name: "Open tools",
-    maturity: "open-source",
+    state: "labs",
     text: "Scanners, catalogues and reference implementations from Labs. MIT licensed, no account, most of them store nothing.",
     href: "/labs",
     linkLabel: "Browse the tools",
   },
   {
-    name: "Documentation",
-    maturity: "open-source",
-    text: "Architecture notes, schemas and implementation guides, published alongside the code they describe.",
-    href: "https://github.com/aking-beep",
-    linkLabel: "View GitHub",
+    name: "Runtime",
+    state: "research",
+    text: "Where a unit of AI work should execute, decided from capability, privacy, policy, latency and cost rather than from habit. Published thinking, no implementation.",
+    href: "/developers#runtime",
+    linkLabel: "Read the thinking",
+  },
+  {
+    name: "Agent-to-agent",
+    state: "research",
+    text: "What governing an agent-to-agent call would require. Nobody we work with is running this yet, so it stays a note rather than a roadmap.",
+    href: "/developers#a2a",
+    linkLabel: "Read the note",
   },
 ];

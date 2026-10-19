@@ -1,11 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import {
-  type Maturity,
-  type Status,
-  maturityLabel,
-  statusLabel,
-} from "@/lib/content";
+import { type State, stateLabel } from "@/lib/content";
 
 export function Badge({
   className,
@@ -22,55 +17,55 @@ export function Badge({
   );
 }
 
-const statusStyles: Record<Status, string> = {
-  live: "border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
-  building: "border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400",
-  planned: "border-border bg-muted text-muted-foreground",
+/**
+ * Five states, five appearances.
+ *
+ * Shape carries the meaning alongside colour — filled vs hollow dot, solid vs
+ * dashed border — so the scale still reads in greyscale and for the common
+ * colour-vision deficiencies. The same vocabulary drives the chain diagram,
+ * which is why a node's border is literally the same language as a badge.
+ */
+const chrome: Record<State, { wrap: string; dot: string }> = {
+  available: {
+    wrap: "border-emerald-500/40 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400",
+    dot: "bg-current",
+  },
+  beta: {
+    wrap: "border-amber-500/40 bg-amber-500/10 text-amber-700 dark:text-amber-400",
+    dot: "bg-current",
+  },
+  labs: {
+    wrap: "border-border bg-muted text-muted-foreground",
+    dot: "border border-current bg-transparent",
+  },
+  research: {
+    wrap: "border-dashed border-border bg-transparent text-muted-foreground",
+    dot: "border border-current bg-transparent",
+  },
+  soon: {
+    wrap: "border-dashed border-border bg-transparent text-muted-foreground/70",
+    dot: "border border-current bg-transparent",
+  },
 };
 
-const maturityStyles: Record<Maturity, string> = {
-  available:
-    "border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400",
-  "design-partners": "border-brand/30 bg-brand/10 text-brand",
-  "in-development":
-    "border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-400",
-  "open-source": "border-border bg-muted text-muted-foreground",
-  experiment: "border-border bg-muted text-muted-foreground",
-  alpha: "border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-400",
-  research: "border-border bg-muted text-muted-foreground",
-};
-
-export function MaturityBadge({
-  maturity,
+export function StateBadge({
+  state,
   className,
 }: {
-  maturity: Maturity;
+  state: State;
   className?: string;
 }) {
+  const style = chrome[state];
   return (
     <span
       className={cn(
         "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wider",
-        maturityStyles[maturity],
+        style.wrap,
         className,
       )}
     >
-      <span className="h-1.5 w-1.5 rounded-full bg-current" />
-      {maturityLabel[maturity]}
-    </span>
-  );
-}
-
-export function StatusBadge({ status }: { status: Status }) {
-  return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium",
-        statusStyles[status],
-      )}
-    >
-      <span className="h-1.5 w-1.5 rounded-full bg-current" />
-      {statusLabel[status]}
+      <span aria-hidden className={cn("h-1.5 w-1.5 rounded-full", style.dot)} />
+      {stateLabel[state]}
     </span>
   );
 }
