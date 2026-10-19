@@ -1,8 +1,15 @@
 # ARC Transformation Group — Website
 
-The front door to the ARC ecosystem: **Labs · Studio · Research · Academy.**
+The front door to one question: **what are your agents allowed to do, and who
+signed off?**
 
-This is not a consulting brochure — it's the operating system for the ARC ecosystem, built so every new product becomes *content* on shared infrastructure instead of a brand-new website.
+The site leads with agent governance. The free scan and the frameworks are the
+top of the funnel, the Agent Access Assessment is the thing with a price on it,
+and the consulting work that pays the bills today sits one click behind
+`/consulting` rather than on the home page.
+
+Content lives in `lib/`, so a new engagement or tool is an entry in an array
+rather than a new website.
 
 ## Stack
 
@@ -99,41 +106,56 @@ your own eyes rather than assuming.
 
 ```
 app/
-  layout.tsx            Root layout, fonts, theme provider, header/footer
-  page.tsx              Home — symptoms, the four things we help with, proof
-  api/contact/route.ts  Contact form API (Resend when configured)
-  services/page.tsx     The four buyer problems
-  services/[slug]/page.tsx  Modernize / Automate / Build / Operate
-  advisory/page.tsx     How engagements are shaped: sizes, reviews, retainers
-  advisory/[slug]/page.tsx  Reusable SCOPED REVIEW template
-  platform/page.tsx     Agent infrastructure
-  labs/page.tsx         Labs (free tools)
-  labs/[slug]/page.tsx  Reusable PRODUCT template (demo/GitHub/docs/roadmap)
-  playbook/page.tsx     The three paid playbooks
-  playbook/[slug]/page.tsx  Define, Build, or Ship
-  playbooks/page.tsx    Free frameworks and resources
-  research/page.tsx     ARC Research (benchmarks + reports)
-  research/[slug]/page.tsx  Reusable ARTICLE/RESEARCH template
-  academy/page.tsx      Workshops
-  about/page.tsx        Who does the work
-  work/[slug]/page.tsx  Reusable CASE STUDY template
+  layout.tsx              Root layout: fonts, theme provider, nothing else
+  (site)/                 Everything with the site header and footer
+    page.tsx              Home — the chain, the artifact, the ladder
+    agents/               The wedge hub
+    agents/control/       Agent Control — research, deliberately not in the nav
+    assessment/           The one offer with a price on it
+    labs/                 Free tools, each carrying its state
+    frameworks/           The three free frameworks (was /playbooks)
+    research/             Cited briefs
+    consulting/           Modernize / Automate / Build / Operate, engagements,
+                          retainers, workshops — one page
+    services/[slug]/      The four areas, kept for inbound links
+    advisory/             How engagements are shaped
+    playbook/             The three paid PDFs and their checkout
+  (offer)/offer/          Ad landing pages: no site nav, one decision each
+  api/                    Contact, Paddle webhook, playbook download
 components/
-  ui/                   Design-system primitives (button, card, badge, section, container)
-  site-header.tsx       Navigation, with dropdowns driven by nav[].children
-  site-footer.tsx       Shared footer + ecosystem map
-  product-card.tsx      Reusable product/service card
-  theme-provider.tsx    next-themes wrapper
-  theme-toggle.tsx      Light/dark switch
-  alternatives-table.tsx  Agency / integrator / freelancer / ARC comparison
-  market-signals.tsx    Dated "what changed" strip (Labs)
+  ui/                     Primitives (button, card, badge, section)
+  agent-chain.tsx         The canonical nine-node chain, with coverage state
+  evidence-artifact.tsx   The Agent Access Record, shown rather than described
+  price-block.tsx         A price, where a buyer can see it
+  capture-form.tsx        One-field email capture
+  cta.tsx                 Four closing asks, by intent
+  diagram.tsx             Panel, FlowChain, FlowStack, SplitClaim, Takeaway
 lib/
-  content.ts            Single source of truth for all ecosystem content
-  services.ts           The four buyer problems and the homepage copy
-  research.ts           Cited research briefs
-  utils.ts              cn() helper
+  content.ts              Labs, engagements, signals, nav, the state scale
+  ark.ts                  The chain, the assessment, Agent Control
+  services.ts             The four areas and the home page copy
+  research.ts             Cited briefs
+  learn.ts                The free frameworks and the scorecard
 docs/
-  WRITING.md            The copy standard every page has to pass
+  WRITING.md              The copy standard every page has to pass
+  GRILL-AUDIT.md          Commercial audit
+  IMPECCABLE-AUDIT.md     Product design, IA and conversion audit
 ```
+
+### States
+
+Five, and they render differently from each other on purpose:
+
+| State | Means |
+| --- | --- |
+| `available` | Buy it or use it today. The page says what it costs. |
+| `beta` | Works, in use, surface still moving. |
+| `labs` | Free tool. Source published. No account. |
+| `research` | Thinking, no implementation. Nothing to sign up for. |
+| `soon` | Committed, not built. The page says what is missing. |
+
+Shape carries the meaning alongside colour, so the scale survives greyscale.
+`lib/content.ts` holds the scale; `components/ui/badge.tsx` renders it.
 
 ## Keeping the site current
 
@@ -149,11 +171,14 @@ Every page has to pass the copy standard in [`docs/WRITING.md`](docs/WRITING.md)
 before it ships. The short version: name the buyer's problem before naming the
 discipline, and do not announce a quality the page can demonstrate instead.
 
-The top level of the site offers four choices, not nine. `lib/services.ts` holds
-them; scoped engagements live under `/advisory/<slug>` and are grouped by the
-service area that sends a visitor to them. When you add an engagement, give it a
-`focus` label describing the problem it solves rather than an internal codename,
-and map it into a service area so it is reachable from the four.
+The header carries six entries and no dropdowns. Every one is a destination;
+the hub pages carry the depth. `lib/content.ts` holds the list. Agent Control
+is deliberately absent from it — it is research, it cannot be bought, and a nav
+slot would imply otherwise.
+
+Consulting engagements live under `/advisory/<slug>` and are collected on
+`/consulting`. When you add one, give it a `focus` label describing the problem
+it solves rather than an internal codename.
 
 ## Adding a new product (the whole point)
 
@@ -177,7 +202,7 @@ No new website. Just content.
    - `CONTACT_TO_EMAIL` — usually `aking@arctransformationgroup.com`
    - `CONTACT_FROM_EMAIL` — a verified Resend sender
 5. **Domain:** pick one canonical host (`.com` or `.org`), set it primary, 301 the other.
-6. **Smoke test:** home, `/services/modernize`, `/labs/mcp-conformance-scanner`, `/contact`, `/privacy`.
+6. **Smoke test:** home, `/agents`, `/assessment`, `/labs/mcp-conformance-scanner`, `/frameworks`, `/contact`.
 7. **Dependabot:** enable on the GitHub repo for dependency alerts.
 
 Analytics ships via `@vercel/analytics` with no extra config once the project is on Vercel.
@@ -218,8 +243,8 @@ The real risks are operational, not in the code. In priority order:
    **Dependabot** on the GitHub repo; updates are usually a one-line bump.
    Run `npm audit` before big releases.
 
-Threat level rises only when you build the **Platform** pillar with real logins
-and customer data. That warrants its own security design (auth, session
+Threat level rises only when a product with real logins and customer data
+exists. That warrants its own security design (auth, session
 management, data handling, least-privilege access) — handle it then, not now.
 
 ## Selling the Playbooks

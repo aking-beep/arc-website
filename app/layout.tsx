@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
@@ -22,26 +22,24 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
   title: {
-    default: "ARC Transformation Group · Make technology work for your business.",
+    default:
+      "ARC Transformation Group · What are your agents allowed to do?",
     template: "%s · ARC Transformation Group",
   },
   description: site.description,
+  // Kept to the wedge. A keyword list spanning six categories is a
+  // machine-readable version of the positioning problem.
   keywords: [
-    "agent readiness",
-    "outcome assurance",
     "AI agent governance",
-    "agent infrastructure",
-    "MCP conformance",
-    "AI architecture decisions",
-    "EU AI Act readiness",
-    "technical due diligence",
-    "cloud and data modernization",
-    "digital transformation",
-    "open source tools",
+    "agent access inventory",
+    "agent permissions audit",
+    "AI agent identity",
+    "MCP governance",
+    "agent approval gates",
   ],
   openGraph: {
     type: "website",
-    title: "ARC Transformation Group · Make technology work for your business.",
+    title: "ARC Transformation Group · What are your agents allowed to do?",
     description: site.description,
     url: site.domain,
     siteName: site.name,
@@ -53,6 +51,14 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
+};
+
+/** Browser chrome follows the theme instead of staying white in dark mode. */
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0e17" },
+  ],
 };
 
 const jsonLd = {

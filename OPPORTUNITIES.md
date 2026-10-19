@@ -1,6 +1,13 @@
 # Opportunities
 
-Living list. Ranked. Cap 15 active. Updated 2026-09-07 (afternoon scan).
+Living list. Ranked. Cap 15 active. Updated 2026-10-19.
+
+**Re-rank note (2026-10-19).** The site now leads with agent access governance
+(see `docs/GRILL-AUDIT.md` and `docs/IMPECCABLE-AUDIT.md`). Items below that
+point at `arc-skills`, `aifit-engine` or "Studio Warden" reference surfaces
+that no longer exist on this site; they are moved to Closed rather than left
+pointing at dead routes. Anything that does not serve the agent-access wedge
+is now a side bet, and should be ranked as one.
 
 Evidence dates are when *this run* confirmed the source, not when the event first happened.
 

@@ -20,9 +20,13 @@ export function Section({
   );
 }
 
+/**
+ * The one eyebrow. Mono, 11px, wide tracking — the same treatment as
+ * PanelLabel, so a reader learns it once.
+ */
 export function Kicker({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mb-4 text-sm font-medium uppercase tracking-widest text-muted-foreground">
+    <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
       {children}
     </p>
   );

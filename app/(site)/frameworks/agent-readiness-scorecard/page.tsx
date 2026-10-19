@@ -58,6 +58,7 @@ export default function ScorecardPage() {
       </Section>
 
       <CTA
+        variant="assessment"
         title="Scored lower than you expected?"
         lead="That is the normal result, and it is usually identity and verification rather than interfaces. Thirty minutes is enough to work out what to fix first."
       />

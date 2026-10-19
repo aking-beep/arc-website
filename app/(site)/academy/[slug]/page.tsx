@@ -111,6 +111,7 @@ export default function WorkshopPage({
       </Container>
 
       <CTA
+        variant="talk"
         title="Want this workshop for your team?"
         lead="Tell us the decision you need to make. We'll scope the session against your own systems and who has to be in the room."
       />

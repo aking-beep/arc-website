@@ -209,6 +209,7 @@ export default function AdvisoryPage() {
       </Section>
 
       <CTA
+        variant="talk"
         title="Tell us what's happening."
         lead="A 30-minute call is enough to tell you whether a scoped review is the right first step, and what size of engagement the problem needs."
         topic="advisory"

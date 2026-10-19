@@ -123,6 +123,7 @@ export default function OperatingContractPage() {
       </Section>
 
       <CTA
+        variant="assessment"
         title="Filled it in and found gaps?"
         lead="That is what it is for. The Agent Access Assessment turns those gaps into an inventory, a blast-radius ranking and a hardening plan with owners."
       />

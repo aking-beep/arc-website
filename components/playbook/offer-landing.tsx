@@ -223,9 +223,9 @@ export function OfferProduct({
             </p>
           </div>
           <div>
-            <h2 className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
+            <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
               The other two
-            </h2>
+            </p>
             <ul className="mt-4 space-y-4">
               {others.map((item) => (
                 <li key={item.slug}>

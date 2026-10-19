@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { initializePaddle, type Paddle } from "@paddle/paddle-js";
+import { useTheme } from "next-themes";
 
 import { Button, type ButtonProps } from "@/components/ui/button";
 import { trackEvent } from "@/lib/analytics";
@@ -54,6 +55,7 @@ export function CheckoutButton({
 }) {
   const [state, setState] = React.useState<State>("idle");
   const paddleRef = React.useRef<Paddle | null>(null);
+  const { resolvedTheme } = useTheme();
 
   const idleLabel = typeof children === "string" ? children : `Get ${product}`;
 
@@ -110,7 +112,7 @@ export function CheckoutButton({
         settings: {
           successUrl: `${window.location.origin}/playbook/success`,
           displayMode: "overlay",
-          theme: "light",
+          theme: resolvedTheme === "dark" ? "dark" : "light",
         },
       });
 

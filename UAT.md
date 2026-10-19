@@ -10,7 +10,7 @@ The live homepage (and Labs) still said Cursor’s Enterprise Auto flat rate “
 2. Home Cost card uses past tense (“expired 7 September 2026”), does not say “expires 7 September 2026”, still links to `/labs/tokenloop`, and cites Cursor’s Models & Pricing page.
 3. Labs `/labs` renders the same two signals.
 4. TokenLoop `/labs/tokenloop` audience copy says enterprise flat rates “have expired”, not “are expiring”.
-5. `/labs/arc-skills` returns 200 (the Skills CTA is not a 404).
+5. ~~`/labs/arc-skills` returns 200~~ — retired. ARC Skills ships inside the Ship playbook; `/labs/arc-skills` now 301s to `/playbook/ship`.
 6. `/research/metered-agents-ai-spend-control` uses ended/until language for the 7 September carve-out, not “expiring” / “keeps the old flat rate”.
 7. Production build and lint succeed.
 

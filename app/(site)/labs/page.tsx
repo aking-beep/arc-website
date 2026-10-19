@@ -138,8 +138,9 @@ export default function LabsPage() {
       })}
 
       <CTA
-        title="Need a human to read the report?"
-        lead="Advisory turns findings into a plan with owners. Same point of view as the tools. Thirty minutes to see if that is worth it."
+        variant="tool"
+        title="Start with the agent access scan."
+        lead="It is the one that answers the question most people arrive with: what can our agents reach, and what can they change."
       />
     </>
   );

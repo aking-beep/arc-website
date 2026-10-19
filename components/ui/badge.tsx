@@ -40,11 +40,11 @@ const chrome: Record<State, { wrap: string; dot: string }> = {
   },
   research: {
     wrap: "border-dashed border-border bg-transparent text-muted-foreground",
-    dot: "border border-current bg-transparent",
+    dot: "border border-current bg-transparent opacity-60",
   },
   soon: {
     wrap: "border-dashed border-border bg-transparent text-muted-foreground/70",
-    dot: "border border-current bg-transparent",
+    dot: "border border-current bg-transparent opacity-40",
   },
 };
 

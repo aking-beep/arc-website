@@ -1,4 +1,4 @@
-import { Container } from "@/components/ui/section";
+import { Container, Kicker } from "@/components/ui/section";
 
 export function PageHero({
   kicker,
@@ -16,9 +16,7 @@ export function PageHero({
       <div className="pointer-events-none absolute inset-0 grid-bg opacity-60" />
       <Container className="relative py-20 sm:py-24">
         <div className="max-w-3xl animate-fade-up">
-          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-muted-foreground">
-            {kicker}
-          </p>
+          <Kicker>{kicker}</Kicker>
           <h1 className="text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
             {title}
           </h1>

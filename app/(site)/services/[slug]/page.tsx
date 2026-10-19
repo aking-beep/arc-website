@@ -163,6 +163,7 @@ export default function ServiceAreaPage({ params }: Params) {
       </Section>
 
       <CTA
+        variant="talk"
         title="Tell us what's happening."
         lead="Thirty minutes is enough to work out whether this needs a small fix, a focused project, or nothing from us at all."
         topic={area.slug}

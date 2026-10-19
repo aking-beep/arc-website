@@ -24,7 +24,26 @@ const node: Record<ChainCoverage, string> = {
 const marker: Record<ChainCoverage, string> = {
   covered: "bg-brand",
   partial: "border border-muted-foreground bg-transparent",
-  research: "border border-dashed border-muted-foreground bg-transparent",
+  // A dashed border on a 6px dot is noise. Opacity reads at that size; the
+  // dashed border stays on the node box, where it is legible.
+  research: "border border-muted-foreground bg-transparent opacity-50",
+};
+
+/**
+ * Two hollow dots a few pixels apart are not a distinction anyone should have
+ * to squint at, so the full chain names the state in text. The brief for this
+ * diagram was that the states be impossible to confuse.
+ */
+const tag: Record<ChainCoverage, string> = {
+  covered: "border-brand/40 bg-brand/10 text-brand",
+  partial: "border-border bg-muted/50 text-muted-foreground",
+  research: "border-dashed border-border bg-transparent text-muted-foreground",
+};
+
+const tagLabel: Record<ChainCoverage, string> = {
+  covered: "Assessed",
+  partial: "Partial",
+  research: "Research",
 };
 
 export function ChainLegend({ className }: { className?: string }) {
@@ -83,6 +102,14 @@ export function AgentChain({
                   <p className="font-mono text-xs uppercase tracking-[0.16em]">
                     {step.name}
                   </p>
+                  <span
+                    className={cn(
+                      "rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider",
+                      tag[step.coverage],
+                    )}
+                  >
+                    {tagLabel[step.coverage]}
+                  </span>
                   <span className="sr-only">
                     {chainCoverageLabel[step.coverage]}
                   </span>

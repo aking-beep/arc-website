@@ -68,15 +68,15 @@ export default function AdvisoryEngagementPage({
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2">
             <Card className="p-5">
-              <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+              <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                 Starts with
-              </h2>
+              </p>
               <p className="mt-2 text-sm leading-relaxed">{offering.startsWith}</p>
             </Card>
             <Card className="p-5">
-              <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+              <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
                 You leave with
-              </h2>
+              </p>
               <p className="mt-2 text-sm leading-relaxed">{offering.youLeaveWith}</p>
             </Card>
           </div>
@@ -88,9 +88,9 @@ export default function AdvisoryEngagementPage({
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
               {offering.whoFor}
             </p>
-            <h3 className="mt-8 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+            <p className="mt-8 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
               Probably not if
-            </h3>
+            </p>
             <ul className="mt-4 space-y-3">
               {offering.notFor.map((item) => (
                 <li key={item} className="flex items-start gap-3">
@@ -172,6 +172,7 @@ export default function AdvisoryEngagementPage({
       </Container>
 
       <CTA
+        variant="talk"
         title={`Want to talk about the ${offering.name}?`}
         lead="A 30-minute call is enough to tell you whether this is the right first step — and what size of engagement the problem needs."
       />

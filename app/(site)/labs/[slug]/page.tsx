@@ -174,15 +174,16 @@ export default function ProductPage({
       </Section>
 
       <CTA
+        variant="scan"
         title={
           isCatalog
             ? "Want these adapted to how your team works?"
-            : "Need a human to read this report?"
+            : "The report reads what you type."
         }
         lead={
           isCatalog
-            ? "Advisory can help you pick, wire, and govern the pieces that match your team. Thirty minutes to see if that's useful."
-            : "The report is the start. Advisory turns findings into a plan with owners. Thirty minutes to see if that's worth it."
+            ? "Thirty minutes is enough to work out whether that is worth scoping."
+            : "The assessment reads what you run — the inventory, the blast-radius ranking and the gates, against your own systems."
         }
       />
     </>

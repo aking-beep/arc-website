@@ -60,9 +60,14 @@ export function Scorecard() {
     .slice(0, 3);
 
   React.useEffect(() => {
-    if (complete) {
-      resultRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
+    if (!complete) return;
+    // Honour the same preference the stylesheet does. The CSS block cannot
+    // reach a scroll started from JavaScript.
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    resultRef.current?.scrollIntoView({
+      behavior: reduced ? "auto" : "smooth",
+      block: "nearest",
+    });
   }, [complete]);
 
   return (
@@ -117,7 +122,7 @@ export function Scorecard() {
       </ol>
 
       <div className="lg:sticky lg:top-24" ref={resultRef}>
-        <Card className="p-6 sm:p-8">
+        <Card className="p-6 sm:p-8" role="status" aria-live="polite">
           <PanelLabel>Your result</PanelLabel>
 
           <div className="mt-5 flex items-baseline gap-3">
@@ -127,8 +132,15 @@ export function Scorecard() {
             <span className="text-sm text-muted-foreground">/ 100</span>
           </div>
 
-          <div className="mt-4" aria-hidden>
-            <div className="h-1.5 overflow-hidden rounded-full bg-muted">
+          <div className="mt-4">
+            <div
+              role="progressbar"
+              aria-valuemin={0}
+              aria-valuemax={total}
+              aria-valuenow={answered}
+              aria-label="Questions answered"
+              className="h-1.5 overflow-hidden rounded-full bg-muted"
+            >
               <div
                 className="h-full rounded-full bg-brand transition-all"
                 style={{ width: `${(answered / total) * 100}%` }}

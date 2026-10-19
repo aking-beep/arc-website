@@ -17,10 +17,6 @@ export function offerHref(slug?: PlaybookSlug): string {
   return slug ? `/offer/${slug}` : "/offer";
 }
 
-export function isOfferPath(pathname: string): boolean {
-  return pathname === "/offer" || pathname.startsWith("/offer/");
-}
-
 export const offerCatalog = {
   kicker: "Playbooks",
   title: "Buy the playbook for the part of the work you are in.",

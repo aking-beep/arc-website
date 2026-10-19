@@ -132,6 +132,7 @@ export default function ResearchPage() {
       </Section>
 
       <CTA
+        variant="scan"
         title="Want this applied to your stack?"
         lead="We can take a paper and score it against your environment: what to do first, what to ignore, who owns it."
       />

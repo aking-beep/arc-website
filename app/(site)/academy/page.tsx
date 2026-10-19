@@ -75,6 +75,7 @@ export default function AcademyPage() {
       </Section>
 
       <CTA
+        variant="talk"
         title="Want a workshop for your team?"
         lead="Tell us the decision the room has to make. We'll scope a half-day or two-day session against your own systems."
       />

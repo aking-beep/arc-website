@@ -132,6 +132,7 @@ export default function CaseStudyPage({
       </Section>
 
       <CTA
+        variant="talk"
         title="Want this standard of work on your problem?"
         lead="We'll tell you on a 30-minute call whether a diagnostic, a narrower review, or a workshop is the right first step — including if the answer is none of those."
       />

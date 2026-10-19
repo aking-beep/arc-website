@@ -157,6 +157,7 @@ export default function ArticlePage({
       </Container>
 
       <CTA
+        variant="scan"
         title="Want this applied to your stack?"
         lead="We can score the paper against your environment: what to do first, what to ignore, who owns it."
       />

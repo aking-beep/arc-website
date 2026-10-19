@@ -173,6 +173,7 @@ export default function AboutPage() {
       </Section>
 
       <CTA
+        variant="talk"
         title="Thirty minutes. No deck."
         lead="We will listen, ask the hard questions, and tell you whether ARC is the right next step — including when it is not."
       />

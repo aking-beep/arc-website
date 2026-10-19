@@ -238,9 +238,3 @@ export const homeLadder = [
     linkLabel: "See the consulting work",
   },
 ];
-
-export const homeClose = {
-  title: "Not sure whether this is your problem?",
-  lead: "Run the scan. It is free, it runs in your browser, and it will tell you in a few minutes whether there is anything here worth paying for.",
-  cta: "Run the free scan",
-};

@@ -6,9 +6,9 @@
 export const site = {
   name: "ARC Transformation Group",
   short: "ARC",
-  tagline: "Make technology work for your business.",
+  tagline: "Know what your agents can reach, change and prove.",
   description:
-    "ARC helps growing companies work out what to improve, what to automate and what to build across AI, cloud, data, security and software — and then helps get it working.",
+    "ARC writes down what your AI agents can reach, what they can change, and which actions should need a person. Free scan, or a fixed-fee assessment.",
   audience: {
     badge: "AI · Automation · Cloud · Security · Software",
     line: "ARC helps growing companies work out what to improve, what to automate and what to build — and then helps get it working.",
@@ -1487,7 +1487,6 @@ export const secondaryRoutes = [
   "/developers",
   "/work",
   "/playbook",
-  "/services",
   "/advisory",
   "/academy",
   "/contact",

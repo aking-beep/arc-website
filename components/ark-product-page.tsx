@@ -58,6 +58,16 @@ export function ArkProductPage({
               <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
                 {product.summary}
               </p>
+              {product.price ? (
+                <p className="mt-6 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span className="text-3xl font-semibold tracking-tight">
+                    {product.price.amount}
+                  </span>
+                  <span className="text-sm text-muted-foreground">
+                    {product.price.unit} · {product.price.duration}
+                  </span>
+                </p>
+              ) : null}
               <div className="mt-8">
                 <Button href={product.ctaHref} size="lg">
                   {product.ctaLabel}

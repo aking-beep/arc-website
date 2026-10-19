@@ -1,24 +1,17 @@
 import {
   Boxes,
-  FlaskConical,
   Compass,
-  LayoutDashboard,
   Layers,
-  LineChart,
-  GraduationCap,
   ShieldCheck,
   Sparkles,
   type LucideIcon,
 } from "lucide-react";
 
+/** Compass is the fallback, so every other entry has to earn its place. */
 const icons = {
   Boxes,
-  FlaskConical,
   Compass,
-  LayoutDashboard,
   Layers,
-  LineChart,
-  GraduationCap,
   ShieldCheck,
   Sparkles,
 } satisfies Record<string, LucideIcon>;

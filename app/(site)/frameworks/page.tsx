@@ -6,6 +6,7 @@ import { Section, SectionHeading } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { FlowChain, PanelLabel, Takeaway } from "@/components/diagram";
 import { CTA } from "@/components/cta";
+import { CaptureForm } from "@/components/capture-form";
 import { playbookHref, playbooks } from "@/lib/learn";
 import { academy, research } from "@/lib/content";
 
@@ -78,10 +79,26 @@ export default function PlaybooksPage() {
       </Section>
 
       <Section>
-        <Takeaway className="max-w-3xl">
-          Everything here is written to be used by someone who will never
-          contact us. That is the test it has to pass.
-        </Takeaway>
+        <div className="grid gap-12 lg:grid-cols-[1fr_minmax(0,24rem)] lg:items-center lg:gap-16">
+          <Takeaway>
+            Everything here is written to be used by someone who will never
+            contact us. That is the test it has to pass.
+          </Takeaway>
+          <Card className="p-6 sm:p-8">
+            <PanelLabel>Want the whole set as files?</PanelLabel>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              The three frameworks plus a blank Agent Access Record you can
+              fill in yourself. Everything on this page stays free and complete
+              without it — the email buys the files, not the content.
+            </p>
+            <div className="mt-6">
+              <CaptureForm
+                topic="frameworks-pack"
+                label="Where should we send them?"
+              />
+            </div>
+          </Card>
+        </div>
       </Section>
 
       <Section className="bg-muted/30">
@@ -155,6 +172,7 @@ export default function PlaybooksPage() {
       </Section>
 
       <CTA
+        variant="assessment"
         title="Used the framework and hit a wall?"
         lead="That is usually where the paid work starts. Thirty minutes is enough to tell you whether the wall is a system, an organization, or a decision nobody has made yet."
       />
