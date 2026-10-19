@@ -10,6 +10,12 @@ Companion document: [`docs/GRILL-AUDIT.md`](./GRILL-AUDIT.md) (commercial).
 That audit is treated here as **input, not authority** — §0.2 lists where this
 pass confirms it, where it extends it, and the one place it was wrong.
 
+> **Implementation status (added after the audit was written).** The audit pass
+> itself changed no code. The findings were then implemented in two commits —
+> see [§23](#23-implementation-status) for exactly what shipped, what was left,
+> and the one number that still needs your confirmation. The P0 and P1 sections
+> below describe the site **as audited**, not as it now stands.
+
 ---
 
 ## 0. Before the audit: two conflicts in the brief that have to be resolved first
@@ -943,3 +949,67 @@ The one place the design layer breaks promise 3 is `ProductVisualPanel`
 (§P0-8). Fixing that single component brings the visual layer back into line
 with the writing standard — which is, in the end, what this entire audit is
 asking the site to do.
+
+---
+
+## 23. Implementation status
+
+Added 2026-10-19, after the audit. Two commits: `c16d0c7` (restructure) and
+`713ad99` (backlog). `npm run build`, `npm run lint`, `npm run typecheck` and
+`npm test` (74 tests) all pass, and every route and redirect was checked
+against a running production build.
+
+### Shipped — all 11 P0 items
+
+| # | Item | What changed |
+| --- | --- | --- |
+| 1 | Form labels | `htmlFor`/`id` on every control in `contact-form.tsx`. The WCAG failure is gone. |
+| 2 | `aria-live` | Contact success, scorecard result and checkout error all announce. |
+| 3 | `/playbooks` → `/frameworks` | Renamed, with a 301 for the index and every child. |
+| 4 | Five-state scale | `Maturity` (7) + `Status` (3) → `State` (5), each with its own appearance. Shape as well as colour. |
+| 5 | Dead exports | `CardHeader`/`CardTitle`/`CardContent`, `StatusBadge`, `Status`, `statusLabel` deleted. |
+| 6 | `AgentChain` | Nine nodes with per-node coverage, a legend, and a text tag per node. Vertical at every width. |
+| 7 | `EvidenceArtifact` | The Agent Access Record, rendered, watermarked `EXAMPLE`, with a table/stacked responsive split. |
+| 8 | `PriceBlock` | Plus a `price` field on `ArkProduct`, rendered in the hero and again in full. |
+| 9 | `CtaBand` | Four variants (`scan`/`assessment`/`tool`/`talk`). `title` and `lead` are now required, so a bare `<CTA />` fails typecheck. |
+| 10 | Example panels | `ProductVisualPanel` says "example output" in visible text. The inert `animationDelay` is gone. |
+| 11 | `CaptureForm` | One field, on `/frameworks`, posting to the existing validated contact route via a new `kind: "capture"`. |
+
+### Shipped — P1
+
+Homepage rebuilt to the §8 wireframe. `/platform` → `/agents`,
+`/agent-readiness` → `/assessment`, `/ark-control` → `/agents/control`,
+`/ai-fit` and `/ai-fit-teams` deleted, `/consulting` created, nav cut to six
+items with no dropdowns, `SiteFooter` is a server component behind `(site)` /
+`(offer)` route groups, the retainers table got its small-screen fallback, and
+the scorecard's progress and motion behaviour are fixed.
+
+### Shipped — selected P2/P3
+
+One eyebrow treatment; `metadata.keywords` cut from eleven terms to six;
+`/not-found` pointing at the new IA; Paddle's overlay following the resolved
+theme; `theme-color` per scheme; visible focus rings on links; dark-mode
+`::selection`; four unused icons and two newly dead exports removed; README,
+`package.json`, `OPPORTUNITIES.md` and `UAT.md` corrected.
+
+### Deliberately not done
+
+| Item | Why |
+| --- | --- |
+| `/labs` → `/tools` | Churns every tool URL for a one-word gain. The state badges already carry "this is unfinished" honestly. Revisit if "Labs" tests badly. |
+| Archiving the four off-thesis Labs tools | They are now three clicks from the home page rather than in the nav, which was the actual problem. Deleting live tools is a business call, not a design one — it is in `GRILL-AUDIT.md` for you to make. |
+| Collapsing `/advisory/[slug]` into `/consulting` | The eight engagement pages are good and may carry search traffic. `/consulting` now collects them; merging them is reversible later and deleting them is not. |
+| Blast-radius and approval-gate diagrams | Worth drawing, but they describe assessment findings. Draw them from the first real engagement rather than inventing an example. |
+| Brand mark, per-page OG images, `BriefToc` | P3. Real work, no conversion impact this quarter. |
+| A price on the eight advisory engagements | The field exists on `ArkProduct`. Adding it to `AdvisoryEngagement` is trivial; deciding the eight numbers is not, and inventing them would break the standard the site is built on. |
+
+### One number that needs your confirmation
+
+The assessment is priced at **$15,000, 2–3 weeks**, set in one place —
+`assessment.price` in `lib/ark.ts`. That figure is the audit's recommendation,
+not a number you gave me. It is now on the home page, the agents hub, the
+assessment page, the nav button's sibling CTA and the footer.
+
+Change it in that one constant and every surface follows. If it is wrong, it
+is wrong in one line — but it should not stay unexamined, because the whole
+restructure rests on there being a visible price.
