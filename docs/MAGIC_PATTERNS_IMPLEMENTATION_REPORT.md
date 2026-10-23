@@ -233,12 +233,12 @@ Everything below was executed. Nothing is reported as passing that was not run.
 | Dependency installation | `npm ci` — 510 packages |
 | Lint | `npm run lint` — no ESLint warnings or errors |
 | Type checking | `tsc --noEmit` — clean, strict mode |
-| Unit tests | `npm test` — **145 passed** (74 pre-existing + 9 from PR #18 + 62 new) |
+| Unit tests | `npm test` — **150 passed** (74 pre-existing + 9 from PR #18 + 67 new) |
 | Production build | `npm run build` — 60 routes, no errors |
 | Route verification | 68 URLs against `next start` — **all 200** |
 | Redirects | 11 existing + 1 new — all 308 to the correct target |
 | 404 | Unknown path returns 404 with the designed page |
-| Contact API | 7 cases: extended payload 200, honeypot accept-and-drop 200, missing name 400, bad email 400, wrong content-type 415, GET 405, legacy payload 200. Server log confirms all 12 fields arrive, including the 6 new ones |
+| Contact API | 8 cases: extended payload 200, honeypot accept-and-drop 200, missing name 400, bad email 400, wrong content-type 415, GET 405, legacy payload 200. Server log confirms all 12 fields arrive, including the 6 new ones. A CRLF in `name` and `company` arrives as spaces while a newline in the message body survives |
 | Browser journeys | **22 Playwright tests passed** (below) |
 | Console errors | Zero on all 7 redesigned routes |
 | Excluded products | Absent from 66 rendered pages, 16 content modules and 10 route body texts |
@@ -252,6 +252,7 @@ Everything below was executed. Nothing is reported as passing that was not run.
 | Dark mode | Verified by screenshot on `/` and `/control` |
 
 | Console showcase | `/ark-control/console` and its static files all 200; the `/ark-control` redirect does not shadow them |
+| Structured data | All 5 JSON-LD blocks escape `<`, `>`, `&` and the two JavaScript line terminators, and parse back to the original JSON |
 
 The 22 browser journeys: console-error-free rendering on 7 routes; navigation
 to every primary destination; the mobile menu opening, taking focus and
@@ -264,6 +265,30 @@ rejecting a bad email, submitting and confirming; keyboard-only access via the
 skip link; no horizontal overflow at two viewports; the real console
 showcase reachable from `/control`; and the capture's back-link landing on the
 product page.
+
+### Hardening
+
+Two surfaces this branch widens were tightened before merge. Neither was a
+reachable exploit; both are on paths that changed here.
+
+- **Control characters in the inquiry fields.** Six new fields reach the
+  notification email and three of them (`name`, `company`, `type`) land in its
+  subject. `clampField` trimmed and truncated but passed control characters
+  through, so a CR or LF could split a line. Resend takes JSON and encodes
+  headers itself, so this was not live header injection — but a field that
+  becomes one line of an email should not be able to contain a newline.
+  Single-line fields now have control characters replaced with a space;
+  `message` and `technical` keep their line breaks and lose only non-printing
+  characters.
+- **JSON-LD serialization.** This branch added four structured-data blocks
+  beside the existing one, all rendered with `dangerouslySetInnerHTML`.
+  `JSON.stringify` does not escape `<`, so `</script>` inside a string would
+  close the tag early. Every block is built from authored content modules
+  rather than user input, so nothing reachable is at risk today — but a page
+  that is safe only because of what the data happens to contain is one content
+  edit away from not being. All five now go through `jsonLdScript`.
+
+Five tests cover both.
 
 ### Not tested
 
@@ -424,8 +449,9 @@ Scored against the evidence in §9, not against impression.
 | Dimension | Score | Evidence |
 | --- | --- | --- |
 | Design integration | 18 / 20 | All 8 prototype pages and 30 components ported; tokens, type scale, spacing and interactions preserved; 8 shared primitives restyled so ~25 unconverted routes match. −2: those routes keep their original layouts, and dark mode is derived rather than approved. |
-| Functional correctness | 19 / 20 | 145 unit tests, 22 browser journeys, 68 routes at 200, 12 redirects correct, zero console errors, contact API verified across 7 cases including the legacy payload. −1: email delivery needs credentials and is unproven. |
+| Functional correctness | 19 / 20 | 150 unit tests, 22 browser journeys, 68 routes at 200, 12 redirects correct, zero console errors, contact API verified across 7 cases including the legacy payload. −1: email delivery needs credentials and is unproven. |
 | Preservation of existing behaviour | 20 / 20 | 74 existing tests pass unmodified; commerce untouched; every URL kept or permanently redirected; every dropped nav item still reachable from the footer, asserted by test. PR #18's console, rewrite, Button fix and tests all preserved through the merge (§4.1). |
+| Security | — | Not scored separately; covered under functional correctness. The honeypot, length clamps, method guards and the `noindex` on token-scoped routes are unchanged; control-character stripping and JSON-LD escaping were added (§9). |
 | Claims discipline | 19 / 20 | No invented capability, metric, customer or URL. Every maturity reads from one taxonomy. Simulated data is labelled everywhere it appears. The four excluded apps are absent and three independent checks enforce it. −1: the console and execution data are invented; labelled, but a buyer must take the label seriously. |
 | SEO | 14 / 15 | Canonicals corrected on 66 pages — a pre-existing bug fixed; per-route titles, descriptions, Open Graph and structured data; sitemap excludes redirecting URLs; all 11 redirects preserved. −1: no post-deploy Search Console confirmation is possible yet. |
 | Accessibility | 12 / 15 | One `<h1>` per page, no skipped heading levels, keyboard tablists, focus trap with a regression test, visible focus rings, reduced motion honoured in both CSS and framer-motion, no overflow at 390px. −3: no automated axe pass and no instrumented contrast measurement. |
