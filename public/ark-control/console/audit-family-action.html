@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit — ARC Control</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%231d4ed8%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%227.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2214.5%22%20width%3D%2218%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2221.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="console.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<aside class="demo-strip" aria-label="About this page">
+  <strong>Live design showcase</strong>
+  <span>Real markup from the ARC Control console, captured from the running server against the shipped demo seed (<span class="mono">ARC_SEED_DEMO=true</span>). The policy decisions, the approval, the evidence records and the hash-chained audit log below are all real; the connector effects are simulated, and controls that would write are disabled. Built from <span class="mono">9dd75e3</span> on <span class="mono">2026-10-23</span>.</span>
+  <a class="showcase-home" href="/ark-control">← ARC Transformation Group</a>
+</aside>
+<div class="shell">
+<nav class="rail" aria-label="Console">
+  <div class="rail-brand">
+    <span class="mark" aria-hidden="true"></span>
+    <span class="wordmark">ARC <strong>Control</strong></span>
+  </div>
+  <div class="rail-groups"><div class="rail-group">
+      <div class="rail-group-label">Operate</div>
+      <ul>
+        <li>
+        <a
+          href="index.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Overview</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="approvals.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Approvals</span>
+          <span class="rail-count">1<span class="sr-only"> pending</span></span>
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Inventory</div>
+      <ul>
+        <li>
+        <a
+          href="agents.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Agents</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="tools.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Tools</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Govern</div>
+      <ul>
+        <li>
+        <a
+          href="policies.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Policies</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="access.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Access</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Record</div>
+      <ul>
+        <li>
+        <a
+          href="evidence.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Evidence</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="audit.html"
+          class="rail-item active"
+          aria-current="page"
+        >
+          <span class="rail-mark" aria-hidden="true"></span>
+          <span>Audit</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Assure</div>
+      <ul>
+        <li>
+        <a
+          href="security.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Security</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="reports.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Reports</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div></div>
+  <div class="rail-foot">Theme follows the system setting</div>
+</nav>
+<div class="column">
+  <header class="masthead">
+    <p class="masthead-operator">
+      Acting as <strong>operations@arctransformationgroup.com</strong>
+      <span class="muted">(configured, not authenticated)</span>
+    </p>
+    <p class="masthead-api">
+      <span>API <span class="mono">http://127.0.0.1:8787</span></span>
+      <span class="health ok">
+    <span class="dot" aria-hidden="true"></span>ok</span
+  >
+      <span class="tnum muted">v0.1.0</span>
+    </p>
+  </header>
+  <main id="main">
+    <div class="main-inner">
+
+<div class="page-header">
+    <div class="page-header-text">
+      <h1 class="">Audit</h1>
+      <p class="lede">Append-only and hash-chained: each record carries the digest of its predecessor, so editing one breaks every link after it and removing one from the middle leaves a sequence gap.</p>
+    </div>
+    
+  </div>
+  
+  <div class="card ">
+    <p style="font-size:18px;font-weight:650;margin:0">
+      Chain <span class="allow-text">intact</span>
+      <span class="muted" style="font-size:14px;font-weight:400;margin-left:8px">
+        37 record(s) verified
+      </span>
+    </p>
+    
+    <div style="margin-top:12px">
+          <div class="digest-row">
+    <div>
+      <div class="mono muted">head digest</div>
+      <div class="digest-note">sequence 37</div>
+    </div>
+    <code class="digest">sha256:4ca2ba485ffe7b7f6c789fcb342874c344c9f7705a838f5fd53130652dd48df5</code>
+  </div>
+        </div>
+    <p class="note">
+          Checked against itself only. This detects an edited record and a record missing from the middle, but not truncation: removing entries from the end leaves a shorter chain that still verifies. 
+          This is tamper evidence, not tamper proofing — an attacker who controls the storage can rewrite the whole chain
+          and recompute every digest. Recording the head digest above somewhere ARC Control cannot reach is what closes
+          both gaps.
+        </p>
+  </div>
+
+  <details class="raw" style="margin-top:12px">
+    <summary>Verify against an anchored head</summary>
+    <div class="inert" class="field-row" style="padding:12px 16px;border-top:1px solid var(--border)">
+      <label class="field">
+        headDigest
+        <input disabled class="mono" type="text" name="headDigest" value="" placeholder="sha256:…" />
+      </label>
+      <label class="field" style="max-width:180px">
+        headSequence
+        <input disabled class="mono" type="text" inputmode="numeric" name="headSequence" value="" />
+      </label>
+      <button disabled aria-disabled="true" type="submit" class="primary">Verify</button>
+    <p class="inert-note">Verifying against an anchored head needs the live console: this page is a static capture, so the form cannot run. The verdict above was produced by a real verification of a real chain.</p></div>
+  </details>
+
+  <div class="section-title">
+    <h2>Records</h2>
+    <div class="section-aside"><span class="muted">Newest first · 16 of 37 shown</span></div>
+  </div>
+  <div style="margin-bottom:12px">
+    <nav class="filters" aria-label="Family (within this page of records)">
+    <span class="filters-label">Family (within this page of records)</span>
+    <a
+        href="audit.html"
+        class="chip"
+        
+        >All<span class="chip-count tnum">37</span></a
+      ><a
+        href="audit-family-agent.html"
+        class="chip"
+        
+        >agent<span class="chip-count tnum">2</span></a
+      ><a
+        href="audit-family-credential.html"
+        class="chip"
+        
+        >credential<span class="chip-count tnum">2</span></a
+      ><a
+        href="audit-family-tool.html"
+        class="chip"
+        
+        >tool<span class="chip-count tnum">3</span></a
+      ><a
+        href="audit-family-policy.html"
+        class="chip"
+        
+        >policy<span class="chip-count tnum">2</span></a
+      ><a
+        href="audit-family-action.html"
+        class="chip active"
+        aria-current="true"
+        >action<span class="chip-count tnum">16</span></a
+      ><a
+        href="audit-family-approval.html"
+        class="chip"
+        
+        >approval<span class="chip-count tnum">4</span></a
+      ><a
+        href="audit-family-evidence.html"
+        class="chip"
+        
+        >evidence<span class="chip-count tnum">8</span></a
+      >
+  </nav>
+  </div>
+  <div class="table-wrap" role="region" aria-label="Audit records" tabindex="0">
+    <table class="dt compact">
+      <caption class="sr-only">Audit records</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="numeric">
+      #
+    </th><th scope="col" class="">
+      When (UTC)
+    </th><th scope="col" class="">
+      Event
+    </th><th scope="col" class="">
+      Actor
+    </th><th scope="col" class="">
+      Summary
+    </th><th scope="col" class="">
+      Digest
+    </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="">
+      <td class="numeric mono tnum">35</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:15:00Z</td>
+      <td class="mono nowrap">action.requested</td>
+      <td class="mono">arc_ag_2e658519a18ffc9c2d478b086cbc3eb6</td>
+      <td style="font-size:13px">
+        finance-agent requested stripe.refund
+      </td>
+      <td class="mono nowrap muted" title="sha256:69c98ffb190007875b9af2c70b60a5c19f577404a8c9ef848c10aa4efecac86b">69c98ffb1900…</td>
+    </tr><tr class="">
+      <td class="numeric mono tnum">34</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:59Z</td>
+      <td class="mono nowrap">action.executed</td>
+      <td class="mono">arc_ag_2e658519a18ffc9c2d478b086cbc3eb6</td>
+      <td style="font-size:13px">
+        stripe.refund executed in 0ms
+      </td>
+      <td class="mono nowrap muted" title="sha256:f3c9e0e033906040aa9c4a5a6942d75dbcd0b4bbd822b8290a2da6c5220abaf2">f3c9e0e03390…</td>
+    </tr><tr class="">
+      <td class="numeric mono tnum">32</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:59Z</td>
+      <td class="mono nowrap">action.allowed</td>
+      <td class="mono">arc_ag_2e658519a18ffc9c2d478b086cbc3eb6</td>
+      <td style="font-size:13px">
+        stripe.refund authorized by FINANCE-004
+      </td>
+      <td class="mono nowrap muted" title="sha256:8b4e5d5bb4aa0724217ea5351fa1d8f4dcf328272a0bbc3ddf5292b2296f68b4">8b4e5d5bb4aa…</td>
+    </tr><tr class="">
+      <td class="numeric mono tnum">27</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:59Z</td>
+      <td class="mono nowrap">action.requested</td>
+      <td class="mono">arc_ag_2e658519a18ffc9c2d478b086cbc3eb6</td>
+      <td style="font-size:13px">
+        finance-agent requested stripe.refund
+      </td>
+      <td class="mono nowrap muted" title="sha256:0c5dce3a979868ddb870c5458c6ed4d8245f1673d6e44e7194bbae31359635f3">0c5dce3a9798…</td>
+    </tr><tr class="">
+      <td class="numeric mono tnum">26</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:58Z</td>
+      <td class="mono nowrap">action.denied</td>
+      <td class="mono">arc_ag_2e658519a18ffc9c2d478b086cbc3eb6</td>
+      <td style="font-size:13px">
+        stripe.refund denied: exceeds autonomous refund authority
+      </td>
+      <td class="mono nowrap muted" title="sha256:0d450ec36e65215519095a918d476ecac0fad4b9bef8319676447409a83d9331">0d450ec36e65…</td>
+    </tr><tr class="">
+      <td class="numeric mono tnum">24</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:58Z</td>
+      <td class="mono nowrap">action.requested</td>
+      <td class="mono">arc_ag_2e658519a18ffc9c2d478b086cbc3eb6</td>
+      <td style="font-size:13px">
+        finance-agent requested stripe.refund
+      </td>
+      <td class="mono nowrap muted" title="sha256:8abbdbaf9eb4810dad71d108bac58bec7b293eb635090de4f23112dcaff5c479">8abbdbaf9eb4…</td>
+    </tr><tr class="">
+      <td class="numeric mono tnum">23</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:57Z</td>
+      <td class="mono nowrap">action.denied</td>
+      <td class="mono">arc_ag_547f7fc425e9e01d78b5bd27837255a8</td>
+      <td style="font-size:13px">
+        github.create_issue denied: agents may not write to a protected branch
+      </td>
+      <td class="mono nowrap muted" title="sha256:2a4f230b02a5f52914a80ea7dbc7d36e202304e5a9a9d466562bc38f34346021">2a4f230b02a5…</td>
+    </tr><tr class="">
+      <td class="numeric mono tnum">21</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:57Z</td>
+      <td class="mono nowrap">action.requested</td>
+      <td class="mono">arc_ag_547f7fc425e9e01d78b5bd27837255a8</td>
+      <td style="font-size:13px">
+        engineering-agent requested github.create_issue
+      </td>
+      <td class="mono nowrap muted" title="sha256:9831a1ce148f132cbf306a62bea5ab3213f7d9ac148b42f47acc4e8e02dbe91f">9831a1ce148f…</td>
+    </tr><tr class="">
+      <td class="numeric mono tnum">20</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:56Z</td>
+      <td class="mono nowrap">action.executed</td>
+      <td class="mono">arc_ag_547f7fc425e9e01d78b5bd27837255a8</td>
+      <td style="font-size:13px">
+        github.create_issue executed in 0ms
+      </td>
+      <td class="mono nowrap muted" title="sha256:363d3b8237d641caafbc76417e105a462ccd9c9bf97f33e6d3aee72be1069bae">363d3b8237d6…</td>
+    </tr><tr class="">
+      <td class="numeric mono tnum">18</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:56Z</td>
+      <td class="mono nowrap">action.allowed</td>
+      <td class="mono">arc_ag_547f7fc425e9e01d78b5bd27837255a8</td>
+      <td style="font-size:13px">
+        github.create_issue authorized by GITHUB-002
+      </td>
+      <td class="mono nowrap muted" title="sha256:4d1b5d3d06daf4e406dc2291ff1a6560e11115d5305d4c4ac95abbf146aa949a">4d1b5d3d06da…</td>
+    </tr><tr class="">
+      <td class="numeric mono tnum">17</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:56Z</td>
+      <td class="mono nowrap">action.requested</td>
+      <td class="mono">arc_ag_547f7fc425e9e01d78b5bd27837255a8</td>
+      <td style="font-size:13px">
+        engineering-agent requested github.create_issue
+      </td>
+      <td class="mono nowrap muted" title="sha256:d498e6f3b6eb2ff90873b85310beef483ba8e9546d99c36c3ce1f7e4d80589e7">d498e6f3b6eb…</td>
+    </tr><tr class="">
+      <td class="numeric mono tnum">16</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:55Z</td>
+      <td class="mono nowrap">action.denied</td>
+      <td class="mono">arc_ag_2e658519a18ffc9c2d478b086cbc3eb6</td>
+      <td style="font-size:13px">
+        stripe.get_charge denied: no policy authorizes this action
+      </td>
+      <td class="mono nowrap muted" title="sha256:818188a1b230a193feca27b123c9b7e455d9e3c840fc49e777b7dd86ded9fc85">818188a1b230…</td>
+    </tr><tr class="">
+      <td class="numeric mono tnum">14</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:55Z</td>
+      <td class="mono nowrap">action.requested</td>
+      <td class="mono">arc_ag_2e658519a18ffc9c2d478b086cbc3eb6</td>
+      <td style="font-size:13px">
+        finance-agent requested stripe.get_charge
+      </td>
+      <td class="mono nowrap muted" title="sha256:79a5c40f60facbb441e0c45e05f6cf5bda4995dddc3dc7646da1129a8391a9f0">79a5c40f60fa…</td>
+    </tr><tr class="">
+      <td class="numeric mono tnum">13</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:54Z</td>
+      <td class="mono nowrap">action.executed</td>
+      <td class="mono">arc_ag_2e658519a18ffc9c2d478b086cbc3eb6</td>
+      <td style="font-size:13px">
+        stripe.refund executed in 0ms
+      </td>
+      <td class="mono nowrap muted" title="sha256:52ed8ef79368fa8045f274bab9a556dc7d5110f9d568f66b9ed2d86d02b34950">52ed8ef79368…</td>
+    </tr><tr class="">
+      <td class="numeric mono tnum">11</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:54Z</td>
+      <td class="mono nowrap">action.allowed</td>
+      <td class="mono">arc_ag_2e658519a18ffc9c2d478b086cbc3eb6</td>
+      <td style="font-size:13px">
+        stripe.refund authorized by FINANCE-004
+      </td>
+      <td class="mono nowrap muted" title="sha256:f87281e6dbf041c391453b1f0608c0727fa570a75063e613180a18d17e81fa45">f87281e6dbf0…</td>
+    </tr><tr class="">
+      <td class="numeric mono tnum">10</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:54Z</td>
+      <td class="mono nowrap">action.requested</td>
+      <td class="mono">arc_ag_2e658519a18ffc9c2d478b086cbc3eb6</td>
+      <td style="font-size:13px">
+        finance-agent requested stripe.refund
+      </td>
+      <td class="mono nowrap muted" title="sha256:72ebecd928f26d8fe4e2183df02930e54c01e2effb5f7316c1f5a3baae7c5784">72ebecd928f2…</td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+  
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>
