@@ -1,48 +1,27 @@
 {
-  "name": "arc-transformation-group",
-  "version": "0.1.0",
+  "name": "arc-website-2-0",
   "private": true,
-  "description": "ARC Transformation Group — digital transformation for companies, nonprofits, and communities (Labs, Studio, Research, Academy).",
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "playbook:assets": "node scripts/playbook/fetch-appendices.mjs",
-    "playbook:pdf": "node scripts/playbook/build-pdf.mjs",
-    "playbook:preview": "node scripts/playbook/preview.mjs",
-    "playbook:preview-public": "node scripts/playbook/public-preview.mjs",
-    "playbook:bundle": "node scripts/playbook/bundle.mjs",
-    "playbook:build": "npm run playbook:assets && npm run playbook:pdf && npm run playbook:bundle && npm run playbook:preview-public",
-    "playbook:provision": "node scripts/playbook/provision.mjs"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@paddle/paddle-js": "^1.6.5",
-    "@vercel/analytics": "^2.0.1",
-    "clsx": "^2.1.1",
-    "eslint-config-next": "^14.2.35",
-    "lucide-react": "^0.417.0",
-    "next": "^14.2.35",
-    "next-themes": "^0.3.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "server-only": "^0.0.1",
-    "tailwind-merge": "^2.4.0"
+    "@radix-ui/react-icons": "1.3.2",
+    "date-fns": "4.1.0",
+    "framer-motion": "11.18.2",
+    "lucide-react": "0.577.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.30.2",
+    "tailwind-merge": "2.6.1"
   },
   "devDependencies": {
-    "@types/node": "^20.14.0",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "autoprefixer": "^10.4.19",
-    "marked": "^14.1.4",
-    "postcss": "^8.4.40",
-    "puppeteer-core": "^23.11.1",
-    "tailwindcss": "^3.4.7",
-    "tailwindcss-animate": "^1.0.7",
-    "typescript": "^5.5.4",
-    "vitest": "^2.1.9"
+    "@tailwindcss/vite": "4.3.1",
+    "@vitejs/plugin-react": "6.1.1",
+    "tailwindcss": "4.3.1",
+    "typescript": "5.9.3",
+    "vite": "8.3.2"
   }
 }

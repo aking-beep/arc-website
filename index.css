@@ -1,0 +1,124 @@
+/* @import url() FONT IMPORTS MUST ALWAYS BE AT THE VERY TOP OF THIS FILE, ABOVE THE TAILWIND IMPORT — DO NOT DELETE THIS COMMENT */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap');
+
+/* CRITICAL: THE FOLLOWING TAILWIND IMPORT MUST NEVER BE DELETED — DO NOT DELETE THIS COMMENT */
+@import 'tailwindcss';
+/* END TAILWIND IMPORTS — ALL OTHER CSS MUST GO BELOW THIS LINE */
+
+@theme {
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-serif: 'IBM Plex Serif', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Surfaces — light */
+  --color-canvas: #ffffff;
+  --color-paper: #f7f7f5;
+  --color-ink: #10151f;
+  --color-ink-2: #4b5260;
+  --color-ink-3: #6b7280;
+  --color-line: #e3e5e9;
+  --color-line-strong: #c9cdd4;
+
+  /* Surfaces — dark */
+  --color-night: #0a0e15;
+  --color-night-2: #111722;
+  --color-night-3: #1a2230;
+  --color-night-line: #263040;
+  --color-mist: #e8ebf0;
+  --color-mist-2: #a7afbd;
+
+  /* Brand — ARC teal, carried from the live site */
+  --color-brand: #056b80;
+  --color-brand-strong: #04586a;
+  --color-brand-subtle: #e8f4f6;
+  --color-brand-on-dark: #7ccbd9;
+
+  /* Status */
+  --color-ok: #1d7a46;
+  --color-ok-subtle: #e7f4ec;
+  --color-ok-on-dark: #7fd1a0;
+  --color-warn: #8a5a00;
+  --color-warn-subtle: #fbf2dc;
+  --color-warn-on-dark: #f2c66d;
+  --color-danger: #b42318;
+  --color-danger-subtle: #fbeae8;
+  --color-danger-on-dark: #f59b92;
+
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-brand-subtle);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.dark-surface :focus-visible {
+  outline-color: var(--color-brand-on-dark);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Architectural hairline grid used behind diagrams */
+.blueprint {
+  background-image:
+    linear-gradient(to right, rgb(38 48 64 / 0.55) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(38 48 64 / 0.55) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.blueprint-light {
+  background-image:
+    linear-gradient(to right, rgb(227 229 233 / 0.8) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(227 229 233 / 0.8) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.sr-only-focusable:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
