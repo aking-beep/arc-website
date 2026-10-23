@@ -23,8 +23,9 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: "1.25rem",
-      // Matches the prototype's `Container` (max-w-[1240px] px-5 sm:px-8).
+      // Matches the prototype's `Container` exactly: max-w-[1240px] px-5 sm:px-8,
+      // so a redesigned section and a legacy one line up on the same gutters.
+      padding: { DEFAULT: "1.25rem", sm: "2rem" },
       screens: { sm: "640px", md: "768px", lg: "1024px", xl: "1240px", "2xl": "1240px" },
     },
     extend: {
