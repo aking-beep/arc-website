@@ -25,6 +25,7 @@ import {
 import { assuranceChecklist } from "@/lib/learn";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/platform" },
   title: "Agent infrastructure · Readiness, records, and checks",
   description:
     "Agent infrastructure from ARC Transformation Group: readiness, outcome checks for production agents, protocols, and runtime research.",

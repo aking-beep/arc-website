@@ -10,6 +10,7 @@ import { playbookHref, playbooks } from "@/lib/learn";
 import { academy, research } from "@/lib/content";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/playbooks" },
   title: "Free frameworks · Scorecard, contract, and checklist",
   description:
     "Free frameworks from ARC: an agent readiness scorecard, an operating contract, and an outcome checklist. Complete on the page. The paid playbooks are a separate set.",

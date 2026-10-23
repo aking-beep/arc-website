@@ -22,6 +22,13 @@ export function generateMetadata({ params }: Params): Metadata {
   return {
     title: `${area.heading.replace(/\.$/, "")} · ARC`,
     description: area.body,
+    alternates: { canonical: `/services/${area.slug}` },
+    openGraph: {
+      title: area.heading.replace(/\.$/, ""),
+      description: area.body,
+      url: `/services/${area.slug}`,
+      type: "website",
+    },
   };
 }
 

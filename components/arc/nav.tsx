@@ -26,12 +26,16 @@ import { ThemeToggle } from "@/components/theme-toggle";
  *
  * Deliberately no framer-motion here. The two animations the prototype used
  * it for — the active-link underline and the mobile panel's slide — are a
- * static bar and a two-property transition in CSS. Keeping the library out of
- * the root layout keeps it off every route that does not animate: /about and
- * /privacy load the same JavaScript they did before the redesign.
+ * static bar and a CSS keyframe. Keeping the library out of the root layout
+ * keeps it off every route that does not animate: /about and /privacy load the
+ * same JavaScript they did before the redesign.
  *
- * The panel stays mounted and toggles `invisible`, which also takes it out of
- * the tab order when closed, so the exit transition works without JS.
+ * The panel is mounted only while open, and animates in with `.arc-sheet`.
+ * An earlier version kept it mounted and transitioned `visibility`, which
+ * looked fine and quietly broke the focus move: `visibility` is a discrete
+ * property, so the panel is still computed-hidden on the frame the class
+ * lands, and `.focus()` on a hidden element does nothing. There is no exit
+ * animation, which is the price of having focus management that works.
  */
 function isCurrent(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -142,17 +146,14 @@ export function ArcNav() {
         </div>
       </div>
 
+      {open ? (
       <div
         id="arc-mobile-menu"
         ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-label="Site menu"
-        aria-hidden={!open}
-        className={cn(
-          "fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto border-t border-line bg-canvas px-5 pb-10 pt-4 transition-[opacity,transform,visibility] duration-200 ease-out-strong sm:px-8 lg:hidden",
-          open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0",
-        )}
+        className="arc-sheet fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto border-t border-line bg-canvas px-5 pb-10 pt-4 sm:px-8 lg:hidden"
       >
         <nav aria-label="Site" className="flex flex-col">
           <Link
@@ -202,6 +203,7 @@ export function ArcNav() {
           </a>
         </p>
       </div>
+      ) : null}
     </header>
   );
 }

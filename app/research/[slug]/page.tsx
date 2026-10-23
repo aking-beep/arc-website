@@ -17,7 +17,18 @@ export function generateMetadata({
 }): Metadata {
   const article = research.find((a) => a.slug === params.slug);
   if (!article) return {};
-  return { title: article.title, description: article.summary };
+  return {
+    title: article.title,
+    description: article.summary,
+    alternates: { canonical: `/research/${article.slug}` },
+    openGraph: {
+      title: article.title,
+      description: article.summary,
+      url: `/research/${article.slug}`,
+      type: "article",
+      publishedTime: article.date,
+    },
+  };
 }
 
 function formatDate(iso: string) {

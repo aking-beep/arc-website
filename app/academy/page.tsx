@@ -8,6 +8,7 @@ import { CTA } from "@/components/cta";
 import { academy, academyOutcomes } from "@/lib/content";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/academy" },
   title: "Workshops · A working session with your team",
   description:
     "ARC runs hands-on workshops against your own systems and backlog, so the team leaves with owners and a next step.",

@@ -8,6 +8,7 @@ import { CTA } from "@/components/cta";
 import { caseStudies } from "@/lib/content";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/work" },
   title: "Work · What changed, and what it was worth",
   description:
     "Four pieces of work: the problem, what was at stake, what we did, what changed, and the numbers. Where we cannot name the client, we name the scale.",

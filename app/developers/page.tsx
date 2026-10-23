@@ -12,6 +12,7 @@ import { developerAreas, operatingContract } from "@/lib/ark";
 import { labs, site } from "@/lib/content";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/developers" },
   title: "Developers · Protocols, open tools and runtime research",
   description:
     "The ARC developer surface: agent-facing protocols, MIT-licensed scanners and catalogues, architecture notes, and open research into where AI work should execute.",

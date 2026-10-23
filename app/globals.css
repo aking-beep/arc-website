@@ -200,6 +200,12 @@
     animation: arc-pop-in 0.24s cubic-bezier(0.23, 1, 0.32, 1) both;
   }
 
+  /* The mobile navigation sheet. Mounted only while open, so focus can move
+     into it on the same tick; see components/arc/nav.tsx. */
+  .arc-sheet {
+    animation: arc-sheet-in 0.2s cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+
   /* ---- Retained by routes not yet rebuilt ---------------------------- */
   .grid-bg {
     background-image:
@@ -259,6 +265,17 @@
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes arc-sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

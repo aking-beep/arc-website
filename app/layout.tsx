@@ -67,7 +67,11 @@ export const metadata: Metadata = {
     title: "ARC Transformation Group",
     description: arcSite.metaDescription,
   },
-  alternates: { canonical: "/" },
+  // No `alternates` here on purpose. Next inherits root metadata into every
+  // route that does not override it, so a root-level `canonical: "/"` told
+  // crawlers that /research/<slug>, /work/<slug> and every other page was a
+  // duplicate of the homepage. Each route declares its own canonical; the
+  // homepage declares "/" in app/page.tsx.
   robots: { index: true, follow: true },
 };
 

@@ -2,7 +2,7 @@
   "name": "arc-transformation-group",
   "version": "0.1.0",
   "private": true,
-  "description": "ARC Transformation Group — digital transformation for companies, nonprofits, and communities (Labs, Studio, Research, Academy).",
+  "description": "ARC Transformation Group \u2014 digital transformation for companies, nonprofits, and communities (Labs, Studio, Research, Academy).",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -17,7 +17,8 @@
     "playbook:preview-public": "node scripts/playbook/public-preview.mjs",
     "playbook:bundle": "node scripts/playbook/bundle.mjs",
     "playbook:build": "npm run playbook:assets && npm run playbook:pdf && npm run playbook:bundle && npm run playbook:preview-public",
-    "playbook:provision": "node scripts/playbook/provision.mjs"
+    "playbook:provision": "node scripts/playbook/provision.mjs",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@paddle/paddle-js": "^1.6.5",
@@ -34,6 +35,7 @@
     "tailwind-merge": "^2.4.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.1",
     "@types/node": "^20.14.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

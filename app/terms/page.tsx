@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/section";
 import { site } from "@/lib/content";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/terms" },
   title: "Terms",
   description: `Terms of use for the ${site.name} website.`,
 };

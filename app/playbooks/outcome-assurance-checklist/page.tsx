@@ -11,6 +11,7 @@ import { assuranceChecklist, getPlaybook } from "@/lib/learn";
 const playbook = getPlaybook("outcome-assurance-checklist");
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/playbooks/outcome-assurance-checklist" },
   title: "Outcome Assurance Checklist · Six questions between a finished run and a finished job",
   description:
     "The sequence we use to decide whether an agent's reported success can be believed, and what it cost to find out. Free and published in full.",

@@ -23,6 +23,7 @@ const supportingTools = [
 ];
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/agent-readiness" },
   title: "Agent Readiness · Make your systems usable by agents",
   description:
     "Evaluate whether agents can safely and reliably interact with your applications, APIs, tools and workflows. Free scorecard, or a full assessment against your own systems.",
