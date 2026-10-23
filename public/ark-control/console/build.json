@@ -1,0 +1,108 @@
+{
+  "builtAt": "2026-10-23T07:14:54.224Z",
+  "revision": "9dd75e3",
+  "pages": [
+    "404.html",
+    "access-agent-arc_ag_2e658519a18ffc9c2d478b086cbc3eb6-tool-github.create_issue.html",
+    "access-agent-arc_ag_2e658519a18ffc9c2d478b086cbc3eb6-tool-stripe.get_charge.html",
+    "access-agent-arc_ag_2e658519a18ffc9c2d478b086cbc3eb6-tool-stripe.refund.html",
+    "access-agent-arc_ag_547f7fc425e9e01d78b5bd27837255a8-tool-github.create_issue.html",
+    "access-agent-arc_ag_547f7fc425e9e01d78b5bd27837255a8-tool-stripe.get_charge.html",
+    "access-agent-arc_ag_547f7fc425e9e01d78b5bd27837255a8-tool-stripe.refund.html",
+    "access.html",
+    "agents-arc_ag_2e658519a18ffc9c2d478b086cbc3eb6.html",
+    "agents-arc_ag_547f7fc425e9e01d78b5bd27837255a8.html",
+    "agents.html",
+    "approvals-arc_apr_558fa6c14c4bdaeaf271b6c2a8585c69.html",
+    "approvals-arc_apr_68142fa1b003d97dbddbaad4f7b7cd03.html",
+    "approvals-mine-true.html",
+    "approvals.html",
+    "audit-family-action.html",
+    "audit-family-agent.html",
+    "audit-family-approval.html",
+    "audit-family-credential.html",
+    "audit-family-evidence.html",
+    "audit-family-policy.html",
+    "audit-family-tool.html",
+    "audit.html",
+    "confirm-disable-FINANCE-004.html",
+    "confirm-disable-GITHUB-002.html",
+    "confirm-reject-arc_apr_558fa6c14c4bdaeaf271b6c2a8585c69.html",
+    "confirm-suspend-arc_ag_2e658519a18ffc9c2d478b086cbc3eb6.html",
+    "confirm-suspend-arc_ag_547f7fc425e9e01d78b5bd27837255a8.html",
+    "evidence-agentId-arc_ag_2e658519a18ffc9c2d478b086cbc3eb6.html",
+    "evidence-agentId-arc_ag_547f7fc425e9e01d78b5bd27837255a8.html",
+    "evidence-arc_ev_0973b23056ba4e5fa5700a845803b22d.html",
+    "evidence-arc_ev_3c37b665c6f623c892e60b0f064f1f06.html",
+    "evidence-arc_ev_40e811128ceb0cab5747097e968fae15.html",
+    "evidence-arc_ev_44b13b9c5980c53181a00feeb9787e59.html",
+    "evidence-arc_ev_8a1e980853aa21af7a02cb1841748869.html",
+    "evidence-arc_ev_a6f701345168e27e6ce81093f3e8afc3.html",
+    "evidence-arc_ev_bcf872fc3b95391fc0ac4e594b5f3b28.html",
+    "evidence-arc_ev_dc825f84d0c4e9acee5d3ee03c0ef8ae.html",
+    "evidence-outcome-allowed-agentId-arc_ag_2e658519a18ffc9c2d478b086cbc3eb6.html",
+    "evidence-outcome-allowed-agentId-arc_ag_547f7fc425e9e01d78b5bd27837255a8.html",
+    "evidence-outcome-allowed.html",
+    "evidence-outcome-approved-agentId-arc_ag_2e658519a18ffc9c2d478b086cbc3eb6.html",
+    "evidence-outcome-approved-agentId-arc_ag_547f7fc425e9e01d78b5bd27837255a8.html",
+    "evidence-outcome-approved.html",
+    "evidence-outcome-denied-agentId-arc_ag_2e658519a18ffc9c2d478b086cbc3eb6.html",
+    "evidence-outcome-denied-agentId-arc_ag_547f7fc425e9e01d78b5bd27837255a8.html",
+    "evidence-outcome-denied.html",
+    "evidence-outcome-executed-agentId-arc_ag_2e658519a18ffc9c2d478b086cbc3eb6.html",
+    "evidence-outcome-executed-agentId-arc_ag_547f7fc425e9e01d78b5bd27837255a8.html",
+    "evidence-outcome-executed.html",
+    "evidence-outcome-expired-agentId-arc_ag_2e658519a18ffc9c2d478b086cbc3eb6.html",
+    "evidence-outcome-expired-agentId-arc_ag_547f7fc425e9e01d78b5bd27837255a8.html",
+    "evidence-outcome-expired.html",
+    "evidence-outcome-failed-agentId-arc_ag_2e658519a18ffc9c2d478b086cbc3eb6.html",
+    "evidence-outcome-failed-agentId-arc_ag_547f7fc425e9e01d78b5bd27837255a8.html",
+    "evidence-outcome-failed.html",
+    "evidence-outcome-pending_approval-agentId-arc_ag_2e658519a18ffc9c2d478b086cbc3eb6.html",
+    "evidence-outcome-pending_approval-agentId-arc_ag_547f7fc425e9e01d78b5bd27837255a8.html",
+    "evidence-outcome-pending_approval.html",
+    "evidence-outcome-rejected-agentId-arc_ag_2e658519a18ffc9c2d478b086cbc3eb6.html",
+    "evidence-outcome-rejected-agentId-arc_ag_547f7fc425e9e01d78b5bd27837255a8.html",
+    "evidence-outcome-rejected.html",
+    "evidence.html",
+    "index.html",
+    "policies-FINANCE-004.html",
+    "policies-GITHUB-002.html",
+    "policies.html",
+    "reports.html",
+    "security-scan-result.html",
+    "security.html",
+    "tools.html"
+  ],
+  "scenario": [
+    {
+      "tool": "stripe.refund",
+      "note": "ALLOW — under the autonomous ceiling, executes without a human"
+    },
+    {
+      "tool": "stripe.get_charge",
+      "note": "DENY by engine default — no policy matches stripe.get_charge"
+    },
+    {
+      "tool": "github.create_issue",
+      "note": "ALLOW — opening an issue is reviewable by design"
+    },
+    {
+      "tool": "github.create_issue",
+      "note": "DENY — a protected branch, refused before the issue rule is reached"
+    },
+    {
+      "tool": "stripe.refund",
+      "note": "DENY — above the hard ceiling, and no approval can lift it"
+    },
+    {
+      "tool": "stripe.refund",
+      "note": "REQUIRE_APPROVAL — approved by an operator, then executed"
+    },
+    {
+      "tool": "stripe.refund",
+      "note": "REQUIRE_APPROVAL — left pending, so the queue has a live request"
+    }
+  ],
+  "notice": "A static capture of the ARC Control console, rendered from the real server against the shipped demo seed. Write controls are inert."
+}

@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Audit — ARC Control</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%231d4ed8%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%227.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2214.5%22%20width%3D%2218%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2221.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="console.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<aside class="demo-strip" aria-label="About this page">
+  <strong>Live design showcase</strong>
+  <span>Real markup from the ARC Control console, captured from the running server against the shipped demo seed (<span class="mono">ARC_SEED_DEMO=true</span>). The policy decisions, the approval, the evidence records and the hash-chained audit log below are all real; the connector effects are simulated, and controls that would write are disabled. Built from <span class="mono">9dd75e3</span> on <span class="mono">2026-10-23</span>.</span>
+  <a class="showcase-home" href="/ark-control">← ARC Transformation Group</a>
+</aside>
+<div class="shell">
+<nav class="rail" aria-label="Console">
+  <div class="rail-brand">
+    <span class="mark" aria-hidden="true"></span>
+    <span class="wordmark">ARC <strong>Control</strong></span>
+  </div>
+  <div class="rail-groups"><div class="rail-group">
+      <div class="rail-group-label">Operate</div>
+      <ul>
+        <li>
+        <a
+          href="index.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Overview</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="approvals.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Approvals</span>
+          <span class="rail-count">1<span class="sr-only"> pending</span></span>
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Inventory</div>
+      <ul>
+        <li>
+        <a
+          href="agents.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Agents</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="tools.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Tools</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Govern</div>
+      <ul>
+        <li>
+        <a
+          href="policies.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Policies</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="access.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Access</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Record</div>
+      <ul>
+        <li>
+        <a
+          href="evidence.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Evidence</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="audit.html"
+          class="rail-item active"
+          aria-current="page"
+        >
+          <span class="rail-mark" aria-hidden="true"></span>
+          <span>Audit</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Assure</div>
+      <ul>
+        <li>
+        <a
+          href="security.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Security</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="reports.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Reports</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div></div>
+  <div class="rail-foot">Theme follows the system setting</div>
+</nav>
+<div class="column">
+  <header class="masthead">
+    <p class="masthead-operator">
+      Acting as <strong>operations@arctransformationgroup.com</strong>
+      <span class="muted">(configured, not authenticated)</span>
+    </p>
+    <p class="masthead-api">
+      <span>API <span class="mono">http://127.0.0.1:8787</span></span>
+      <span class="health ok">
+    <span class="dot" aria-hidden="true"></span>ok</span
+  >
+      <span class="tnum muted">v0.1.0</span>
+    </p>
+  </header>
+  <main id="main">
+    <div class="main-inner">
+
+<div class="page-header">
+    <div class="page-header-text">
+      <h1 class="">Audit</h1>
+      <p class="lede">Append-only and hash-chained: each record carries the digest of its predecessor, so editing one breaks every link after it and removing one from the middle leaves a sequence gap.</p>
+    </div>
+    
+  </div>
+  
+  <div class="card ">
+    <p style="font-size:18px;font-weight:650;margin:0">
+      Chain <span class="allow-text">intact</span>
+      <span class="muted" style="font-size:14px;font-weight:400;margin-left:8px">
+        37 record(s) verified
+      </span>
+    </p>
+    
+    <div style="margin-top:12px">
+          <div class="digest-row">
+    <div>
+      <div class="mono muted">head digest</div>
+      <div class="digest-note">sequence 37</div>
+    </div>
+    <code class="digest">sha256:4ca2ba485ffe7b7f6c789fcb342874c344c9f7705a838f5fd53130652dd48df5</code>
+  </div>
+        </div>
+    <p class="note">
+          Checked against itself only. This detects an edited record and a record missing from the middle, but not truncation: removing entries from the end leaves a shorter chain that still verifies. 
+          This is tamper evidence, not tamper proofing — an attacker who controls the storage can rewrite the whole chain
+          and recompute every digest. Recording the head digest above somewhere ARC Control cannot reach is what closes
+          both gaps.
+        </p>
+  </div>
+
+  <details class="raw" style="margin-top:12px">
+    <summary>Verify against an anchored head</summary>
+    <div class="inert" class="field-row" style="padding:12px 16px;border-top:1px solid var(--border)">
+      <label class="field">
+        headDigest
+        <input disabled class="mono" type="text" name="headDigest" value="" placeholder="sha256:…" />
+      </label>
+      <label class="field" style="max-width:180px">
+        headSequence
+        <input disabled class="mono" type="text" inputmode="numeric" name="headSequence" value="" />
+      </label>
+      <button disabled aria-disabled="true" type="submit" class="primary">Verify</button>
+    <p class="inert-note">Verifying against an anchored head needs the live console: this page is a static capture, so the form cannot run. The verdict above was produced by a real verification of a real chain.</p></div>
+  </details>
+
+  <div class="section-title">
+    <h2>Records</h2>
+    <div class="section-aside"><span class="muted">Newest first · 2 of 37 shown</span></div>
+  </div>
+  <div style="margin-bottom:12px">
+    <nav class="filters" aria-label="Family (within this page of records)">
+    <span class="filters-label">Family (within this page of records)</span>
+    <a
+        href="audit.html"
+        class="chip"
+        
+        >All<span class="chip-count tnum">37</span></a
+      ><a
+        href="audit-family-agent.html"
+        class="chip active"
+        aria-current="true"
+        >agent<span class="chip-count tnum">2</span></a
+      ><a
+        href="audit-family-credential.html"
+        class="chip"
+        
+        >credential<span class="chip-count tnum">2</span></a
+      ><a
+        href="audit-family-tool.html"
+        class="chip"
+        
+        >tool<span class="chip-count tnum">3</span></a
+      ><a
+        href="audit-family-policy.html"
+        class="chip"
+        
+        >policy<span class="chip-count tnum">2</span></a
+      ><a
+        href="audit-family-action.html"
+        class="chip"
+        
+        >action<span class="chip-count tnum">16</span></a
+      ><a
+        href="audit-family-approval.html"
+        class="chip"
+        
+        >approval<span class="chip-count tnum">4</span></a
+      ><a
+        href="audit-family-evidence.html"
+        class="chip"
+        
+        >evidence<span class="chip-count tnum">8</span></a
+      >
+  </nav>
+  </div>
+  <div class="table-wrap" role="region" aria-label="Audit records" tabindex="0">
+    <table class="dt compact">
+      <caption class="sr-only">Audit records</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="numeric">
+      #
+    </th><th scope="col" class="">
+      When (UTC)
+    </th><th scope="col" class="">
+      Event
+    </th><th scope="col" class="">
+      Actor
+    </th><th scope="col" class="">
+      Summary
+    </th><th scope="col" class="">
+      Digest
+    </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="">
+      <td class="numeric mono tnum">8</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:54Z</td>
+      <td class="mono nowrap">agent.registered</td>
+      <td class="mono">seed-script</td>
+      <td style="font-size:13px">
+        seed-script registered agent &quot;engineering-agent&quot; owned by platform@example.com
+      </td>
+      <td class="mono nowrap muted" title="sha256:520621786d2aac335d3318a5172bab34de6206ff5536a476ffb0235c1c5664b3">520621786d2a…</td>
+    </tr><tr class="">
+      <td class="numeric mono tnum">6</td>
+      <td class="mono tnum nowrap muted">2026-10-23 07:14:54Z</td>
+      <td class="mono nowrap">agent.registered</td>
+      <td class="mono">seed-script</td>
+      <td style="font-size:13px">
+        seed-script registered agent &quot;finance-agent&quot; owned by finance-ops@example.com
+      </td>
+      <td class="mono nowrap muted" title="sha256:24802b3399442c887c5fb284291c260fa212fe1d03c912e0c525044a004deb07">24802b339944…</td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+  
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>

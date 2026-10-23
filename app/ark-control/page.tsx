@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { ArrowRight } from "lucide-react";
 import { notFound } from "next/navigation";
 import { Section, SectionHeading } from "@/components/ui/section";
+import { Button } from "@/components/ui/button";
 import { ArkProductPage } from "@/components/ark-product-page";
 import {
   FlowChain,
@@ -130,6 +132,97 @@ export default function ArkControlPage() {
               </p>
             </div>
           ))}
+        </div>
+      </Section>
+
+      <Section className="bg-muted/30">
+        <SectionHeading
+          kicker="See it"
+          title="The operator console, as it actually renders."
+          lead="Ten sections against a running control plane: what needs a human, what every agent attempted, which policy decided and why, and whether the record still verifies. This is the real console's own output, captured page by page from the running server — not a mock-up."
+        />
+
+        <div className="mt-12 grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:items-start">
+          <Panel className="p-6 sm:p-8">
+            <PanelLabel>What you are looking at</PanelLabel>
+            <dl className="mt-6 grid gap-5 text-sm leading-relaxed">
+              {[
+                {
+                  term: "Real",
+                  detail:
+                    "The policy decisions and their rule-by-rule traces, an approval that was cast and consumed, the evidence records, and the hash-chained audit log those records verify against.",
+                },
+                {
+                  term: "Simulated",
+                  detail:
+                    "The connector effects. No money moves and no issue is filed — the same way the shipped demo seed behaves for anyone running it locally.",
+                },
+                {
+                  term: "Inert",
+                  detail:
+                    "Anything that would write. Approve, reject, suspend and scan are rendered and disabled, each saying what it does in the live console.",
+                },
+              ].map((item) => (
+                <div key={item.term}>
+                  <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
+                    {item.term}
+                  </dt>
+                  <dd className="mt-1.5 text-muted-foreground">{item.detail}</dd>
+                </div>
+              ))}
+            </dl>
+          </Panel>
+
+          <div>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {[
+                ["Overview", "What needs a human, ordered by consequence"],
+                ["Approvals", "The request, the policy that held it, the authority required"],
+                ["Agents", "Who is authorized, and what they have attempted"],
+                ["Tools", "What may be asked for, at what risk"],
+                ["Policies", "Each policy as a decision ladder"],
+                ["Access", "Which policies govern which agent and tool"],
+                ["Evidence", "One record per attempt, with its integrity digests"],
+                ["Audit", "The chain, and what verifying it does not prove"],
+                ["Security", "Connector posture and an MCP manifest scan"],
+                ["Reports", "A snapshot over a window it always states"],
+              ].map(([name, text]) => (
+                <li
+                  key={name}
+                  className="rounded-lg border border-border bg-card px-4 py-3"
+                >
+                  <span className="text-sm font-semibold tracking-tight">
+                    {name}
+                  </span>
+                  <span className="mt-0.5 block text-xs leading-relaxed text-muted-foreground">
+                    {text}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+          </div>
+        </div>
+
+        <div className="mt-12 flex flex-col gap-6 border-t border-border/60 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-5">
+            <Button href="/ark-control/console/index.html" size="lg">
+              Open the console
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+            <a
+              href="https://github.com/aking-beep/arc-control"
+              className="text-sm font-medium underline underline-offset-4"
+            >
+              The code it was rendered from
+            </a>
+          </div>
+          <p className="max-w-md text-xs leading-relaxed text-muted-foreground">
+            Agent Control is in design-partner development. The console is real
+            and running; what is not yet settled is the verification model it
+            reports on, which is the conversation we are having with design
+            partners.
+          </p>
         </div>
       </Section>
     </ArkProductPage>

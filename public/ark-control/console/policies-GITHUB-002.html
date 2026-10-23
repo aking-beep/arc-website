@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GITHUB-002 — ARC Control</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%231d4ed8%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%227.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2214.5%22%20width%3D%2218%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2221.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="console.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<aside class="demo-strip" aria-label="About this page">
+  <strong>Live design showcase</strong>
+  <span>Real markup from the ARC Control console, captured from the running server against the shipped demo seed (<span class="mono">ARC_SEED_DEMO=true</span>). The policy decisions, the approval, the evidence records and the hash-chained audit log below are all real; the connector effects are simulated, and controls that would write are disabled. Built from <span class="mono">9dd75e3</span> on <span class="mono">2026-10-23</span>.</span>
+  <a class="showcase-home" href="/ark-control">← ARC Transformation Group</a>
+</aside>
+<div class="shell">
+<nav class="rail" aria-label="Console">
+  <div class="rail-brand">
+    <span class="mark" aria-hidden="true"></span>
+    <span class="wordmark">ARC <strong>Control</strong></span>
+  </div>
+  <div class="rail-groups"><div class="rail-group">
+      <div class="rail-group-label">Operate</div>
+      <ul>
+        <li>
+        <a
+          href="index.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Overview</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="approvals.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Approvals</span>
+          <span class="rail-count">1<span class="sr-only"> pending</span></span>
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Inventory</div>
+      <ul>
+        <li>
+        <a
+          href="agents.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Agents</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="tools.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Tools</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Govern</div>
+      <ul>
+        <li>
+        <a
+          href="policies.html"
+          class="rail-item active"
+          aria-current="page"
+        >
+          <span class="rail-mark" aria-hidden="true"></span>
+          <span>Policies</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="access.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Access</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Record</div>
+      <ul>
+        <li>
+        <a
+          href="evidence.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Evidence</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="audit.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Audit</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Assure</div>
+      <ul>
+        <li>
+        <a
+          href="security.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Security</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="reports.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Reports</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div></div>
+  <div class="rail-foot">Theme follows the system setting</div>
+</nav>
+<div class="column">
+  <header class="masthead">
+    <p class="masthead-operator">
+      Acting as <strong>operations@arctransformationgroup.com</strong>
+      <span class="muted">(configured, not authenticated)</span>
+    </p>
+    <p class="masthead-api">
+      <span>API <span class="mono">http://127.0.0.1:8787</span></span>
+      <span class="health ok">
+    <span class="dot" aria-hidden="true"></span>ok</span
+  >
+      <span class="tnum muted">v0.1.0</span>
+    </p>
+  </header>
+  <main id="main">
+    <div class="main-inner">
+
+<p class="back"><a href="policies.html">← Policies</a></p>
+  <div class="page-header">
+    <div class="page-header-text">
+      <h1 class=""><span class="chips"><span class="mono">GITHUB-002</span> <span>Repository writes</span></span></h1>
+      <p class="lede">Engineering agents may open issues and pull requests freely, but never touch the default branch.</p>
+    </div>
+    <div class="page-header-actions"><span class="tnum muted">version 1</span>
+    <span class="badge allow">enabled</span></div>
+  </div>
+  <div class="chips">
+    <span class="filters-label">Scope</span><span class="chips">
+    <span class="scope-chip"><span class="k">tools:</span><span class="v">github.*</span></span>
+  </span> <span class="chips">
+    <span class="label-tag">domain=engineering</span>
+  </span>
+  </div>
+
+  <div class="split-wide" style="margin-top:24px">
+    <section>
+      <h2>Decision ladder</h2>
+      <p class="note" style="margin:0 0 8px">Rules are tried in order and the first match decides for this policy.</p>
+      <ol class="ladder ">
+    <li class="">
+      <span class="rung" aria-label="Rule 1">1</span>
+      <span class="rule-id">no-default-branch</span>
+      <div class="rule-body">
+        <p><span class="muted">when</span> <code class="cond" title="{&quot;in&quot;:[&quot;$.action.parameters.branch&quot;,[&quot;main&quot;,&quot;master&quot;,&quot;release&quot;]]}">branch is one of [&quot;main&quot;, &quot;master&quot;, &quot;release&quot;]</code></p>
+        <p class="muted">agents may not write to a protected branch</p>
+        
+        
+        
+      </div>
+      <span class="badge deny">DENY</span>
+    </li><li class="">
+      <span class="rung" aria-label="Rule 2">2</span>
+      <span class="rule-id">issues-and-prs</span>
+      <div class="rule-body">
+        <p><span class="muted">when</span> <code class="cond" title="{&quot;in&quot;:[&quot;$.tool.name&quot;,[&quot;github.create_issue&quot;,&quot;github.create_pull_request&quot;]]}">tool.name is one of [&quot;github.create_issue&quot;, &quot;github.create_pull_request&quot;]</code></p>
+        <p class="muted">opening issues and pull requests is reviewable by design</p>
+        
+        
+        
+      </div>
+      <span class="badge allow">ALLOW</span>
+    </li>
+    <li>
+      <span class="rung" aria-hidden="true">↳</span>
+      <span class="rule-id">Fallback</span>
+      <div class="rule-body"><p class="muted">if no rule matched: unclassified repository write</p></div>
+      <span class="badge approval">REQUIRE_APPROVAL</span>
+    </li>
+  </ol>
+      <div style="margin-top:16px"><details class="raw">
+    <summary>Raw policy (JSON)</summary>
+    <pre class="json">{
+  &quot;id&quot;: &quot;GITHUB-002&quot;,
+  &quot;version&quot;: 1,
+  &quot;name&quot;: &quot;Repository writes&quot;,
+  &quot;description&quot;: &quot;Engineering agents may open issues and pull requests freely, but never touch the default branch.&quot;,
+  &quot;enabled&quot;: true,
+  &quot;match&quot;: {
+    &quot;tools&quot;: [
+      &quot;github.*&quot;
+    ]
+  },
+  &quot;rules&quot;: [
+    {
+      &quot;id&quot;: &quot;no-default-branch&quot;,
+      &quot;when&quot;: {
+        &quot;in&quot;: [
+          &quot;$.action.parameters.branch&quot;,
+          [
+            &quot;main&quot;,
+            &quot;master&quot;,
+            &quot;release&quot;
+          ]
+        ]
+      },
+      &quot;effect&quot;: &quot;DENY&quot;,
+      &quot;reason&quot;: &quot;agents may not write to a protected branch&quot;
+    },
+    {
+      &quot;id&quot;: &quot;issues-and-prs&quot;,
+      &quot;when&quot;: {
+        &quot;in&quot;: [
+          &quot;$.tool.name&quot;,
+          [
+            &quot;github.create_issue&quot;,
+            &quot;github.create_pull_request&quot;
+          ]
+        ]
+      },
+      &quot;effect&quot;: &quot;ALLOW&quot;,
+      &quot;reason&quot;: &quot;opening issues and pull requests is reviewable by design&quot;
+    }
+  ],
+  &quot;fallback&quot;: {
+    &quot;effect&quot;: &quot;REQUIRE_APPROVAL&quot;,
+    &quot;reason&quot;: &quot;unclassified repository write&quot;
+  },
+  &quot;labels&quot;: {
+    &quot;domain&quot;: &quot;engineering&quot;
+  },
+  &quot;createdAt&quot;: &quot;2026-10-23T07:14:54.236Z&quot;,
+  &quot;updatedAt&quot;: &quot;2026-10-23T07:14:54.236Z&quot;
+}</pre>
+  </details></div>
+    </section>
+
+    <aside>
+      <h2>In scope today</h2>
+      <p class="note" style="margin:0 0 8px">
+        Agent and tool pairs this policy’s selectors match. Scope, not permission.
+      </p>
+      <div class="table-wrap" role="region" aria-label="Agent and tool pairs in scope" tabindex="0">
+    <table class="dt compact">
+      <caption class="sr-only">Agent and tool pairs in scope</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="">
+      Agent
+    </th><th scope="col" class="">
+      Tool
+    </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+                <td><a href="agents-arc_ag_2e658519a18ffc9c2d478b086cbc3eb6.html">finance-agent</a></td>
+                <td class="mono">github.create_issue</td>
+              </tr><tr>
+                <td><a href="agents-arc_ag_547f7fc425e9e01d78b5bd27837255a8.html">engineering-agent</a></td>
+                <td class="mono">github.create_issue</td>
+              </tr>
+      </tbody>
+    </table>
+  </div>
+
+      <div class="section-title">
+    <h2>Decisions in loaded evidence</h2>
+    
+  </div>
+      <p class="note" style="margin:0 0 8px">Most recent 8 records only.</p>
+      <div class="table-wrap" role="region" aria-label="Decisions per rule within the loaded evidence" tabindex="0">
+    <table class="dt compact">
+      <caption class="sr-only">Decisions per rule within the loaded evidence</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="">
+      Rule
+    </th><th scope="col" class="">
+      Effect
+    </th><th scope="col" class="numeric">
+      Records
+    </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td class="mono">no-default-branch</td>
+            <td><span class="badge deny">DENY</span></td>
+            <td class="numeric tnum">1</td>
+          </tr><tr>
+            <td class="mono">issues-and-prs</td>
+            <td><span class="badge allow">ALLOW</span></td>
+            <td class="numeric tnum">1</td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+      <p class="note"><a href="evidence.html">Evidence decided by this policy →</a></p>
+    </aside>
+  </div>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>
