@@ -46,8 +46,35 @@ export function isValidEmail(email: string): boolean {
   return EMAIL_PATTERN.test(email);
 }
 
+/**
+ * Fields that become a single line of the notification email, including the
+ * subject. A newline inside one of these would split the line, so control
+ * characters are stripped rather than trimmed. `message` and `technical` are
+ * the message body and keep their line breaks.
+ */
+const SINGLE_LINE: ReadonlySet<InquiryField> = new Set([
+  "name",
+  "email",
+  "company",
+  "role",
+  "size",
+  "budget",
+  "timeline",
+  "stage",
+  "topic",
+  "type",
+]);
+
+// Control characters, including CR and LF, but not ordinary whitespace.
+const CONTROL_CHARS = /[\u0000-\u001f\u007f]/g;
+
 export function clampField(value: string | undefined, field: InquiryField): string {
-  return (value ?? "").trim().slice(0, INQUIRY_LIMITS[field]);
+  const raw = value ?? "";
+  const cleaned = SINGLE_LINE.has(field)
+    ? raw.replace(CONTROL_CHARS, " ")
+    : // Keep newlines in the body, drop the rest.
+      raw.replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, "");
+  return cleaned.trim().slice(0, INQUIRY_LIMITS[field]);
 }
 
 /** The minimum message length the form asks for, mirrored on the server. */

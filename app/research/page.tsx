@@ -11,6 +11,7 @@ import {
   researchThemes,
 } from "@/lib/arc/research";
 import { arcSite } from "@/lib/arc/site";
+import { jsonLdScript } from "@/lib/arc/json-ld";
 
 const title = "Research and insights · AI agent infrastructure, MCP security and AI governance";
 const description =
@@ -47,7 +48,7 @@ export default function ResearchPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
 
       <section aria-labelledby="research-title" className="border-b border-line">

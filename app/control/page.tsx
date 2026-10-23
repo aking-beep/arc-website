@@ -7,6 +7,7 @@ import { ClosingCta } from "@/components/arc/closing-cta";
 import { arcSite } from "@/lib/arc/site";
 import { control, controlCapabilities } from "@/lib/arc/control";
 import { maturityStyle } from "@/lib/arc/status";
+import { jsonLdScript } from "@/lib/arc/json-ld";
 
 const title = "ARC Control · Infrastructure for agents that act on real systems";
 const description =
@@ -43,7 +44,7 @@ export default function ControlPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
       <ControlHero />
       <ExecutionGap />

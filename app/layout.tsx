@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ArcNav } from "@/components/arc/nav";
 import { ArcFooter } from "@/components/arc/footer";
 import { arcSite } from "@/lib/arc/site";
+import { jsonLdScript } from "@/lib/arc/json-ld";
 
 const sans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -119,7 +120,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
         />
         <ThemeProvider
           attribute="class"

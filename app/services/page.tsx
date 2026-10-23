@@ -11,6 +11,7 @@ import { ClosingCta } from "@/components/arc/closing-cta";
 import { solutions } from "@/lib/arc/solutions";
 import { serviceAreas } from "@/lib/services";
 import { arcSite } from "@/lib/arc/site";
+import { jsonLdScript } from "@/lib/arc/json-ld";
 
 const title = "Solutions · Enterprise AI, automation and modernization";
 const description =
@@ -47,7 +48,7 @@ export default function ServicesPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
 
       <section aria-labelledby="svc-title" className="border-b border-line">

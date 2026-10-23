@@ -12,6 +12,7 @@ import {
   retiredIntoPlaybook,
 } from "@/lib/arc/products";
 import { arcSite } from "@/lib/arc/site";
+import { jsonLdScript } from "@/lib/arc/json-ld";
 
 const title = "ARC Labs · Applied technology, tested in public";
 const description =
@@ -46,7 +47,7 @@ export default function LabsPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
 
       <section aria-labelledby="labs-title" className="border-b border-line">

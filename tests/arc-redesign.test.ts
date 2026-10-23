@@ -20,6 +20,7 @@ import { control, controlCapabilities, lifecycleControlled, lifecycleSteps } fro
 import { ecoNodes } from "@/lib/arc/ecosystem";
 import { layers } from "@/lib/arc/architecture";
 import { frameworks, researchIndex, researchTopics } from "@/lib/arc/research";
+import { jsonLdScript } from "@/lib/arc/json-ld";
 import {
   clampField,
   INQUIRY_LIMITS,
@@ -305,6 +306,21 @@ describe("inquiry validation", () => {
     expect(isValidEmail("")).toBe(false);
   });
 
+  it("strips control characters from the fields that become one email line", () => {
+    // A newline in any of these would split a line of the notification email,
+    // and `name`, `company` and `type` reach the subject.
+    for (const field of ["name", "company", "role", "type", "topic", "budget"] as const) {
+      expect(clampField("Acme\r\nBcc: attacker@example.com", field)).not.toMatch(/[\r\n]/);
+      expect(clampField("a\u0000b", field)).not.toContain("\u0000");
+    }
+  });
+
+  it("keeps line breaks in the message body but drops other control characters", () => {
+    expect(clampField("line one\nline two", "message")).toBe("line one\nline two");
+    expect(clampField("a\u0000b", "message")).toBe("ab");
+    expect(clampField("a\u0007b", "technical")).toBe("ab");
+  });
+
   it("clamps every field to its documented cap", () => {
     for (const [field, limit] of Object.entries(INQUIRY_LIMITS)) {
       const clamped = clampField("x".repeat(limit + 50), field as keyof typeof INQUIRY_LIMITS);
@@ -312,6 +328,29 @@ describe("inquiry validation", () => {
     }
     expect(clampField("  padded  ", "name")).toBe("padded");
     expect(clampField(undefined, "name")).toBe("");
+  });
+});
+
+describe("structured data", () => {
+  it("escapes characters that would break out of a script tag", () => {
+    const out = jsonLdScript({ name: "</script><img src=x onerror=alert(1)>" });
+    expect(out).not.toContain("</script>");
+    expect(out).not.toContain("<");
+    expect(out).not.toContain(">");
+    // Still valid JSON once parsed back.
+    expect(JSON.parse(out).name).toBe("</script><img src=x onerror=alert(1)>");
+  });
+
+  it("escapes the line terminators that are legal in JSON but not in JavaScript", () => {
+    const out = jsonLdScript({ a: "x\u2028y\u2029z" });
+    expect(out).not.toContain("\u2028");
+    expect(out).not.toContain("\u2029");
+    expect(JSON.parse(out).a).toBe("x\u2028y\u2029z");
+  });
+
+  it("round-trips the real payloads unchanged", () => {
+    const payload = { "@context": "https://schema.org", "@type": "Organization", name: "ARC" };
+    expect(JSON.parse(jsonLdScript(payload))).toEqual(payload);
   });
 });
 
