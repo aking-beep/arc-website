@@ -43,7 +43,9 @@ export function ArcFooter() {
             <li>
               <a
                 href={`mailto:${arcSite.email}`}
-                className="break-all text-ink-2 transition-colors hover:text-ink"
+                // The address is longer than the column at some widths.
+                // `anywhere` breaks only when it has to, unlike break-all.
+                className="text-ink-2 transition-colors [overflow-wrap:anywhere] hover:text-ink"
               >
                 {arcSite.email}
               </a>

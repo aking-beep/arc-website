@@ -71,7 +71,7 @@ export default function PlatformPage() {
             <SectionHeading
               kicker="This part of ARC"
               title="Readiness, a record, and a check."
-              lead="The same company that runs the advisory work publishes these pages. Agent Readiness asks whether your systems can survive an agent. Agent Control, still with design partners, asks whether the intended change happened."
+              lead="The same company that runs the advisory work publishes these pages. Agent Readiness asks whether your systems can survive an agent. ARC Control, still with design partners, asks whether the intended change happened."
             />
             <p className="mt-8 text-lg font-medium leading-snug">{ark.question}</p>
           </div>
