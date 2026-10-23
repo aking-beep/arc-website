@@ -1,16 +1,30 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Serif, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { MotionConfig } from "framer-motion";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
-import { site } from "@/lib/content";
+import { ArcNav } from "@/components/arc/nav";
+import { ArcFooter } from "@/components/arc/footer";
+import { arcSite } from "@/lib/arc/site";
 
 const sans = IBM_Plex_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+/**
+ * The redesign sets every page and section heading in a serif. Self-hosted
+ * through next/font rather than the prototype's Google Fonts @import, so it
+ * costs no extra connection and cannot shift layout on load.
+ */
+const serif = IBM_Plex_Serif({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
   display: "swap",
 });
 
@@ -22,36 +36,37 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.domain),
+  metadataBase: new URL(arcSite.domain),
   title: {
     default: "ARC Transformation Group · Make technology work for your business.",
     template: "%s · ARC Transformation Group",
   },
-  description: site.description,
+  description: arcSite.metaDescription,
   keywords: [
-    "agent readiness",
-    "outcome assurance",
+    "AI agent infrastructure",
+    "agent authorization",
+    "auditable agent execution",
     "AI agent governance",
-    "agent infrastructure",
+    "MCP security",
     "MCP conformance",
-    "AI architecture decisions",
-    "EU AI Act readiness",
-    "technical due diligence",
-    "cloud and data modernization",
+    "agent observability",
+    "AI readiness assessment",
+    "enterprise workflow automation",
+    "cloud infrastructure modernization",
+    "AI governance and security",
     "digital transformation",
-    "open source tools",
   ],
   openGraph: {
     type: "website",
     title: "ARC Transformation Group · Make technology work for your business.",
-    description: site.description,
-    url: site.domain,
-    siteName: site.name,
+    description: arcSite.metaDescription,
+    url: arcSite.domain,
+    siteName: arcSite.name,
   },
   twitter: {
     card: "summary_large_image",
     title: "ARC Transformation Group",
-    description: site.description,
+    description: arcSite.metaDescription,
   },
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
@@ -60,24 +75,42 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: site.name,
-  url: site.domain,
-  email: site.email,
-  description: site.description,
-  sameAs: [site.github, site.linkedin, site.calendly],
+  name: arcSite.name,
+  url: arcSite.domain,
+  email: arcSite.email,
+  description: arcSite.positioning,
+  sameAs: [arcSite.github, arcSite.linkedin, arcSite.calendly],
+  // The two divisions, so the knowledge panel carries the structure the site
+  // is organised around rather than only the company name.
+  subOrganization: [
+    {
+      "@type": "Organization",
+      name: "ARC Control",
+      url: `${arcSite.domain}/control`,
+      description:
+        "Enterprise infrastructure for reliable AI agent execution: authorization, auditable execution, MCP conformance and agent observability.",
+    },
+    {
+      "@type": "Organization",
+      name: "ARC Labs",
+      url: `${arcSite.domain}/labs`,
+      description:
+        "Applied research, open-source developer tools and emerging technology experimentation.",
+    },
+  ],
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${sans.variable} ${mono.variable}`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${sans.variable} ${serif.variable} ${mono.variable}`}
+    >
       <body className="font-sans">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:text-primary-foreground"
+          className="sr-only-focusable fixed left-4 top-3 z-[60] rounded-md bg-ink px-4 py-2 text-sm font-medium text-canvas"
         >
           Skip to content
         </a>
@@ -91,13 +124,17 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex min-h-screen flex-col">
-            <SiteHeader />
-            <main id="main" className="flex-1">
-              {children}
-            </main>
-            <SiteFooter />
-          </div>
+          {/* reducedMotion="user" makes every framer-motion animation on the
+              site honour prefers-reduced-motion without per-component work. */}
+          <MotionConfig reducedMotion="user">
+            <div className="flex min-h-screen flex-col bg-canvas text-ink">
+              <ArcNav />
+              <main id="main" tabIndex={-1} className="flex-1 outline-none">
+                {children}
+              </main>
+              <ArcFooter />
+            </div>
+          </MotionConfig>
           <Analytics />
         </ThemeProvider>
       </body>
