@@ -8,6 +8,7 @@ import { Container } from "@/components/arc/ui/container";
 import { SectionIntro } from "@/components/arc/ui/section-intro";
 import { ArcButton } from "@/components/arc/ui/button";
 import { ArcMaturityBadge } from "@/components/arc/ui/maturity-badge";
+import { ArcMotion } from "@/components/arc/ui/motion";
 
 /**
  * Interactive map of how the four parts of ARC fit together. Click or arrow
@@ -27,6 +28,7 @@ export function Ecosystem() {
   };
 
   return (
+    <ArcMotion>
     <section
       aria-labelledby="eco-title"
       className="dark-surface bg-night py-20 text-mist sm:py-24"
@@ -169,5 +171,6 @@ export function Ecosystem() {
         </div>
       </Container>
     </section>
+    </ArcMotion>
   );
 }

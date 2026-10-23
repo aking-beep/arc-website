@@ -35,6 +35,13 @@ const nextConfig = {
         destination: "/advisory/:slug",
         permanent: true,
       },
+      // Agent Control became ARC Control and moved to /control in the
+      // Magic Patterns redesign. /ark-control is indexed, so it redirects.
+      {
+        source: "/ark-control",
+        destination: "/control",
+        permanent: true,
+      },
       // The Playbook sells from its own route now.
       {
         source: "/playbooks/ark-ai-product-playbook",

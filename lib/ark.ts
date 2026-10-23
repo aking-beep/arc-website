@@ -117,8 +117,11 @@ export type ArkProduct = {
 export const arkProducts: ArkProduct[] = [
   {
     slug: "ark-control",
-    name: "Agent Control",
-    navLabel: "Agent Control",
+    // Renamed to ARC Control in the Magic Patterns redesign and moved to
+    // /control. The slug stays so the sitemap, redirects and anything keyed
+    // on it keep working.
+    name: "ARC Control",
+    navLabel: "ARC Control",
     tagline: "Outcome assurance for production AI agents.",
     summary:
       "Understand what agents attempted, what authority they used, and whether the intended outcome occurred.",

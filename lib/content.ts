@@ -1515,9 +1515,9 @@ export const nav: NavItem[] = [
         summary: "How agents act, and how you check the result.",
       },
       {
-        label: "Agent Control",
-        href: "/ark-control",
-        summary: "Permissions and approval gates for agent actions.",
+        label: "ARC Control",
+        href: "/control",
+        summary: "Authorization, audit and verification for agent actions.",
       },
       {
         label: "Agent Readiness",

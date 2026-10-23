@@ -96,3 +96,36 @@ export const timelines = [
 export function typeLabel(id: string): string {
   return projectTypes.find((p) => p.id === id)?.label ?? "";
 }
+
+/**
+ * Which project type a deep link should preselect. Pages across the site link
+ * to /contact in four different shapes, and all four should land on the right
+ * option rather than on an empty first step.
+ *
+ * Exported separately from the form so it can be unit-tested.
+ */
+export function initialProjectType(params: {
+  type?: string | null;
+  service?: string | null;
+  topic?: string | null;
+  readiness?: string | null;
+}): string {
+  const byType = params.type && projectTypes.some((p) => p.id === params.type)
+    ? params.type
+    : undefined;
+  if (byType) return byType;
+
+  const byService = params.service ? serviceToType[params.service] : undefined;
+  if (byService) return byService;
+
+  // ?topic= predates this form. `ark-control` and `ai-fit-teams` are the two
+  // values other pages still use.
+  const topic = params.topic ?? "";
+  if (topic.includes("control")) return "control";
+  if (topic.includes("ai-fit") || topic.includes("readiness")) return "strategy";
+  if (topic.includes("labs")) return "labs";
+
+  if (params.readiness) return "strategy";
+
+  return "";
+}

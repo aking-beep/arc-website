@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { arcNav, arcSite } from "@/lib/arc/site";
@@ -24,6 +23,15 @@ import { ThemeToggle } from "@/components/theme-toggle";
  * The prototype's accessibility work is kept as-is: focus moves into the
  * mobile panel, Tab cycles inside it, Escape closes it and returns focus to
  * the toggle, and the body scroll locks while it is open.
+ *
+ * Deliberately no framer-motion here. The two animations the prototype used
+ * it for — the active-link underline and the mobile panel's slide — are a
+ * static bar and a two-property transition in CSS. Keeping the library out of
+ * the root layout keeps it off every route that does not animate: /about and
+ * /privacy load the same JavaScript they did before the redesign.
+ *
+ * The panel stays mounted and toggles `invisible`, which also takes it out of
+ * the tab order when closed, so the exit transition works without JS.
  */
 function isCurrent(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -102,11 +110,9 @@ export function ArcNav() {
               >
                 {item.label}
                 {active ? (
-                  <motion.span
-                    layoutId="arc-nav-underline"
+                  <span
                     aria-hidden="true"
                     className="absolute inset-x-3 -bottom-[13px] h-[2px] bg-brand"
-                    transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
                   />
                 ) : null}
               </Link>
@@ -136,70 +142,66 @@ export function ArcNav() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            id="arc-mobile-menu"
-            ref={panelRef}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Site menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-            className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto border-t border-line bg-canvas px-5 pb-10 pt-4 sm:px-8 lg:hidden"
+      <div
+        id="arc-mobile-menu"
+        ref={panelRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site menu"
+        aria-hidden={!open}
+        className={cn(
+          "fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto border-t border-line bg-canvas px-5 pb-10 pt-4 transition-[opacity,transform,visibility] duration-200 ease-out-strong sm:px-8 lg:hidden",
+          open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0",
+        )}
+      >
+        <nav aria-label="Site" className="flex flex-col">
+          <Link
+            href="/"
+            className={cn(
+              "border-b border-line py-4 text-lg font-medium",
+              pathname === "/" ? "text-brand" : "text-ink",
+            )}
           >
-            <nav aria-label="Site" className="flex flex-col">
-              <Link
-                href="/"
-                className={cn(
-                  "border-b border-line py-4 text-lg font-medium",
-                  pathname === "/" ? "text-brand" : "text-ink",
-                )}
-              >
-                Home
-              </Link>
-              {arcNav.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "flex items-center justify-between border-b border-line py-4 text-lg font-medium",
-                    isCurrent(pathname, item.href) ? "text-brand" : "text-ink",
-                  )}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Link
-                href="/playbook"
-                className={cn(
-                  "border-b border-line py-4 text-lg font-medium",
-                  isCurrent(pathname, "/playbook") ? "text-brand" : "text-ink",
-                )}
-              >
-                Playbooks
-              </Link>
-            </nav>
+            Home
+          </Link>
+          {arcNav.map((item) => (
             <Link
-              href="/contact"
-              className="mt-8 flex h-12 items-center justify-center rounded-md bg-ink text-base font-medium text-canvas"
+              key={item.href}
+              href={item.href}
+              className={cn(
+                "flex items-center justify-between border-b border-line py-4 text-lg font-medium",
+                isCurrent(pathname, item.href) ? "text-brand" : "text-ink",
+              )}
             >
-              Talk to ARC
+              {item.label}
             </Link>
-            <p className="mt-6 text-sm text-ink-2">
-              Prefer email?{" "}
-              <a
-                className="break-all font-medium text-brand underline underline-offset-2"
-                href={`mailto:${arcSite.email}`}
-              >
-                {arcSite.email}
-              </a>
-            </p>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+          ))}
+          <Link
+            href="/playbook"
+            className={cn(
+              "border-b border-line py-4 text-lg font-medium",
+              isCurrent(pathname, "/playbook") ? "text-brand" : "text-ink",
+            )}
+          >
+            Playbooks
+          </Link>
+        </nav>
+        <Link
+          href="/contact"
+          className="mt-8 flex h-12 items-center justify-center rounded-md bg-ink text-base font-medium text-canvas"
+        >
+          Talk to ARC
+        </Link>
+        <p className="mt-6 text-sm text-ink-2">
+          Prefer email?{" "}
+          <a
+            className="break-all font-medium text-brand underline underline-offset-2"
+            href={`mailto:${arcSite.email}`}
+          >
+            {arcSite.email}
+          </a>
+        </p>
+      </div>
     </header>
   );
 }

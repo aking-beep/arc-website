@@ -1,109 +1,131 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { PageHero } from "@/components/page-hero";
-import { Section, SectionHeading } from "@/components/ui/section";
-import { Card } from "@/components/ui/card";
-import { Icon } from "@/components/icon";
-import { CTA } from "@/components/cta";
+import { Container } from "@/components/arc/ui/container";
+import { ArcButton } from "@/components/arc/ui/button";
+import { ServiceExplorer } from "@/components/arc/services/service-explorer";
+import { ReadinessAssessment } from "@/components/arc/services/readiness-assessment";
+import { CloudExplorer } from "@/components/arc/services/cloud-explorer";
+import { EngagementShapes } from "@/components/arc/services/engagement-shapes";
+import { ClosingCta } from "@/components/arc/closing-cta";
+import { solutions } from "@/lib/arc/solutions";
 import { serviceAreas } from "@/lib/services";
-import { howWeEngage } from "@/lib/content";
+import { arcSite } from "@/lib/arc/site";
+
+const title = "Solutions · Enterprise AI, automation and modernization";
+const description =
+  "Six solution areas: AI strategy and readiness, AI development and integration, enterprise workflow automation, cloud and infrastructure modernization, AI governance and security, and emerging technology prototyping. Senior-led, scoped so you can stop at the end of any phase.";
 
 export const metadata: Metadata = {
-  title: "Services · Four things we help with",
-  description:
-    "Modernize what is slowing the business down, automate the work worth automating, build what you need, and make automated systems reliable enough to run on.",
+  title: { absolute: `${title} · ARC Transformation Group` },
+  description,
+  alternates: { canonical: "/services" },
+  openGraph: { title, description, url: "/services", type: "website" },
+  twitter: { title, description },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "ARC Transformation Group solution areas",
+  url: `${arcSite.domain}/services`,
+  itemListElement: solutions.map((s, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "Service",
+      name: s.name,
+      description: s.short,
+      provider: { "@type": "Organization", name: arcSite.name, url: arcSite.domain },
+      url: `${arcSite.domain}/services?area=${s.slug}`,
+    },
+  })),
 };
 
 export default function ServicesPage() {
   return (
     <>
-      <PageHero
-        kicker="Services"
-        title="Four things we help with."
-        lead="Find the one that sounds like your situation. If none of them quite fit, that is normal — most problems arrive as a symptom rather than a category, and working out which one it is is part of the first conversation."
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <Section>
-        <div className="grid gap-5 lg:grid-cols-2">
-          {serviceAreas.map((area) => (
-            <Link
-              key={area.slug}
-              href={`/services/${area.slug}`}
-              className="group block h-full"
+      <section aria-labelledby="svc-title" className="border-b border-line">
+        <Container className="grid gap-10 py-16 sm:py-20 lg:grid-cols-[1.4fr_1fr] lg:items-end">
+          <div>
+            <p className="font-mono text-[13px] text-brand">Solutions</p>
+            <h1
+              id="svc-title"
+              className="mt-5 font-serif text-[42px] leading-[1.06] tracking-[-0.02em] text-balance text-ink sm:text-[56px]"
             >
-              <Card className="flex h-full flex-col p-7 transition-all hover:border-foreground/20 hover:shadow-sm sm:p-8">
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-foreground">
-                  <Icon name={area.icon} className="h-5 w-5" />
-                </span>
-                <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                  {area.verb}
-                </p>
-                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-balance">
-                  {area.heading}
-                </h2>
-                <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-                  {area.body}
-                </p>
-                <ul className="mt-6 grid flex-1 gap-2 border-t border-border/60 pt-5">
-                  {area.symptoms.slice(0, 3).map((symptom) => (
-                    <li
-                      key={symptom}
-                      className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground"
-                    >
-                      <span
-                        aria-hidden
-                        className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-brand/60"
-                      />
-                      {symptom}
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all group-hover:gap-2.5">
-                  {area.linkLabel}
-                  <ArrowRight className="h-4 w-4" />
-                </p>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      </Section>
+              Senior people on the work, from the first call to production.
+            </h1>
+            <p className="mt-6 max-w-[600px] text-[18px] leading-relaxed text-pretty text-ink-2">
+              Six solution areas, each starting from the business problem. The person on your first
+              call stays on the work, and every phase can end in a decision to stop.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3 lg:justify-end">
+            <ArcButton href="#readiness" variant="secondary">
+              Take the readiness check
+            </ArcButton>
+            <ArcButton href="/contact" arrow>
+              Talk to ARC
+            </ArcButton>
+          </div>
+        </Container>
+      </section>
 
-      <Section className="bg-muted/30">
-        <SectionHeading
-          kicker="How we engage"
-          title="Three sizes, and we will tell you which one you need."
-          lead="Most work starts with a scoped review because it is the cheapest way to find out whether the expensive thing is worth doing."
-        />
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
-          {howWeEngage.map((mode, index) => (
-            <Card key={mode.name} className="flex h-full flex-col p-6 sm:p-7">
-              <span className="font-mono text-xs text-muted-foreground">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 className="mt-3 text-lg font-semibold tracking-tight">
-                {mode.name}
-              </h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-                {mode.text}
-              </p>
-            </Card>
-          ))}
-        </div>
-        <div className="mt-8">
-          <Link
-            href="/advisory"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
+      {/* useSearchParams needs a Suspense boundary so the rest of the page
+          still prerenders statically. */}
+      <Suspense
+        fallback={<div className="min-h-[600px]" aria-hidden="true" />}
+      >
+        <ServiceExplorer />
+      </Suspense>
+
+      <ReadinessAssessment />
+      <CloudExplorer />
+      <EngagementShapes />
+
+      {/* The four buyer-problem pages predate the redesign, rank, and go
+          deeper on symptoms than the explorer does. They stay linked. */}
+      <section
+        aria-labelledby="deeper-title"
+        className="border-t border-line bg-paper py-16 sm:py-20"
+      >
+        <Container>
+          <h2
+            id="deeper-title"
+            className="font-serif text-[28px] leading-tight text-ink sm:text-[32px]"
           >
-            See the engagements and what each one costs you in time
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </Section>
+            Or start from the symptom
+          </h2>
+          <p className="mt-3 max-w-[620px] text-[15.5px] leading-relaxed text-ink-2">
+            Four pages written around what a week looks like when something is wrong, with the
+            symptoms listed before anything we sell.
+          </p>
+          <ul className="mt-8 grid gap-x-10 border-t border-ink sm:grid-cols-2">
+            {serviceAreas.map((area) => (
+              <li key={area.slug} className="border-b border-line py-5">
+                <Link href={`/services/${area.slug}`} className="group block">
+                  <span className="block text-[16.5px] font-semibold text-ink group-hover:text-brand">
+                    {area.heading}
+                  </span>
+                  <span className="mt-1 block text-[14.5px] leading-relaxed text-ink-2">
+                    {area.summary}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
 
-      <CTA
-        title="Tell us what's happening."
-        lead="Thirty minutes is enough to work out which of the four this is, and whether it needs a small fix, a focused project or nothing from us at all."
+      <ClosingCta
+        id="services-cta"
+        title="Tell us the problem, not the discipline."
+        lead="Working out which solution you need is our job. Describe what’s happening and we’ll come back with a recommended first step and a rough shape — or tell you we’re not the right fit."
       />
     </>
   );

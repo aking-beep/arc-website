@@ -6,6 +6,7 @@ import { Check, CircleDashed, Pause, RotateCcw, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { scenarios, type StepState } from "@/lib/arc/execution";
 import { DemoLabel } from "@/components/arc/ui/demo-label";
+import { ArcMotion } from "@/components/arc/ui/motion";
 
 /**
  * Walks one simulated agent run through identity, policy, tool call and
@@ -39,6 +40,7 @@ export function AgentExecution({ compact = false }: { compact?: boolean }) {
   }, [active, run, reduce, total]);
 
   return (
+    <ArcMotion>
     <div className="dark-surface overflow-hidden rounded-xl border border-night-line bg-night text-mist shadow-[0_24px_60px_-30px_hsl(var(--night)/0.55)]">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-night-line px-5 py-3.5">
         <span className="font-mono text-[12.5px] text-mist-2">run_7f3a · refund workflow</span>
@@ -140,6 +142,7 @@ export function AgentExecution({ compact = false }: { compact?: boolean }) {
         </button>
       </div>
     </div>
+    </ArcMotion>
   );
 }
 

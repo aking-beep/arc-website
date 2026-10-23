@@ -27,14 +27,14 @@ const rows = [
     question:
       "Where does AI belong in this business, and where is ordinary automation the better answer?",
     where: "Solutions · AI Strategy",
-    href: "/services#ai-strategy",
+    href: "/services?area=ai-strategy#solutions",
   },
   {
     name: "Cloud and infrastructure modernization",
     question:
       "Which parts of the estate are slowing every release, and in what order can we afford to fix them?",
     where: "Solutions · Modernization",
-    href: "/services#cloud-modernization",
+    href: "/services?area=cloud-modernization#solutions",
   },
   {
     name: "Protocol and security validation",
@@ -48,7 +48,7 @@ const rows = [
     question:
       "How do we go from a working prototype to something customers rely on, without overbuilding?",
     where: "Solutions · Prototyping",
-    href: "/services#emerging-technology",
+    href: "/services?area=emerging-technology#solutions",
   },
 ];
 

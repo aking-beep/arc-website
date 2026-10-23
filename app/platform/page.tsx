@@ -56,8 +56,8 @@ export default function PlatformPage() {
                 Assess agent readiness
                 <ArrowRight className="h-4 w-4" />
               </Button>
-              <Button href="/ark-control" variant="outline" size="lg">
-                Explore Agent Control
+              <Button href="/control" variant="outline" size="lg">
+                Explore ARC Control
               </Button>
             </div>
           </div>
@@ -188,8 +188,8 @@ export default function PlatformPage() {
                 {flagship.today}
               </p>
               <div className="mt-8">
-                <Button href="/ark-control">
-                  Read the Agent Control thinking
+                <Button href="/control">
+                  Explore ARC Control
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </div>

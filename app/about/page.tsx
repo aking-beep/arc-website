@@ -1,180 +1,226 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { PageHero } from "@/components/page-hero";
-import { Section, SectionHeading } from "@/components/ui/section";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { PanelLabel } from "@/components/diagram";
-import { FaqList } from "@/components/faq-list";
-import { CTA } from "@/components/cta";
-import { ark } from "@/lib/ark";
-import { digitalTransformation, faqs, site } from "@/lib/content";
-import { playbookTiers } from "@/lib/playbook";
+import { ArrowUpRight } from "lucide-react";
+import { Container } from "@/components/arc/ui/container";
+import { SectionIntro } from "@/components/arc/ui/section-intro";
+import { ClosingCta } from "@/components/arc/closing-cta";
+import { arcSite } from "@/lib/arc/site";
+import { site } from "@/lib/content";
+
+const title = "About ARC Transformation Group";
+const description =
+  "A senior-led technology practice: ARC Control for agent infrastructure, ARC Labs for applied research and developer tools, and enterprise delivery across AI, cloud, data and security. Twenty years of Fortune 100 and Fortune 500 programme work.";
 
 export const metadata: Metadata = {
-  title: "About · Who does the work",
-  description:
-    "ARC Transformation Group is a senior-led technology practice. Twenty years of Fortune 100 and 500 delivery, and the person on your first call stays on the work.",
+  title,
+  description,
+  alternates: { canonical: "/about" },
+  openGraph: { title, description, url: "/about", type: "website" },
+  twitter: { title, description },
 };
+
+/** Ported from the prototype's `pages/About`. */
+const principles = [
+  {
+    name: "Human potential",
+    text: "Technology is worth building when it gives people back time, judgment or reach. If a system makes the people around it worse at their jobs, it has failed, however well it benchmarks.",
+  },
+  {
+    name: "Technology",
+    text: "We stay close to the engineering. The same people who advise also write the scanners, design the controls and read the protocol specs, so the advice holds up when it meets your stack.",
+  },
+  {
+    name: "Curiosity",
+    text: "ARC Labs exists because the useful questions don’t always come from client briefs. Building our own tools in public teaches us things that enterprise work later needs.",
+  },
+  {
+    name: "Practical innovation",
+    text: "New is not the test. We ship narrow first versions against live workflows, say plainly when ordinary automation beats AI, and label experiments as experiments.",
+  },
+];
+
+/** `site.team.highlights` (lib/content.ts), unchanged. */
+const highlights = site.team.highlights;
+
+const vision = [
+  {
+    year: "Now",
+    text: "A senior-led practice with open-source tools in use and ARC Control in design-partner development.",
+  },
+  {
+    year: "Next",
+    text: "ARC Control proven with design partners on production systems, with verification treated as a standard rather than a feature.",
+  },
+  {
+    year: "2030",
+    text: "The infrastructure enterprises rely on to let agents act on real systems, and a lab that keeps turning curiosity into products people use.",
+  },
+];
+
+const organisation: { name: string; text: string; href: string }[] = [
+  {
+    name: "ARC Control",
+    text: "Enterprise AI agent infrastructure: authorization, auditable execution, MCP conformance, observability and governance.",
+    href: "/control",
+  },
+  {
+    name: "ARC Labs",
+    text: "Applied experiments: developer tools, scanners and emerging technology, published with their real maturity.",
+    href: "/labs",
+  },
+  {
+    name: "Solutions",
+    text: "Strategy, readiness, modernization, automation, governance and delivery, run by the people who built the products.",
+    href: "/services",
+  },
+  {
+    name: "Research",
+    text: "Cited briefs, frameworks and case studies, published openly and dated by the change rather than the publication.",
+    href: "/research",
+  },
+];
 
 export default function AboutPage() {
   return (
     <>
-      <PageHero
-        kicker="About"
-        title="The person on your first call stays on the work."
-        lead="ARC is a senior-led technology practice. Twenty years of Fortune 100 and Fortune 500 programme delivery, applied to companies that cannot afford a consulting army or a year of discovery."
-      />
+      <section aria-labelledby="about-title" className="border-b border-line">
+        <Container className="py-16 sm:py-20 lg:py-24">
+          <p className="font-mono text-[13px] text-brand">About ARC</p>
+          <h1
+            id="about-title"
+            className="mt-5 max-w-[900px] font-serif text-[42px] leading-[1.06] tracking-[-0.02em] text-balance text-ink sm:text-[60px]"
+          >
+            Technology that works in real environments, not just in demos.
+          </h1>
+          <p className="mt-7 max-w-[640px] text-[18px] leading-relaxed text-pretty text-ink-2">
+            {arcSite.positioning}
+          </p>
+        </Container>
+      </section>
 
-      {/*
-        Who does the work, and what they have done, comes before anything about
-        how ARC is organised. It is the only part a buyer cannot get elsewhere.
-      */}
-      <Section>
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.35fr] lg:items-start">
-          <div>
-            <SectionHeading
-              kicker="Who we are"
-              title={site.team.title}
-              lead={site.team.lead}
-            />
-          </div>
-          <div className="space-y-6">
-            <div className="rounded-xl border border-border bg-card p-6 sm:p-8">
-              <p className="text-base leading-relaxed text-muted-foreground">
-                {site.team.bio}
-              </p>
-              <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {site.team.scope.map((item) => (
-                  <div
-                    key={item.label}
-                    className="rounded-lg border border-border bg-background/60 px-4 py-3"
-                  >
-                    <div className="text-lg font-semibold tracking-tight">
-                      {item.metric}
-                    </div>
-                    <p className="mt-1 text-xs text-muted-foreground">{item.label}</p>
-                  </div>
-                ))}
+      <section aria-labelledby="phil-title" className="py-20 sm:py-24">
+        <Container>
+          <SectionIntro id="phil-title" eyebrow="Philosophy" title="Four ideas we hold ourselves to." />
+          <dl className="mt-12 grid gap-x-16 md:grid-cols-2">
+            {principles.map((p) => (
+              <div key={p.name} className="border-t border-line-strong py-8">
+                <dt className="font-serif text-[28px] leading-tight text-ink">{p.name}</dt>
+                <dd className="mt-3 text-[16px] leading-relaxed text-ink-2">{p.text}</dd>
               </div>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Button href="/work" size="sm">
-                  See the work
-                </Button>
-                <Button href="/contact" variant="outline" size="sm">
-                  Get in touch
-                </Button>
+            ))}
+          </dl>
+        </Container>
+      </section>
+
+      <section
+        aria-labelledby="lead-title"
+        className="border-t border-line bg-paper py-20 sm:py-24"
+      >
+        <Container className="grid gap-12 lg:grid-cols-[1fr_1.5fr] lg:gap-16">
+          <SectionIntro
+            id="lead-title"
+            eyebrow="Leadership"
+            title="The person on your first call stays on the work."
+            lead={site.team.lead}
+          />
+          <article className="rounded-xl border border-line bg-canvas p-6 sm:p-8">
+            <div className="flex items-center gap-4">
+              <span
+                aria-hidden="true"
+                className="flex h-14 w-14 items-center justify-center rounded-full bg-ink font-serif text-[20px] text-canvas"
+              >
+                AK
+              </span>
+              <div>
+                <h3 className="text-[18px] font-semibold text-ink">Founder and Principal</h3>
+                <a
+                  href={arcSite.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-0.5 inline-flex items-center gap-1 text-[14px] font-medium text-brand hover:underline"
+                >
+                  LinkedIn profile <ArrowUpRight size={13} aria-hidden="true" />
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
               </div>
             </div>
-            <ul className="grid gap-3 sm:grid-cols-2">
-              {site.team.highlights.map((h) => (
-                <li
-                  key={h}
-                  className="rounded-lg border border-border bg-background/60 px-4 py-3 text-sm leading-relaxed text-muted-foreground"
-                >
+            <ul className="mt-7 border-t border-line">
+              {highlights.map((h) => (
+                <li key={h} className="border-b border-line py-3.5 text-[15px] leading-relaxed text-ink">
                   {h}
                 </li>
               ))}
             </ul>
+            <p className="mt-5 text-[13.5px] text-ink-3">
+              Client names appear only where we have permission. Other engagements are described by
+              industry and scale —{" "}
+              <Link href="/work" className="font-medium text-brand hover:underline">
+                see the selected work
+              </Link>
+              .
+            </p>
+          </article>
+        </Container>
+      </section>
+
+      <section
+        aria-labelledby="vision-title"
+        className="dark-surface bg-night py-20 text-mist sm:py-24"
+      >
+        <Container>
+          <SectionIntro
+            id="vision-title"
+            onDark
+            eyebrow="Mission and vision"
+            title="Make intelligent systems reliable, secure and useful."
+            lead="That’s the mission. The vision is what it looks like by 2030. It’s an ambition, not a claim about where we are today."
+          />
+          <ol className="mt-14 grid border-t border-night-line md:grid-cols-3">
+            {vision.map((v, i) => (
+              <li
+                key={v.year}
+                className={`py-8 md:pr-8 ${i > 0 ? "md:border-l md:border-night-line md:pl-8" : ""}`}
+              >
+                <span className="font-mono text-[13px] text-brand-on-dark">{v.year}</span>
+                <p className="mt-3 text-[17px] leading-relaxed text-mist">{v.text}</p>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </section>
+
+      <section aria-labelledby="org-title" className="py-20 sm:py-24">
+        <Container className="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
+          <SectionIntro
+            id="org-title"
+            eyebrow="How ARC is organised"
+            title="One company you contract with."
+            lead="The services, the products and the research carry the same name and are built by the same people."
+          />
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[520px] border-t border-ink text-left">
+              <caption className="sr-only">ARC divisions</caption>
+              <tbody>
+                {organisation.map((row) => (
+                  <tr key={row.name} className="border-b border-line align-top">
+                    <th scope="row" className="w-[200px] py-5 pr-6 text-[16px] font-semibold text-ink">
+                      <Link href={row.href} className="hover:text-brand">
+                        {row.name}
+                      </Link>
+                    </th>
+                    <td className="py-5 text-[15px] leading-relaxed text-ink-2">{row.text}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        </div>
-      </Section>
+        </Container>
+      </section>
 
-      <Section className="bg-muted/30">
-        <SectionHeading
-          kicker="How we think about it"
-          title="A migration that ignores the people running it is not a migration."
-          lead="Most technology work fails somewhere other than the technology. These are the parts we expect to move together, because a change to one of them usually breaks another."
-        />
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {digitalTransformation.map((item) => (
-            <div key={item.name} className="rounded-lg border border-border bg-card p-5">
-              <h3 className="text-sm font-semibold">{item.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {item.text}
-              </p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      <Section>
-        <SectionHeading
-          kicker="One company"
-          title="The work, the playbooks, and the tools carry the same name."
-          lead="ARC Transformation Group is who you contract with. The pages for agents, and the three playbooks, are published by that same practice."
-        />
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
-          <Card className="p-6 sm:p-8">
-            <PanelLabel>Services</PanelLabel>
-            <p className="mt-4 text-xl font-semibold tracking-tight text-balance">
-              {site.question}
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Modernize, automate, build, and operate. Architecture, data, cloud,
-              security, software, and AI, reviewed and delivered by the person on
-              the first call.
-            </p>
-            <Link
-              href="/services"
-              className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
-            >
-              What we help with
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Card>
-          <Card className="p-6 sm:p-8">
-            <PanelLabel>Playbooks</PanelLabel>
-            <p className="mt-4 text-xl font-semibold tracking-tight text-balance">
-              {playbookTiers.map((tier) => `${tier.name} ${tier.price}`).join(" · ")}
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Three separate PDFs for the product work. Define asks whether it
-              should exist. Build asks how the system should be made. Ship asks
-              whether it is ready, and includes the files you build with.
-            </p>
-            <Link
-              href="/playbook"
-              className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
-            >
-              See the playbooks
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Card>
-          <Card className="p-6 sm:p-8">
-            <PanelLabel>Agent infrastructure</PanelLabel>
-            <p className="mt-4 text-xl font-semibold tracking-tight text-balance">
-              {ark.question}
-            </p>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Agent Readiness, Agent Control with design partners, and the free
-              Labs tools. {ark.principle}
-            </p>
-            <Link
-              href="/platform"
-              className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-all hover:gap-2.5"
-            >
-              Agent infrastructure
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Card>
-        </div>
-      </Section>
-
-      <Section className="bg-muted/30">
-        <SectionHeading
-          kicker="FAQ"
-          title="The questions that come up on almost every call."
-        />
-        <div className="mt-10 max-w-3xl">
-          <FaqList items={faqs} />
-        </div>
-      </Section>
-
-      <CTA
+      <ClosingCta
+        id="about-cta"
         title="Thirty minutes. No deck."
-        lead="We will listen, ask the hard questions, and tell you whether ARC is the right next step — including when it is not."
+        lead="We’ll listen, ask the hard questions, and tell you whether ARC is the right next step, including when it isn’t."
       />
     </>
   );

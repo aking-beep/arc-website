@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans, IBM_Plex_Serif, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
-import { MotionConfig } from "framer-motion";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ArcNav } from "@/components/arc/nav";
@@ -124,17 +123,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           enableSystem
           disableTransitionOnChange
         >
-          {/* reducedMotion="user" makes every framer-motion animation on the
-              site honour prefers-reduced-motion without per-component work. */}
-          <MotionConfig reducedMotion="user">
-            <div className="flex min-h-screen flex-col bg-canvas text-ink">
-              <ArcNav />
-              <main id="main" tabIndex={-1} className="flex-1 outline-none">
-                {children}
-              </main>
-              <ArcFooter />
-            </div>
-          </MotionConfig>
+          {/* No MotionConfig here on purpose: putting framer-motion in the
+              root layout would load it on every route. The animated sections
+              are client components that set `reducedMotion` themselves, and
+              app/globals.css zeroes out every animation and transition under
+              prefers-reduced-motion as a backstop. */}
+          <div className="flex min-h-screen flex-col bg-canvas text-ink">
+            <ArcNav />
+            <main id="main" tabIndex={-1} className="flex-1 outline-none">
+              {children}
+            </main>
+            <ArcFooter />
+          </div>
           <Analytics />
         </ThemeProvider>
       </body>
