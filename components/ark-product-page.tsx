@@ -33,22 +33,19 @@ export function ArkProductPage({
 }) {
   return (
     <>
-      <section className="relative overflow-hidden border-b border-border/60">
-        <div className="pointer-events-none absolute inset-0 grid-bg opacity-60" />
-        <Container className="relative py-20 sm:py-24">
+      <section className="border-b border-line">
+        <Container className="py-16 sm:py-20 lg:py-24">
           <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-start">
-            <div className="animate-fade-up">
+            <div>
               <div className="flex flex-wrap items-center gap-3">
-                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                  ARC product
-                </span>
+                <span className="font-mono text-[13px] text-brand">ARC product</span>
                 <MaturityBadge maturity={product.maturity} />
               </div>
-              <h1 className="mt-5 text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+              <h1 className="mt-5 font-serif text-[42px] leading-[1.06] tracking-[-0.02em] text-balance text-ink sm:text-[56px]">
                 {product.name}
               </h1>
-              <p className="mt-5 text-xl leading-relaxed">{product.tagline}</p>
-              <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
+              <p className="mt-6 text-[19px] leading-relaxed text-ink">{product.tagline}</p>
+              <p className="mt-4 max-w-xl text-[17px] leading-relaxed text-pretty text-ink-2">
                 {product.summary}
               </p>
               <div className="mt-8">
@@ -59,18 +56,18 @@ export function ArkProductPage({
               </div>
             </div>
 
-            <aside className="rounded-xl border border-brand/30 bg-brand-subtle/60 p-6 sm:p-8">
+            <aside className="rounded-xl border border-brand/30 bg-brand-subtle p-6 sm:p-8">
               <PanelLabel>{product.todayLabel}</PanelLabel>
-              <p className="mt-4 text-base leading-relaxed">{product.today}</p>
+              <p className="mt-4 text-[15px] leading-relaxed text-ink">{product.today}</p>
             </aside>
           </div>
         </Container>
       </section>
 
       <Section>
-        <div className="max-w-3xl space-y-5">
+        <div className="max-w-[720px] space-y-5">
           {product.intro.map((paragraph) => (
-            <p key={paragraph} className="text-lg leading-relaxed text-muted-foreground">
+            <p key={paragraph} className="text-[17px] leading-relaxed text-pretty text-ink-2">
               {paragraph}
             </p>
           ))}
@@ -80,21 +77,21 @@ export function ArkProductPage({
       {prologue}
 
       {product.evaluates ? (
-        <Section className="bg-muted/30">
+        <Section className="bg-paper">
           <SectionHeading
             kicker="What it evaluates"
             title="Three layers, assessed separately."
             lead="A system can have a clean interface and no way to say who did what. These fail independently, so they are scored independently."
           />
-          <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border lg:grid-cols-3">
+          <div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line lg:grid-cols-3">
             {product.evaluates.map((group) => (
-              <div key={group.group} className="bg-card p-6 sm:p-8">
+              <div key={group.group} className="bg-canvas p-6 sm:p-8">
                 <PanelLabel>{group.group}</PanelLabel>
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {group.items.map((item) => (
                     <li
                       key={item}
-                      className="rounded-md border border-border bg-muted/50 px-2.5 py-1 font-mono text-[11px] text-muted-foreground"
+                      className="rounded-md border border-line bg-paper px-2.5 py-1 font-mono text-[11.5px] text-ink-2"
                     >
                       {item}
                     </li>
@@ -110,18 +107,18 @@ export function ArkProductPage({
         <Section
           className={
             capabilitiesClassName ??
-            (product.evaluates ? undefined : "bg-muted/30")
+            (product.evaluates ? undefined : "bg-paper")
           }
         >
           <SectionHeading
             kicker="What you get"
             title="What the product produces."
           />
-          <dl className="mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+          <dl className="mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
             {product.capabilities.map((c) => (
-              <div key={c.name} className="bg-card p-6">
-                <dt className="text-sm font-semibold">{c.name}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <div key={c.name} className="bg-canvas p-6">
+                <dt className="text-[15px] font-semibold text-ink">{c.name}</dt>
+                <dd className="mt-2 text-[14.5px] leading-relaxed text-ink-2">
                   {c.text}
                 </dd>
               </div>
@@ -132,7 +129,7 @@ export function ArkProductPage({
 
       {children}
 
-      <Section className="bg-muted/30">
+      <Section className="bg-paper">
         <SectionHeading
           kicker="Limits"
           title="What this is not."
@@ -141,10 +138,8 @@ export function ArkProductPage({
         <ul className="mt-10 grid max-w-3xl gap-4">
           {product.limits.map((limit) => (
             <li key={limit} className="flex items-start gap-3">
-              <Minus className="mt-1 h-4 w-4 flex-none text-muted-foreground" />
-              <span className="text-base leading-relaxed text-muted-foreground">
-                {limit}
-              </span>
+              <Minus className="mt-1 h-4 w-4 flex-none text-ink-3" aria-hidden="true" />
+              <span className="text-[15.5px] leading-relaxed text-ink-2">{limit}</span>
             </li>
           ))}
         </ul>

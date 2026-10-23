@@ -13,11 +13,20 @@ import { arkProducts } from "@/lib/ark";
 import { playbookHref, playbooks } from "@/lib/learn";
 import { playbookTierHref, playbookTiers } from "@/lib/playbook";
 import { serviceAreas } from "@/lib/services";
+import { control } from "@/lib/arc/control";
+
+/**
+ * Routes that redirect rather than render. A redirecting URL in a sitemap is a
+ * soft error in Search Console, so they are filtered out — the redirect in
+ * next.config.mjs is what carries their ranking across.
+ */
+const REDIRECTED = new Set<string>([control.legacyPath]);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = site.domain.replace(/\/$/, "");
   const routes = [
     "",
+    control.path,
     ...nav.flatMap((n) => [
       n.href.split("#")[0],
       ...(n.children ?? []).map((c) => c.href.split("#")[0]),
@@ -33,8 +42,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...academy.map((w) => `/academy/${w.slug}`),
     ...caseStudies.map((c) => `/work/${c.slug}`),
   ];
-  return Array.from(new Set(routes)).map((href) => ({
-    url: `${base}${href}`,
-    lastModified: new Date(),
-  }));
+
+  return Array.from(new Set(routes))
+    .filter((href) => !REDIRECTED.has(href))
+    .map((href) => ({
+      url: `${base}${href}`,
+      lastModified: new Date(),
+    }));
 }

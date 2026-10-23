@@ -4,27 +4,58 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 /**
- * The Agent Control console showcase is a folder of static HTML captured from
- * the real console in aking-beep/arc-control (`npm run showcase` there). It is
- * linked from /ark-control, so these assert the things that would silently
- * break the link or quietly publish something it should not.
+ * The ARC Control console showcase is a folder of static HTML captured from
+ * the real console in aking-beep/arc-control (`npm run showcase` there). These
+ * assert the things that would silently break the link or quietly publish
+ * something they should not.
+ *
+ * The Magic Patterns redesign moved the product page from /ark-control to
+ * /control and made the old path a permanent redirect, so the page asserted
+ * on below moved with it. Every other assertion is unchanged: the capture
+ * itself was not touched, and must not be — editing a captured page would
+ * falsify what it is evidence of.
  */
 
 const consoleDir = path.join(process.cwd(), "public", "ark-control", "console");
-const productPage = path.join(process.cwd(), "app", "ark-control", "page.tsx");
+const productPage = path.join(process.cwd(), "app", "control", "page.tsx");
+const showcase = path.join(
+  process.cwd(),
+  "components",
+  "arc",
+  "control",
+  "console-showcase.tsx",
+);
+const showcaseData = path.join(process.cwd(), "lib", "arc", "control.ts");
 
 async function page(name: string) {
   return fs.readFile(path.join(consoleDir, name), "utf8");
 }
 
-describe("the Agent Control console showcase", () => {
+describe("the ARC Control console showcase", () => {
   it("ships the entry page the product page links to", async () => {
     const entry = await page("index.html");
     expect(entry).toContain("<!doctype html>");
     expect(entry).toContain("Overview — ARC Control");
 
+    // /control renders the showcase section, which carries the link.
     const product = await fs.readFile(productPage, "utf8");
-    expect(product).toContain("/ark-control/console/index.html");
+    expect(product).toContain("ConsoleShowcase");
+    const section = await fs.readFile(showcase, "utf8");
+    expect(section).toContain("consoleShowcase.entry");
+    const data = await fs.readFile(showcaseData, "utf8");
+    expect(data).toContain("/ark-control/console/index.html");
+  });
+
+  /**
+   * The section states a revision and a page count. Both come from the
+   * capture's own build.json, so they cannot be left behind when it is
+   * recaptured without this failing.
+   */
+  it("states the revision and page count the capture actually has", async () => {
+    const build = JSON.parse(await fs.readFile(path.join(consoleDir, "build.json"), "utf8"));
+    const data = await fs.readFile(showcaseData, "utf8");
+    expect(data).toContain(`revision: "${build.revision}"`);
+    expect(data).toContain(`pageCount: ${build.pages.length}`);
   });
 
   it("ships all ten sections", async () => {

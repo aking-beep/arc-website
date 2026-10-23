@@ -1,36 +1,35 @@
 import { NextResponse } from "next/server";
 import { site } from "@/lib/content";
+import { clampField, isValidEmail, type InquiryField } from "@/lib/arc/contact-payload";
 
 export const runtime = "nodejs";
 
-type ContactPayload = {
-  name?: string;
-  email?: string;
-  company?: string;
-  stage?: string;
-  topic?: string;
-  message?: string;
+/**
+ * The redesigned three-step inquiry form collects six fields the original
+ * single-step form did not: `type`, `role`, `size`, `budget`, `timeline` and
+ * `technical`. They are accepted here, clamped server-side like everything
+ * else, and added to the notification email.
+ *
+ * `stage` and `topic` still work, so `components/contact-form.tsx` and the
+ * `?topic=` deep links elsewhere on the site are unaffected.
+ */
+type ContactPayload = Partial<Record<InquiryField, string>> & {
   company_website?: string; // honeypot
 };
 
-function isValidEmail(email: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-// Length caps. The client can be bypassed, so we clamp again here to block
-// oversized payloads and abuse. Email cap is RFC 5321's 254 chars.
-const LIMITS = {
-  name: 120,
-  email: 254,
-  company: 160,
-  stage: 200,
-  topic: 80,
-  message: 5000,
-} as const;
-
-function clean(value: string | undefined, max: number) {
-  return (value ?? "").trim().slice(0, max);
-}
+/** Order the notification email reads in. */
+const EMAIL_FIELDS: { key: InquiryField; label: string }[] = [
+  { key: "name", label: "Name" },
+  { key: "email", label: "Email" },
+  { key: "company", label: "Company" },
+  { key: "role", label: "Role" },
+  { key: "size", label: "Company size" },
+  { key: "type", label: "Project type" },
+  { key: "topic", label: "Topic" },
+  { key: "stage", label: "Stage" },
+  { key: "budget", label: "Budget" },
+  { key: "timeline", label: "Timeline" },
+];
 
 export async function POST(request: Request) {
   // Only accept JSON. Anything else is almost certainly not our form.
@@ -45,46 +44,58 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
   }
 
-  // Honeypot - bots fill hidden fields; humans never see this one.
+  // Honeypot — bots fill hidden fields; humans never see this one.
   // Accept-and-drop so bots get no signal that they were caught.
   if (body.company_website) {
     return NextResponse.json({ ok: true });
   }
 
-  const name = clean(body.name, LIMITS.name);
-  const email = clean(body.email, LIMITS.email);
-  const company = clean(body.company, LIMITS.company);
-  const stage = clean(body.stage, LIMITS.stage);
-  const topic = clean(body.topic, LIMITS.topic);
-  const message = clean(body.message, LIMITS.message);
+  const fields = Object.fromEntries(
+    (
+      [
+        "name",
+        "email",
+        "company",
+        "role",
+        "size",
+        "budget",
+        "timeline",
+        "stage",
+        "topic",
+        "type",
+        "message",
+        "technical",
+      ] as InquiryField[]
+    ).map((key) => [key, clampField(body[key], key)]),
+  ) as Record<InquiryField, string>;
 
-  if (!name || !email) {
+  if (!fields.name || !fields.email) {
     return NextResponse.json(
       { error: "Name and work email are required." },
       { status: 400 },
     );
   }
-  if (!isValidEmail(email)) {
+  if (!isValidEmail(fields.email)) {
     return NextResponse.json({ error: "That email looks invalid." }, { status: 400 });
   }
 
-  const subject = `ARC contact${topic ? ` · ${topic}` : ""} · ${name}${company ? ` (${company})` : ""}`;
+  const label = fields.type || fields.topic;
+  const subject = `ARC inquiry${label ? ` · ${label}` : ""} · ${fields.name}${
+    fields.company ? ` (${fields.company})` : ""
+  }`;
+
   const text = [
-    `Name: ${name}`,
-    `Email: ${email}`,
-    company ? `Company: ${company}` : null,
-    topic ? `Topic: ${topic}` : null,
-    stage ? `Stage: ${stage}` : null,
+    ...EMAIL_FIELDS.filter(({ key }) => fields[key]).map(
+      ({ key, label: l }) => `${l}: ${fields[key]}`,
+    ),
     "",
-    message || "(no message)",
-  ]
-    .filter((line) => line !== null)
-    .join("\n");
+    fields.message || "(no message)",
+    ...(fields.technical ? ["", "--- Technical requirements ---", fields.technical] : []),
+  ].join("\n");
 
   const resendKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL || site.email;
-  const from =
-    process.env.CONTACT_FROM_EMAIL || "ARC Website <onboarding@resend.dev>";
+  const from = process.env.CONTACT_FROM_EMAIL || "ARC Website <onboarding@resend.dev>";
 
   if (resendKey) {
     const res = await fetch("https://api.resend.com/emails", {
@@ -96,7 +107,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         from,
         to: [to],
-        reply_to: email,
+        reply_to: fields.email,
         subject,
         text,
       }),
@@ -114,25 +125,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  // No Resend key - still succeed so the UI works in local/preview,
-  // and log so you can wire delivery later.
+  // No Resend key — still succeed so the UI works in local and preview, and
+  // log so delivery can be wired later.
   console.info("[contact] message received (no RESEND_API_KEY configured)", {
-    name,
-    email,
-    company,
-    topic,
-    stage,
-    message,
+    ...fields,
+    message: fields.message.slice(0, 200),
   });
 
   return NextResponse.json({
     ok: true,
-    warning:
-      "Message logged. Set RESEND_API_KEY to deliver email in production.",
+    warning: "Message logged. Set RESEND_API_KEY to deliver email in production.",
   });
 }
 
-// Any method other than POST gets a clean 405 - no stack traces, no surface.
+// Any method other than POST gets a clean 405 — no stack traces, no surface.
 function methodNotAllowed() {
   return NextResponse.json(
     { error: "Method not allowed." },

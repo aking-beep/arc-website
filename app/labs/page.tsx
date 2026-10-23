@@ -1,160 +1,179 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Github } from "lucide-react";
-import { PageHero } from "@/components/page-hero";
-import { Section, SectionHeading } from "@/components/ui/section";
-import { Button } from "@/components/ui/button";
-import { MaturityBadge } from "@/components/ui/badge";
-import { ProductCard } from "@/components/product-card";
-import { MarketSignals } from "@/components/market-signals";
-import { Takeaway } from "@/components/diagram";
-import { CTA } from "@/components/cta";
+import { ArrowUpRight } from "lucide-react";
+import { Container } from "@/components/arc/ui/container";
+import { ArcMaturityBadge } from "@/components/arc/ui/maturity-badge";
+import { LabCard } from "@/components/arc/labs/product-card";
+import { ClosingCta } from "@/components/arc/closing-cta";
 import {
-  labGroups,
-  labs,
-  labsProof,
-  maturityLabel,
-  site,
-  type Maturity,
-} from "@/lib/content";
+  featuredLabProducts,
+  labCounts,
+  moreLabProducts,
+  retiredIntoPlaybook,
+} from "@/lib/arc/products";
+import { arcSite } from "@/lib/arc/site";
+import { jsonLdScript } from "@/lib/arc/json-ld";
+
+const title = "ARC Labs · Applied technology, tested in public";
+const description =
+  "Developer tools and scanners for teams building with AI: MCP conformance, prompt review, connectivity checks and AI architecture fit. Each one shows its real maturity; the open-source ones link to their code.";
 
 export const metadata: Metadata = {
-  title: "Labs · Open tools, scanners and experiments",
-  description:
-    "Free Labs tools from ARC: scanners, catalogues and utilities you can run yourself. Most need no account. Every project carries its maturity.",
+  title: { absolute: title },
+  description,
+  alternates: { canonical: "/labs" },
+  openGraph: { title, description, url: "/labs", type: "website" },
+  twitter: { title, description },
 };
 
-/** What each badge commits us to. Stated so the labels mean something. */
-const maturityKey: { maturity: Maturity; text: string }[] = [
-  {
-    maturity: "open-source",
-    text: "Source is published, usually MIT. Read the rules, disagree with them, open a pull request.",
-  },
-  {
-    maturity: "alpha",
-    text: "Works and is in use, but the surface is still moving. Do not wire it into something you cannot unwire.",
-  },
-  {
-    maturity: "experiment",
-    text: "We are finding out whether the approach is sound. Treat the output as a starting point for a conversation.",
-  },
-  {
-    maturity: "research",
-    text: "Thinking published without a running implementation behind it.",
-  },
-];
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "ARC Labs",
+  url: `${arcSite.domain}/labs`,
+  description,
+  hasPart: [...featuredLabProducts, ...moreLabProducts].map((p) => ({
+    "@type": "SoftwareApplication",
+    name: p.name,
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "Web",
+    description: p.tagline,
+    url: p.app ?? `${arcSite.domain}${p.href}`,
+  })),
+};
 
 export default function LabsPage() {
-  // Only show a label that something carries, so the key never
-  // advertises a stage with nothing in it.
-  const counts = maturityKey
-    .map((k) => ({
-      ...k,
-      count: labs.filter((p) => p.maturity === k.maturity).length,
-    }))
-    .filter((k) => k.count > 0);
-  const keyColumns =
-    counts.length % 4 === 0
-      ? "sm:grid-cols-2 lg:grid-cols-4"
-      : counts.length % 3 === 0
-        ? "sm:grid-cols-3"
-        : "sm:grid-cols-2";
-
   return (
     <>
-      <PageHero
-        kicker="Labs"
-        title="Open tools, scanners and experiments."
-        lead={`${labsProof.tools} free tools, grouped by the job they do. Most need no account and store nothing. None of them are sold as products. Every one carries its maturity, so you can tell what is supported before you depend on it.`}
-      >
-        <Button href={site.github} variant="outline">
-          <Github className="h-4 w-4" />
-          Browse the GitHub org
-        </Button>
-      </PageHero>
-
-      <Section>
-        <SectionHeading
-          kicker="How to read this page"
-          title="The labels mean something specific."
-          lead="Labs is where work happens before it is a product. Presenting an experiment as infrastructure wastes someone's week, so each project says which it is."
-        />
-        <dl
-          className={`mt-12 grid gap-px overflow-hidden rounded-xl border border-border bg-border ${keyColumns}`}
-        >
-          {counts.map((k) => (
-            <div key={k.maturity} className="bg-card p-6">
-              <dt className="flex flex-wrap items-center gap-2">
-                <MaturityBadge maturity={k.maturity} />
-                <span className="font-mono text-[11px] text-muted-foreground">
-                  {k.count} {k.count === 1 ? "project" : "projects"}
-                </span>
-                <span className="sr-only">{maturityLabel[k.maturity]}</span>
-              </dt>
-              <dd className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                {k.text}
-              </dd>
-            </div>
-          ))}
-        </dl>
-        <Takeaway className="mt-12 max-w-3xl">
-          Nothing here implies production maturity it does not have. If a tool
-          is an experiment, the page says experiment.
-        </Takeaway>
-        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-          Research-stage work has no running implementation behind it yet, so it
-          lives on the{" "}
-          <Link
-            href="/developers"
-            className="font-medium text-foreground underline underline-offset-4"
-          >
-            developer surface
-          </Link>{" "}
-          rather than here.
-        </p>
-        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-          The skills, reference-architecture and workflow-template libraries are
-          no longer listed here. They ship as part of the{" "}
-          <Link
-            href="/playbook"
-            className="font-medium text-foreground underline underline-offset-4"
-          >
-            ARC AI Product Playbook
-          </Link>
-          , printed in full and filed under the module each one belongs to.
-        </p>
-      </Section>
-
-      <MarketSignals
-        className="bg-muted/30"
-        title="Why these tools exist."
-        lead="Each tool answers something specific that broke or changed. Here is the dated version with the source, so you can decide whether it applies to you before you run anything."
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
 
-      {labGroups.map((group, i) => {
-        const products = group.slugs
-          .map((slug) => labs.find((p) => p.slug === slug))
-          .filter((p): p is (typeof labs)[number] => Boolean(p));
-        if (products.length === 0) return null;
-        return (
-          <Section
-            key={group.id}
-            id={group.id}
-            className={`scroll-mt-24${i % 2 === 1 ? " bg-muted/30" : ""}`}
-          >
-            <SectionHeading title={group.name} lead={group.lead} />
-            <div className="mt-12 grid gap-5 md:grid-cols-2">
-              {products.map((p) => (
-                <ProductCard key={p.slug} product={p} basePath="/labs" />
-              ))}
+      <section aria-labelledby="labs-title" className="border-b border-line">
+        <Container className="grid gap-10 py-16 sm:py-20 lg:grid-cols-[1.3fr_1fr] lg:items-end">
+          <div>
+            <p className="font-mono text-[13px] text-brand">ARC Labs</p>
+            <h1
+              id="labs-title"
+              className="mt-5 font-serif text-[42px] leading-[1.06] tracking-[-0.02em] text-balance text-ink sm:text-[56px]"
+            >
+              Applied technology, tested in public.
+            </h1>
+            <p className="mt-6 max-w-[580px] text-[18px] leading-relaxed text-pretty text-ink-2">
+              Developer tools and scanners for teams building with AI. Most are free with no
+              account and store nothing. Each one shows its real maturity, and the open-source ones
+              link to their code.
+            </p>
+          </div>
+          <dl className="grid grid-cols-3 gap-4 border-t border-line pt-5 text-[13.5px]">
+            <div>
+              <dt className="text-ink-3">Published tools</dt>
+              <dd className="mt-1 font-serif text-[30px] tabular text-ink">{labCounts.total}</dd>
             </div>
-          </Section>
-        );
-      })}
+            <div>
+              <dt className="text-ink-3">Open source</dt>
+              <dd className="mt-1 font-serif text-[30px] tabular text-ink">
+                {labCounts.openSource}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-ink-3">Alpha or experiment</dt>
+              <dd className="mt-1 font-serif text-[30px] tabular text-ink">
+                {labCounts.earlyStage}
+              </dd>
+            </div>
+          </dl>
+        </Container>
+      </section>
 
-      <CTA
-        title="Need a human to read the report?"
-        lead="Advisory turns findings into a plan with owners. Same point of view as the tools. Thirty minutes to see if that is worth it."
+      <section aria-labelledby="gallery-title" className="py-14 sm:py-16">
+        <Container>
+          <h2 id="gallery-title" className="sr-only">
+            Featured tools
+          </h2>
+          <ul className="grid gap-5 md:grid-cols-2">
+            {featuredLabProducts.map((p) => (
+              <li key={p.slug} className="flex">
+                <LabCard product={p} />
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      <section
+        aria-labelledby="more-title"
+        className="border-t border-line bg-paper py-16 sm:py-20"
+      >
+        <Container className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-16">
+          <div>
+            <h2
+              id="more-title"
+              className="font-serif text-[28px] leading-tight text-ink sm:text-[32px]"
+            >
+              Also in the lab
+            </h2>
+            <p className="mt-3 text-[15.5px] leading-relaxed text-ink-2">
+              Earlier-stage tools. Free to use, no account, nothing stored, and labelled alpha or
+              experiment because that’s what they are.
+            </p>
+            <p className="mt-6 border-t border-line pt-5 text-[14px] leading-relaxed text-ink-3">
+              {retiredIntoPlaybook.note}{" "}
+              <Link
+                href={retiredIntoPlaybook.href}
+                className="font-medium text-brand hover:underline"
+              >
+                See the Ship playbook
+              </Link>
+              .
+            </p>
+          </div>
+          <ul className="border-t border-ink">
+            {moreLabProducts.map((t) => (
+              <li
+                key={t.slug}
+                className="grid gap-2 border-b border-line py-5 sm:grid-cols-[200px_1fr_auto] sm:items-baseline sm:gap-6"
+              >
+                <span className="text-[15px] font-semibold text-ink">
+                  <Link href={t.href} className="hover:text-brand">
+                    {t.name}
+                  </Link>
+                </span>
+                <span className="text-[14.5px] leading-relaxed text-ink-2">
+                  {t.tagline}
+                  {t.app ? (
+                    <>
+                      {" "}
+                      <a
+                        href={t.app}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-0.5 whitespace-nowrap font-medium text-brand hover:underline"
+                      >
+                        Open
+                        <ArrowUpRight size={12} aria-hidden="true" />
+                        <span className="sr-only">
+                          {t.name} (opens in a new tab)
+                        </span>
+                      </a>
+                    </>
+                  ) : null}
+                </span>
+                <span>
+                  <ArcMaturityBadge maturity={t.maturity} />
+                </span>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      <ClosingCta
+        id="labs-cta"
+        title="Want one of these inside your stack?"
+        lead="Lab tools become evidence in our readiness assessments and components of ARC Control. If a tool fits a problem you have at scale, we can run it with you."
+        primary={{ label: "Talk to ARC", href: "/contact?type=labs" }}
       />
     </>
   );

@@ -21,8 +21,15 @@ export function generateMetadata({
   const product = labs.find((p) => p.slug === params.slug);
   if (!product) return {};
   return {
-    title: `${product.name} · Labs`,
+    title: `${product.name} · ARC Labs`,
     description: product.description,
+    alternates: { canonical: `/labs/${product.slug}` },
+    openGraph: {
+      title: product.name,
+      description: product.description,
+      url: `/labs/${product.slug}`,
+      type: "article",
+    },
   };
 }
 

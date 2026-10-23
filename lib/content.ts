@@ -1407,8 +1407,8 @@ export const caseStudies: CaseStudy[] = [
 // ---------------------------------------------------------------------------
 export const faqs = [
   {
-    q: "Can I buy Agent Control?",
-    a: "Not yet. Agent Control is in design-partner development, and there is no pricing page in front of it. AI Fit is free on the web. Agent Readiness is a free scorecard and a paid assessment. AI Fit Teams is a three-to-four week engagement. The product playbooks are separate: Define is $5, Build is $10, and Ship is $20.",
+    q: "Can I buy ARC Control?",
+    a: "Not yet. ARC Control is in design-partner development, and there is no pricing page in front of it. AI Fit is free on the web. Agent Readiness is a free scorecard and a paid assessment. AI Fit Teams is a three-to-four week engagement. The product playbooks are separate: Define is $5, Build is $10, and Ship is $20.",
   },
   {
     q: "Do you only do AI?",
@@ -1515,9 +1515,9 @@ export const nav: NavItem[] = [
         summary: "How agents act, and how you check the result.",
       },
       {
-        label: "Agent Control",
-        href: "/ark-control",
-        summary: "Permissions and approval gates for agent actions.",
+        label: "ARC Control",
+        href: "/control",
+        summary: "Authorization, audit and verification for agent actions.",
       },
       {
         label: "Agent Readiness",

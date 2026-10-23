@@ -1,5 +1,14 @@
 # ARC Transformation Group — Website
 
+> **Redesign in progress.** The Magic Patterns redesign is on
+> `feature/magic-patterns-redesign`. See
+> [`docs/MAGIC_PATTERNS_AUDIT.md`](docs/MAGIC_PATTERNS_AUDIT.md) for what was
+> integrated and why, and
+> [`docs/MAGIC_PATTERNS_IMPLEMENTATION_REPORT.md`](docs/MAGIC_PATTERNS_IMPLEMENTATION_REPORT.md)
+> for test results and deployment requirements. The prototype itself is kept
+> unmodified under `design/magic-patterns/`.
+
+
 The front door to the ARC ecosystem: **Labs · Studio · Research · Academy.**
 
 This is not a consulting brochure — it's the operating system for the ARC ecosystem, built so every new product becomes *content* on shared infrastructure instead of a brand-new website.

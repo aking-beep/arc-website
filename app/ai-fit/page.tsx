@@ -32,6 +32,7 @@ const decisions = [
 ];
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/ai-fit" },
   title: "AI Fit · Determine where AI belongs before you build it",
   description:
     "Evaluate the problem, workload, economics, architecture and risks before committing engineering resources. Free, no account, nothing stored.",

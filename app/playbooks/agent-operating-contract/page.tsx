@@ -15,6 +15,7 @@ import {
 const playbook = getPlaybook("agent-operating-contract");
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/playbooks/agent-operating-contract" },
   title: "Agent Operating Contract · What an agent needs before it owns work",
   description:
     "A free one-page framework: goal, trigger, state, boundary, evidence and owner. With a worked bad and good example for every field.",

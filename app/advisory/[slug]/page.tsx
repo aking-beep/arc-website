@@ -21,6 +21,13 @@ export function generateMetadata({
   return {
     title: `${offering.name} · ARC Advisory`,
     description: offering.tagline,
+    alternates: { canonical: `/advisory/${offering.slug}` },
+    openGraph: {
+      title: offering.name,
+      description: offering.tagline,
+      url: `/advisory/${offering.slug}`,
+      type: "article",
+    },
   };
 }
 

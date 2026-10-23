@@ -17,7 +17,17 @@ export function generateMetadata({
 }): Metadata {
   const study = caseStudies.find((c) => c.slug === params.slug);
   if (!study) return {};
-  return { title: `${study.title} · Work`, description: study.summary };
+  return {
+    title: `${study.title} · Work`,
+    description: study.summary,
+    alternates: { canonical: `/work/${study.slug}` },
+    openGraph: {
+      title: study.title,
+      description: study.summary,
+      url: `/work/${study.slug}`,
+      type: "article",
+    },
+  };
 }
 
 export default function CaseStudyPage({

@@ -5,24 +5,28 @@ import { cn } from "@/lib/utils";
 type Variant = "primary" | "secondary" | "ghost" | "outline";
 type Size = "sm" | "md" | "lg";
 
+/**
+ * The button used by the routes that have not been rebuilt on the new
+ * layouts. Variants restyled onto the Magic Patterns palette so a button on
+ * /playbook matches one on /control.
+ *
+ * `text-canvas` rather than `text-white`: ink inverts in dark mode.
+ */
 const variants: Record<Variant, string> = {
-  primary:
-    "bg-primary text-primary-foreground hover:opacity-90 shadow-sm",
-  secondary:
-    "bg-accent text-accent-foreground hover:bg-accent/70",
-  outline:
-    "border border-border bg-transparent hover:bg-accent/60",
-  ghost: "bg-transparent hover:bg-accent/60",
+  primary: "bg-ink text-canvas hover:bg-ink-2",
+  secondary: "bg-paper text-ink hover:bg-line/60",
+  outline: "border border-line-strong bg-canvas text-ink hover:border-ink hover:bg-paper",
+  ghost: "bg-transparent text-ink hover:bg-paper",
 };
 
 const sizes: Record<Size, string> = {
-  sm: "h-9 px-3.5 text-sm",
-  md: "h-10 px-5 text-sm",
-  lg: "h-12 px-6 text-base",
+  sm: "h-9 px-3.5 text-[13.5px]",
+  md: "h-11 px-5 text-[14.5px]",
+  lg: "h-12 px-6 text-[15.5px]",
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-md font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-canvas disabled:pointer-events-none disabled:opacity-50";
 
 export type ButtonProps = {
   variant?: Variant;
@@ -62,6 +66,9 @@ export function Button({
           rel={href.startsWith("http") ? "noreferrer" : undefined}
         >
           {children}
+          {href.startsWith("http") ? (
+            <span className="sr-only"> (opens in a new tab)</span>
+          ) : null}
         </a>
       );
     }
@@ -73,7 +80,10 @@ export function Button({
   }
 
   return (
-    <button className={classes} {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}>
+    <button
+      className={classes}
+      {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+    >
       {children}
     </button>
   );

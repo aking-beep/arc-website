@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/section";
 import { site } from "@/lib/content";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy" },
   title: "Privacy",
   description: `How ${site.name} handles contact form submissions and site analytics.`,
 };

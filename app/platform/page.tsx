@@ -25,6 +25,7 @@ import {
 import { assuranceChecklist } from "@/lib/learn";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/platform" },
   title: "Agent infrastructure · Readiness, records, and checks",
   description:
     "Agent infrastructure from ARC Transformation Group: readiness, outcome checks for production agents, protocols, and runtime research.",
@@ -56,8 +57,8 @@ export default function PlatformPage() {
                 Assess agent readiness
                 <ArrowRight className="h-4 w-4" />
               </Button>
-              <Button href="/ark-control" variant="outline" size="lg">
-                Explore Agent Control
+              <Button href="/control" variant="outline" size="lg">
+                Explore ARC Control
               </Button>
             </div>
           </div>
@@ -70,7 +71,7 @@ export default function PlatformPage() {
             <SectionHeading
               kicker="This part of ARC"
               title="Readiness, a record, and a check."
-              lead="The same company that runs the advisory work publishes these pages. Agent Readiness asks whether your systems can survive an agent. Agent Control, still with design partners, asks whether the intended change happened."
+              lead="The same company that runs the advisory work publishes these pages. Agent Readiness asks whether your systems can survive an agent. ARC Control, still with design partners, asks whether the intended change happened."
             />
             <p className="mt-8 text-lg font-medium leading-snug">{ark.question}</p>
           </div>
@@ -188,8 +189,8 @@ export default function PlatformPage() {
                 {flagship.today}
               </p>
               <div className="mt-8">
-                <Button href="/ark-control">
-                  Read the Agent Control thinking
+                <Button href="/control">
+                  Explore ARC Control
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </div>

@@ -11,6 +11,7 @@ import { assuranceChecklist, getPlaybook } from "@/lib/learn";
 const playbook = getPlaybook("outcome-assurance-checklist");
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/playbooks/outcome-assurance-checklist" },
   title: "Outcome Assurance Checklist · Six questions between a finished run and a finished job",
   description:
     "The sequence we use to decide whether an agent's reported success can be believed, and what it cost to find out. Free and published in full.",
@@ -115,7 +116,7 @@ export default function AssuranceChecklistPage() {
 
       <CTA
         title="Cannot answer question four?"
-        lead="Then your evidence and your claim are coming from the same place. That is the problem Agent Control is being built for, and we are working through it with design partners now."
+        lead="Then your evidence and your claim are coming from the same place. That is the problem ARC Control is being built for, and we are working through it with design partners now."
       />
     </>
   );

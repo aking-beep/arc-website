@@ -17,7 +17,17 @@ export function generateMetadata({
 }): Metadata {
   const workshop = academy.find((w) => w.slug === params.slug);
   if (!workshop) return {};
-  return { title: `${workshop.name} · Workshops`, description: workshop.text };
+  return {
+    title: `${workshop.name} · Workshops`,
+    description: workshop.text,
+    alternates: { canonical: `/academy/${workshop.slug}` },
+    openGraph: {
+      title: workshop.name,
+      description: workshop.text,
+      url: `/academy/${workshop.slug}`,
+      type: "article",
+    },
+  };
 }
 
 export default function WorkshopPage({

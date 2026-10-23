@@ -117,8 +117,11 @@ export type ArkProduct = {
 export const arkProducts: ArkProduct[] = [
   {
     slug: "ark-control",
-    name: "Agent Control",
-    navLabel: "Agent Control",
+    // Renamed to ARC Control in the Magic Patterns redesign and moved to
+    // /control. The slug stays so the sitemap, redirects and anything keyed
+    // on it keep working.
+    name: "ARC Control",
+    navLabel: "ARC Control",
     tagline: "Outcome assurance for production AI agents.",
     summary:
       "Understand what agents attempted, what authority they used, and whether the intended outcome occurred.",
@@ -128,10 +131,10 @@ export const arkProducts: ArkProduct[] = [
     ctaHref: "/contact?topic=ark-control",
     todayLabel: "Where this is today",
     today:
-      "Agent Control is in design-partner development. It is not a product you can buy or sign up for yet. We are working through the verification model with a small number of teams running agents against production systems. There is no pricing page because there is nothing to price yet.",
+      "ARC Control is in design-partner development. It is not a product you can buy or sign up for yet. We are working through the verification model with a small number of teams running agents against production systems. There is no pricing page because there is nothing to price yet.",
     intro: [
       "Seeing a trace tells you what the agent attempted. Assurance asks a different question: did the intended outcome occur?",
-      "Agent Control is being built to connect execution evidence — the trace, the tool call, the identity, the policy decision — with outcome evidence collected from the systems that were supposed to change.",
+      "ARC Control is being built to connect execution evidence — the trace, the tool call, the identity, the policy decision — with outcome evidence collected from the systems that were supposed to change.",
     ],
     capabilities: [
       {
