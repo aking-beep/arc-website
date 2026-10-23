@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ControlHero, ControlLimits, ExecutionGap } from "@/components/arc/control/sections";
 import { ControlInteractive } from "@/components/arc/control/control-page";
+import { ConsoleShowcase } from "@/components/arc/control/console-showcase";
 import { Lifecycle } from "@/components/arc/control/lifecycle";
 import { ClosingCta } from "@/components/arc/closing-cta";
 import { arcSite } from "@/lib/arc/site";
@@ -47,6 +48,7 @@ export default function ControlPage() {
       <ControlHero />
       <ExecutionGap />
       <ControlInteractive />
+      <ConsoleShowcase />
       <Lifecycle />
       <ControlLimits />
       <ClosingCta

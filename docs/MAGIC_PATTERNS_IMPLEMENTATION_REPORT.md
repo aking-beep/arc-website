@@ -89,10 +89,40 @@ simulated data.
 | `/about` | Rebuilt — philosophy, leadership, vision, organisation |
 | `/contact` | Rebuilt — 3-step inquiry form, wired to the live endpoint |
 | `/not-found` | Rebuilt |
-| `/ark-control` | **Removed**, 308 to `/control` |
+| `/ark-control` | **Removed**, 308 to `/control`. See §4.1 |
 
 All 52 other routes keep their URLs, their content and their behaviour, and
 inherit the new palette and type through the restyled primitives.
+
+### 4.1 Reconciliation with the real console (PR #18)
+
+While this work was in progress, **"Put the Agent Control console on the site"**
+merged to `main`. It added a real operator console — 71 pages captured from a
+running ARC Control server at revision `9dd75e3` and published as static HTML
+under `public/ark-control/console/` — plus an `/ark-control` page showcasing it,
+a rewrite keeping `/ark-control/console` clean, a `Button` fix for static-file
+hrefs, and a test file.
+
+That collided directly: this branch removes `/ark-control`. Resolved by taking
+everything of value from both sides:
+
+| From `main` | Disposition |
+| --- | --- |
+| `public/ark-control/console/**` (71 pages) | **Kept, untouched.** Editing a captured page would falsify what it is evidence of. |
+| The `/ark-control/console` rewrite | **Kept.** Verified not to collide with the `/ark-control` redirect — Next matches that source exactly, not as a prefix. |
+| `Button` static-file fix | **Kept**, merged into the restyled button. A same-origin href ending in a file extension needs a plain anchor, because the app router cannot navigate to a file in `public/`. |
+| `tests/ark-control-console.test.ts` | **Kept.** One assertion repointed from `app/ark-control/page.tsx` to where the link now lives; every other assertion unchanged. Two assertions added, tying the stated revision and page count to `build.json`. |
+| The console showcase section | **Moved into `/control`**, in the new design language, with its Real / Simulated / Inert provenance intact. |
+| The rest of `app/ark-control/page.tsx` | **Dropped.** Its problem statement, loop, limits and CTA are all covered by `/control`; keeping both would have meant two product pages for one product. |
+
+The real console is stronger evidence than this branch's invented preview, so
+`/control` now runs both in sequence: the interactive preview showing the
+direction with data labelled as invented, then the capture showing what
+actually runs. That ordering is the difference between a claim and evidence
+for it, and it closes recommendation 9 below ahead of schedule.
+
+The capture's only absolute link is back to `/ark-control`, which now 308s to
+`/control` — one hop, landing on the product page, covered by a test.
 
 ## 5. Features preserved
 
@@ -203,25 +233,27 @@ Everything below was executed. Nothing is reported as passing that was not run.
 | Dependency installation | `npm ci` — 510 packages |
 | Lint | `npm run lint` — no ESLint warnings or errors |
 | Type checking | `tsc --noEmit` — clean, strict mode |
-| Unit tests | `npm test` — **136 passed** (74 pre-existing unmodified + 62 new) |
+| Unit tests | `npm test` — **145 passed** (74 pre-existing + 9 from PR #18 + 62 new) |
 | Production build | `npm run build` — 60 routes, no errors |
 | Route verification | 68 URLs against `next start` — **all 200** |
 | Redirects | 11 existing + 1 new — all 308 to the correct target |
 | 404 | Unknown path returns 404 with the designed page |
 | Contact API | 7 cases: extended payload 200, honeypot accept-and-drop 200, missing name 400, bad email 400, wrong content-type 415, GET 405, legacy payload 200. Server log confirms all 12 fields arrive, including the 6 new ones |
-| Browser journeys | **20 Playwright tests passed** (below) |
+| Browser journeys | **22 Playwright tests passed** (below) |
 | Console errors | Zero on all 7 redesigned routes |
 | Excluded products | Absent from 66 rendered pages, 16 content modules and 10 route body texts |
 | Heading hierarchy | Exactly one `<h1>` per page across 66 pages; no skipped levels |
 | Canonical URLs | Present and self-referential on all 66 indexable pages |
 | Titles, descriptions, Open Graph | Present on all 66 |
-| Internal links | All 80 distinct internal targets resolve |
+| Internal links | All 81 distinct internal targets resolve |
 | `target="_blank"` safety | Every external link carries `rel="noreferrer"` |
 | Image alt text | No `<img>` without `alt` (the site uses inline SVG throughout) |
 | Responsive layout | No horizontal overflow at 390px or 1280px on any redesigned route |
 | Dark mode | Verified by screenshot on `/` and `/control` |
 
-The 20 browser journeys: console-error-free rendering on 7 routes; navigation
+| Console showcase | `/ark-control/console` and its static files all 200; the `/ark-control` redirect does not shadow them |
+
+The 22 browser journeys: console-error-free rendering on 7 routes; navigation
 to every primary destination; the mobile menu opening, taking focus and
 closing on Escape; ARC Control stating its maturity above the fold and
 offering no purchase; all six console views opening; a capability link opening
@@ -229,7 +261,9 @@ the matching view; Labs maturities and verified tool URLs; the excluded
 products absent; the readiness check scoring end to end; a solution deep link;
 research rows reaching real article pages; the inquiry form validating,
 rejecting a bad email, submitting and confirming; keyboard-only access via the
-skip link; and no horizontal overflow at two viewports.
+skip link; no horizontal overflow at two viewports; the real console
+showcase reachable from `/control`; and the capture's back-link landing on the
+product page.
 
 ### Not tested
 
@@ -390,8 +424,8 @@ Scored against the evidence in §9, not against impression.
 | Dimension | Score | Evidence |
 | --- | --- | --- |
 | Design integration | 18 / 20 | All 8 prototype pages and 30 components ported; tokens, type scale, spacing and interactions preserved; 8 shared primitives restyled so ~25 unconverted routes match. −2: those routes keep their original layouts, and dark mode is derived rather than approved. |
-| Functional correctness | 19 / 20 | 136 unit tests, 20 browser journeys, 68 routes at 200, 12 redirects correct, zero console errors, contact API verified across 7 cases including the legacy payload. −1: email delivery needs credentials and is unproven. |
-| Preservation of existing behaviour | 20 / 20 | 74 existing tests pass unmodified; commerce untouched; every URL kept or permanently redirected; every dropped nav item still reachable from the footer, asserted by test. |
+| Functional correctness | 19 / 20 | 145 unit tests, 22 browser journeys, 68 routes at 200, 12 redirects correct, zero console errors, contact API verified across 7 cases including the legacy payload. −1: email delivery needs credentials and is unproven. |
+| Preservation of existing behaviour | 20 / 20 | 74 existing tests pass unmodified; commerce untouched; every URL kept or permanently redirected; every dropped nav item still reachable from the footer, asserted by test. PR #18's console, rewrite, Button fix and tests all preserved through the merge (§4.1). |
 | Claims discipline | 19 / 20 | No invented capability, metric, customer or URL. Every maturity reads from one taxonomy. Simulated data is labelled everywhere it appears. The four excluded apps are absent and three independent checks enforce it. −1: the console and execution data are invented; labelled, but a buyer must take the label seriously. |
 | SEO | 14 / 15 | Canonicals corrected on 66 pages — a pre-existing bug fixed; per-route titles, descriptions, Open Graph and structured data; sitemap excludes redirecting URLs; all 11 redirects preserved. −1: no post-deploy Search Console confirmation is possible yet. |
 | Accessibility | 12 / 15 | One `<h1>` per page, no skipped heading levels, keyboard tablists, focus trap with a regression test, visible focus rings, reduced motion honoured in both CSS and framer-motion, no overflow at 390px. −3: no automated axe pass and no instrumented contrast measurement. |

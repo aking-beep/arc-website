@@ -121,6 +121,30 @@ test("a capability link opens the matching console view", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Audit evidence", level: 3 })).toBeVisible();
 });
 
+test("the real console showcase is reachable from /control", async ({ page }) => {
+  await page.goto("/control");
+  await expect(
+    page.getByRole("heading", { name: "The operator console, as it actually renders." }),
+  ).toBeVisible();
+
+  const open = page.getByRole("link", { name: /Open the console/ });
+  await expect(open).toHaveAttribute("href", "/ark-control/console/index.html");
+
+  // It is a static file in public/, not a route, so this is a full navigation.
+  await open.click();
+  await expect(page).toHaveURL(/\/ark-control\/console\/index\.html$/);
+  await expect(page).toHaveTitle(/Overview — ARC Control/);
+  // The capture says on every page that it is a capture.
+  await expect(page.getByText("Live design showcase").first()).toBeVisible();
+});
+
+test("the console's way back to the site lands on the product page", async ({ page }) => {
+  // The capture's only absolute link is /ark-control, which now redirects.
+  const res = await page.goto("/ark-control");
+  expect(res?.status()).toBe(200);
+  await expect(page).toHaveURL(/\/control$/);
+});
+
 test("Labs shows real maturities and working tool links", async ({ page }) => {
   await page.goto("/labs");
   await expect(page.getByRole("heading", { name: "MCP Conformance Scanner" })).toBeVisible();

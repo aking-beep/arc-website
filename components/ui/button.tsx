@@ -53,7 +53,11 @@ export function Button({
       "href" | "className"
     >;
     const external = href.startsWith("http") || href.startsWith("mailto:");
-    if (external) {
+    // A same-origin path that ends in a file extension is a static file in
+    // `public/`, not a route. The app router cannot navigate to one, so it
+    // needs a plain anchor too.
+    const staticFile = /\.[a-z0-9]{2,5}$/i.test(href.split(/[?#]/)[0] ?? "");
+    if (external || staticFile) {
       return (
         <a
           href={href}

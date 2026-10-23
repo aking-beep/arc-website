@@ -1,6 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  async rewrites() {
+    return [
+      // The Agent Control console showcase is a folder of static HTML in
+      // `public/`, captured from the real server. The app router cannot route
+      // to a static file, so this keeps the shareable URL clean while the
+      // bytes still come from the file.
+      {
+        source: "/ark-control/console",
+        destination: "/ark-control/console/index.html",
+      },
+    ];
+  },
   async redirects() {
     return [
       {

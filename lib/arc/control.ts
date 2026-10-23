@@ -141,3 +141,51 @@ export const controlCtas = {
   secondary: { label: "Request a demo", href: "/contact?type=control&demo=1" },
   team: { label: "Contact the team", href: "/contact" },
 };
+
+/**
+ * The real operator console, captured from a running server and published as
+ * static HTML under `public/ark-control/console/`. Came in with the
+ * `/ark-control` page from `main`; see components/arc/control/console-showcase.
+ *
+ * `revision` and `pageCount` match `public/ark-control/console/build.json`,
+ * which records the commit each page was rendered from. A test asserts the
+ * capture still contains what this section claims it does.
+ */
+export const consoleShowcase = {
+  /** A file in public/, not a route. */
+  entry: "/ark-control/console/index.html",
+  repo: "https://github.com/aking-beep/arc-control",
+  revision: "9dd75e3",
+  pageCount: 71,
+  provenance: [
+    {
+      term: "Real",
+      detail:
+        "The policy decisions and their rule-by-rule traces, an approval that was cast and consumed, the evidence records, and the hash-chained audit log those records verify against.",
+    },
+    {
+      term: "Simulated",
+      detail:
+        "The connector effects. No money moves and no issue is filed — the same way the shipped demo seed behaves for anyone running it locally.",
+    },
+    {
+      term: "Inert",
+      detail:
+        "Anything that would write. Approve, reject, suspend and scan are rendered and disabled, each saying what it does in the live console.",
+    },
+  ],
+  sections: [
+    ["Overview", "What needs a human, ordered by consequence"],
+    ["Approvals", "The request, the policy that held it, the authority required"],
+    ["Agents", "Who is authorized, and what they have attempted"],
+    ["Tools", "What may be asked for, at what risk"],
+    ["Policies", "Each policy as a decision ladder"],
+    ["Access", "Which policies govern which agent and tool"],
+    ["Evidence", "One record per attempt, with its integrity digests"],
+    ["Audit", "The chain, and what verifying it does not prove"],
+    ["Security", "Connector posture and an MCP manifest scan"],
+    ["Reports", "A snapshot over a window it always states"],
+  ] as const satisfies readonly (readonly [string, string])[],
+  caveat:
+    "ARC Control is in design-partner development. The console is real and running; what is not yet settled is the verification model it reports on, which is the conversation we are having with design partners.",
+};
