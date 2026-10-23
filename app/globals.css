@@ -2,49 +2,114 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===========================================================================
+   Design tokens — the Magic Patterns palette, ported from the prototype's
+   Tailwind v4 `@theme` block (design/magic-patterns/src/index.css).
+   Values are the prototype's hex colours converted to HSL triplets so that
+   Tailwind's opacity modifiers (`border-line/60`) keep working.
+
+   Two families, on purpose:
+
+   - CONTENT surfaces (canvas/paper/ink/line/brand) flip under `.dark`.
+     Light mode is the approved design exactly.
+   - DARK PANEL surfaces (night/mist) stay dark in both themes and lift one
+     step in dark mode, so a panel still reads as a panel against a dark page.
+
+   The legacy semantic tokens are aliased onto the same variables further down
+   so routes that have not been redesigned inherit this palette unchanged.
+   =========================================================================== */
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 24% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 24% 11%;
-    --muted: 220 20% 97%;
-    --muted-foreground: 220 9% 42%;
-    --accent: 220 20% 96%;
-    --accent-foreground: 222 24% 11%;
-    --primary: 222 47% 16%;
-    --primary-foreground: 210 40% 98%;
-    --border: 220 16% 90%;
-    --input: 220 16% 90%;
-    --ring: 222 47% 16%;
+    /* Content surfaces — light */
+    --canvas: 0 0% 100%; /* #ffffff */
+    --paper: 60 11% 96%; /* #f7f7f5 */
+    --ink: 220 32% 9%; /* #10151f */
+    --ink-2: 220 12% 34%; /* #4b5260 */
+    --ink-3: 220 9% 46%; /* #6b7280 */
+    --line: 220 12% 90%; /* #e3e5e9 */
+    --line-strong: 218 11% 81%; /* #c9cdd4 */
+
+    /* Brand — ARC teal, carried from the live site */
+    --brand: 190 93% 26%; /* #056b80 */
+    --brand-strong: 191 93% 22%; /* #04586a */
+    --brand-subtle: 189 44% 94%; /* #e8f4f6 */
+    --brand-on-dark: 189 55% 67%; /* #7ccbd9 */
+
+    /* Dark panel surfaces — deliberate in both themes */
+    --night: 218 35% 6%; /* #0a0e15 */
+    --night-2: 219 33% 10%; /* #111722 */
+    --night-3: 218 30% 15%; /* #1a2230 */
+    --night-line: 217 25% 20%; /* #263040 */
+    --mist: 218 21% 93%; /* #e8ebf0 */
+    --mist-2: 218 14% 70%; /* #a7afbd */
+
+    /* Status */
+    --ok: 147 62% 30%; /* #1d7a46 */
+    --ok-subtle: 143 37% 93%; /* #e7f4ec */
+    --ok-on-dark: 144 47% 66%; /* #7fd1a0 */
+    --warn: 39 100% 27%; /* #8a5a00 */
+    --warn-subtle: 43 79% 92%; /* #fbf2dc */
+    --warn-on-dark: 40 84% 69%; /* #f2c66d */
+    --danger: 4 76% 40%; /* #b42318 */
+    --danger-subtle: 6 70% 95%; /* #fbeae8 */
+    --danger-on-dark: 5 83% 77%; /* #f59b92 */
+
     --radius: 0.75rem;
-    /* ARK accent. Used for the product ecosystem, never for decoration. */
-    --brand: 190 92% 26%;
-    --brand-foreground: 0 0% 100%;
-    --brand-subtle: 190 70% 96%;
-    /* Surface for dark technical panels. Deliberate in both themes rather
-       than inherited, so a panel still reads as a panel in dark mode. */
-    --panel: 224 36% 7%;
+
+    /* ---- Legacy semantic aliases -------------------------------------- */
+    /* Routes not yet rebuilt on the new layouts read these, so pointing
+       them at the tokens above is what makes the whole site one palette. */
+    --background: var(--canvas);
+    --foreground: var(--ink);
+    --card: var(--canvas);
+    --card-foreground: var(--ink);
+    --muted: var(--paper);
+    --muted-foreground: var(--ink-2);
+    --accent: var(--paper);
+    --accent-foreground: var(--ink);
+    --primary: var(--ink);
+    --primary-foreground: var(--canvas);
+    --border: var(--line);
+    --input: var(--line-strong);
+    --ring: var(--brand);
+    --brand-foreground: var(--canvas);
+    --panel: var(--night);
   }
 
   .dark {
-    --background: 224 32% 6%;
-    --foreground: 210 30% 96%;
-    --card: 224 28% 8%;
-    --card-foreground: 210 30% 96%;
-    --muted: 223 24% 12%;
-    --muted-foreground: 218 14% 62%;
-    --accent: 223 24% 14%;
-    --accent-foreground: 210 30% 96%;
-    --primary: 210 30% 96%;
-    --primary-foreground: 224 32% 8%;
-    --border: 220 20% 18%;
-    --input: 220 20% 18%;
-    --ring: 210 30% 80%;
-    --brand: 187 80% 52%;
-    --brand-foreground: 224 32% 8%;
-    --brand-subtle: 190 60% 12%;
-    --panel: 224 28% 11%;
+    /* Content surfaces — dark. The page becomes night; panels lift above it. */
+    --canvas: 218 35% 6%;
+    --paper: 219 33% 10%;
+    --ink: 218 21% 93%;
+    --ink-2: 218 14% 70%;
+    --ink-3: 218 12% 58%;
+    --line: 217 25% 20%;
+    --line-strong: 217 20% 28%;
+
+    /* Teal has to lighten to clear 4.5:1 against a night page. */
+    --brand: 189 55% 67%;
+    --brand-strong: 189 62% 76%;
+    --brand-subtle: 200 42% 14%;
+    --brand-on-dark: 189 55% 67%;
+
+    /* Panels lift one step so they stay distinguishable from the page. */
+    --night: 219 33% 10%;
+    --night-2: 218 30% 15%;
+    --night-3: 217 28% 20%;
+    --night-line: 217 22% 28%;
+
+    /* Status, legible on a dark page. */
+    --ok: 144 47% 66%;
+    --ok-subtle: 147 32% 13%;
+    --warn: 40 84% 69%;
+    --warn-subtle: 39 45% 13%;
+    --danger: 5 83% 77%;
+    --danger-subtle: 4 42% 15%;
+
+    --primary: var(--ink);
+    --primary-foreground: var(--canvas);
+    --brand-foreground: var(--canvas);
   }
 }
 
@@ -52,16 +117,79 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
+
+  html {
+    scroll-behavior: smooth;
   }
+
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+  }
+
   ::selection {
-    @apply bg-foreground/10;
+    background: hsl(var(--brand-subtle));
+    color: hsl(var(--ink));
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--brand));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Inside a permanently dark panel the teal outline needs the light variant
+     whatever the page theme is. */
+  .dark-surface :focus-visible {
+    outline-color: hsl(var(--brand-on-dark));
   }
 }
 
 @layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Architectural hairline grid used behind diagrams. */
+  .blueprint {
+    background-image:
+      linear-gradient(to right, hsl(var(--night-line) / 0.55) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--night-line) / 0.55) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .blueprint-light {
+    background-image:
+      linear-gradient(to right, hsl(var(--line) / 0.8) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--line) / 0.8) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .sr-only-focusable:not(:focus) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* Staggered section reveal. Pure CSS so it costs no JavaScript and is
+     inert under prefers-reduced-motion. */
+  .reveal {
+    animation: arc-reveal 0.55s cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+
+  /* ---- Retained by routes not yet rebuilt ---------------------------- */
   .grid-bg {
     background-image:
       linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
@@ -69,38 +197,43 @@
     background-size: 56px 56px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
   }
-  .text-balance {
-    text-wrap: balance;
-  }
-  /* Blueprint fill for technical panels and diagrams. */
+
   .diagram-bg {
     background-image:
       linear-gradient(to right, hsl(var(--border) / 0.45) 1px, transparent 1px),
       linear-gradient(to bottom, hsl(var(--border) / 0.45) 1px, transparent 1px);
     background-size: 24px 24px;
   }
-  /* Dotted connector between diagram nodes. */
+
   .rail-x {
-    background-image: linear-gradient(
-      to right,
-      hsl(var(--border)) 50%,
-      transparent 50%
-    );
+    background-image: linear-gradient(to right, hsl(var(--border)) 50%, transparent 50%);
     background-size: 8px 1px;
     background-repeat: repeat-x;
   }
+
   .rail-y {
-    background-image: linear-gradient(
-      to bottom,
-      hsl(var(--border)) 50%,
-      transparent 50%
-    );
+    background-image: linear-gradient(to bottom, hsl(var(--border)) 50%, transparent 50%);
     background-size: 1px 8px;
     background-repeat: repeat-y;
   }
 }
 
+@keyframes arc-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   *,
   *::before,
   *::after {
