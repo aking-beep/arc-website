@@ -95,17 +95,6 @@ export function FeaturedProducts() {
                         <span className="sr-only">{p.name} (opens in a new tab)</span>
                       </a>
                     ) : null}
-                    {p.github ? (
-                      <a
-                        href={p.github}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1 text-ink-2 hover:text-ink"
-                      >
-                        GitHub <ArrowUpRight size={13} aria-hidden="true" />
-                        <span className="sr-only">for {p.name} (opens in a new tab)</span>
-                      </a>
-                    ) : null}
                   </div>
                 </li>
               ))}

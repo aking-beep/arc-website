@@ -83,7 +83,7 @@ const jsonLd = {
   url: arcSite.domain,
   email: arcSite.email,
   description: arcSite.positioning,
-  sameAs: [arcSite.github, arcSite.linkedin, arcSite.calendly],
+  sameAs: [arcSite.linkedin, arcSite.calendly],
   // The two divisions, so the knowledge panel carries the structure the site
   // is organised around rather than only the company name.
   subOrganization: [

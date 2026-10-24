@@ -154,7 +154,6 @@ export const controlCtas = {
 export const consoleShowcase = {
   /** A file in public/, not a route. */
   entry: "/ark-control/console/index.html",
-  repo: "https://github.com/aking-beep/arc-control",
   revision: "9dd75e3",
   pageCount: 71,
   provenance: [

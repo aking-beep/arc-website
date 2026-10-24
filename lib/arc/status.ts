@@ -29,8 +29,10 @@ export const maturityStyles: Record<Maturity, MaturityStyle> = {
     dark: "border-ok-on-dark/30 text-ok-on-dark",
     dot: "bg-ok",
   },
+  // The tools are live and free to use; the site no longer links their
+  // repositories, so the label does not claim code a visitor cannot see.
   "open-source": {
-    label: "Open source · live",
+    label: "Live",
     light: "border-ok/25 bg-ok-subtle text-ok",
     dark: "border-ok-on-dark/30 text-ok-on-dark",
     dot: "bg-ok",

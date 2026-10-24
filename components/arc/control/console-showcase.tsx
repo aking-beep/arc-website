@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/arc/ui/container";
 import { SectionIntro } from "@/components/arc/ui/section-intro";
 import { ArcButton } from "@/components/arc/ui/button";
@@ -72,16 +72,6 @@ export function ConsoleShowcase() {
               Open the console
               <ArrowRight size={16} aria-hidden="true" />
             </ArcButton>
-            <a
-              href={consoleShowcase.repo}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-[14px] font-medium text-brand underline underline-offset-4 hover:no-underline"
-            >
-              The code it was rendered from
-              <ArrowUpRight size={13} aria-hidden="true" />
-              <span className="sr-only">(opens in a new tab)</span>
-            </a>
           </div>
           <p className="max-w-md text-[12.5px] leading-relaxed text-ink-3">
             {consoleShowcase.caveat}

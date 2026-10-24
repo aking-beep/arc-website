@@ -12,6 +12,7 @@
 // ---------------------------------------------------------------------------
 
 import { labs, type Maturity, type Product } from "@/lib/content";
+import { isUsableToday } from "@/lib/arc/status";
 
 /** Which interactive preview a featured card renders. */
 export type PreviewKind = "mcp" | "prompt" | "connectivity" | "aifit";
@@ -63,7 +64,6 @@ export type LabProduct = {
   audience: string;
   preview?: PreviewKind;
   app?: string;
-  github?: string;
   docs?: string;
   /** The detail page that already exists in this repository. */
   href: string;
@@ -80,7 +80,6 @@ function toLabProduct(p: Product): LabProduct {
     audience: p.audience,
     preview: previewBySlug[p.slug],
     app: p.links.app,
-    github: p.links.github,
     docs: p.links.docs,
     href: `/labs/${p.slug}`,
   };
@@ -108,7 +107,8 @@ export const homepageLabProducts: LabProduct[] = featuredLabProducts;
 
 export const labCounts = {
   total: labProducts.length,
-  openSource: labProducts.filter((p) => p.maturity === "open-source").length,
+  /** Live and usable right now, whatever their stage. */
+  usable: labProducts.filter((p) => isUsableToday(p.maturity) && p.app).length,
   earlyStage: labProducts.filter(
     (p) => p.maturity === "alpha" || p.maturity === "experiment",
   ).length,

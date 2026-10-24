@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Github } from "lucide-react";
+
 import { Brand } from "@/components/brand";
 import { ark } from "@/lib/ark";
 import { arkProducts } from "@/lib/ark";
@@ -45,7 +45,6 @@ const columns: { heading: string; links: { label: string; href: string }[] }[] =
       { label: "About", href: "/about" },
       { label: "Work", href: "/work" },
       { label: "Contact", href: "/contact" },
-      { label: "GitHub", href: site.github },
       { label: "Privacy", href: "/privacy" },
       { label: "Terms", href: "/terms" },
     ],
@@ -132,18 +131,7 @@ export function SiteFooter() {
           <p>
             © {new Date().getFullYear()} {site.name}
           </p>
-          <div className="flex items-center gap-4">
-            <span>{ark.principle}</span>
-            <a
-              href={site.github}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub"
-              className="transition-colors hover:text-foreground"
-            >
-              <Github className="h-4 w-4" />
-            </a>
-          </div>
+          <span>{ark.principle}</span>
         </div>
       </div>
     </footer>

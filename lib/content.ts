@@ -17,8 +17,6 @@ export const site = {
   question: "How should we use technology?",
   email: "aking@arctransformationgroup.com",
   calendly: "https://calendly.com/aking-arctransformationgroup/30min",
-  github: "https://github.com/aking-beep",
-  // Prefer an org account long-term (e.g. github.com/arctransformationgroup).
   linkedin: "https://www.linkedin.com/in/andrew-k-a676aa178/",
   // Choose ONE canonical domain and redirect the other.
   domain: "https://arctransformationgroup.com",
@@ -324,7 +322,12 @@ export type Product = {
   features: string[];
   /** Primary product action — label must match what the destination is. */
   ctaLabel?: string;
-  links: { app?: string; github?: string; docs?: string };
+  /**
+   * Where a visitor can use or read about the tool. No `github`: ARC's
+   * repositories are not linked from the site, and removing the field stops
+   * one being reintroduced through the data.
+   */
+  links: { app?: string; docs?: string };
   roadmap?: { label: string; done: boolean }[];
 };
 
@@ -357,8 +360,6 @@ export const labs: Product[] = [
     ],
     links: {
       app: "https://www.arctransformationgrouplab.dev",
-      github: "https://github.com/aking-beep/mcp-conformance-scanner",
-      docs: "https://github.com/aking-beep/mcp-conformance-scanner#readme",
     },
     roadmap: [
       { label: "Core conformance suite", done: true },
@@ -430,8 +431,6 @@ export const labs: Product[] = [
     ],
     links: {
       app: "https://promptreviewer.arctransformationgrouplab.dev",
-      github: "https://github.com/aking-beep/prompt-reviewer",
-      docs: "https://github.com/aking-beep/prompt-reviewer#readme",
     },
     roadmap: [
       { label: "Static review engine + UI + CLI", done: true },
@@ -469,8 +468,6 @@ export const labs: Product[] = [
     ],
     links: {
       app: "https://connectivity-scanner.vercel.app",
-      github: "https://github.com/aking-beep/connectivity-scanner",
-      docs: "https://github.com/aking-beep/connectivity-scanner#readme",
     },
     roadmap: [
       { label: "Scan engine + UI + CLI", done: true },

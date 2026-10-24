@@ -1,10 +1,18 @@
 import { describe, expect, it } from "vitest";
-import { labs, maturityLabel, nav, secondaryRoutes, type Maturity } from "@/lib/content";
-import { arkProducts } from "@/lib/ark";
+import {
+  labs,
+  marketSignals,
+  maturityLabel,
+  nav,
+  secondaryRoutes,
+  site,
+  type Maturity,
+} from "@/lib/content";
+import { arkProducts, developerAreas } from "@/lib/ark";
 import { playbooks } from "@/lib/learn";
 import { serviceAreas } from "@/lib/services";
 import { research as articles } from "@/lib/research";
-import { arcFooterColumns, arcNav } from "@/lib/arc/site";
+import { arcFooterColumns, arcNav, arcSite } from "@/lib/arc/site";
 import { isUsableToday, maturityStyles } from "@/lib/arc/status";
 import {
   featuredLabProducts,
@@ -16,7 +24,13 @@ import {
 import { solutions } from "@/lib/arc/solutions";
 import { initialProjectType, projectTypes, serviceToType, unmappedSolutions } from "@/lib/arc/inquiry";
 import { bands, maxScorePerQuestion, questions, readinessLevel } from "@/lib/arc/readiness";
-import { control, controlCapabilities, lifecycleControlled, lifecycleSteps } from "@/lib/arc/control";
+import {
+  consoleShowcase,
+  control,
+  controlCapabilities,
+  lifecycleControlled,
+  lifecycleSteps,
+} from "@/lib/arc/control";
 import { ecoNodes } from "@/lib/arc/ecosystem";
 import { layers } from "@/lib/arc/architecture";
 import { frameworks, researchIndex, researchTopics } from "@/lib/arc/research";
@@ -78,6 +92,49 @@ describe("excluded consumer applications", () => {
   }
 });
 
+describe("no ARC GitHub presence on the site", () => {
+  /**
+   * GitHub links were removed from the public site. These assert that the
+   * content modules the pages render from carry none, so a link cannot return
+   * through data. Two things are deliberately exempt and checked for below:
+   * a cited third-party source in the market signals, which is evidence rather
+   * than promotion, and scripts/, which runs at build time and never ships.
+   */
+  const ARC_REPOS = /github\.com\/aking-beep/i;
+
+  const modules: [string, unknown][] = [
+    ["site", site],
+    ["labs", labs],
+    ["labProducts", labProducts],
+    ["arkProducts", arkProducts],
+    ["developerAreas", developerAreas],
+    ["consoleShowcase", consoleShowcase],
+    ["solutions", solutions],
+    ["ecoNodes", ecoNodes],
+    ["arcSite", arcSite],
+    ["arcFooterColumns", arcFooterColumns],
+    ["arcNav", arcNav],
+  ];
+
+  for (const [name, value] of modules) {
+    it(`${name} links no ARC repository`, () => {
+      expect(JSON.stringify(value)).not.toMatch(ARC_REPOS);
+    });
+  }
+
+  it("has no github field on the shared site object", () => {
+    expect("github" in site).toBe(false);
+    expect("github" in arcSite).toBe(false);
+  });
+
+  it("keeps the cited third-party source, which is evidence not promotion", () => {
+    const cited = marketSignals.flatMap((s) => s.sources.map((x) => x.url));
+    expect(cited.some((u) => u.includes("github.com/anthropics"))).toBe(true);
+    // ...but still none of ARC's own.
+    expect(cited.some((u) => ARC_REPOS.test(u))).toBe(false);
+  });
+});
+
 describe("maturity taxonomy", () => {
   it("covers every Maturity in lib/content", () => {
     for (const maturity of Object.keys(maturityLabel) as Maturity[]) {
@@ -120,7 +177,6 @@ describe("ARC Labs catalogue", () => {
       expect(source, product.slug).toBeDefined();
       expect(product.maturity).toBe(source!.maturity);
       expect(product.app).toBe(source!.links.app);
-      expect(product.github).toBe(source!.links.github);
       expect(product.docs).toBe(source!.links.docs);
     }
   });
@@ -141,12 +197,24 @@ describe("ARC Labs catalogue", () => {
 
   it("counts only what the catalogue actually contains", () => {
     expect(labCounts.total).toBe(labs.length);
-    expect(labCounts.openSource).toBe(
-      labs.filter((l) => l.maturity === "open-source").length,
+    expect(labCounts.usable).toBe(
+      labs.filter((l) => isUsableToday(l.maturity) && l.links.app).length,
     );
     expect(labCounts.earlyStage).toBe(
       labs.filter((l) => l.maturity === "alpha" || l.maturity === "experiment").length,
     );
+  });
+
+  it("links no ARC repository and claims no code it cannot show", () => {
+    // GitHub was removed from the site. The data carries no repo field at all,
+    // so a link cannot come back in through content, and the maturity label
+    // must not promise source either.
+    const serialized = JSON.stringify(labProducts);
+    expect(serialized).not.toContain("github.com");
+    for (const style of Object.values(maturityStyles)) {
+      expect(style.label.toLowerCase()).not.toContain("open source");
+      expect(style.label.toLowerCase()).not.toContain("github");
+    }
   });
 
   it("does not feature the three tools that were retired into the playbook", () => {

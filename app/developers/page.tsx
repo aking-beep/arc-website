@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Github } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ExternalLink } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
@@ -43,7 +43,7 @@ const runtimeAxes = [
 ];
 
 export default function DevelopersPage() {
-  const openTools = labs.filter((p) => p.links.github);
+  const openTools = labs.filter((p) => p.links.app);
 
   return (
     <>
@@ -53,10 +53,6 @@ export default function DevelopersPage() {
         lead="Protocols, open tools, architecture notes and the runtime research. Published with its maturity attached, because an experiment presented as infrastructure wastes someone's week."
       >
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Button href={site.github} variant="outline">
-            <Github className="h-4 w-4" />
-            Browse the GitHub org
-          </Button>
           <Button href="/labs" variant="ghost">
             All Labs tools
             <ArrowRight className="h-4 w-4" />
@@ -174,8 +170,8 @@ export default function DevelopersPage() {
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <SectionHeading
             kicker="Open tools"
-            title="MIT licensed, no account, most store nothing."
-            lead={`${openTools.length} of the Labs projects ship their source. Clone them, read the rules, disagree with the rules, open a pull request.`}
+            title="Free to use, no account, most store nothing."
+            lead={`${openTools.length} of the Labs projects are live and free to run against your own systems. Each one documents itself on its own deployment, and every finding says what it checked.`}
           />
           <Link
             href="/labs"
@@ -202,15 +198,15 @@ export default function DevelopersPage() {
                 >
                   Details
                 </Link>
-                {tool.links.github ? (
+                {tool.links.app ? (
                   <a
-                    href={tool.links.github}
+                    href={tool.links.app}
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground"
                   >
-                    <Github className="h-3.5 w-3.5" />
-                    Source
+                    <ExternalLink className="h-3.5 w-3.5" />
+                    Open
                   </a>
                 ) : null}
               </div>

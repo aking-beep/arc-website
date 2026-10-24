@@ -63,17 +63,6 @@ export function ArcFooter() {
             </li>
             <li>
               <a
-                href={arcSite.github}
-                target="_blank"
-                rel="noreferrer"
-                className="text-ink-2 transition-colors hover:text-ink"
-              >
-                GitHub
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
-            </li>
-            <li>
-              <a
                 href={arcSite.linkedin}
                 target="_blank"
                 rel="noreferrer"
