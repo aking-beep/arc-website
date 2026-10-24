@@ -51,14 +51,14 @@ export function ContactForm({
       };
 
       if (!res.ok) {
-        setError(payload.error || "Something went wrong. Try emailing us directly.");
+        setError(payload.error || "Something went wrong. Try again, or book a time instead.");
         return;
       }
 
       setSent(true);
       form.reset();
     } catch {
-      setError("Network error. Try emailing us directly.");
+      setError("Network error. Try again, or book a time instead.");
     } finally {
       setPending(false);
     }

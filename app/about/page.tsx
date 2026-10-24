@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/arc/ui/container";
 import { SectionIntro } from "@/components/arc/ui/section-intro";
 import { ClosingCta } from "@/components/arc/closing-cta";
@@ -133,15 +132,7 @@ export default function AboutPage() {
               </span>
               <div>
                 <h3 className="text-[18px] font-semibold text-ink">Founder and Principal</h3>
-                <a
-                  href={arcSite.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-0.5 inline-flex items-center gap-1 text-[14px] font-medium text-brand hover:underline"
-                >
-                  LinkedIn profile <ArrowUpRight size={13} aria-hidden="true" />
-                  <span className="sr-only">(opens in a new tab)</span>
-                </a>
+                <p className="mt-0.5 text-[14px] text-ink-2">{site.name}</p>
               </div>
             </div>
             <ul className="mt-7 border-t border-line">

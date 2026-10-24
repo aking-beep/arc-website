@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { site } from "@/lib/content";
 import { clampField, isValidEmail, type InquiryField } from "@/lib/arc/contact-payload";
 
 export const runtime = "nodejs";
@@ -94,10 +93,12 @@ export async function POST(request: Request) {
   ].join("\n");
 
   const resendKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL || site.email;
+  // No fallback to a hard-coded address: the recipient is configuration, and
+  // an address in the repository would ship to the browser via `site`.
+  const to = process.env.CONTACT_TO_EMAIL;
   const from = process.env.CONTACT_FROM_EMAIL || "ARC Website <onboarding@resend.dev>";
 
-  if (resendKey) {
+  if (resendKey && to) {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -117,7 +118,7 @@ export async function POST(request: Request) {
       const detail = await res.text();
       console.error("Resend error:", detail);
       return NextResponse.json(
-        { error: "Could not send message. Try emailing us directly." },
+        { error: "Could not send message." },
         { status: 502 },
       );
     }
@@ -125,16 +126,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  // No Resend key — still succeed so the UI works in local and preview, and
-  // log so delivery can be wired later.
-  console.info("[contact] message received (no RESEND_API_KEY configured)", {
+  // Not configured to deliver — still succeed so the UI works in local and
+  // preview, and log so nothing a visitor sent is silently dropped.
+  const missing = [
+    resendKey ? null : "RESEND_API_KEY",
+    to ? null : "CONTACT_TO_EMAIL",
+  ].filter(Boolean);
+  console.info(`[contact] message received (missing ${missing.join(", ")})`, {
     ...fields,
     message: fields.message.slice(0, 200),
   });
 
   return NextResponse.json({
     ok: true,
-    warning: "Message logged. Set RESEND_API_KEY to deliver email in production.",
+    warning: `Message logged. Set ${missing.join(" and ")} to deliver email.`,
   });
 }
 

@@ -81,9 +81,15 @@ const jsonLd = {
   "@type": "Organization",
   name: arcSite.name,
   url: arcSite.domain,
-  email: arcSite.email,
   description: arcSite.positioning,
-  sameAs: [arcSite.linkedin, arcSite.calendly],
+  // No `email` and no LinkedIn profile: structured data is published to
+  // crawlers, so anything listed here is as public as the page itself.
+  sameAs: [arcSite.calendly],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    url: `${arcSite.domain}/contact`,
+  },
   // The two divisions, so the knowledge panel carries the structure the site
   // is organised around rather than only the company name.
   subOrganization: [

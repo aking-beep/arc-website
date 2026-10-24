@@ -122,8 +122,8 @@ export function checkEntitlement(
 export const rejectionMessage: Record<TokenRejection, string> = {
   malformed: "That download link is not valid. Check it was copied in full.",
   not_found: "That download link is not valid. Check it was copied in full.",
-  revoked: "This download link has been deactivated. Email us and we will sort it out.",
-  expired: "This download link has expired. Email us and we will send a new one.",
+  revoked: "This download link has been deactivated. Get in touch and we will sort it out.",
+  expired: "This download link has expired. Get in touch and we will send a new one.",
   download_limit:
-    "This link has reached its download limit. Email us and we will reset it.",
+    "This link has reached its download limit. Get in touch and we will reset it.",
 };

@@ -245,11 +245,11 @@ export const playbookFaqs = [
   },
   {
     q: "Can I use this with my team?",
-    a: "Yes, for one team. If you want a playbook as internal training material across a larger organisation, email us and we will sort out a licence rather than have you buy twelve copies.",
+    a: "Yes, for one team. If you want a playbook as internal training material across a larger organisation, get in touch and we will sort out a licence rather than have you buy twelve copies.",
   },
   {
     q: "What if it is not useful?",
-    a: "Email us within 30 days and we refund the playbook you bought.",
+    a: "Ask us within 30 days and we refund the playbook you bought.",
   },
   {
     q: "Do you also do this work for people?",

@@ -14,7 +14,6 @@ import {
   rejectionMessage,
   type TokenRejection,
 } from "@/lib/commerce/tokens";
-import { site } from "@/lib/content";
 import { getPlaybookTier } from "@/lib/playbook";
 
 /**
@@ -109,13 +108,13 @@ function Rejected({ reason }: { reason: TokenRejection }) {
         <p className="text-sm leading-relaxed text-muted-foreground">
           Check the link was copied in full from your purchase email — it is long and
           email clients sometimes break it across two lines. If it still does not work,{" "}
-          <a
+          <Link
             className="font-medium text-foreground underline underline-offset-4"
-            href={`mailto:${site.email}?subject=${encodeURIComponent("Playbook download")}`}
+            href="/contact?type=other"
           >
-            email us
-          </a>{" "}
-          and we will reissue it.
+            tell us and we will reissue it
+          </Link>
+          .
         </p>
       </Card>
     </Shell>
@@ -131,13 +130,13 @@ function Unmatched() {
     >
       <Card className="p-6">
         <p className="text-sm leading-relaxed text-muted-foreground">
-          Email us and we will send the right file.{" "}
-          <a
+          Tell us which playbook you bought and we will send the right file.{" "}
+          <Link
             className="font-medium text-foreground underline underline-offset-4"
-            href={`mailto:${site.email}?subject=${encodeURIComponent("Playbook download")}`}
+            href="/contact?type=other"
           >
             Contact us
-          </a>
+          </Link>
           .
         </p>
       </Card>
@@ -156,12 +155,12 @@ function Unavailable() {
         <p className="text-sm leading-relaxed text-muted-foreground">
           Your purchase and your link are unaffected. If it is still failing in an
           hour,{" "}
-          <a
+          <Link
             className="font-medium text-foreground underline underline-offset-4"
-            href={`mailto:${site.email}?subject=${encodeURIComponent("Playbook download")}`}
+            href="/contact?type=other"
           >
-            email us
-          </a>
+            let us know
+          </Link>
           .
         </p>
       </Card>

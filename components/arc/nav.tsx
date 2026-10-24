@@ -194,13 +194,16 @@ export function ArcNav() {
           Talk to ARC
         </Link>
         <p className="mt-6 text-sm text-ink-2">
-          Prefer email?{" "}
+          Rather just book a time?{" "}
           <a
-            className="break-all font-medium text-brand underline underline-offset-2"
-            href={`mailto:${arcSite.email}`}
+            className="font-medium text-brand underline underline-offset-2"
+            href={arcSite.calendly}
+            target="_blank"
+            rel="noreferrer"
           >
-            {arcSite.email}
+            Book 30 minutes
           </a>
+          <span className="sr-only"> (opens in a new tab)</span>
         </p>
       </div>
       ) : null}

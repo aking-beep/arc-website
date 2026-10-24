@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import { Container } from "@/components/ui/section";
 import { site } from "@/lib/content";
@@ -23,12 +24,12 @@ export default function PrivacyPage() {
           <p className="text-sm leading-relaxed text-muted-foreground">
             {site.name} (&ldquo;ARC,&rdquo; &ldquo;we&rdquo;) operates{" "}
             {site.domain.replace(/^https?:\/\//, "")}. Questions:{" "}
-            <a
-              href={`mailto:${site.email}`}
+            <Link
+              href="/contact"
               className="text-foreground underline-offset-4 hover:underline"
             >
-              {site.email}
-            </a>
+              contact us
+            </Link>
             .
           </p>
         </section>
@@ -72,15 +73,15 @@ export default function PrivacyPage() {
         <section className="space-y-3">
           <h2 className="text-xl font-semibold tracking-tight">Your choices</h2>
           <p className="text-sm leading-relaxed text-muted-foreground">
-            Email us to correct or delete contact information we hold about you.
-            Prefer not to use the form? Book via Calendly or email{" "}
-            <a
-              href={`mailto:${site.email}`}
+            To see, correct or delete the contact information we hold about you,{" "}
+            <Link
+              href="/contact"
               className="text-foreground underline-offset-4 hover:underline"
             >
-              {site.email}
-            </a>{" "}
-            directly.
+              send us a request through the contact form
+            </Link>{" "}
+            and say what you would like changed. If you would rather raise it on a
+            call, book a time and we will handle it there.
           </p>
         </section>
 

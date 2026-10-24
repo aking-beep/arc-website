@@ -43,13 +43,7 @@ export function ClosingCta({
             </ArcButton>
           </div>
           <p className="text-[14px] text-mist-2">
-            Or email{" "}
-            <a
-              href={`mailto:${arcSite.email}`}
-              className="text-mist underline underline-offset-2 hover:text-white"
-            >
-              {arcSite.email}
-            </a>
+            A person reads every inquiry, usually replying within two business days.
           </p>
         </div>
       </Container>

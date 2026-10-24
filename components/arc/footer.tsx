@@ -38,17 +38,15 @@ export function ArcFooter() {
         ))}
 
         <div>
-          <h2 className="text-[13px] font-semibold text-ink">Elsewhere</h2>
+          <h2 className="text-[13px] font-semibold text-ink">Get in touch</h2>
           <ul className="mt-4 space-y-3 text-[14px]">
             <li>
-              <a
-                href={`mailto:${arcSite.email}`}
-                // The address is longer than the column at some widths.
-                // `anywhere` breaks only when it has to, unlike break-all.
-                className="text-ink-2 transition-colors [overflow-wrap:anywhere] hover:text-ink"
+              <Link
+                href="/contact"
+                className="text-ink-2 transition-colors hover:text-ink"
               >
-                {arcSite.email}
-              </a>
+                Send an inquiry
+              </Link>
             </li>
             <li>
               <a
@@ -58,17 +56,6 @@ export function ArcFooter() {
                 className="text-ink-2 transition-colors hover:text-ink"
               >
                 Book 30 minutes
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href={arcSite.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="text-ink-2 transition-colors hover:text-ink"
-              >
-                LinkedIn
                 <span className="sr-only"> (opens in a new tab)</span>
               </a>
             </li>

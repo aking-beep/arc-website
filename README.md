@@ -80,7 +80,7 @@ an IP out of a blog post):
 | A | `@` | Squarespace: `198.185.159.144/145`, `198.49.23.144/145` | the A value on the Vercel domain card |
 | CNAME | `www` | `ext-sq.squarespace.com` | the CNAME target on the Vercel domain card |
 
-**Leave these alone** — they carry the mail for `aking@arctransformationgroup.com`:
+**Leave these alone** — they carry the Google Workspace mail for the domain:
 
 | Record | Host | Value |
 | ------ | ---- | ----- |
@@ -183,7 +183,9 @@ No new website. Just content.
 3. **Vercel:** New Project → Import the repo → Framework = Next.js.
 4. **Env vars** (Production + Preview):
    - `RESEND_API_KEY` — from [Resend](https://resend.com)
-   - `CONTACT_TO_EMAIL` — usually `aking@arctransformationgroup.com`
+   - `CONTACT_TO_EMAIL` — the inbox that should receive inquiries. Required:
+     the contact route has no fallback recipient, by design, so that no address
+     lives in the repository.
    - `CONTACT_FROM_EMAIL` — a verified Resend sender
 5. **Domain:** pick one canonical host (`.com` or `.org`), set it primary, 301 the other.
 6. **Smoke test:** home, `/services/modernize`, `/labs/mcp-conformance-scanner`, `/contact`, `/privacy`.

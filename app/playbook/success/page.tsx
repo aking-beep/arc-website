@@ -13,7 +13,6 @@ import {
   withinSuccessWindow,
 } from "@/lib/commerce/paddle-api";
 import { playbookSlugForPriceId } from "@/lib/commerce/config";
-import { site } from "@/lib/content";
 import { getPlaybookTier, playbookPublisher } from "@/lib/playbook";
 
 export const metadata: Metadata = {
@@ -58,12 +57,12 @@ export default async function SuccessPage({
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
               The email arrives within a minute or two. If it is not there, check spam,
               then{" "}
-              <a
+              <Link
                 className="font-medium text-foreground underline underline-offset-4"
-                href={`mailto:${site.email}?subject=${encodeURIComponent(`${tier?.productName ?? "Playbook"} download`)}`}
+                href="/contact?type=other"
               >
-                email us
-              </a>{" "}
+                tell us which playbook you bought
+              </Link>{" "}
               and we will send it again. Keep it — the link is also how you get updates
               to this edition.
             </p>

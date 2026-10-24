@@ -65,7 +65,7 @@ export function CheckoutButton({
         </Button>
         <p className="mt-2 text-sm text-muted-foreground">
           <a className="underline underline-offset-4" href="/contact?topic=playbook">
-            Email us
+            Contact us
           </a>{" "}
           and we will send a payment link.
         </p>
@@ -137,7 +137,7 @@ export function CheckoutButton({
         <p className="mt-2 text-sm text-muted-foreground" role="alert">
           Checkout could not open.{" "}
           <a className="underline underline-offset-4" href="/contact?topic=playbook">
-            Email us
+            Contact us
           </a>{" "}
           and we will send a payment link.
         </p>
