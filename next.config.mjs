@@ -1,20 +1,25 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  async rewrites() {
+  async redirects() {
     return [
       // The Agent Control console showcase is a folder of static HTML in
-      // `public/`, captured from the real server. The app router cannot route
-      // to a static file, so this keeps the shareable URL clean while the
-      // bytes still come from the file.
+      // `public/`, captured from the real server.
+      //
+      // This has to be a redirect, not a rewrite. Every link inside the
+      // capture is relative, which is what lets the folder work at any mount
+      // point. A browser resolves a relative link against the *directory* of
+      // the current URL, so serving the entry page at the extensionless
+      // `/ark-control/console` made it ask for `/ark-control/console.css` and
+      // `/ark-control/approvals.html` — the stylesheet and every link, one
+      // directory too high, all 404. Redirecting to the file itself puts the
+      // browser inside `/ark-control/console/`, where the relative links
+      // resolve.
       {
         source: "/ark-control/console",
         destination: "/ark-control/console/index.html",
+        permanent: false,
       },
-    ];
-  },
-  async redirects() {
-    return [
       {
         source: "/academy/ai-readiness-workshop",
         destination: "/academy/digital-readiness-workshop",
