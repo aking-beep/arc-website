@@ -146,7 +146,6 @@ describe("no personal contact details on the site", () => {
    * here "but not rendered" would still be bundled into the JavaScript served
    * on every route and remain scrapable from the page source.
    */
-  const ADDRESS = /aking@|arctransformationgroup\.com["'\s]*$/i;
   const LINKEDIN = /linkedin\.com/i;
 
   const modules: [string, unknown][] = [
@@ -178,17 +177,18 @@ describe("no personal contact details on the site", () => {
     expect("linkedin" in arcSite).toBe(false);
   });
 
-  it("does not leak the founder's address through any content module", () => {
+  it("does not leak a personal mailbox through any content module", () => {
+    // Assembled rather than written out, so this file does not itself become
+    // the copy of the address that survives in the repository.
+    const MAILBOX = new RegExp(`${["aking", "@"].join("")}`, "i");
     for (const [name, value] of modules) {
       expect(JSON.stringify(value), `${name} contains the address`).not.toMatch(
-        /aking@/i,
+        MAILBOX,
       );
     }
-    // The canonical domain itself is still published, which is the site's own
-    // host rather than a personal detail — this keeps the check honest about
-    // what it is asserting.
+    // The canonical domain is still published — that is the site's own host,
+    // not a personal detail — which keeps this honest about what it asserts.
     expect(site.domain).toContain("arctransformationgroup.com");
-    expect(ADDRESS.test("aking@arctransformationgroup.com")).toBe(true);
   });
 
   it("still publishes booking, which is the channel that replaced them", () => {
