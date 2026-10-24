@@ -62,25 +62,16 @@ export default function ContactPage() {
 
           <div className="mt-12 border-t border-line pt-6 text-[14.5px] text-ink-2">
             <p>
-              Prefer email?{" "}
-              <a
-                href={`mailto:${arcSite.email}`}
-                className="break-all font-medium text-brand underline underline-offset-2"
-              >
-                {arcSite.email}
-              </a>
-            </p>
-            <p className="mt-2">
-              Or{" "}
+              Would rather talk than type?{" "}
               <a
                 href={arcSite.calendly}
                 target="_blank"
                 rel="noreferrer"
                 className="font-medium text-brand underline underline-offset-2"
               >
-                book 30 minutes directly
+                Book 30 minutes directly
               </a>
-              <span className="sr-only"> (opens in a new tab)</span>.
+              <span className="sr-only"> (opens in a new tab)</span> — no form needed.
             </p>
             <p className="mt-6 text-[13px] text-ink-3">
               No marketing list and no drip campaign. We keep what you send to answer you.{" "}

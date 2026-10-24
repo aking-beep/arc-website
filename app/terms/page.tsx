@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import { Container } from "@/components/ui/section";
 import { site } from "@/lib/content";
@@ -58,12 +59,12 @@ export default function TermsPage() {
           <h2 className="text-xl font-semibold tracking-tight">Contact</h2>
           <p className="text-sm leading-relaxed text-muted-foreground">
             Questions about these terms:{" "}
-            <a
-              href={`mailto:${site.email}`}
+            <Link
+              href="/contact"
               className="text-foreground underline-offset-4 hover:underline"
             >
-              {site.email}
-            </a>
+              get in touch
+            </Link>
             . Last updated: August 9, 2026.
           </p>
         </section>

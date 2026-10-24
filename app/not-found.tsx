@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/arc/ui/container";
 import { ArcButton } from "@/components/arc/ui/button";
-import { arcSite } from "@/lib/arc/site";
 
 export const metadata: Metadata = {
   title: "Page not found",
@@ -37,12 +37,12 @@ export default function NotFound() {
         </div>
         <p className="mt-10 text-[14.5px] text-ink-2">
           Looking for something specific?{" "}
-          <a
-            href={`mailto:${arcSite.email}`}
+          <Link
+            href="/contact"
             className="font-medium text-brand underline underline-offset-2"
           >
-            Email us
-          </a>{" "}
+            Tell us what you need
+          </Link>{" "}
           and we’ll point you at it.
         </p>
       </Container>

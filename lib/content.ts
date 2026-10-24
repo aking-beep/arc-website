@@ -15,9 +15,16 @@ export const site = {
   },
   /** The question the practice answers. */
   question: "How should we use technology?",
-  email: "aking@arctransformationgroup.com",
+  /**
+   * Booking is the only personal contact channel the site publishes. There is
+   * deliberately no `email` or `linkedin` here: the site routes everyone
+   * through /contact instead, and a field in this object would be bundled into
+   * the client JavaScript on every route that renders the nav, so an address
+   * kept here "but not displayed" would still be scrapable from the page
+   * source. The contact endpoint reads its recipient from CONTACT_TO_EMAIL,
+   * which stays server-side.
+   */
   calendly: "https://calendly.com/aking-arctransformationgroup/30min",
-  linkedin: "https://www.linkedin.com/in/andrew-k-a676aa178/",
   // Choose ONE canonical domain and redirect the other.
   domain: "https://arctransformationgroup.com",
   team: {

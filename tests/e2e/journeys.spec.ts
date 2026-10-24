@@ -175,6 +175,46 @@ test("no page links an ARC repository", async ({ page }) => {
   }
 });
 
+test("no page exposes a personal email address or LinkedIn profile", async ({ page }) => {
+  // Removed from the site: everyone goes through /contact or Calendly. Checks
+  // the rendered HTML rather than the data layer, so it also catches an
+  // address hard-coded into a page's copy.
+  const routes = [
+    ...PRIMARY_ROUTES,
+    "/about",
+    "/privacy",
+    "/terms",
+    "/developers",
+    "/platform",
+    "/playbook",
+    "/does-not-exist",
+  ];
+
+  for (const route of routes) {
+    await page.goto(route);
+    const html = await page.content();
+    expect(html, `${route} exposes the founder's address`).not.toContain("aking@");
+    expect(html, `${route} links LinkedIn`).not.toContain("linkedin.com");
+    expect(
+      await page.locator('a[href^="mailto:"]').count(),
+      `${route} has a mailto link`,
+    ).toBe(0);
+  }
+});
+
+test("the mobile menu offers booking rather than an address", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Open menu" }).click();
+
+  const dialog = page.getByRole("dialog", { name: "Site menu" });
+  await expect(dialog.getByRole("link", { name: /Book 30 minutes/ })).toHaveAttribute(
+    "href",
+    /calendly\.com/,
+  );
+  expect(await dialog.locator('a[href^="mailto:"]').count()).toBe(0);
+});
+
 test("the excluded consumer products appear nowhere", async ({ page }) => {
   for (const route of [...PRIMARY_ROUTES, "/platform", "/work", "/playbook"]) {
     await page.goto(route);

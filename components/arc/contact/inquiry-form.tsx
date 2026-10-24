@@ -223,10 +223,19 @@ export function InquiryForm() {
           <div className="mt-4 rounded-md border border-danger/25 bg-danger-subtle px-4 py-3 text-[14px] text-danger">
             <p className="font-medium">We couldn’t send your message.</p>
             <p className="mt-1">
-              {serverError ? `${serverError} ` : null}Nothing you entered was lost. Try again, or
-              email{" "}
-              <a href={`mailto:${arcSite.email}`} className="underline">
-                {arcSite.email}
+              {serverError ? `${serverError} ` : null}Nothing you entered was lost. Try again, or{" "}
+              {/*
+                Calendly on purpose: this message only renders when the send
+                failed, so the fallback has to be a channel that does not
+                depend on this endpoint.
+              */}
+              <a
+                href={arcSite.calendly}
+                target="_blank"
+                rel="noreferrer"
+                className="underline"
+              >
+                book 30 minutes directly
               </a>
               .
             </p>

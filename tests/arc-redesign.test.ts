@@ -135,6 +135,68 @@ describe("no ARC GitHub presence on the site", () => {
   });
 });
 
+describe("no personal contact details on the site", () => {
+  /**
+   * The founder's email address and LinkedIn profile were removed from the
+   * public site: everyone is routed through /contact and Calendly instead.
+   *
+   * These guard the data layer rather than the markup, because that is the
+   * route by which either would come back. It also matters that they are not
+   * merely hidden: `site` is imported by client components, so a field left
+   * here "but not rendered" would still be bundled into the JavaScript served
+   * on every route and remain scrapable from the page source.
+   */
+  const ADDRESS = /aking@|arctransformationgroup\.com["'\s]*$/i;
+  const LINKEDIN = /linkedin\.com/i;
+
+  const modules: [string, unknown][] = [
+    ["site", site],
+    ["arcSite", arcSite],
+    ["arcNav", arcNav],
+    ["arcFooterColumns", arcFooterColumns],
+    ["labs", labs],
+    ["labProducts", labProducts],
+    ["arkProducts", arkProducts],
+    ["developerAreas", developerAreas],
+    ["consoleShowcase", consoleShowcase],
+    ["solutions", solutions],
+    ["ecoNodes", ecoNodes],
+  ];
+
+  for (const [name, value] of modules) {
+    it(`${name} carries no mailto address or LinkedIn profile`, () => {
+      const json = JSON.stringify(value);
+      expect(json).not.toMatch(/mailto:/i);
+      expect(json).not.toMatch(LINKEDIN);
+    });
+  }
+
+  it("has no email or linkedin field on the shared site object", () => {
+    expect("email" in site).toBe(false);
+    expect("linkedin" in site).toBe(false);
+    expect("email" in arcSite).toBe(false);
+    expect("linkedin" in arcSite).toBe(false);
+  });
+
+  it("does not leak the founder's address through any content module", () => {
+    for (const [name, value] of modules) {
+      expect(JSON.stringify(value), `${name} contains the address`).not.toMatch(
+        /aking@/i,
+      );
+    }
+    // The canonical domain itself is still published, which is the site's own
+    // host rather than a personal detail — this keeps the check honest about
+    // what it is asserting.
+    expect(site.domain).toContain("arctransformationgroup.com");
+    expect(ADDRESS.test("aking@arctransformationgroup.com")).toBe(true);
+  });
+
+  it("still publishes booking, which is the channel that replaced them", () => {
+    expect(site.calendly).toMatch(/^https:\/\/calendly\.com\//);
+    expect(arcSite.calendly).toBe(site.calendly);
+  });
+});
+
 describe("maturity taxonomy", () => {
   it("covers every Maturity in lib/content", () => {
     for (const maturity of Object.keys(maturityLabel) as Maturity[]) {
