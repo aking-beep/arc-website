@@ -23,7 +23,7 @@ export function FeaturedProducts() {
           id="prod-title"
           eyebrow="Featured products"
           title="One platform in development. Tools you can use today."
-          lead="Every product shows its real status. Where something is open source, the code is linked."
+          lead="Every product shows its real status, and the ones you can use today link straight to the tool."
         />
 
         <div className="mt-12 grid gap-6 lg:grid-cols-[1.25fr_1fr]">
@@ -93,17 +93,6 @@ export function FeaturedProducts() {
                       >
                         Open tool <ArrowUpRight size={13} aria-hidden="true" />
                         <span className="sr-only">{p.name} (opens in a new tab)</span>
-                      </a>
-                    ) : null}
-                    {p.github ? (
-                      <a
-                        href={p.github}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1 text-ink-2 hover:text-ink"
-                      >
-                        GitHub <ArrowUpRight size={13} aria-hidden="true" />
-                        <span className="sr-only">for {p.name} (opens in a new tab)</span>
                       </a>
                     ) : null}
                   </div>

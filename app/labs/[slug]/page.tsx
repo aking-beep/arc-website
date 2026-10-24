@@ -78,12 +78,6 @@ export default function ProductPage({
                     {ctaLabel}
                   </Button>
                 ) : null}
-                {product.links.github ? (
-                  <Button href={product.links.github} variant="outline">
-                    <Github className="h-4 w-4" />
-                    Source on GitHub
-                  </Button>
-                ) : null}
                 {product.links.docs ? (
                   <Button href={product.links.docs} variant="ghost">
                     <BookOpen className="h-4 w-4" />

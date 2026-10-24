@@ -341,15 +341,15 @@ export const developerAreas: {
   {
     name: "Open tools",
     maturity: "open-source",
-    text: "Scanners, catalogues and reference implementations from Labs. MIT licensed, no account, most of them store nothing.",
+    text: "Scanners, catalogues and reference implementations from Labs. Free to run, no account, most of them store nothing.",
     href: "/labs",
     linkLabel: "Browse the tools",
   },
   {
     name: "Documentation",
     maturity: "open-source",
-    text: "Architecture notes, schemas and implementation guides, published alongside the code they describe.",
-    href: "https://github.com/aking-beep",
-    linkLabel: "View GitHub",
+    text: "Architecture notes, schemas and implementation guides. Each tool documents itself on its own deployment.",
+    href: "/research",
+    linkLabel: "Read the research",
   },
 ];

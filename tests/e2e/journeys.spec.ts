@@ -148,7 +148,7 @@ test("the console's way back to the site lands on the product page", async ({ pa
 test("Labs shows real maturities and working tool links", async ({ page }) => {
   await page.goto("/labs");
   await expect(page.getByRole("heading", { name: "MCP Conformance Scanner" })).toBeVisible();
-  await expect(page.getByText("Open source · live").first()).toBeVisible();
+  await expect(page.getByText("Live", { exact: true }).first()).toBeVisible();
 
   const openTool = page
     .getByRole("link", { name: /Open tool MCP Conformance Scanner/ })
@@ -159,6 +159,20 @@ test("Labs shows real maturities and working tool links", async ({ page }) => {
     "href",
     "https://www.arctransformationgrouplab.dev",
   );
+});
+
+test("no page links an ARC repository", async ({ page }) => {
+  // GitHub was removed from the site. The one github.com link that remains
+  // anywhere is a cited third-party source in the market signals, which is
+  // evidence for a dated claim rather than a link to ARC's own code.
+  for (const route of [...PRIMARY_ROUTES, "/developers", "/platform", "/labs/mcp-conformance-scanner"]) {
+    await page.goto(route);
+    const arcRepos = await page
+      .locator('a[href*="github.com/aking-beep"]')
+      .count();
+    expect(arcRepos, `${route} links an ARC repository`).toBe(0);
+    await expect(page.getByRole("link", { name: "GitHub", exact: true })).toHaveCount(0);
+  }
 });
 
 test("the excluded consumer products appear nowhere", async ({ page }) => {

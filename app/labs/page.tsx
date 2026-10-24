@@ -16,7 +16,7 @@ import { jsonLdScript } from "@/lib/arc/json-ld";
 
 const title = "ARC Labs · Applied technology, tested in public";
 const description =
-  "Developer tools and scanners for teams building with AI: MCP conformance, prompt review, connectivity checks and AI architecture fit. Each one shows its real maturity; the open-source ones link to their code.";
+  "Developer tools and scanners for teams building with AI: MCP conformance, prompt review, connectivity checks and AI architecture fit. Free to use, no account, and each one shows its real maturity.";
 
 export const metadata: Metadata = {
   title: { absolute: title },
@@ -62,8 +62,8 @@ export default function LabsPage() {
             </h1>
             <p className="mt-6 max-w-[580px] text-[18px] leading-relaxed text-pretty text-ink-2">
               Developer tools and scanners for teams building with AI. Most are free with no
-              account and store nothing. Each one shows its real maturity, and the open-source ones
-              link to their code.
+              account and store nothing. Each one shows its real maturity, and says what it
+              checked rather than only what it scored.
             </p>
           </div>
           <dl className="grid grid-cols-3 gap-4 border-t border-line pt-5 text-[13.5px]">
@@ -72,9 +72,9 @@ export default function LabsPage() {
               <dd className="mt-1 font-serif text-[30px] tabular text-ink">{labCounts.total}</dd>
             </div>
             <div>
-              <dt className="text-ink-3">Open source</dt>
+              <dt className="text-ink-3">Free to use now</dt>
               <dd className="mt-1 font-serif text-[30px] tabular text-ink">
-                {labCounts.openSource}
+                {labCounts.usable}
               </dd>
             </div>
             <div>
