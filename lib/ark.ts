@@ -341,7 +341,7 @@ export const developerAreas: {
   {
     name: "Open tools",
     maturity: "open-source",
-    text: "Scanners, catalogues and reference implementations from Labs. MIT licensed, no account, most of them store nothing.",
+    text: "Scanners, catalogues and reference implementations from Labs. Free to run, no account, most of them store nothing.",
     href: "/labs",
     linkLabel: "Browse the tools",
   },

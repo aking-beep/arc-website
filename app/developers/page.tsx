@@ -125,7 +125,7 @@ export default function DevelopersPage() {
           <p className="mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
             &ldquo;It works in one client&rdquo; stopped being evidence the
             moment enterprise platforms started publishing tool surfaces by the
-            dozen. The scanner is open source and runs from the CLI, so it can
+            dozen. The scanner is free and runs from the CLI, so it can
             sit in CI rather than in someone&rsquo;s memory.
           </p>
           <div className="mt-8">

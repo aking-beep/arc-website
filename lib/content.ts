@@ -444,7 +444,7 @@ export const labs: Product[] = [
     name: "Connectivity Scanner",
     tagline: "Is your endpoint reachable, secure, and fast?",
     description:
-      "Paste a URL or hostname and get a graded report on DNS, TCP, TLS, redirects, latency, and security headers — with prioritized fixes you can paste into a PR. Free, open source, no account required to start.",
+      "Paste a URL or hostname and get a graded report on DNS, TCP, TLS, redirects, latency, and security headers — with prioritized fixes you can paste into a PR. Free to use, no account required to start.",
     status: "live",
     maturity: "open-source",
     badge: "Free",
@@ -1433,7 +1433,7 @@ export const faqs = [
   },
   {
     q: "Are the Labs tools free?",
-    a: "Yes. Most run with no account and store nothing. There is no paid tier. Every Labs project carries its maturity — open source, alpha, experiment or research — so you can tell what is supported and what is not before you depend on it.",
+    a: "Yes. Most run with no account and store nothing. There is no paid tier. Every Labs project carries its maturity — live, alpha, experiment or research — so you can tell what is supported and what is not before you depend on it.",
   },
   {
     q: "Why are the playbooks so cheap, or free?",
