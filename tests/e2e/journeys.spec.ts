@@ -89,6 +89,43 @@ test("mobile menu opens, traps focus and closes on Escape", async ({ page }) => 
   await expect(toggle).toBeFocused();
 });
 
+test("the opened mobile menu actually fills the screen and shows its links", async ({
+  page,
+}) => {
+  // The regression this guards: `toBeVisible()` and `toBeFocused()` both
+  // passed while the panel rendered 57px tall with every link clipped out of
+  // sight by overflow-y-auto. A fixed-position panel inside the
+  // backdrop-filtered <header> resolved its insets against the 64px header
+  // instead of the viewport. Assert the geometry, not just the visibility.
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Open menu" }).click();
+
+  const dialog = page.getByRole("dialog", { name: "Site menu" });
+  const box = await dialog.boundingBox();
+  expect(box, "panel has no box").not.toBeNull();
+
+  // Below the 64px header, and filling essentially the rest of the viewport.
+  expect(Math.round(box!.y)).toBeGreaterThanOrEqual(63);
+  expect(box!.height, `panel is only ${box!.height}px tall`).toBeGreaterThan(600);
+  expect(box!.width).toBeGreaterThan(380);
+
+  // It must not be a fixed-position descendant of a containing-block ancestor.
+  const offsetParent = await dialog.evaluate(
+    (el) => (el as HTMLElement).offsetParent?.tagName.toLowerCase() ?? "viewport",
+  );
+  expect(offsetParent, "panel is positioned against an ancestor").toBe("viewport");
+
+  // Every destination is reachable without scrolling a clipped container.
+  for (const name of ["Home", "Solutions", "ARC Control", "ARC Labs", "Research", "About", "Playbooks"]) {
+    await expect(dialog.getByRole("link", { name, exact: true })).toBeInViewport();
+  }
+
+  // And tapping one navigates.
+  await dialog.getByRole("link", { name: "ARC Labs", exact: true }).click();
+  await expect(page).toHaveURL(/\/labs$/);
+});
+
 test("ARC Control states its maturity above the fold and never claims GA", async ({ page }) => {
   await page.goto("/control");
   await expect(page.getByText("Design-partner development").first()).toBeVisible();

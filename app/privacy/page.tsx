@@ -26,7 +26,7 @@ export default function PrivacyPage() {
             {site.domain.replace(/^https?:\/\//, "")}. Questions:{" "}
             <Link
               href="/contact"
-              className="text-foreground underline-offset-4 hover:underline"
+              className="text-foreground underline underline-offset-4"
             >
               contact us
             </Link>
@@ -76,7 +76,7 @@ export default function PrivacyPage() {
             To see, correct or delete the contact information we hold about you,{" "}
             <Link
               href="/contact"
-              className="text-foreground underline-offset-4 hover:underline"
+              className="text-foreground underline underline-offset-4"
             >
               send us a request through the contact form
             </Link>{" "}

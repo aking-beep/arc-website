@@ -13,7 +13,12 @@ export function EngagementShapes() {
           title="Sized to the problem, not to a bench."
           lead="Pricing is scoped after the first conversation. We don’t publish rate cards because the right size depends on what you already have."
         />
-        <div className="mt-12 overflow-x-auto">
+        <div
+          className="mt-12 overflow-x-auto"
+          tabIndex={0}
+          role="region"
+          aria-label="Engagement shapes"
+        >
           <table className="w-full min-w-[640px] border-t border-ink text-left">
             <caption className="sr-only">Engagement shapes</caption>
             <thead>

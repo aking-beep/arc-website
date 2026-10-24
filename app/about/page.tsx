@@ -188,7 +188,12 @@ export default function AboutPage() {
             title="One company you contract with."
             lead="The services, the products and the research carry the same name and are built by the same people."
           />
-          <div className="overflow-x-auto">
+          <div
+            className="overflow-x-auto"
+            tabIndex={0}
+            role="region"
+            aria-label="How ARC is organised"
+          >
             <table className="w-full min-w-[520px] border-t border-ink text-left">
               <caption className="sr-only">ARC divisions</caption>
               <tbody>
