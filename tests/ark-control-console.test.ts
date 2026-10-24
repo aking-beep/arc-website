@@ -32,6 +32,41 @@ async function page(name: string) {
 }
 
 describe("the ARC Control console showcase", () => {
+  /**
+   * This has to stay a redirect to the explicit file, and the reason is not
+   * obvious enough to survive a tidy-up without being written down.
+   *
+   * Every link inside the capture is relative, which is what lets the folder
+   * work at any mount point. A browser resolves a relative link against the
+   * *directory* of the current URL. Served by rewrite at the extensionless
+   * `/ark-control/console`, that directory is `/ark-control/`, so the page
+   * asks for `/ark-control/console.css` and `/ark-control/approvals.html` —
+   * the stylesheet and every link, one level too high, all 404. The HTML comes
+   * back 200 the whole time, so fetching the URL looks healthy while the page
+   * renders unstyled with every link dead.
+   *
+   * Redirecting puts the browser inside `/ark-control/console/`, where the
+   * relative links resolve.
+   */
+  it("redirects the clean URL to the file, rather than rewriting to it", async () => {
+    const config = await fs.readFile(path.join(process.cwd(), "next.config.mjs"), "utf8");
+    const { default: nextConfig } = await import(
+      /* @vite-ignore */ path.join(process.cwd(), "next.config.mjs")
+    );
+
+    const redirects = await nextConfig.redirects();
+    const entry = redirects.find((r: { source: string }) => r.source === "/ark-control/console");
+    expect(entry, "a redirect for the clean URL must exist").toBeDefined();
+    expect(entry.destination).toBe("/ark-control/console/index.html");
+
+    expect(
+      typeof nextConfig.rewrites === "function" ? await nextConfig.rewrites() : [],
+      "a rewrite would serve the page one directory too high",
+    ).not.toContainEqual(expect.objectContaining({ source: "/ark-control/console" }));
+
+    expect(config).toContain("relative");
+  });
+
   it("ships the entry page the product page links to", async () => {
     const entry = await page("index.html");
     expect(entry).toContain("<!doctype html>");
