@@ -15,7 +15,17 @@ describe("normalizeBuyerEmail", () => {
     // the query instead.
     expect(normalizeBuyerEmail("first_last@company.com")).toBe("first_last@company.com");
     expect(normalizeBuyerEmail("a%b@example.com")).toBe("a%b@example.com");
-    expect(normalizeBuyerEmail("a*b@example.com")).toBe("a*b@example.com");
+  });
+
+  it("still refuses a star, which cannot be escaped for the lookup", () => {
+    // PostgREST rewrites `*` to `%` while parsing the filter value, before
+    // SQL sees it, and drops a backslash in front of it. An accepted `*`
+    // would search a wider pattern than the address typed, and since the
+    // token is minted against whatever purchase that matches while the mail
+    // goes to the typed address, it could mint a token against someone
+    // else's purchase and spend one of their recovery links.
+    expect(normalizeBuyerEmail("a*b@example.com")).toBeNull();
+    expect(normalizeBuyerEmail("*@example.com")).toBeNull();
   });
 
   it("rejects addresses that are not an email", () => {
@@ -40,7 +50,12 @@ describe("escapeLikePattern", () => {
       "first\\_last@company.com",
     );
     expect(escapeLikePattern("a%b@example.com")).toBe("a\\%b@example.com");
-    expect(escapeLikePattern("a*b@example.com")).toBe("a\\*b@example.com");
+  });
+
+  it("leaves a star alone, because escaping it would be a lie", () => {
+    // PostgREST would drop the backslash and rewrite the star anyway.
+    // normalizeBuyerEmail refuses these before they reach a query.
+    expect(escapeLikePattern("a*b@example.com")).toBe("a*b@example.com");
   });
 
   it("escapes the backslash first, so later escapes are not themselves escaped", () => {

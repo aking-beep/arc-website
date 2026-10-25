@@ -206,16 +206,20 @@ export async function findPurchaseForPresentedToken(
  * Make a string match literally inside a PostgREST `ilike` filter.
  *
  * `ilike` is SQL LIKE, so `%` and `_` are wildcards and backslash is the
- * escape character; PostgREST additionally treats `*` as `%`. Backslash is
- * escaped first, or it would escape the escapes added after it. Without this
- * an address containing `_` would match more rows than itself.
+ * escape character. Backslash is escaped first, or it would escape the
+ * escapes added after it. Without this an address containing `_` would match
+ * more rows than itself.
+ *
+ * `*` is deliberately NOT handled here, because it cannot be: PostgREST
+ * rewrites `*` to `%` while parsing the filter value, before SQL sees it, and
+ * drops any backslash in front of it. Callers must reject `*` instead — see
+ * `normalizeBuyerEmail` in lib/commerce/recover.ts.
  */
 export function escapeLikePattern(value: string): string {
   return value
     .replace(/\\/g, "\\\\")
     .replace(/%/g, "\\%")
-    .replace(/_/g, "\\_")
-    .replace(/\*/g, "\\*");
+    .replace(/_/g, "\\_");
 }
 
 export async function findPurchasesByEmail(
