@@ -11,11 +11,11 @@ three separate playbooks. It does not sell them as one book.
 
 Buying one does not include the others. All three together are $35, as three checkouts.
 
-The charge is the Paddle price id for that playbook. The page does not invent one. A missing id leaves that playbook's button as "Checkout is not configured yet".
+The charge is the Paddle price id for that playbook. The page does not invent one. A missing id leaves the button as a request for a payment link by email. The file is still behind the payment.
 
 - **Routes:** `/playbook`, `/playbook/define`, `/playbook/build`, `/playbook/ship`
 - **Ad destinations:** `/offer`, `/offer/define`, `/offer/build`, `/offer/ship`. These are the pages to put in an ad. The site navigation is off. Each product page opens on that playbook's question, price, and checkout. They are `noindex` so they do not compete with `/playbook` in search.
-- **Public preview:** `/playbook/preview.pdf` is the opening of Define, through the first page of Module 01. Build and Ship are not in it.
+- **Paywall:** the playbook file is not on the page. Payment emails a private download link. There is no public preview PDF.
 - **Paid files:** `npm run playbook:build` writes one PDF and one ZIP per playbook under `playbook/build/`, which is gitignored. `npm run playbook:provision` creates the Paddle prices and uploads those files when the account keys are present. It does not invent a price id.
 
 ## Page order
@@ -23,6 +23,6 @@ The charge is the Paddle price id for that playbook. The page does not invent on
 1. Hero. Three playbooks, buy the part of the work you are in.
 2. The three prices, each with its own checkout.
 3. The question each one answers.
-4. The free preview, labelled as the opening of Define.
+4. The paywall. The file opens after payment.
 5. Who it is for.
 6. FAQ, including that they are separate purchases.

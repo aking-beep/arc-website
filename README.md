@@ -246,8 +246,9 @@ There are no accounts.
 
 The page prints those three amounts. Paddle charges whatever price id you put
 in the matching variable, so each id has to be a one-time price of that amount.
-The repository does not invent price ids. Until a playbook's id is set, its
-button on `/playbook` reads "Checkout is not configured yet".
+The repository does not invent price ids. Until a playbook's id is set, the
+button asks for a payment link by email. The price on the button is the price
+on the page. The playbook file is not on the page.
 
 Ad destinations are `/offer`, `/offer/define`, `/offer/build`, and `/offer/ship`.
 Point a campaign at the page for that playbook. The same checkout opens there
@@ -330,8 +331,8 @@ every identifier below has to come from your own accounts.
    | Build | `build/arc-playbook-build.pdf` | `build/arc-playbook-build.zip` |
    | Ship | `ship/arc-playbook-ship.pdf` | `ship/arc-playbook-ship.zip` |
 
-   The public preview at `public/playbook/preview.pdf` is the opening of
-   Define, through the first page of Module 01. It is not a paid file.
+   The site publishes the Define cover only. The manuscript is the paid
+   download. There is no public preview PDF.
 5. With `PADDLE_API_KEY`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, and
    `PLAYBOOK_STORAGE_BUCKET` in `.env.local`, `npm run playbook:provision`
    creates the three one-time sandbox prices and uploads the six objects.
@@ -380,7 +381,7 @@ every identifier below has to come from your own accounts.
 | `NEXT_PUBLIC_SITE_URL` | email | Builds the download link. Set this in Production. |
 
 Each group degrades independently. With nothing set, `/playbook` still renders
-in full and the button reads *"Checkout is not configured yet"*.
+the paywall and the button asks for a payment link by email.
 
 ### Testing the purchase flow in sandbox
 

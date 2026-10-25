@@ -5,7 +5,7 @@ import { OfferProduct } from "@/components/playbook/offer-landing";
 import { publicCheckoutConfig } from "@/lib/commerce/checkout";
 import { site } from "@/lib/content";
 import { offerFit, offerHref, offerTier, offerTiers } from "@/lib/offer";
-import { playbookShots } from "@/lib/playbook";
+import { playbookCover } from "@/lib/playbook";
 
 export function generateStaticParams() {
   return offerTiers().map((tier) => ({ slug: tier.slug }));
@@ -33,7 +33,7 @@ export function generateMetadata({
       title,
       description,
       ...(tier.slug === "define"
-        ? { images: [{ url: playbookShots[0].src, alt: playbookShots[0].alt }] }
+        ? { images: [{ url: playbookCover.src, alt: playbookCover.alt }] }
         : {}),
     },
     twitter: {

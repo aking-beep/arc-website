@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-import { CheckoutButton } from "@/components/playbook/checkout-button";
+import { OfferBuy } from "@/components/playbook/offer-buy";
+import { Paywall } from "@/components/playbook/paywall";
 import { PlaybookViewTracker } from "@/components/playbook/view-tracker";
-import { PreviewLink } from "@/components/playbook/preview-link";
 import { Card } from "@/components/ui/card";
 import { Container, Section, SectionHeading } from "@/components/ui/section";
 import { PanelLabel } from "@/components/diagram";
@@ -13,7 +13,6 @@ import { publicCheckoutConfig } from "@/lib/commerce/checkout";
 import { site } from "@/lib/content";
 import {
   getPlaybookTier,
-  playbookPreviewPdf,
   playbookPublisher,
   playbookTierHref,
   playbookTiers,
@@ -107,64 +106,27 @@ export default function PlaybookTierPage({
                   {tier.currency} · {tier.priceNote}
                 </span>
               </p>
-              <CheckoutButton
-                config={checkout}
-                product={tier.slug}
-                priceAmount={tier.priceAmount}
-                className="mt-6"
-              >
-                {`Get ${tier.name} — ${tier.price}`}
-              </CheckoutButton>
+              <OfferBuy tier={tier} config={checkout} className="mt-6" />
               <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-                {tier.format}. One payment, a private download link, nothing to log into.
-                {tier.slug === "define" ? (
-                  <>
-                    {" "}
-                    <PreviewLink
-                      href={playbookPreviewPdf}
-                      className="underline underline-offset-4"
-                    >
-                      Read the free preview of this one.
-                    </PreviewLink>
-                  </>
-                ) : null}
+                {tier.format}. One payment, then a private download link.
               </p>
             </div>
 
             <Card className="p-6 sm:p-8">
               <PanelLabel>You leave with</PanelLabel>
               <p className="mt-4 text-lg font-medium leading-snug">{tier.outcome}</p>
-              <ul className="mt-6 space-y-3 border-t border-border/60 pt-6">
-                {tier.includes.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm leading-relaxed">
-                    <Check className="mt-0.5 h-4 w-4 flex-none text-brand" aria-hidden />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <p className="mt-4 border-t border-border/60 pt-4 text-sm leading-relaxed text-muted-foreground">
+                {tier.part}. {tier.format}.
+              </p>
             </Card>
           </div>
         </Container>
       </section>
 
       <Section>
-        <SectionHeading
-          kicker="Chapters"
-          title={`What ${tier.name} walks through.`}
-          lead={tier.format}
-        />
-        <ol className="mt-12 grid gap-5 sm:grid-cols-2">
-          {tier.chapters.map((chapter) => (
-            <li key={chapter.name}>
-              <Card className="h-full p-6">
-                <h2 className="text-base font-semibold tracking-tight">{chapter.name}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {chapter.text}
-                </p>
-              </Card>
-            </li>
-          ))}
-        </ol>
+        <Paywall product={tier.name} price={tier.price} file={`${tier.part}. ${tier.format}.`}>
+          <OfferBuy tier={tier} config={checkout} />
+        </Paywall>
       </Section>
 
       <Section className="bg-muted/30">
