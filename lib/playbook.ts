@@ -241,7 +241,7 @@ export const playbookFaqs = [
   },
   {
     q: "Do I need an account?",
-    a: "No. You buy a playbook, we email you a private download link, and the link works on more than one device. There is nothing to log into.",
+    a: "No. You buy a playbook, we email you a private download link, and the link works on more than one device. There is nothing to log into. If you lose the email, the recover page sends a fresh link to the same address.",
   },
   {
     q: "Can I use this with my team?",

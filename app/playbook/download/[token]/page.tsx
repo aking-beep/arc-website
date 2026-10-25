@@ -6,7 +6,7 @@ import { PanelLabel } from "@/components/diagram";
 import { Card } from "@/components/ui/card";
 import { Container } from "@/components/ui/section";
 import { playbookSlugForPriceId, supabaseConfig } from "@/lib/commerce/config";
-import { findPurchaseByTokenHash, toEntitlement } from "@/lib/commerce/store";
+import { findPurchaseForPresentedToken, toEntitlement } from "@/lib/commerce/store";
 import {
   checkEntitlement,
   hashToken,
@@ -54,7 +54,7 @@ export default async function DownloadPage({
     return <Unavailable />;
   }
 
-  const found = await findPurchaseByTokenHash(hashToken(token));
+  const found = await findPurchaseForPresentedToken(hashToken(token));
   if (!found.ok) {
     console.error({
       scope: "playbook.download.page",
@@ -108,6 +108,13 @@ function Rejected({ reason }: { reason: TokenRejection }) {
         <p className="text-sm leading-relaxed text-muted-foreground">
           Check the link was copied in full from your purchase email — it is long and
           email clients sometimes break it across two lines. If it still does not work,{" "}
+          <Link
+            className="font-medium text-foreground underline underline-offset-4"
+            href="/playbook/recover"
+          >
+            request a fresh link
+          </Link>{" "}
+          or{" "}
           <Link
             className="font-medium text-foreground underline underline-offset-4"
             href="/contact?type=other"
