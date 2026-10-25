@@ -269,6 +269,10 @@ email, and the price on the button is the price on the page.
    string.
 5. The download page validates the token by hash, then a server route mints a
    5-minute signed URL for the requested object and counts the download.
+   `/playbook/recover` emails a fresh link to the checkout address without
+   replacing the original one. The reply is the same whether or not that
+   address has a purchase. Run `supabase/migrations/0002_playbook_access_tokens.sql`
+   before recovery links can be stored.
 6. `/playbook/success` thanks the buyer. It will offer an immediate download
    only after re-confirming the transaction against the Paddle API server-side,
    and only within 24 hours of payment — arriving at that URL proves nothing.

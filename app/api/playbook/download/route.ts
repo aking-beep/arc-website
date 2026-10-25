@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { playbookSlugForPriceId } from "@/lib/commerce/config";
 import { clientIp, rateLimit } from "@/lib/commerce/rate-limit";
 import {
-  findPurchaseByTokenHash,
+  findPurchaseForPresentedToken,
   recordDownload,
   signBundleUrl,
   toEntitlement,
@@ -92,7 +92,7 @@ export async function POST(request: Request) {
     return tooMany(tokenLimit.retryAfter);
   }
 
-  const found = await findPurchaseByTokenHash(tokenHash);
+  const found = await findPurchaseForPresentedToken(tokenHash);
   if (!found.ok) {
     log("error", "lookup failed", { ref: ref(tokenHash), detail: found.detail });
     return NextResponse.json(
@@ -150,7 +150,7 @@ export async function POST(request: Request) {
 
   // Count after signing succeeds. Counting first would spend a buyer's budget
   // on our own outage.
-  const counted = await recordDownload(tokenHash);
+  const counted = await recordDownload(found.data.token_hash);
   if (!counted.ok) {
     log("warn", "download not counted", { ref: ref(tokenHash), detail: counted.detail });
   }

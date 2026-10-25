@@ -54,6 +54,7 @@ export function CheckoutButton({
 }) {
   const [state, setState] = React.useState<State>("idle");
   const paddleRef = React.useRef<Paddle | null>(null);
+  const completedRef = React.useRef(false);
 
   const idleLabel = typeof children === "string" ? children : `Get ${product}`;
 
@@ -90,13 +91,27 @@ export function CheckoutButton({
           environment: config.environment,
           eventCallback: (event) => {
             // A client event is a UI signal, never proof of payment. The
-            // webhook is what grants the entitlement; this only tells the
-            // analytics that the overlay reported completion.
+            // webhook is what grants the entitlement.
             if (event.name === "checkout.completed") {
+              completedRef.current = true;
               trackEvent("playbook_purchase_complete", {
                 product,
+                price: priceAmount,
                 transaction_id: event.data?.transaction_id,
               });
+              return;
+            }
+            if (event.name === "checkout.closed" && !completedRef.current) {
+              trackEvent("playbook_checkout_abandon", { product });
+              return;
+            }
+            if (
+              event.name === "checkout.error" ||
+              event.name === "checkout.failed" ||
+              event.name === "checkout.payment.failed" ||
+              event.name === "checkout.payment.error"
+            ) {
+              trackEvent("playbook_checkout_error", { product });
             }
           },
         });

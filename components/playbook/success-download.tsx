@@ -68,7 +68,7 @@ export function SuccessDownload({
       <div className="mt-5 flex flex-col gap-3 sm:flex-row">
         <Button onClick={() => download("pdf")} disabled={busy !== null}>
           <Download className="h-4 w-4" aria-hidden />
-          {busy === "pdf" ? "Preparing…" : "Playbook (PDF)"}
+          {busy === "pdf" ? "Preparing…" : "Download your playbook"}
         </Button>
         <Button
           variant="outline"

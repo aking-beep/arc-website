@@ -38,15 +38,21 @@ export default async function SuccessPage({
     <Container className="py-20 sm:py-28">
       <div className="mx-auto max-w-2xl">
         <p className="mb-4 text-sm font-medium uppercase tracking-widest text-muted-foreground">
-          Thank you
+          Thank you for your purchase
         </p>
         <h1 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
-          {tier ? `${tier.name} is ready.` : "Your playbook is ready."}
+          {confirmed ? "Your playbook is ready." : "Check your email for the download."}
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-          We have emailed your download link to the address you used at checkout. It
-          works on more than one device, and there is nothing to log into.
+          {confirmed
+            ? `We emailed ${tier?.productName ?? "your playbook"} to the address you used at checkout. The link works on more than one device, and there is nothing to log into.`
+            : "If the payment went through, the download link is in your inbox. This page only offers a download after Paddle confirms the payment."}
         </p>
+        {confirmed ? (
+          <p className="mt-4 font-mono text-sm text-muted-foreground">
+            Order reference {confirmed.id}
+          </p>
+        ) : null}
 
         <Card className="mt-10 flex items-start gap-4 p-6">
           <Mail className="mt-0.5 h-5 w-5 flex-none text-muted-foreground" aria-hidden />
@@ -99,7 +105,15 @@ export default async function SuccessPage({
 
         <p className="mt-10 border-t border-border/60 pt-6 text-sm leading-relaxed text-muted-foreground">
           <Link href="/playbook" className="underline underline-offset-4">
-            Back to the playbooks
+            Explore all playbooks
+          </Link>
+          {" · "}
+          <Link href="/playbook/recover" className="underline underline-offset-4">
+            Email my download link
+          </Link>
+          {" · "}
+          <Link href="/contact?type=other" className="underline underline-offset-4">
+            Ask us for help
           </Link>
         </p>
       </div>

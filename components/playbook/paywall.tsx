@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Lock } from "lucide-react";
 
 /**
@@ -47,6 +48,11 @@ export function Paywall({
             {file} The price is {price}, once. The private download link arrives by email.
           </p>
           <div className="mt-6">{children}</div>
+          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+            <Link href="/playbook/recover" className="underline underline-offset-4">
+              Already bought this? Email yourself the download.
+            </Link>
+          </p>
         </div>
       </div>
     </section>
