@@ -7,8 +7,10 @@
  *
  *   node scripts/playbook/public-preview.mjs
  *
- * The preview stops on the first page of Module 01. Build, Ship, the later
- * Define modules, and the worksheets stay in the paid files.
+ * The removal happens before anything that can fail. Making those files
+ * non-public is the one invariant this script exists to hold, so it must not
+ * depend on the manuscript parsing cleanly, on poppler rendering a page, or
+ * on any check that comes later.
  */
 
 import { execFileSync } from "node:child_process";
@@ -41,42 +43,20 @@ function pageCount(pdf) {
   return Number(match[1]);
 }
 
-function pageText(pdf, page) {
-  return run("pdftotext", ["-f", String(page), "-l", String(page), "-layout", pdf, "-"]);
-}
-
-function firstPageMatching(pdf, count, pattern) {
-  for (let page = 1; page <= count; page += 1) {
-    if (pattern.test(pageText(pdf, page))) return page;
-  }
-  return null;
-}
-
-async function slicePdf(input, output, lastPage) {
-  const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "playbook-slice-"));
-  try {
-    execFileSync("pdfseparate", [
-      "-f",
-      "1",
-      "-l",
-      String(lastPage),
-      input,
-      path.join(tmp, "page-%d.pdf"),
-    ]);
-    const pages = [];
-    for (let page = 1; page <= lastPage; page += 1) {
-      pages.push(path.join(tmp, `page-${page}.pdf`));
-    }
-    execFileSync("pdfunite", [...pages, output]);
-  } finally {
-    await fs.rm(tmp, { recursive: true, force: true });
-  }
-}
-
 async function renderPage(pdf, page, dest) {
   const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "playbook-preview-"));
   try {
-    execFileSync("pdftoppm", ["-f", String(page), "-l", String(page), "-png", "-r", "144", pdf, path.join(tmp, "page")]);
+    execFileSync("pdftoppm", [
+      "-f",
+      String(page),
+      "-l",
+      String(page),
+      "-png",
+      "-r",
+      "144",
+      pdf,
+      path.join(tmp, "page"),
+    ]);
     const files = (await fs.readdir(tmp)).filter((name) => name.endsWith(".png"));
     if (files.length !== 1) throw new Error(`Expected one PNG for page ${page}`);
     await fs.mkdir(path.dirname(dest), { recursive: true });
@@ -86,8 +66,20 @@ async function renderPage(pdf, page, dest) {
   }
 }
 
+async function removePublicPreview() {
+  const previewPdf = path.join(paths.root, "public", "playbook", "preview.pdf");
+  const previewDir = path.join(paths.root, "public", "playbook", "preview-images");
+  await fs.rm(previewPdf, { force: true });
+  await fs.rm(previewDir, { recursive: true, force: true });
+}
+
 async function main() {
-  for (const command of ["pdfinfo", "pdftotext", "pdftoppm", "pdfseparate", "pdfunite"]) {
+  // First, unconditionally. Nothing above this line may throw.
+  await removePublicPreview();
+
+  // Only what the cover actually needs. pdfseparate and pdfunite went with
+  // the slice helper that used to build the preview PDF.
+  for (const command of ["pdfinfo", "pdftoppm"]) {
     if (!has(command)) {
       throw new Error(`Missing ${command}. Install poppler-utils.`);
     }
@@ -98,31 +90,11 @@ async function main() {
     throw new Error(`Missing ${path.relative(paths.root, pdf)}. Run npm run playbook:pdf first.`);
   });
 
-  const count = pageCount(pdf);
-  // The contents page also names "Module 01". The module itself is the page
-  // that states its decision.
-  const moduleStart = firstPageMatching(pdf, count, /one-sentence claim this product makes/);
-  if (!moduleStart) throw new Error("Could not find the opening of Module 01 in the Define PDF");
-
-  const moduleTwo = firstPageMatching(
-    pdf,
-    count,
-    /Have you seen enough evidence to justify building the MVP/,
-  );
-  if (moduleTwo && moduleStart >= moduleTwo) {
-    throw new Error("Module 01 does not start before Module 02");
-  }
-
   const coverDest = path.join(paths.root, "public", "playbook", "cover.png");
   await renderPage(pdf, 1, coverDest);
   console.log(`  page 1 → ${path.relative(paths.root, coverDest)}`);
-
-  const previewPdf = path.join(paths.root, "public", "playbook", "preview.pdf");
-  const previewDir = path.join(paths.root, "public", "playbook", "preview-images");
-  await fs.rm(previewPdf, { force: true });
-  await fs.rm(previewDir, { recursive: true, force: true });
   console.log(
-    `  paid file is ${count} pages. Public site keeps the cover only. Module 01 starts on page ${moduleStart}.`,
+    `  paid file is ${pageCount(pdf)} pages. Public site keeps the cover only.`,
   );
 }
 
