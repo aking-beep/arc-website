@@ -48,7 +48,12 @@ export function AlternativesTable({ className }: { className?: string }) {
         ))}
       </ul>
 
-      <div className="mt-12 hidden overflow-x-auto sm:block">
+      <div
+        className="mt-12 hidden overflow-x-auto sm:block"
+        tabIndex={0}
+        role="region"
+        aria-label="Option comparison"
+      >
         <table className="w-full min-w-[720px] border-collapse text-left text-sm">
           <thead>
             <tr className="border-b border-border text-xs uppercase tracking-wider text-muted-foreground">

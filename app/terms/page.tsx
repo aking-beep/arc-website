@@ -61,7 +61,7 @@ export default function TermsPage() {
             Questions about these terms:{" "}
             <Link
               href="/contact"
-              className="text-foreground underline-offset-4 hover:underline"
+              className="text-foreground underline underline-offset-4"
             >
               get in touch
             </Link>

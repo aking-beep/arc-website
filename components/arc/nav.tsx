@@ -36,6 +36,15 @@ import { ThemeToggle } from "@/components/theme-toggle";
  * property, so the panel is still computed-hidden on the frame the class
  * lands, and `.focus()` on a hidden element does nothing. There is no exit
  * animation, which is the price of having focus management that works.
+ *
+ * The panel is a SIBLING of <header>, not a child, and has to stay that way.
+ * The header carries `backdrop-blur-md`, and a non-`none` `backdrop-filter`
+ * makes an element a containing block for its `position: fixed` descendants.
+ * With the panel inside the header, `fixed inset-x-0 top-16 bottom-0` resolved
+ * against the 64px header instead of the viewport, so the panel rendered 57px
+ * tall — its own padding — and `overflow-y-auto` clipped every link out of
+ * sight. The menu opened and appeared to do nothing. Same trap applies to
+ * `transform`, `filter`, `perspective`, `will-change` and `contain`.
  */
 function isCurrent(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -95,118 +104,127 @@ export function ArcNav() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-canvas/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-shell items-center justify-between gap-6 px-5 sm:px-8">
-        <ArcBrand />
+    <>
+      <header className="sticky top-0 z-50 border-b border-line bg-canvas/90 backdrop-blur-md">
+        <div className="mx-auto flex h-16 max-w-shell items-center justify-between gap-6 px-5 sm:px-8">
+          <ArcBrand />
 
-        <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
-          {arcNav.map((item) => {
-            const active = isCurrent(pathname, item.href);
-            return (
+          <nav
+            aria-label="Primary"
+            className="hidden items-center gap-1 lg:flex"
+          >
+            {arcNav.map((item) => {
+              const active = isCurrent(pathname, item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    "relative whitespace-nowrap rounded-md px-3 py-2 text-[14px] font-medium transition-colors duration-150",
+                    active ? "text-ink" : "text-ink-2 hover:text-ink",
+                  )}
+                >
+                  {item.label}
+                  {active ? (
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-x-3 -bottom-[13px] h-[2px] bg-brand"
+                    />
+                  ) : null}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Link
+              href="/contact"
+              className="hidden h-10 items-center whitespace-nowrap rounded-md bg-ink px-4 text-[14px] font-medium text-canvas transition-colors duration-150 hover:bg-ink-2 sm:inline-flex"
+            >
+              Talk to ARC
+            </Link>
+            <button
+              ref={toggleRef}
+              type="button"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              aria-controls="arc-mobile-menu"
+              onClick={() => setOpen((v) => !v)}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-line text-ink transition-colors duration-150 hover:bg-paper lg:hidden"
+            >
+              {open ? (
+                <X size={20} aria-hidden="true" />
+              ) : (
+                <Menu size={20} aria-hidden="true" />
+              )}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {open ? (
+        <div
+          id="arc-mobile-menu"
+          ref={panelRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site menu"
+          className="arc-sheet fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto border-t border-line bg-canvas px-5 pb-10 pt-4 sm:px-8 lg:hidden"
+        >
+          <nav aria-label="Site" className="flex flex-col">
+            <Link
+              href="/"
+              className={cn(
+                "border-b border-line py-4 text-lg font-medium",
+                pathname === "/" ? "text-brand" : "text-ink",
+              )}
+            >
+              Home
+            </Link>
+            {arcNav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                aria-current={active ? "page" : undefined}
                 className={cn(
-                  "relative whitespace-nowrap rounded-md px-3 py-2 text-[14px] font-medium transition-colors duration-150",
-                  active ? "text-ink" : "text-ink-2 hover:text-ink",
+                  "flex items-center justify-between border-b border-line py-4 text-lg font-medium",
+                  isCurrent(pathname, item.href) ? "text-brand" : "text-ink",
                 )}
               >
                 {item.label}
-                {active ? (
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-3 -bottom-[13px] h-[2px] bg-brand"
-                  />
-                ) : null}
               </Link>
-            );
-          })}
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
+            ))}
+            <Link
+              href="/playbook"
+              className={cn(
+                "border-b border-line py-4 text-lg font-medium",
+                isCurrent(pathname, "/playbook") ? "text-brand" : "text-ink",
+              )}
+            >
+              Playbooks
+            </Link>
+          </nav>
           <Link
             href="/contact"
-            className="hidden h-10 items-center whitespace-nowrap rounded-md bg-ink px-4 text-[14px] font-medium text-canvas transition-colors duration-150 hover:bg-ink-2 sm:inline-flex"
+            className="mt-8 flex h-12 items-center justify-center rounded-md bg-ink text-base font-medium text-canvas"
           >
             Talk to ARC
           </Link>
-          <button
-            ref={toggleRef}
-            type="button"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            aria-controls="arc-mobile-menu"
-            onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-line text-ink transition-colors duration-150 hover:bg-paper lg:hidden"
-          >
-            {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
-          </button>
-        </div>
-      </div>
-
-      {open ? (
-      <div
-        id="arc-mobile-menu"
-        ref={panelRef}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Site menu"
-        className="arc-sheet fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto border-t border-line bg-canvas px-5 pb-10 pt-4 sm:px-8 lg:hidden"
-      >
-        <nav aria-label="Site" className="flex flex-col">
-          <Link
-            href="/"
-            className={cn(
-              "border-b border-line py-4 text-lg font-medium",
-              pathname === "/" ? "text-brand" : "text-ink",
-            )}
-          >
-            Home
-          </Link>
-          {arcNav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "flex items-center justify-between border-b border-line py-4 text-lg font-medium",
-                isCurrent(pathname, item.href) ? "text-brand" : "text-ink",
-              )}
+          <p className="mt-6 text-sm text-ink-2">
+            Rather just book a time?{" "}
+            <a
+              className="font-medium text-brand underline underline-offset-2"
+              href={arcSite.calendly}
+              target="_blank"
+              rel="noreferrer"
             >
-              {item.label}
-            </Link>
-          ))}
-          <Link
-            href="/playbook"
-            className={cn(
-              "border-b border-line py-4 text-lg font-medium",
-              isCurrent(pathname, "/playbook") ? "text-brand" : "text-ink",
-            )}
-          >
-            Playbooks
-          </Link>
-        </nav>
-        <Link
-          href="/contact"
-          className="mt-8 flex h-12 items-center justify-center rounded-md bg-ink text-base font-medium text-canvas"
-        >
-          Talk to ARC
-        </Link>
-        <p className="mt-6 text-sm text-ink-2">
-          Rather just book a time?{" "}
-          <a
-            className="font-medium text-brand underline underline-offset-2"
-            href={arcSite.calendly}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Book 30 minutes
-          </a>
-          <span className="sr-only"> (opens in a new tab)</span>
-        </p>
-      </div>
+              Book 30 minutes
+            </a>
+            <span className="sr-only"> (opens in a new tab)</span>
+          </p>
+        </div>
       ) : null}
-    </header>
+    </>
   );
 }

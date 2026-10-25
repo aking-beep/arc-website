@@ -26,7 +26,10 @@
     --paper: 60 11% 96%; /* #f7f7f5 */
     --ink: 220 32% 9%; /* #10151f */
     --ink-2: 220 12% 34%; /* #4b5260 */
-    --ink-3: 220 9% 46%; /* #6b7280 */
+    /* 45%, not 46%: at 46% this failed WCAG AA against --paper (#f6f6f4)
+       at 4.47:1, where 4.5:1 is the threshold. 45% measures 4.67:1 on paper
+       and 5.06:1 on canvas. */
+    --ink-3: 220 9% 45%; /* #686f7d */
     --line: 220 12% 90%; /* #e3e5e9 */
     --line-strong: 218 11% 81%; /* #c9cdd4 */
 
@@ -124,7 +127,9 @@
 
   body {
     @apply bg-canvas font-sans text-ink antialiased;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
     text-rendering: optimizeLegibility;
   }
 
@@ -162,8 +167,16 @@
   /* Architectural hairline grid used behind diagrams. */
   .blueprint {
     background-image:
-      linear-gradient(to right, hsl(var(--night-line) / 0.55) 1px, transparent 1px),
-      linear-gradient(to bottom, hsl(var(--night-line) / 0.55) 1px, transparent 1px);
+      linear-gradient(
+        to right,
+        hsl(var(--night-line) / 0.55) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        hsl(var(--night-line) / 0.55) 1px,
+        transparent 1px
+      );
     background-size: 48px 48px;
   }
 
@@ -212,7 +225,11 @@
       linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px),
       linear-gradient(to bottom, hsl(var(--border) / 0.5) 1px, transparent 1px);
     background-size: 56px 56px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+    mask-image: radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      #000 40%,
+      transparent 100%
+    );
   }
 
   .diagram-bg {
@@ -223,13 +240,21 @@
   }
 
   .rail-x {
-    background-image: linear-gradient(to right, hsl(var(--border)) 50%, transparent 50%);
+    background-image: linear-gradient(
+      to right,
+      hsl(var(--border)) 50%,
+      transparent 50%
+    );
     background-size: 8px 1px;
     background-repeat: repeat-x;
   }
 
   .rail-y {
-    background-image: linear-gradient(to bottom, hsl(var(--border)) 50%, transparent 50%);
+    background-image: linear-gradient(
+      to bottom,
+      hsl(var(--border)) 50%,
+      transparent 50%
+    );
     background-size: 1px 8px;
     background-repeat: repeat-y;
   }

@@ -135,7 +135,14 @@ export default function AdvisoryPage() {
           title="When a review turns into standing work."
           lead="Three-month minimum, then month to month with 30 days' notice."
         />
-        <div className="mt-12 overflow-x-auto">
+        {/* tabIndex so a keyboard user can scroll this table: it is wider
+            than a phone and holds no focusable children. */}
+        <div
+          className="mt-12 overflow-x-auto"
+          tabIndex={0}
+          role="region"
+          aria-label="Ongoing engagement rates"
+        >
           <table className="w-full min-w-[640px] text-left text-sm">
             <thead>
               <tr className="border-b border-border text-xs uppercase tracking-wider text-muted-foreground">

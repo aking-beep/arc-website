@@ -75,7 +75,12 @@ export function ExecutionGap() {
         </div>
 
         <figure className="mt-16">
-          <div className="overflow-x-auto pb-2">
+          <div
+            className="overflow-x-auto pb-2"
+            tabIndex={0}
+            role="region"
+            aria-label="Agent execution chain, scrollable"
+          >
             <ol className="grid min-w-[760px] grid-cols-6 gap-2" aria-label="Agent execution chain">
               {gap.chain.map((c, i) => (
                 <li key={c.name}>
