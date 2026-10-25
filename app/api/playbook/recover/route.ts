@@ -6,6 +6,7 @@ import { clientIp, rateLimit } from "@/lib/commerce/rate-limit";
 import { normalizeBuyerEmail, recoveryAcknowledgement } from "@/lib/commerce/recover";
 import {
   countAccessTokens,
+  deleteAccessToken,
   findPurchasesByEmail,
   insertAccessToken,
 } from "@/lib/commerce/store";
@@ -109,7 +110,16 @@ export async function POST(request: Request) {
       again: true,
     });
     if (!sent.ok) {
-      log("recovery email failed", { purchaseId: purchase.id, slug });
+      // Roll the row back. It would otherwise count against
+      // MAX_RECOVERY_LINKS for a link the buyer never received, so a mail
+      // outage or a bouncing address could exhaust the cap and leave
+      // recovery permanently unavailable for a purchase they paid for.
+      const rolledBack = await deleteAccessToken(tokenHash);
+      log("recovery email failed", {
+        purchaseId: purchase.id,
+        slug,
+        tokenRolledBack: rolledBack.ok,
+      });
     } else {
       log("recovery email sent", { purchaseId: purchase.id, slug });
     }

@@ -202,6 +202,22 @@ export async function findPurchaseForPresentedToken(
   }
 }
 
+/**
+ * Make a string match literally inside a PostgREST `ilike` filter.
+ *
+ * `ilike` is SQL LIKE, so `%` and `_` are wildcards and backslash is the
+ * escape character; PostgREST additionally treats `*` as `%`. Backslash is
+ * escaped first, or it would escape the escapes added after it. Without this
+ * an address containing `_` would match more rows than itself.
+ */
+export function escapeLikePattern(value: string): string {
+  return value
+    .replace(/\\/g, "\\\\")
+    .replace(/%/g, "\\%")
+    .replace(/_/g, "\\_")
+    .replace(/\*/g, "\\*");
+}
+
 export async function findPurchasesByEmail(
   email: string,
 ): Promise<StoreResult<PurchaseRow[]>> {
@@ -212,7 +228,7 @@ export async function findPurchasesByEmail(
 
   try {
     const response = await supabaseFetch(
-      `/${PURCHASES}?email=ilike.${encodeURIComponent(email)}&revoked_at=is.null&select=*&order=purchased_at.desc&limit=10`,
+      `/${PURCHASES}?email=ilike.${encodeURIComponent(escapeLikePattern(email))}&revoked_at=is.null&select=*&order=purchased_at.desc&limit=10`,
     );
     const rows = (await response.json()) as PurchaseRow[];
     return { ok: true, data: rows };
@@ -257,6 +273,32 @@ export async function insertAccessToken(
       prefer: "return=minimal",
       body: JSON.stringify({ purchase_id: purchaseId, token_hash: tokenHash }),
     });
+    return { ok: true, data: true };
+  } catch (error) {
+    return failed(error instanceof Error ? error.message : String(error));
+  }
+}
+
+/**
+ * Drop a recovery token row.
+ *
+ * Used when the email carrying that link could not be sent: the row would
+ * otherwise count against MAX_RECOVERY_LINKS for a link nobody ever received,
+ * so a mail outage could permanently exhaust a purchase's recovery budget.
+ */
+export async function deleteAccessToken(
+  tokenHash: string,
+): Promise<StoreResult<true>> {
+  const config = supabaseConfig();
+  if (!config.configured) {
+    return unconfigured(`missing ${config.missing.join(", ")}`);
+  }
+
+  try {
+    await supabaseFetch(
+      `/playbook_access_tokens?token_hash=eq.${encodeURIComponent(tokenHash)}`,
+      { method: "DELETE", prefer: "return=minimal" },
+    );
     return { ok: true, data: true };
   } catch (error) {
     return failed(error instanceof Error ? error.message : String(error));
