@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evidence detail — ARC Control</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%231d4ed8%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%227.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2214.5%22%20width%3D%2218%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2221.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="console.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<aside class="demo-strip" aria-label="About this page">
+  <strong>Live design showcase</strong>
+  <span>Real markup from the ARC Control console, captured from the running server against the shipped demo seed (<span class="mono">ARC_SEED_DEMO=true</span>). The policy decisions, the approval, the evidence records and the hash-chained audit log below are all real; the connector effects are simulated, and controls that would write are disabled. Built from <span class="mono">19b0940</span> on <span class="mono">2026-10-26</span>.</span>
+</aside>
+<div class="shell">
+<nav class="rail" aria-label="Console">
+  <div class="rail-brand">
+    <span class="mark" aria-hidden="true"></span>
+    <span class="wordmark">ARC <strong>Control</strong></span>
+  </div>
+  <div class="rail-groups"><div class="rail-group">
+      <div class="rail-group-label">Operate</div>
+      <ul>
+        <li>
+        <a
+          href="index.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Overview</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="approvals.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Approvals</span>
+          <span class="rail-count">1<span class="sr-only"> pending</span></span>
+        </a>
+      </li><li>
+        <a
+          href="activity.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Activity</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Inventory</div>
+      <ul>
+        <li>
+        <a
+          href="agents.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Agents</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="tools.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Tools</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Govern</div>
+      <ul>
+        <li>
+        <a
+          href="policies.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Policies</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="access.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Access</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Assure</div>
+      <ul>
+        <li>
+        <a
+          href="assurance.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Assurance</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="risks.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Risks</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="findings.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Findings</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="security.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Security</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Record</div>
+      <ul>
+        <li>
+        <a
+          href="evidence.html"
+          class="rail-item active"
+          aria-current="page"
+        >
+          <span class="rail-mark" aria-hidden="true"></span>
+          <span>Evidence</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="audit.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Audit</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Admin</div>
+      <ul>
+        <li>
+        <a
+          href="reports.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Reports</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="settings.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Settings</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div></div>
+  <div class="rail-foot">Theme follows the system setting</div>
+</nav>
+<div class="column">
+  <header class="masthead">
+    <p class="masthead-operator">
+      Acting as <strong>operations@arctransformationgroup.com</strong>
+      <span class="muted">(configured, not authenticated)</span>
+    </p>
+    <p class="masthead-api">
+      <span>API <span class="mono">http://127.0.0.1:8787</span></span>
+      <span class="health ok">
+    <span class="dot" aria-hidden="true"></span>ok</span
+  >
+      <span class="tnum muted">v2.0.0</span>
+    </p>
+  </header>
+  <main id="main">
+    <div class="main-inner">
+
+<p class="back"><a href="evidence.html">← All evidence</a></p>
+  <div class="page-header">
+    <div class="page-header-text">
+      <h1 class="display">Evidence <span class="mono" style="font-weight:400;color:var(--ink-soft)">arc_ev_43072d837091775666c8bc28fb43d426</span></h1>
+      <p class="lede"><a href="agents-arc_ag_bac70275b4e249aa3894612277766bd4.html">finance-agent</a> requested
+    <span class="mono" style="color:var(--ink)">stripe.get_charge</span> · no policy authorizes this action</p>
+    </div>
+    <div class="page-header-actions"><span class="badge deny">denied</span> <span class="badge deny">DENY</span></div>
+  </div>
+
+  <div class="split">
+    <section aria-labelledby="timeline-heading">
+      <h2 id="timeline-heading">What happened</h2>
+      <ol class="timeline" aria-label="Timeline">
+    <li>
+        <span class="spine" aria-hidden="true"></span>
+        <span class="node plain" aria-hidden="true"></span>
+        <div class="stage">
+          <div class="stage-head">
+            <span class="name "
+              >Requested</span
+            >
+            <span class="mono tnum muted">05:47:59.015Z</span>
+          </div>
+          <div>finance-agent → <span class="mono">stripe.get_charge</span>
+      </div>
+        </div>
+      </li><li>
+        <span class="spine" aria-hidden="true"></span>
+        <span class="node deny" aria-hidden="true"></span>
+        <div class="stage">
+          <div class="stage-head">
+            <span class="name "
+              >Decided</span
+            >
+            <span class="mono tnum muted">+0.016 ms</span>
+          </div>
+          <div><span class="badge deny">DENY</span>
+      <span class="muted">engine default</span>
+      <div class="muted">no policy authorizes this action</div></div>
+        </div>
+      </li><li>
+        <span class="spine" aria-hidden="true"></span>
+        <span class="node " aria-hidden="true"></span>
+        <div class="stage">
+          <div class="stage-head">
+            <span class="name hollow"
+              >Approval<span class="sr-only"> (no data)</span></span
+            >
+            
+          </div>
+          <div><span class="muted">not required</span></div>
+        </div>
+      </li><li>
+        
+        <span class="node " aria-hidden="true"></span>
+        <div class="stage">
+          <div class="stage-head">
+            <span class="name hollow"
+              >Executed<span class="sr-only"> (no data)</span></span
+            >
+            
+          </div>
+          <div><span class="muted">not executed: denied</span></div>
+        </div>
+      </li>
+  </ol>
+      
+      <div style="margin-top:24px;border-top:1px solid var(--border);padding-top:16px">
+        <dl class="defs">
+    <dt>Environment</dt>
+      <dd><span class="mono">production</span></dd><dt>Owner</dt>
+      <dd>finance-ops@example.com</dd><dt>Tool</dt>
+      <dd>read · low · <span class="mono">stripe</span></dd><dt>Credential</dt>
+      <dd><span class="mono">arc_cred_e477bdc559a69932e08c62e0dc07de16</span></dd>
+  </dl>
+      </div>
+    </section>
+
+    <section aria-label="Detail" class="stack">
+      <div>
+        <h2>Parameters</h2>
+        <div class="table-wrap" role="region" aria-label="Recorded parameters" tabindex="0">
+    <table class="dt compact">
+      <caption class="sr-only">Recorded parameters</caption>
+      <tbody>
+        <tr>
+      <th scope="row">
+        chargeId
+      </th>
+      <td class="mono tnum">ch_3PjK2aL9xQ</td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+        <p class="note">
+              <strong>Agent-stated intent (advisory, not used by policy):</strong> “Confirming the charge before refunding it”
+            </p>
+      </div>
+
+      <div>
+        <h2>Decision trace</h2>
+        <p class="note" style="margin:0 0 8px">
+          Every rule the engine examined, in order. The evidence record stores a digest of this trace, so a tampered
+          trace is detectable without duplicating it.
+        </p>
+        <p class="muted">
+      No policy matched this action, so no rule was examined. The engine default decided.
+    </p>
+      </div>
+
+      <div>
+        <h2>Obligations</h2>
+        <p style="margin:0;font-size:13px">
+          <span class="muted">None</span>
+        </p>
+      </div>
+
+      <div>
+        <h2>Integrity</h2>
+        <div class="digest-row">
+    <div>
+      <div class="mono muted">integrityDigest</div>
+      <div class="digest-note">over every field above</div>
+    </div>
+    <code class="digest">sha256:e4c48241c35e9e63d12742fe6a41e52dcbf01af510661df17050f79acb6d9548</code>
+  </div>
+        <div class="digest-row">
+    <div>
+      <div class="mono muted">parametersDigest</div>
+      
+    </div>
+    <code class="digest">sha256:f7ce223dabec3405e1271460f73ffeef58a63d289dc4c59fceb9c78f2bb4ff62</code>
+  </div>
+        <div class="digest-row">
+    <div>
+      <div class="mono muted">traceDigest</div>
+      
+    </div>
+    <code class="digest">sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945</code>
+  </div>
+        
+      </div>
+
+      <div class="stack">
+        <details class="raw">
+    <summary>Raw record (JSON)</summary>
+    <pre class="json">{
+  &quot;id&quot;: &quot;arc_ev_43072d837091775666c8bc28fb43d426&quot;,
+  &quot;schemaVersion&quot;: 1,
+  &quot;actionId&quot;: &quot;arc_act_90e9540affb802c95b35866c26af265c&quot;,
+  &quot;organizationId&quot;: &quot;default&quot;,
+  &quot;environment&quot;: &quot;production&quot;,
+  &quot;agent&quot;: {
+    &quot;id&quot;: &quot;arc_ag_bac70275b4e249aa3894612277766bd4&quot;,
+    &quot;name&quot;: &quot;finance-agent&quot;,
+    &quot;owner&quot;: &quot;finance-ops@example.com&quot;,
+    &quot;roles&quot;: [
+      &quot;finance&quot;
+    ],
+    &quot;credentialId&quot;: &quot;arc_cred_e477bdc559a69932e08c62e0dc07de16&quot;
+  },
+  &quot;tool&quot;: {
+    &quot;name&quot;: &quot;stripe.get_charge&quot;,
+    &quot;system&quot;: &quot;stripe&quot;,
+    &quot;effect&quot;: &quot;read&quot;,
+    &quot;riskTier&quot;: &quot;low&quot;,
+    &quot;connector&quot;: &quot;simulation&quot;
+  },
+  &quot;request&quot;: {
+    &quot;parameters&quot;: {
+      &quot;chargeId&quot;: &quot;ch_3PjK2aL9xQ&quot;
+    },
+    &quot;parametersDigest&quot;: &quot;sha256:f7ce223dabec3405e1271460f73ffeef58a63d289dc4c59fceb9c78f2bb4ff62&quot;,
+    &quot;intent&quot;: &quot;Confirming the charge before refunding it&quot;,
+    &quot;requestedAt&quot;: &quot;2026-10-26T05:47:59.015Z&quot;
+  },
+  &quot;decision&quot;: {
+    &quot;id&quot;: &quot;arc_dec_6989190a153f98afba25b511ee6ae202&quot;,
+    &quot;effect&quot;: &quot;DENY&quot;,
+    &quot;reason&quot;: &quot;no policy authorizes this action&quot;,
+    &quot;decidedAt&quot;: &quot;2026-10-26T05:47:59.015Z&quot;,
+    &quot;evaluationMs&quot;: 0.016155,
+    &quot;traceDigest&quot;: &quot;sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945&quot;
+  },
+  &quot;risk&quot;: {
+    &quot;class&quot;: &quot;routine&quot;,
+    &quot;reversibility&quot;: &quot;reversible&quot;,
+    &quot;sensitive&quot;: false,
+    &quot;factors&quot;: [
+      {
+        &quot;code&quot;: &quot;tool_risk_tier&quot;,
+        &quot;detail&quot;: &quot;the tool is registered at risk tier \&quot;low\&quot;&quot;,
+        &quot;escalation&quot;: 0
+      }
+    ],
+    &quot;classifierVersion&quot;: 1
+  },
+  &quot;outcome&quot;: &quot;denied&quot;,
+  &quot;obligations&quot;: [],
+  &quot;createdAt&quot;: &quot;2026-10-26T05:47:59.016Z&quot;,
+  &quot;integrityDigest&quot;: &quot;sha256:e4c48241c35e9e63d12742fe6a41e52dcbf01af510661df17050f79acb6d9548&quot;
+}</pre>
+  </details>
+        <details class="raw">
+    <summary>Raw decision trace (JSON)</summary>
+    <pre class="json">[]</pre>
+  </details>
+      </div>
+    </section>
+  </div>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>

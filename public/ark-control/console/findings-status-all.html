@@ -11,8 +11,7 @@
 <a href="#main" class="skip-link">Skip to content</a>
 <aside class="demo-strip" aria-label="About this page">
   <strong>Live design showcase</strong>
-  <span>Real markup from the ARC Control console, captured from the running server against the shipped demo seed (<span class="mono">ARC_SEED_DEMO=true</span>). The policy decisions, the approval, the evidence records and the hash-chained audit log below are all real; the connector effects are simulated, and controls that would write are disabled. Built from <span class="mono">fc9dd70</span> on <span class="mono">2026-10-26</span>.</span>
-  <a class="showcase-home" href="/ark-control">← ARC Transformation Group</a>
+  <span>Real markup from the ARC Control console, captured from the running server against the shipped demo seed (<span class="mono">ARC_SEED_DEMO=true</span>). The policy decisions, the approval, the evidence records and the hash-chained audit log below are all real; the connector effects are simulated, and controls that would write are disabled. Built from <span class="mono">19b0940</span> on <span class="mono">2026-10-26</span>.</span>
 </aside>
 <div class="shell">
 <nav class="rail" aria-label="Console">
@@ -228,6 +227,14 @@
     
   </div>
 
+  <p class="count-line">
+    <a href="findings-status-open.html"><span class="tnum">3</span> open</a><span class="sep" aria-hidden="true">·</span><a href="findings-status-overdue.html"><span class="tnum">1</span> overdue</a><span class="sep" aria-hidden="true">·</span><span><span class="tnum">0</span> due within 7 days</span><span class="sep" aria-hidden="true">·</span><span><span class="tnum">2</span> no deadline set</span><span class="sep" aria-hidden="true">·</span><span><span class="tnum">2</span> unassigned</span>
+  </p>
+        <p class="note">
+                <strong>1 finding(s) are past their deadline.</strong> ARC surfaces the
+                date and the lateness; it does not notify anyone, so this page is the notification.
+              </p>
+
   <nav class="filters" aria-label="Status">
     <span class="filters-label">Status</span>
     <a
@@ -235,6 +242,11 @@
         class="chip"
         
         >Open</a
+      ><a
+        href="findings-status-overdue.html"
+        class="chip"
+        
+        >Overdue</a
       ><a
         href="findings-status-in_progress.html"
         class="chip"
@@ -281,17 +293,20 @@
     </th><th scope="col" class="">
       Owner
     </th><th scope="col" class="">
+      Due
+    </th><th scope="col" class="">
       Status
     </th>
         </tr>
       </thead>
       <tbody>
         <tr>
-    <td><span class="badge deny">critical</span></td><td><a href="assurance-ARC-AI-006.html"><span class="mono">ARC-AI-006</span></a></td><td><a href="findings-arc_fnd_8b78db60df68ea797a8be9608587efac.html"><span class="mono">audit-chain</span></a></td><td>42 records are internally consistent, but the head (sha256:71ebb93c359104107a34e061fbaee4fe3034a977e0ae008e95402c821eb58a87) was not checked against an external anchor, so truncation cannot be ruled out</td><td><span class="tnum">1×</span> <span class="tnum">2026-10-26 04:32:26Z</span></td><td><span class="muted">unassigned</span></td><td><span class="badge deny">open</span></td>
+    <td><span class="badge deny">critical</span></td><td><a href="assurance-ARC-AI-006.html"><span class="mono">ARC-AI-006</span></a></td><td><a href="findings-arc_fnd_1b9e3be1dac91a2fec6a210b885f7366.html"><span class="mono">audit-chain</span></a></td><td>42 records are internally consistent, but the head (sha256:2452b72a24ce90bc95654dcc6663c1ae6551a4b03eb4192c45b1cb531875ab4f) was not checked against an external anchor, so truncation cannot be ruled out</td><td><span class="tnum">1×</span> <span class="tnum">2026-10-26 05:48:04Z</span></td><td>risk@arctransformationgroup.com</td><td><span class="badge deny">2d overdue</span>
+          <span class="tnum muted">2026-10-24 05:48:04Z</span></td><td><span class="badge deny">open</span></td>
   </tr><tr>
-    <td><span class="badge failed">high</span></td><td><a href="assurance-ARC-AI-001.html"><span class="mono">ARC-AI-001</span></a></td><td><a href="findings-arc_fnd_5d2310df5ead5ae911c350ef061bb6ec.html"><span class="mono">arc_ag_b151a4065e6b2f0…</span></a></td><td>agent &quot;engineering-agent&quot; is missing: governance record</td><td><span class="tnum">1×</span> <span class="tnum">2026-10-26 04:32:26Z</span></td><td><span class="muted">unassigned</span></td><td><span class="badge deny">open</span></td>
+    <td><span class="badge failed">high</span></td><td><a href="assurance-ARC-AI-001.html"><span class="mono">ARC-AI-001</span></a></td><td><a href="findings-arc_fnd_17220d34e420200e0bd654b2dd54ee9b.html"><span class="mono">arc_ag_da1c9ff6e51d91b…</span></a></td><td>agent &quot;engineering-agent&quot; is missing: governance record</td><td><span class="tnum">1×</span> <span class="tnum">2026-10-26 05:48:04Z</span></td><td><span class="badge muted">unassigned</span></td><td><span class="badge muted">none set</span></td><td><span class="badge deny">open</span></td>
   </tr><tr>
-    <td><span class="badge approval">medium</span></td><td><a href="assurance-ARC-AI-008.html"><span class="mono">ARC-AI-008</span></a></td><td><a href="findings-arc_fnd_cbedd31f62ac11f75fe93e192f076384.html"><span class="mono">arc_ag_b151a4065e6b2f0…</span></a></td><td>no permission review has ever been recorded for &quot;engineering-agent&quot;</td><td><span class="tnum">1×</span> <span class="tnum">2026-10-26 04:32:26Z</span></td><td><span class="muted">unassigned</span></td><td><span class="badge deny">open</span></td>
+    <td><span class="badge approval">medium</span></td><td><a href="assurance-ARC-AI-008.html"><span class="mono">ARC-AI-008</span></a></td><td><a href="findings-arc_fnd_41fdbe29b05a122aa77f003458061886.html"><span class="mono">arc_ag_da1c9ff6e51d91b…</span></a></td><td>no permission review has ever been recorded for &quot;engineering-agent&quot;</td><td><span class="tnum">1×</span> <span class="tnum">2026-10-26 05:48:04Z</span></td><td><span class="badge muted">unassigned</span></td><td><span class="badge muted">none set</span></td><td><span class="badge deny">open</span></td>
   </tr>
       </tbody>
     </table>

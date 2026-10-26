@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Access — ARC Control</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%231d4ed8%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%227.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2214.5%22%20width%3D%2218%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2221.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="console.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<aside class="demo-strip" aria-label="About this page">
+  <strong>Live design showcase</strong>
+  <span>Real markup from the ARC Control console, captured from the running server against the shipped demo seed (<span class="mono">ARC_SEED_DEMO=true</span>). The policy decisions, the approval, the evidence records and the hash-chained audit log below are all real; the connector effects are simulated, and controls that would write are disabled. Built from <span class="mono">19b0940</span> on <span class="mono">2026-10-26</span>.</span>
+</aside>
+<div class="shell">
+<nav class="rail" aria-label="Console">
+  <div class="rail-brand">
+    <span class="mark" aria-hidden="true"></span>
+    <span class="wordmark">ARC <strong>Control</strong></span>
+  </div>
+  <div class="rail-groups"><div class="rail-group">
+      <div class="rail-group-label">Operate</div>
+      <ul>
+        <li>
+        <a
+          href="index.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Overview</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="approvals.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Approvals</span>
+          <span class="rail-count">1<span class="sr-only"> pending</span></span>
+        </a>
+      </li><li>
+        <a
+          href="activity.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Activity</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Inventory</div>
+      <ul>
+        <li>
+        <a
+          href="agents.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Agents</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="tools.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Tools</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Govern</div>
+      <ul>
+        <li>
+        <a
+          href="policies.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Policies</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="access.html"
+          class="rail-item active"
+          aria-current="page"
+        >
+          <span class="rail-mark" aria-hidden="true"></span>
+          <span>Access</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Assure</div>
+      <ul>
+        <li>
+        <a
+          href="assurance.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Assurance</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="risks.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Risks</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="findings.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Findings</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="security.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Security</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Record</div>
+      <ul>
+        <li>
+        <a
+          href="evidence.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Evidence</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="audit.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Audit</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Admin</div>
+      <ul>
+        <li>
+        <a
+          href="reports.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Reports</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="settings.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Settings</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div></div>
+  <div class="rail-foot">Theme follows the system setting</div>
+</nav>
+<div class="column">
+  <header class="masthead">
+    <p class="masthead-operator">
+      Acting as <strong>operations@arctransformationgroup.com</strong>
+      <span class="muted">(configured, not authenticated)</span>
+    </p>
+    <p class="masthead-api">
+      <span>API <span class="mono">http://127.0.0.1:8787</span></span>
+      <span class="health ok">
+    <span class="dot" aria-hidden="true"></span>ok</span
+  >
+      <span class="tnum muted">v2.0.0</span>
+    </p>
+  </header>
+  <main id="main">
+    <div class="main-inner">
+
+<div class="page-header">
+    <div class="page-header-text">
+      <h1 class="">Access</h1>
+      <p class="lede">Which enabled policies govern each agent and tool pair, and which effects their rules can produce. This is scope, not permission: the effect for a real request depends on its parameters at request time.</p>
+    </div>
+    
+  </div>
+
+  <div class="legend" aria-label="Legend">
+    <span class="item"><strong style="color:var(--ink)">◆ declared</strong> agent lists the tool (not enforced)</span>
+    <span class="item"
+      ><span class="effect-letter allow" title="ALLOW"
+    >A<span class="sr-only"> ALLOW</span></span
+  > ALLOW <span class="effect-letter approval" title="REQUIRE_APPROVAL"
+    >R<span class="sr-only"> REQUIRE_APPROVAL</span></span
+  > REQUIRE_APPROVAL <span class="effect-letter deny" title="DENY"
+    >D<span class="sr-only"> DENY</span></span
+  > DENY
+      possible</span
+    >
+    <span class="item">Empty cell: no policy in scope, engine default applies</span>
+  </div>
+
+  <div class="with-detail">
+        <div
+    class="matrix-wrap"
+    role="region"
+    aria-label="Access matrix: agents by tools, showing policies in scope"
+    tabindex="0"
+  >
+    <table class="matrix">
+      <caption class="sr-only">Access matrix: agents by tools, showing policies in scope</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="corner">Agent</th>
+          <th scope="col" class="tool">
+      <div class="name">stripe.refund</div>
+      <div class="meta">irreversible <span class="badge deny">critical</span></div>
+    </th><th scope="col" class="tool">
+      <div class="name">stripe.get_charge</div>
+      <div class="meta">read <span class="badge muted">low</span></div>
+    </th><th scope="col" class="tool">
+      <div class="name">github.create_issue</div>
+      <div class="meta">write <span class="badge approval">medium</span></div>
+    </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="">
+      <th scope="row" class="agent">
+        <a href="agents-arc_ag_bac70275b4e249aa3894612277766bd4.html"><strong>finance-agent</strong></a>
+        <div class="chips" style="margin-top:2px">
+          <span class="status-dot ok">
+    <span class="dot" aria-hidden="true"></span>active</span
+  >
+          <span class="mono muted">finance</span>
+        </div>
+        
+      </th>
+      <td class="cell ">
+        <a href="access-agent-arc_ag_bac70275b4e249aa3894612277766bd4-tool-stripe.refund.html" >
+          <span class="sr-only">finance-agent, stripe.refund: </span>
+          <div class="cell-declared">
+            ◆ declared
+          </div>
+          <div class="cell-policies">FINANCE-004</div>
+                <div class="cell-effects"><span class="effect-letter allow" title="ALLOW"
+    >A<span class="sr-only"> ALLOW</span></span
+  ><span class="effect-letter approval" title="REQUIRE_APPROVAL"
+    >R<span class="sr-only"> REQUIRE_APPROVAL</span></span
+  ><span class="effect-letter deny" title="DENY"
+    >D<span class="sr-only"> DENY</span></span
+  ></div>
+          
+        </a>
+      </td><td class="cell ">
+        <a href="access-agent-arc_ag_bac70275b4e249aa3894612277766bd4-tool-stripe.get_charge.html" >
+          <span class="sr-only">finance-agent, stripe.get_charge: </span>
+          <div class="cell-declared">
+            ◆ declared
+          </div>
+          <div class="cell-none">No policy in scope</div>
+          
+        </a>
+      </td><td class="cell ">
+        <a href="access-agent-arc_ag_bac70275b4e249aa3894612277766bd4-tool-github.create_issue.html" >
+          <span class="sr-only">finance-agent, github.create_issue: </span>
+          <div class="cell-undeclared">
+            not declared
+          </div>
+          <div class="cell-policies">GITHUB-002</div>
+                <div class="cell-effects"><span class="effect-letter allow" title="ALLOW"
+    >A<span class="sr-only"> ALLOW</span></span
+  ><span class="effect-letter approval" title="REQUIRE_APPROVAL"
+    >R<span class="sr-only"> REQUIRE_APPROVAL</span></span
+  ><span class="effect-letter deny" title="DENY"
+    >D<span class="sr-only"> DENY</span></span
+  ></div>
+          
+        </a>
+      </td>
+    </tr><tr class="">
+      <th scope="row" class="agent">
+        <a href="agents-arc_ag_da1c9ff6e51d91b0ffd02ad4b49c5613.html"><strong>engineering-agent</strong></a>
+        <div class="chips" style="margin-top:2px">
+          <span class="status-dot ok">
+    <span class="dot" aria-hidden="true"></span>active</span
+  >
+          <span class="mono muted">engineering</span>
+        </div>
+        
+      </th>
+      <td class="cell on">
+        <a href="access-agent-arc_ag_da1c9ff6e51d91b0ffd02ad4b49c5613-tool-stripe.refund.html" aria-current="true">
+          <span class="sr-only">engineering-agent, stripe.refund: </span>
+          <div class="cell-undeclared">
+            not declared
+          </div>
+          <div class="cell-policies">FINANCE-004</div>
+                <div class="cell-effects"><span class="effect-letter allow" title="ALLOW"
+    >A<span class="sr-only"> ALLOW</span></span
+  ><span class="effect-letter approval" title="REQUIRE_APPROVAL"
+    >R<span class="sr-only"> REQUIRE_APPROVAL</span></span
+  ><span class="effect-letter deny" title="DENY"
+    >D<span class="sr-only"> DENY</span></span
+  ></div>
+          
+        </a>
+      </td><td class="cell ">
+        <a href="access-agent-arc_ag_da1c9ff6e51d91b0ffd02ad4b49c5613-tool-stripe.get_charge.html" >
+          <span class="sr-only">engineering-agent, stripe.get_charge: </span>
+          <div class="cell-undeclared">
+            not declared
+          </div>
+          <div class="cell-none">No policy in scope</div>
+          
+        </a>
+      </td><td class="cell ">
+        <a href="access-agent-arc_ag_da1c9ff6e51d91b0ffd02ad4b49c5613-tool-github.create_issue.html" >
+          <span class="sr-only">engineering-agent, github.create_issue: </span>
+          <div class="cell-declared">
+            ◆ declared
+          </div>
+          <div class="cell-policies">GITHUB-002</div>
+                <div class="cell-effects"><span class="effect-letter allow" title="ALLOW"
+    >A<span class="sr-only"> ALLOW</span></span
+  ><span class="effect-letter approval" title="REQUIRE_APPROVAL"
+    >R<span class="sr-only"> REQUIRE_APPROVAL</span></span
+  ><span class="effect-letter deny" title="DENY"
+    >D<span class="sr-only"> DENY</span></span
+  ></div>
+          
+        </a>
+      </td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+        <aside class="card" aria-label="Pair detail" style="padding:0">
+          <div
+            style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid var(--border)"
+          >
+            <div>
+              <h2 style="margin:0;font-size:15px">engineering-agent → <span class="mono">stripe.refund</span></h2>
+              <p class="note" style="margin:2px 0 0;font-size:12px">
+                Not declared by the agent.
+              </p>
+            </div>
+            <a href="access.html">Close</a>
+          </div>
+          <div style="padding:16px 20px">
+            <div style="margin-bottom:16px">
+                          <div class="chips" style="justify-content:space-between">
+                            <a class="mono" href="policies-FINANCE-004.html"
+                              ><strong>FINANCE-004</strong></a
+                            >
+                            <span class="muted" style="font-size:12px">Autonomous refund authority</span>
+                          </div>
+                          <div style="margin-top:6px"><span class="chips">
+    <span class="scope-chip"><span class="k">tools:</span><span class="v">stripe.refund</span></span>
+  </span></div>
+                          <ol class="ladder narrow">
+    <li class="">
+      <span class="rung" aria-label="Rule 1">1</span>
+      <span class="rule-id">under-500</span>
+      <div class="rule-body">
+        <p><span class="muted">when</span> <code class="cond" title="{&quot;lt&quot;:[&quot;$.action.parameters.amount&quot;,500]}">amount &lt; 500</code></p>
+        <p class="muted">within autonomous refund authority</p>
+        <p class="muted">Routine customer-service refunds.</p>
+        
+        
+      </div>
+      <span class="badge allow">ALLOW</span>
+    </li><li class="">
+      <span class="rung" aria-label="Rule 2">2</span>
+      <span class="rule-id">needs-approval</span>
+      <div class="rule-body">
+        <p><span class="muted">when</span> <code class="cond" title="{&quot;lte&quot;:[&quot;$.action.parameters.amount&quot;,2500]}">amount ≤ 2500</code></p>
+        <p class="muted">above autonomous refund authority, below the hard ceiling</p>
+        <p class="muted">Material refunds need a finance manager.</p>
+        <p><span class="muted">needs </span><span class="muted"
+      ><span class="tnum">1</span> of <span class="mono">role:finance-manager</span
+      > · SoD · expires after 60 min</span
+    ></p>
+        
+      </div>
+      <span class="badge approval">REQUIRE_APPROVAL</span>
+    </li><li class="">
+      <span class="rung" aria-label="Rule 3">3</span>
+      <span class="rule-id">over-ceiling</span>
+      <div class="rule-body">
+        <p><span class="muted">when</span> <code class="cond" title="{&quot;always&quot;:true}">always</code></p>
+        <p class="muted">exceeds autonomous refund authority</p>
+        <p class="muted">No agent refunds this much, approved or otherwise.</p>
+        
+        
+      </div>
+      <span class="badge deny">DENY</span>
+    </li>
+    <li>
+      <span class="rung" aria-hidden="true">↳</span>
+      <span class="rule-id">Fallback</span>
+      <div class="rule-body"><p class="muted">if no rule matched: no refund rule matched</p></div>
+      <span class="badge deny">DENY</span>
+    </li>
+  </ol>
+                        </div>
+            
+            <p class="note" style="border-top:1px solid var(--border);padding-top:12px">
+              Across policies the strictest effect wins. Which rung fires depends on the request’s parameters.
+            </p>
+          </div>
+        </aside>
+      </div>
+
+  <p class="note">
+    A policy in scope does not mean the action is authorized. Scope is decided by the policy’s selectors; the effect is
+    decided per request by the rules, and a suspended agent is refused at authentication before any policy is
+    consulted.
+  </p>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>
