@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>finance-agent — ARC Control</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%231d4ed8%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%227.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2214.5%22%20width%3D%2218%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2221.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="console.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<aside class="demo-strip" aria-label="About this page">
+  <strong>Live design showcase</strong>
+  <span>Real markup from the ARC Control console, captured from the running server against the shipped demo seed (<span class="mono">ARC_SEED_DEMO=true</span>). The policy decisions, the approval, the evidence records and the hash-chained audit log below are all real; the connector effects are simulated, and controls that would write are disabled. Built from <span class="mono">648998d</span> on <span class="mono">2026-10-26</span>.</span>
+</aside>
+<div class="shell">
+<nav class="rail" aria-label="Console">
+  <div class="rail-brand">
+    <span class="mark" aria-hidden="true"></span>
+    <span class="wordmark">ARC <strong>Control</strong></span>
+  </div>
+  <div class="rail-groups"><div class="rail-group">
+      <div class="rail-group-label">Operate</div>
+      <ul>
+        <li>
+        <a
+          href="index.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Overview</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="approvals.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Approvals</span>
+          <span class="rail-count">1<span class="sr-only"> pending</span></span>
+        </a>
+      </li><li>
+        <a
+          href="activity.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Activity</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Inventory</div>
+      <ul>
+        <li>
+        <a
+          href="agents.html"
+          class="rail-item active"
+          aria-current="page"
+        >
+          <span class="rail-mark" aria-hidden="true"></span>
+          <span>Agents</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="tools.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Tools</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Govern</div>
+      <ul>
+        <li>
+        <a
+          href="policies.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Policies</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="access.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Access</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Assure</div>
+      <ul>
+        <li>
+        <a
+          href="assurance.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Assurance</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="risks.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Risks</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="findings.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Findings</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="security.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Security</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Record</div>
+      <ul>
+        <li>
+        <a
+          href="evidence.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Evidence</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="audit.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Audit</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="notifications.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Notifications</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Admin</div>
+      <ul>
+        <li>
+        <a
+          href="reports.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Reports</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="settings.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Settings</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div></div>
+  <div class="rail-foot">Theme follows the system setting</div>
+</nav>
+<div class="column">
+  <header class="masthead">
+    <p class="masthead-operator">
+      Acting as <strong>operations@arctransformationgroup.com</strong>
+      <span class="muted">(configured, not authenticated)</span>
+    </p>
+    <p class="masthead-api">
+      <span>API <span class="mono">http://127.0.0.1:8787</span></span>
+      <span class="health ok">
+    <span class="dot" aria-hidden="true"></span>ok</span
+  >
+      <span class="tnum muted">v2.1.0</span>
+    </p>
+  </header>
+  <main id="main">
+    <div class="main-inner">
+
+<p class="back"><a href="agents.html">← Agents</a></p>
+  <div class="page-header">
+    <div class="page-header-text">
+      <h1 class="">finance-agent</h1>
+      <p class="lede">Handles customer refund requests.</p>
+    </div>
+    <div class="page-header-actions"><a class="button danger" href="confirm-suspend-arc_ag_c73111f98579055423626c6e4a1f2c86.html">Suspend…</a></div>
+  </div>
+  
+
+  <div class="split">
+    <section>
+      <h2>Profile</h2>
+      <dl class="defs">
+    <dt>Status</dt>
+      <dd><span class="status-dot ok">
+    <span class="dot" aria-hidden="true"></span>active</span
+  ></dd><dt>Id</dt>
+      <dd><span class="mono">arc_ag_c73111f98579055423626c6e4a1f2c86</span></dd><dt>Kind</dt>
+      <dd>autonomous</dd><dt>Environment</dt>
+      <dd><span class="mono">production</span></dd><dt>Organization</dt>
+      <dd><span class="mono">default</span></dd><dt>Owner</dt>
+      <dd>finance-ops@example.com</dd><dt>Roles</dt>
+      <dd><span class="mono">finance</span></dd><dt>Labels</dt>
+      <dd><span class="mono"
+            >—</span
+          ></dd><dt>Registered</dt>
+      <dd><span class="mono">2026-10-26 09:18:23Z</span></dd>
+  </dl>
+    </section>
+
+    <section>
+      <h2>Declared tools</h2>
+      <p class="note" style="margin:0 0 12px">
+        Declared, not a grant. Policies in scope and the effects their rules can produce:
+      </p>
+      <div class="table-wrap" role="region" aria-label="Declared tools and policy scope" tabindex="0">
+    <table class="dt compact">
+      <caption class="sr-only">Declared tools and policy scope</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="">
+      Tool
+    </th><th scope="col" class="">
+      Policies in scope
+    </th><th scope="col" class="">
+      Possible effects
+    </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+      <td class="mono">stripe.refund</td>
+      <td class="mono">
+        <a href="policies-FINANCE-004.html" style="margin-right:8px"
+                      >FINANCE-004</a
+                    >
+      </td>
+      <td>
+        <span class="cell-effects"><span class="effect-letter allow" title="ALLOW"
+    >A<span class="sr-only"> ALLOW</span></span
+  ><span class="effect-letter approval" title="REQUIRE_APPROVAL"
+    >R<span class="sr-only"> REQUIRE_APPROVAL</span></span
+  ><span class="effect-letter deny" title="DENY"
+    >D<span class="sr-only"> DENY</span></span
+  ></span>
+      </td>
+    </tr><tr>
+      <td class="mono">stripe.get_charge</td>
+      <td class="mono">
+        <span class="muted" style="font-family:var(--sans)">None: engine default applies</span>
+      </td>
+      <td>
+        <span class="muted">DENY, unless the deployment runs monitor-only</span>
+      </td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+    </section>
+  </div>
+
+  <div class="section-title">
+    <h2>Credentials</h2>
+    
+  </div>
+  <p class="note" style="margin:0 0 12px">
+    Metadata only. ARC Control stores a salted hash of each key; the secret is shown once, at issue, and never again.
+  </p>
+  <div class="table-wrap" role="region" aria-label="Agent credentials" tabindex="0">
+    <table class="dt ">
+      <caption class="sr-only">Agent credentials</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="">
+      Prefix
+    </th><th scope="col" class="">
+      State
+    </th><th scope="col" class="">
+      Created
+    </th><th scope="col" class="">
+      Expires
+    </th><th scope="col" class="">
+      Revoked
+    </th><th scope="col" class="">
+      Last used
+    </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+      <td class="mono">arck_19239d7fa3871262…</td>
+      <td><span class="status-dot ok">
+    <span class="dot" aria-hidden="true"></span>valid</span
+  ></td>
+      <td class="mono muted">2026-10-26 09:18:23Z</td>
+      <td class="muted">
+        no expiry set
+      </td>
+      <td class="mono muted">—</td>
+      <td class="mono muted">2026-10-26 09:18:30Z</td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">
+    <h2>Activity</h2>
+    <div class="section-aside"><a href="evidence-agentId-arc_ag_c73111f98579055423626c6e4a1f2c86.html"
+      >All evidence for finance-agent →</a
+    ></div>
+  </div>
+  <div class="table-wrap" role="region" aria-label="Evidence for finance-agent" tabindex="0">
+    <table class="dt ">
+      <caption class="sr-only">Evidence for finance-agent</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="">
+      When (UTC)
+    </th><th scope="col" class="">
+      Tool
+    </th><th scope="col" class="">
+      Decision
+    </th><th scope="col" class="">
+      Outcome
+    </th><th scope="col" class="">
+      Execution
+    </th><th scope="col" class="">
+      Policy · rule
+    </th><th scope="col" class="">
+      Evidence
+    </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+      <td class="mono tnum nowrap muted">2026-10-26 09:18:30Z</td>
+      
+      <td class="mono nowrap">stripe.refund</td>
+      <td><span class="badge approval">REQUIRE_APPROVAL</span></td>
+      <td><span class="badge approval">pending approval</span></td>
+      <td class="tnum nowrap">
+        <span class="muted">not executed</span>
+      </td>
+      <td class="mono">
+        <a class="nowrap" href="policies-FINANCE-004.html"
+                >FINANCE-004</a
+              >
+              <span class="sub mono nowrap">needs-approval</span>
+      </td>
+      <td class="mono nowrap">
+        <a href="evidence-arc_ev_2065527af3d5be7cbc4feb8ade7dc4c1.html" title="arc_ev_2065527af3d5be7cbc4feb8ade7dc4c1">arc_ev_2065527…</a>
+      </td>
+    </tr><tr>
+      <td class="mono tnum nowrap muted">2026-10-26 09:18:29Z</td>
+      
+      <td class="mono nowrap">stripe.refund</td>
+      <td><span class="badge approval">REQUIRE_APPROVAL</span></td>
+      <td><span class="badge allow">executed</span></td>
+      <td class="tnum nowrap">
+        <span class=""
+              >ok · 0 ms</span
+            >
+      </td>
+      <td class="mono">
+        <a class="nowrap" href="policies-FINANCE-004.html"
+                >FINANCE-004</a
+              >
+              <span class="sub mono nowrap">needs-approval</span>
+      </td>
+      <td class="mono nowrap">
+        <a href="evidence-arc_ev_5a04082a33a15b0f372f629ddcc1fd40.html" title="arc_ev_5a04082a33a15b0f372f629ddcc1fd40">arc_ev_5a04082…</a>
+      </td>
+    </tr><tr>
+      <td class="mono tnum nowrap muted">2026-10-26 09:18:29Z</td>
+      
+      <td class="mono nowrap">stripe.refund</td>
+      <td><span class="badge approval">REQUIRE_APPROVAL</span></td>
+      <td><span class="badge approval">pending approval</span></td>
+      <td class="tnum nowrap">
+        <span class="muted">not executed</span>
+      </td>
+      <td class="mono">
+        <a class="nowrap" href="policies-FINANCE-004.html"
+                >FINANCE-004</a
+              >
+              <span class="sub mono nowrap">needs-approval</span>
+      </td>
+      <td class="mono nowrap">
+        <a href="evidence-arc_ev_1c351249e4f7abdbba1174959c0e5e61.html" title="arc_ev_1c351249e4f7abdbba1174959c0e5e61">arc_ev_1c35124…</a>
+      </td>
+    </tr><tr>
+      <td class="mono tnum nowrap muted">2026-10-26 09:18:28Z</td>
+      
+      <td class="mono nowrap">stripe.refund</td>
+      <td><span class="badge deny">DENY</span></td>
+      <td><span class="badge deny">denied</span></td>
+      <td class="tnum nowrap">
+        <span class="muted">not executed</span>
+      </td>
+      <td class="mono">
+        <a class="nowrap" href="policies-FINANCE-004.html"
+                >FINANCE-004</a
+              >
+              <span class="sub mono nowrap">over-ceiling</span>
+      </td>
+      <td class="mono nowrap">
+        <a href="evidence-arc_ev_43f4765ee1884bb1a9f67bc7071f189c.html" title="arc_ev_43f4765ee1884bb1a9f67bc7071f189c">arc_ev_43f4765…</a>
+      </td>
+    </tr><tr>
+      <td class="mono tnum nowrap muted">2026-10-26 09:18:24Z</td>
+      
+      <td class="mono nowrap">stripe.get_charge</td>
+      <td><span class="badge deny">DENY</span></td>
+      <td><span class="badge deny">denied</span></td>
+      <td class="tnum nowrap">
+        <span class="muted">not executed</span>
+      </td>
+      <td class="mono">
+        <span class="muted">engine default</span>
+      </td>
+      <td class="mono nowrap">
+        <a href="evidence-arc_ev_2e61efe26403bfc44b0d84cb254af100.html" title="arc_ev_2e61efe26403bfc44b0d84cb254af100">arc_ev_2e61efe…</a>
+      </td>
+    </tr><tr>
+      <td class="mono tnum nowrap muted">2026-10-26 09:18:23Z</td>
+      
+      <td class="mono nowrap">stripe.refund</td>
+      <td><span class="badge allow">ALLOW</span></td>
+      <td><span class="badge allow">executed</span></td>
+      <td class="tnum nowrap">
+        <span class=""
+              >ok · 1 ms</span
+            >
+      </td>
+      <td class="mono">
+        <a class="nowrap" href="policies-FINANCE-004.html"
+                >FINANCE-004</a
+              >
+              <span class="sub mono nowrap">under-500</span>
+      </td>
+      <td class="mono nowrap">
+        <a href="evidence-arc_ev_df2413d665d3a6cd2d54f6f858285956.html" title="arc_ev_df2413d665d3a6cd2d54f6f858285956">arc_ev_df2413d…</a>
+      </td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>
