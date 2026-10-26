@@ -18,6 +18,10 @@ import { consoleShowcase } from "@/lib/arc/control";
  * the direction with invented data and says so; this shows the thing that
  * actually runs. Reading them in that order is the difference between a claim
  * and evidence for it.
+ *
+ * 2.0 added the assurance sections, and with them the most useful thing on
+ * this page: three of the nine controls report `not assessable` or `attested`
+ * rather than passing. A visitor who notices that has understood the product.
  */
 export function ConsoleShowcase() {
   return (
@@ -30,7 +34,7 @@ export function ConsoleShowcase() {
           id="showcase-title"
           eyebrow="See it"
           title="The operator console, as it actually renders."
-          lead="Ten sections against a running control plane: what needs a human, what every agent attempted, which policy decided and why, and whether the record still verifies. This is the console's own output, captured page by page from the running server — not a mock-up."
+          lead="Fifteen sections against a running control plane: what needs a human, what every agent attempted, which policy decided and why, whether the record still verifies, and what the nine governance controls could and could not establish about all of it. This is the console's own output, captured page by page from the running server — not a mock-up."
         />
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:items-start">

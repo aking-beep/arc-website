@@ -70,7 +70,22 @@ export function ArcButton({
     )
   ) : null;
 
-  if (href && !external && !href.startsWith("mailto:")) {
+  /**
+   * A path ending in a file extension is a file in `public/`, not a route.
+   *
+   * `next/link` cannot client-side navigate to one: it fetches the target as
+   * an RSC payload, that fetch fails, and Next falls back to a full
+   * navigation — so the link works but every render of this page fires a
+   * failed `?_rsc=` request at a static file. It also makes the one link that
+   * matters most on the ARC Control page depend on a fallback path rather
+   * than on a plain anchor doing the obvious thing.
+   *
+   * This was fixed once and lost in a later refactor, so there is now a test
+   * pinning it: `tests/ark-control-console.test.ts`.
+   */
+  const staticFile = /\.[a-z0-9]{2,5}$/i.test((href ?? "").split(/[?#]/)[0] ?? "");
+
+  if (href && !external && !staticFile && !href.startsWith("mailto:")) {
     return (
       <Link href={href} className={classes}>
         {children}

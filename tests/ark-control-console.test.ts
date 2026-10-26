@@ -3,6 +3,8 @@ import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import { consoleShowcase } from "@/lib/arc/control";
+
 /**
  * The ARC Control console showcase is a folder of static HTML captured from
  * the real console in aking-beep/arc-control (`npm run showcase` there). These
@@ -65,6 +67,53 @@ describe("the ARC Control console showcase", () => {
     ).not.toContainEqual(expect.objectContaining({ source: "/ark-control/console" }));
 
     expect(config).toContain("relative");
+  });
+
+  /**
+   * Regression, and the second time this exact thing has broken.
+   *
+   * The console entry is a file in `public/`, not a route. `next/link` cannot
+   * client-side navigate to one — it fetches the target as an RSC payload,
+   * that fetch fails, and Next falls back to a full navigation. The link still
+   * works, which is why this went unnoticed: it just fires a failed `?_rsc=`
+   * request at a static file on every render of the product page, and makes
+   * the most important link on that page depend on a fallback.
+   *
+   * ArcButton therefore renders a plain anchor for any href ending in a file
+   * extension. That was fixed once and lost in a later refactor, so it is
+   * pinned here rather than left to be rediscovered by a browser test.
+   */
+  it("renders a plain anchor for a static file, not a next/link", async () => {
+    const button = await fs.readFile(
+      path.join(process.cwd(), "components", "arc", "ui", "button.tsx"),
+      "utf8",
+    );
+
+    expect(button, "the static-file guard must exist").toMatch(/staticFile/);
+    expect(button, "and the Link branch must exclude it").toMatch(/!external && !staticFile/);
+
+    // The predicate itself, against the href this page actually uses.
+    const isStaticFile = (href: string) => /\.[a-z0-9]{2,5}$/i.test(href.split(/[?#]/)[0] ?? "");
+    expect(isStaticFile(consoleShowcase.entry)).toBe(true);
+    expect(isStaticFile("/control")).toBe(false);
+    expect(isStaticFile("/")).toBe(false);
+  });
+
+  /**
+   * The section states a revision and a page count read from the capture's own
+   * build.json, so they cannot be left behind when it is recaptured.
+   *
+   * `-dirty` in the revision means the capture was built from a modified
+   * working tree and cannot be traced to the code that produced it. That must
+   * never reach the site.
+   */
+  it("states a traceable revision, built from a clean tree", async () => {
+    const build = JSON.parse(await fs.readFile(path.join(consoleDir, "build.json"), "utf8"));
+
+    expect(build.revision).toMatch(/^[0-9a-f]{7,40}$/);
+    expect(build.revision, "a capture from a dirty tree is not traceable").not.toMatch(/-dirty$/);
+    expect(consoleShowcase.revision).toBe(build.revision);
+    expect(consoleShowcase.pageCount).toBe(build.pages.length);
   });
 
   it("ships the entry page the product page links to", async () => {

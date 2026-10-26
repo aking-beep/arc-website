@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings — ARC Control</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%231d4ed8%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%227.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2214.5%22%20width%3D%2218%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2221.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="console.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<aside class="demo-strip" aria-label="About this page">
+  <strong>Live design showcase</strong>
+  <span>Real markup from the ARC Control console, captured from the running server against the shipped demo seed (<span class="mono">ARC_SEED_DEMO=true</span>). The policy decisions, the approval, the evidence records and the hash-chained audit log below are all real; the connector effects are simulated, and controls that would write are disabled. Built from <span class="mono">fc9dd70</span> on <span class="mono">2026-10-26</span>.</span>
+  <a class="showcase-home" href="/ark-control">← ARC Transformation Group</a>
+</aside>
+<div class="shell">
+<nav class="rail" aria-label="Console">
+  <div class="rail-brand">
+    <span class="mark" aria-hidden="true"></span>
+    <span class="wordmark">ARC <strong>Control</strong></span>
+  </div>
+  <div class="rail-groups"><div class="rail-group">
+      <div class="rail-group-label">Operate</div>
+      <ul>
+        <li>
+        <a
+          href="index.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Overview</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="approvals.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Approvals</span>
+          <span class="rail-count">1<span class="sr-only"> pending</span></span>
+        </a>
+      </li><li>
+        <a
+          href="activity.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Activity</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Inventory</div>
+      <ul>
+        <li>
+        <a
+          href="agents.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Agents</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="tools.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Tools</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Govern</div>
+      <ul>
+        <li>
+        <a
+          href="policies.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Policies</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="access.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Access</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Assure</div>
+      <ul>
+        <li>
+        <a
+          href="assurance.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Assurance</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="risks.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Risks</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="findings.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Findings</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="security.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Security</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Record</div>
+      <ul>
+        <li>
+        <a
+          href="evidence.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Evidence</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="audit.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Audit</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Admin</div>
+      <ul>
+        <li>
+        <a
+          href="reports.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Reports</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="settings.html"
+          class="rail-item active"
+          aria-current="page"
+        >
+          <span class="rail-mark" aria-hidden="true"></span>
+          <span>Settings</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div></div>
+  <div class="rail-foot">Theme follows the system setting</div>
+</nav>
+<div class="column">
+  <header class="masthead">
+    <p class="masthead-operator">
+      Acting as <strong>operations@arctransformationgroup.com</strong>
+      <span class="muted">(configured, not authenticated)</span>
+    </p>
+    <p class="masthead-api">
+      <span>API <span class="mono">http://127.0.0.1:8787</span></span>
+      <span class="health ok">
+    <span class="dot" aria-hidden="true"></span>ok</span
+  >
+      <span class="tnum muted">v2.0.0</span>
+    </p>
+  </header>
+  <main id="main">
+    <div class="main-inner">
+
+<div class="page-header">
+    <div class="page-header-text">
+      <h1 class="">Settings</h1>
+      <p class="lede">What this deployment is configured to do, read from the control API rather than assumed.</p>
+    </div>
+    
+  </div>
+
+  <div class="section-title">
+    <h2>Identity and access</h2>
+    
+  </div>
+  <p class="note">
+    <strong>Operator identity is not authenticated in this release.</strong> You are acting as
+    <strong>operations@arctransformationgroup.com</strong> because a request header says so, behind a single shared operator
+    token. Anyone holding that token can claim any identity, so an approval recorded here establishes that the
+    workflow ran — not who ran it. Single sign-on and role-based access control are the next release; until then put
+    this console behind an identity-aware proxy and treat the token as a production secret.
+  </p>
+  <dl class="defs">
+    <dt>Acting as</dt>
+      <dd><strong>operations@arctransformationgroup.com</strong> <span class="muted">(configured header)</span></dd><dt>Roles claimed</dt>
+      <dd>finance-manager, platform-oncall</dd><dt>Operator token</dt>
+      <dd><span class="badge allow">configured</span></dd><dt>API</dt>
+      <dd><span class="mono">http://127.0.0.1:8787</span></dd><dt>Version</dt>
+      <dd><span class="tnum">2.0.0</span></dd>
+  </dl>
+
+  <div class="section-title">
+    <h2>Enforcement</h2>
+    
+  </div>
+  <dl class="defs">
+    <dt>Status</dt>
+      <dd><span class="badge allow">ok</span></dd><dt>Failure mode</dt>
+      <dd><span class="badge allow">closed</span></dd><dt>Effect when no policy matches</dt>
+      <dd><span class="badge deny">DENY</span></dd><dt>Rate limiting</dt>
+      <dd><span class="badge muted">off</span></dd><dt>Disabled tools</dt>
+      <dd><span class="muted">none</span></dd>
+  </dl>
+  <p class="note">
+    Enforcement does not depend on the assurance layer. An assurance outage can stop ARC reporting on itself; it
+    cannot stop ARC deciding, and it cannot open the gateway.
+  </p>
+
+  <div class="section-title">
+    <h2>Assurance</h2>
+    
+  </div>
+  <dl class="defs">
+    <dt>Status</dt>
+      <dd><span class="badge allow">ok</span></dd><dt>Controls installed</dt>
+      <dd><span class="tnum">9</span></dd><dt>Controls enabled</dt>
+      <dd><span class="tnum">9</span></dd><dt>Resting on a human statement, or unprovable</dt>
+      <dd><span class="tnum">2</span>
+          <span class="muted">of 9 — read their summaries rather than counting statuses</span></dd><dt>Last run</dt>
+      <dd><a href="assurance-runs-arc_run_248130be79b386724d49cdf2478eb865.html"><span class="mono">arc_run_248130…</span></a>
+              <span class="tnum">2026-10-26 04:32:26Z</span></dd>
+  </dl>
+
+  <div class="section-title">
+    <h2>Connectors</h2>
+    
+  </div>
+  <div class="table-wrap" role="region" aria-label="Connectors" tabindex="0">
+    <table class="dt ">
+      <caption class="sr-only">Connectors</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="">
+      Connector
+    </th><th scope="col" class="">
+      Health
+    </th><th scope="col" class="">
+      Detail
+    </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+    <td><span class="mono">simulation</span></td><td><span class="badge allow">healthy</span></td><td><span class="muted">3 simulated tool(s)</span></td>
+  </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-title">
+    <h2>Framework mappings</h2>
+    
+  </div>
+  <div class="table-wrap" role="region" aria-label="Framework mappings" tabindex="0">
+    <table class="dt ">
+      <caption class="sr-only">Framework mappings</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="">
+      Framework
+    </th><th scope="col" class="">
+      Edition
+    </th><th scope="col" class="">
+      References
+    </th><th scope="col" class="">
+      Reviewed
+    </th><th scope="col" class="">
+      
+    </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+    <td>NIST AI Risk Management Framework</td><td><span class="muted">AI RMF 1.0 (NIST AI 100-1, January 2023)</span></td><td><span class="tnum">17</span></td><td><span class="muted">none</span></td><td><a href="frameworks-nist-ai-rmf.html">open</a></td>
+  </tr>
+      </tbody>
+    </table>
+  </div>
+          <p class="note">
+            Mappings ship as proposed, not reviewed. ARC’s engineers can draft one; only someone accountable for
+            this organization’s compliance programme can accept it, and coverage counts only reviewed mappings —
+            so the figure starts at zero and rises as real review happens.
+          </p>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>

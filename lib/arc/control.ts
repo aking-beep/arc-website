@@ -154,13 +154,13 @@ export const controlCtas = {
 export const consoleShowcase = {
   /** A file in public/, not a route. */
   entry: "/ark-control/console/index.html",
-  revision: "9dd75e3",
-  pageCount: 71,
+  revision: "fc9dd70",
+  pageCount: 121,
   provenance: [
     {
       term: "Real",
       detail:
-        "The policy decisions and their rule-by-rule traces, an approval that was cast and consumed, the evidence records, and the hash-chained audit log those records verify against.",
+        "The policy decisions and their rule-by-rule traces, an approval that was cast and consumed, the evidence records, the hash-chained audit log those records verify against, and the nine control assessments evaluated over them.",
     },
     {
       term: "Simulated",
@@ -172,19 +172,29 @@ export const consoleShowcase = {
       detail:
         "Anything that would write. Approve, reject, suspend and scan are rendered and disabled, each saying what it does in the live console.",
     },
+    {
+      term: "Not green",
+      detail:
+        "Three controls report not assessable or attested rather than passing, and that is the product working. A control the platform cannot decide from its own records says so — reporting it green would convert an unexamined risk into a documented assurance.",
+    },
   ],
   sections: [
     ["Overview", "What needs a human, ordered by consequence"],
     ["Approvals", "The request, the policy that held it, the authority required"],
+    ["Activity", "Every action that reached the gateway, and what governed it"],
     ["Agents", "Who is authorized, and what they have attempted"],
     ["Tools", "What may be asked for, at what risk"],
     ["Policies", "Each policy as a decision ladder"],
     ["Access", "Which policies govern which agent and tool"],
+    ["Assurance", "Nine controls, and what each one does not establish"],
+    ["Risks", "Inherent, and the residual a named human reviewed"],
+    ["Findings", "What failed, against which subject, and how often"],
+    ["Security", "Connector posture and an MCP manifest scan"],
     ["Evidence", "One record per attempt, with its integrity digests"],
     ["Audit", "The chain, and what verifying it does not prove"],
-    ["Security", "Connector posture and an MCP manifest scan"],
     ["Reports", "A snapshot over a window it always states"],
+    ["Settings", "What this deployment does, and what it cannot yet prove"],
   ] as const satisfies readonly (readonly [string, string])[],
   caveat:
-    "ARC Control is in design-partner development. The console is real and running; what is not yet settled is the verification model it reports on, which is the conversation we are having with design partners.",
+    "ARC Control is in design-partner development. The console is real and running, and the assurance layer reports honestly on what it cannot establish — including that operator identity is not yet authenticated, which the Settings page states in those words.",
 };
