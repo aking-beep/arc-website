@@ -154,8 +154,8 @@ export const controlCtas = {
 export const consoleShowcase = {
   /** A file in public/, not a route. */
   entry: "/ark-control/console/index.html",
-  revision: "19b0940",
-  pageCount: 122,
+  revision: "648998d",
+  pageCount: 123,
   provenance: [
     {
       term: "Real",
