@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assessment — ARC Control</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%231d4ed8%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%227.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2214.5%22%20width%3D%2218%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2221.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="console.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<aside class="demo-strip" aria-label="About this page">
+  <strong>Live design showcase</strong>
+  <span>Real markup from the ARC Control console, captured from the running server against the shipped demo seed (<span class="mono">ARC_SEED_DEMO=true</span>). The policy decisions, the approval, the evidence records and the hash-chained audit log below are all real; the connector effects are simulated, and controls that would write are disabled. Built from <span class="mono">fc9dd70</span> on <span class="mono">2026-10-26</span>.</span>
+  <a class="showcase-home" href="/ark-control">← ARC Transformation Group</a>
+</aside>
+<div class="shell">
+<nav class="rail" aria-label="Console">
+  <div class="rail-brand">
+    <span class="mark" aria-hidden="true"></span>
+    <span class="wordmark">ARC <strong>Control</strong></span>
+  </div>
+  <div class="rail-groups"><div class="rail-group">
+      <div class="rail-group-label">Operate</div>
+      <ul>
+        <li>
+        <a
+          href="index.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Overview</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="approvals.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Approvals</span>
+          <span class="rail-count">1<span class="sr-only"> pending</span></span>
+        </a>
+      </li><li>
+        <a
+          href="activity.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Activity</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Inventory</div>
+      <ul>
+        <li>
+        <a
+          href="agents.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Agents</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="tools.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Tools</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Govern</div>
+      <ul>
+        <li>
+        <a
+          href="policies.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Policies</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="access.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Access</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Assure</div>
+      <ul>
+        <li>
+        <a
+          href="assurance.html"
+          class="rail-item active"
+          aria-current="page"
+        >
+          <span class="rail-mark" aria-hidden="true"></span>
+          <span>Assurance</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="risks.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Risks</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="findings.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Findings</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="security.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Security</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Record</div>
+      <ul>
+        <li>
+        <a
+          href="evidence.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Evidence</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="audit.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Audit</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Admin</div>
+      <ul>
+        <li>
+        <a
+          href="reports.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Reports</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="settings.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Settings</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div></div>
+  <div class="rail-foot">Theme follows the system setting</div>
+</nav>
+<div class="column">
+  <header class="masthead">
+    <p class="masthead-operator">
+      Acting as <strong>operations@arctransformationgroup.com</strong>
+      <span class="muted">(configured, not authenticated)</span>
+    </p>
+    <p class="masthead-api">
+      <span>API <span class="mono">http://127.0.0.1:8787</span></span>
+      <span class="health ok">
+    <span class="dot" aria-hidden="true"></span>ok</span
+  >
+      <span class="tnum muted">v2.0.0</span>
+    </p>
+  </header>
+  <main id="main">
+    <div class="main-inner">
+
+<p class="back"><a href="assurance.html">← Assurance</a></p>
+  <div class="page-header">
+    <div class="page-header-text">
+      <h1 class="">ARC-AI-005 assessment</h1>
+      <p class="lede">All 7 actions in the window have a consistent evidence record.</p>
+    </div>
+    <div class="page-header-actions"><span class="badge allow">Pass</span></div>
+  </div>
+
+  <p class="note">
+    Covering <strong>2026-09-26 04:32:26Z</strong> to <strong>2026-10-26 04:32:26Z</strong> — 7
+    action(s) and 8 evidence record(s) fell in that window. Every status below describes
+    that period and nothing outside it.
+  </p>
+
+  <dl class="defs">
+    <dt>Control</dt>
+      <dd><a href="assurance-ARC-AI-005.html"><span class="mono">ARC-AI-005</span></a> (version
+          1)</dd><dt>Assurance</dt>
+      <dd><span class="muted">automated</span></dd><dt>Evaluated</dt>
+      <dd><span class="tnum">2026-10-26 04:32:26Z</span></dd><dt>Run</dt>
+      <dd><a href="assurance-runs-arc_run_248130be79b386724d49cdf2478eb865.html"><span class="mono">arc_run_248130…</span></a></dd><dt>Integrity digest</dt>
+      <dd><span class="mono muted">sha256:b723181b6696ff64ec195d65fa771815fafd18ea8be88ae89a6fa6ca70430b6e</span></dd>
+  </dl>
+
+  <div class="section-title">
+    <h2>What this result does not establish</h2>
+    
+  </div>
+          <ul class="bullets">
+    <li>Checks that evidence exists and is internally consistent, not that it is complete in every field.</li>
+  </ul>
+
+  
+
+  <div class="section-title">
+    <h2>Observations</h2>
+    <div class="section-aside">7 examined, 0 failing</div>
+  </div>
+  <div class="table-wrap" role="region" aria-label="Observations" tabindex="0">
+    <table class="dt ">
+      <caption class="sr-only">Observations</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="sr-head">
+      <span class="sr-only">Result</span>
+    </th><th scope="col" class="">
+      Subject
+    </th><th scope="col" class="">
+      Kind
+    </th><th scope="col" class="">
+      What was observed
+    </th><th scope="col" class="">
+      Evidence
+    </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+    <td><span class="badge allow">ok</span></td><td><span class="mono">arc_act_e774bb043efebe199d168b241713cf6a</span></td><td><span class="muted">action</span></td><td>evidence arc_ev_c5324d2066e7597e07528c6d8245f7f2 recorded, parameter digest matches the action</td><td><a href="evidence-arc_ev_c5324d2066e7597e07528c6d8245f7f2.html"><span class="mono">arc_ev_c5324d2…</span></a></td>
+  </tr><tr>
+    <td><span class="badge allow">ok</span></td><td><span class="mono">arc_act_d6e34603fda05c1cfb2957b0f00f3bc1</span></td><td><span class="muted">action</span></td><td>evidence arc_ev_3d494398863fc71431ee18d0b66430c7 recorded, parameter digest matches the action</td><td><a href="evidence-arc_ev_3d494398863fc71431ee18d0b66430c7.html"><span class="mono">arc_ev_3d49439…</span></a></td>
+  </tr><tr>
+    <td><span class="badge allow">ok</span></td><td><span class="mono">arc_act_3b11ee73a47972b8da0f050b0107c0b9</span></td><td><span class="muted">action</span></td><td>evidence arc_ev_c97bccf1dd0adc7160f4c48e70370830 recorded, parameter digest matches the action</td><td><a href="evidence-arc_ev_c97bccf1dd0adc7160f4c48e70370830.html"><span class="mono">arc_ev_c97bccf…</span></a></td>
+  </tr><tr>
+    <td><span class="badge allow">ok</span></td><td><span class="mono">arc_act_6a3af5f92fe1ec5530500714c26b68e6</span></td><td><span class="muted">action</span></td><td>evidence arc_ev_1ba9cbe41769134c1f9f3deb8759e492 recorded, parameter digest matches the action</td><td><a href="evidence-arc_ev_1ba9cbe41769134c1f9f3deb8759e492.html"><span class="mono">arc_ev_1ba9cbe…</span></a></td>
+  </tr><tr>
+    <td><span class="badge allow">ok</span></td><td><span class="mono">arc_act_600865fd01b450942a77bc27c35e173e</span></td><td><span class="muted">action</span></td><td>evidence arc_ev_c5b8e20b691bc3a5b80e035bbd12cd61 recorded, parameter digest matches the action</td><td><a href="evidence-arc_ev_c5b8e20b691bc3a5b80e035bbd12cd61.html"><span class="mono">arc_ev_c5b8e20…</span></a></td>
+  </tr><tr>
+    <td><span class="badge allow">ok</span></td><td><span class="mono">arc_act_7dfc97498f97f559f50a222bb60efd0c</span></td><td><span class="muted">action</span></td><td>evidence arc_ev_983b28743a94543d06031cc79681f55e recorded, parameter digest matches the action</td><td><a href="evidence-arc_ev_983b28743a94543d06031cc79681f55e.html"><span class="mono">arc_ev_983b287…</span></a></td>
+  </tr><tr>
+    <td><span class="badge allow">ok</span></td><td><span class="mono">arc_act_d27b0898556ca5f8fe1a6a79c0ff08a4</span></td><td><span class="muted">action</span></td><td>evidence arc_ev_6642b743f53a68aadd3aca91ad3008f7 recorded, parameter digest matches the action</td><td><a href="evidence-arc_ev_6642b743f53a68aadd3aca91ad3008f7.html"><span class="mono">arc_ev_6642b74…</span></a></td>
+  </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+
+  <pre class="json">{
+  &quot;id&quot;: &quot;arc_asm_b6ca763fdc1f7274a183f52fff9431c0&quot;,
+  &quot;schemaVersion&quot;: 2,
+  &quot;runId&quot;: &quot;arc_run_248130be79b386724d49cdf2478eb865&quot;,
+  &quot;controlId&quot;: &quot;ARC-AI-005&quot;,
+  &quot;controlVersion&quot;: 1,
+  &quot;organizationId&quot;: &quot;default&quot;,
+  &quot;status&quot;: &quot;pass&quot;,
+  &quot;assurance&quot;: &quot;automated&quot;,
+  &quot;summary&quot;: &quot;All 7 actions in the window have a consistent evidence record.&quot;,
+  &quot;observations&quot;: [
+    {
+      &quot;subject&quot;: &quot;arc_act_e774bb043efebe199d168b241713cf6a&quot;,
+      &quot;subjectKind&quot;: &quot;action&quot;,
+      &quot;ok&quot;: true,
+      &quot;detail&quot;: &quot;evidence arc_ev_c5324d2066e7597e07528c6d8245f7f2 recorded, parameter digest matches the action&quot;,
+      &quot;evidenceIds&quot;: [
+        &quot;arc_ev_c5324d2066e7597e07528c6d8245f7f2&quot;
+      ]
+    },
+    {
+      &quot;subject&quot;: &quot;arc_act_d6e34603fda05c1cfb2957b0f00f3bc1&quot;,
+      &quot;subjectKind&quot;: &quot;action&quot;,
+      &quot;ok&quot;: true,
+      &quot;detail&quot;: &quot;evidence arc_ev_3d494398863fc71431ee18d0b66430c7 recorded, parameter digest matches the action&quot;,
+      &quot;evidenceIds&quot;: [
+        &quot;arc_ev_3d494398863fc71431ee18d0b66430c7&quot;
+      ]
+    },
+    {
+      &quot;subject&quot;: &quot;arc_act_3b11ee73a47972b8da0f050b0107c0b9&quot;,
+      &quot;subjectKind&quot;: &quot;action&quot;,
+      &quot;ok&quot;: true,
+      &quot;detail&quot;: &quot;evidence arc_ev_c97bccf1dd0adc7160f4c48e70370830 recorded, parameter digest matches the action&quot;,
+      &quot;evidenceIds&quot;: [
+        &quot;arc_ev_c97bccf1dd0adc7160f4c48e70370830&quot;
+      ]
+    },
+    {
+      &quot;subject&quot;: &quot;arc_act_6a3af5f92fe1ec5530500714c26b68e6&quot;,
+      &quot;subjectKind&quot;: &quot;action&quot;,
+      &quot;ok&quot;: true,
+      &quot;detail&quot;: &quot;evidence arc_ev_1ba9cbe41769134c1f9f3deb8759e492 recorded, parameter digest matches the action&quot;,
+      &quot;evidenceIds&quot;: [
+        &quot;arc_ev_1ba9cbe41769134c1f9f3deb8759e492&quot;
+      ]
+    },
+    {
+      &quot;subject&quot;: &quot;arc_act_600865fd01b450942a77bc27c35e173e&quot;,
+      &quot;subjectKind&quot;: &quot;action&quot;,
+      &quot;ok&quot;: true,
+      &quot;detail&quot;: &quot;evidence arc_ev_c5b8e20b691bc3a5b80e035bbd12cd61 recorded, parameter digest matches the action&quot;,
+      &quot;evidenceIds&quot;: [
+        &quot;arc_ev_c5b8e20b691bc3a5b80e035bbd12cd61&quot;
+      ]
+    },
+    {
+      &quot;subject&quot;: &quot;arc_act_7dfc97498f97f559f50a222bb60efd0c&quot;,
+      &quot;subjectKind&quot;: &quot;action&quot;,
+      &quot;ok&quot;: true,
+      &quot;detail&quot;: &quot;evidence arc_ev_983b28743a94543d06031cc79681f55e recorded, parameter digest matches the action&quot;,
+      &quot;evidenceIds&quot;: [
+        &quot;arc_ev_983b28743a94543d06031cc79681f55e&quot;
+      ]
+    },
+    {
+      &quot;subject&quot;: &quot;arc_act_d27b0898556ca5f8fe1a6a79c0ff08a4&quot;,
+      &quot;subjectKind&quot;: &quot;action&quot;,
+      &quot;ok&quot;: true,
+      &quot;detail&quot;: &quot;evidence arc_ev_6642b743f53a68aadd3aca91ad3008f7 recorded, parameter digest matches the action&quot;,
+      &quot;evidenceIds&quot;: [
+        &quot;arc_ev_6642b743f53a68aadd3aca91ad3008f7&quot;
+      ]
+    }
+  ],
+  &quot;window&quot;: {
+    &quot;from&quot;: &quot;2026-09-26T04:32:26.101Z&quot;,
+    &quot;to&quot;: &quot;2026-10-26T04:32:26.101Z&quot;,
+    &quot;actionsConsidered&quot;: 7,
+    &quot;evidenceConsidered&quot;: 8
+  },
+  &quot;limitations&quot;: [
+    &quot;Checks that evidence exists and is internally consistent, not that it is complete in every field.&quot;
+  ],
+  &quot;findingIds&quot;: [],
+  &quot;evaluatedAt&quot;: &quot;2026-10-26T04:32:26.101Z&quot;,
+  &quot;evaluationMs&quot;: 0.175089,
+  &quot;integrityDigest&quot;: &quot;sha256:b723181b6696ff64ec195d65fa771815fafd18ea8be88ae89a6fa6ca70430b6e&quot;
+}</pre>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>

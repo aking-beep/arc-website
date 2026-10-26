@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Findings — ARC Control</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%231d4ed8%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%227.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2214.5%22%20width%3D%2218%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2221.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="console.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<aside class="demo-strip" aria-label="About this page">
+  <strong>Live design showcase</strong>
+  <span>Real markup from the ARC Control console, captured from the running server against the shipped demo seed (<span class="mono">ARC_SEED_DEMO=true</span>). The policy decisions, the approval, the evidence records and the hash-chained audit log below are all real; the connector effects are simulated, and controls that would write are disabled. Built from <span class="mono">fc9dd70</span> on <span class="mono">2026-10-26</span>.</span>
+  <a class="showcase-home" href="/ark-control">← ARC Transformation Group</a>
+</aside>
+<div class="shell">
+<nav class="rail" aria-label="Console">
+  <div class="rail-brand">
+    <span class="mark" aria-hidden="true"></span>
+    <span class="wordmark">ARC <strong>Control</strong></span>
+  </div>
+  <div class="rail-groups"><div class="rail-group">
+      <div class="rail-group-label">Operate</div>
+      <ul>
+        <li>
+        <a
+          href="index.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Overview</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="approvals.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Approvals</span>
+          <span class="rail-count">1<span class="sr-only"> pending</span></span>
+        </a>
+      </li><li>
+        <a
+          href="activity.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Activity</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Inventory</div>
+      <ul>
+        <li>
+        <a
+          href="agents.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Agents</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="tools.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Tools</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Govern</div>
+      <ul>
+        <li>
+        <a
+          href="policies.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Policies</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="access.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Access</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Assure</div>
+      <ul>
+        <li>
+        <a
+          href="assurance.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Assurance</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="risks.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Risks</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="findings.html"
+          class="rail-item active"
+          aria-current="page"
+        >
+          <span class="rail-mark" aria-hidden="true"></span>
+          <span>Findings</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="security.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Security</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Record</div>
+      <ul>
+        <li>
+        <a
+          href="evidence.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Evidence</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="audit.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Audit</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Admin</div>
+      <ul>
+        <li>
+        <a
+          href="reports.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Reports</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="settings.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Settings</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div></div>
+  <div class="rail-foot">Theme follows the system setting</div>
+</nav>
+<div class="column">
+  <header class="masthead">
+    <p class="masthead-operator">
+      Acting as <strong>operations@arctransformationgroup.com</strong>
+      <span class="muted">(configured, not authenticated)</span>
+    </p>
+    <p class="masthead-api">
+      <span>API <span class="mono">http://127.0.0.1:8787</span></span>
+      <span class="health ok">
+    <span class="dot" aria-hidden="true"></span>ok</span
+  >
+      <span class="tnum muted">v2.0.0</span>
+    </p>
+  </header>
+  <main id="main">
+    <div class="main-inner">
+
+<div class="page-header">
+    <div class="page-header-text">
+      <h1 class="">Findings</h1>
+      <p class="lede">Raised by control assessments and reconciled across runs: a repeat increments its occurrence count rather than creating a duplicate, and a subject that stops failing is resolved with the assessment that cleared it named.</p>
+    </div>
+    
+  </div>
+
+  <nav class="filters" aria-label="Status">
+    <span class="filters-label">Status</span>
+    <a
+        href="findings-status-open.html"
+        class="chip"
+        
+        >Open</a
+      ><a
+        href="findings-status-in_progress.html"
+        class="chip"
+        
+        >In progress</a
+      ><a
+        href="findings-status-resolved.html"
+        class="chip"
+        
+        >Resolved</a
+      ><a
+        href="findings-status-accepted.html"
+        class="chip"
+        
+        >Accepted</a
+      ><a
+        href="findings-status-false_positive.html"
+        class="chip active"
+        aria-current="true"
+        >False positive</a
+      ><a
+        href="findings-status-all.html"
+        class="chip"
+        
+        >All</a
+      >
+  </nav>
+
+  <p class="empty">No findings with status &quot;false_positive&quot;.</p>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>

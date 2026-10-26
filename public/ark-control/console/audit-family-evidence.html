@@ -11,7 +11,7 @@
 <a href="#main" class="skip-link">Skip to content</a>
 <aside class="demo-strip" aria-label="About this page">
   <strong>Live design showcase</strong>
-  <span>Real markup from the ARC Control console, captured from the running server against the shipped demo seed (<span class="mono">ARC_SEED_DEMO=true</span>). The policy decisions, the approval, the evidence records and the hash-chained audit log below are all real; the connector effects are simulated, and controls that would write are disabled. Built from <span class="mono">9dd75e3</span> on <span class="mono">2026-10-23</span>.</span>
+  <span>Real markup from the ARC Control console, captured from the running server against the shipped demo seed (<span class="mono">ARC_SEED_DEMO=true</span>). The policy decisions, the approval, the evidence records and the hash-chained audit log below are all real; the connector effects are simulated, and controls that would write are disabled. Built from <span class="mono">fc9dd70</span> on <span class="mono">2026-10-26</span>.</span>
   <a class="showcase-home" href="/ark-control">← ARC Transformation Group</a>
 </aside>
 <div class="shell">
@@ -42,6 +42,16 @@
           
           <span>Approvals</span>
           <span class="rail-count">1<span class="sr-only"> pending</span></span>
+        </a>
+      </li><li>
+        <a
+          href="activity.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Activity</span>
+          
         </a>
       </li>
       </ul>
@@ -96,6 +106,51 @@
       </li>
       </ul>
     </div><div class="rail-group">
+      <div class="rail-group-label">Assure</div>
+      <ul>
+        <li>
+        <a
+          href="assurance.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Assurance</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="risks.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Risks</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="findings.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Findings</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="security.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Security</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
       <div class="rail-group-label">Record</div>
       <ul>
         <li>
@@ -121,19 +176,9 @@
       </li>
       </ul>
     </div><div class="rail-group">
-      <div class="rail-group-label">Assure</div>
+      <div class="rail-group-label">Admin</div>
       <ul>
         <li>
-        <a
-          href="security.html"
-          class="rail-item"
-          
-        >
-          
-          <span>Security</span>
-          
-        </a>
-      </li><li>
         <a
           href="reports.html"
           class="rail-item"
@@ -141,6 +186,16 @@
         >
           
           <span>Reports</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="settings.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Settings</span>
           
         </a>
       </li>
@@ -159,7 +214,7 @@
       <span class="health ok">
     <span class="dot" aria-hidden="true"></span>ok</span
   >
-      <span class="tnum muted">v0.1.0</span>
+      <span class="tnum muted">v2.0.0</span>
     </p>
   </header>
   <main id="main">
@@ -177,7 +232,7 @@
     <p style="font-size:18px;font-weight:650;margin:0">
       Chain <span class="allow-text">intact</span>
       <span class="muted" style="font-size:14px;font-weight:400;margin-left:8px">
-        37 record(s) verified
+        46 record(s) verified
       </span>
     </p>
     
@@ -185,9 +240,9 @@
           <div class="digest-row">
     <div>
       <div class="mono muted">head digest</div>
-      <div class="digest-note">sequence 37</div>
+      <div class="digest-note">sequence 46</div>
     </div>
-    <code class="digest">sha256:4ca2ba485ffe7b7f6c789fcb342874c344c9f7705a838f5fd53130652dd48df5</code>
+    <code class="digest">sha256:3b9b735d0f580d77c30f4ffa29a4c81d65f822084bb2f1ee1e97f17b08428d21</code>
   </div>
         </div>
     <p class="note">
@@ -215,7 +270,7 @@
 
   <div class="section-title">
     <h2>Records</h2>
-    <div class="section-aside"><span class="muted">Newest first · 8 of 37 shown</span></div>
+    <div class="section-aside"><span class="muted">Newest first · 8 of 46 shown</span></div>
   </div>
   <div style="margin-bottom:12px">
     <nav class="filters" aria-label="Family (within this page of records)">
@@ -224,12 +279,12 @@
         href="audit.html"
         class="chip"
         
-        >All<span class="chip-count tnum">37</span></a
+        >All<span class="chip-count tnum">46</span></a
       ><a
         href="audit-family-agent.html"
         class="chip"
         
-        >agent<span class="chip-count tnum">2</span></a
+        >agent<span class="chip-count tnum">3</span></a
       ><a
         href="audit-family-credential.html"
         class="chip"
@@ -286,76 +341,76 @@
       <tbody>
         <tr class="">
       <td class="numeric mono tnum">36</td>
-      <td class="mono tnum nowrap muted">2026-10-23 07:15:00Z</td>
+      <td class="mono tnum nowrap muted">2026-10-26 04:32:26Z</td>
       <td class="mono nowrap">evidence.recorded</td>
       <td class="mono">system</td>
       <td style="font-size:13px">
-        <a href="evidence-arc_ev_3c37b665c6f623c892e60b0f064f1f06.html">evidence arc_ev_3c37b665c6f623c892e60b0f064f1f06 recorded for stripe.refund (pending_approval)</a>
+        <a href="evidence-arc_ev_6642b743f53a68aadd3aca91ad3008f7.html">evidence arc_ev_6642b743f53a68aadd3aca91ad3008f7 recorded for stripe.refund (pending_approval)</a>
       </td>
-      <td class="mono nowrap muted" title="sha256:c62bbfd9ee7912417615995b9d47be4059140d2161fc2b681b48c1602d10e719">c62bbfd9ee79…</td>
+      <td class="mono nowrap muted" title="sha256:442e6c758f195b326fa64b34e69e6045935990cfaf85ecef84947f14ab524c26">442e6c758f19…</td>
     </tr><tr class="">
       <td class="numeric mono tnum">33</td>
-      <td class="mono tnum nowrap muted">2026-10-23 07:14:59Z</td>
+      <td class="mono tnum nowrap muted">2026-10-26 04:32:24Z</td>
       <td class="mono nowrap">evidence.recorded</td>
       <td class="mono">system</td>
       <td style="font-size:13px">
-        <a href="evidence-arc_ev_44b13b9c5980c53181a00feeb9787e59.html">evidence arc_ev_44b13b9c5980c53181a00feeb9787e59 recorded for stripe.refund (executed)</a>
+        <a href="evidence-arc_ev_983b28743a94543d06031cc79681f55e.html">evidence arc_ev_983b28743a94543d06031cc79681f55e recorded for stripe.refund (executed)</a>
       </td>
-      <td class="mono nowrap muted" title="sha256:85d44ee9f29caf4eed31a6ad599205f0e0b79632590f227c3dd785f1c156dcde">85d44ee9f29c…</td>
+      <td class="mono nowrap muted" title="sha256:1027b1d11c193f25efdbe39691a7ddde665d025d592e595fa6e5d1bc226734a3">1027b1d11c19…</td>
     </tr><tr class="">
       <td class="numeric mono tnum">28</td>
-      <td class="mono tnum nowrap muted">2026-10-23 07:14:59Z</td>
+      <td class="mono tnum nowrap muted">2026-10-26 04:32:24Z</td>
       <td class="mono nowrap">evidence.recorded</td>
       <td class="mono">system</td>
       <td style="font-size:13px">
-        <a href="evidence-arc_ev_bcf872fc3b95391fc0ac4e594b5f3b28.html">evidence arc_ev_bcf872fc3b95391fc0ac4e594b5f3b28 recorded for stripe.refund (pending_approval)</a>
+        <a href="evidence-arc_ev_32089b656117d4705b301cd5eebb3973.html">evidence arc_ev_32089b656117d4705b301cd5eebb3973 recorded for stripe.refund (pending_approval)</a>
       </td>
-      <td class="mono nowrap muted" title="sha256:0c42a0aa586b4c979e49ddeefd58faf7bbcc8f2bdbe76fcb33f5205cad7fb815">0c42a0aa586b…</td>
+      <td class="mono nowrap muted" title="sha256:47ab8616e2099caaad94a28fd25a3d260e1f06bcbde00ee7718faa3940bdbbf0">47ab8616e209…</td>
     </tr><tr class="">
       <td class="numeric mono tnum">25</td>
-      <td class="mono tnum nowrap muted">2026-10-23 07:14:58Z</td>
+      <td class="mono tnum nowrap muted">2026-10-26 04:32:23Z</td>
       <td class="mono nowrap">evidence.recorded</td>
       <td class="mono">system</td>
       <td style="font-size:13px">
-        <a href="evidence-arc_ev_40e811128ceb0cab5747097e968fae15.html">evidence arc_ev_40e811128ceb0cab5747097e968fae15 recorded for stripe.refund (denied)</a>
+        <a href="evidence-arc_ev_c5b8e20b691bc3a5b80e035bbd12cd61.html">evidence arc_ev_c5b8e20b691bc3a5b80e035bbd12cd61 recorded for stripe.refund (denied)</a>
       </td>
-      <td class="mono nowrap muted" title="sha256:974e7cdf199921663f566621a3177eee6151712d0a97049552d49678cb1e32be">974e7cdf1999…</td>
+      <td class="mono nowrap muted" title="sha256:a638f52153df5a113a86fe7dd5d29f483707f39c064a3729daef61efdfc4ee98">a638f52153df…</td>
     </tr><tr class="">
       <td class="numeric mono tnum">22</td>
-      <td class="mono tnum nowrap muted">2026-10-23 07:14:57Z</td>
+      <td class="mono tnum nowrap muted">2026-10-26 04:32:22Z</td>
       <td class="mono nowrap">evidence.recorded</td>
       <td class="mono">system</td>
       <td style="font-size:13px">
-        <a href="evidence-arc_ev_0973b23056ba4e5fa5700a845803b22d.html">evidence arc_ev_0973b23056ba4e5fa5700a845803b22d recorded for github.create_issue (denied)</a>
+        <a href="evidence-arc_ev_1ba9cbe41769134c1f9f3deb8759e492.html">evidence arc_ev_1ba9cbe41769134c1f9f3deb8759e492 recorded for github.create_issue (denied)</a>
       </td>
-      <td class="mono nowrap muted" title="sha256:88f22985ad2b8f171cc3b391558b1a51e9133d6cd354522b551d868b09901f0f">88f22985ad2b…</td>
+      <td class="mono nowrap muted" title="sha256:29d2fb78b6fd509596570db4ae50c934a6bdce3bca1e792e8e7bc6c6de7d8b7f">29d2fb78b6fd…</td>
     </tr><tr class="">
       <td class="numeric mono tnum">19</td>
-      <td class="mono tnum nowrap muted">2026-10-23 07:14:56Z</td>
+      <td class="mono tnum nowrap muted">2026-10-26 04:32:21Z</td>
       <td class="mono nowrap">evidence.recorded</td>
       <td class="mono">system</td>
       <td style="font-size:13px">
-        <a href="evidence-arc_ev_a6f701345168e27e6ce81093f3e8afc3.html">evidence arc_ev_a6f701345168e27e6ce81093f3e8afc3 recorded for github.create_issue (executed)</a>
+        <a href="evidence-arc_ev_c97bccf1dd0adc7160f4c48e70370830.html">evidence arc_ev_c97bccf1dd0adc7160f4c48e70370830 recorded for github.create_issue (executed)</a>
       </td>
-      <td class="mono nowrap muted" title="sha256:a6ed1c77afc3bf030994e10f4abfd3e5f8a4ce6171ea23ee1c3ecafa4876f6ba">a6ed1c77afc3…</td>
+      <td class="mono nowrap muted" title="sha256:991bf344e774a4d0b274d765a9e69c750642afd30eee77392366d35a9471dea6">991bf344e774…</td>
     </tr><tr class="">
       <td class="numeric mono tnum">15</td>
-      <td class="mono tnum nowrap muted">2026-10-23 07:14:55Z</td>
+      <td class="mono tnum nowrap muted">2026-10-26 04:32:20Z</td>
       <td class="mono nowrap">evidence.recorded</td>
       <td class="mono">system</td>
       <td style="font-size:13px">
-        <a href="evidence-arc_ev_dc825f84d0c4e9acee5d3ee03c0ef8ae.html">evidence arc_ev_dc825f84d0c4e9acee5d3ee03c0ef8ae recorded for stripe.get_charge (denied)</a>
+        <a href="evidence-arc_ev_3d494398863fc71431ee18d0b66430c7.html">evidence arc_ev_3d494398863fc71431ee18d0b66430c7 recorded for stripe.get_charge (denied)</a>
       </td>
-      <td class="mono nowrap muted" title="sha256:77a0e1c89103ead0143a079c608023eb35f0754316e1649de9436d42cec92ba4">77a0e1c89103…</td>
+      <td class="mono nowrap muted" title="sha256:020f815786bc5bf0b57c4aec36db4072e194872c3501728dd9dbbf3f2d2b9254">020f815786bc…</td>
     </tr><tr class="">
       <td class="numeric mono tnum">12</td>
-      <td class="mono tnum nowrap muted">2026-10-23 07:14:54Z</td>
+      <td class="mono tnum nowrap muted">2026-10-26 04:32:19Z</td>
       <td class="mono nowrap">evidence.recorded</td>
       <td class="mono">system</td>
       <td style="font-size:13px">
-        <a href="evidence-arc_ev_8a1e980853aa21af7a02cb1841748869.html">evidence arc_ev_8a1e980853aa21af7a02cb1841748869 recorded for stripe.refund (executed)</a>
+        <a href="evidence-arc_ev_c5324d2066e7597e07528c6d8245f7f2.html">evidence arc_ev_c5324d2066e7597e07528c6d8245f7f2 recorded for stripe.refund (executed)</a>
       </td>
-      <td class="mono nowrap muted" title="sha256:05e0e513b38d4bd954eb923daba7be88f5647a14551bd4e412751b081a50f835">05e0e513b38d…</td>
+      <td class="mono nowrap muted" title="sha256:9ca6ec486a45d93646381444b83f59e6eaea071724f4c98c2d9c9f6c81341ec2">9ca6ec486a45…</td>
     </tr>
       </tbody>
     </table>

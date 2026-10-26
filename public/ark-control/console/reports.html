@@ -11,7 +11,7 @@
 <a href="#main" class="skip-link">Skip to content</a>
 <aside class="demo-strip" aria-label="About this page">
   <strong>Live design showcase</strong>
-  <span>Real markup from the ARC Control console, captured from the running server against the shipped demo seed (<span class="mono">ARC_SEED_DEMO=true</span>). The policy decisions, the approval, the evidence records and the hash-chained audit log below are all real; the connector effects are simulated, and controls that would write are disabled. Built from <span class="mono">9dd75e3</span> on <span class="mono">2026-10-23</span>.</span>
+  <span>Real markup from the ARC Control console, captured from the running server against the shipped demo seed (<span class="mono">ARC_SEED_DEMO=true</span>). The policy decisions, the approval, the evidence records and the hash-chained audit log below are all real; the connector effects are simulated, and controls that would write are disabled. Built from <span class="mono">fc9dd70</span> on <span class="mono">2026-10-26</span>.</span>
   <a class="showcase-home" href="/ark-control">← ARC Transformation Group</a>
 </aside>
 <div class="shell">
@@ -42,6 +42,16 @@
           
           <span>Approvals</span>
           <span class="rail-count">1<span class="sr-only"> pending</span></span>
+        </a>
+      </li><li>
+        <a
+          href="activity.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Activity</span>
+          
         </a>
       </li>
       </ul>
@@ -96,6 +106,51 @@
       </li>
       </ul>
     </div><div class="rail-group">
+      <div class="rail-group-label">Assure</div>
+      <ul>
+        <li>
+        <a
+          href="assurance.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Assurance</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="risks.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Risks</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="findings.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Findings</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="security.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Security</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
       <div class="rail-group-label">Record</div>
       <ul>
         <li>
@@ -121,19 +176,9 @@
       </li>
       </ul>
     </div><div class="rail-group">
-      <div class="rail-group-label">Assure</div>
+      <div class="rail-group-label">Admin</div>
       <ul>
         <li>
-        <a
-          href="security.html"
-          class="rail-item"
-          
-        >
-          
-          <span>Security</span>
-          
-        </a>
-      </li><li>
         <a
           href="reports.html"
           class="rail-item active"
@@ -141,6 +186,16 @@
         >
           <span class="rail-mark" aria-hidden="true"></span>
           <span>Reports</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="settings.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Settings</span>
           
         </a>
       </li>
@@ -159,7 +214,7 @@
       <span class="health ok">
     <span class="dot" aria-hidden="true"></span>ok</span
   >
-      <span class="tnum muted">v0.1.0</span>
+      <span class="tnum muted">v2.0.0</span>
     </p>
   </header>
   <main id="main">
@@ -175,9 +230,9 @@
 
   <p class="card" style="font-size:13px">
     <strong>Window:</strong> the most recent <span class="tnum">8</span> evidence
-    records, <span class="mono">2026-10-23 07:14:54Z</span> to
-        <span class="mono">2026-10-23 07:15:00Z</span>. Up to 200 are read, so a busier deployment’s window
-    is shorter in time. Generated <span class="mono">2026-10-23 07:15:01Z</span>. Pending approvals
+    records, <span class="mono">2026-10-26 04:32:19Z</span> to
+        <span class="mono">2026-10-26 04:32:26Z</span>. Up to 200 are read, so a busier deployment’s window
+    is shorter in time. Generated <span class="mono">2026-10-26 04:32:26Z</span>. Pending approvals
     and the inventory counts below are current, not windowed.
   </p>
 
@@ -341,8 +396,8 @@
             <td class="mono">stripe.refund</td>
             <td class="numeric tnum">2</td>
             <td class="numeric tnum ">0</td>
-            <td class="numeric tnum">0</td>
-            <td class="numeric tnum">0</td>
+            <td class="numeric tnum">1</td>
+            <td class="numeric tnum">1</td>
           </tr><tr>
             <td class="mono">stripe.get_charge</td>
             <td class="numeric tnum">0</td>
@@ -383,7 +438,7 @@
     
   </div>
   <p class="count-line">
-    <a href="agents.html"><span class="tnum">2</span> agents</a><span class="sep" aria-hidden="true">·</span><span><span class="tnum">0</span> suspended</span><span class="sep" aria-hidden="true">·</span><a href="tools.html"><span class="tnum">3</span> tools</a><span class="sep" aria-hidden="true">·</span><span><span class="tnum">1</span> critical-tier tools</span><span class="sep" aria-hidden="true">·</span><a href="policies.html"><span class="tnum">2</span> policies</a><span class="sep" aria-hidden="true">·</span><a href="audit.html"><span class="tnum">37</span> audit records</a>
+    <a href="agents.html"><span class="tnum">2</span> agents</a><span class="sep" aria-hidden="true">·</span><span><span class="tnum">0</span> suspended</span><span class="sep" aria-hidden="true">·</span><a href="tools.html"><span class="tnum">3</span> tools</a><span class="sep" aria-hidden="true">·</span><span><span class="tnum">1</span> critical-tier tools</span><span class="sep" aria-hidden="true">·</span><a href="policies.html"><span class="tnum">2</span> policies</a><span class="sep" aria-hidden="true">·</span><a href="audit.html"><span class="tnum">46</span> audit records</a>
   </p>
   <div style="margin-top:16px"><div class="table-wrap" role="region" aria-label="Connector health" tabindex="0">
     <table class="dt ">
@@ -413,7 +468,7 @@
     </table>
   </div></div>
   <p class="note">
-    Audit head sequence <span class="tnum">37</span>. This page
+    Audit head sequence <span class="tnum">46</span>. This page
     computes nothing the records do not already say.
   </p>
     </div>

@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NIST AI Risk Management Framework — ARC Control</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%231d4ed8%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%227.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2214.5%22%20width%3D%2218%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2221.5%22%20width%3D%2211%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%23ffffff%22%20opacity%3D%220.5%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="console.css">
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<aside class="demo-strip" aria-label="About this page">
+  <strong>Live design showcase</strong>
+  <span>Real markup from the ARC Control console, captured from the running server against the shipped demo seed (<span class="mono">ARC_SEED_DEMO=true</span>). The policy decisions, the approval, the evidence records and the hash-chained audit log below are all real; the connector effects are simulated, and controls that would write are disabled. Built from <span class="mono">fc9dd70</span> on <span class="mono">2026-10-26</span>.</span>
+  <a class="showcase-home" href="/ark-control">← ARC Transformation Group</a>
+</aside>
+<div class="shell">
+<nav class="rail" aria-label="Console">
+  <div class="rail-brand">
+    <span class="mark" aria-hidden="true"></span>
+    <span class="wordmark">ARC <strong>Control</strong></span>
+  </div>
+  <div class="rail-groups"><div class="rail-group">
+      <div class="rail-group-label">Operate</div>
+      <ul>
+        <li>
+        <a
+          href="index.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Overview</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="approvals.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Approvals</span>
+          <span class="rail-count">1<span class="sr-only"> pending</span></span>
+        </a>
+      </li><li>
+        <a
+          href="activity.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Activity</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Inventory</div>
+      <ul>
+        <li>
+        <a
+          href="agents.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Agents</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="tools.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Tools</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Govern</div>
+      <ul>
+        <li>
+        <a
+          href="policies.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Policies</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="access.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Access</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Assure</div>
+      <ul>
+        <li>
+        <a
+          href="assurance.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Assurance</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="risks.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Risks</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="findings.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Findings</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="security.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Security</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Record</div>
+      <ul>
+        <li>
+        <a
+          href="evidence.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Evidence</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="audit.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Audit</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div><div class="rail-group">
+      <div class="rail-group-label">Admin</div>
+      <ul>
+        <li>
+        <a
+          href="reports.html"
+          class="rail-item"
+          
+        >
+          
+          <span>Reports</span>
+          
+        </a>
+      </li><li>
+        <a
+          href="settings.html"
+          class="rail-item active"
+          aria-current="page"
+        >
+          <span class="rail-mark" aria-hidden="true"></span>
+          <span>Settings</span>
+          
+        </a>
+      </li>
+      </ul>
+    </div></div>
+  <div class="rail-foot">Theme follows the system setting</div>
+</nav>
+<div class="column">
+  <header class="masthead">
+    <p class="masthead-operator">
+      Acting as <strong>operations@arctransformationgroup.com</strong>
+      <span class="muted">(configured, not authenticated)</span>
+    </p>
+    <p class="masthead-api">
+      <span>API <span class="mono">http://127.0.0.1:8787</span></span>
+      <span class="health ok">
+    <span class="dot" aria-hidden="true"></span>ok</span
+  >
+      <span class="tnum muted">v2.0.0</span>
+    </p>
+  </header>
+  <main id="main">
+    <div class="main-inner">
+
+<p class="back"><a href="settings.html">← Settings</a></p>
+  <div class="page-header">
+    <div class="page-header-text">
+      <h1 class="">NIST AI Risk Management Framework</h1>
+      <p class="lede">AI RMF 1.0 (NIST AI 100-1, January 2023)</p>
+    </div>
+    
+  </div>
+
+  <p class="note"><strong>This is not an assessment.</strong> These mappings indicate which ARC Control evidence is relevant to a framework reference. They are not an assessment, not a certification, and not a statement that the reference is satisfied. The AI RMF is voluntary guidance, not a control standard with pass criteria; any conclusion about conformity is the organization’s own to reach. References are abbreviated for display and should be checked against the published framework text.</p>
+
+  <p class="count-line">
+    <span><span class="tnum">17</span> references mapped</span><span class="sep" aria-hidden="true">·</span><span><span class="tnum">0</span> reviewed</span><span class="sep" aria-hidden="true">·</span><span><span class="tnum">0</span> evidenced</span>
+  </p>
+
+  <div class="table-wrap" role="region" aria-label="Framework references" tabindex="0">
+    <table class="dt ">
+      <caption class="sr-only">Framework references</caption>
+      <thead>
+        <tr>
+          <th scope="col" class="">
+      Reference
+    </th><th scope="col" class="">
+      Review
+    </th><th scope="col" class="">
+      Controls
+    </th><th scope="col" class="">
+      Evidenced
+    </th><th scope="col" class="">
+      What ARC does and does not evidence
+    </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+    <td><span class="mono">GOVERN 1.3</span><br /><span class="muted">Risk management activities are scaled to the organization’s risk tolerance</span></td><td><span class="badge info">proposed</span></td><td><a href="assurance-ARC-AI-002.html"><span class="mono">ARC-AI-002</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;<br><a href="assurance-ARC-AI-008.html"><span class="mono">ARC-AI-008</span></a> &lt;span class=&quot;badge deny&quot;&gt;Fail&lt;/span&gt;</td><td><span class="badge muted">no</span></td><td>ARC evidences that high-impact tools are deliberately governed and that agent permissions are periodically reviewed. It does not evidence that the organization has set a risk tolerance, nor that the scaling matches it.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr><tr>
+    <td><span class="mono">GOVERN 1.5</span><br /><span class="muted">Ongoing monitoring and periodic review, with defined roles and review frequency</span></td><td><span class="badge info">proposed</span></td><td><a href="assurance-ARC-AI-008.html"><span class="mono">ARC-AI-008</span></a> &lt;span class=&quot;badge deny&quot;&gt;Fail&lt;/span&gt;</td><td><span class="badge muted">no</span></td><td>ARC records review cadence per agent and reports overdue reviews. The adequacy of the cadence, and whether reviewers are competent, are outside what ARC can evidence.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr><tr>
+    <td><span class="mono">GOVERN 2.1</span><br /><span class="muted">Roles, responsibilities and accountability are documented</span></td><td><span class="badge info">proposed</span></td><td><a href="assurance-ARC-AI-001.html"><span class="mono">ARC-AI-001</span></a> &lt;span class=&quot;badge deny&quot;&gt;Fail&lt;/span&gt;</td><td><span class="badge muted">no</span></td><td>ARC evidences a named accountable owner per agent. It cannot evidence that the named person accepts the accountability or is still in post.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr><tr>
+    <td><span class="mono">GOVERN 3.2</span><br /><span class="muted">Human oversight roles for AI systems are defined and differentiated</span></td><td><span class="badge info">proposed</span></td><td><a href="assurance-ARC-AI-004.html"><span class="mono">ARC-AI-004</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;</td><td><span class="badge muted">no</span></td><td>ARC evidences that policy-required human approvals occurred before execution, with separation of duties where demanded. In this release approver identity is a configured header rather than an authenticated user, which materially limits what the evidence establishes about *who* exercised oversight.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr><tr>
+    <td><span class="mono">GOVERN 4.3</span><br /><span class="muted">Practices for reporting and documenting AI risks are in place</span></td><td><span class="badge info">proposed</span></td><td><a href="assurance-ARC-AI-005.html"><span class="mono">ARC-AI-005</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;<br><a href="assurance-ARC-AI-006.html"><span class="mono">ARC-AI-006</span></a> &lt;span class=&quot;badge info&quot;&gt;Not assessable&lt;/span&gt;</td><td><span class="badge muted">no</span></td><td>ARC evidences that attempts and refusals are recorded and that the record is tamper-evident. ARC-AI-006 does not pass without an externally anchored audit head.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr><tr>
+    <td><span class="mono">GOVERN 6.1</span><br /><span class="muted">Policies address risks from third-party software and data</span></td><td><span class="badge info">proposed</span></td><td><a href="assurance-ARC-AI-007.html"><span class="mono">ARC-AI-007</span></a> &lt;span class=&quot;badge muted&quot;&gt;Not applicable&lt;/span&gt;</td><td><span class="badge muted">no</span></td><td>ARC evidences that MCP tool manifests are pinned so upstream change is detectable. It does not assess the third party itself, and vendor assessment is not implemented in this release.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr><tr>
+    <td><span class="mono">MAP 1.1</span><br /><span class="muted">Intended purpose and context of use are understood and documented</span></td><td><span class="badge info">proposed</span></td><td><a href="assurance-ARC-AI-001.html"><span class="mono">ARC-AI-001</span></a> &lt;span class=&quot;badge deny&quot;&gt;Fail&lt;/span&gt;</td><td><span class="badge muted">no</span></td><td>ARC stores a stated business purpose and criticality per agent. The text is free-form and ARC cannot judge its accuracy or currency.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr><tr>
+    <td><span class="mono">MAP 2.1</span><br /><span class="muted">The tasks the system supports are defined</span></td><td><span class="badge info">proposed</span></td><td><a href="assurance-ARC-AI-001.html"><span class="mono">ARC-AI-001</span></a> &lt;span class=&quot;badge deny&quot;&gt;Fail&lt;/span&gt;<br><a href="assurance-ARC-AI-002.html"><span class="mono">ARC-AI-002</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;</td><td><span class="badge muted">no</span></td><td>The tool registry and the policies selecting it together document what an agent is permitted to attempt, which is a narrower and more reliable statement than what it is intended to do.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr><tr>
+    <td><span class="mono">MAP 4.1</span><br /><span class="muted">Risks of third-party components are mapped</span></td><td><span class="badge info">proposed</span></td><td><a href="assurance-ARC-AI-007.html"><span class="mono">ARC-AI-007</span></a> &lt;span class=&quot;badge muted&quot;&gt;Not applicable&lt;/span&gt;<br><a href="assurance-ARC-AI-009.html"><span class="mono">ARC-AI-009</span></a> &lt;span class=&quot;badge approval&quot;&gt;Attested&lt;/span&gt;</td><td><span class="badge muted">no</span></td><td>Manifest pinning covers MCP components. ARC-AI-009 covers whether a governed system is reachable outside ARC, and it is attestation-based: ARC cannot test it.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr><tr>
+    <td><span class="mono">MEASURE 1.1</span><br /><span class="muted">Approaches and metrics for measuring AI risk are selected</span></td><td><span class="badge info">proposed</span></td><td><a href="assurance-ARC-AI-002.html"><span class="mono">ARC-AI-002</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;<br><a href="assurance-ARC-AI-003.html"><span class="mono">ARC-AI-003</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;<br><a href="assurance-ARC-AI-004.html"><span class="mono">ARC-AI-004</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;<br><a href="assurance-ARC-AI-005.html"><span class="mono">ARC-AI-005</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;</td><td><span class="badge muted">no</span></td><td>The control library is itself the selected approach for the authorization and evidence risks. It deliberately does not address model-level risks such as accuracy, bias or drift, which ARC does not observe.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr><tr>
+    <td><span class="mono">MEASURE 2.7</span><br /><span class="muted">Security and resilience are evaluated and documented</span></td><td><span class="badge info">proposed</span></td><td><a href="assurance-ARC-AI-003.html"><span class="mono">ARC-AI-003</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;<br><a href="assurance-ARC-AI-006.html"><span class="mono">ARC-AI-006</span></a> &lt;span class=&quot;badge info&quot;&gt;Not assessable&lt;/span&gt;<br><a href="assurance-ARC-AI-007.html"><span class="mono">ARC-AI-007</span></a> &lt;span class=&quot;badge muted&quot;&gt;Not applicable&lt;/span&gt;<br><a href="assurance-ARC-AI-009.html"><span class="mono">ARC-AI-009</span></a> &lt;span class=&quot;badge approval&quot;&gt;Attested&lt;/span&gt;</td><td><span class="badge muted">no</span></td><td>Covers enforcement, log integrity, supply-chain drift detection and bypass prevention. It is not a penetration test and makes no statement about resilience under load or attack.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr><tr>
+    <td><span class="mono">MEASURE 2.8</span><br /><span class="muted">Transparency and accountability risks are examined</span></td><td><span class="badge info">proposed</span></td><td><a href="assurance-ARC-AI-005.html"><span class="mono">ARC-AI-005</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;<br><a href="assurance-ARC-AI-006.html"><span class="mono">ARC-AI-006</span></a> &lt;span class=&quot;badge info&quot;&gt;Not assessable&lt;/span&gt;</td><td><span class="badge muted">no</span></td><td>Every decision carries a rule-by-rule trace and an evidence record, and the record is exportable and independently checkable. The limits of tamper-evidence are stated on the control rather than omitted.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr><tr>
+    <td><span class="mono">MEASURE 3.1</span><br /><span class="muted">Mechanisms exist to determine whether assurance criteria are met</span></td><td><span class="badge info">proposed</span></td><td><a href="assurance-ARC-AI-001.html"><span class="mono">ARC-AI-001</span></a> &lt;span class=&quot;badge deny&quot;&gt;Fail&lt;/span&gt;<br><a href="assurance-ARC-AI-002.html"><span class="mono">ARC-AI-002</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;<br><a href="assurance-ARC-AI-003.html"><span class="mono">ARC-AI-003</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;<br><a href="assurance-ARC-AI-004.html"><span class="mono">ARC-AI-004</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;<br><a href="assurance-ARC-AI-005.html"><span class="mono">ARC-AI-005</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;<br><a href="assurance-ARC-AI-006.html"><span class="mono">ARC-AI-006</span></a> &lt;span class=&quot;badge info&quot;&gt;Not assessable&lt;/span&gt;<br><a href="assurance-ARC-AI-007.html"><span class="mono">ARC-AI-007</span></a> &lt;span class=&quot;badge muted&quot;&gt;Not applicable&lt;/span&gt;<br><a href="assurance-ARC-AI-008.html"><span class="mono">ARC-AI-008</span></a> &lt;span class=&quot;badge deny&quot;&gt;Fail&lt;/span&gt;</td><td><span class="badge muted">no</span></td><td>The assessment runner is this mechanism. Its honest limit is recorded in the results themselves: a control ARC cannot decide reports not assessable rather than passing.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr><tr>
+    <td><span class="mono">MANAGE 1.2</span><br /><span class="muted">Treatment of documented risks is prioritized by impact and likelihood</span></td><td><span class="badge info">proposed</span></td><td><span class="muted">none mapped</span></td><td><span class="badge muted">no</span></td><td>Addressed by the risk register rather than by a control: risks carry inherent and reviewed-residual ratings, a treatment decision and an owner. No ARC control evidences this, and the mapping says so rather than borrowing a control that does not fit.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr><tr>
+    <td><span class="mono">MANAGE 2.2</span><br /><span class="muted">Mechanisms sustain the value of deployed systems</span></td><td><span class="badge info">proposed</span></td><td><a href="assurance-ARC-AI-008.html"><span class="mono">ARC-AI-008</span></a> &lt;span class=&quot;badge deny&quot;&gt;Fail&lt;/span&gt;</td><td><span class="badge muted">no</span></td><td>Periodic permission review is the only part of this ARC speaks to. Most of the reference is about model value and performance, which ARC does not observe.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr><tr>
+    <td><span class="mono">MANAGE 2.4</span><br /><span class="muted">Mechanisms exist to deactivate systems behaving inconsistently with intended use</span></td><td><span class="badge info">proposed</span></td><td><a href="assurance-ARC-AI-003.html"><span class="mono">ARC-AI-003</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;</td><td><span class="badge muted">no</span></td><td>ARC provides agent suspension, tool and connector disablement and retirement, each audited. The in-flight limitation is documented: disabling stops new actions and does not recall one already executing.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr><tr>
+    <td><span class="mono">MANAGE 4.1</span><br /><span class="muted">Post-deployment monitoring plans are implemented</span></td><td><span class="badge info">proposed</span></td><td><a href="assurance-ARC-AI-003.html"><span class="mono">ARC-AI-003</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;<br><a href="assurance-ARC-AI-005.html"><span class="mono">ARC-AI-005</span></a> &lt;span class=&quot;badge allow&quot;&gt;Pass&lt;/span&gt;</td><td><span class="badge muted">no</span></td><td>Continuous evaluation over a stated window, with the window on every result. ARC monitors authorization and evidence, not model behaviour.<br /><span class="muted">Gap: the mapping has not been reviewed</span></td>
+  </tr>
+      </tbody>
+    </table>
+  </div>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>
