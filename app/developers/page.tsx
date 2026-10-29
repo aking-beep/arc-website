@@ -13,9 +13,9 @@ import { labs, site } from "@/lib/content";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/developers" },
-  title: "Developers · Protocols, open tools and runtime research",
+  title: "Developers · Protocols, tools and runtime research",
   description:
-    "The ARC developer surface: agent-facing protocols, MIT-licensed scanners and catalogues, architecture notes, and open research into where AI work should execute.",
+    "Agent-facing protocols, scanners and catalogues, architecture notes, and open research into where AI work should execute.",
 };
 
 /** Routing axes for the runtime question. Research, not a shipping product. */

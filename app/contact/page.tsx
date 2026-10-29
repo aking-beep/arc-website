@@ -6,7 +6,7 @@ import { arcSite } from "@/lib/arc/site";
 
 const title = "Talk to ARC";
 const description =
-  "Tell us what’s happening. You don’t need to know which service you need — a person reads every inquiry and replies with a recommended first step, usually within two business days.";
+  "Tell us what’s happening. A person reads every inquiry and replies with a recommended first step, usually within two business days.";
 
 export const metadata: Metadata = {
   title,

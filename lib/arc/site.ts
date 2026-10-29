@@ -18,7 +18,7 @@ export const arcSite = {
     "ARC builds the controls that let AI agents act on production systems safely, modernizes the infrastructure they depend on, and turns emerging technology into products people actually use.",
   /** Shorter form, for metadata and social cards. */
   metaDescription:
-    "ARC Transformation Group builds practical AI systems and reliable infrastructure: ARC Control for agent authorization and auditable execution, ARC Labs for open developer tooling, and senior-led enterprise delivery.",
+    "ARC builds practical AI systems and reliable infrastructure: agent authorization and auditable execution, free developer tools, and senior-led delivery.",
 };
 
 export type ArcNavItem = { href: string; label: string };

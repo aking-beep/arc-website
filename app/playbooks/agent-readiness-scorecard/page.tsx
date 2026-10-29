@@ -15,9 +15,9 @@ const playbook = getPlaybook("agent-readiness-scorecard");
 
 export const metadata: Metadata = {
   alternates: { canonical: "/playbooks/agent-readiness-scorecard" },
-  title: "Agent Readiness Scorecard · Can agents operate your systems?",
+  title: "Agent Readiness Scorecard · Can agents operate?",
   description:
-    "A free self-assessment across discovery, interfaces, identity, permissions, observability, security and reliability. Scored in your browser. Nothing is stored.",
+    "A free self-assessment across discovery, interfaces, identity, permissions, observability, security and reliability. Scored in your browser.",
 };
 
 export default function ScorecardPage() {
