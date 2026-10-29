@@ -21,8 +21,10 @@ export function generateMetadata({
   const product = labs.find((p) => p.slug === params.slug);
   if (!product) return {};
   return {
-    title: `${product.name} · ARC Labs`,
-    description: product.description,
+    // Absolute: "ARC Labs" is already the brand token, so the template
+    // suffix would render "… · ARC Labs · ARC".
+    title: { absolute: `${product.name} · ARC Labs` },
+    description: product.metaDescription ?? product.description,
     alternates: { canonical: `/labs/${product.slug}` },
     openGraph: {
       title: product.name,

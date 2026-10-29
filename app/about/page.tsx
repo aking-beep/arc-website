@@ -8,7 +8,7 @@ import { site } from "@/lib/content";
 
 const title = "About ARC Transformation Group";
 const description =
-  "A senior-led technology practice: ARC Control for agent infrastructure, ARC Labs for applied research and developer tools, and enterprise delivery across AI, cloud, data and security. Twenty years of Fortune 100 and Fortune 500 programme work.";
+  "A senior-led technology practice across AI, cloud, data and security, with twenty years of Fortune 100 and Fortune 500 programme delivery.";
 
 export const metadata: Metadata = {
   title,

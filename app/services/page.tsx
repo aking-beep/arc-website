@@ -13,12 +13,12 @@ import { serviceAreas } from "@/lib/services";
 import { arcSite } from "@/lib/arc/site";
 import { jsonLdScript } from "@/lib/arc/json-ld";
 
-const title = "Solutions · Enterprise AI, automation and modernization";
+const title = "Solutions · Enterprise AI and modernization";
 const description =
-  "Six solution areas: AI strategy and readiness, AI development and integration, enterprise workflow automation, cloud and infrastructure modernization, AI governance and security, and emerging technology prototyping. Senior-led, scoped so you can stop at the end of any phase.";
+  "Six areas: AI strategy, development and integration, workflow automation, cloud modernization, governance and security, and prototyping. Senior-led.";
 
 export const metadata: Metadata = {
-  title: { absolute: `${title} · ARC Transformation Group` },
+  title,
   description,
   alternates: { canonical: "/services" },
   openGraph: { title, description, url: "/services", type: "website" },

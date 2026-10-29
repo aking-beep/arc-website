@@ -13,12 +13,12 @@ import {
 import { arcSite } from "@/lib/arc/site";
 import { jsonLdScript } from "@/lib/arc/json-ld";
 
-const title = "Research and insights · AI agent infrastructure, MCP security and AI governance";
+const title = "Research · Agent infrastructure, MCP and governance";
 const description =
-  "Dated, cited technical briefs and frameworks on AI agent infrastructure, agent reliability, MCP security, AI governance, workflow automation and cloud modernization. Updated when the facts change.";
+  "Dated, cited briefs on AI agent infrastructure, reliability, MCP security, AI governance, workflow automation and cloud modernization.";
 
 export const metadata: Metadata = {
-  title: { absolute: `${title} · ARC Transformation Group` },
+  title,
   description,
   alternates: { canonical: "/research" },
   openGraph: { title, description, url: "/research", type: "website" },
