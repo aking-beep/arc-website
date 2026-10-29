@@ -41,3 +41,6 @@ next-env.d.ts
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Written by scripts/research/brief.mjs on each run.
+research-brief.txt

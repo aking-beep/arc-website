@@ -1,0 +1,120 @@
+name: Monthly research review
+
+# Opens a PULL REQUEST with proposed research updates. It never pushes to
+# main and never publishes anything on its own: a person reads the diff and
+# the sources, then merges or closes it.
+#
+# That split is deliberate. Auto-publishing generated articles on a schedule
+# is what Google's spam policies call scaled content abuse, and the downside
+# is not "it does not work" — it is a sitewide demotion that would cost the
+# rankings the existing pages already hold. It also sits badly with this
+# repository's own rule against inventing capabilities, on a site whose
+# pitch is proving what an agent actually did.
+#
+# Requires an ANTHROPIC_API_KEY repository secret. Without it the job stops
+# after the brief and says so, rather than failing noisily every month.
+
+on:
+  schedule:
+    # 06:41 UTC on the 1st. Off the hour because runs bunched on :00 queue.
+    - cron: "41 6 1 * *"
+  workflow_dispatch:
+    inputs:
+      focus:
+        description: "Optional topic to concentrate on (default: the oldest briefs)"
+        required: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: monthly-research
+  cancel-in-progress: false
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # Deterministic, no network, no model: what is oldest, what is covered,
+      # and every URL already cited. The agent starts from facts.
+      - name: Build the research brief
+        run: |
+          set -euo pipefail
+          node scripts/research/brief.mjs | tee research-brief.txt
+          echo "::notice::Brief built, $(grep -c '^- ' research-brief.txt) briefs listed."
+
+      - name: Check whether an API key is configured
+        id: gate
+        env:
+          HAS_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+        run: |
+          if [ "$HAS_KEY" != "true" ]; then
+            echo "::warning::ANTHROPIC_API_KEY is not set, so only the brief ran. Add the secret to enable the review."
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Upload the brief either way
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-brief
+          path: research-brief.txt
+          retention-days: 30
+
+      - name: Research and open a pull request
+        if: steps.gate.outputs.proceed == 'true'
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_tools: "WebSearch,WebFetch,Read,Edit,Bash(git*),Bash(gh pr create*),Bash(npm test),Bash(npm run lint),Bash(npx tsc --noEmit),Bash(node scripts/research/brief.mjs)"
+          prompt: |
+            You are doing ARC's monthly research review on this repository.
+
+            Read research-brief.txt in the repository root first. It lists every
+            published brief oldest-first, how many days old each is, the topics
+            covered, and every URL already cited. Read lib/research.ts for the
+            shape of an entry and docs/WRITING.md for the house style.
+
+            Concentrate on the oldest briefs, unless a focus is given below.
+            Focus: ${{ github.event.inputs.focus || '(none — use the oldest)' }}
+
+            Your job is to propose updates a person will review. Open a pull
+            request. Do not push to main. Do not merge anything.
+
+            RULES, in order of importance:
+
+            1. Every factual claim you add or change must cite a real URL you
+               actually fetched and read in this run. If you could not fetch
+               it, you may not cite it. Do not present a URL from the
+               already-cited list as new evidence.
+            2. Do not invent capabilities, customer evidence, metrics or
+               deployment status. This is a hard rule in this repository. If a
+               claim needs a number you cannot source, leave the claim out.
+            3. Prefer correcting or re-dating an existing brief over adding a
+               new one. A brief whose facts moved is worth more than another
+               page.
+            4. If the month's reading turns up nothing worth changing, say so
+               and open no pull request. An empty month is a real outcome; do
+               not manufacture an update to look productive.
+            5. Keep any metaTitle under 54 characters and any metaDescription
+               under 155. npm test enforces both.
+            6. Do not touch commerce, contact, routing or component code. This
+               review changes research content and its sources, nothing else.
+
+            Before opening the PR run: npx tsc --noEmit, npm run lint, and
+            npm test. Fix anything you broke.
+
+            In the PR description state plainly what changed, which URLs you
+            fetched, what you considered and decided not to change, and
+            anything you were unsure about. A reviewer has to be able to check
+            your sources without redoing the research.
