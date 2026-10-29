@@ -18,7 +18,8 @@
     "playbook:bundle": "node scripts/playbook/bundle.mjs",
     "playbook:build": "npm run playbook:assets && npm run playbook:pdf && npm run playbook:bundle && npm run playbook:preview-public",
     "playbook:provision": "node scripts/playbook/provision.mjs",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "check:integrity": "node scripts/integrity/check.mjs"
   },
   "dependencies": {
     "@paddle/paddle-js": "^1.6.5",
