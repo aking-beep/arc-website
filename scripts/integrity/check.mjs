@@ -166,7 +166,12 @@ async function main() {
    * (findings), and says which it was.
    */
   const networkLevel = results.filter(
-    (r) => r.bucket === "broken" && /ENOTFOUND|EAI_AGAIN|ECONNREFUSED|ECONNRESET|CERT_/.test(r.detail),
+    (r) =>
+      (r.bucket === "broken" &&
+        /ENOTFOUND|EAI_AGAIN|ECONNREFUSED|ECONNRESET|CERT_/.test(r.detail)) ||
+      // Timeouts belong here as well. Thirty sites do not start timing out
+      // on the same Monday; one egress path does.
+      (r.bucket === "inconclusive" && r.detail === "timeout"),
   );
   if (results.length >= 4 && networkLevel.length > results.length / 2) {
     console.error(
@@ -217,7 +222,12 @@ async function main() {
   }
 
   if (!broken.length && !age?.stale) {
-    lines.push("Everything the site points at resolves, and dated content is within the freshness threshold.", "");
+    lines.push(
+      unsure.length > 0
+        ? `Nothing is broken, but ${unsure.length} URL(s) could not be confirmed this run, so this is not being recorded as all-clear.`
+        : "Everything the site points at resolves, and dated content is within the freshness threshold.",
+      "",
+    );
   }
 
   await fs.writeFile(path.join(root, "integrity-report.md"), lines.join("\n"));
@@ -228,7 +238,29 @@ async function main() {
   }
   console.log("report written to integrity-report.md");
 
-  if (broken.length || age?.stale) process.exitCode = 1;
+  /*
+   * Exit codes, and why there are four.
+   *
+   *   0  everything resolved, and everything was actually confirmed. Only
+   *      this may close an open issue.
+   *   1  something is broken or stale. File it.
+   *   2  the check could not run (blocked egress). Say so, report nothing.
+   *   3  nothing broken, but some URLs could not be confirmed either way.
+   *
+   * 3 exists because of a bug this had: inconclusive results exited 0, so a
+   * URL that 404'd last week and merely times out this week looked resolved,
+   * and the workflow closed the issue without the URL ever coming back. A
+   * run that could not check is not a run that passed.
+   */
+  if (broken.length || age?.stale) {
+    process.exitCode = 1;
+  } else if (unsure.length > 0) {
+    console.log(
+      `\nNothing broken, but ${unsure.length} URL(s) could not be confirmed. ` +
+        "Not treating that as a clean run.",
+    );
+    process.exitCode = 3;
+  }
 }
 
 main().catch((error) => {
