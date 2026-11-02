@@ -110,4 +110,24 @@ describe("commerceReadiness", () => {
     const { commerceReadiness } = await freshConfig();
     expect(commerceReadiness().checkoutVia).toBe("paddle");
   });
+
+  it("still reports fulfilment gaps in the mixed setup", async () => {
+    // The bug this guards: `missing` was emptied whenever any storefront URL
+    // existed. But Paddle wins when both are set, so buyers check out on the
+    // self-hosted path — and its Supabase, storage and email values are real
+    // requirements again. Reporting no gaps there hides live ones.
+    process.env.PADDLE_API_KEY = "test-key";
+    process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN = "test-token";
+    process.env.PLAYBOOK_DEFINE_PADDLE_PRICE_ID = "pri_test";
+    process.env.PLAYBOOK_DEFINE_BUY_URL = "https://arc.gumroad.com/l/define";
+    delete process.env.SUPABASE_URL;
+    delete process.env.SUPABASE_SERVICE_ROLE_KEY;
+    const { commerceReadiness } = await freshConfig();
+    const r = commerceReadiness();
+    expect(r.checkoutVia).toBe("paddle");
+    expect(r.checkout).toBe(true);
+    // Paddle can take the money but cannot yet deliver the file.
+    expect(r.fulfillment).toBe(false);
+    expect(r.missing).toContain("SUPABASE_URL");
+  });
 });

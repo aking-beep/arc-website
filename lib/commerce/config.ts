@@ -312,10 +312,11 @@ export function commerceReadiness(): CommerceReadiness {
     Boolean(readPlaybookBuyUrl(slug)),
   );
   const paddleReady = paddle.configured && anyPrice;
+  const via = paddleReady ? "paddle" : anyStorefront ? "storefront" : "none";
 
   return {
     checkout: paddleReady || anyStorefront,
-    checkoutVia: paddleReady ? "paddle" : anyStorefront ? "storefront" : "none",
+    checkoutVia: via,
     fulfillment: paddle.configured && anyPrice && supabase.configured,
     download: supabase.configured && anyFiles,
     email: email.configured,
@@ -323,16 +324,23 @@ export function commerceReadiness(): CommerceReadiness {
     // With a storefront selling, the self-hosted values are not missing
     // requirements — they are an unused alternative. Reporting them as gaps
     // would say "cannot sell" on a site that is selling.
-    missing: anyStorefront
-      ? []
-      : [
-          ...(paddle.configured ? [] : paddle.missing),
-          ...(anyPrice
-            ? []
-            : playbookSlugs.map((slug) => playbookPriceEnv[slug])),
-          ...(supabase.configured ? [] : supabase.missing),
-          ...storage.flatMap((item) => (item.configured ? [] : item.missing)),
-          ...(email.configured ? [] : email.missing),
-        ],
+    // Keyed on the route actually in use, not merely on a storefront URL
+    // existing. When Paddle is configured it wins, so buyers check out on the
+    // self-hosted path and its Supabase, storage and email values are real
+    // requirements again — reporting them as clear in that mixed setup would
+    // hide live fulfilment gaps. Only when the storefront does the selling
+    // are they an unused alternative.
+    missing:
+      via === "storefront"
+        ? []
+        : [
+            ...(paddle.configured ? [] : paddle.missing),
+            ...(anyPrice
+              ? []
+              : playbookSlugs.map((slug) => playbookPriceEnv[slug])),
+            ...(supabase.configured ? [] : supabase.missing),
+            ...storage.flatMap((item) => (item.configured ? [] : item.missing)),
+            ...(email.configured ? [] : email.missing),
+          ],
   };
 }
