@@ -23,6 +23,11 @@ export type CheckoutConfig = {
   configured: boolean;
   clientToken: string | null;
   priceId: string | null;
+  /**
+   * Hosted storefront URL, when one is set. Used only where Paddle is not
+   * configured, so a playbook can be sold before the self-hosted path is.
+   */
+  buyUrl?: string | null;
   environment: "sandbox" | "production";
 };
 
@@ -59,6 +64,22 @@ export function CheckoutButton({
   const idleLabel = typeof children === "string" ? children : `Get ${product}`;
 
   if (!config.configured || !config.clientToken || !config.priceId) {
+    // A hosted storefront is set: send the buyer there. Payment, the file and
+    // the receipt are the storefront's job, so nothing else here has to be
+    // configured for this to be a real sale.
+    if (config.buyUrl) {
+      return (
+        <div className={className}>
+          <Button size={size} variant={variant} href={config.buyUrl}>
+            {idleLabel}
+          </Button>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Secure checkout, then the file by email.
+          </p>
+        </div>
+      );
+    }
+
     return (
       <div className={className}>
         <Button size={size} variant="outline" disabled>

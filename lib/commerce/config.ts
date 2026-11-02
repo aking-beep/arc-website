@@ -20,6 +20,7 @@
 import "server-only";
 
 import {
+  playbookBuyUrlEnv,
   playbookPdfEnv,
   playbookPriceEnv,
   playbookSlugs,
@@ -87,6 +88,31 @@ export function readPlaybookPrices(): PlaybookPrices {
     if (id) prices[slug] = id;
   }
   return prices;
+}
+
+/**
+ * Hosted storefront URL for one playbook, or undefined.
+ *
+ * Validated rather than trusted: a typo here renders a buy button that
+ * goes nowhere, which is worse than the honest "not configured yet" state.
+ * Must be an absolute https URL.
+ */
+export function readPlaybookBuyUrl(slug: PlaybookSlug): string | undefined {
+  const raw = read(playbookBuyUrlEnv[slug]);
+  if (!raw) return undefined;
+  try {
+    const url = new URL(raw);
+    if (url.protocol !== "https:") {
+      console.error(
+        `${playbookBuyUrlEnv[slug]} must be https, got ${url.protocol}`,
+      );
+      return undefined;
+    }
+    return url.toString();
+  } catch {
+    console.error(`${playbookBuyUrlEnv[slug]} is not a valid URL`);
+    return undefined;
+  }
 }
 
 export function playbookSlugForPriceId(priceId: string): PlaybookSlug | null {
@@ -208,7 +234,9 @@ export function storageConfig(slug: PlaybookSlug): StorageConfig {
     pdfPath: pdfPath!,
     zipPath: zipPath!,
     signedUrlTtlSeconds:
-      Number.isFinite(ttl) && ttl > 0 && ttl <= 3600 ? ttl : DEFAULT_SIGNED_URL_TTL,
+      Number.isFinite(ttl) && ttl > 0 && ttl <= 3600
+        ? ttl
+        : DEFAULT_SIGNED_URL_TTL,
   };
 }
 
@@ -217,7 +245,12 @@ export function storageConfig(slug: PlaybookSlug): StorageConfig {
 // ---------------------------------------------------------------------------
 
 export type EmailConfig =
-  | { configured: true; apiKey: string; from: string; replyTo: string | undefined }
+  | {
+      configured: true;
+      apiKey: string;
+      from: string;
+      replyTo: string | undefined;
+    }
   | { configured: false; missing: string[] };
 
 export function emailConfig(): EmailConfig {
@@ -257,7 +290,10 @@ export function siteUrl(): string {
 // ---------------------------------------------------------------------------
 
 export type CommerceReadiness = {
+  /** True when a buyer can pay, by either route. */
   checkout: boolean;
+  /** Which route is answering: the Paddle overlay, or a hosted storefront. */
+  checkoutVia: "paddle" | "storefront" | "none";
   fulfillment: boolean;
   download: boolean;
   email: boolean;
@@ -272,21 +308,31 @@ export function commerceReadiness(): CommerceReadiness {
   const email = emailConfig();
   const anyPrice = playbookSlugs.some((slug) => Boolean(paddle.prices[slug]));
   const anyFiles = storage.some((item) => item.configured);
+  const anyStorefront = playbookSlugs.some((slug) =>
+    Boolean(readPlaybookBuyUrl(slug)),
+  );
+  const paddleReady = paddle.configured && anyPrice;
 
   return {
-    checkout: paddle.configured && anyPrice,
+    checkout: paddleReady || anyStorefront,
+    checkoutVia: paddleReady ? "paddle" : anyStorefront ? "storefront" : "none",
     fulfillment: paddle.configured && anyPrice && supabase.configured,
     download: supabase.configured && anyFiles,
     email: email.configured,
     environment: paddleEnvironment(),
-    missing: [
-      ...(paddle.configured ? [] : paddle.missing),
-      ...(anyPrice
-        ? []
-        : playbookSlugs.map((slug) => playbookPriceEnv[slug])),
-      ...(supabase.configured ? [] : supabase.missing),
-      ...storage.flatMap((item) => (item.configured ? [] : item.missing)),
-      ...(email.configured ? [] : email.missing),
-    ],
+    // With a storefront selling, the self-hosted values are not missing
+    // requirements — they are an unused alternative. Reporting them as gaps
+    // would say "cannot sell" on a site that is selling.
+    missing: anyStorefront
+      ? []
+      : [
+          ...(paddle.configured ? [] : paddle.missing),
+          ...(anyPrice
+            ? []
+            : playbookSlugs.map((slug) => playbookPriceEnv[slug])),
+          ...(supabase.configured ? [] : supabase.missing),
+          ...storage.flatMap((item) => (item.configured ? [] : item.missing)),
+          ...(email.configured ? [] : email.missing),
+        ],
   };
 }
