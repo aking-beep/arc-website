@@ -1,41 +1,53 @@
 name: Monthly research review
 
-# Opens a PULL REQUEST with proposed research updates. It never pushes to
-# main and never publishes anything on its own: a person reads the diff and
-# the sources, then merges or closes it.
+# Files one issue a month with the research brief: which briefs are oldest,
+# what they already cite, and how stale the market signals are. A person
+# reads it and decides what to update.
 #
-# That split is deliberate. Auto-publishing generated articles on a schedule
-# is what Google's spam policies call scaled content abuse, and the downside
-# is not "it does not work" — it is a sitewide demotion that would cost the
-# rankings the existing pages already hold. It also sits badly with this
-# repository's own rule against inventing capabilities, on a site whose
-# pitch is proving what an agent actually did.
+# WHAT THIS DELIBERATELY DOES NOT DO
 #
-# Requires an ANTHROPIC_API_KEY repository secret. Without it the job stops
-# after the brief and says so, rather than failing noisily every month.
+# An earlier version of this workflow ran an agent with web access to
+# research and open the pull request itself. Two reviewers found the same
+# flaw, and they were right:
+#
+#   - The tool allowlist was passed as `allowed_tools`, which that action
+#     does not accept, so it was silently discarded. The agent would have run
+#     with its default tool set, not the narrow one the workflow appeared to
+#     grant.
+#   - With `contents: write` and a repository token, an agent reading live,
+#     untrusted web pages is a prompt-injection path to pushing the default
+#     branch or exfiltrating a secret. "Open a PR, never push to main" lived
+#     only in prompt text, which is not a control.
+#
+# So the agent step is gone rather than patched. Re-adding it needs, at
+# minimum: the allowlist passed the way the action actually reads it and
+# verified in a real run log, `contents: read` on the job that touches the
+# network, no secret the agent can echo, and the diff reaching a human before
+# anything is pushed. None of that can be checked from a sandbox, so it is
+# not being shipped on the strength of a guess.
+#
+# The brief needs no model, no network and no secret, and it is most of the
+# value: a review starts from "these six are 89 days old and already cite
+# these 27 pages" instead of a blank page.
 
 on:
   schedule:
     # 06:41 UTC on the 1st. Off the hour because runs bunched on :00 queue.
     - cron: "41 6 1 * *"
   workflow_dispatch:
-    inputs:
-      focus:
-        description: "Optional topic to concentrate on (default: the oldest briefs)"
-        required: false
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
+  issues: write
 
 concurrency:
   group: monthly-research
   cancel-in-progress: false
 
 jobs:
-  review:
+  brief:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v4
@@ -44,77 +56,49 @@ jobs:
         with:
           node-version: "20"
 
-      # Deterministic, no network, no model: what is oldest, what is covered,
-      # and every URL already cited. The agent starts from facts.
+      # No npm install: the brief uses only Node builtins, so there is nothing
+      # to resolve and nothing new in the supply chain.
       - name: Build the research brief
         run: |
           set -euo pipefail
           node scripts/research/brief.mjs | tee research-brief.txt
-          echo "::notice::Brief built, $(grep -c '^- ' research-brief.txt) briefs listed."
 
-      - name: Check whether an API key is configured
-        id: gate
-        env:
-          HAS_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
-        run: |
-          if [ "$HAS_KEY" != "true" ]; then
-            echo "::warning::ANTHROPIC_API_KEY is not set, so only the brief ran. Add the secret to enable the review."
-            echo "proceed=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "proceed=true" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Upload the brief either way
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: research-brief
           path: research-brief.txt
-          retention-days: 30
+          retention-days: 90
 
-      - name: Research and open a pull request
-        if: steps.gate.outputs.proceed == 'true'
-        uses: anthropics/claude-code-action@v1
-        with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          allowed_tools: "WebSearch,WebFetch,Read,Edit,Bash(git*),Bash(gh pr create*),Bash(npm test),Bash(npm run lint),Bash(npx tsc --noEmit),Bash(node scripts/research/brief.mjs)"
-          prompt: |
-            You are doing ARC's monthly research review on this repository.
+      - name: File or update the monthly issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TITLE: "Monthly research review"
+        run: |
+          set -euo pipefail
 
-            Read research-brief.txt in the repository root first. It lists every
-            published brief oldest-first, how many days old each is, the topics
-            covered, and every URL already cited. Read lib/research.ts for the
-            shape of an entry and docs/WRITING.md for the house style.
+          {
+            echo "## Research brief"
+            echo ""
+            echo "What is oldest, what is covered, and what each brief already cites."
+            echo "Nothing here was researched or written by a model: it is the"
+            echo "repository's own content, dated."
+            echo ""
+            echo '```'
+            cat research-brief.txt
+            echo '```'
+            echo ""
+            echo "[Run log](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID})"
+            echo ""
+            echo "---"
+            echo "_Generated by [Claude Code](https://claude.ai/code)_"
+          } > issue.md
 
-            Concentrate on the oldest briefs, unless a focus is given below.
-            Focus: ${{ github.event.inputs.focus || '(none — use the oldest)' }}
+          existing=$(gh issue list --state open --search "$TITLE in:title" \
+            --json number --jq '.[0].number // empty')
 
-            Your job is to propose updates a person will review. Open a pull
-            request. Do not push to main. Do not merge anything.
-
-            RULES, in order of importance:
-
-            1. Every factual claim you add or change must cite a real URL you
-               actually fetched and read in this run. If you could not fetch
-               it, you may not cite it. Do not present a URL from the
-               already-cited list as new evidence.
-            2. Do not invent capabilities, customer evidence, metrics or
-               deployment status. This is a hard rule in this repository. If a
-               claim needs a number you cannot source, leave the claim out.
-            3. Prefer correcting or re-dating an existing brief over adding a
-               new one. A brief whose facts moved is worth more than another
-               page.
-            4. If the month's reading turns up nothing worth changing, say so
-               and open no pull request. An empty month is a real outcome; do
-               not manufacture an update to look productive.
-            5. Keep any metaTitle under 54 characters and any metaDescription
-               under 155. npm test enforces both.
-            6. Do not touch commerce, contact, routing or component code. This
-               review changes research content and its sources, nothing else.
-
-            Before opening the PR run: npx tsc --noEmit, npm run lint, and
-            npm test. Fix anything you broke.
-
-            In the PR description state plainly what changed, which URLs you
-            fetched, what you considered and decided not to change, and
-            anything you were unsure about. A reviewer has to be able to check
-            your sources without redoing the research.
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file issue.md
+            echo "Updated issue #$existing"
+          else
+            gh issue create --title "$TITLE" --body-file issue.md
+          fi
