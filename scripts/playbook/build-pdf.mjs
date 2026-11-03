@@ -133,8 +133,14 @@ function renderColophon(meta, edition, sources) {
   <h2>Colophon</h2>
   ${librariesNote}
   <dl class="colophon">${rows.join("\n    ")}</dl>
-  <p class="colophon">Set in IBM Plex Sans and IBM Plex Mono. Typeset for US Letter;
-     it prints on A4 with a slightly larger margin.</p>
+  <!--
+    No typeface credit. "Set in IBM Plex Sans" is the author admiring the
+    object; no buyer says it, and docs/WRITING.md test 1 asks whether they
+    would. The paper note stays because it answers a question someone is
+    about to have, with a sheet of A4 already in the tray.
+  -->
+  <p class="colophon">Typeset for US Letter; it prints on A4 with a slightly
+     larger margin.</p>
 </section>`;
 }
 
