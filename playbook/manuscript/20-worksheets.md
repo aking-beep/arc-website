@@ -24,7 +24,7 @@ specific yet.
 <div class="field" data-lines="1">For (a specific person — someone you could name)</div>
 <div class="field" data-lines="2">Who (has this specific problem)</div>
 <div class="field" data-lines="2">This gives them (this specific outcome)</div>
-<div class="field" data-lines="2">Instead of (what they actually do today)</div>
+<div class="field" data-lines="2">Instead of (what they do today)</div>
 <div class="field" data-lines="3">Write it out as one sentence</div>
 <div class="field" data-lines="2">Name one real person who fits the first slot</div>
 
@@ -179,7 +179,7 @@ What the current way costs them. A rough number beats no number.
 </tbody>
 </table>
 
-<div class="field" data-lines="3">"Good enough" for the AI component, in plain language</div>
+<div class="field" data-lines="3">"Good enough" for the AI component, in words a non-engineer would follow</div>
 
 </div>
 

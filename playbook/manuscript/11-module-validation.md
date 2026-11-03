@@ -72,9 +72,9 @@ question.
 ### Run the capability test on their data
 
 For AI products this is the step that separates validation from a nice
-conversation. Ask one person for twenty real inputs — their actual documents,
-tickets, transcripts, rows. Run them by hand. Record what fraction produced an
-answer they would accept.
+conversation. Ask one person for twenty real inputs: the documents, tickets,
+transcripts and rows they already have. Run them by hand. Record what fraction
+produced an answer they would accept.
 
 You now have three things: a demand signal, a capability baseline, and the
 beginnings of the evaluation set you will need in module 06. Keep those twenty
