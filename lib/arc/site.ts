@@ -15,10 +15,10 @@ export const arcSite = {
    * the About hero and the Organization JSON-LD.
    */
   positioning:
-    "ARC builds the controls that let AI agents act on production systems safely, modernizes the infrastructure they depend on, and turns emerging technology into products people actually use.",
+    "ARC is an AI and development studio for companies of 1 to 200 people. We build AI systems, automations, software and the infrastructure under them, and we build the controls that decide what those systems are allowed to do.",
   /** Shorter form, for metadata and social cards. */
   metaDescription:
-    "ARC Transformation Group builds practical AI systems and reliable infrastructure: ARC Control for agent authorization and auditable execution, ARC Labs for open developer tooling, and senior-led enterprise delivery.",
+    "An AI and development studio for companies of 1 to 200 people. AI and automation, software and infrastructure, and the controls that decide what an agent may do.",
 };
 
 export type ArcNavItem = { href: string; label: string };
@@ -54,6 +54,8 @@ export const arcFooterColumns: { heading: string; links: ArcNavItem[] }[] = [
     heading: "Solutions",
     links: [
       { href: "/services", label: "All solutions" },
+      { href: "/pricing", label: "What it costs" },
+      { href: "/products", label: "Products you can buy" },
       { href: "/advisory", label: "Engagements" },
       { href: "/agent-readiness", label: "Agent Readiness" },
       { href: "/ai-fit", label: "AI Fit" },
