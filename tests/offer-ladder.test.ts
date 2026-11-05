@@ -74,9 +74,9 @@ describe("the engagement ladder", () => {
   });
 
   it("flags the prices as unapproved until ARC sets them", () => {
-    // Benchmarked from competitors, not costed by ARC. The page renders an
-    // "indicative" banner while this is false, so a draft number is never
-    // presented as a quote.
+    // Benchmarked from competitors, not costed by ARC. While this is false
+    // the ladder stays off the site entirely, so a draft number is never
+    // shown to anyone.
     expect(pricingApproved).toBe(false);
   });
 });
@@ -91,10 +91,16 @@ describe("positioning", () => {
     expect(arcSite.metaDescription.toLowerCase()).not.toContain("enterprise");
   });
 
-  it("publishes the pricing route in the sitemap and the footer", () => {
-    expect(secondaryRoutes).toContain("/pricing");
+  it("does not publish the draft ladder anywhere", () => {
+    // /pricing carried figures benchmarked from competitors, never ARC's own.
+    // It is down and redirected to /products until the real numbers are set.
+    expect(secondaryRoutes).not.toContain("/pricing");
     const footerHrefs = arcFooterColumns.flatMap((c) => c.links.map((l) => l.href));
-    expect(footerHrefs).toContain("/pricing");
+    expect(footerHrefs).not.toContain("/pricing");
+  });
+
+  it("leaves /products as the only priced surface", () => {
+    expect(secondaryRoutes).toContain("/products");
   });
 });
 

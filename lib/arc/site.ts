@@ -54,7 +54,6 @@ export const arcFooterColumns: { heading: string; links: ArcNavItem[] }[] = [
     heading: "Solutions",
     links: [
       { href: "/services", label: "All solutions" },
-      { href: "/pricing", label: "What it costs" },
       { href: "/products", label: "Products you can buy" },
       { href: "/advisory", label: "Engagements" },
       { href: "/agent-readiness", label: "Agent Readiness" },
