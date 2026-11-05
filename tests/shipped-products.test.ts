@@ -21,10 +21,11 @@ const EXPECTED_PLANS: Record<string, { name: string; price: string; cadence: str
     { name: "Blueprint", price: "$399", cadence: "one-time" },
     { name: "Workspace", price: "$199", cadence: "month" },
   ],
-  fit: [
-    { name: "Free", price: "$0", cadence: "month" },
-    { name: "Pro", price: "$12", cadence: "month" },
-  ],
+  // Fit lists ONLY Free. ark-ai-fit.vercel.app serves the older consumer app
+  // from the `ark` repo, which has no accounts and no paid tier; the $12 Pro
+  // in aifit-engine is not on that deployment. Selling it would charge for
+  // something the URL does not offer.
+  fit: [{ name: "Free", price: "$0", cadence: "month" }],
 };
 
 describe("shipped products", () => {
@@ -52,6 +53,13 @@ describe("shipped products", () => {
           .toBeGreaterThan(0);
       }
     }
+  });
+
+  it("does not sell a Fit tier that is not on the deployment", () => {
+    const fit = getShippedProduct("fit");
+    expect(fit?.plans.map((p) => p.name)).toEqual(["Free"]);
+    expect(fit?.plans.some((p) => p.price !== "$0"), "Fit has no paid tier live").toBe(false);
+    expect(fit?.note).toMatch(/not on this deployment/i);
   });
 
   it("keeps Fit's separation from Fit Teams on the record", () => {

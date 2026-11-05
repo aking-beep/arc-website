@@ -12,8 +12,20 @@
 // EVERY FACT BELOW IS CHECKED, NOT WRITTEN FROM MEMORY
 //
 //   Plans      aifit-engine, apps/teams/src/design/config.ts (generated from
-//              packages/design). These are the live plan objects every pricing
-//              surface in that app reads.
+//              packages/design), at commit 7ff759a — the exact commit deployed
+//              to ark-ai-fit-teams.vercel.app, checked against the Vercel
+//              deployment record. These are the live plan objects every
+//              pricing surface in that app reads.
+//
+//   CAUTION, learned the hard way: the two Fit URLs are served by DIFFERENT
+//              codebases. ark-ai-fit-teams.vercel.app runs aifit-engine and
+//              matches the plans above. ark-ai-fit.vercel.app still runs the
+//              OLDER consumer app from the `ark` repo, whose own page says
+//              "free, no sign-up, anonymous" and has no accounts and no paid
+//              tier. The $12 Pro plan in aifit-engine is NOT on that
+//              deployment, so it is not sold here. Publishing it would have
+//              charged for something that URL does not offer. Re-check the
+//              deployment's source repo before adding a plan to Fit.
 //   Domains    Vercel project domains, verified, production target.
 //   Access     passwordProtection and ssoProtection both disabled on the
 //              projects, so these URLs are reachable without a Vercel login.
@@ -123,29 +135,16 @@ export const shippedProducts: ShippedProduct[] = [
         name: "Free",
         price: "$0",
         cadence: "month",
-        tagline: "Find your fit and set up one tool.",
+        tagline: "Five minutes, no sign-up, nothing stored on a server.",
         features: [
           "Five-minute assessment",
-          "3 tool recommendations",
-          "1 configuration package",
-          "Assessment history (30 days)",
-        ],
-      },
-      {
-        name: "Pro",
-        price: "$12",
-        cadence: "month",
-        tagline: "Every recommendation, every config, kept current.",
-        features: [
-          "Unlimited recommendations and comparisons",
-          "Unlimited configuration packages",
-          "Workflow builder",
-          "Re-assess when tools change",
-          "Full history and exports",
+          "Your AI style, with the reasons behind it",
+          "Matched tools for ChatGPT, Claude, Gemini and Cursor",
+          "Setup files: CLAUDE.md, Cursor rules, AGENTS.md",
         ],
       },
     ],
-    note: "Fit is a separate product with its own audience. It does not feed Fit Teams, and nothing in Fit Teams links to it.",
+    note: "Free and anonymous, with no account. A paid Pro tier is built in the newer codebase but is not on this deployment, so it is not sold here. Fit is a separate product with its own audience: it does not feed Fit Teams, and nothing in Fit Teams links to it.",
   },
 ];
 
