@@ -17,9 +17,13 @@ export const metadata: Metadata = {
 };
 
 /**
- * The shipped software, separated from the studio engagements on /pricing.
- * These have prices because they are products; the engagements are scoped per
- * client. See docs/WEDGE-AND-PRODUCTS-2026-11.md for why this page exists.
+ * The shipped software, and the only pricing surface on the site.
+ *
+ * These carry prices because they are products with prices, read from the
+ * app's own plan config. Studio engagements are scoped per client and are
+ * deliberately not priced here: the /pricing route that briefly carried
+ * benchmarked draft figures was removed, because a number ARC has not agreed
+ * to does not belong on ARC's site. See docs/WEDGE-AND-PRODUCTS-2026-11.md.
  */
 export default function ProductsPage() {
   return (
@@ -27,7 +31,7 @@ export default function ProductsPage() {
       <PageHero
         kicker="Products"
         title="The software you can buy without talking to us."
-        lead="ARC is a studio, so most of what we do is built for one client. These are the exceptions: products that run on their own, priced, with no call in the way. The engagements are on the pricing page."
+        lead="ARC is a studio, so most of what we do is built for one client and scoped with them. These are the exceptions: products that run on their own, priced, with no call in the way."
       />
 
       {shippedProducts.map((product) => (

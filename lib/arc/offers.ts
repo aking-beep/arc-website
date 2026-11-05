@@ -28,6 +28,17 @@
 // ---------------------------------------------------------------------------
 
 /**
+ * NOT PUBLISHED. There is no /pricing route: it was taken down on
+ * 5 November 2026 because these figures are benchmarked from competitors and
+ * were never ARC's own. The site must not carry a price ARC has not agreed
+ * to, and /products is the only pricing surface, with figures read from the
+ * app's own plan config.
+ *
+ * The ladder, the stop points and the commitments are kept because the
+ * research behind them stands and the route can come back in one commit once
+ * the numbers are set. Setting them means editing the `price` fields and
+ * flipping this flag; a test holds it false until someone does.
+ *
  * Flips to true when the prices below have been set by ARC rather than
  * benchmarked by research. Until then the ladder renders with a banner
  * saying the figures are indicative, because publishing a number ARC has
