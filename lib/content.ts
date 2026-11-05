@@ -1549,6 +1549,7 @@ export const nav: NavItem[] = [
 /** Secondary routes that belong in the sitemap and footer but not the header. */
 export const secondaryRoutes = [
   "/pricing",
+  "/products",
   "/advisory",
   "/research",
   "/academy",
