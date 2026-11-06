@@ -33,7 +33,7 @@ first slot.
 The fourth slot is the one people skip. "Instead of nothing" is almost never
 true. Whatever your product does, someone is currently doing it with a
 spreadsheet, an intern, a Slack channel, or by tolerating the problem. That is
-your real competitor, and it is usually much stronger than the obvious
+your competitor, and it is usually much stronger than the obvious
 alternative because it already has their trust and costs nothing to keep using.
 
 ### Name the riskiest assumption
@@ -44,7 +44,7 @@ somewhere between five and fifteen items. They fall into four kinds:
 | Kind | The question | Typical failure |
 | --- | --- | --- |
 | Demand | Do they want this outcome enough to change behaviour? | They agree it is a problem and keep doing it the old way. |
-| Capability | Can the technology actually produce the outcome reliably? | It works in the demo and fails on real inputs. |
+| Capability | Can the technology produce the outcome reliably? | It works in the demo and fails on real inputs. |
 | Access | Can you reach these people at a cost the price supports? | The product works and nobody finds it. |
 | Workflow | Does the outcome fit where they already work? | It requires them to open one more tab, so they do not. |
 
@@ -78,8 +78,8 @@ Some tests that cost almost nothing and are routinely skipped:
 ### Write what you will do if it fails
 
 One line. If the test comes back negative, do you narrow the customer, change
-the outcome, or stop? Writing it now is the only way the answer is honest,
-because after the result arrives you will be attached to the work.
+the outcome, or stop? Write it now, because after the result arrives you will
+be attached to the work and the answer will bend to fit it.
 
 ## You should be holding
 

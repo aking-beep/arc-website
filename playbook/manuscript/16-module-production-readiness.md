@@ -8,7 +8,7 @@ step: Harden
 # Module 07 · Production readiness
 
 **The decision.** What breaks, who finds out, and what does running this
-actually cost you per user?
+cost you per user?
 
 **Why it is cheaper here.** Everything in this module is work you will do
 eventually. The only question is whether you do it on a Tuesday afternoon or
@@ -81,10 +81,10 @@ named consistently, is more useful than forty inconsistent ones.
 Name them before you implement them. Renaming an event after it has history is
 how analytics quietly becomes untrustworthy.
 
-### Cost per user, honestly
+### Cost per user, including the parts that get left out
 
 Take the per-run cost from module 05, multiply by the runs an active user
-actually makes in a month, and add the fixed infrastructure divided across the
+makes in a month, and add the fixed infrastructure divided across the
 users you expect.
 
 Compare that to the price. If the margin is thin at the usage level of your
@@ -106,7 +106,8 @@ means and what to do about it.
 - [ ] Written privacy answers: what, where, how long, how deleted
 - [ ] A short watch list, and exactly one alert that pages someone
 - [ ] Five or six consistently named product events
-- [ ] An honest cost per active user, compared against the price
+- [ ] A cost per active user that includes retries and idle capacity,
+      compared against the price
 - [ ] A one-page operations runbook
 
 → **Worksheet 10 — Production readiness checklist**
