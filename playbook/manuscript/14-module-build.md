@@ -59,7 +59,7 @@ typing, it is judgement. Decide in advance which things a human owns:
 | Dependencies added | Every one is a maintenance commitment, and models add them freely. |
 | What gets deleted | Models are reluctant to remove code. Left alone, the codebase only grows. |
 
-Everything else is fair game, and should be — refusing the leverage because it
+Everything else is fair game, and should be. Refusing the speed-up because it
 is fashionable to worry about it is just slower.
 
 > **ARC Skills are in the Ship playbook.** Twenty agent skills with triggers,
@@ -83,7 +83,7 @@ else moved. Without the set, prompt changes are judged on the one example you
 were thinking about, which is how a product gets better at the case you
 demonstrated and worse at everything else.
 
-### Set a cost ceiling before the first real user
+### Set a cost ceiling before anyone outside the team uses it
 
 Work out what one complete run of the workflow costs in tokens and calls, and
 multiply by the usage you expect. Do this at the first slice, not at launch.

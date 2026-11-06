@@ -53,11 +53,11 @@ looks like a product problem rather than a capability problem.
 | **Not yet** | Everything else, including good ideas | Write it down and stop discussing it |
 
 The third list is the one that does the work. "Not yet" is not "no", and saying
-so out loud is usually enough to end the argument — most scope disputes are
+so out loud is usually enough to end the argument. Most scope disputes are
 really about whether someone's idea has been heard.
 
 Be suspicious of a must list longer than about ten items. A long must list
-usually means the workflow is actually two workflows.
+usually means the workflow is two workflows.
 
 ### Write the exclusions, and write why
 
@@ -74,9 +74,9 @@ wanted is decoration.
 
 ### Decide what "good enough" means for the AI part
 
-One sentence, now, in plain language, before any architecture exists. Not a
-metric yet — module 06 turns this into thresholds — but the shape of the
-answer:
+One sentence, now, before any architecture exists, with no term a new hire
+would have to look up. Not a metric yet (module 06 turns this into
+thresholds) but the shape of the answer:
 
 > The summary is good enough if a reviewer would send it without editing it,
 > four times out of five, and the fifth needs a small edit rather than a

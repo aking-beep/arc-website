@@ -20,9 +20,11 @@
 import "server-only";
 
 import {
+  playbookBuyUrlEnv,
   playbookPdfEnv,
   playbookPriceEnv,
   playbookSlugs,
+  playbookStorefrontUrl,
   playbookZipEnv,
   type PlaybookSlug,
 } from "@/lib/playbook";
@@ -87,6 +89,37 @@ export function readPlaybookPrices(): PlaybookPrices {
     if (id) prices[slug] = id;
   }
   return prices;
+}
+
+/**
+ * Hosted storefront URL for one playbook.
+ *
+ * The *_BUY_URL variable wins when it holds a valid https URL. Otherwise the
+ * live Gumroad product in lib/playbook.ts is used. A bad value is logged and
+ * ignored rather than rendering a buy button that goes nowhere.
+ */
+export function readPlaybookBuyUrl(slug: PlaybookSlug): string | undefined {
+  return (
+    validBuyUrl(slug, read(playbookBuyUrlEnv[slug])) ??
+    validBuyUrl(slug, playbookStorefrontUrl[slug])
+  );
+}
+
+function validBuyUrl(slug: PlaybookSlug, raw: string | undefined): string | undefined {
+  if (!raw) return undefined;
+  try {
+    const url = new URL(raw);
+    if (url.protocol !== "https:") {
+      console.error(
+        `${playbookBuyUrlEnv[slug]} must be https, got ${url.protocol}`,
+      );
+      return undefined;
+    }
+    return url.toString();
+  } catch {
+    console.error(`${playbookBuyUrlEnv[slug]} is not a valid URL`);
+    return undefined;
+  }
 }
 
 export function playbookSlugForPriceId(priceId: string): PlaybookSlug | null {
@@ -208,7 +241,9 @@ export function storageConfig(slug: PlaybookSlug): StorageConfig {
     pdfPath: pdfPath!,
     zipPath: zipPath!,
     signedUrlTtlSeconds:
-      Number.isFinite(ttl) && ttl > 0 && ttl <= 3600 ? ttl : DEFAULT_SIGNED_URL_TTL,
+      Number.isFinite(ttl) && ttl > 0 && ttl <= 3600
+        ? ttl
+        : DEFAULT_SIGNED_URL_TTL,
   };
 }
 
@@ -217,7 +252,12 @@ export function storageConfig(slug: PlaybookSlug): StorageConfig {
 // ---------------------------------------------------------------------------
 
 export type EmailConfig =
-  | { configured: true; apiKey: string; from: string; replyTo: string | undefined }
+  | {
+      configured: true;
+      apiKey: string;
+      from: string;
+      replyTo: string | undefined;
+    }
   | { configured: false; missing: string[] };
 
 export function emailConfig(): EmailConfig {
@@ -257,7 +297,10 @@ export function siteUrl(): string {
 // ---------------------------------------------------------------------------
 
 export type CommerceReadiness = {
+  /** True when a buyer can pay, by either route. */
   checkout: boolean;
+  /** Which route is answering: the Paddle overlay, or a hosted storefront. */
+  checkoutVia: "paddle" | "storefront" | "none";
   fulfillment: boolean;
   download: boolean;
   email: boolean;
@@ -272,21 +315,39 @@ export function commerceReadiness(): CommerceReadiness {
   const email = emailConfig();
   const anyPrice = playbookSlugs.some((slug) => Boolean(paddle.prices[slug]));
   const anyFiles = storage.some((item) => item.configured);
+  const anyStorefront = playbookSlugs.some((slug) =>
+    Boolean(readPlaybookBuyUrl(slug)),
+  );
+  const paddleReady = paddle.configured && anyPrice;
+  const via = paddleReady ? "paddle" : anyStorefront ? "storefront" : "none";
 
   return {
-    checkout: paddle.configured && anyPrice,
+    checkout: paddleReady || anyStorefront,
+    checkoutVia: via,
     fulfillment: paddle.configured && anyPrice && supabase.configured,
     download: supabase.configured && anyFiles,
     email: email.configured,
     environment: paddleEnvironment(),
-    missing: [
-      ...(paddle.configured ? [] : paddle.missing),
-      ...(anyPrice
+    // With a storefront selling, the self-hosted values are not missing
+    // requirements — they are an unused alternative. Reporting them as gaps
+    // would say "cannot sell" on a site that is selling.
+    // Keyed on the route actually in use, not merely on a storefront URL
+    // existing. When Paddle is configured it wins, so buyers check out on the
+    // self-hosted path and its Supabase, storage and email values are real
+    // requirements again — reporting them as clear in that mixed setup would
+    // hide live fulfilment gaps. Only when the storefront does the selling
+    // are they an unused alternative.
+    missing:
+      via === "storefront"
         ? []
-        : playbookSlugs.map((slug) => playbookPriceEnv[slug])),
-      ...(supabase.configured ? [] : supabase.missing),
-      ...storage.flatMap((item) => (item.configured ? [] : item.missing)),
-      ...(email.configured ? [] : email.missing),
-    ],
+        : [
+            ...(paddle.configured ? [] : paddle.missing),
+            ...(anyPrice
+              ? []
+              : playbookSlugs.map((slug) => playbookPriceEnv[slug])),
+            ...(supabase.configured ? [] : supabase.missing),
+            ...storage.flatMap((item) => (item.configured ? [] : item.missing)),
+            ...(email.configured ? [] : email.missing),
+          ],
   };
 }

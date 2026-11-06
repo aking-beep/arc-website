@@ -104,13 +104,13 @@ of travel.
 
 **The symptom:** the eval set is made of examples that work. They got added
 because someone was demonstrating something. A set that passes at 100% is
-measuring nothing — add the inputs that fail until it does not.
+measuring nothing. Add the inputs that fail until it does not.
 
 **The second symptom:** the score moved and nobody can say why. Change one
 thing per run, or accept that you are tuning blind and will eventually tune
 backwards.
 
 **The third symptom:** the threshold was met by redefining the criterion. The
-honest version is to miss the threshold and ship anyway with the reason
+alternative is to miss the threshold and ship anyway, with the reason
 recorded. That leaves you with a true number and a decision. Redefining leaves
 you with a false number and no decision.

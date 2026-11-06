@@ -102,6 +102,15 @@ test("the opened mobile menu actually fills the screen and shows its links", asy
   await page.getByRole("button", { name: "Open menu" }).click();
 
   const dialog = page.getByRole("dialog", { name: "Site menu" });
+
+  // Wait for the .arc-sheet entrance to finish before measuring. It animates
+  // translateY(-8px) to 0 over 0.2s, so measuring immediately after the click
+  // catches the panel mid-flight and reads y as 56-64 depending on timing.
+  // This assertion passed on luck until it did not.
+  await dialog.evaluate((el) =>
+    Promise.all(el.getAnimations().map((a) => a.finished)),
+  );
+
   const box = await dialog.boundingBox();
   expect(box, "panel has no box").not.toBeNull();
 

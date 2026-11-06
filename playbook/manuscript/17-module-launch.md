@@ -52,7 +52,7 @@ the floor below which you should not go; they say nothing about what the thing
 is worth to the buyer.
 
 Two mistakes, in order of frequency. Pricing low to reduce objections, which
-removes your margin and signals that the product is marginal — low prices do
+removes your margin and signals that the product is marginal. Low prices do
 not make an unwanted product wanted. And pricing into a procurement process you
 cannot survive, where a $2,000 annual contract triggers a review cycle that
 costs you more than the contract.
@@ -66,7 +66,8 @@ Launch produces a flood of ambiguous data. Decide beforehand which two numbers
 you are reading, and what each one would have to say to change the plan.
 
 Usually one is activation — the share of people who arrive and complete the
-workflow once — and one is return, which is the only real evidence of value.
+workflow once — and one is return, which is the only evidence that the value
+landed.
 Vanity metrics are the ones that can only go up: signups, page views, mentions.
 
 Set a review date and the decision rule:
@@ -118,4 +119,4 @@ advance, measured at the date you set, mean anything.
 
 **The third symptom:** you are adding features in response to low activation.
 If people are not completing the workflow once, more workflows will not help.
-Go back to module 03 and check that the one workflow is actually one workflow.
+Go back to module 03 and check that the one workflow is one workflow.

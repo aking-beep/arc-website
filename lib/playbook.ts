@@ -19,17 +19,29 @@ export const playbookPriceEnv: Record<PlaybookSlug, string> = {
 };
 
 /**
- * Gumroad product links, one per playbook. When one is set, that playbook's
- * buy button goes to Gumroad and Gumroad handles payment, tax and delivery.
+ * A hosted storefront URL per playbook — Gumroad, Lemon Squeezy, Ko-fi, a
+ * Stripe Payment Link, anything with a buyable page.
+ *
+ * This exists because the self-hosted path is all-or-nothing: Paddle keys,
+ * a Supabase project, a storage bucket and a sending domain, roughly twenty
+ * values, before the first sale. A storefront needs one URL and sells today.
+ * Whichever is configured, the product pages and prices here do not change.
+ *
+ * Paddle wins when both are set, since the overlay keeps the buyer on the
+ * site. These are public URLs, not secrets, and they are read from the
+ * environment only to keep deployment detail out of the content modules.
  */
-export const playbookGumroadEnv: Record<PlaybookSlug, string> = {
-  define: "PLAYBOOK_DEFINE_GUMROAD_URL",
-  build: "PLAYBOOK_BUILD_GUMROAD_URL",
-  ship: "PLAYBOOK_SHIP_GUMROAD_URL",
+export const playbookBuyUrlEnv: Record<PlaybookSlug, string> = {
+  define: "PLAYBOOK_DEFINE_BUY_URL",
+  build: "PLAYBOOK_BUILD_BUY_URL",
+  ship: "PLAYBOOK_SHIP_BUY_URL",
 };
 
-/** The live Gumroad products. The env vars above override these. */
-export const playbookGumroadUrl: Record<PlaybookSlug, string> = {
+/**
+ * The live Gumroad products. Used when the matching *_BUY_URL variable is
+ * unset or invalid, so the playbooks sell without any deployment settings.
+ */
+export const playbookStorefrontUrl: Record<PlaybookSlug, string> = {
   define: "https://arcking.gumroad.com/l/fosjv",
   build: "https://arcking.gumroad.com/l/epfptl",
   ship: "https://arcking.gumroad.com/l/bsych",

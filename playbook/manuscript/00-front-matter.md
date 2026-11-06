@@ -6,8 +6,8 @@ section: front
 
 ## From Idea to Shipped Product
 
-A working method for turning something you built with AI into something people
-can actually use.
+A working method for turning something you built with AI into something
+people will use.
 
 <div class="front-note">
 
@@ -23,10 +23,10 @@ sequence we run on paid work, written down so you can run it yourself.
 
 ## What this is
 
-Eight modules and eleven worksheets, in the order the decisions actually
-happen. Each module names one decision, explains why it is cheaper to make at
-that point than later, gives you the method, and tells you what you should be
-holding when you are done.
+Eight modules and eleven worksheets, in the order the decisions arrive. Each
+module names one decision, explains why it is cheaper to make at that point
+than later, gives you the method, and tells you what you should be holding
+when you are done.
 
 ## What this is not
 
@@ -44,8 +44,9 @@ can, and the sequence does not depend on them.
 ## What it costs you
 
 Working time. The modules are short on purpose; the worksheets are where the
-effort goes. If you fill in every worksheet honestly you will spend a day or
-two, and you will know more about your product than you did.
+effort goes. If you fill in every worksheet without flattering yourself you
+will spend a day or two, and you will know more about your product than you
+did.
 
 If you read it without filling anything in, it will feel obvious and change
 nothing. That is a fair warning rather than a sales tactic.

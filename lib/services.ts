@@ -19,6 +19,8 @@ export type ServiceArea = {
   verb: string;
   /** The homepage heading. A sentence a buyer could say. */
   heading: string;
+  /** Optional shorter meta description where `body` runs past ~155 characters. */
+  metaDescription?: string;
   /** One line under the heading, for nav menus and cards. */
   summary: string;
   icon: IconName;
@@ -55,6 +57,8 @@ export const serviceAreas: ServiceArea[] = [
       "The cloud bill grows faster than the business does",
     ],
     body: "We look at the technology you already have, find what is getting in the way, and give you a plan for fixing it in an order you can afford. Most of the value in a technology estate is in systems that already run the business, so that is where we start.",
+    metaDescription:
+      "We look at the technology you already have, find what is getting in the way, and give you a plan for fixing it in an order you can afford.",
     youGet: [
       "A map of the current state: services, data flows, integrations and who owns each",
       "A findings list ranked by business impact and what remediation costs",
@@ -88,6 +92,8 @@ export const serviceAreas: ServiceArea[] = [
       "You are paying for AI features you cannot tie to a number",
     ],
     body: "You probably do not need AI everywhere. You need it where it saves time, improves a decision, or makes something possible that was not. We find those places, say plainly which ones are ordinary automation instead, and help turn the rest into working systems.",
+    metaDescription:
+      "You do not need AI everywhere. We find where it saves time or improves a decision, say plainly where ordinary automation is the better answer.",
     youGet: [
       "A list of the workflows worth automating, each with the hours and cost behind it",
       "Each opportunity classified: fix the process first, plain automation, AI-assisted, or not yet",
@@ -115,6 +121,8 @@ export const serviceAreas: ServiceArea[] = [
       "Projects keep expanding past what the business asked for",
     ],
     body: "We help you go from a problem to an architecture to something people use, without building more than the business needs. That usually means shipping a narrow first version against a live workflow rather than a platform nobody has used yet.",
+    metaDescription:
+      "From a problem to an architecture to something people use, without building more than the business needs. A narrow first version, shipped.",
     youGet: [
       "A scoped build: functional requirements, architecture and what is deliberately out",
       "A working first version running against a live workflow, with people on it",
@@ -142,6 +150,8 @@ export const serviceAreas: ServiceArea[] = [
       "Spend moves with usage and the invoice is the first time you see it",
     ],
     body: "Getting an agent to work once is easy. Trusting it to work every day inside a business is the hard part. We put the controls, monitoring, evaluation and permissions around automated systems so they can be used without someone watching every run.",
+    metaDescription:
+      "Getting an agent to work once is easy. We put the controls, monitoring, evaluation and permissions around it so it can run without a babysitter.",
     youGet: [
       "An inventory of every agent and integration, what it can reach, and what it can change",
       "Blast radius ranked, with approval gates on the actions that warrant one",

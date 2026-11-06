@@ -38,8 +38,14 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(arcSite.domain),
   title: {
-    default: "ARC Transformation Group · Make technology work for your business.",
-    template: "%s · ARC Transformation Group",
+    // 60 characters is roughly where Google truncates a title in results.
+    // The old suffix, " · ARC Transformation Group", spent 28 of them on
+    // every page, leaving 32 for the part that actually distinguishes the
+    // page — not enough for a research brief to say what it is about. The
+    // full name still reaches crawlers through `openGraph.siteName` and the
+    // Organization JSON-LD in this file.
+    default: "ARC Transformation Group · Make technology work",
+    template: "%s · ARC",
   },
   description: arcSite.metaDescription,
   keywords: [

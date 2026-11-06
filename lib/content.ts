@@ -315,6 +315,13 @@ export type Product = {
   name: string;
   tagline: string;
   description: string;
+  /**
+   * Optional shorter copy for the <title> and meta description only, used
+   * where the on-page version runs past what a search result displays
+   * (~60 and ~155 characters). The page keeps the longer version: a heading
+   * is written to be read, not to fit a SERP.
+   */
+  metaDescription?: string;
   status: Status;
   /**
    * Real maturity, shown on every card and page. A Labs project is never
@@ -345,6 +352,8 @@ export const labs: Product[] = [
     tagline: "Check any MCP server against the spec in seconds.",
     description:
       "Point it at a Model Context Protocol server and get a report: what passes, what breaks, and what to fix first, written for an operator to act on. The July 2026 spec revision changed how servers start up, so \"it works in one client\" is no longer evidence that it works.",
+    metaDescription:
+      "Point it at an MCP server and get a report: what passes, what breaks, and what to fix first, written for an operator to act on.",
     status: "live",
     maturity: "open-source",
     badge: "Flagship",
@@ -381,6 +390,8 @@ export const labs: Product[] = [
     tagline: "Stop AI coding-agent spend before the invoice.",
     description:
       "Spend control for Claude Code and Cursor: what each developer is burning, a kill switch that acts within minutes, and client chargeback — without routing your traffic through a gateway. Free signup, keys encrypted at rest.",
+    metaDescription:
+      "Spend control for Claude Code and Cursor: what each developer is burning, a kill switch that acts within minutes, and client chargeback.",
     status: "live",
     maturity: "alpha",
     badge: "Free product",
@@ -418,6 +429,8 @@ export const labs: Product[] = [
     tagline: "A second set of eyes on your system prompts.",
     description:
       "Paste a prompt and get structured feedback on clarity, injection surface, ambiguity, and failure modes. The review a senior engineer would give, minus the wait. Static, reproducible, no model call.",
+    metaDescription:
+      "Paste a prompt and get structured feedback on clarity, injection surface, ambiguity and failure modes. Free, and nothing is stored.",
     status: "live",
     maturity: "open-source",
     visual: "prompt",
@@ -452,6 +465,8 @@ export const labs: Product[] = [
     tagline: "Is your endpoint reachable, secure, and fast?",
     description:
       "Paste a URL or hostname and get a graded report on DNS, TCP, TLS, redirects, latency, and security headers — with prioritized fixes you can paste into a PR. Free to use, no account required to start.",
+    metaDescription:
+      "Paste a URL or hostname for a graded report on DNS, TCP, TLS, redirects, latency and security headers, with prioritized fixes.",
     status: "live",
     maturity: "open-source",
     badge: "Free",
@@ -489,6 +504,8 @@ export const labs: Product[] = [
     tagline: "Turn a use case and your constraints into a defensible AI architecture.",
     description:
       "Describe the use case, the data, the budget, and the constraints. Get a decision matrix: the recommended shape, what was ruled out and why, named cost drivers (never invented prices), and a board brief you can copy. Free, no account, nothing stored. Built for the decisions teams are making now: when not to use an agent, when a tool needs an allowlist, and when the answer is just a database lookup.",
+    metaDescription:
+      "Describe the use case, data, budget and constraints. Get a decision matrix: the recommended shape, what was ruled out, and why.",
     status: "live",
     maturity: "alpha",
     badge: "Free",
@@ -527,6 +544,8 @@ export const labs: Product[] = [
     tagline: "Defensive security review for AI applications.",
     description:
       "Describe an AI application — agents, MCP, retrieval, prompts, data flows — and get a graded defensive review covering prompt injection, what your tools are allowed to do, data exposure, tenancy, and logging. Every finding quotes your own words back to you. Not a penetration test and not a certification.",
+    metaDescription:
+      "Describe an AI application — agents, MCP, retrieval, prompts, data flows — and get a graded defensive review of its attack surface.",
     status: "live",
     maturity: "alpha",
     badge: "Free",
@@ -565,6 +584,8 @@ export const labs: Product[] = [
     tagline: "Paste a URL. See where the purchase path stalls.",
     description:
       "Scan a public marketing, product, or checkout page and get an evidence-backed audit of the buying path: missing prices, account walls, sales-only CTAs, thin SPA checkouts, and competing asks. Every finding quotes what was on the page. Free, no account, nothing stored.",
+    metaDescription:
+      "Scan a marketing, product or checkout page for an evidence-backed audit of the buying path: missing prices, account walls, sales-only CTAs.",
     status: "live",
     maturity: "experiment",
     badge: "Free",
@@ -603,6 +624,8 @@ export const labs: Product[] = [
     tagline: "Know what your agents can reach, what they can do, and where the controls are missing.",
     description:
       "Describe your agents, tools, permissions, and data sources. Get an inventory plus a graded review across identity, permissions, data access, human approval, and audit trails — every finding quotes your own words back to you. Free, no account, nothing stored.",
+    metaDescription:
+      "Describe your agents, tools, permissions and data sources. Get an inventory plus a graded review across identity, access and approval.",
     status: "live",
     maturity: "alpha",
     badge: "Free",
@@ -640,6 +663,8 @@ export const labs: Product[] = [
     tagline: "Describe a workflow. Get back where it breaks.",
     description:
       "Paste a process in plain language and get a graded diagnosis across handoffs, rework loops, wait states, and automation readiness — with what to fix, what to automate, and what to leave alone. Free, no account, nothing stored.",
+    metaDescription:
+      "Paste a process in plain language for a graded diagnosis across handoffs, rework loops, wait states and automation readiness.",
     status: "live",
     maturity: "experiment",
     badge: "Free",
@@ -1271,6 +1296,14 @@ export type CaseStudy = {
   slug: string;
   client: string;
   title: string;
+  /**
+   * Optional shorter copy for the <title> and meta description only, used
+   * where the on-page version runs past what a search result displays
+   * (~60 and ~155 characters). The page keeps the longer version: a heading
+   * is written to be read, not to fit a SERP.
+   */
+  metaTitle?: string;
+  metaDescription?: string;
   status: Status;
   kind: "career" | "arc";
   industry: string;
@@ -1289,6 +1322,10 @@ export const caseStudies: CaseStudy[] = [
     slug: "enterprise-cybersecurity-release-value",
     client: "Confidential · global cybersecurity company",
     title: "Coordinating 300+ features so release investment showed up in sales",
+    metaTitle:
+      "Coordinating 300+ features into release value",
+    metaDescription:
+      "An enterprise cybersecurity product line where feature volume had outpaced release value, and the program that tied 300+ features to sales impact.",
     status: "live",
     kind: "career",
     industry: "Enterprise cybersecurity",
@@ -1319,6 +1356,10 @@ export const caseStudies: CaseStudy[] = [
     slug: "consumer-cdp-tens-of-millions",
     client: "Confidential · large-scale consumer platform",
     title: "Customer-data architecture at tens of millions of profiles",
+    metaTitle:
+      "Customer-data architecture at CDP scale",
+    metaDescription:
+      "CDP and data-platform delivery for a consumer business at Ticketmaster scale: tens of millions of profiles and complex enterprise constraints.",
     status: "live",
     kind: "career",
     industry: "Live entertainment · consumer platforms",
@@ -1349,6 +1390,8 @@ export const caseStudies: CaseStudy[] = [
     slug: "brand-consumer-lego-nfl",
     client: "LEGO · NFL · live entertainment",
     title: "Brand and consumer programs at global scale",
+    metaDescription:
+      "Technology delivery for global consumer brands and live-entertainment platforms, including programs with LEGO and the NFL.",
     status: "live",
     kind: "career",
     industry: "Consumer brands · live entertainment",
@@ -1378,6 +1421,10 @@ export const caseStudies: CaseStudy[] = [
     slug: "transformation-diagnostic",
     client: "Confidential · mid-market operator",
     title: "Three competing initiatives, one sequenced roadmap",
+    metaTitle:
+      "Three initiatives, one sequenced roadmap",
+    metaDescription:
+      "An Integrated Transformation Diagnostic: three overlapping digital bets, no shared view of debt, and five weeks to one sequenced plan.",
     status: "live",
     kind: "arc",
     industry: "Digital transformation",

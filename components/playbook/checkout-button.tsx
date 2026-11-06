@@ -1,20 +1,14 @@
 "use client";
 
 import * as React from "react";
-import Script from "next/script";
 import { initializePaddle, type Paddle } from "@paddle/paddle-js";
 
-import { Button, buttonClassName, type ButtonProps } from "@/components/ui/button";
+import { Button, type ButtonProps } from "@/components/ui/button";
 import { trackEvent } from "@/lib/analytics";
 import type { PlaybookSlug } from "@/lib/playbook";
 
 /**
- * Opens checkout: Gumroad when the playbook has a Gumroad link, otherwise
- * Paddle's hosted checkout overlay.
- *
- * Gumroad is a plain link to the product's payment step. Gumroad's script
- * turns it into an overlay on this page; if the script is blocked, the link
- * still works and the buyer pays on gumroad.com.
+ * Opens Paddle's hosted checkout overlay.
  *
  * What reaches the browser is only the client token and the price id, both of
  * which Paddle publishes as public values. The API key, the webhook secret and
@@ -27,10 +21,13 @@ import type { PlaybookSlug } from "@/lib/playbook";
  */
 export type CheckoutConfig = {
   configured: boolean;
-  /** Gumroad product link. When set, Paddle is not used for this playbook. */
-  gumroadUrl: string | null;
   clientToken: string | null;
   priceId: string | null;
+  /**
+   * Hosted storefront URL, when one is set. Used only where Paddle is not
+   * configured, so a playbook can be sold before the self-hosted path is.
+   */
+  buyUrl?: string | null;
   environment: "sandbox" | "production";
 };
 
@@ -66,21 +63,23 @@ export function CheckoutButton({
 
   const idleLabel = typeof children === "string" ? children : `Get ${product}`;
 
-  if (config.gumroadUrl) {
-    return (
-      <GumroadLink
-        url={config.gumroadUrl}
-        product={product}
-        priceAmount={priceAmount}
-        label={idleLabel}
-        size={size}
-        variant={variant}
-        className={className}
-      />
-    );
-  }
-
   if (!config.configured || !config.clientToken || !config.priceId) {
+    // A hosted storefront is set: send the buyer there. Payment, the file and
+    // the receipt are the storefront's job, so nothing else here has to be
+    // configured for this to be a real sale.
+    if (config.buyUrl) {
+      return (
+        <div className={className}>
+          <Button size={size} variant={variant} href={config.buyUrl}>
+            {idleLabel}
+          </Button>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Secure checkout, then the file by email.
+          </p>
+        </div>
+      );
+    }
+
     return (
       <div className={className}>
         <Button size={size} variant="outline" disabled>
@@ -179,43 +178,6 @@ export function CheckoutButton({
           and we will send a payment link.
         </p>
       ) : null}
-    </div>
-  );
-}
-
-function GumroadLink({
-  url,
-  product,
-  priceAmount,
-  label,
-  size,
-  variant,
-  className,
-}: {
-  url: string;
-  product: PlaybookSlug;
-  priceAmount: number;
-  label: string;
-  size: ButtonProps["size"];
-  variant: ButtonProps["variant"];
-  className?: string;
-}) {
-  return (
-    <div className={className}>
-      <Script src="https://gumroad.com/js/gumroad.js" strategy="lazyOnload" />
-      <a
-        href={url}
-        className={buttonClassName(variant, size)}
-        onClick={() =>
-          trackEvent("playbook_checkout_start", {
-            product,
-            price: priceAmount,
-            environment: "gumroad",
-          })
-        }
-      >
-        {label}
-      </a>
     </div>
   );
 }

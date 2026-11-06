@@ -18,8 +18,8 @@ export function generateMetadata({
   const study = caseStudies.find((c) => c.slug === params.slug);
   if (!study) return {};
   return {
-    title: `${study.title} · Work`,
-    description: study.summary,
+    title: `${study.metaTitle ?? study.title} · Work`,
+    description: study.metaDescription ?? study.summary,
     alternates: { canonical: `/work/${study.slug}` },
     openGraph: {
       title: study.title,
