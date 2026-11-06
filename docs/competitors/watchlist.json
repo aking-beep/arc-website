@@ -1,0 +1,66 @@
+{
+  "$comment": "Curated by hand. Each entry is a public vendor page the weekly watcher snapshots. Adding a URL here is the only way to widen the watch; the script fetches nothing else.",
+  "reviewed": "2026-11-04",
+  "targets": [
+    {
+      "id": "okta-ai-agents",
+      "vendor": "Okta",
+      "url": "https://www.okta.com/products/govern-ai-agent-identity/",
+      "overlaps": ["authorization", "identity", "governance"]
+    },
+    {
+      "id": "ibm-agent-identity",
+      "vendor": "IBM",
+      "url": "https://www.ibm.com/products/verify/agent-identity",
+      "overlaps": ["authorization", "identity", "audit"]
+    },
+    {
+      "id": "palo-alto-ai-gateway",
+      "vendor": "Palo Alto Networks",
+      "url": "https://www.paloaltonetworks.com/ai-security/ai-gateway",
+      "overlaps": ["authorization", "observability", "mcp"]
+    },
+    {
+      "id": "rsa-agent-id",
+      "vendor": "RSA",
+      "url": "https://www.rsa.com/products/rsa-agent-id/",
+      "overlaps": ["identity", "authorization", "governance"]
+    },
+    {
+      "id": "oleria-agent-governance",
+      "vendor": "Oleria",
+      "url": "https://www.oleria.com/product/ai-agent-governance",
+      "overlaps": ["authorization", "audit", "mcp"]
+    },
+    {
+      "id": "secureauth-agent",
+      "vendor": "SecureAuth",
+      "url": "https://secureauth.com/products/agent",
+      "overlaps": ["authorization", "audit"]
+    },
+    {
+      "id": "pruvz-outcome-verification",
+      "vendor": "Pruvz",
+      "url": "https://pruvz.ai/blog/ai-agent-outcome-verification",
+      "overlaps": ["outcome-verification"]
+    }
+  ],
+  "signals": [
+    "generally available",
+    "now available",
+    "general availability",
+    "public preview",
+    "early access",
+    "waitlist",
+    "per agent",
+    "per month",
+    "pricing",
+    "outcome",
+    "end state",
+    "end-state",
+    "verif",
+    "reconcil",
+    "under whose authority",
+    "mcp"
+  ]
+}

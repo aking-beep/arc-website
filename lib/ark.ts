@@ -122,19 +122,20 @@ export const arkProducts: ArkProduct[] = [
     // on it keep working.
     name: "ARC Control",
     navLabel: "ARC Control",
-    tagline: "Outcome assurance for production AI agents.",
+    tagline: "May this agent take this action, right now?",
     summary:
-      "Understand what agents attempted, what authority they used, and whether the intended outcome occurred.",
+      "An approval and accountability layer for the consequential things an agent does: refunding money, deleting data, messaging a customer. One decision, recorded so it can be answered for afterwards.",
     maturity: "design-partners",
     flagship: true,
     ctaLabel: "Talk to us about design partnership",
     ctaHref: "/contact?topic=ark-control",
     todayLabel: "Where this is today",
     today:
-      "ARC Control is in design-partner development. It is not a product you can buy or sign up for yet. We are working through the verification model with a small number of teams running agents against production systems. There is no pricing page because there is nothing to price yet.",
+      "In design-partner development, and not something you can buy yet. The decision kernel, the in-process guard, the stored decision records and the view over them are built and tested. The approval service is not: an action that needs a person's sign-off is currently refused rather than escalated, so today Control can allow and deny but cannot ask. No team outside ARC has put a production workload behind it, so everything we believe about what this is worth is still a hypothesis. There is no pricing page because there is nothing to price yet.",
     intro: [
-      "Seeing a trace tells you what the agent attempted. Assurance asks a different question: did the intended outcome occur?",
-      "ARC Control is being built to connect execution evidence — the trace, the tool call, the identity, the policy decision — with outcome evidence collected from the systems that were supposed to change.",
+      "An agent with tools forces a question before it forces any other: may this one take this action, for this customer, now? A dashboard that shows afterwards what it did answers the wrong question too late.",
+      "ARC Control answers it at the tool boundary, in your own process. A guard asks a deterministic kernel, which returns allow, deny, needs-a-person or unknown for one typed request against your policy. The action runs only on an explicit allow, and every decision keeps the policy version it was made under, a closed reason code and a digest of the request, so who allowed what can be replayed later.",
+      "Control stays out of the request path. No tool call waits on a round trip to us, and us being down cannot authorise anything.",
     ],
     capabilities: [
       {
@@ -259,7 +260,7 @@ export const arkProducts: ArkProduct[] = [
     ctaHref: "/contact?topic=ai-fit-teams",
     todayLabel: "Where this is today",
     today:
-      "Available as a three-to-four week assessment run by ARC. It is the organisational counterpart to AI Fit: the same scoring discipline, applied to the teams, workflows and habits that decide whether anything ships.",
+      "Available as a three-to-four week assessment run by ARC, scoring the teams, workflows and habits that decide whether anything ships. If what you need is a verdict on one specific workload rather than on the organisation, Fit Teams does that on its own from $149 and needs no call: see /products.",
     intro: [
       "Technology readiness and organisational readiness fail differently. A sound architecture still dies if nobody owns the workflow, the data access takes four months, or the people expected to run it were never asked.",
       "AI Fit Teams scores four dimensions against the work your organisation does: what it can do today, what it is trying to achieve, whether the teams can support it, and the habits that will carry or kill the change.",
