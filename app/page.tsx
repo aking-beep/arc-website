@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   // The default title in the root layout is already the homepage title, so
   // this route sets `absolute` rather than appending the site name twice.
   title: {
-    absolute: "ARC Transformation Group · Make technology work for your business.",
+    absolute: "ARC Transformation Group · Make technology work",
   },
   description: arcSite.metaDescription,
   alternates: { canonical: "/" },

@@ -19,6 +19,7 @@
     "playbook:build": "npm run playbook:assets && npm run playbook:pdf && npm run playbook:bundle && npm run playbook:preview-public",
     "playbook:provision": "node scripts/playbook/provision.mjs",
     "test:e2e": "playwright test",
+    "check:integrity": "node scripts/integrity/check.mjs",
     "research:brief": "node scripts/research/brief.mjs"
   },
   "dependencies": {

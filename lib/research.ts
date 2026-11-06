@@ -20,7 +20,16 @@ export type ArticleSection = {
 
 export type Article = {
   slug: string;
+  /** The <h1>. Written to be read on the page, not to fit a search result. */
   title: string;
+  /**
+   * Optional shorter title for the <title> tag only, where about 60
+   * characters get displayed. `title` stays the heading: a brief that needs
+   * 90 characters to say what it covers should keep them for the reader.
+   */
+  metaTitle?: string;
+  /** Optional shorter description, where `summary` runs past ~155 characters. */
+  metaDescription?: string;
   kind: "Benchmark" | "Research" | "Report";
   topic: string;
   date: string;
@@ -37,6 +46,9 @@ export const research: Article[] = [
     slug: "agents-with-credentials-august-2026",
     title:
       "Agents With Credentials: What August 2026 Changed for Operators",
+    metaTitle: "Agents With Credentials: What August 2026 Changed",
+    metaDescription:
+      "The tool protocol went stateless, a national evaluator caught agents acting unsanctioned, and enterprise platforms opened systems of record to agents.",
     kind: "Report",
     topic: "Agent governance",
     date: "2026-09-07",
@@ -180,6 +192,9 @@ export const research: Article[] = [
     slug: "metered-agents-ai-spend-control",
     title:
       "Metered Agents: When the Bill Depends on Which Model Answered",
+    metaTitle: "Metered Agents: When the Bill Depends on the Model",
+    metaDescription:
+      "Agent pricing moved from flat seats to routed models. Half of organizations are over their AI plan and almost none pull back. What to control, and how.",
     kind: "Report",
     topic: "Cost control",
     date: "2026-09-04",
@@ -286,6 +301,9 @@ export const research: Article[] = [
     slug: "eu-ai-act-transparency-live",
     title:
       "The EU AI Act Clock: What Applied on 2 August 2026, and What Moved to 2027",
+    metaTitle: "EU AI Act: What Applied in August 2026",
+    metaDescription:
+      "The transparency obligations are in force now; the high-risk ones were deferred. Teams that heard “delayed” and stopped reading are exposed either way.",
     kind: "Report",
     topic: "Regulation",
     date: "2026-09-02",
@@ -383,6 +401,9 @@ export const research: Article[] = [
     slug: "ai-development-horizon-agents-protocols",
     title:
       "AI Development on the Horizon: Agents, Tool Protocols, and the Jagged Frontier",
+    metaTitle: "Agents, Tool Protocols and the Jagged Frontier",
+    metaDescription:
+      "Where AI systems are actually improving: agent computer-use benchmarks, Model Context Protocol tooling, and why capability stays uneven.",
     kind: "Research",
     topic: "AI development",
     date: "2026-08-01",
@@ -497,6 +518,9 @@ export const research: Article[] = [
     slug: "security-zero-trust-ai-risk",
     title:
       "Security for Modern Operators: Zero Trust, CSF 2.0, and AI-Era Threats",
+    metaTitle: "Zero Trust, CSF 2.0 and AI-Era Threats",
+    metaDescription:
+      "NIST Cybersecurity Framework 2.0, Zero Trust Architecture, the Cyber AI Profile and OWASP’s Top 10 for LLMs, turned into outcomes teams can run.",
     kind: "Research",
     topic: "Security",
     date: "2026-08-01",
@@ -593,6 +617,9 @@ export const research: Article[] = [
     slug: "operations-workflow-process-mining",
     title:
       "Operations Workflow Development: Process Truth, Mining, and Hyperautomation",
+    metaTitle: "Process Truth, Mining and Hyperautomation",
+    metaDescription:
+      "How operations teams move from assumed process maps to event-log truth, grounded in process-mining research and BPM maturity evidence.",
     kind: "Research",
     topic: "Operations workflow",
     date: "2026-08-01",
@@ -672,6 +699,9 @@ export const research: Article[] = [
     slug: "cloud-infrastructure-finops-cloud-native",
     title:
       "Cloud Infrastructure That Pays Its Way: FinOps, Cloud Native, and Well-Architected Practice",
+    metaTitle: "FinOps, Cloud Native and Well-Architected Practice",
+    metaDescription:
+      "Running cloud as an operating system for the business: FinOps Cloud+ scopes, CNCF evidence on Kubernetes for AI, and Well-Architected review.",
     kind: "Research",
     topic: "Cloud infrastructure",
     date: "2026-08-01",
@@ -752,6 +782,9 @@ export const research: Article[] = [
     slug: "digital-transformation-productivity-j-curve",
     title:
       "Digital Transformation That Compounds: The Productivity J-Curve and Capability Gaps",
+    metaTitle: "The Productivity J-Curve and Capability Gaps",
+    metaDescription:
+      "Why most digital and AI programs under-deliver, and what Brynjolfsson’s productivity research and MIT manufacturing evidence say separates leaders.",
     kind: "Research",
     topic: "Digital transformation",
     date: "2026-08-01",
@@ -840,6 +873,9 @@ export const research: Article[] = [
     slug: "product-development-discovery-delivery",
     title:
       "Product Development That Learns: Discovery, Delivery, and Outcome Ownership",
+    metaTitle: "Discovery, Delivery and Outcome Ownership",
+    metaDescription:
+      "Modern product operating models: SVPG empowerment principles, Teresa Torres’ continuous discovery, and dual-track discovery and delivery.",
     kind: "Research",
     topic: "Product development",
     date: "2026-08-01",
