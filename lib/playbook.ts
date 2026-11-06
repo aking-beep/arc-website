@@ -18,6 +18,25 @@ export const playbookPriceEnv: Record<PlaybookSlug, string> = {
   ship: "PLAYBOOK_SHIP_PADDLE_PRICE_ID",
 };
 
+/**
+ * A hosted storefront URL per playbook — Gumroad, Lemon Squeezy, Ko-fi, a
+ * Stripe Payment Link, anything with a buyable page.
+ *
+ * This exists because the self-hosted path is all-or-nothing: Paddle keys,
+ * a Supabase project, a storage bucket and a sending domain, roughly twenty
+ * values, before the first sale. A storefront needs one URL and sells today.
+ * Whichever is configured, the product pages and prices here do not change.
+ *
+ * Paddle wins when both are set, since the overlay keeps the buyer on the
+ * site. These are public URLs, not secrets, and they are read from the
+ * environment only to keep deployment detail out of the content modules.
+ */
+export const playbookBuyUrlEnv: Record<PlaybookSlug, string> = {
+  define: "PLAYBOOK_DEFINE_BUY_URL",
+  build: "PLAYBOOK_BUILD_BUY_URL",
+  ship: "PLAYBOOK_SHIP_BUY_URL",
+};
+
 export const playbookPdfEnv: Record<PlaybookSlug, string> = {
   define: "PLAYBOOK_DEFINE_PDF_OBJECT",
   build: "PLAYBOOK_BUILD_PDF_OBJECT",
