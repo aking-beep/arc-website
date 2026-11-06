@@ -45,12 +45,12 @@ export function Paywall({
             {product} opens after payment.
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            {file} The price is {price}, once. The private download link arrives by email.
+            {file} The price is {price}, once. The download opens straight after checkout, and the receipt email links to it.
           </p>
           <div className="mt-6">{children}</div>
           <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            <Link href="/playbook/recover" className="underline underline-offset-4">
-              Already bought this? Email yourself the download.
+            <Link href="/contact" className="underline underline-offset-4">
+              Lost your receipt? Contact us and we resend it.
             </Link>
           </p>
         </div>

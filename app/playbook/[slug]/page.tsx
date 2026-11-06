@@ -110,7 +110,7 @@ export default function PlaybookTierPage({
               </p>
               <OfferBuy tier={tier} config={checkout} className="mt-6" />
               <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-                {tier.format}. One payment, then a private download link.
+                {tier.format}. One payment, then the download straight away.
               </p>
             </div>
 

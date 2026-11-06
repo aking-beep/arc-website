@@ -250,7 +250,7 @@ export const playbookFaqs = [
   },
   {
     q: "What format do I get?",
-    a: "A PDF of that playbook and a ZIP of the editable files that belong to it. No login and no subscription. The email names the playbook you bought.",
+    a: "A PDF of that playbook and a ZIP of the editable files that belong to it. No account needed and no subscription. The receipt names the playbook you bought.",
   },
   {
     q: "Is this a course?",
@@ -262,15 +262,15 @@ export const playbookFaqs = [
   },
   {
     q: "Can I read it before I pay?",
-    a: "No. The playbook is a paid file. Payment emails a private download link. There is no public copy.",
+    a: "No. The playbook is a paid file. Checkout opens the download, and the receipt email links to it. There is no public copy.",
   },
   {
     q: "Will it be out of date in six months?",
-    a: "The model names will be. The sequence will not. The playbooks avoid naming specific models and vendors in the method itself, and you get updates to the edition you bought through the same private link.",
+    a: "The model names will be. The sequence will not. The playbooks avoid naming specific models and vendors in the method itself, and you get updates to the edition you bought through the same download.",
   },
   {
     q: "Do I need an account?",
-    a: "No. You buy a playbook, we email you a private download link, and the link works on more than one device. There is nothing to log into. If you lose the email, the recover page sends a fresh link to the same address.",
+    a: "No. You pay at checkout with your email address and the download opens straight away. The receipt email links to it again, on any device. If you lose the receipt, contact us and we resend it.",
   },
   {
     q: "Can I use this with my team?",
