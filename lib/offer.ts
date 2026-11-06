@@ -31,7 +31,7 @@ export const offerAudience =
   "For a founder or a product lead deciding, building, or launching a product that uses a model.";
 
 export const offerDelivery =
-  "One payment. The PDF and the files for that playbook arrive by email. There is no account and no subscription.";
+  "One payment. The PDF and the files for that playbook open right after checkout, and the receipt email links to them. No account needed and no subscription.";
 
 export const offerRefund =
   "Ask us within 30 days and we refund the playbook you bought.";

@@ -87,7 +87,7 @@ export function OfferCatalog({
               <p className="mt-1 text-sm text-muted-foreground">{tier.priceNote}</p>
               <p className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground">
                 <Lock className="h-3.5 w-3.5" aria-hidden />
-                Paid file. Payment emails the download.
+                Paid file. The download opens right after checkout.
               </p>
               <div className="mt-5">
                 <OfferBuy tier={tier} config={checkouts[tier.slug]} />

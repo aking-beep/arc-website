@@ -73,7 +73,7 @@ export default function PlaybookPage() {
         <SectionHeading
           kicker="Prices"
           title="One payment each. The file stays behind it."
-          lead="Each playbook is a paid download. Payment emails a private link for that file. Buying one leaves the other two locked."
+          lead="Each playbook is a paid download. Checkout opens the file for that playbook, and the receipt email links to it. Buying one leaves the other two locked."
         />
         <TierCards checkouts={checkouts} />
         <p className="mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">

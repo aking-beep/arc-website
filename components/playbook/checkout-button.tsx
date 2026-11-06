@@ -74,7 +74,7 @@ export function CheckoutButton({
             {idleLabel}
           </Button>
           <p className="mt-2 text-sm text-muted-foreground">
-            Secure checkout, then the file by email.
+            Secure checkout, then the download straight away.
           </p>
         </div>
       );

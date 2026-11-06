@@ -45,7 +45,7 @@ function TierCard({
       <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{tier.summary}</p>
       <p className="mt-5 inline-flex items-center gap-2 text-sm text-muted-foreground">
         <Lock className="h-3.5 w-3.5" aria-hidden />
-        Paid file. It arrives by email after payment.
+        Paid file. The download opens right after checkout.
       </p>
       <OfferBuy tier={tier} config={checkout} className="mt-6" />
       <Link

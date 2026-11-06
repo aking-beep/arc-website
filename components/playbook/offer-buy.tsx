@@ -41,7 +41,7 @@ export function OfferBuy({
           </Button>
           {note ? (
             <p className="mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              Secure checkout, then the file by email. {tier.price}, once.
+              Secure checkout, then the download straight away. {tier.price}, once.
             </p>
           ) : null}
         </div>
