@@ -28,6 +28,11 @@ const sizes: Record<Size, string> = {
 const base =
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-canvas disabled:pointer-events-none disabled:opacity-50";
 
+/** The button look, for an element Button cannot render (e.g. a same-tab external link). */
+export function buttonClassName(variant: Variant = "primary", size: Size = "md", className?: string) {
+  return cn(base, variants[variant], sizes[size], className);
+}
+
 export type ButtonProps = {
   variant?: Variant;
   size?: Size;

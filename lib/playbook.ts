@@ -18,6 +18,16 @@ export const playbookPriceEnv: Record<PlaybookSlug, string> = {
   ship: "PLAYBOOK_SHIP_PADDLE_PRICE_ID",
 };
 
+/**
+ * Gumroad product links, one per playbook. When one is set, that playbook's
+ * buy button goes to Gumroad and Gumroad handles payment, tax and delivery.
+ */
+export const playbookGumroadEnv: Record<PlaybookSlug, string> = {
+  define: "PLAYBOOK_DEFINE_GUMROAD_URL",
+  build: "PLAYBOOK_BUILD_GUMROAD_URL",
+  ship: "PLAYBOOK_SHIP_GUMROAD_URL",
+};
+
 export const playbookPdfEnv: Record<PlaybookSlug, string> = {
   define: "PLAYBOOK_DEFINE_PDF_OBJECT",
   build: "PLAYBOOK_BUILD_PDF_OBJECT",

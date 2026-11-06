@@ -1,14 +1,20 @@
 "use client";
 
 import * as React from "react";
+import Script from "next/script";
 import { initializePaddle, type Paddle } from "@paddle/paddle-js";
 
-import { Button, type ButtonProps } from "@/components/ui/button";
+import { Button, buttonClassName, type ButtonProps } from "@/components/ui/button";
 import { trackEvent } from "@/lib/analytics";
 import type { PlaybookSlug } from "@/lib/playbook";
 
 /**
- * Opens Paddle's hosted checkout overlay.
+ * Opens checkout: Gumroad when the playbook has a Gumroad link, otherwise
+ * Paddle's hosted checkout overlay.
+ *
+ * Gumroad is a plain link to the product's payment step. Gumroad's script
+ * turns it into an overlay on this page; if the script is blocked, the link
+ * still works and the buyer pays on gumroad.com.
  *
  * What reaches the browser is only the client token and the price id, both of
  * which Paddle publishes as public values. The API key, the webhook secret and
@@ -21,6 +27,8 @@ import type { PlaybookSlug } from "@/lib/playbook";
  */
 export type CheckoutConfig = {
   configured: boolean;
+  /** Gumroad product link. When set, Paddle is not used for this playbook. */
+  gumroadUrl: string | null;
   clientToken: string | null;
   priceId: string | null;
   environment: "sandbox" | "production";
@@ -57,6 +65,20 @@ export function CheckoutButton({
   const completedRef = React.useRef(false);
 
   const idleLabel = typeof children === "string" ? children : `Get ${product}`;
+
+  if (config.gumroadUrl) {
+    return (
+      <GumroadLink
+        url={config.gumroadUrl}
+        product={product}
+        priceAmount={priceAmount}
+        label={idleLabel}
+        size={size}
+        variant={variant}
+        className={className}
+      />
+    );
+  }
 
   if (!config.configured || !config.clientToken || !config.priceId) {
     return (
@@ -157,6 +179,43 @@ export function CheckoutButton({
           and we will send a payment link.
         </p>
       ) : null}
+    </div>
+  );
+}
+
+function GumroadLink({
+  url,
+  product,
+  priceAmount,
+  label,
+  size,
+  variant,
+  className,
+}: {
+  url: string;
+  product: PlaybookSlug;
+  priceAmount: number;
+  label: string;
+  size: ButtonProps["size"];
+  variant: ButtonProps["variant"];
+  className?: string;
+}) {
+  return (
+    <div className={className}>
+      <Script src="https://gumroad.com/js/gumroad.js" strategy="lazyOnload" />
+      <a
+        href={url}
+        className={buttonClassName(variant, size)}
+        onClick={() =>
+          trackEvent("playbook_checkout_start", {
+            product,
+            price: priceAmount,
+            environment: "gumroad",
+          })
+        }
+      >
+        {label}
+      </a>
     </div>
   );
 }
