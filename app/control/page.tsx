@@ -9,9 +9,9 @@ import { control, controlCapabilities } from "@/lib/arc/control";
 import { maturityStyle } from "@/lib/arc/status";
 import { jsonLdScript } from "@/lib/arc/json-ld";
 
-const title = "ARC Control · Infrastructure for agents that act on real systems";
+const title = "ARC Control · Infrastructure for agents that act";
 const description =
-  "Authorization, auditable execution, MCP conformance and observability for AI agents. Prove what an agent did, under whose authority, and whether the outcome actually happened. In design-partner development.";
+  "Authorization, auditable execution, MCP conformance and observability for AI agents. Prove what an agent did and whether the outcome happened.";
 
 export const metadata: Metadata = {
   title: { absolute: title },

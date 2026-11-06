@@ -19,7 +19,8 @@ export function generateMetadata({
   const offering = getAdvisoryEngagementBySlug(params.slug);
   if (!offering) return {};
   return {
-    title: `${offering.name} · ARC Advisory`,
+    // Absolute, as with ARC Labs: otherwise "… · ARC Advisory · ARC".
+    title: { absolute: `${offering.name} · ARC Advisory` },
     description: offering.tagline,
     alternates: { canonical: `/advisory/${offering.slug}` },
     openGraph: {

@@ -18,7 +18,10 @@ export const arcSite = {
     "ARC is an AI and development studio for companies of 1 to 200 people. We build AI systems, automations, software and the infrastructure under them, and we build the controls that decide what those systems are allowed to do.",
   /** Shorter form, for metadata and social cards. */
   metaDescription:
-    "An AI and development studio for companies of 1 to 200 people. AI and automation, software and infrastructure, and the controls that decide what an agent may do.",
+    // Kept to 155 characters, which is roughly where a search result cuts a
+    // description off. The studio positioning is the one from main; only its
+    // length changed, to satisfy the guard in tests/seo-metadata.test.ts.
+    "An AI and development studio for companies of 1 to 200 people. AI and automation, software and infrastructure, and the controls on what an agent may do.",
 };
 
 export type ArcNavItem = { href: string; label: string };

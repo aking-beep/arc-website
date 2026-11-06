@@ -30,7 +30,9 @@ export function generateMetadata({
   const tier = getPlaybookTier(params.slug);
   if (!tier) return {};
   const canonical = `${site.domain.replace(/\/+$/, "")}${playbookTierHref(tier.slug)}`;
-  const description = `${tier.productName} is ${tier.price}, one-off. ${tier.summary}`;
+  // tier.subtitle, not tier.summary: the summary is a paragraph and ran the
+  // meta description past what a search result shows.
+  const description = `${tier.productName}, ${tier.price} one-off. ${tier.subtitle}`;
   return {
     title: `${tier.productName} · ${tier.price}`,
     description,

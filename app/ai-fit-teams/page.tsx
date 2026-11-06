@@ -47,7 +47,7 @@ const weeks = [
 
 export const metadata: Metadata = {
   alternates: { canonical: "/ai-fit-teams" },
-  title: "AI Fit Teams · Prepare the organization around the technology",
+  title: "AI Fit Teams · Prepare the organization",
   description:
     "Understand AI readiness across teams, workflows, capabilities, governance and adoption. A three-to-four week assessment run by ARC.",
 };

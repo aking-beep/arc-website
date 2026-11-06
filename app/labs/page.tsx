@@ -16,7 +16,7 @@ import { jsonLdScript } from "@/lib/arc/json-ld";
 
 const title = "ARC Labs · Applied technology, tested in public";
 const description =
-  "Developer tools and scanners for teams building with AI: MCP conformance, prompt review, connectivity checks and AI architecture fit. Free to use, no account, and each one shows its real maturity.";
+  "Developer tools and scanners for teams building with AI: MCP conformance, prompt review, connectivity checks and architecture fit. Free to use.";
 
 export const metadata: Metadata = {
   title: { absolute: title },

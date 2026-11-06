@@ -20,12 +20,14 @@ export function generateMetadata({ params }: Params): Metadata {
   const area = getServiceArea(params.slug);
   if (!area) return {};
   return {
-    title: `${area.heading.replace(/\.$/, "")} · ARC`,
-    description: area.body,
+    // No " · ARC" here: the root template appends it. Hard-coding it too
+    // rendered "… · ARC · ARC".
+    title: area.heading.replace(/\.$/, ""),
+    description: area.metaDescription ?? area.body,
     alternates: { canonical: `/services/${area.slug}` },
     openGraph: {
       title: area.heading.replace(/\.$/, ""),
-      description: area.body,
+      description: area.metaDescription ?? area.body,
       url: `/services/${area.slug}`,
       type: "website",
     },

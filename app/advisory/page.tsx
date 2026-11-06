@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/advisory" },
   title: "How we work · Scoped reviews, then delivery",
   description:
-    "Most work with ARC starts as a two-to-seven week scoped review that ends in a plan with named owners. If the plan still needs hands on it, we stay and build.",
+    "Most work with ARC starts as a two-to-seven week scoped review ending in a plan with named owners. If it still needs hands on it, we stay and build.",
 };
 
 /**
