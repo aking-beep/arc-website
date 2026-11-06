@@ -15,10 +15,13 @@ export const arcSite = {
    * the About hero and the Organization JSON-LD.
    */
   positioning:
-    "ARC builds the controls that let AI agents act on production systems safely, modernizes the infrastructure they depend on, and turns emerging technology into products people actually use.",
+    "ARC is an AI and development studio for companies of 1 to 200 people. We build AI systems, automations, software and the infrastructure under them, and we build the controls that decide what those systems are allowed to do.",
   /** Shorter form, for metadata and social cards. */
   metaDescription:
-    "ARC builds practical AI systems and reliable infrastructure: agent authorization and auditable execution, free developer tools, and senior-led delivery.",
+    // Kept to 155 characters, which is roughly where a search result cuts a
+    // description off. The studio positioning is the one from main; only its
+    // length changed, to satisfy the guard in tests/seo-metadata.test.ts.
+    "An AI and development studio for companies of 1 to 200 people. AI and automation, software and infrastructure, and the controls on what an agent may do.",
 };
 
 export type ArcNavItem = { href: string; label: string };
@@ -54,6 +57,7 @@ export const arcFooterColumns: { heading: string; links: ArcNavItem[] }[] = [
     heading: "Solutions",
     links: [
       { href: "/services", label: "All solutions" },
+      { href: "/products", label: "Products you can buy" },
       { href: "/advisory", label: "Engagements" },
       { href: "/agent-readiness", label: "Agent Readiness" },
       { href: "/ai-fit", label: "AI Fit" },

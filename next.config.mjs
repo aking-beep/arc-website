@@ -3,6 +3,16 @@ const nextConfig = {
   reactStrictMode: true,
   async redirects() {
     return [
+      // /pricing was live for a few hours carrying benchmarked draft figures
+      // for the services ladder. They were never ARC's numbers, and a page of
+      // prices nobody had agreed to is worse than no page, so it came down.
+      // Temporary, not permanent: the ladder is written and the route comes
+      // back the moment the real figures are set (lib/arc/offers.ts).
+      {
+        source: "/pricing",
+        destination: "/products",
+        permanent: false,
+      },
       // The Agent Control console showcase is a folder of static HTML in
       // `public/`, captured from the real server.
       //
