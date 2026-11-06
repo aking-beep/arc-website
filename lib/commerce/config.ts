@@ -24,6 +24,7 @@ import {
   playbookPdfEnv,
   playbookPriceEnv,
   playbookSlugs,
+  playbookStorefrontUrl,
   playbookZipEnv,
   type PlaybookSlug,
 } from "@/lib/playbook";
@@ -91,14 +92,20 @@ export function readPlaybookPrices(): PlaybookPrices {
 }
 
 /**
- * Hosted storefront URL for one playbook, or undefined.
+ * Hosted storefront URL for one playbook.
  *
- * Validated rather than trusted: a typo here renders a buy button that
- * goes nowhere, which is worse than the honest "not configured yet" state.
- * Must be an absolute https URL.
+ * The *_BUY_URL variable wins when it holds a valid https URL. Otherwise the
+ * live Gumroad product in lib/playbook.ts is used. A bad value is logged and
+ * ignored rather than rendering a buy button that goes nowhere.
  */
 export function readPlaybookBuyUrl(slug: PlaybookSlug): string | undefined {
-  const raw = read(playbookBuyUrlEnv[slug]);
+  return (
+    validBuyUrl(slug, read(playbookBuyUrlEnv[slug])) ??
+    validBuyUrl(slug, playbookStorefrontUrl[slug])
+  );
+}
+
+function validBuyUrl(slug: PlaybookSlug, raw: string | undefined): string | undefined {
   if (!raw) return undefined;
   try {
     const url = new URL(raw);

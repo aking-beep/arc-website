@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from "vitest";
 
-import { playbookBuyUrlEnv, playbookSlugs } from "@/lib/playbook";
+import { playbookBuyUrlEnv, playbookSlugs, playbookStorefrontUrl } from "@/lib/playbook";
 
 /**
  * The hosted-storefront fallback: one URL per playbook, so a playbook can be
@@ -38,10 +38,12 @@ describe("playbookBuyUrlEnv", () => {
 });
 
 describe("readPlaybookBuyUrl", () => {
-  it("is undefined when nothing is set", async () => {
-    delete process.env.PLAYBOOK_DEFINE_BUY_URL;
+  it("falls back to the live Gumroad product when nothing is set", async () => {
+    for (const n of Object.values(playbookBuyUrlEnv)) delete process.env[n];
     const { readPlaybookBuyUrl } = await freshConfig();
-    expect(readPlaybookBuyUrl("define")).toBeUndefined();
+    expect(readPlaybookBuyUrl("define")).toBe("https://arcking.gumroad.com/l/fosjv");
+    expect(readPlaybookBuyUrl("build")).toBe("https://arcking.gumroad.com/l/epfptl");
+    expect(readPlaybookBuyUrl("ship")).toBe("https://arcking.gumroad.com/l/bsych");
   });
 
   it("returns a valid https URL", async () => {
@@ -53,40 +55,40 @@ describe("readPlaybookBuyUrl", () => {
   it("refuses http, rather than sending a buyer somewhere insecure", async () => {
     process.env.PLAYBOOK_DEFINE_BUY_URL = "http://arc.gumroad.com/l/define";
     const { readPlaybookBuyUrl } = await freshConfig();
-    expect(readPlaybookBuyUrl("define")).toBeUndefined();
+    expect(readPlaybookBuyUrl("define")).toBe(playbookStorefrontUrl.define);
   });
 
   it("refuses a typo, rather than rendering a button that goes nowhere", async () => {
     process.env.PLAYBOOK_DEFINE_BUY_URL = "gumroad.com/l/define";
     const { readPlaybookBuyUrl } = await freshConfig();
-    expect(readPlaybookBuyUrl("define")).toBeUndefined();
+    expect(readPlaybookBuyUrl("define")).toBe(playbookStorefrontUrl.define);
   });
 
   it("treats whitespace as unset", async () => {
     process.env.PLAYBOOK_DEFINE_BUY_URL = "   ";
     const { readPlaybookBuyUrl } = await freshConfig();
-    expect(readPlaybookBuyUrl("define")).toBeUndefined();
+    expect(readPlaybookBuyUrl("define")).toBe(playbookStorefrontUrl.define);
   });
 
   it("keeps the playbooks independent", async () => {
     process.env.PLAYBOOK_DEFINE_BUY_URL = "https://arc.gumroad.com/l/define";
     delete process.env.PLAYBOOK_SHIP_BUY_URL;
     const { readPlaybookBuyUrl } = await freshConfig();
-    expect(readPlaybookBuyUrl("define")).toBeTruthy();
-    expect(readPlaybookBuyUrl("ship")).toBeUndefined();
+    expect(readPlaybookBuyUrl("define")).toBe("https://arc.gumroad.com/l/define");
+    expect(readPlaybookBuyUrl("ship")).toBe(playbookStorefrontUrl.ship);
   });
 });
 
 describe("commerceReadiness", () => {
-  it("reports it cannot sell when neither route is configured", async () => {
+  it("sells on the live Gumroad products with no settings at all", async () => {
     for (const n of Object.values(playbookBuyUrlEnv)) delete process.env[n];
     delete process.env.PADDLE_API_KEY;
     delete process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN;
     const { commerceReadiness } = await freshConfig();
     const r = commerceReadiness();
-    expect(r.checkout).toBe(false);
-    expect(r.checkoutVia).toBe("none");
-    expect(r.missing.length).toBeGreaterThan(0);
+    expect(r.checkout).toBe(true);
+    expect(r.checkoutVia).toBe("storefront");
+    expect(r.missing).toEqual([]);
   });
 
   it("reports it CAN sell on a storefront alone", async () => {

@@ -37,6 +37,16 @@ export const playbookBuyUrlEnv: Record<PlaybookSlug, string> = {
   ship: "PLAYBOOK_SHIP_BUY_URL",
 };
 
+/**
+ * The live Gumroad products. Used when the matching *_BUY_URL variable is
+ * unset or invalid, so the playbooks sell without any deployment settings.
+ */
+export const playbookStorefrontUrl: Record<PlaybookSlug, string> = {
+  define: "https://arcking.gumroad.com/l/fosjv",
+  build: "https://arcking.gumroad.com/l/epfptl",
+  ship: "https://arcking.gumroad.com/l/bsych",
+};
+
 export const playbookPdfEnv: Record<PlaybookSlug, string> = {
   define: "PLAYBOOK_DEFINE_PDF_OBJECT",
   build: "PLAYBOOK_BUILD_PDF_OBJECT",
