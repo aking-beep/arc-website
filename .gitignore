@@ -44,3 +44,6 @@ next-env.d.ts
 
 # Written by scripts/integrity/check.mjs on each run.
 integrity-report.md
+
+# Written by scripts/research/brief.mjs on each run.
+research-brief.txt
