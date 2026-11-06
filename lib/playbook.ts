@@ -28,6 +28,13 @@ export const playbookGumroadEnv: Record<PlaybookSlug, string> = {
   ship: "PLAYBOOK_SHIP_GUMROAD_URL",
 };
 
+/** The live Gumroad products. The env vars above override these. */
+export const playbookGumroadUrl: Record<PlaybookSlug, string> = {
+  define: "https://arcking.gumroad.com/l/fosjv",
+  build: "https://arcking.gumroad.com/l/epfptl",
+  ship: "https://arcking.gumroad.com/l/bsych",
+};
+
 export const playbookPdfEnv: Record<PlaybookSlug, string> = {
   define: "PLAYBOOK_DEFINE_PDF_OBJECT",
   build: "PLAYBOOK_BUILD_PDF_OBJECT",

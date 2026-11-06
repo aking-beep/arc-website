@@ -2,7 +2,7 @@ import "server-only";
 
 import { paddleConfig } from "@/lib/commerce/config";
 import type { CheckoutConfig } from "@/components/playbook/checkout-button";
-import { playbookGumroadEnv, type PlaybookSlug } from "@/lib/playbook";
+import { playbookGumroadEnv, playbookGumroadUrl, type PlaybookSlug } from "@/lib/playbook";
 
 /**
  * A Gumroad product link, or null. Only https links on Gumroad's own hosts
@@ -38,7 +38,9 @@ export function gumroadProductUrl(raw: string | undefined): string | null {
  */
 export function publicCheckoutConfig(slug: PlaybookSlug): CheckoutConfig {
   const paddle = paddleConfig();
-  const gumroadUrl = gumroadProductUrl(process.env[playbookGumroadEnv[slug]]);
+  const gumroadUrl = gumroadProductUrl(
+    process.env[playbookGumroadEnv[slug]]?.trim() || playbookGumroadUrl[slug],
+  );
 
   if (gumroadUrl) {
     return {

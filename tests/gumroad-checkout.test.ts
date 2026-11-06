@@ -28,17 +28,26 @@ describe("publicCheckoutConfig with Gumroad", () => {
     process.env = { ...saved };
   });
 
-  it("uses the Gumroad link for that playbook only", () => {
-    process.env.PLAYBOOK_DEFINE_GUMROAD_URL = "https://arc.gumroad.com/l/define";
+  it("sells every playbook through its live Gumroad product by default", () => {
+    delete process.env.PLAYBOOK_DEFINE_GUMROAD_URL;
     delete process.env.PLAYBOOK_BUILD_GUMROAD_URL;
-    delete process.env.PADDLE_API_KEY;
+    delete process.env.PLAYBOOK_SHIP_GUMROAD_URL;
 
+    expect(publicCheckoutConfig("define").gumroadUrl).toBe(
+      "https://arcking.gumroad.com/l/fosjv?wanted=true",
+    );
+    expect(publicCheckoutConfig("build").gumroadUrl).toBe(
+      "https://arcking.gumroad.com/l/epfptl?wanted=true",
+    );
+    expect(publicCheckoutConfig("ship").gumroadUrl).toBe(
+      "https://arcking.gumroad.com/l/bsych?wanted=true",
+    );
+  });
+
+  it("lets an environment variable override the link", () => {
+    process.env.PLAYBOOK_DEFINE_GUMROAD_URL = "https://arc.gumroad.com/l/define";
     const define = publicCheckoutConfig("define");
     expect(define.configured).toBe(true);
     expect(define.gumroadUrl).toBe("https://arc.gumroad.com/l/define?wanted=true");
-
-    const build = publicCheckoutConfig("build");
-    expect(build.configured).toBe(false);
-    expect(build.gumroadUrl).toBeNull();
   });
 });
